@@ -2,17 +2,31 @@ import configparser
 import time
 import threading
 from  ApiWrapper import IBapi,createContract
-from DataBase.db import updateOpenPostionsInDB
+from DataBase.db import updateOpenPostionsInDB, updateOpenOrdersinDB
 from Research.UpdateCandidates import updatetMarketStatisticsAndCandidates
 from ibapi.common import MarketDataTypeEnum
 
 STOCKSTRACKED=["FB","BEP","GOOG"]
 
 
-
 def run_loop():
     app.run()
 
+
+def update_positions():
+    # update positions from IBKR
+    print("Updating positions:")
+    app.reqPositions()
+    time.sleep(1)
+    updateOpenPostionsInDB(app.openPositions)
+
+
+def update_orders():
+    print("Updating all open Orders")
+    app.openOrders = {}
+    app.reqAllOpenOrders()
+    time.sleep(1)
+    updateOpenOrdersinDB(app.openOrders)
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -48,20 +62,15 @@ status=app.generalStatus
 print("PnL today status: ")
 print(status)
 
-# print("Get all open Orders")
-# app.reqAllOpenOrders()
-
 #take the research from Yahoo
 print("Updating the Statistics: ")
 updatetMarketStatisticsAndCandidates()
 print("Finished to update the Statistics: ")
 
-#update positions from IBKR
-print("Updating positions:")
-app.reqPositions()
-time.sleep(1)
+update_positions()
+update_orders()
 
-updateOpenPostionsInDB(app.openPositions)
+print("**********************AllDataPrepared********************")
 
 # #starting querry
 # for s in STOCKSTRACKED:

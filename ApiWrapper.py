@@ -10,6 +10,7 @@ class IBapi(EWrapper, EClient):
     def __init__(self):
         EClient.__init__(self, self)
         self.openPositions={}
+        self.openOrders={}
 
 
     # def error(self, reqId: int, errorCode: int, errorString: str):
@@ -41,16 +42,21 @@ class IBapi(EWrapper, EClient):
 
     def orderStatus(self, orderId, status, filled, remaining, avgFullPrice, permId, parentId, lastFillPrice, clientId,
                     whyHeld, mktCapPrice):
-        print('orderStatus - orderid:', orderId, 'status:', status, 'filled', filled, 'remaining', remaining,
-              'lastFillPrice', lastFillPrice)
+        super().orderStatus(orderId, status, filled, remaining, avgFullPrice, permId, parentId, lastFillPrice, clientId,
+                    whyHeld, mktCapPrice)
+        # print('orderStatus - orderid:', orderId, 'status:', status, 'filled', filled, 'remaining', remaining,
+        #       'lastFillPrice', lastFillPrice)
 
     def openOrder(self, orderId, contract, order, orderState):
-        print('openOrder id:', orderId, contract.symbol, contract.secType, '@', contract.exchange, ':', order.action,
-              order.orderType, order.totalQuantity, orderState.status)
+        super().openOrder(orderId, contract, order, orderState)
+        self.openOrders[contract.symbol] = {"Action": order.action, "Type": order.orderType}
+        # print('openOrder id:', orderId, contract.symbol, contract.secType, '@', contract.exchange, ':', order.action,
+        #       order.orderType, order.totalQuantity, orderState.status)
 
     def execDetails(self, reqId, contract, execution):
-        print('Order Executed: ', reqId, contract.symbol, contract.secType, contract.currency, execution.execId,
-              execution.orderId, execution.shares, execution.lastLiquidity)
+        super().execDetails(reqId, contract, execution)
+        # print('Order Executed: ', reqId, contract.symbol, contract.secType, contract.currency, execution.execId,
+        #       execution.orderId, execution.shares, execution.lastLiquidity)
 
     def tickPrice(self, reqId, tickType, price, attrib):
         if tickType==67 or tickType==66:

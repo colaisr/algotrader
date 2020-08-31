@@ -20,6 +20,16 @@ class Position(Base):
    openDate=Column(DateTime)
    lastUpdate=Column(DateTime)
 
+
+class Order(Base):
+   __tablename__ = 'orders'
+   id = Column(Integer, primary_key=True)
+
+   stock = Column(String)
+   action=Column(String)
+   actionType = Column(String)
+
+
 class Candidate(Base):
    __tablename__ = 'candidates'
    id = Column(Integer, primary_key=True)
@@ -47,11 +57,11 @@ class Deal(Base):
 
 
 
-Base.metadata.create_all(engine)
+#Base.metadata.create_all(engine)
 
 
 def updateCandidate(stock,avDrop,avSpread,bulk,todayOpen,priceToBuy):
-   engine = create_engine('sqlite:////Users/colakamornik/Desktop/algotrader/DataBase/db.db', echo=True)
+   engine = create_engine('sqlite:////Users/colakamornik/Desktop/algotrader/DataBase/db.db')
    Session = sessionmaker(bind = engine)
    session = Session()
 
@@ -80,7 +90,7 @@ def updateCandidate(stock,avDrop,avSpread,bulk,todayOpen,priceToBuy):
 
 def updateOpenPostionsInDB(posFromIbkr):
    print("updating the DB Positions")
-   engine = create_engine('sqlite:////Users/colakamornik/Desktop/algotrader/DataBase/db.db', echo=True)
+   engine = create_engine('sqlite:////Users/colakamornik/Desktop/algotrader/DataBase/db.db')
    Session = sessionmaker(bind = engine)
    session = Session()
    dt=datetime.datetime.now()
@@ -100,6 +110,30 @@ def updateOpenPostionsInDB(posFromIbkr):
          result[0].quantity=stocks
          result[0].currentValue=stocks*cost
          result[0].lastUpdate=dt
+         session.commit()
+         print("Updated in DB : ",s)
+
+def updateOpenOrdersinDB(ordersFromIBKR):
+   print("updating the DB Orders")
+   engine = create_engine('sqlite:////Users/colakamornik/Desktop/algotrader/DataBase/db.db')
+   Session = sessionmaker(bind = engine)
+   session = Session()
+   dt=datetime.datetime.now()
+
+   for s,v in ordersFromIBKR.items():
+      result = session.query(Order).filter(Order.stock == s).all()
+      action=v["Action"]
+      type=v["Type"]
+      if len(result) == 0:
+         p = Order(stock=s, action=action, actionType=type)
+         session.add(p)
+         session.commit()
+         print("Added to DB : ", s," ",action," ",type)
+
+      else:
+
+         result[0].action=action
+         result[0].actionType=type
          session.commit()
          print("Updated in DB : ",s)
 
