@@ -1,16 +1,58 @@
 import configparser
+import sched
 import time
 import threading
-from  ApiWrapper import IBapi,createContract
+from ApiWrapper import IBapi, createContract, createTrailingStopOrder
 from DataBase.db import updateOpenPostionsInDB, updateOpenOrdersinDB, dropPositions, dropOpenOrders
 from Research.UpdateCandidates import updatetMarketStatisticsAndCandidates
 from ibapi.common import MarketDataTypeEnum
 
+config = configparser.ConfigParser()
+config.read('config.ini')
+PORT = config['Connection']['portp']
+ACCOUNT=config['Account']['accp']
+INTERVAL = config['Connection']['interval']
+#algo
+PROFIT=config['Algo']['gainP']
+TRAIL=config['Algo']['trailstepP']
 
+
+def updateprofits():
+    print("Processing profits")
+    for i,p in app.positionDetails.items():
+        profit=p["UnrealizedPnL"]/p["Value"]*100
+        if profit>float(PROFIT):
+            orders=app.openOrders
+            if p["Stock"] in orders:
+                print("Order for ",p["Stock"],"already exist- skipping")
+            else:
+                print("Profit for: ", p["Stock"], " is ", profit,"Creating a trailing Stop Order")
+                contract=createContract(p["Stock"])
+                order=createTrailingStopOrder(p["Position"],TRAIL)
+                app.placeOrder(app.nextorderId, contract, order)
+                app.nextorderId = app.nextorderId + 1
+                print("Created a Trailing Stop order for ",p["Stock"]," at level of ",TRAIL,"%")
+
+
+s = sched.scheduler(time.time, time.sleep)
+def workerGo(sc):
+    print("---------------Processing Worker...---------------------------")
+    get_orders()
+    updatePositions()
+
+    updateprofits()
+
+    s.enter(float(INTERVAL), 1, workerGo, (sc,))
 
 
 def run_loop():
     app.run()
+
+
+def updatePositions():
+    dropPositions()
+    updateOpenPostionsInDB(app.positionDetails)
+    print(len(app.positionDetails), " positions info updated")
 
 
 def get_positions():
@@ -18,16 +60,15 @@ def get_positions():
     print("Updating positions:")
     app.reqPositions()# requesting complete list
     time.sleep(1)
-    for s,p in app.openPositions.items():
+    for s,p in app.openPositions.items():#start tracking one by one
         id = app.nextorderId
         app.positionDetails[id]={"Stock":s}
         app.reqPnLSingle(id, ACCOUNT, "", p["conId"]);#requesting one by one
         app.nextorderId += 1
-
-    print(len(app.positionDetails)," positions info updated")
+        
     time.sleep(2)
-    dropPositions()
-    updateOpenPostionsInDB(app.positionDetails)
+    updatePositions()
+
 
 def get_orders():
     print("Updating all open Orders")
@@ -38,10 +79,7 @@ def get_orders():
     updateOpenOrdersinDB(app.openOrders)
     print(len(app.openOrders), " Orders found and saved to DB")
 
-config = configparser.ConfigParser()
-config.read('config.ini')
-PORT = config['Connection']['portl']
-ACCOUNT=config['Account']['accl']
+
 ticksIds={}
 
 print("Starting Todays session:",time.ctime())
@@ -68,7 +106,7 @@ id=app.nextorderId
 #General Account info:
 app.reqPnL(id,ACCOUNT,"")
 app.nextorderId=app.nextorderId+1
-time.sleep(1)
+time.sleep(2)
 status=app.generalStatus
 print("PnL today status: ")
 print(status)
@@ -78,10 +116,13 @@ print(status)
 # candidates=updatetMarketStatisticsAndCandidates()
 # print("Finished to update the Statistics: ")
 
+#get the open positions and start tracking
 get_positions()
-get_orders()
+print("**********************Connected starting Worker********************")
+#starting worker in loop...
+s.enter(10, 1, workerGo, (s,))
+s.run()
 
-print("**********************AllDataPrepared********************")
 
 # #starting querry
 # for s in candidates:

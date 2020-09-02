@@ -95,4 +95,16 @@ def createContract(symbol:str):
     newContract.currency = 'USD'
     return newContract
 
+def createTrailingStopOrder(quantity,trailPercent):
 
+    # Create order object
+    order = Order()
+    order.action = 'SELL'
+    order.orderType = 'TRAIL'
+    order.totalQuantity = quantity
+    order.trailingPercent = float(trailPercent);
+    order.tif='GTC'
+
+
+
+    return order
