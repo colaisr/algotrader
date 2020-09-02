@@ -15,18 +15,18 @@ def run_loop():
 
 def update_positions():
     # update positions from IBKR
-    dropPositions()
+    #dropPositions()
     print("Updating positions:")
     app.reqPositions()# requesting complete list
     time.sleep(1)
-    # updateOpenPostionsInDB(app.openPositions)
+    # updateOpenPostionsInDB(app.openPositions)- not saving in DB for now
     for s,p in app.openPositions.items():
         id = app.nextorderId
         app.positionDetails[id]={"Stock":s}
         app.reqPnLSingle(id, ACCOUNT, "", p["conId"]);#requesting one by one
         app.nextorderId += 1
 
-    print(len(app.openPositions)," positions found")
+    print(len(app.openPositions)," positions info updated")
 
 def update_orders():
     print("Updating all open Orders")

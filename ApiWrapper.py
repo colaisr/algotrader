@@ -39,24 +39,24 @@ class IBapi(EWrapper, EClient):
               "UnrealizedPnL": unrealizedPnL,
               "RealizedPnL": realizedPnL,
               "Value": value}
-        print("Daily PnL Single. ReqId:", reqId,
-              "Stock:",self.positionDetails[reqId]["Stock"],
-              "Position:", pos,
-              "DailyPnL:", dailyPnL,
-              "UnrealizedPnL:", unrealizedPnL,
-              "RealizedPnL:", realizedPnL,
-              "Value:", value)
+        # print("Daily PnL Single. ReqId:", reqId,
+        #       "Stock:",self.positionDetails[reqId]["Stock"],
+        #       "Position:", pos,
+        #       "DailyPnL:", dailyPnL,
+        #       "UnrealizedPnL:", unrealizedPnL,
+        #       "RealizedPnL:", realizedPnL,
+        #       "Value:", value)
 
 
     def position(self, account: str, contract: Contract, position: float,avgCost: float):
         super().position(account, contract, position, avgCost)
         self.openPositions[contract.symbol]={"stocks":position,"cost":avgCost,"conId":contract.conId}
-        print("Symbol:", contract.symbol,"Stocks:", position, "Avg cost:", avgCost,"Added to the list")
+        # print("Symbol:", contract.symbol,"Stocks:", position, "Avg cost:", avgCost,"Added to the list")
 
 
     def positionEnd(self):
         super().positionEnd()
-        print("Open Positions updated ",len(self.openPositions)," found")
+        print(len(self.openPositions),"Open Positions found")
 
     def orderStatus(self, orderId, status, filled, remaining, avgFullPrice, permId, parentId, lastFillPrice, clientId,
                     whyHeld, mktCapPrice):
