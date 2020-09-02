@@ -10,6 +10,7 @@ class IBapi(EWrapper, EClient):
     def __init__(self):
         EClient.__init__(self, self)
         self.openPositions={}
+        self.positionDetails = {}
         self.openOrders={}
 
 
@@ -29,10 +30,27 @@ class IBapi(EWrapper, EClient):
         # print("PnL today status: ")
         # print(self.generalStatus)
 
+    def pnlSingle(self, reqId: int, pos: int, dailyPnL: float,unrealizedPnL: float, realizedPnL: float, value: float):
+        super().pnlSingle(reqId, pos, dailyPnL, unrealizedPnL, realizedPnL, value)
+
+        self.positionDetails[reqId]= { "Stock":self.positionDetails[reqId]["Stock"],
+              "Position:":pos,
+              "DailyPnL": dailyPnL,
+              "UnrealizedPnL": unrealizedPnL,
+              "RealizedPnL": realizedPnL,
+              "Value": value}
+        print("Daily PnL Single. ReqId:", reqId,
+              "Stock:",self.positionDetails[reqId]["Stock"],
+              "Position:", pos,
+              "DailyPnL:", dailyPnL,
+              "UnrealizedPnL:", unrealizedPnL,
+              "RealizedPnL:", realizedPnL,
+              "Value:", value)
+
 
     def position(self, account: str, contract: Contract, position: float,avgCost: float):
         super().position(account, contract, position, avgCost)
-        self.openPositions[contract.symbol]={"stocks":position,"cost":avgCost}
+        self.openPositions[contract.symbol]={"stocks":position,"cost":avgCost,"conId":contract.conId}
         print("Symbol:", contract.symbol,"Stocks:", position, "Avg cost:", avgCost,"Added to the list")
 
 
@@ -59,6 +77,7 @@ class IBapi(EWrapper, EClient):
         #       execution.orderId, execution.shares, execution.lastLiquidity)
 
     def tickPrice(self, reqId, tickType, price, attrib):
+        super().tickPrice(reqId, tickType, price, attrib)
         if tickType==67 or tickType==66:
             print("Request:",reqId)
         if tickType == 67 :
@@ -72,6 +91,7 @@ def createContract(symbol:str):
     newContract.symbol = symbol
     newContract.secType = 'STK'
     newContract.exchange = 'SMART'
+    newContract.primaryExchange = 'ISLAND'
     newContract.currency = 'USD'
     return newContract
 

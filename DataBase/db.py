@@ -113,6 +113,16 @@ def updateOpenPostionsInDB(posFromIbkr):
          session.commit()
          print("Updated in DB : ",s)
 
+
+def dropPositions():
+   print("Clearing the DB Positions")
+   engine = create_engine('sqlite:////Users/colakamornik/Desktop/algotrader/DataBase/db.db')
+   Session = sessionmaker(bind = engine)
+   session = Session()
+   session.query(Position).delete()
+   session.commit()
+   print("All OpenPositions dropped")
+
 def updateOpenOrdersinDB(ordersFromIBKR):
    print("updating the DB Orders")
    engine = create_engine('sqlite:////Users/colakamornik/Desktop/algotrader/DataBase/db.db')
@@ -136,5 +146,15 @@ def updateOpenOrdersinDB(ordersFromIBKR):
          result[0].actionType=type
          session.commit()
          print("Updated in DB : ",s)
+
+
+def dropOpenOrders():
+   print("Clearing the DB OpenOrders")
+   engine = create_engine('sqlite:////Users/colakamornik/Desktop/algotrader/DataBase/db.db')
+   Session = sessionmaker(bind = engine)
+   session = Session()
+   session.query(Order).delete()
+   session.commit()
+   print("All OpenOrders dropped")
 
 

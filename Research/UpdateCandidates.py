@@ -29,6 +29,8 @@ def updatetMarketStatisticsAndCandidates():
 
         updateCandidate(f,avdropP,avChange,stocksInBulk,lastP,priceToBuy)
 
+    return candidates
+
 
 if __name__ == '__main__':
     updatetMarketStatisticsAndCandidates()
