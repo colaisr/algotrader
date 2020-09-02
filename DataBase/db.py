@@ -13,11 +13,9 @@ class Position(Base):
 
    stock = Column(String)
    quantity=Column(Float)
-   buyValue = Column(Float)
-   currentValue = Column(Float)
-   pnlP=Column(Float)
-   targetPrice=Column(Float)
-   openDate=Column(DateTime)
+   marketValue = Column(Float)
+   todayPnL=Column(Float)
+   generalpnlP=Column(Float)
    lastUpdate=Column(DateTime)
 
 
@@ -42,7 +40,6 @@ class Candidate(Base):
    buyAtPrice=Column(Integer)
 
 
-
 class Deal(Base):
    __tablename__ = 'deals'
    id = Column(Integer, primary_key=True)
@@ -57,7 +54,7 @@ class Deal(Base):
 
 
 
-#Base.metadata.create_all(engine)
+Base.metadata.create_all(engine)
 
 
 def updateCandidate(stock,avDrop,avSpread,bulk,todayOpen,priceToBuy):
@@ -95,23 +92,30 @@ def updateOpenPostionsInDB(posFromIbkr):
    session = Session()
    dt=datetime.datetime.now()
 
-   for s,v in posFromIbkr.items():
-      result = session.query(Position).filter(Position.stock == s).all()
-      stocks=v["stocks"]
-      cost=v["cost"]
-      if len(result) == 0:
-         p = Position(stock=s, quantity=stocks, currentValue=stocks*cost, lastUpdate=dt)
-         session.add(p)
-         session.commit()
-         print("Added to DB : ", s)
+   for s, v in posFromIbkr.items():
+      p = Position(stock=v["Stock"], quantity=v["Position"], marketValue=v["Value"],todayPnL=v["DailyPnL"],generalpnlP=v["UnrealizedPnL"], lastUpdate=dt)
+      session.add(p)
+      session.commit()
+      # print("Added to DB : ", v["Stock"])
 
-      else:
-
-         result[0].quantity=stocks
-         result[0].currentValue=stocks*cost
-         result[0].lastUpdate=dt
-         session.commit()
-         print("Updated in DB : ",s)
+   print("Finished updating DB Positions")
+   # for s,v in posFromIbkr.items():
+   #    result = session.query(Position).filter(Position.stock == s).all()
+   #    stocks=v["stocks"]
+   #    cost=v["cost"]
+   #    if len(result) == 0:
+   #       p = Position(stock=s, quantity=stocks, currentValue=stocks*cost, lastUpdate=dt)
+   #       session.add(p)
+   #       session.commit()
+   #       print("Added to DB : ", s)
+   #
+   #    else:
+   #
+   #       result[0].quantity=stocks
+   #       result[0].currentValue=stocks*cost
+   #       result[0].lastUpdate=dt
+   #       session.commit()
+   #       print("Updated in DB : ",s)
 
 
 def dropPositions():

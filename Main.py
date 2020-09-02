@@ -2,7 +2,7 @@ import configparser
 import time
 import threading
 from  ApiWrapper import IBapi,createContract
-from DataBase.db import updateOpenPostionsInDB, updateOpenOrdersinDB, dropPositions
+from DataBase.db import updateOpenPostionsInDB, updateOpenOrdersinDB, dropPositions, dropOpenOrders
 from Research.UpdateCandidates import updatetMarketStatisticsAndCandidates
 from ibapi.common import MarketDataTypeEnum
 
@@ -13,26 +13,28 @@ def run_loop():
     app.run()
 
 
-def update_positions():
+def get_positions():
     # update positions from IBKR
-    #dropPositions()
     print("Updating positions:")
     app.reqPositions()# requesting complete list
     time.sleep(1)
-    # updateOpenPostionsInDB(app.openPositions)- not saving in DB for now
     for s,p in app.openPositions.items():
         id = app.nextorderId
         app.positionDetails[id]={"Stock":s}
         app.reqPnLSingle(id, ACCOUNT, "", p["conId"]);#requesting one by one
         app.nextorderId += 1
 
-    print(len(app.openPositions)," positions info updated")
+    print(len(app.positionDetails)," positions info updated")
+    time.sleep(2)
+    dropPositions()
+    updateOpenPostionsInDB(app.positionDetails)
 
-def update_orders():
+def get_orders():
     print("Updating all open Orders")
     app.openOrders = {}
     app.reqAllOpenOrders()
     time.sleep(1)
+    dropOpenOrders()
     updateOpenOrdersinDB(app.openOrders)
 
 config = configparser.ConfigParser()
@@ -75,8 +77,8 @@ print(status)
 # candidates=updatetMarketStatisticsAndCandidates()
 # print("Finished to update the Statistics: ")
 
-update_positions()
-#update_orders()
+get_positions()
+get_orders()
 
 print("**********************AllDataPrepared********************")
 

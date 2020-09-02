@@ -34,7 +34,7 @@ class IBapi(EWrapper, EClient):
         super().pnlSingle(reqId, pos, dailyPnL, unrealizedPnL, realizedPnL, value)
 
         self.positionDetails[reqId]= { "Stock":self.positionDetails[reqId]["Stock"],
-              "Position:":pos,
+              "Position":pos,
               "DailyPnL": dailyPnL,
               "UnrealizedPnL": unrealizedPnL,
               "RealizedPnL": realizedPnL,
