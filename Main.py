@@ -9,8 +9,8 @@ from ibapi.common import MarketDataTypeEnum
 
 config = configparser.ConfigParser()
 config.read('config.ini')
-PORT = config['Connection']['portp']
-ACCOUNT=config['Account']['accp']
+PORT = config['Connection']['portl']
+ACCOUNT=config['Account']['accl']
 INTERVAL = config['Connection']['interval']
 #algo
 PROFIT=config['Algo']['gainP']
@@ -20,6 +20,8 @@ TRAIL=config['Algo']['trailstepP']
 def updateprofits():
     print("Processing profits")
     for i,p in app.positionDetails.items():
+        if p["Value"]==0:
+            continue
         profit=p["UnrealizedPnL"]/p["Value"]*100
         if profit>float(PROFIT):
             orders=app.openOrders
