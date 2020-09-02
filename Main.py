@@ -2,8 +2,11 @@ import configparser
 import sched
 import time
 import threading
+from datetime import datetime
+
 from ApiWrapper import IBapi, createContract, createTrailingStopOrder
 from DataBase.db import updateOpenPostionsInDB, updateOpenOrdersinDB, dropPositions, dropOpenOrders
+from pytz import timezone
 from Research.UpdateCandidates import updatetMarketStatisticsAndCandidates
 from ibapi.common import MarketDataTypeEnum
 
@@ -38,11 +41,16 @@ def updateprofits():
 
 s = sched.scheduler(time.time, time.sleep)
 def workerGo(sc):
-    print("---------------Processing Worker...---------------------------")
+    est = timezone('EST')
+    fmt = '%Y-%m-%d %H:%M:%S'
+    time=datetime.now(est).strftime(fmt)
+
+    print("---------------Processing Worker...-------EST Time: ",time,"--------------------")
     get_orders()
     updatePositions()
 
     updateprofits()
+    print("...............Worker finished.........................")
 
     s.enter(float(INTERVAL), 1, workerGo, (sc,))
 
@@ -122,7 +130,7 @@ print(status)
 get_positions()
 print("**********************Connected starting Worker********************")
 #starting worker in loop...
-s.enter(10, 1, workerGo, (s,))
+s.enter(2, 1, workerGo, (s,))
 s.run()
 
 
