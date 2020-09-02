@@ -54,7 +54,7 @@ class Deal(Base):
 
 
 
-Base.metadata.create_all(engine)
+# Base.metadata.create_all(engine)
 
 
 def updateCandidate(stock,avDrop,avSpread,bulk,todayOpen,priceToBuy):
@@ -86,7 +86,7 @@ def updateCandidate(stock,avDrop,avSpread,bulk,todayOpen,priceToBuy):
 
 
 def updateOpenPostionsInDB(posFromIbkr):
-   print("updating the DB Positions")
+   # print("updating the DB Positions")
    engine = create_engine('sqlite:////Users/colakamornik/Desktop/algotrader/DataBase/db.db')
    Session = sessionmaker(bind = engine)
    session = Session()
@@ -98,7 +98,7 @@ def updateOpenPostionsInDB(posFromIbkr):
       session.commit()
       # print("Added to DB : ", v["Stock"])
 
-   print("Finished updating DB Positions")
+   # print("Finished updating DB Positions")
    # for s,v in posFromIbkr.items():
    #    result = session.query(Position).filter(Position.stock == s).all()
    #    stocks=v["stocks"]
@@ -119,16 +119,16 @@ def updateOpenPostionsInDB(posFromIbkr):
 
 
 def dropPositions():
-   print("Clearing the DB Positions")
+   # print("Clearing the DB Positions")
    engine = create_engine('sqlite:////Users/colakamornik/Desktop/algotrader/DataBase/db.db')
    Session = sessionmaker(bind = engine)
    session = Session()
    session.query(Position).delete()
    session.commit()
-   print("All OpenPositions dropped")
+   # print("All OpenPositions dropped")
 
 def updateOpenOrdersinDB(ordersFromIBKR):
-   print("updating the DB Orders")
+   # print("updating the DB Orders")
    engine = create_engine('sqlite:////Users/colakamornik/Desktop/algotrader/DataBase/db.db')
    Session = sessionmaker(bind = engine)
    session = Session()
@@ -142,7 +142,7 @@ def updateOpenOrdersinDB(ordersFromIBKR):
          p = Order(stock=s, action=action, actionType=type)
          session.add(p)
          session.commit()
-         print("Added to DB : ", s," ",action," ",type)
+         # print("Added to DB : ", s," ",action," ",type)
 
       else:
 
@@ -151,14 +151,15 @@ def updateOpenOrdersinDB(ordersFromIBKR):
          session.commit()
          print("Updated in DB : ",s)
 
+   # print("Finished updating DB Orders")
 
 def dropOpenOrders():
-   print("Clearing the DB OpenOrders")
+   # print("Clearing the DB OpenOrders")
    engine = create_engine('sqlite:////Users/colakamornik/Desktop/algotrader/DataBase/db.db')
    Session = sessionmaker(bind = engine)
    session = Session()
    session.query(Order).delete()
    session.commit()
-   print("All OpenOrders dropped")
+   # print("All OpenOrders dropped")
 
 

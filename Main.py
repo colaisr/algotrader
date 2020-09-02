@@ -36,6 +36,7 @@ def get_orders():
     time.sleep(1)
     dropOpenOrders()
     updateOpenOrdersinDB(app.openOrders)
+    print(len(app.openOrders), " Orders found and saved to DB")
 
 config = configparser.ConfigParser()
 config.read('config.ini')
