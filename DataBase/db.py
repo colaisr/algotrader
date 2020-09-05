@@ -2,7 +2,8 @@ import datetime
 
 from sqlalchemy import Column, Integer, String, DateTime, Float
 from sqlalchemy import create_engine
-engine = create_engine('sqlite:///db.db', echo = True)
+DB_PATH='sqlite:///db.db'
+engine = create_engine(DB_PATH, echo = True)
 from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 from sqlalchemy.orm import sessionmaker
@@ -37,16 +38,15 @@ class Candidate(Base):
    lastPrice=Column(Integer)
    close=Column(Integer)
    lastUpdate=Column(DateTime)
-# class Candidate(Base):
-#    __tablename__ = 'candidates'
-#    id = Column(Integer, primary_key=True)
-#
-#    stock = Column(String)
-#    bulksize=Column(Integer)
-#    averagePriceDrop=Column(Integer)
-#    averagePriceSpread = Column(Integer)
-#    dayStartPrice=Column(Integer)
-#    buyAtPrice=Column(Integer)
+
+
+class CandidateStat(Base):
+   __tablename__ = 'candidatStats'
+   id = Column(Integer, primary_key=True)
+
+   stock = Column(String)
+   averagePriceDrop=Column(Integer)
+   averagePriceSpread = Column(Integer)
 
 
 class Deal(Base):
@@ -62,44 +62,19 @@ class Deal(Base):
    closeDate=Column(DateTime)
 
 
+def addCandidStat(stock,avPriceDrop,avSpread):
 
-#Base.metadata.create_all(engine)
-
-
-# def updateCandidate(stock,avDrop,avSpread,bulk,todayOpen,priceToBuy):
-#    engine = create_engine('sqlite:////Users/colakamornik/Desktop/algotrader/DataBase/db.db')
-#    Session = sessionmaker(bind = engine)
-#    session = Session()
-#
-#    result = session.query(Candidate).filter(Candidate.stock==stock).all()
-#    if len(result)==0:
-#       c1 = Candidate(stock=stock,
-#                      averagePriceDrop=avDrop,
-#                      averagePriceSpread=avSpread,
-#                      bulksize=bulk,
-#                      dayStartPrice=todayOpen,
-#                      buyAtPrice=priceToBuy)
-#       session.add(c1)
-#       session.commit()
-#    else:
-#       result[0].averagePriceDrop=avDrop
-#       result[0].averagePriceSpread = avSpread
-#       result[0].bulksize=bulk
-#       result[0].dayStartPrice=todayOpen
-#       result[0].buyAtPrice=priceToBuy
-#       session.commit()
-#
-#
-#
-#    print("Data for :"+stock+" added successfully")
-
-
-def updateCandidatesInDB(candids):
-   # print("updating the DB Positions")
-   engine = create_engine('sqlite:////Users/colakamornik/Desktop/algotrader/DataBase/db.db')
+   engine = create_engine(DB_PATH)
    Session = sessionmaker(bind = engine)
    session = Session()
+   p = CandidateStat(stock=stock, averagePriceDrop=avPriceDrop, averagePriceSpread=avSpread)
+   session.add(p)
+   session.commit()
 
+def updateCandidatesInDB(candids):
+   engine = create_engine(DB_PATH)
+   Session = sessionmaker(bind = engine)
+   session = Session()
 
    for s, v in candids.items():
       p = Candidate(stock=v["Stock"], bid=v["Bid"], ask=v["Ask"],lastPrice=v["LastPrice"],close=v["Close"], lastUpdate=v["LastUpdate"])
@@ -108,8 +83,7 @@ def updateCandidatesInDB(candids):
 
 
 def updateOpenPostionsInDB(posFromIbkr):
-   # print("updating the DB Positions")
-   engine = create_engine('sqlite:////Users/colakamornik/Desktop/algotrader/DataBase/db.db')
+   engine = create_engine(DB_PATH)
    Session = sessionmaker(bind = engine)
    session = Session()
    dt=datetime.datetime.now()
@@ -118,49 +92,34 @@ def updateOpenPostionsInDB(posFromIbkr):
       p = Position(stock=v["Stock"], quantity=v["Position"], marketValue=v["Value"],todayPnL=v["DailyPnL"],generalpnlP=v["UnrealizedPnL"], lastUpdate=dt)
       session.add(p)
       session.commit()
-      # print("Added to DB : ", v["Stock"])
 
-   # print("Finished updating DB Positions")
-   # for s,v in posFromIbkr.items():
-   #    result = session.query(Position).filter(Position.stock == s).all()
-   #    stocks=v["stocks"]
-   #    cost=v["cost"]
-   #    if len(result) == 0:
-   #       p = Position(stock=s, quantity=stocks, currentValue=stocks*cost, lastUpdate=dt)
-   #       session.add(p)
-   #       session.commit()
-   #       print("Added to DB : ", s)
-   #
-   #    else:
-   #
-   #       result[0].quantity=stocks
-   #       result[0].currentValue=stocks*cost
-   #       result[0].lastUpdate=dt
-   #       session.commit()
-   #       print("Updated in DB : ",s)
+def dropCandidateStat():
+
+   engine = create_engine(DB_PATH)
+   Session = sessionmaker(bind = engine)
+   session = Session()
+   session.query(CandidateStat).delete()
+   session.commit()
+
 
 def dropCandidates():
-   # print("Clearing the DB Positions")
-   engine = create_engine('sqlite:////Users/colakamornik/Desktop/algotrader/DataBase/db.db')
+   engine = create_engine(DB_PATH)
    Session = sessionmaker(bind = engine)
    session = Session()
    session.query(Candidate).delete()
    session.commit()
-   # print("All OpenPositions dropped")
 
 
 def dropPositions():
-   # print("Clearing the DB Positions")
-   engine = create_engine('sqlite:////Users/colakamornik/Desktop/algotrader/DataBase/db.db')
+   engine = create_engine(DB_PATH)
    Session = sessionmaker(bind = engine)
    session = Session()
    session.query(Position).delete()
    session.commit()
-   # print("All OpenPositions dropped")
+
 
 def updateOpenOrdersinDB(ordersFromIBKR):
-   # print("updating the DB Orders")
-   engine = create_engine('sqlite:////Users/colakamornik/Desktop/algotrader/DataBase/db.db')
+   engine = create_engine(DB_PATH)
    Session = sessionmaker(bind = engine)
    session = Session()
    dt=datetime.datetime.now()
@@ -173,7 +132,7 @@ def updateOpenOrdersinDB(ordersFromIBKR):
          p = Order(stock=s, action=action, actionType=type)
          session.add(p)
          session.commit()
-         # print("Added to DB : ", s," ",action," ",type)
+
 
       else:
 
@@ -182,15 +141,14 @@ def updateOpenOrdersinDB(ordersFromIBKR):
          session.commit()
          print("Updated in DB : ",s)
 
-   # print("Finished updating DB Orders")
 
 def dropOpenOrders():
-   # print("Clearing the DB OpenOrders")
-   engine = create_engine('sqlite:////Users/colakamornik/Desktop/algotrader/DataBase/db.db')
+   engine = create_engine(DB_PATH)
    Session = sessionmaker(bind = engine)
    session = Session()
    session.query(Order).delete()
    session.commit()
-   # print("All OpenOrders dropped")
 
 
+if __name__ == '__main__':
+   Base.metadata.create_all(engine)

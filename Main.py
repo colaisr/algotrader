@@ -9,6 +9,8 @@ from DataBase.db import updateOpenPostionsInDB, updateOpenOrdersinDB, dropPositi
     updateCandidatesInDB
 from pytz import timezone
 
+from Research.UpdateCandidates import updatetMarketStatisticsForCandidates
+
 config = configparser.ConfigParser()
 config.read('config.ini')
 PORT = config['Connection']['portp']
@@ -36,6 +38,8 @@ def init_candidates():
         app.reqMktData(id, c, '', False, False, [])
         app.nextorderId += 1
         time.sleep(0.5)
+
+    updatetMarketStatisticsForCandidates(TRANDINGSTOCKS)
 
 
 def processProfits():
@@ -88,7 +92,7 @@ def updatePositions():
     print(len(app.positionDetails), " positions info updated")
 
 
-def updateCandidates():  # todo background for db
+def updateCandidates():
     dropCandidates()
     updateCandidatesInDB(app.candidates)
     print(len(app.candidates), " candidates info updated")
@@ -158,6 +162,8 @@ get_positions()
 
 # start tracking candidates
 init_candidates()
+
+
 print("**********************Connected starting Worker********************")
 # starting worker in loop...
 s.enter(2, 1, workerGo, (s,))

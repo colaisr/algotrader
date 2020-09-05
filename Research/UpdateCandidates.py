@@ -1,10 +1,12 @@
 
 import yfinance as yf
 
-candidates=["AAPL","FB","ESPO","ZG","MSFT","NVDA","TSLA","BEP","GOOG"]
+from DataBase.db import dropCandidateStat, addCandidStat
 
-def updatetMarketStatisticsAndCandidates():
 
+def updatetMarketStatisticsForCandidates(candidates):
+    dropCandidateStat()
+    print("Updating the statistics from Yahoo Finance:")
     for f in candidates:
 
         df=yf.download(f, period = "1y")
@@ -19,17 +21,7 @@ def updatetMarketStatisticsAndCandidates():
 
         avChange=df["diffP"].mean()
 
-        lastP=df.tail(1).iloc[0]['Open']
 
-        priceToBuy=lastP - lastP/100*avdropP
-        i, d = divmod(1000/lastP, 1)
-        stocksInBulk =i
+        addCandidStat(f,avdropP,avChange)
+    print("Statistics updated for ",len(candidates)," candidates")
 
-
-        # updateCandidate(f,avdropP,avChange,stocksInBulk,lastP,priceToBuy)
-
-    return candidates
-
-
-if __name__ == '__main__':
-    updatetMarketStatisticsAndCandidates()
