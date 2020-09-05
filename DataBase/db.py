@@ -27,17 +27,26 @@ class Order(Base):
    action=Column(String)
    actionType = Column(String)
 
-
 class Candidate(Base):
    __tablename__ = 'candidates'
    id = Column(Integer, primary_key=True)
 
    stock = Column(String)
-   bulksize=Column(Integer)
-   averagePriceDrop=Column(Integer)
-   averagePriceSpread = Column(Integer)
-   dayStartPrice=Column(Integer)
-   buyAtPrice=Column(Integer)
+   bid=Column(Integer)
+   ask = Column(Integer)
+   lastPrice=Column(Integer)
+   close=Column(Integer)
+   lastUpdate=Column(DateTime)
+# class Candidate(Base):
+#    __tablename__ = 'candidates'
+#    id = Column(Integer, primary_key=True)
+#
+#    stock = Column(String)
+#    bulksize=Column(Integer)
+#    averagePriceDrop=Column(Integer)
+#    averagePriceSpread = Column(Integer)
+#    dayStartPrice=Column(Integer)
+#    buyAtPrice=Column(Integer)
 
 
 class Deal(Base):
@@ -54,35 +63,48 @@ class Deal(Base):
 
 
 
-# Base.metadata.create_all(engine)
+#Base.metadata.create_all(engine)
 
 
-def updateCandidate(stock,avDrop,avSpread,bulk,todayOpen,priceToBuy):
+# def updateCandidate(stock,avDrop,avSpread,bulk,todayOpen,priceToBuy):
+#    engine = create_engine('sqlite:////Users/colakamornik/Desktop/algotrader/DataBase/db.db')
+#    Session = sessionmaker(bind = engine)
+#    session = Session()
+#
+#    result = session.query(Candidate).filter(Candidate.stock==stock).all()
+#    if len(result)==0:
+#       c1 = Candidate(stock=stock,
+#                      averagePriceDrop=avDrop,
+#                      averagePriceSpread=avSpread,
+#                      bulksize=bulk,
+#                      dayStartPrice=todayOpen,
+#                      buyAtPrice=priceToBuy)
+#       session.add(c1)
+#       session.commit()
+#    else:
+#       result[0].averagePriceDrop=avDrop
+#       result[0].averagePriceSpread = avSpread
+#       result[0].bulksize=bulk
+#       result[0].dayStartPrice=todayOpen
+#       result[0].buyAtPrice=priceToBuy
+#       session.commit()
+#
+#
+#
+#    print("Data for :"+stock+" added successfully")
+
+
+def updateCandidatesInDB(candids):
+   # print("updating the DB Positions")
    engine = create_engine('sqlite:////Users/colakamornik/Desktop/algotrader/DataBase/db.db')
    Session = sessionmaker(bind = engine)
    session = Session()
 
-   result = session.query(Candidate).filter(Candidate.stock==stock).all()
-   if len(result)==0:
-      c1 = Candidate(stock=stock,
-                     averagePriceDrop=avDrop,
-                     averagePriceSpread=avSpread,
-                     bulksize=bulk,
-                     dayStartPrice=todayOpen,
-                     buyAtPrice=priceToBuy)
-      session.add(c1)
+
+   for s, v in candids.items():
+      p = Candidate(stock=v["Stock"], bid=v["Bid"], ask=v["Ask"],lastPrice=v["LastPrice"],close=v["Close"], lastUpdate=v["LastUpdate"])
+      session.add(p)
       session.commit()
-   else:
-      result[0].averagePriceDrop=avDrop
-      result[0].averagePriceSpread = avSpread
-      result[0].bulksize=bulk
-      result[0].dayStartPrice=todayOpen
-      result[0].buyAtPrice=priceToBuy
-      session.commit()
-
-
-
-   print("Data for :"+stock+" added successfully")
 
 
 def updateOpenPostionsInDB(posFromIbkr):
@@ -116,6 +138,15 @@ def updateOpenPostionsInDB(posFromIbkr):
    #       result[0].lastUpdate=dt
    #       session.commit()
    #       print("Updated in DB : ",s)
+
+def dropCandidates():
+   # print("Clearing the DB Positions")
+   engine = create_engine('sqlite:////Users/colakamornik/Desktop/algotrader/DataBase/db.db')
+   Session = sessionmaker(bind = engine)
+   session = Session()
+   session.query(Candidate).delete()
+   session.commit()
+   # print("All OpenPositions dropped")
 
 
 def dropPositions():

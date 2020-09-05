@@ -1,3 +1,5 @@
+import datetime
+
 from ibapi.common import MarketDataTypeEnum
 from twsapi.ibapi.contract import Contract, ContractDetails
 from twsapi.ibapi.order import Order
@@ -12,6 +14,7 @@ class IBapi(EWrapper, EClient):
         self.openPositions={}
         self.positionDetails = {}
         self.openOrders={}
+        self.candidates={}
 
 
     # def error(self, reqId: int, errorCode: int, errorString: str):
@@ -78,12 +81,52 @@ class IBapi(EWrapper, EClient):
 
     def tickPrice(self, reqId, tickType, price, attrib):
         super().tickPrice(reqId, tickType, price, attrib)
-        if tickType==67 or tickType==66:
-            print("Request:",reqId)
-        if tickType == 67 :
-            print('The current Buying price is: ', price)
-        if tickType == 66 :
-            print('The current Selling price is: ', price)
+        if tickType==1:
+            self.candidates[reqId]["Bid"] =price
+            # self.candidates[reqId] = {"Stock": self.candidates[reqId]["Stock"],
+            #                           "Close": self.candidates[reqId]["Close"],
+            #                           "Bid": price,
+            #                           "Ask": self.candidates[reqId]["Ask"],
+            #                           "LastPrice": self.candidates[reqId]["LastPrice"],
+            #                           }
+        elif tickType==2:
+            self.candidates[reqId]["Ask"] = price
+            # self.candidates[reqId] = {"Stock": self.candidates[reqId]["Stock"],
+            #                           "Close": self.candidates[reqId]["Close"],
+            #                           "Bid": self.candidates[reqId]["Bid"],
+            #                           "Ask": price,
+            #                           "LastPrice": self.candidates[reqId]["LastPrice"],
+            #                           }
+        elif tickType==4:
+            self.candidates[reqId]["LastPrice"] = price
+            # self.candidates[reqId] = {"Stock": self.candidates[reqId]["Stock"],
+            #                           "Close": self.candidates[reqId]["Close"],
+            #                           "Bid": self.candidates[reqId]["Bid"],
+            #                           "Ask": self.candidates[reqId]["Ask"],
+            #                           "LastPrice": price,
+            #                           }
+        elif tickType==9:
+            self.candidates[reqId]["Close"] = price
+            # self.candidates[reqId] = {"Stock": self.candidates[reqId]["Stock"],
+            #                           "Close": price,
+            #                           "Bid": self.candidates[reqId]["Bid"],
+            #                           "Ask": self.candidates[reqId]["Ask"],
+            #                           "LastPrice": self.candidates[reqId]["LastPrice"],
+            #                           }
+        else:
+            print("unrecognized tick")
+
+        self.candidates[reqId]["LastUpdate"] = datetime.datetime.now()
+        # self.candidates[reqId]= { "Stock":self.positionDetails[reqId]["Stock"],
+        #       "Close":self.candidates[reqId]["Close"],
+        #       "Bid": self.candidates[reqId]["Bid"],
+        #       "Ask": self.candidates[reqId]["Ask"],
+        #       "LastPrice": self.candidates[reqId]["LastPrice"],
+        #       "LastUpdate": datetime.now()
+        #       }
+
+
+
 
 def createContract(symbol:str):
     # Create contract object

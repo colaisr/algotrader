@@ -5,22 +5,40 @@ import threading
 from datetime import datetime
 
 from ApiWrapper import IBapi, createContract, createTrailingStopOrder
-from DataBase.db import updateOpenPostionsInDB, updateOpenOrdersinDB, dropPositions, dropOpenOrders
+from DataBase.db import updateOpenPostionsInDB, updateOpenOrdersinDB, dropPositions, dropOpenOrders, dropCandidates, \
+    updateCandidatesInDB
 from pytz import timezone
-from Research.UpdateCandidates import updatetMarketStatisticsAndCandidates
-from ibapi.common import MarketDataTypeEnum
 
 config = configparser.ConfigParser()
 config.read('config.ini')
-PORT = config['Connection']['portl']
-ACCOUNT=config['Account']['accl']
+PORT = config['Connection']['portp']
+ACCOUNT=config['Account']['accp']
 INTERVAL = config['Connection']['interval']
 #algo
 PROFIT=config['Algo']['gainP']
 TRAIL=config['Algo']['trailstepP']
+TRANDINGSTOCKS=["AAPL","FB","ESPO","ZG","MSFT","NVDA","TSLA","BEP","GOOG"]
+
+def init_candidates():
+    #starting querry
+    for s in TRANDINGSTOCKS:
+        id=app.nextorderId
+        print("starting to track: ",s,"traking with Id:",id)
+        c=createContract(s)
+        app.candidates[id] = {"Stock": s,
+                              "Close": "-",
+                              "Bid": "-",
+                              "Ask": "-",
+                              "LastPrice": "-",
+                              "LastUpdate": "-"}
+        app.reqMarketDataType(1)
+        app.reqMktData(id, c, '', False, False, [])
+        app.nextorderId += 1
+        time.sleep(0.5)
 
 
-def updateprofits():
+
+def processProfits():
     print("Processing profits")
     for i,p in app.positionDetails.items():
         if p["Value"]==0:
@@ -46,10 +64,13 @@ def workerGo(sc):
     time=datetime.now(est).strftime(fmt)
 
     print("---------------Processing Worker...-------EST Time: ",time,"--------------------")
-    get_orders()
+    #collect and update
+    updateOrders()
     updatePositions()
+    updateCandidates()
 
-    updateprofits()
+    #process
+    processProfits()
     print("...............Worker finished.........................")
 
     s.enter(float(INTERVAL), 1, workerGo, (sc,))
@@ -63,6 +84,11 @@ def updatePositions():
     dropPositions()
     updateOpenPostionsInDB(app.positionDetails)
     print(len(app.positionDetails), " positions info updated")
+
+def updateCandidates(): #todo background for db
+    dropCandidates()
+    updateCandidatesInDB(app.candidates)
+    print(len(app.candidates), " candidates info updated")
 
 
 def get_positions():
@@ -80,7 +106,7 @@ def get_positions():
     updatePositions()
 
 
-def get_orders():
+def updateOrders():
     print("Updating all open Orders")
     app.openOrders = {}
     app.reqAllOpenOrders()
@@ -90,10 +116,7 @@ def get_orders():
     print(len(app.openOrders), " Orders found and saved to DB")
 
 
-ticksIds={}
-
 print("Starting Todays session:",time.ctime())
-
 
 app = IBapi()
 app.connect('127.0.0.1', int(PORT), 123)
@@ -121,28 +144,24 @@ status=app.generalStatus
 print("PnL today status: ")
 print(status)
 
+#todo add the statistics to the candidates
 # #take the research from Yahoo
 # print("Updating the Statistics: ")
 # candidates=updatetMarketStatisticsAndCandidates()
 # print("Finished to update the Statistics: ")
 
-#get the open positions and start tracking
+#start tracking open positions
 get_positions()
+
+#start tracking candidates
+init_candidates()
 print("**********************Connected starting Worker********************")
 #starting worker in loop...
 s.enter(2, 1, workerGo, (s,))
 s.run()
 
 
-# #starting querry
-# for s in candidates:
-#     id=app.nextorderId
-#     print("starting to track: ",s,"traking with Id:",id)
-#     c=createContract(s)
-#     app.reqMarketDataType(1)
-#     app.reqMktData(id, c, '', False, False, [])
-#     ticksIds[s]=id
-#     app.nextorderId += 1
+
 
 
 

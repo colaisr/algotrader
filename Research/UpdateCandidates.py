@@ -1,5 +1,4 @@
 
-from DataBase.db import updateCandidate
 import yfinance as yf
 
 candidates=["AAPL","FB","ESPO","ZG","MSFT","NVDA","TSLA","BEP","GOOG"]
@@ -27,7 +26,7 @@ def updatetMarketStatisticsAndCandidates():
         stocksInBulk =i
 
 
-        updateCandidate(f,avdropP,avChange,stocksInBulk,lastP,priceToBuy)
+        # updateCandidate(f,avdropP,avChange,stocksInBulk,lastP,priceToBuy)
 
     return candidates
 
