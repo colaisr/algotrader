@@ -1,4 +1,5 @@
 import datetime
+from os import path
 
 from sqlalchemy import Column, Integer, String, DateTime, Float
 from sqlalchemy import create_engine
@@ -41,12 +42,20 @@ class Candidate(Base):
 
 
 class CandidateStat(Base):
-   __tablename__ = 'candidatStats'
+   __tablename__ = 'candidatesHistoryStats'
    id = Column(Integer, primary_key=True)
 
    stock = Column(String)
    averagePriceDrop=Column(Integer)
    averagePriceSpread = Column(Integer)
+
+class CandidateRanks(Base):
+   __tablename__ = 'candidatesRanks'
+   id = Column(Integer, primary_key=True)
+
+   stock = Column(String)
+   tipranksRank=Column(Float)
+   yahooRank = Column(Float)
 
 
 class Deal(Base):
@@ -68,6 +77,17 @@ def GetAverageDropForStock(s):
    session = Session()
    st=session.query(CandidateStat).filter_by(stock=s).first()
    return st.averagePriceDrop
+
+
+def GetRanksForStocks():
+   engine = create_engine(DB_PATH)
+   Session = sessionmaker(bind = engine)
+   session = Session()
+   result = session.query(CandidateRanks).all()
+   resD={}
+   for r in result:
+      resD[r.stock]={"tipranks":r.tipranksRank,"yahoo":r.yahooRank}
+   return resD
 
 
 def addCandidStat(stock, avPriceDrop, avSpread):
@@ -102,6 +122,7 @@ def updateOpenPostionsInDB(posFromIbkr):
       p = Position(stock=v["Stock"], quantity=v["Position"], marketValue=v["Value"],todayPnL=v["DailyPnL"],generalpnlP=v["UnrealizedPnL"], lastUpdate=dt)
       session.add(p)
       session.commit()
+
 
 def dropCandidateStat():
 
@@ -158,6 +179,13 @@ def dropOpenOrders():
    session = Session()
    session.query(Order).delete()
    session.commit()
+
+def checkDB():
+   if path.exists('db.db'):
+      pass
+   else:
+      Base.metadata.create_all(engine)
+
 
 
 if __name__ == '__main__':

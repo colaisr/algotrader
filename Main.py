@@ -6,16 +6,18 @@ from datetime import datetime
 
 from ApiWrapper import IBapi, createContract, createTrailingStopOrder, createLMTbuyorder
 from DataBase.db import updateOpenPostionsInDB, updateOpenOrdersinDB, dropPositions, dropOpenOrders, dropCandidates, \
-    updateCandidatesInDB, GetAverageDropForStock
+    updateCandidatesInDB, GetAverageDropForStock, checkDB
 from pytz import timezone
 
 from Research.UpdateCandidates import updatetMarketStatisticsForCandidates
+from Research.tipRanksScrapper import getStocksData
 
 config = configparser.ConfigParser()
 config.read('config.ini')
 PORT = config['Connection']['portp']
 ACCOUNT = config['Account']['accp']
 INTERVAL = config['Connection']['interval']
+MACPATHTOWEBDRIVER = config['Connection']['macPathToWebdriver']
 # algo
 PROFIT = config['Algo']['gainP']
 TRAIL = config['Algo']['trailstepP']
@@ -62,9 +64,6 @@ def processProfits():
                 print("Created a Trailing Stop order for ", p["Stock"], " at level of ", TRAIL, "%")
 
 
-s = sched.scheduler(time.time, time.sleep)
-
-
 def evaluateBuy(s):
     print("evaluating ",s,"for a Buy")
 
@@ -76,6 +75,9 @@ def evaluateBuy(s):
     average_daily_dropP=GetAverageDropForStock(s)
 
     target_price=last_closing-last_closing/100*average_daily_dropP
+
+    tipRank=ranksForStock[s]["tipranks"]
+
     if ask_price==-1:#market is closed
         pass
     elif ask_price>target_price:
@@ -109,6 +111,7 @@ def processCandidates():
                 evaluateBuy(s)
 
 
+s = sched.scheduler(time.time, time.sleep)
 
 
 def workerGo(sc):
@@ -172,7 +175,10 @@ def updateOrders():
 
 
 print("Starting Todays session:", time.ctime())
-
+#check if DB is missing- if yes- create
+checkDB()
+#update TipranksData
+ranksfromTR = getStocksData(TRANDINGSTOCKS,MACPATHTOWEBDRIVER)
 app = IBapi()
 app.connect('127.0.0.1', int(PORT), 123)
 app.nextorderId = None
