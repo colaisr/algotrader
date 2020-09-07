@@ -4,9 +4,9 @@ import time
 import threading
 from datetime import datetime
 
-from ApiWrapper import IBapi, createContract, createTrailingStopOrder
+from ApiWrapper import IBapi, createContract, createTrailingStopOrder, createLMTbuyorder
 from DataBase.db import updateOpenPostionsInDB, updateOpenOrdersinDB, dropPositions, dropOpenOrders, dropCandidates, \
-    updateCandidatesInDB
+    updateCandidatesInDB, GetAverageDropForStock
 from pytz import timezone
 
 from Research.UpdateCandidates import updatetMarketStatisticsForCandidates
@@ -19,6 +19,7 @@ INTERVAL = config['Connection']['interval']
 # algo
 PROFIT = config['Algo']['gainP']
 TRAIL = config['Algo']['trailstepP']
+BULCKAMOUNT = config['Algo']['bulkAmountUSD']
 TRANDINGSTOCKS = ["AAPL", "FB", "ESPO", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOG"]
 
 
@@ -64,6 +65,52 @@ def processProfits():
 s = sched.scheduler(time.time, time.sleep)
 
 
+def evaluateBuy(s):
+    print("evaluating ",s,"for a Buy")
+
+    for c in app.candidates.values():
+        if c["Stock"]==s:
+            ask_price=c["Ask"]
+            last_closing=c["Close"]
+            break
+    average_daily_dropP=GetAverageDropForStock(s)
+
+    target_price=last_closing-last_closing/100*average_daily_dropP
+    if ask_price==-1:#market is closed
+        pass
+    elif ask_price>target_price:
+        print(s,"is too expensive waiting for lower than ",target_price,"to exceed average ",average_daily_dropP," %")
+    else:
+        buyTheStock(ask_price, s)
+
+    pass
+
+
+def buyTheStock(ask_price, s):
+    contract = createContract(s)
+    stocksToBuy=int(int(BULCKAMOUNT)/ask_price)
+    print("Issued the BUY order at ", ask_price,"for ",stocksToBuy," Stocks of ",s)
+    order = createLMTbuyorder(stocksToBuy, ask_price)
+    app.placeOrder(app.nextorderId, contract, order)
+    app.nextorderId = app.nextorderId + 1
+
+
+def processCandidates():
+
+    excessLiquidity=app.excessLiquidity
+    if float(excessLiquidity)<1000:
+        return
+    else:
+        print("The Excess liquidity is :",excessLiquidity," searching candidates")
+        for s in TRANDINGSTOCKS:
+            if s in app.openPositions:
+                continue
+            else:
+                evaluateBuy(s)
+
+
+
+
 def workerGo(sc):
     est = timezone('EST')
     fmt = '%Y-%m-%d %H:%M:%S'
@@ -76,6 +123,7 @@ def workerGo(sc):
     updateCandidates()
 
     # process
+    processCandidates()
     processProfits()
     print("...............Worker finished.........................")
 
@@ -146,7 +194,12 @@ id = app.nextorderId
 # General Account info:
 app.reqPnL(id, ACCOUNT, "")
 app.nextorderId = app.nextorderId + 1
-time.sleep(2)
+id = app.nextorderId
+app.reqAccountSummary(id, "All", "ExcessLiquidity")
+# todo one request for Account summary only
+app.nextorderId += 1
+time.sleep(0.5)
+#time.sleep(2)
 status = app.generalStatus
 print("PnL today status: ")
 print(status)

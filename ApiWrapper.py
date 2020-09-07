@@ -15,6 +15,7 @@ class IBapi(EWrapper, EClient):
         self.positionDetails = {}
         self.openOrders={}
         self.candidates={}
+        self.excessLiquidity=""
 
 
     # def error(self, reqId: int, errorCode: int, errorString: str):
@@ -126,6 +127,12 @@ class IBapi(EWrapper, EClient):
         #       }
 
 
+    def accountSummary(self, reqId: int, account: str, tag: str, value: str,
+                        currency: str):
+         super().accountSummary(reqId, account, tag, value, currency)
+         self.excessLiquidity=value
+
+
 
 
 def createContract(symbol:str):
@@ -148,6 +155,14 @@ def createTrailingStopOrder(quantity,trailPercent):
     order.trailingPercent = float(trailPercent);
     order.tif='GTC'
 
+def createLMTbuyorder(quantity, lmtPrice):
+    # Create order object
+    order = Order()
+    order.action = 'BUY'
+    order.orderType = 'LMT'
+    order.totalQuantity = quantity
+    order.lmtPrice = float(lmtPrice);
+    order.tif = 'GTC'
 
 
     return order

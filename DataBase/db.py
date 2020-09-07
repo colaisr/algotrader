@@ -62,7 +62,15 @@ class Deal(Base):
    closeDate=Column(DateTime)
 
 
-def addCandidStat(stock,avPriceDrop,avSpread):
+def GetAverageDropForStock(s):
+   engine = create_engine(DB_PATH)
+   Session = sessionmaker(bind = engine)
+   session = Session()
+   st=session.query(CandidateStat).filter_by(stock=s).first()
+   return st.averagePriceDrop
+
+
+def addCandidStat(stock, avPriceDrop, avSpread):
 
    engine = create_engine(DB_PATH)
    Session = sessionmaker(bind = engine)
@@ -70,6 +78,8 @@ def addCandidStat(stock,avPriceDrop,avSpread):
    p = CandidateStat(stock=stock, averagePriceDrop=avPriceDrop, averagePriceSpread=avSpread)
    session.add(p)
    session.commit()
+
+
 
 def updateCandidatesInDB(candids):
    engine = create_engine(DB_PATH)
