@@ -3,10 +3,11 @@ import sched
 import time
 import threading
 from datetime import datetime
+from sys import platform
 
 from ApiWrapper import IBapi, createContract, createTrailingStopOrder, createLMTbuyorder
 from DataBase.db import updateOpenPostionsInDB, updateOpenOrdersinDB, dropPositions, dropOpenOrders, dropCandidates, \
-    updateCandidatesInDB, GetAverageDropForStock, checkDB
+    updateCandidatesInDB, GetAverageDropForStock, checkDB, updateTipRanksInDB, GetRanksForStocks
 from pytz import timezone
 
 from Research.UpdateCandidates import updatetMarketStatisticsForCandidates
@@ -17,12 +18,19 @@ config.read('config.ini')
 PORT = config['Connection']['portp']
 ACCOUNT = config['Account']['accp']
 INTERVAL = config['Connection']['interval']
+
 MACPATHTOWEBDRIVER = config['Connection']['macPathToWebdriver']
+if platform == "linux" or platform == "linux2":
+    PATHTOWEBDRIVER = config['Connection']['macPathToWebdriver']
+elif platform == "darwin":#mac os
+    PATHTOWEBDRIVER = config['Connection']['macPathToWebdriver']
+elif platform == "win32":
+    PATHTOWEBDRIVER = config['Connection']['winPathToWebdriver']
 # algo
 PROFIT = config['Algo']['gainP']
 TRAIL = config['Algo']['trailstepP']
 BULCKAMOUNT = config['Algo']['bulkAmountUSD']
-TRANDINGSTOCKS = ["AAPL", "FB", "ESPO", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOG"]
+TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOG","CTLT","TER","ETSY"]
 
 
 def init_candidates():
@@ -76,11 +84,12 @@ def evaluateBuy(s):
 
     target_price=last_closing-last_closing/100*average_daily_dropP
 
-    tipRank=ranksForStock[s]["tipranks"]
+    ranks=GetRanksForStocks()
+    tipRank=ranks[s]["tipranks"]
 
     if ask_price==-1:#market is closed
         pass
-    elif ask_price>target_price:
+    elif ask_price>target_price and tipRank<8:
         print(s,"is too expensive waiting for lower than ",target_price,"to exceed average ",average_daily_dropP," %")
     else:
         buyTheStock(ask_price, s)
@@ -178,7 +187,8 @@ print("Starting Todays session:", time.ctime())
 #check if DB is missing- if yes- create
 checkDB()
 #update TipranksData
-ranksfromTR = getStocksData(TRANDINGSTOCKS,MACPATHTOWEBDRIVER)
+print("Updating a ratings for Candidate stocks...")
+updateTipRanksInDB(getStocksData(TRANDINGSTOCKS,PATHTOWEBDRIVER))
 app = IBapi()
 app.connect('127.0.0.1', int(PORT), 123)
 app.nextorderId = None
@@ -202,19 +212,11 @@ app.reqPnL(id, ACCOUNT, "")
 app.nextorderId = app.nextorderId + 1
 id = app.nextorderId
 app.reqAccountSummary(id, "All", "ExcessLiquidity")
-# todo one request for Account summary only
 app.nextorderId += 1
 time.sleep(0.5)
-#time.sleep(2)
 status = app.generalStatus
 print("PnL today status: ")
 print(status)
-
-# todo add the statistics to the candidates
-# #take the research from Yahoo
-# print("Updating the Statistics: ")
-# candidates=updatetMarketStatisticsAndCandidates()
-# print("Finished to update the Statistics: ")
 
 # start tracking open positions
 get_positions()
@@ -223,7 +225,7 @@ get_positions()
 init_candidates()
 
 
-print("**********************Connected starting Worker********************")
+print("**********************Connected, Ready!!! starting Worker********************")
 # starting worker in loop...
 s.enter(2, 1, workerGo, (s,))
 s.run()

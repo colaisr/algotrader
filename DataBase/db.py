@@ -100,7 +100,6 @@ def addCandidStat(stock, avPriceDrop, avSpread):
    session.commit()
 
 
-
 def updateCandidatesInDB(candids):
    engine = create_engine(DB_PATH)
    Session = sessionmaker(bind = engine)
@@ -180,11 +179,34 @@ def dropOpenOrders():
    session.query(Order).delete()
    session.commit()
 
+
 def checkDB():
    if path.exists('db.db'):
       pass
    else:
       Base.metadata.create_all(engine)
+
+
+def updateTipRanksInDB(ranks):
+   engine = create_engine(DB_PATH)
+   Session = sessionmaker(bind = engine)
+   session = Session()
+
+   for s,v in ranks.items():
+      result = session.query(CandidateRanks).filter(CandidateRanks.stock == s).all()
+      rank=v
+      if len(result) == 0:
+         p = CandidateRanks(stock=s, tipranksRank=rank, yahooRank=0)
+         session.add(p)
+         session.commit()
+
+
+      else:
+
+         result[0].tipranksRank=rank
+         session.commit()
+
+   print(len(ranks)," stock ratings updated in the DB from Tiprank")
 
 
 
