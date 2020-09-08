@@ -30,7 +30,7 @@ elif platform == "win32":
 PROFIT = config['Algo']['gainP']
 TRAIL = config['Algo']['trailstepP']
 BULCKAMOUNT = config['Algo']['bulkAmountUSD']
-TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOG","CTLT","TER","ETSY"]
+TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL","ETSY"]
 
 
 def init_candidates():
@@ -100,10 +100,13 @@ def evaluateBuy(s):
 def buyTheStock(ask_price, s):
     contract = createContract(s)
     stocksToBuy=int(int(BULCKAMOUNT)/ask_price)
-    print("Issued the BUY order at ", ask_price,"for ",stocksToBuy," Stocks of ",s)
-    order = createLMTbuyorder(stocksToBuy, ask_price)
-    app.placeOrder(app.nextorderId, contract, order)
-    app.nextorderId = app.nextorderId + 1
+    if stocksToBuy>0:
+        print("Issued the BUY order at ", ask_price,"for ",stocksToBuy," Stocks of ",s)
+        order = createLMTbuyorder(stocksToBuy, ask_price)
+        app.placeOrder(app.nextorderId, contract, order)
+        app.nextorderId = app.nextorderId + 1
+    else:
+        print("The single stock is too expensive - skipping")
 
 
 def processCandidates():
