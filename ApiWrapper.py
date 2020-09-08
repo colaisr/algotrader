@@ -14,7 +14,7 @@ class IBapi(EWrapper, EClient):
         self.openPositions={}
         self.positionDetails = {}
         self.openOrders={}
-        self.candidates={}
+        self.candidatesLive={}
         self.excessLiquidity=""
 
 
@@ -54,7 +54,8 @@ class IBapi(EWrapper, EClient):
 
     def position(self, account: str, contract: Contract, position: float,avgCost: float):
         super().position(account, contract, position, avgCost)
-        self.openPositions[contract.symbol]={"stocks":position,"cost":avgCost,"conId":contract.conId}
+        if avgCost!=0:
+            self.openPositions[contract.symbol]={"stocks":position,"cost":avgCost,"conId":contract.conId}
         # print("Symbol:", contract.symbol,"Stocks:", position, "Avg cost:", avgCost,"Added to the list")
 
 
@@ -83,7 +84,7 @@ class IBapi(EWrapper, EClient):
     def tickPrice(self, reqId, tickType, price, attrib):
         super().tickPrice(reqId, tickType, price, attrib)
         if tickType==1:
-            self.candidates[reqId]["Bid"] =price
+            self.candidatesLive[reqId]["Bid"] =price
             # self.candidates[reqId] = {"Stock": self.candidates[reqId]["Stock"],
             #                           "Close": self.candidates[reqId]["Close"],
             #                           "Bid": price,
@@ -91,7 +92,7 @@ class IBapi(EWrapper, EClient):
             #                           "LastPrice": self.candidates[reqId]["LastPrice"],
             #                           }
         elif tickType==2:
-            self.candidates[reqId]["Ask"] = price
+            self.candidatesLive[reqId]["Ask"] = price
             # self.candidates[reqId] = {"Stock": self.candidates[reqId]["Stock"],
             #                           "Close": self.candidates[reqId]["Close"],
             #                           "Bid": self.candidates[reqId]["Bid"],
@@ -99,7 +100,7 @@ class IBapi(EWrapper, EClient):
             #                           "LastPrice": self.candidates[reqId]["LastPrice"],
             #                           }
         elif tickType==4:
-            self.candidates[reqId]["LastPrice"] = price
+            self.candidatesLive[reqId]["LastPrice"] = price
             # self.candidates[reqId] = {"Stock": self.candidates[reqId]["Stock"],
             #                           "Close": self.candidates[reqId]["Close"],
             #                           "Bid": self.candidates[reqId]["Bid"],
@@ -107,17 +108,23 @@ class IBapi(EWrapper, EClient):
             #                           "LastPrice": price,
             #                           }
         elif tickType==9:
-            self.candidates[reqId]["Close"] = price
+            self.candidatesLive[reqId]["Close"] = price
             # self.candidates[reqId] = {"Stock": self.candidates[reqId]["Stock"],
             #                           "Close": price,
             #                           "Bid": self.candidates[reqId]["Bid"],
             #                           "Ask": self.candidates[reqId]["Ask"],
             #                           "LastPrice": self.candidates[reqId]["LastPrice"],
             #                           }
+        elif tickType == 6:
+            self.candidatesLive[reqId]["High"] = price
+        elif tickType == 7:
+            self.candidatesLive[reqId]["Low"] = price
+        elif tickType == 14:
+            self.candidatesLive[reqId]["Open"] = price
         else:
-            print("unrecognized tick")
+            print("unrecognized tick:",tickType)
 
-        self.candidates[reqId]["LastUpdate"] = datetime.datetime.now()
+        self.candidatesLive[reqId]["LastUpdate"] = datetime.datetime.now()
         # self.candidates[reqId]= { "Stock":self.positionDetails[reqId]["Stock"],
         #       "Close":self.candidates[reqId]["Close"],
         #       "Bid": self.candidates[reqId]["Bid"],

@@ -11,7 +11,7 @@ TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL"]
 def getStocksData(stocks,path):
     driver = webdriver.Chrome(path)
     stocksRanks={}
-    for s in TRANDINGSTOCKS:
+    for s in stocks:
         url="https://www.tipranks.com/stocks/"+s+"/stock-analysis"
         driver.get(url)
         selector="#app > div > div > main > div > div > article > div.client-components-stock-research-tabbed-style__contentArea > div > main > div:nth-child(1) > div.client-components-stock-research-smart-score-style__SmartScore > section.client-components-stock-research-smart-score-style__topSection > div.client-components-stock-research-smart-score-style__rank.client-components-stock-research-smart-score-style__rankSmartScoreTab > div.client-components-stock-research-smart-score-style__OctagonContainer > div > svg > text > tspan"

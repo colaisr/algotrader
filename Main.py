@@ -39,7 +39,7 @@ def init_candidates():
         id = app.nextorderId
         print("starting to track: ", s, "traking with Id:", id)
         c = createContract(s)
-        app.candidates[id] = {"Stock": s,
+        app.candidatesLive[id] = {"Stock": s,
                               "Close": "-",
                               "Bid": "-",
                               "Ask": "-",
@@ -75,7 +75,7 @@ def processProfits():
 def evaluateBuy(s):
     print("evaluating ",s,"for a Buy")
 
-    for c in app.candidates.values():
+    for c in app.candidatesLive.values():
         if c["Stock"]==s:
             ask_price=c["Ask"]
             last_closing=c["Close"]
@@ -157,8 +157,8 @@ def updatePositions():
 
 def updateCandidates():
     dropCandidates()
-    updateCandidatesInDB(app.candidates)
-    print(len(app.candidates), " candidates info updated")
+    updateCandidatesInDB(app.candidatesLive)
+    print(len(app.candidatesLive), " candidates info updated")
 
 
 def get_positions():
