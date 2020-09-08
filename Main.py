@@ -26,7 +26,7 @@ elif platform == "darwin":#mac os
     PATHTOWEBDRIVER = config['Connection']['macPathToWebdriver']
 elif platform == "win32":
     PATHTOWEBDRIVER = config['Connection']['winPathToWebdriver']
-# algo
+# alg
 PROFIT = config['Algo']['gainP']
 TRAIL = config['Algo']['trailstepP']
 BULCKAMOUNT = config['Algo']['bulkAmountUSD']
