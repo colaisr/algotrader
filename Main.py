@@ -6,7 +6,7 @@ from datetime import datetime
 from sys import platform
 
 from ApiWrapper import IBapi, createContract, createTrailingStopOrder, createLMTbuyorder
-from DataBase.db import updateOpenPostionsInDB, updateOpenOrdersinDB, dropPositions, dropOpenOrders, dropCandidates, \
+from DataBase.db import flushOpenPositionsToDB, updateOpenOrdersinDB, dropPositions, dropOpenOrders, dropCandidates, \
     updateCandidatesInDB, GetAverageDropForStock, checkDB, updateTipRanksInDB, GetRanksForStocks
 from pytz import timezone
 
@@ -15,8 +15,8 @@ from Research.tipRanksScrapper import getStocksData
 
 config = configparser.ConfigParser()
 config.read('config.ini')
-PORT = config['Connection']['portp']
-ACCOUNT = config['Account']['accp']
+PORT = config['Connection']['portl']
+ACCOUNT = config['Account']['accl']
 INTERVAL = config['Connection']['interval']
 
 MACPATHTOWEBDRIVER = config['Connection']['macPathToWebdriver']
@@ -33,7 +33,7 @@ BULCKAMOUNT = config['Algo']['bulkAmountUSD']
 TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL","ETSY"]
 
 
-def init_candidates():
+def start_tracking_live_candidates():
     # starting querry
     for s in TRANDINGSTOCKS:
         id = app.nextorderId
@@ -50,12 +50,17 @@ def init_candidates():
         app.nextorderId += 1
         time.sleep(0.5)
 
+    #updateYahooStatistics
     updatetMarketStatisticsForCandidates(TRANDINGSTOCKS)
+    # update TipranksData
+    print("Updating a ratings for Candidate stocks...")
+    updateTipRanksInDB(getStocksData(TRANDINGSTOCKS, PATHTOWEBDRIVER))
+
 
 
 def processProfits():
     print("Processing profits")
-    for i, p in app.positionDetails.items():
+    for i, p in app.stocksLiveDataRequests.items():
         if p["Value"] == 0:
             continue
         profit = p["UnrealizedPnL"] / p["Value"] * 100
@@ -134,7 +139,7 @@ def workerGo(sc):
     print("---------------Processing Worker...-------EST Time: ", time, "--------------------")
     # collect and update
     updateOrders()
-    updatePositions()
+    updateOpenPositionsInDB()
     updateCandidates()
 
     # process
@@ -149,10 +154,10 @@ def run_loop():
     app.run()
 
 
-def updatePositions():
+def updateOpenPositionsInDB():
     dropPositions()
-    updateOpenPostionsInDB(app.positionDetails)
-    print(len(app.positionDetails), " positions info updated")
+    flushOpenPositionsToDB(app.openPositions)
+    print(len(app.stocksLiveDataRequests), " open positions info updated in DB")
 
 
 def updateCandidates():
@@ -161,19 +166,19 @@ def updateCandidates():
     print(len(app.candidatesLive), " candidates info updated")
 
 
-def get_positions():
+def start_tracking_positions():
     # update positions from IBKR
     print("Updating positions:")
-    app.reqPositions()  # requesting complete list
+    app.reqPositions()  # requesting open positions
     time.sleep(1)
     for s, p in app.openPositions.items():  # start tracking one by one
         id = app.nextorderId
-        app.positionDetails[id] = {"Stock": s}
-        app.reqPnLSingle(id, ACCOUNT, "", p["conId"])  # requesting one by one
+        p["tracking_id"]=id
+        app.stocksLiveDataRequests[id] = s
+        app.reqPnLSingle(id, ACCOUNT, "", p["conId"])
         app.nextorderId += 1
-
     time.sleep(2)
-    updatePositions()
+    updateOpenPositionsInDB()
 
 
 def updateOrders():
@@ -186,19 +191,33 @@ def updateOrders():
     print(len(app.openOrders), " Orders found and saved to DB")
 
 
+def start_tracking_excess_liquidity():
+    global id
+    id = app.nextorderId
+    app.reqAccountSummary(id, "All", "ExcessLiquidity")
+    app.nextorderId += 1
+    time.sleep(0.5)
+
+
+def start_tracking_current_PnL():
+    global id, status
+    id = app.nextorderId
+    app.reqPnL(id, ACCOUNT, "")
+    time.sleep(0.5)
+    app.nextorderId = app.nextorderId + 1
+    print(app.generalStatus)
+
+
 print("Starting Todays session:", time.ctime())
 #check if DB is missing- if yes- create
 checkDB()
-#update TipranksData
-print("Updating a ratings for Candidate stocks...")
-updateTipRanksInDB(getStocksData(TRANDINGSTOCKS,PATHTOWEBDRIVER))
+
 app = IBapi()
 app.connect('127.0.0.1', int(PORT), 123)
 app.nextorderId = None
 # Start the socket in a thread
 api_thread = threading.Thread(target=run_loop, daemon=True)
 api_thread.start()
-print("Started waiting for connection")
 # Check if the API is connected via orderid
 while True:
     if isinstance(app.nextorderId, int):
@@ -208,25 +227,17 @@ while True:
         print('waiting for connection')
         time.sleep(1)
 
-id = app.nextorderId
-
 # General Account info:
-app.reqPnL(id, ACCOUNT, "")
-app.nextorderId = app.nextorderId + 1
-id = app.nextorderId
-app.reqAccountSummary(id, "All", "ExcessLiquidity")
-app.nextorderId += 1
-time.sleep(0.5)
-status = app.generalStatus
-print("PnL today status: ")
-print(status)
+start_tracking_current_PnL()
 
 # start tracking open positions
-get_positions()
+start_tracking_positions()
 
 # start tracking candidates
-init_candidates()
+start_tracking_live_candidates()
 
+#start tracking liquidity
+start_tracking_excess_liquidity()
 
 print("**********************Connected, Ready!!! starting Worker********************")
 # starting worker in loop...

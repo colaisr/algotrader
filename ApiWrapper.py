@@ -12,11 +12,11 @@ class IBapi(EWrapper, EClient):
     def __init__(self):
         EClient.__init__(self, self)
         self.openPositions={}
-        self.positionDetails = {}
+        self.stocksLiveDataRequests = {}
         self.openOrders={}
         self.candidatesLive={}
         self.excessLiquidity=""
-
+        self.generalStatus="PnL not yet received"
 
     # def error(self, reqId: int, errorCode: int, errorString: str):
     #     if reqId > -1:
@@ -27,37 +27,24 @@ class IBapi(EWrapper, EClient):
         self.nextorderId = orderId
         print('The next valid order id is: ', self.nextorderId)
 
-
     def pnl(self, reqId: int, dailyPnL: float,unrealizedPnL: float, realizedPnL: float):
         super().pnl(reqId, dailyPnL, unrealizedPnL, realizedPnL)
         self.generalStatus="DailyPnL:"+str(dailyPnL)+"UnrealizedPnL:"+ str(unrealizedPnL)+ "RealizedPnL:"+ str(realizedPnL)
-        # print("PnL today status: ")
-        # print(self.generalStatus)
 
     def pnlSingle(self, reqId: int, pos: int, dailyPnL: float,unrealizedPnL: float, realizedPnL: float, value: float):
         super().pnlSingle(reqId, pos, dailyPnL, unrealizedPnL, realizedPnL, value)
 
-        self.positionDetails[reqId]= { "Stock":self.positionDetails[reqId]["Stock"],
-              "Position":pos,
-              "DailyPnL": dailyPnL,
-              "UnrealizedPnL": unrealizedPnL,
-              "RealizedPnL": realizedPnL,
-              "Value": value}
-        # print("Daily PnL Single. ReqId:", reqId,
-        #       "Stock:",self.positionDetails[reqId]["Stock"],
-        #       "Position:", pos,
-        #       "DailyPnL:", dailyPnL,
-        #       "UnrealizedPnL:", unrealizedPnL,
-        #       "RealizedPnL:", realizedPnL,
-        #       "Value:", value)
+        s=self.stocksLiveDataRequests[reqId]
 
+        self.openPositions[s]["DailyPnL"]=dailyPnL
+        self.openPositions[s]["UnrealizedPnL"] = unrealizedPnL
+        self.openPositions[s]["RealizedPnL"] = realizedPnL
+        self.openPositions[s]["Value"] = value
 
     def position(self, account: str, contract: Contract, position: float,avgCost: float):
         super().position(account, contract, position, avgCost)
-        if avgCost!=0:
-            self.openPositions[contract.symbol]={"stocks":position,"cost":avgCost,"conId":contract.conId}
-        # print("Symbol:", contract.symbol,"Stocks:", position, "Avg cost:", avgCost,"Added to the list")
-
+        if position!=0:
+            self.openPositions[contract.symbol]={"stocks":position,"cost":avgCost,"conId":contract.conId,"tracking_id":-1}
 
     def positionEnd(self):
         super().positionEnd()

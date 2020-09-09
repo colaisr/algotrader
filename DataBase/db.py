@@ -110,15 +110,22 @@ def updateCandidatesInDB(candids):
       session.add(p)
       session.commit()
 
+def dropPositions():
+   engine = create_engine(DB_PATH)
+   Session = sessionmaker(bind = engine)
+   session = Session()
+   session.query(Position).delete()
+   session.commit()
 
-def updateOpenPostionsInDB(posFromIbkr):
+
+def flushOpenPositionsToDB(posFromIbkr):
    engine = create_engine(DB_PATH)
    Session = sessionmaker(bind = engine)
    session = Session()
    dt=datetime.datetime.now()
 
    for s, v in posFromIbkr.items():
-      p = Position(stock=v["Stock"], quantity=v["Position"], marketValue=v["Value"],todayPnL=v["DailyPnL"],generalpnlP=v["UnrealizedPnL"], lastUpdate=dt)
+      p = Position(stock=s, quantity=v["stocks"], marketValue=v["Value"],todayPnL=v["DailyPnL"],generalpnlP=v["UnrealizedPnL"], lastUpdate=dt)
       session.add(p)
       session.commit()
 
@@ -137,14 +144,6 @@ def dropCandidates():
    Session = sessionmaker(bind = engine)
    session = Session()
    session.query(Candidate).delete()
-   session.commit()
-
-
-def dropPositions():
-   engine = create_engine(DB_PATH)
-   Session = sessionmaker(bind = engine)
-   session = Session()
-   session.query(Position).delete()
    session.commit()
 
 
