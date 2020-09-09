@@ -9,6 +9,7 @@ from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 from sqlalchemy.orm import sessionmaker
 
+
 class Position(Base):
    __tablename__ = 'positions'
    id = Column(Integer, primary_key=True)
@@ -29,6 +30,7 @@ class Order(Base):
    action=Column(String)
    actionType = Column(String)
 
+
 class Candidate(Base):
    __tablename__ = 'candidates'
    id = Column(Integer, primary_key=True)
@@ -37,25 +39,12 @@ class Candidate(Base):
    bid=Column(Integer)
    ask = Column(Integer)
    lastPrice=Column(Integer)
-   close=Column(Integer)
-   lastUpdate=Column(DateTime)
-
-
-class CandidateStat(Base):
-   __tablename__ = 'candidatesHistoryStats'
-   id = Column(Integer, primary_key=True)
-
-   stock = Column(String)
-   averagePriceDrop=Column(Integer)
-   averagePriceSpread = Column(Integer)
-
-class CandidateRanks(Base):
-   __tablename__ = 'candidatesRanks'
-   id = Column(Integer, primary_key=True)
-
-   stock = Column(String)
+   open=Column(Integer)
+   close = Column(Integer)
    tipranksRank=Column(Float)
-   yahooRank = Column(Float)
+   averagePriceDropP=Column(Integer)
+   averagePriceSpreadP = Column(Integer)
+   lastUpdate=Column(DateTime)
 
 
 class Deal(Base):
@@ -71,44 +60,34 @@ class Deal(Base):
    closeDate=Column(DateTime)
 
 
-def GetAverageDropForStock(s):
+def dropLiveCandidates():
    engine = create_engine(DB_PATH)
    Session = sessionmaker(bind = engine)
    session = Session()
-   st=session.query(CandidateStat).filter_by(stock=s).first()
-   return st.averagePriceDrop
-
-
-def GetRanksForStocks():
-   engine = create_engine(DB_PATH)
-   Session = sessionmaker(bind = engine)
-   session = Session()
-   result = session.query(CandidateRanks).all()
-   resD={}
-   for r in result:
-      resD[r.stock]={"tipranks":r.tipranksRank,"yahoo":r.yahooRank}
-   return resD
-
-
-def addCandidStat(stock, avPriceDrop, avSpread):
-
-   engine = create_engine(DB_PATH)
-   Session = sessionmaker(bind = engine)
-   session = Session()
-   p = CandidateStat(stock=stock, averagePriceDrop=avPriceDrop, averagePriceSpread=avSpread)
-   session.add(p)
+   session.query(Candidate).delete()
    session.commit()
 
 
-def updateCandidatesInDB(candids):
+def flushLiveCandidatestoDB(candids):
    engine = create_engine(DB_PATH)
    Session = sessionmaker(bind = engine)
    session = Session()
 
    for s, v in candids.items():
-      p = Candidate(stock=v["Stock"], bid=v["Bid"], ask=v["Ask"],lastPrice=v["LastPrice"],close=v["Close"], lastUpdate=v["LastUpdate"])
+
+      p = Candidate(stock=v["Stock"],
+                    bid=v["Bid"],
+                    ask=v["Ask"],
+                    lastPrice=v["LastPrice"],
+                    open=v["Open"],
+                    close=v["Close"],
+                    averagePriceDropP=v["averagePriceDropP"],
+                    averagePriceSpreadP=v["averagePriceSpreadP"],
+                    tipranksRank=v["tipranksRank"],
+                    lastUpdate=v["LastUpdate"])
       session.add(p)
       session.commit()
+
 
 def dropPositions():
    engine = create_engine(DB_PATH)
@@ -130,20 +109,11 @@ def flushOpenPositionsToDB(posFromIbkr):
       session.commit()
 
 
-def dropCandidateStat():
-
+def dropOpenOrders():
    engine = create_engine(DB_PATH)
    Session = sessionmaker(bind = engine)
    session = Session()
-   session.query(CandidateStat).delete()
-   session.commit()
-
-
-def dropCandidates():
-   engine = create_engine(DB_PATH)
-   Session = sessionmaker(bind = engine)
-   session = Session()
-   session.query(Candidate).delete()
+   session.query(Order).delete()
    session.commit()
 
 
@@ -171,42 +141,11 @@ def updateOpenOrdersinDB(ordersFromIBKR):
          print("Updated in DB : ",s)
 
 
-def dropOpenOrders():
-   engine = create_engine(DB_PATH)
-   Session = sessionmaker(bind = engine)
-   session = Session()
-   session.query(Order).delete()
-   session.commit()
-
-
 def checkDB():
    if path.exists('db.db'):
       pass
    else:
       Base.metadata.create_all(engine)
-
-
-def updateTipRanksInDB(ranks):
-   engine = create_engine(DB_PATH)
-   Session = sessionmaker(bind = engine)
-   session = Session()
-
-   for s,v in ranks.items():
-      result = session.query(CandidateRanks).filter(CandidateRanks.stock == s).all()
-      rank=v
-      if len(result) == 0:
-         p = CandidateRanks(stock=s, tipranksRank=rank, yahooRank=0)
-         session.add(p)
-         session.commit()
-
-
-      else:
-
-         result[0].tipranksRank=rank
-         session.commit()
-
-   print(len(ranks)," stock ratings updated in the DB from Tiprank")
-
 
 
 if __name__ == '__main__':

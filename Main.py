@@ -6,11 +6,11 @@ from datetime import datetime
 from sys import platform
 
 from ApiWrapper import IBapi, createContract, createTrailingStopOrder, createLMTbuyorder
-from DataBase.db import flushOpenPositionsToDB, updateOpenOrdersinDB, dropPositions, dropOpenOrders, dropCandidates, \
-    updateCandidatesInDB, GetAverageDropForStock, checkDB, updateTipRanksInDB, GetRanksForStocks
+from DataBase.db import flushOpenPositionsToDB, updateOpenOrdersinDB, dropPositions, dropOpenOrders, dropLiveCandidates, \
+    flushLiveCandidatestoDB,  checkDB
 from pytz import timezone
 
-from Research.UpdateCandidates import updatetMarketStatisticsForCandidates
+from Research.UpdateCandidates import updatetMarketStatisticsForCandidate
 from Research.tipRanksScrapper import getStocksData
 
 config = configparser.ConfigParser()
@@ -33,6 +33,23 @@ BULCKAMOUNT = config['Algo']['bulkAmountUSD']
 TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL","ETSY"]
 
 
+def addYahooStatisticsForCandidates():
+    for s in TRANDINGSTOCKS:
+        drop,change=updatetMarketStatisticsForCandidate(s)
+        for k,v in app.candidatesLive.items():
+            if v["Stock"]==s:
+                app.candidatesLive[k]["averagePriceDropP"]=drop
+                app.candidatesLive[k]["averagePriceSpreadP"] = change
+
+
+def addTipRanksToCandidates():
+    data=getStocksData(TRANDINGSTOCKS, PATHTOWEBDRIVER)
+    for s in TRANDINGSTOCKS:
+        for k,v in app.candidatesLive.items():
+            v["tipranksRank"]=data[v["Stock"]]
+
+
+
 def start_tracking_live_candidates():
     # starting querry
     for s in TRANDINGSTOCKS:
@@ -41,9 +58,13 @@ def start_tracking_live_candidates():
         c = createContract(s)
         app.candidatesLive[id] = {"Stock": s,
                               "Close": "-",
+                              "Open": "-",
                               "Bid": "-",
                               "Ask": "-",
                               "LastPrice": "-",
+                              "averagePriceDropP": "-",
+                              "averagePriceSpreadP": "-",
+                              "tipranksRank": "-",
                               "LastUpdate": "-"}
         app.reqMarketDataType(1)
         app.reqMktData(id, c, '', False, False, [])
@@ -51,16 +72,20 @@ def start_tracking_live_candidates():
         time.sleep(0.5)
 
     #updateYahooStatistics
-    updatetMarketStatisticsForCandidates(TRANDINGSTOCKS)
+    addYahooStatisticsForCandidates()
+
     # update TipranksData
-    print("Updating a ratings for Candidate stocks...")
-    updateTipRanksInDB(getStocksData(TRANDINGSTOCKS, PATHTOWEBDRIVER))
+    addTipRanksToCandidates()
+
+    updateCandidatesInDB()
+
+    print("Updated ",len(app.candidatesLive)," data in DB")
 
 
 
 def processProfits():
     print("Processing profits")
-    for i, p in app.stocksLiveDataRequests.items():
+    for i, p in app.openPositionsLiveDataRequests.items():
         if p["Value"] == 0:
             continue
         profit = p["UnrealizedPnL"] / p["Value"] * 100
@@ -140,7 +165,7 @@ def workerGo(sc):
     # collect and update
     updateOrders()
     updateOpenPositionsInDB()
-    updateCandidates()
+    updateCandidatesInDB()
 
     # process
     processCandidates()
@@ -157,13 +182,12 @@ def run_loop():
 def updateOpenPositionsInDB():
     dropPositions()
     flushOpenPositionsToDB(app.openPositions)
-    print(len(app.stocksLiveDataRequests), " open positions info updated in DB")
+    print(len(app.openPositionsLiveDataRequests), " open positions info updated in DB")
 
-
-def updateCandidates():
-    dropCandidates()
-    updateCandidatesInDB(app.candidatesLive)
-    print(len(app.candidatesLive), " candidates info updated")
+def updateCandidatesInDB():
+    dropLiveCandidates()
+    flushLiveCandidatestoDB(app.candidatesLive)
+    print(len(app.candidatesLive), " Candidates updated in DB")
 
 
 def start_tracking_positions():
@@ -174,7 +198,7 @@ def start_tracking_positions():
     for s, p in app.openPositions.items():  # start tracking one by one
         id = app.nextorderId
         p["tracking_id"]=id
-        app.stocksLiveDataRequests[id] = s
+        app.openPositionsLiveDataRequests[id] = s
         app.reqPnLSingle(id, ACCOUNT, "", p["conId"])
         app.nextorderId += 1
     time.sleep(2)
@@ -192,7 +216,6 @@ def updateOrders():
 
 
 def start_tracking_excess_liquidity():
-    global id
     id = app.nextorderId
     app.reqAccountSummary(id, "All", "ExcessLiquidity")
     app.nextorderId += 1
@@ -207,39 +230,41 @@ def start_tracking_current_PnL():
     app.nextorderId = app.nextorderId + 1
     print(app.generalStatus)
 
+if __name__ == '__main__':
+    print("Starting Todays session:", time.ctime())
+    #check if DB is missing- if yes- create
+    checkDB()
 
-print("Starting Todays session:", time.ctime())
-#check if DB is missing- if yes- create
-checkDB()
+    app = IBapi()
+    app.connect('127.0.0.1', int(PORT), 123)
+    app.nextorderId = None
+    # Start the socket in a thread
+    api_thread = threading.Thread(target=run_loop, daemon=True)
+    api_thread.start()
+    # Check if the API is connected via orderid
+    while True:
+        if isinstance(app.nextorderId, int):
+            print('connected')
+            break
+        else:
+            print('waiting for connection')
+            time.sleep(1)
 
-app = IBapi()
-app.connect('127.0.0.1', int(PORT), 123)
-app.nextorderId = None
-# Start the socket in a thread
-api_thread = threading.Thread(target=run_loop, daemon=True)
-api_thread.start()
-# Check if the API is connected via orderid
-while True:
-    if isinstance(app.nextorderId, int):
-        print('connected')
-        break
-    else:
-        print('waiting for connection')
-        time.sleep(1)
+    # General Account info:
+    start_tracking_current_PnL()
 
-# General Account info:
-start_tracking_current_PnL()
+    #start tracking liquidity
+    start_tracking_excess_liquidity()
 
-# start tracking open positions
-start_tracking_positions()
+    # start tracking open positions
+    start_tracking_positions()
 
-# start tracking candidates
-start_tracking_live_candidates()
+    # start tracking candidates
+    start_tracking_live_candidates()
 
-#start tracking liquidity
-start_tracking_excess_liquidity()
 
-print("**********************Connected, Ready!!! starting Worker********************")
-# starting worker in loop...
-s.enter(2, 1, workerGo, (s,))
-s.run()
+
+    print("**********************Connected, Ready!!! starting Worker********************")
+    # starting worker in loop...
+    s.enter(2, 1, workerGo, (s,))
+    s.run()
