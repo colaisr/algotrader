@@ -141,6 +141,29 @@ def updateOpenOrdersinDB(ordersFromIBKR):
          print("Updated in DB : ",s)
 
 
+def updatetMarketStatisticsForCandidateFromDB(s):
+   engine = create_engine(DB_PATH)
+   Session = sessionmaker(bind = engine)
+   session = Session()
+   c=session.query(Candidate).filter(Candidate.stock == s).all()
+
+   if len(c)>0:
+      return c[0].averagePriceDropP,c[0].averagePriceSpreadP
+   else:
+      return 0,0
+
+def getRatingsForAllCandidatesFromDB():
+   engine = create_engine(DB_PATH)
+   Session = sessionmaker(bind = engine)
+   session = Session()
+   c=session.query(Candidate).all()
+   stocksRanks = {}
+   if len(c)>0:
+      for s in c:
+         stocksRanks[s.stock] = s.tipranksRank
+   return stocksRanks
+
+
 def checkDB():
    if path.exists('db.db'):
       pass

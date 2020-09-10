@@ -7,16 +7,16 @@ from sys import platform
 
 from ApiWrapper import IBapi, createContract, createTrailingStopOrder, createLMTbuyorder
 from DataBase.db import flushOpenPositionsToDB, updateOpenOrdersinDB, dropPositions, dropOpenOrders, dropLiveCandidates, \
-    flushLiveCandidatestoDB,  checkDB
+    flushLiveCandidatestoDB, checkDB, getRatingsForAllCandidatesFromDB, updatetMarketStatisticsForCandidateFromDB
 from pytz import timezone
 
 from Research.UpdateCandidates import updatetMarketStatisticsForCandidate
-from Research.tipRanksScrapper import getStocksData
+from Research.tipRanksScrapper import getTipRanksRatings
 
 config = configparser.ConfigParser()
 config.read('config.ini')
-PORT = config['Connection']['portl']
-ACCOUNT = config['Account']['accl']
+PORT = config['Connection']['portp']
+ACCOUNT = config['Account']['accp']
 INTERVAL = config['Connection']['interval']
 
 MACPATHTOWEBDRIVER = config['Connection']['macPathToWebdriver']
@@ -31,11 +31,15 @@ PROFIT = config['Algo']['gainP']
 TRAIL = config['Algo']['trailstepP']
 BULCKAMOUNT = config['Algo']['bulkAmountUSD']
 TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL","ETSY"]
-
+#debug
+REUSECANDIDATESFROMDB = config['Debug']['reuseCandidatesFromDb']
 
 def addYahooStatisticsForCandidates():
     for s in TRANDINGSTOCKS:
-        drop,change=updatetMarketStatisticsForCandidate(s)
+        if REUSECANDIDATESFROMDB == 'True':
+            drop, change=updatetMarketStatisticsForCandidateFromDB(s)
+        else:
+            drop, change = updatetMarketStatisticsForCandidate(s)
         for k,v in app.candidatesLive.items():
             if v["Stock"]==s:
                 app.candidatesLive[k]["averagePriceDropP"]=drop
@@ -43,11 +47,13 @@ def addYahooStatisticsForCandidates():
 
 
 def addTipRanksToCandidates():
-    data=getStocksData(TRANDINGSTOCKS, PATHTOWEBDRIVER)
+    if REUSECANDIDATESFROMDB=='True':
+        data=getRatingsForAllCandidatesFromDB()
+    else:
+        data=getTipRanksRatings(TRANDINGSTOCKS, PATHTOWEBDRIVER)
     for s in TRANDINGSTOCKS:
         for k,v in app.candidatesLive.items():
             v["tipranksRank"]=data[v["Stock"]]
-
 
 
 def start_tracking_live_candidates():
@@ -80,7 +86,6 @@ def start_tracking_live_candidates():
     updateCandidatesInDB()
 
     print("Updated ",len(app.candidatesLive)," data in DB")
-
 
 
 def processProfits():
@@ -163,7 +168,7 @@ def workerGo(sc):
 
     print("---------------Processing Worker...-------EST Time: ", time, "--------------------")
     # collect and update
-    updateOrders()
+    requestOrders()
     updateOpenPositionsInDB()
     updateCandidatesInDB()
 
@@ -190,6 +195,10 @@ def updateCandidatesInDB():
     print(len(app.candidatesLive), " Candidates updated in DB")
 
 
+def updateOpenOrdersInDB():
+    dropOpenOrders()
+    updateOpenOrdersinDB(app.openOrders)
+
 def start_tracking_positions():
     # update positions from IBKR
     print("Updating positions:")
@@ -205,13 +214,13 @@ def start_tracking_positions():
     updateOpenPositionsInDB()
 
 
-def updateOrders():
+def requestOrders():
     print("Updating all open Orders")
     app.openOrders = {}
     app.reqAllOpenOrders()
     time.sleep(1)
-    dropOpenOrders()
-    updateOpenOrdersinDB(app.openOrders)
+    updateOpenOrdersInDB()
+
     print(len(app.openOrders), " Orders found and saved to DB")
 
 
