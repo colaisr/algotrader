@@ -54,19 +54,19 @@ class IBapi(EWrapper, EClient):
                     whyHeld, mktCapPrice):
         super().orderStatus(orderId, status, filled, remaining, avgFullPrice, permId, parentId, lastFillPrice, clientId,
                     whyHeld, mktCapPrice)
-        # print('orderStatus - orderid:', orderId, 'status:', status, 'filled', filled, 'remaining', remaining,
-        #       'lastFillPrice', lastFillPrice)
+        print('orderStatus - orderid:', orderId, 'status:', status, 'filled', filled, 'remaining', remaining,
+              'lastFillPrice', lastFillPrice)
 
     def openOrder(self, orderId, contract, order, orderState):
         super().openOrder(orderId, contract, order, orderState)
         self.openOrders[contract.symbol] = {"Action": order.action, "Type": order.orderType}
-        # print('openOrder id:', orderId, contract.symbol, contract.secType, '@', contract.exchange, ':', order.action,
-        #       order.orderType, order.totalQuantity, orderState.status)
+        print('openOrder id:', orderId, contract.symbol, contract.secType, '@', contract.exchange, ':', order.action,
+              order.orderType, order.totalQuantity, orderState.status)
 
     def execDetails(self, reqId, contract, execution):
         super().execDetails(reqId, contract, execution)
-        # print('Order Executed: ', reqId, contract.symbol, contract.secType, contract.currency, execution.execId,
-        #       execution.orderId, execution.shares, execution.lastLiquidity)
+        print('execDetails Order Executed: ', reqId, contract.symbol, contract.secType, contract.currency, execution.execId,
+              execution.orderId, execution.shares, execution.lastLiquidity)
 
     def tickPrice(self, reqId, tickType, price, attrib):
         super().tickPrice(reqId, tickType, price, attrib)
@@ -89,14 +89,10 @@ class IBapi(EWrapper, EClient):
 
         self.candidatesLive[reqId]["LastUpdate"] = datetime.datetime.now()
 
-
-
     def accountSummary(self, reqId: int, account: str, tag: str, value: str,
                         currency: str):
          super().accountSummary(reqId, account, tag, value, currency)
          self.excessLiquidity=value
-
-
 
 
 def createContract(symbol:str):
@@ -109,6 +105,7 @@ def createContract(symbol:str):
     newContract.currency = 'USD'
     return newContract
 
+
 def createTrailingStopOrder(quantity,trailPercent):
 
     # Create order object
@@ -119,6 +116,19 @@ def createTrailingStopOrder(quantity,trailPercent):
     order.trailingPercent = float(trailPercent);
     order.tif='GTC'
 
+    return order
+
+def createMktSellOrder(quantity):
+
+    # Create order object
+    order = Order()
+    order.action = 'SELL'
+    order.orderType = 'MKT'
+    order.totalQuantity = quantity
+    order.tif='GTC'
+
+    return order
+
 def createLMTbuyorder(quantity, lmtPrice):
     # Create order object
     order = Order()
@@ -127,6 +137,5 @@ def createLMTbuyorder(quantity, lmtPrice):
     order.totalQuantity = quantity
     order.lmtPrice = float(lmtPrice);
     order.tif = 'GTC'
-
 
     return order

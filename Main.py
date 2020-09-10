@@ -5,7 +5,7 @@ import threading
 from datetime import datetime
 from sys import platform
 
-from ApiWrapper import IBapi, createContract, createTrailingStopOrder, createLMTbuyorder
+from ApiWrapper import IBapi, createContract, createTrailingStopOrder, createLMTbuyorder, createMktSellOrder
 from DataBase.db import flushOpenPositionsToDB, updateOpenOrdersinDB, dropPositions, dropOpenOrders, dropLiveCandidates, \
     flushLiveCandidatestoDB, checkDB, getRatingsForAllCandidatesFromDB, updatetMarketStatisticsForCandidateFromDB
 from pytz import timezone
@@ -28,6 +28,7 @@ elif platform == "win32":
     PATHTOWEBDRIVER = config['Connection']['winPathToWebdriver']
 # alg
 PROFIT = config['Algo']['gainP']
+LOSS = config['Algo']['lossP']
 TRAIL = config['Algo']['trailstepP']
 BULCKAMOUNT = config['Algo']['bulkAmountUSD']
 TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL","ETSY"]
@@ -90,21 +91,33 @@ def start_tracking_live_candidates():
 
 def processProfits():
     print("Processing profits")
-    for i, p in app.openPositionsLiveDataRequests.items():
+    for s, p in app.openPositions.items():
         if p["Value"] == 0:
             continue
         profit = p["UnrealizedPnL"] / p["Value"] * 100
         if profit > float(PROFIT):
             orders = app.openOrders
-            if p["Stock"] in orders:
-                print("Order for ", p["Stock"], "already exist- skipping")
+            if s in orders:
+                print("Order for ", s, "already exist- skipping")
             else:
-                print("Profit for: ", p["Stock"], " is ", profit, "Creating a trailing Stop Order")
-                contract = createContract(p["Stock"])
-                order = createTrailingStopOrder(p["Position"], TRAIL)
+                print("Profit for: ", s, " is ", profit, "Creating a trailing Stop Order")
+                contract = createContract(s)
+                order = createTrailingStopOrder(p["stocks"], TRAIL)
                 app.placeOrder(app.nextorderId, contract, order)
                 app.nextorderId = app.nextorderId + 1
-                print("Created a Trailing Stop order for ", p["Stock"], " at level of ", TRAIL, "%")
+                print("Created a Trailing Stop order for ", s, " at level of ", TRAIL, "%")
+        elif profit <float(LOSS):
+            orders = app.openOrders
+            if s in orders:
+                print("Order for ", s, "already exist- skipping")
+            else:
+                print("loss for: ", s, " is ", profit, "Creating a Market Sell Order")
+                contract = createContract(s)
+                order = createMktSellOrder(p['stocks'])
+                app.placeOrder(app.nextorderId, contract, order)
+                app.nextorderId = app.nextorderId + 1
+                print("Created a Market Sell order for ", s)
+
 
 
 def evaluateBuy(s):
@@ -114,20 +127,22 @@ def evaluateBuy(s):
         if c["Stock"]==s:
             ask_price=c["Ask"]
             last_closing=c["Close"]
+            last_open=c["Open"]
+            average_daily_dropP=c["averagePriceDropP"]
+            tipRank = c["tipranksRank"]
             break
-    average_daily_dropP=GetAverageDropForStock(s)
 
-    target_price=last_closing-last_closing/100*average_daily_dropP
-
-    ranks=GetRanksForStocks()
-    tipRank=ranks[s]["tipranks"]
+    if ask_price == -1:  # market is closed
+        target_price=last_closing-last_closing/100*average_daily_dropP
+    else:                #market is open
+        target_price = last_open - last_closing / 100 * average_daily_dropP
 
     if ask_price==-1:#market is closed
-        pass
-    elif ask_price>target_price and tipRank<8:
-        print(s,"is too expensive waiting for lower than ",target_price,"to exceed average ",average_daily_dropP," %")
-    else:
+        print('The market is closed skipping...')
+    elif ask_price<target_price and tipRank>8:
         buyTheStock(ask_price, s)
+    else:
+        print("The price of :",ask_price,"was not in range of :",average_daily_dropP, " % "," Or the Rating of ",tipRank," was not good enough")
 
     pass
 
@@ -169,7 +184,7 @@ def workerGo(sc):
     print("---------------Processing Worker...-------EST Time: ", time, "--------------------")
     # collect and update
     requestOrders()
-    updateOpenPositionsInDB()
+    update_open_positions()
     updateCandidatesInDB()
 
     # process
@@ -199,18 +214,20 @@ def updateOpenOrdersInDB():
     dropOpenOrders()
     updateOpenOrdersinDB(app.openOrders)
 
-def start_tracking_positions():
+def update_open_positions():
     # update positions from IBKR
     print("Updating positions:")
     app.reqPositions()  # requesting open positions
     time.sleep(1)
     for s, p in app.openPositions.items():  # start tracking one by one
-        id = app.nextorderId
-        p["tracking_id"]=id
-        app.openPositionsLiveDataRequests[id] = s
-        app.reqPnLSingle(id, ACCOUNT, "", p["conId"])
-        app.nextorderId += 1
+        if s not in app.openPositionsLiveDataRequests.values():
+            id = app.nextorderId
+            p["tracking_id"]=id
+            app.openPositionsLiveDataRequests[id] = s
+            app.reqPnLSingle(id, ACCOUNT, "", p["conId"])
+            app.nextorderId += 1
     time.sleep(2)
+    app.openPositions
     updateOpenPositionsInDB()
 
 
@@ -266,7 +283,7 @@ if __name__ == '__main__':
     start_tracking_excess_liquidity()
 
     # start tracking open positions
-    start_tracking_positions()
+    update_open_positions()
 
     # start tracking candidates
     start_tracking_live_candidates()
