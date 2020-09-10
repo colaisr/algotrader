@@ -4,6 +4,7 @@ import time
 import threading
 from datetime import datetime
 from sys import platform
+import pprint
 
 from ApiWrapper import IBapi, createContract, createTrailingStopOrder, createLMTbuyorder, createMktSellOrder
 from DataBase.db import flushOpenPositionsToDB, updateOpenOrdersinDB, dropPositions, dropOpenOrders, dropLiveCandidates, \
@@ -76,7 +77,7 @@ def start_tracking_live_candidates():
         app.reqMarketDataType(1)
         app.reqMktData(id, c, '', False, False, [])
         app.nextorderId += 1
-        time.sleep(0.5)
+        time.sleep(2)
 
     #updateYahooStatistics
     addYahooStatisticsForCandidates()
@@ -92,8 +93,7 @@ def start_tracking_live_candidates():
 def processProfits():
     print("Processing profits")
     for s, p in app.openPositions.items():
-        if p["Value"] == 0:
-            continue
+        print("Checking ",s)
         profit = p["UnrealizedPnL"] / p["Value"] * 100
         if profit > float(PROFIT):
             orders = app.openOrders
@@ -139,7 +139,7 @@ def evaluateBuy(s):
 
     if ask_price==-1:#market is closed
         print('The market is closed skipping...')
-    elif ask_price<target_price and tipRank>8:
+    elif ask_price<target_price and float(tipRank)>8:
         buyTheStock(ask_price, s)
     else:
         print("The price of :",ask_price,"was not in range of :",average_daily_dropP, " % "," Or the Rating of ",tipRank," was not good enough")
@@ -187,6 +187,11 @@ def workerGo(sc):
     update_open_positions()
     updateCandidatesInDB()
 
+    print("Open positions:")
+    pprint.pprint(app.openPositions)
+    print("Tracked Candidates:")
+    pprint.pprint(app.candidatesLive)
+
     # process
     processCandidates()
     processProfits()
@@ -226,8 +231,7 @@ def update_open_positions():
             app.openPositionsLiveDataRequests[id] = s
             app.reqPnLSingle(id, ACCOUNT, "", p["conId"])
             app.nextorderId += 1
-    time.sleep(2)
-    app.openPositions
+    time.sleep(5)
     updateOpenPositionsInDB()
 
 
