@@ -171,11 +171,12 @@ def processCandidates():
         return
     else:
         print("The Excess liquidity is :",excessLiquidity," searching candidates")
-        for s in TRANDINGSTOCKS:
-            if s in app.openPositions:
+        res = sorted(app.candidatesLive.items(), key=lambda x: x[1]['tipranksRank'],reverse=True)
+        for i,c in res:
+            if c['Stock'] in app.openPositions:
                 continue
             else:
-                evaluateBuy(s)
+                evaluateBuy(c['Stock'])
 
 
 s = sched.scheduler(time.time, time.sleep)
