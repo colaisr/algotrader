@@ -40,6 +40,7 @@ class IBapi(EWrapper, EClient):
         self.openPositions[s]["UnrealizedPnL"] = unrealizedPnL
         self.openPositions[s]["RealizedPnL"] = realizedPnL
         self.openPositions[s]["Value"] = value
+        self.cancelPnLSingle(reqId); # cancel subscription after getting
 
     def position(self, account: str, contract: Contract, position: float,avgCost: float):
         super().position(account, contract, position, avgCost)

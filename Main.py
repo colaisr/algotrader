@@ -132,10 +132,10 @@ def evaluateBuy(s):
             tipRank = c["tipranksRank"]
             break
 
-    if ask_price == -1:  # market is closed
+    if last_open == '-':  # market is closed
         target_price=last_closing-last_closing/100*average_daily_dropP
     else:                #market is open
-        target_price = last_open - last_closing / 100 * average_daily_dropP
+        target_price = last_open - last_open / 100 * average_daily_dropP
 
     if ask_price==-1:#market is closed
         print('The market is closed skipping...')
@@ -222,6 +222,7 @@ def updateOpenOrdersInDB():
 def update_open_positions():
     # update positions from IBKR
     print("Updating positions:")
+    app.openPositionsLiveDataRequests={} #reset requests dictionary
     app.reqPositions()  # requesting open positions
     time.sleep(1)
     for s, p in app.openPositions.items():  # start tracking one by one
@@ -231,7 +232,7 @@ def update_open_positions():
             app.openPositionsLiveDataRequests[id] = s
             app.reqPnLSingle(id, ACCOUNT, "", p["conId"])
             app.nextorderId += 1
-    time.sleep(5)
+    time.sleep(2)
     updateOpenPositionsInDB()
 
 
@@ -260,11 +261,12 @@ def start_tracking_current_PnL():
     app.nextorderId = app.nextorderId + 1
     print(app.generalStatus)
 
-if __name__ == '__main__':
-    print("Starting Todays session:", time.ctime())
-    #check if DB is missing- if yes- create
-    checkDB()
 
+def mainMethod():
+    global app
+    print("Starting Todays session:", time.ctime())
+    # check if DB is missing- if yes- create
+    checkDB()
     app = IBapi()
     app.connect('127.0.0.1', int(PORT), 123)
     app.nextorderId = None
@@ -279,22 +281,19 @@ if __name__ == '__main__':
         else:
             print('waiting for connection')
             time.sleep(1)
-
     # General Account info:
     start_tracking_current_PnL()
-
-    #start tracking liquidity
+    # start tracking liquidity
     start_tracking_excess_liquidity()
-
     # start tracking open positions
     update_open_positions()
-
     # start tracking candidates
     start_tracking_live_candidates()
-
-
-
     print("**********************Connected, Ready!!! starting Worker********************")
     # starting worker in loop...
     s.enter(2, 1, workerGo, (s,))
     s.run()
+
+
+if __name__ == '__main__':
+    mainMethod()
