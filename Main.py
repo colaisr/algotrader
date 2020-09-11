@@ -35,6 +35,7 @@ BULCKAMOUNT = config['Algo']['bulkAmountUSD']
 TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL","ETSY"]
 #debug
 REUSECANDIDATESFROMDB = config['Debug']['reuseCandidatesFromDb']
+WORKERCOUNTER=0
 
 def addYahooStatisticsForCandidates():
     for s in TRANDINGSTOCKS:
@@ -128,14 +129,18 @@ def evaluateBuy(s):
             ask_price=c["Ask"]
             last_closing=c["Close"]
             last_open=c["Open"]
+            last_price=c["lastPrice"]
             average_daily_dropP=c["averagePriceDropP"]
             tipRank = c["tipranksRank"]
+
             break
 
-    if last_open == '-':  # market is closed
-        target_price=last_closing-last_closing/100*average_daily_dropP
-    else:                #market is open
-        target_price = last_open - last_open / 100 * average_daily_dropP
+    if last_open != '-':  # market is closed
+        target_price=last_open-last_open/100*average_daily_dropP
+    elif last_closing !='-':                #market is open
+        target_price = last_closing - last_closing / 100 * average_daily_dropP
+    else:
+        target_price = last_price - last_price / 100 * average_daily_dropP
 
     if ask_price==-1:#market is closed
         print('The market is closed skipping...')
@@ -179,18 +184,19 @@ s = sched.scheduler(time.time, time.sleep)
 def workerGo(sc):
     est = timezone('EST')
     fmt = '%Y-%m-%d %H:%M:%S'
-    time = datetime.now(est).strftime(fmt)
+    local_time=datetime.now().strftime(fmt)
+    est_time = datetime.now(est).strftime(fmt)
 
-    print("---------------Processing Worker...-------EST Time: ", time, "--------------------")
+    print("-------Processing Worker(",WORKERCOUNTER,")...---Local Time",local_time,"----EST Time: ", time, "--------------------")
     # collect and update
     requestOrders()
     update_open_positions()
     updateCandidatesInDB()
 
-    print("Open positions:")
-    pprint.pprint(app.openPositions)
-    print("Tracked Candidates:")
-    pprint.pprint(app.candidatesLive)
+    # print("Open positions:")
+    # pprint.pprint(app.openPositions)
+    # print("Tracked Candidates:")
+    # pprint.pprint(app.candidatesLive)
 
     # process
     processCandidates()
