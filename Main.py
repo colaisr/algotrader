@@ -129,7 +129,7 @@ def evaluateBuy(s):
             ask_price=c["Ask"]
             last_closing=c["Close"]
             last_open=c["Open"]
-            last_price=c["lastPrice"]
+            last_price=c["LastPrice"]
             average_daily_dropP=c["averagePriceDropP"]
             tipRank = c["tipranksRank"]
 
