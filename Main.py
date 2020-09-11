@@ -187,7 +187,7 @@ def workerGo(sc):
     local_time=datetime.now().strftime(fmt)
     est_time = datetime.now(est).strftime(fmt)
 
-    print("-------Processing Worker...---Local Time",local_time,"----EST Time: ", time, "--------------------")
+    print("-------Processing Worker...---Local Time",local_time,"----EST Time: ", est_time, "--------------------")
     # collect and update
     requestOrders()
     update_open_positions()
