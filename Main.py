@@ -32,7 +32,7 @@ PROFIT = config['Algo']['gainP']
 LOSS = config['Algo']['lossP']
 TRAIL = config['Algo']['trailstepP']
 BULCKAMOUNT = config['Algo']['bulkAmountUSD']
-TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL","ETSY"]
+TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL","ETSY","IVAC"]
 #debug
 REUSECANDIDATESFROMDB = config['Debug']['reuseCandidatesFromDb']
 WORKERCOUNTER=0
