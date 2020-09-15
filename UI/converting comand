@@ -1,1 +1,3 @@
 pyuic5 MainWindow.ui -o MainWindow.py -x
+
+pyside2-uic MainWindow.ui > MainWindow.py -x
