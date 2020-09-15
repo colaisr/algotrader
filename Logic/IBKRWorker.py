@@ -44,7 +44,7 @@ class IBKRWorker():
         self.WORKERCOUNTER = 0
         self.s = sched.scheduler(time.time, time.sleep)
 
-    def _runMainLoop(self):
+    def connectToIBKR(self):
         print("Starting Todays session:", time.ctime())
         # check if DB is missing- if yes- create
         checkDB()
@@ -70,6 +70,8 @@ class IBKRWorker():
         # start tracking candidates
         self.start_tracking_live_candidates()
         print("**********************Connected, Ready!!! starting Worker********************")
+
+    def _runMainLoop(self):
         # starting worker in loop...
         self.s.enter(2, 1, self.workerGo, (self.s,))
         self.s.run()
@@ -307,5 +309,6 @@ class IBKRWorker():
 
 if __name__ == '__main__':
     w=IBKRWorker()
+    w.connectToIBKR()
     w._runMainLoop()
-    i=2
+
