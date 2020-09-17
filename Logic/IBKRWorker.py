@@ -38,7 +38,9 @@ class IBKRWorker():
         self.LOSS = config['Algo']['lossP']
         self.TRAIL = config['Algo']['trailstepP']
         self.BULCKAMOUNT = config['Algo']['bulkAmountUSD']
-        self.TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL", "ETSY", "IVAC"]
+        # self.TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL", "ETSY", "IVAC"]
+        self.TRANDINGSTOCKS = ["AAPL"]
+
         # debug
         self.REUSECANDIDATESFROMDB = config['Debug']['reuseCandidatesFromDb']
         self.WORKERCOUNTER = 0
@@ -70,9 +72,15 @@ class IBKRWorker():
         # start tracking candidates
         self.start_tracking_live_candidates()
         print("**********************Connected, Ready!!! starting Worker********************")
+        return "All Data ready"
 
-    def _runMainLoop(self):
+    def runMainLoop(self):
         # starting worker in loop...
+        mainWorkerThread = threading.Thread(target=self.startLooping(), daemon=True)
+        mainWorkerThread.start()
+
+
+    def startLooping(self):
         self.s.enter(2, 1, self.workerGo, (self.s,))
         self.s.run()
 
@@ -310,5 +318,5 @@ class IBKRWorker():
 if __name__ == '__main__':
     w=IBKRWorker()
     w.connectToIBKR()
-    w._runMainLoop()
+    w.runMainLoop()
 
