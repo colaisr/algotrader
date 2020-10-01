@@ -101,6 +101,15 @@
       <property name="text">
        <string>Stock</string>
       </property>
+      <property name="foreground">
+       <brush brushstyle="NoBrush">
+        <color alpha="255">
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
+        </color>
+       </brush>
+      </property>
      </column>
      <column>
       <property name="text">
@@ -109,7 +118,7 @@
      </column>
      <column>
       <property name="text">
-       <string>New Column</string>
+       <string>Av. Price</string>
       </property>
      </column>
      <column>
@@ -124,7 +133,7 @@
      </column>
      <column>
       <property name="text">
-       <string>Last Update</string>
+       <string>% Profit</string>
       </property>
      </column>
     </widget>

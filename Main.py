@@ -3,8 +3,9 @@ from datetime import time
 import traceback, sys
 
 from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject
+from PySide2.QtGui import QColor
 from PySide2.QtUiTools import loadUiType
-from PySide2.QtWidgets import QMainWindow, QApplication
+from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem
 from Logic.IBKRWorker import IBKRWorker
 
 qt_creator_file = "UI/MainWindow.ui"
@@ -107,6 +108,29 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def update_ui(self, s):
         self.lLiq.setText(self.ibkrworker.app.excessLiquidity)
         self.lAcc.setText(self.ibkrworker.ACCOUNT)
+        openPostions=self.ibkrworker.app.openPositions
+        line=0
+        self.tPositions.setRowCount(len(openPostions))
+        for k,v in openPostions.items():
+            self.tPositions.setItem(line, 0, QTableWidgetItem(k))
+            self.tPositions.setItem(line, 1, QTableWidgetItem(str(int(v['stocks']))))
+            self.tPositions.setItem(line, 2, QTableWidgetItem(str(round(v['cost'],2))))
+            self.tPositions.setItem(line, 3, QTableWidgetItem(str(round(v['Value'],2))))
+            self.tPositions.setItem(line, 4, QTableWidgetItem(str(round(v['UnrealizedPnL'],2))))
+
+            profit=v['UnrealizedPnL']/v['Value']*100
+            self.tPositions.setItem(line, 5, QTableWidgetItem(str(round(profit,2))))
+
+            if v['UnrealizedPnL']>0:
+                self.tPositions.item(line, 4).setBackgroundColor(QColor(51, 204, 51))
+                self.tPositions.item(line, 5).setBackgroundColor(QColor(51, 204, 51))
+            else:
+                self.tPositions.item(line, 4).setBackgroundColor(QColor(255, 51, 0))
+                self.tPositions.item(line, 5).setBackgroundColor(QColor(255, 51, 0))
+            line+=1
+
+
+
 
 
 
