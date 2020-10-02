@@ -2,7 +2,7 @@
 from datetime import time
 import traceback, sys
 
-from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject
+from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer
 from PySide2.QtGui import QColor
 from PySide2.QtUiTools import loadUiType
 from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem
@@ -79,12 +79,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
+
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.run_worker)
+
+
         self.setupUi(self)
         self.ibkrworker = IBKRWorker()
         self.threadpool = QThreadPool()
 
         self.btnConnect.pressed.connect(self.connect_to_ibkr)
-        self.btnStart.pressed.connect(self.StartWorker)
+        self.btnStart.pressed.connect(self.start_timer)
 
     def connect_to_ibkr(self):
         self.btnConnect.setEnabled(False)
@@ -95,11 +100,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         worker.signals.finished.connect(self.thread_complete)
         # Execute
         self.threadpool.start(worker)
+        self.btnStart.setEnabled(True)
+
+    def start_timer(self):
+        self.timer.start(int(self.ibkrworker.INTERVAL)*1000)
 
 
-    def StartWorker(self):
+    def run_worker(self):
         # Pass the function to execute
-        worker = Worker(self.ibkrworker.startLooping)  # Any other args, kwargs are passed to the run function
+        worker = Worker(self.ibkrworker.process_positions_candidates)  # Any other args, kwargs are passed to the run function
         worker.signals.result.connect(self.update_ui)
         worker.signals.finished.connect(self.thread_complete)
         # Execute
@@ -108,31 +117,47 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def update_ui(self, s):
         self.lLiq.setText(self.ibkrworker.app.excessLiquidity)
         self.lAcc.setText(self.ibkrworker.ACCOUNT)
-        openPostions=self.ibkrworker.app.openPositions
-        line=0
+        self.update_open_positions()
+        self.update_live_candidates()
+
+    def update_live_candidates(self):
+        liveCandidates = self.ibkrworker.app.candidatesLive
+        line = 0
+        self.tCandidates.setRowCount(len(liveCandidates))
+        for k, v in liveCandidates.items():
+            self.tCandidates.setItem(line, 0, QTableWidgetItem(v['Stock']))
+            self.tCandidates.setItem(line, 1, QTableWidgetItem(str(v['Close'])))
+            self.tCandidates.setItem(line, 2, QTableWidgetItem(str(v['Open'])))
+            self.tCandidates.setItem(line, 3, QTableWidgetItem(str(v['Bid'])))
+            self.tCandidates.setItem(line, 4, QTableWidgetItem(str(v['Ask'])))
+            self.tCandidates.setItem(line, 5, QTableWidgetItem(str(v['LastPrice'])))
+            self.tCandidates.setItem(line, 6, QTableWidgetItem(str(round(v['averagePriceDropP'],2))))
+            self.tCandidates.setItem(line, 7, QTableWidgetItem(str(v['tipranksRank'])))
+            self.tCandidates.setItem(line, 8, QTableWidgetItem(str(v['LastUpdate'])))
+
+            line += 1
+
+    def update_open_positions(self):
+        openPostions = self.ibkrworker.app.openPositions
+        line = 0
         self.tPositions.setRowCount(len(openPostions))
-        for k,v in openPostions.items():
+        for k, v in openPostions.items():
             self.tPositions.setItem(line, 0, QTableWidgetItem(k))
             self.tPositions.setItem(line, 1, QTableWidgetItem(str(int(v['stocks']))))
-            self.tPositions.setItem(line, 2, QTableWidgetItem(str(round(v['cost'],2))))
-            self.tPositions.setItem(line, 3, QTableWidgetItem(str(round(v['Value'],2))))
-            self.tPositions.setItem(line, 4, QTableWidgetItem(str(round(v['UnrealizedPnL'],2))))
+            self.tPositions.setItem(line, 2, QTableWidgetItem(str(round(v['cost'], 2))))
+            self.tPositions.setItem(line, 3, QTableWidgetItem(str(round(v['Value'], 2))))
+            self.tPositions.setItem(line, 4, QTableWidgetItem(str(round(v['UnrealizedPnL'], 2))))
 
-            profit=v['UnrealizedPnL']/v['Value']*100
-            self.tPositions.setItem(line, 5, QTableWidgetItem(str(round(profit,2))))
+            profit = v['UnrealizedPnL'] / v['Value'] * 100
+            self.tPositions.setItem(line, 5, QTableWidgetItem(str(round(profit, 2))))
 
-            if v['UnrealizedPnL']>0:
+            if v['UnrealizedPnL'] > 0:
                 self.tPositions.item(line, 4).setBackgroundColor(QColor(51, 204, 51))
                 self.tPositions.item(line, 5).setBackgroundColor(QColor(51, 204, 51))
             else:
                 self.tPositions.item(line, 4).setBackgroundColor(QColor(255, 51, 0))
                 self.tPositions.item(line, 5).setBackgroundColor(QColor(255, 51, 0))
-            line+=1
-
-
-
-
-
+            line += 1
 
     def thread_complete(self):
         print("THREAD COMPLETE!")

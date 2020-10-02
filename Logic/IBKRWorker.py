@@ -81,7 +81,7 @@ class IBKRWorker():
 
 
     def startLooping(self):
-        self.s.enter(2, 1, self.workerGo, (self.s,))
+        self.s.enter(2, 1, self.workerGo_test_module, (self.s,))
         self.s.run()
 
 
@@ -226,7 +226,7 @@ class IBKRWorker():
                 else:
                     self.evaluateBuy(c['Stock'])
 
-    def workerGo(self,sc):
+    def workerGo_test_module(self, sc):
         est = timezone('EST')
         fmt = '%Y-%m-%d %H:%M:%S'
         local_time=datetime.now().strftime(fmt)
@@ -248,7 +248,30 @@ class IBKRWorker():
         self.processProfits()
         print("...............Worker finished.........................")
 
-        self.s.enter(float(self.INTERVAL), 1, self.workerGo, (sc,))
+        self.s.enter(float(self.INTERVAL), 1, self.process_positions_candidates, (sc,))
+
+    def process_positions_candidates(self):
+        est = timezone('EST')
+        fmt = '%Y-%m-%d %H:%M:%S'
+        local_time=datetime.now().strftime(fmt)
+        est_time = datetime.now(est).strftime(fmt)
+
+        print("-------Processing Worker...---Local Time",local_time,"----EST Time: ", est_time, "--------------------")
+        # collect and update
+        self.requestOrders()
+        self.update_open_positions()
+        self.updateCandidatesInDB()
+
+        # print("Open positions:")
+        # pprint.pprint(app.openPositions)
+        # print("Tracked Candidates:")
+        # pprint.pprint(app.candidatesLive)
+
+        # process
+        self.processCandidates()
+        self.processProfits()
+        print("...............Worker finished.........................")
+
 
 
     def run_loop(self):
