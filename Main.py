@@ -6,12 +6,11 @@ from PySide2.QtGui import QColor, QTextCursor
 from PySide2.QtUiTools import loadUiType
 from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem
 
-
 from Logic.IBKRWorker import IBKRWorker
 
 qt_creator_file = "UI/MainWindow.ui"
 Ui_MainWindow, QtBaseClass = loadUiType(qt_creator_file)
-LOGFILE="log.txt"
+LOGFILE = "log.txt"
 
 
 class OutLog:
@@ -57,8 +56,8 @@ adds message to the log file
         :param m:
         """
         f = open(LOGFILE, "a")
-        currentDt=datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
-        m=currentDt+'---'+m
+        currentDt = datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
+        m = currentDt + '---' + m
         f.write(m)
         f.close()
 
@@ -130,28 +129,27 @@ class Worker(QRunnable):
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
+        # mandatory
         QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
-
-        self.timer = QTimer()
-        self.timer.timeout.connect(self.run_worker)
-
         self.setupUi(self)
         self.ibkrworker = IBKRWorker()
         self.threadpool = QThreadPool()
 
-        self.btnConnect.pressed.connect(self.connect_to_ibkr)
-        self.btnStart.pressed.connect(self.start_timer)
-
-        #redirecting Cosole to UI and Log
+        # redirecting Cosole to UI and Log
         sys.stdout = OutLog(self.consoleOut, sys.stdout)
         sys.stderr = OutLog(self.consoleOut, sys.stderr, QColor(255, 0, 0))
 
+        # setting a timer for Worker
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.run_worker)
+
+        # connecting a buttons
+        self.btnConnect.pressed.connect(self.connect_to_ibkr)
+        self.btnStart.pressed.connect(self.start_timer)
+
         self.statusbar.showMessage("Ready")
         print("AlgoTraider is started... waiting to connect...")
-
-    def update_console(self, args):
-        self.statusbar.showMessage("updated")
 
     def connect_to_ibkr(self):
         """
