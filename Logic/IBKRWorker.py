@@ -12,16 +12,13 @@ from DataBase.db import flushOpenPositionsToDB, updateOpenOrdersinDB, dropPositi
     flushLiveCandidatestoDB, checkDB, getRatingsForAllCandidatesFromDB, updatetMarketStatisticsForCandidateFromDB
 from pytz import timezone
 
-from Research.UpdateCandidates import updatetMarketStatisticsForCandidate
-from Research.tipRanksScrapper import getTipRanksRatings
-
-
-
+from Research.UpdateCandidates import get_yahoo_stats_for_candidate
+from Research.tipRanksScrapper import get_tiprank_ratings_to_Stocks
 
 
 class IBKRWorker():
     def __init__(self):
-        self.app=IBapi()
+        self.app = IBapi()
         config = configparser.ConfigParser()
         config.read('config.ini')
         self.PORT = config['Connection']['portp']
@@ -48,20 +45,12 @@ class IBKRWorker():
         self.WORKERCOUNTER = 0
         self.s = sched.scheduler(time.time, time.sleep)
 
-        self._status="Ready"
-        #специально Лике !
-
-
-    def set_status(self,st):
-        """updating a status and raising a change event"""
-        self._status=st
-
-
-    def connectToIBKR(self):
-        self.set_status("Starting Connection")
-        print("Starting Todays session:", time.ctime())
-        # check if DB is missing- if yes- create
-        checkDB()
+    def connect_to_IBKR(self):
+        """
+Connecting to IBKR API and initiating the connection instance
+        :return:
+        """
+        print("Starting connection to IBKR")
         self.app.connect('127.0.0.1', int(self.PORT), 123)
         self.app.nextorderId = None
         # Start the socket in a thread
@@ -70,21 +59,21 @@ class IBKRWorker():
         # Check if the API is connected via orderid
         while True:
             if isinstance(self.app.nextorderId, int):
-                print('connected')
+                print('Successfully connected to API')
                 break
             else:
-                print('waiting for connection')
+                print('Waiting for connection...')
                 time.sleep(1)
         # General Account info:
-        self.start_tracking_current_PnL()
+        # self.request_current_PnL()
+
         # start tracking liquidity
         self.start_tracking_excess_liquidity()
         # start tracking open positions
         self.update_open_positions()
         # start tracking candidates
-        self.start_tracking_live_candidates()
-        print("**********************Connected, Ready!!! starting Worker********************")
-        self.set_status("Successfully connected")
+        self.evaluate_and_track_candidates()
+        print("Connected to IBKR and READY")
         return "All Data ready"
 
     def runMainLoop(self):
@@ -92,70 +81,70 @@ class IBKRWorker():
         mainWorkerThread = threading.Thread(target=self.startLooping(), daemon=True)
         mainWorkerThread.start()
 
-
     def startLooping(self):
         self.s.enter(2, 1, self.workerGo_test_module, (self.s,))
         self.s.run()
 
-
-    def addYahooStatisticsForCandidates(self):
+    def add_yahoo_stats_to_live_candidates(self):
+        """
+gets a Yahoo statistics to all tracked candidates and adds it to them
+        """
         for s in self.TRANDINGSTOCKS:
-            if self.REUSECANDIDATESFROMDB == 'True':
-                drop, change=updatetMarketStatisticsForCandidateFromDB(s)
-            else:
-                drop, change = updatetMarketStatisticsForCandidate(s)
-            for k,v in self.app.candidatesLive.items():
-                if v["Stock"]==s:
-                    self.app.candidatesLive[k]["averagePriceDropP"]=drop
-                    self.app.candidatesLive[k]["averagePriceSpreadP"] = change
+            for k, v in self.app.candidatesLive.items():
+                print("Getting Yahoo market data for ", v['Stock'])
+                drop, change = get_yahoo_stats_for_candidate(v['Stock'])
+                self.app.candidatesLive[k]["averagePriceDropP"] = drop
+                self.app.candidatesLive[k]["averagePriceSpreadP"] = change
+                print("Yahoo market data for ", v['Stock'], " shows average ", drop, "% drop")
 
-
-    def addTipRanksToCandidates(self):
-        if self.REUSECANDIDATESFROMDB=='True':
-            data=getRatingsForAllCandidatesFromDB()
-        else:
-            data=getTipRanksRatings(self.TRANDINGSTOCKS, self.PATHTOWEBDRIVER)
+    def add_ratings_to_liveCandidates(self):
+        """
+getting and updating tiprank rank for live candidates
+        """
+        print("Getting ranks for :", self.TRANDINGSTOCKS)
+        ranks = get_tiprank_ratings_to_Stocks(self.TRANDINGSTOCKS, self.PATHTOWEBDRIVER)
         for s in self.TRANDINGSTOCKS:
-            for k,v in self.app.candidatesLive.items():
-                v["tipranksRank"]=data[v["Stock"]]
+            for k, v in self.app.candidatesLive.items():
+                v["tipranksRank"] = ranks[v["Stock"]]
+                print("Updated ", v["tipranksRank"], " rank for ", v["Stock"])
 
-
-    def start_tracking_live_candidates(self):
+    def evaluate_and_track_candidates(self):
+        """
+Starts tracking the Candidates and adds the statistics
+        """
+        print("Starting to track ", len(self.TRANDINGSTOCKS), " Candidates")
         # starting querry
         for s in self.TRANDINGSTOCKS:
             id = self.app.nextorderId
             print("starting to track: ", s, "traking with Id:", id)
             c = createContract(s)
             self.app.candidatesLive[id] = {"Stock": s,
-                                  "Close": "-",
-                                  "Open": "-",
-                                  "Bid": "-",
-                                  "Ask": "-",
-                                  "LastPrice": "-",
-                                  "averagePriceDropP": "-",
-                                  "averagePriceSpreadP": "-",
-                                  "tipranksRank": "-",
-                                  "LastUpdate": "-"}
+                                           "Close": "-",
+                                           "Open": "-",
+                                           "Bid": "-",
+                                           "Ask": "-",
+                                           "LastPrice": "-",
+                                           "averagePriceDropP": "-",
+                                           "averagePriceSpreadP": "-",
+                                           "tipranksRank": "-",
+                                           "LastUpdate": "-"}
             self.app.reqMarketDataType(1)
             self.app.reqMktData(id, c, '', False, False, [])
             self.app.nextorderId += 1
-            time.sleep(2)
+            time.sleep(1)
 
-        #updateYahooStatistics
-        self.addYahooStatisticsForCandidates()
+        # updateYahooStatistics
+        self.add_yahoo_stats_to_live_candidates()
 
         # update TipranksData
-        self.addTipRanksToCandidates()
+        self.add_ratings_to_liveCandidates()
 
-        self.updateCandidatesInDB()
-
-        print("Updated ",len(self.app.candidatesLive)," data in DB")
-
+        print(len(self.app.candidatesLive), " Candidates evaluated and started to track")
 
     def processProfits(self):
         print("Processing profits")
         for s, p in self.app.openPositions.items():
-            print("Checking ",s)
+            print("Checking ", s)
             profit = p["UnrealizedPnL"] / p["Value"] * 100
             if profit > float(self.PROFIT):
                 orders = self.app.openOrders
@@ -168,7 +157,7 @@ class IBKRWorker():
                     self.app.placeOrder(self.app.nextorderId, contract, order)
                     self.app.nextorderId = self.app.nextorderId + 1
                     print("Created a Trailing Stop order for ", s, " at level of ", self.TRAIL, "%")
-            elif profit <float(self.LOSS):
+            elif profit < float(self.LOSS):
                 orders = self.app.openOrders
                 if s in orders:
                     print("Order for ", s, "already exist- skipping")
@@ -180,60 +169,57 @@ class IBKRWorker():
                     self.app.nextorderId = self.app.nextorderId + 1
                     print("Created a Market Sell order for ", s)
 
-
-
-    def evaluateBuy(self,s):
-        print("evaluating ",s,"for a Buy")
+    def evaluateBuy(self, s):
+        print("evaluating ", s, "for a Buy")
 
         for c in self.app.candidatesLive.values():
-            if c["Stock"]==s:
-                ask_price=c["Ask"]
-                last_closing=c["Close"]
-                last_open=c["Open"]
-                last_price=c["LastPrice"]
-                average_daily_dropP=c["averagePriceDropP"]
+            if c["Stock"] == s:
+                ask_price = c["Ask"]
+                last_closing = c["Close"]
+                last_open = c["Open"]
+                last_price = c["LastPrice"]
+                average_daily_dropP = c["averagePriceDropP"]
                 tipRank = c["tipranksRank"]
 
                 break
 
         if last_open != '-':  # market is closed
-            target_price=last_open-last_open/100*average_daily_dropP
-        elif last_closing !='-':                #market is open
+            target_price = last_open - last_open / 100 * average_daily_dropP
+        elif last_closing != '-':  # market is open
             target_price = last_closing - last_closing / 100 * average_daily_dropP
         else:
             target_price = last_price - last_price / 100 * average_daily_dropP
 
-        if ask_price==-1:#market is closed
+        if ask_price == -1:  # market is closed
             print('The market is closed skipping...')
-        elif ask_price<target_price and float(tipRank)>8:
+        elif ask_price < target_price and float(tipRank) > 8:
             self.buyTheStock(ask_price, s)
         else:
-            print("The price of :",ask_price,"was not in range of :",average_daily_dropP, " % "," Or the Rating of ",tipRank," was not good enough")
+            print("The price of :", ask_price, "was not in range of :", average_daily_dropP, " % ",
+                  " Or the Rating of ", tipRank, " was not good enough")
 
         pass
 
-
-    def buyTheStock(self,ask_price, s):
+    def buyTheStock(self, ask_price, s):
         contract = createContract(s)
-        stocksToBuy=int(int(self.BULCKAMOUNT)/ask_price)
-        if stocksToBuy>0:
-            print("Issued the BUY order at ", ask_price,"for ",stocksToBuy," Stocks of ",s)
+        stocksToBuy = int(int(self.BULCKAMOUNT) / ask_price)
+        if stocksToBuy > 0:
+            print("Issued the BUY order at ", ask_price, "for ", stocksToBuy, " Stocks of ", s)
             order = createLMTbuyorder(stocksToBuy, ask_price)
             self.app.placeOrder(self.app.nextorderId, contract, order)
             self.app.nextorderId = self.app.nextorderId + 1
         else:
             print("The single stock is too expensive - skipping")
 
-
     def processCandidates(self):
 
-        excessLiquidity=self.app.excessLiquidity
-        if float(excessLiquidity)<1000:
+        excessLiquidity = self.app.excessLiquidity
+        if float(excessLiquidity) < 1000:
             return
         else:
-            print("The Excess liquidity is :",excessLiquidity," searching candidates")
-            res = sorted(self.app.candidatesLive.items(), key=lambda x: x[1]['tipranksRank'],reverse=True)
-            for i,c in res:
+            print("The Excess liquidity is :", excessLiquidity, " searching candidates")
+            res = sorted(self.app.candidatesLive.items(), key=lambda x: x[1]['tipranksRank'], reverse=True)
+            for i, c in res:
                 if c['Stock'] in self.app.openPositions:
                     continue
                 else:
@@ -242,10 +228,11 @@ class IBKRWorker():
     def workerGo_test_module(self, sc):
         est = timezone('EST')
         fmt = '%Y-%m-%d %H:%M:%S'
-        local_time=datetime.now().strftime(fmt)
+        local_time = datetime.now().strftime(fmt)
         est_time = datetime.now(est).strftime(fmt)
 
-        print("-------Processing Worker...---Local Time",local_time,"----EST Time: ", est_time, "--------------------")
+        print("-------Processing Worker...---Local Time", local_time, "----EST Time: ", est_time,
+              "--------------------")
         # collect and update
         self.requestOrders()
         self.update_open_positions()
@@ -266,10 +253,11 @@ class IBKRWorker():
     def process_positions_candidates(self):
         est = timezone('EST')
         fmt = '%Y-%m-%d %H:%M:%S'
-        local_time=datetime.now().strftime(fmt)
+        local_time = datetime.now().strftime(fmt)
         est_time = datetime.now(est).strftime(fmt)
 
-        print("-------Processing Worker...---Local Time",local_time,"----EST Time: ", est_time, "--------------------")
+        print("-------Processing Worker...---Local Time", local_time, "----EST Time: ", est_time,
+              "--------------------")
         # collect and update
         self.requestOrders()
         self.update_open_positions()
@@ -285,11 +273,8 @@ class IBKRWorker():
         self.processProfits()
         print("...............Worker finished.........................")
 
-
-
     def run_loop(self):
         self.app.run()
-
 
     def updateOpenPositionsInDB(self):
         dropPositions()
@@ -301,27 +286,29 @@ class IBKRWorker():
         flushLiveCandidatestoDB(self.app.candidatesLive)
         print(len(self.app.candidatesLive), " Candidates updated in DB")
 
-
     def updateOpenOrdersInDB(self):
         dropOpenOrders()
         updateOpenOrdersinDB(self.app.openOrders)
 
     def update_open_positions(self):
+        """
+updating all openPositions
+        """
         # update positions from IBKR
-        print("Updating positions:")
-        self.app.openPositionsLiveDataRequests={} #reset requests dictionary
+        print("Updating open Positions:")
+        self.app.openPositionsLiveDataRequests = {}  # reset requests dictionary
         self.app.reqPositions()  # requesting open positions
         time.sleep(1)
         for s, p in self.app.openPositions.items():  # start tracking one by one
             if s not in self.app.openPositionsLiveDataRequests.values():
                 id = self.app.nextorderId
-                p["tracking_id"]=id
+                p["tracking_id"] = id
                 self.app.openPositionsLiveDataRequests[id] = s
                 self.app.reqPnLSingle(id, self.ACCOUNT, "", p["conId"])
+                print("Started tracking ", s, " position PnL")
                 self.app.nextorderId += 1
-        time.sleep(2)
-        self.updateOpenPositionsInDB()
-
+        time.sleep(1)
+        print(len(self.app.openPositions), " open positions updated")
 
     def requestOrders(self):
         print("Updating all open Orders")
@@ -332,27 +319,30 @@ class IBKRWorker():
 
         print(len(self.app.openOrders), " Orders found and saved to DB")
 
-
     def start_tracking_excess_liquidity(self):
+        """
+Start tracking excess liquidity - the value is updated every 3 minutes
+        """
+        # todo: add safety to not buy faster than every 3 minutes
         id = self.app.nextorderId
         self.app.reqAccountSummary(id, "All", "ExcessLiquidity")
         self.app.nextorderId += 1
         time.sleep(0.5)
 
-
-    def start_tracking_current_PnL(self):
+    def request_current_PnL(self):
+        """
+Creating a PnL request the result will be stored in generalStarus
+        """
         global id, status
         id = self.app.nextorderId
+        print("Requesting Daily PnL")
         self.app.reqPnL(id, self.ACCOUNT, "")
         time.sleep(0.5)
         self.app.nextorderId = self.app.nextorderId + 1
         print(self.app.generalStatus)
 
 
-
-
 if __name__ == '__main__':
-    w=IBKRWorker()
-    w.connectToIBKR()
+    w = IBKRWorker()
+    w.connect_to_IBKR()
     w.runMainLoop()
-

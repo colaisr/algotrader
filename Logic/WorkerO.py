@@ -10,8 +10,8 @@ from DataBase.db import flushOpenPositionsToDB, updateOpenOrdersinDB, dropPositi
     flushLiveCandidatestoDB, checkDB, getRatingsForAllCandidatesFromDB, updatetMarketStatisticsForCandidateFromDB
 from pytz import timezone
 
-from Research.UpdateCandidates import updatetMarketStatisticsForCandidate
-from Research.tipRanksScrapper import getTipRanksRatings
+from Research.UpdateCandidates import get_yahoo_stats_for_candidate
+from Research.tipRanksScrapper import get_tiprank_ratings_to_Stocks
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -41,7 +41,7 @@ def addYahooStatisticsForCandidates():
         if REUSECANDIDATESFROMDB == 'True':
             drop, change=updatetMarketStatisticsForCandidateFromDB(s)
         else:
-            drop, change = updatetMarketStatisticsForCandidate(s)
+            drop, change = get_yahoo_stats_for_candidate(s)
         for k,v in app.candidatesLive.items():
             if v["Stock"]==s:
                 app.candidatesLive[k]["averagePriceDropP"]=drop
@@ -52,7 +52,7 @@ def addTipRanksToCandidates():
     if REUSECANDIDATESFROMDB=='True':
         data=getRatingsForAllCandidatesFromDB()
     else:
-        data=getTipRanksRatings(TRANDINGSTOCKS, PATHTOWEBDRIVER)
+        data=get_tiprank_ratings_to_Stocks(TRANDINGSTOCKS, PATHTOWEBDRIVER)
     for s in TRANDINGSTOCKS:
         for k,v in app.candidatesLive.items():
             v["tipranksRank"]=data[v["Stock"]]

@@ -3,11 +3,11 @@ import yfinance as yf
 
 
 
-def updatetMarketStatisticsForCandidate(s):
-    print("Updating the statistics from Yahoo Finance for: ",s)
+def get_yahoo_stats_for_candidate(s):
+    print("Downloading the data for: ",s)
 
     df=yf.download(s, period = "1y")
-    print("Got Data processing: ", s)
+    print("Figuring average Drop and Change for: ", s)
     df['drop']=df['Open']-df['Low']
     df['dropP']=df['drop']/df['Open']*100
     df['diffD']=df['Low']-df['High']

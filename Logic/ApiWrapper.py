@@ -29,7 +29,7 @@ class IBapi(EWrapper, EClient):
 
     def pnl(self, reqId: int, dailyPnL: float,unrealizedPnL: float, realizedPnL: float):
         super().pnl(reqId, dailyPnL, unrealizedPnL, realizedPnL)
-        self.generalStatus="DailyPnL:"+str(dailyPnL)+"UnrealizedPnL:"+ str(unrealizedPnL)+ "RealizedPnL:"+ str(realizedPnL)
+        self.generalStatus="DailyPnL: "+str(dailyPnL)+" UnrealizedPnL: "+ str(unrealizedPnL)+ " RealizedPnL: "+ str(realizedPnL)
 
     def pnlSingle(self, reqId: int, pos: int, dailyPnL: float,unrealizedPnL: float, realizedPnL: float, value: float):
         super().pnlSingle(reqId, pos, dailyPnL, unrealizedPnL, realizedPnL, value)
@@ -49,7 +49,7 @@ class IBapi(EWrapper, EClient):
 
     def positionEnd(self):
         super().positionEnd()
-        print(len(self.openPositions),"Open Positions found")
+        print("Finished getting ",len(self.openPositions)," open Positions")
 
     def orderStatus(self, orderId, status, filled, remaining, avgFullPrice, permId, parentId, lastFillPrice, clientId,
                     whyHeld, mktCapPrice):

@@ -8,7 +8,13 @@ from selenium.webdriver.support import expected_conditions as EC
 TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL"]
 
 
-def getTipRanksRatings(stocks, path):
+def get_tiprank_ratings_to_Stocks(stocks, path):
+    """
+
+    :param stocks: list of stocks to track
+    :param path: path to webDriver
+    :return: stock-rank dictionary
+    """
     driver = webdriver.Chrome(path)
     stocksRanks={}
     for s in stocks:
@@ -32,7 +38,7 @@ def getTipRanksRatings(stocks, path):
     return stocksRanks
 
 if __name__ == '__main__':
-    r=getTipRanksRatings(TRANDINGSTOCKS)
+    r=get_tiprank_ratings_to_Stocks(TRANDINGSTOCKS)
     r=3
 
 
