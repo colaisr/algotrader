@@ -186,6 +186,13 @@
        </column>
       </widget>
      </item>
+     <item>
+      <widget class="QTextEdit" name="consoleOut">
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
   </widget>

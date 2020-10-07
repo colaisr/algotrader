@@ -1,15 +1,66 @@
-
-from datetime import time
+from datetime import datetime
 import traceback, sys
 
-from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer
-from PySide2.QtGui import QColor
+from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer, QTextStream
+from PySide2.QtGui import QColor, QTextCursor
 from PySide2.QtUiTools import loadUiType
 from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem
+
+
 from Logic.IBKRWorker import IBKRWorker
 
 qt_creator_file = "UI/MainWindow.ui"
 Ui_MainWindow, QtBaseClass = loadUiType(qt_creator_file)
+LOGFILE="log.txt"
+
+
+class OutLog:
+    def __init__(self, edit, out=None, color=None):
+        """(edit, out=None, color=None) -> can redirect Console output to a
+        QTextEdit.
+        edit = QTextEdit
+        out = alternate stream ( can be the original sys.stdout )
+        color = alternate color (i.e. color stderr a different color)
+        """
+        self.edit = edit
+        self.out = None
+        self.color = color
+
+    def write(self, m):
+        """
+writes text to Qedit
+        :param m: text to write
+        """
+        if self.color:
+            tc = self.edit.textColor()
+            self.edit.setTextColor(self.color)
+
+        self.edit.moveCursor(QTextCursor.End)
+        self.edit.insertPlainText(m)
+        self.log_message(m)
+
+        if self.color:
+            self.edit.setTextColor(tc)
+
+        if self.out:
+            self.out.write(m)
+
+    def flush(self):
+        """
+required to avoid error
+        """
+        r = 3
+
+    def log_message(self, m):
+        """
+adds message to the log file
+        :param m:
+        """
+        f = open(LOGFILE, "a")
+        currentDt=datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
+        m=currentDt+'---'+m
+        f.write(m)
+        f.close()
 
 
 class WorkerSignals(QObject):
@@ -32,6 +83,7 @@ class WorkerSignals(QObject):
     error = Signal(tuple)
     result = Signal(object)
     status = Signal(object)
+
 
 class Worker(QRunnable):
     '''
@@ -75,6 +127,7 @@ class Worker(QRunnable):
         finally:
             self.signals.finished.emit()  # Done
 
+
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
@@ -83,7 +136,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.timer = QTimer()
         self.timer.timeout.connect(self.run_worker)
 
-
         self.setupUi(self)
         self.ibkrworker = IBKRWorker()
         self.threadpool = QThreadPool()
@@ -91,36 +143,60 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btnConnect.pressed.connect(self.connect_to_ibkr)
         self.btnStart.pressed.connect(self.start_timer)
 
+        #redirecting Cosole to UI and Log
+        sys.stdout = OutLog(self.consoleOut, sys.stdout)
+        sys.stderr = OutLog(self.consoleOut, sys.stderr, QColor(255, 0, 0))
+
+        self.statusbar.showMessage("Ready")
+        print("AlgoTraider is started... waiting to connect...")
+
+    def update_console(self, args):
+        self.statusbar.showMessage("updated")
+
     def connect_to_ibkr(self):
+        """
+Starts the connection to the IBKR terminal in separate thread
+        """
         self.btnConnect.setEnabled(False)
-        # Connect and load
-        # Pass the function to execute
-        worker = Worker(self.ibkrworker.connectToIBKR)  # Any other args, kwargs are passed to the run function
-        worker.signals.result.connect(self.update_ui)
-        worker.signals.finished.connect(self.thread_complete)
+
+        connector = Worker(self.ibkrworker.connectToIBKR)  # Any other args, kwargs are passed to the run function
+        connector.signals.result.connect(self.update_ui)
+        connector.signals.finished.connect(self.thread_complete)
         # Execute
-        self.threadpool.start(worker)
+        self.threadpool.start(connector)
         self.btnStart.setEnabled(True)
 
     def start_timer(self):
-        self.timer.start(int(self.ibkrworker.INTERVAL)*1000)
-
+        """
+Starts the Timer with interval from Config file
+        """
+        self.timer.start(int(self.ibkrworker.INTERVAL) * 1000)
 
     def run_worker(self):
-        # Pass the function to execute
-        worker = Worker(self.ibkrworker.process_positions_candidates)  # Any other args, kwargs are passed to the run function
+        """
+Executed the Worker in separate thread
+        """
+        worker = Worker(
+            self.ibkrworker.process_positions_candidates)  # Any other args, kwargs are passed to the run function
         worker.signals.result.connect(self.update_ui)
         worker.signals.finished.connect(self.thread_complete)
         # Execute
         self.threadpool.start(worker)
 
     def update_ui(self, s):
+        """
+Updates UI after connection/worker execution
+        :param s:
+        """
         self.lLiq.setText(self.ibkrworker.app.excessLiquidity)
         self.lAcc.setText(self.ibkrworker.ACCOUNT)
         self.update_open_positions()
         self.update_live_candidates()
 
     def update_live_candidates(self):
+        """
+Updates Candidates table
+        """
         liveCandidates = self.ibkrworker.app.candidatesLive
         line = 0
         self.tCandidates.setRowCount(len(liveCandidates))
@@ -131,13 +207,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.tCandidates.setItem(line, 3, QTableWidgetItem(str(v['Bid'])))
             self.tCandidates.setItem(line, 4, QTableWidgetItem(str(v['Ask'])))
             self.tCandidates.setItem(line, 5, QTableWidgetItem(str(v['LastPrice'])))
-            self.tCandidates.setItem(line, 6, QTableWidgetItem(str(round(v['averagePriceDropP'],2))))
+            self.tCandidates.setItem(line, 6, QTableWidgetItem(str(round(v['averagePriceDropP'], 2))))
             self.tCandidates.setItem(line, 7, QTableWidgetItem(str(v['tipranksRank'])))
             self.tCandidates.setItem(line, 8, QTableWidgetItem(str(v['LastUpdate'])))
 
             line += 1
 
     def update_open_positions(self):
+        """
+Updates Positions table
+        """
         openPostions = self.ibkrworker.app.openPositions
         line = 0
         self.tPositions.setRowCount(len(openPostions))
@@ -160,10 +239,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             line += 1
 
     def thread_complete(self):
-        print("THREAD COMPLETE!")
-
-
-
+        """
+After threaded task finished
+        """
+        print("TASK COMPLETE!")
 
 
 app = QApplication(sys.argv)

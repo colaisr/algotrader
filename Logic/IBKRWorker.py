@@ -5,6 +5,8 @@ import threading
 from datetime import datetime
 from sys import platform
 
+from obsub import event
+
 from Logic.ApiWrapper import IBapi, createContract, createTrailingStopOrder, createLMTbuyorder, createMktSellOrder
 from DataBase.db import flushOpenPositionsToDB, updateOpenOrdersinDB, dropPositions, dropOpenOrders, dropLiveCandidates, \
     flushLiveCandidatestoDB, checkDB, getRatingsForAllCandidatesFromDB, updatetMarketStatisticsForCandidateFromDB
@@ -46,7 +48,17 @@ class IBKRWorker():
         self.WORKERCOUNTER = 0
         self.s = sched.scheduler(time.time, time.sleep)
 
+        self._status="Ready"
+        #специально Лике !
+
+
+    def set_status(self,st):
+        """updating a status and raising a change event"""
+        self._status=st
+
+
     def connectToIBKR(self):
+        self.set_status("Starting Connection")
         print("Starting Todays session:", time.ctime())
         # check if DB is missing- if yes- create
         checkDB()
@@ -72,6 +84,7 @@ class IBKRWorker():
         # start tracking candidates
         self.start_tracking_live_candidates()
         print("**********************Connected, Ready!!! starting Worker********************")
+        self.set_status("Successfully connected")
         return "All Data ready"
 
     def runMainLoop(self):
