@@ -27,6 +27,7 @@ class OutLog:
         self.edit = edit
         self.out = out
         self.color = color
+        self.logLine=""
 
     def write(self, m):
         """
@@ -41,6 +42,7 @@ writes text to Qedit
             # self.edit.moveCursor(QTextCursor.End)
             # self.edit.insertPlainText(m)
             # self.log_message(m)
+            self.logLine+=m
 
             if self.color:
                 self.edit.setTextColor(tc)
@@ -201,6 +203,12 @@ Updates UI after connection/worker execution
         self.update_open_orders()
 
         self.statusbar.showMessage(s)
+        self.update_console()
+
+    def update_console(self):
+        log = sys.stdout.logLine
+        self.consoleOut.append(log)
+        sys.stdout.logLine=""
 
     def update_live_candidates(self):
         """
@@ -231,6 +239,7 @@ Updates Positions table
         line = 0
         self.tPositions.setRowCount(len(openPostions))
         for k, v in openPostions.items():
+            print("debug",v['Value'])
             self.tPositions.setItem(line, 0, QTableWidgetItem(k))
             self.tPositions.setItem(line, 1, QTableWidgetItem(str(int(v['stocks']))))
             self.tPositions.setItem(line, 2, QTableWidgetItem(str(round(v['cost'], 2))))
