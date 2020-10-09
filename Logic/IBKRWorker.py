@@ -37,8 +37,8 @@ class IBKRWorker():
         self.LOSS = config['Algo']['lossP']
         self.TRAIL = config['Algo']['trailstepP']
         self.BULCKAMOUNT = config['Algo']['bulkAmountUSD']
-        # self.TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL", "ETSY", "IVAC"]
-        self.TRANDINGSTOCKS = ["AAPL"]
+        self.TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL", "ETSY", "IVAC"]
+        # self.TRANDINGSTOCKS = ["AAPL"]
 
         # debug
         self.REUSECANDIDATESFROMDB = config['Debug']['reuseCandidatesFromDb']
@@ -89,13 +89,12 @@ Connecting to IBKR API and initiating the connection instance
         """
 gets a Yahoo statistics to all tracked candidates and adds it to them
         """
-        for s in self.TRANDINGSTOCKS:
-            for k, v in self.app.candidatesLive.items():
-                print("Getting Yahoo market data for ", v['Stock'])
-                drop, change = get_yahoo_stats_for_candidate(v['Stock'])
-                self.app.candidatesLive[k]["averagePriceDropP"] = drop
-                self.app.candidatesLive[k]["averagePriceSpreadP"] = change
-                print("Yahoo market data for ", v['Stock'], " shows average ", drop, "% drop")
+        for k, v in self.app.candidatesLive.items():
+            print("Getting Yahoo market data for ", v['Stock'])
+            drop, change = get_yahoo_stats_for_candidate(v['Stock'])
+            self.app.candidatesLive[k]["averagePriceDropP"] = drop
+            self.app.candidatesLive[k]["averagePriceSpreadP"] = change
+            print("Yahoo market data for ", v['Stock'], " shows average ", drop, "% drop")
 
     def add_ratings_to_liveCandidates(self):
         """
