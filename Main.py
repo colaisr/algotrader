@@ -8,6 +8,9 @@ from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem
 
 from Logic.IBKRWorker import IBKRWorker
 
+# The bid price refers to the highest price a buyer will pay for a security.
+# The ask price refers to the lowest price a seller will accept for a security.
+
 qt_creator_file = "UI/MainWindow.ui"
 Ui_MainWindow, QtBaseClass = loadUiType(qt_creator_file)
 LOGFILE = "log.txt"
@@ -30,20 +33,22 @@ class OutLog:
 writes text to Qedit
         :param m: text to write
         """
+        try:
+            if self.color:
+                tc = self.edit.textColor()
+                self.edit.setTextColor(self.color)
 
-        if self.color:
-            tc = self.edit.textColor()
-            self.edit.setTextColor(self.color)
+            # self.edit.moveCursor(QTextCursor.End)
+            # self.edit.insertPlainText(m)
+            # self.log_message(m)
 
-        self.edit.moveCursor(QTextCursor.End)
-        self.edit.insertPlainText(m)
-        self.log_message(m)
+            if self.color:
+                self.edit.setTextColor(tc)
 
-        if self.color:
-            self.edit.setTextColor(tc)
-
-        if self.out:
-            self.out.write(m)
+            if self.out:
+                self.out.write(m)
+        except:
+            print("OUTERRORHAPPENED")
 
     def flush(self):
         """
@@ -138,7 +143,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # redirecting Cosole to UI and Log
         sys.stdout = OutLog(self.consoleOut, sys.stdout)
-        sys.stderr = OutLog(self.consoleOut, sys.stderr, QColor(255, 0, 0))
+        sys.stderr = OutLog(self.consoleOut, sys.stderr)
 
         # setting a timer for Worker
         self.timer = QTimer()
@@ -182,6 +187,7 @@ Executed the Worker in separate thread
         worker.signals.finished.connect(self.thread_complete)
         # Execute
         self.threadpool.start(worker)
+        self.statusbar.showMessage("Executing Worker")
 
     def update_ui(self, s):
         """
@@ -203,14 +209,15 @@ Updates Candidates table
         self.tCandidates.setRowCount(len(liveCandidates))
         for k, v in liveCandidates.items():
             self.tCandidates.setItem(line, 0, QTableWidgetItem(v['Stock']))
-            self.tCandidates.setItem(line, 1, QTableWidgetItem(str(v['Close'])))
-            self.tCandidates.setItem(line, 2, QTableWidgetItem(str(v['Open'])))
+            self.tCandidates.setItem(line, 1, QTableWidgetItem(str(v['Open'])))
+            self.tCandidates.setItem(line, 2, QTableWidgetItem(str(v['Close'])))
             self.tCandidates.setItem(line, 3, QTableWidgetItem(str(v['Bid'])))
             self.tCandidates.setItem(line, 4, QTableWidgetItem(str(v['Ask'])))
             self.tCandidates.setItem(line, 5, QTableWidgetItem(str(v['LastPrice'])))
-            self.tCandidates.setItem(line, 6, QTableWidgetItem(str(round(v['averagePriceDropP'], 2))))
-            self.tCandidates.setItem(line, 7, QTableWidgetItem(str(v['tipranksRank'])))
-            self.tCandidates.setItem(line, 8, QTableWidgetItem(str(v['LastUpdate'])))
+            self.tCandidates.setItem(line, 6, QTableWidgetItem(str(round(v['target_price'], 2))))
+            self.tCandidates.setItem(line, 7, QTableWidgetItem(str(round(v['averagePriceDropP'], 2))))
+            self.tCandidates.setItem(line, 8, QTableWidgetItem(str(v['tipranksRank'])))
+            self.tCandidates.setItem(line, 9, QTableWidgetItem(str(v['LastUpdate'])))
 
             line += 1
 

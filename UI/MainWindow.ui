@@ -171,6 +171,11 @@
        </column>
        <column>
         <property name="text">
+         <string>Target price</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
          <string>Average drop</string>
         </property>
        </column>

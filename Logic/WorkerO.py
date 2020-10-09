@@ -5,7 +5,7 @@ import threading
 from datetime import datetime
 from sys import platform
 
-from Logic.ApiWrapper import IBapi, createContract, createTrailingStopOrder, createLMTbuyorder, createMktSellOrder
+from Logic.ApiWrapper import IBapi, createContract, createTrailingStopOrder, create_limit_buy_order, createMktSellOrder
 from DataBase.db import flushOpenPositionsToDB, updateOpenOrdersinDB, dropPositions, dropOpenOrders, dropLiveCandidates, \
     flushLiveCandidatestoDB, checkDB, getRatingsForAllCandidatesFromDB, updatetMarketStatisticsForCandidateFromDB
 from pytz import timezone
@@ -156,7 +156,7 @@ def buyTheStock(ask_price, s):
     stocksToBuy=int(int(BULCKAMOUNT)/ask_price)
     if stocksToBuy>0:
         print("Issued the BUY order at ", ask_price,"for ",stocksToBuy," Stocks of ",s)
-        order = createLMTbuyorder(stocksToBuy, ask_price)
+        order = create_limit_buy_order(stocksToBuy, ask_price)
         app.placeOrder(app.nextorderId, contract, order)
         app.nextorderId = app.nextorderId + 1
     else:

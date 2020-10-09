@@ -130,7 +130,7 @@ def createMktSellOrder(quantity):
 
     return order
 
-def createLMTbuyorder(quantity, lmtPrice):
+def create_limit_buy_order(quantity, lmtPrice):
     # Create order object
     order = Order()
     order.action = 'BUY'

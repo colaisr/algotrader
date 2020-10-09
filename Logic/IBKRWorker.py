@@ -5,11 +5,8 @@ import threading
 from datetime import datetime
 from sys import platform
 
-from obsub import event
+from Logic.ApiWrapper import IBapi, createContract, createTrailingStopOrder, create_limit_buy_order, createMktSellOrder
 
-from Logic.ApiWrapper import IBapi, createContract, createTrailingStopOrder, createLMTbuyorder, createMktSellOrder
-from DataBase.db import flushOpenPositionsToDB, updateOpenOrdersinDB, dropPositions, dropOpenOrders, dropLiveCandidates, \
-    flushLiveCandidatestoDB, checkDB, getRatingsForAllCandidatesFromDB, updatetMarketStatisticsForCandidateFromDB
 from pytz import timezone
 
 from Research.UpdateCandidates import get_yahoo_stats_for_candidate
@@ -73,6 +70,7 @@ Connecting to IBKR API and initiating the connection instance
         self.update_open_positions()
         # start tracking candidates
         self.evaluate_and_track_candidates()
+        self.update_target_price_for_tracked_stocks()
         print("Connected to IBKR and READY")
         return "Successfully Connected"
 
@@ -112,10 +110,11 @@ Starts tracking the Candidates and adds the statistics
         """
         print("Starting to track ", len(self.TRANDINGSTOCKS), " Candidates")
         # starting querry
-        trackedStockN=1
+        trackedStockN = 1
         for s in self.TRANDINGSTOCKS:
             id = self.app.nextorderId
-            print("starting to track: ",trackedStockN," of ",len(self.TRANDINGSTOCKS)," ", s, "traking with Id:", id)
+            print("starting to track: ", trackedStockN, " of ", len(self.TRANDINGSTOCKS), " ", s, "traking with Id:",
+                  id)
             c = createContract(s)
             self.app.candidatesLive[id] = {"Stock": s,
                                            "Close": "-",
@@ -129,9 +128,13 @@ Starts tracking the Candidates and adds the statistics
                                            "LastUpdate": "-"}
             self.app.reqMarketDataType(1)
             self.app.reqMktData(id, c, '', False, False, [])
+            lastID = id
             self.app.nextorderId += 1
+            trackedStockN += 1
+
+        while self.app.candidatesLive[lastID]["LastPrice"] == '-':
             time.sleep(1)
-            trackedStockN+=1
+            print("Waiting for last Stock market data to receive")
 
         # updateYahooStatistics
         self.add_yahoo_stats_to_live_candidates()
@@ -141,17 +144,20 @@ Starts tracking the Candidates and adds the statistics
 
         print(len(self.app.candidatesLive), " Candidates evaluated and started to track")
 
-    def processProfits(self):
+    def process_positions(self):
+        """
+Processes the positions to identify Profit/Loss
+        """
         print("Processing profits")
         for s, p in self.app.openPositions.items():
-            print("Checking ", s)
             profit = p["UnrealizedPnL"] / p["Value"] * 100
+            print("The profit for ", s, " is ", profit, " %")
             if profit > float(self.PROFIT):
                 orders = self.app.openOrders
                 if s in orders:
                     print("Order for ", s, "already exist- skipping")
                 else:
-                    print("Profit for: ", s, " is ", profit, "Creating a trailing Stop Order")
+                    print("Profit for: ", s, " is ", profit, "Creating a trailing Stop Order to take a Profit")
                     contract = createContract(s)
                     order = createTrailingStopOrder(p["stocks"], self.TRAIL)
                     self.app.placeOrder(self.app.nextorderId, contract, order)
@@ -162,68 +168,103 @@ Starts tracking the Candidates and adds the statistics
                 if s in orders:
                     print("Order for ", s, "already exist- skipping")
                 else:
-                    print("loss for: ", s, " is ", profit, "Creating a Market Sell Order")
+                    print("loss for: ", s, " is ", profit, "Creating a Market Sell Order to minimize the Loss")
                     contract = createContract(s)
                     order = createMktSellOrder(p['stocks'])
                     self.app.placeOrder(self.app.nextorderId, contract, order)
                     self.app.nextorderId = self.app.nextorderId + 1
                     print("Created a Market Sell order for ", s)
 
-    def evaluateBuy(self, s):
-        print("evaluating ", s, "for a Buy")
-
+    def evaluate_stock_for_buy(self, s):
+        """
+Evaluates stock for buying
+        :param s:
+        """
+        print("Evaluating ", s, "for a Buy")
+        # finding stock in Candidates
         for c in self.app.candidatesLive.values():
             if c["Stock"] == s:
                 ask_price = c["Ask"]
-                last_closing = c["Close"]
-                last_open = c["Open"]
-                last_price = c["LastPrice"]
                 average_daily_dropP = c["averagePriceDropP"]
                 tipRank = c["tipranksRank"]
-
+                target_price = c["target_price"]
                 break
-
-        if last_open != '-':  # market is closed
-            target_price = last_open - last_open / 100 * average_daily_dropP
-        elif last_closing != '-':  # market is open
-            target_price = last_closing - last_closing / 100 * average_daily_dropP
-        else:
-            target_price = last_price - last_price / 100 * average_daily_dropP
 
         if ask_price == -1:  # market is closed
             print('The market is closed skipping...')
         elif ask_price < target_price and float(tipRank) > 8:
-            self.buyTheStock(ask_price, s)
+            self.buy_the_stock(ask_price, s)
         else:
             print("The price of :", ask_price, "was not in range of :", average_daily_dropP, " % ",
                   " Or the Rating of ", tipRank, " was not good enough")
 
         pass
 
-    def buyTheStock(self, ask_price, s):
+    def update_target_price_for_tracked_stocks(self):
+        """
+Update target price for all tracked stocks
+        :return:
+        """
+        print("Updating target prices for Candidates")
+        for c in self.app.candidatesLive.values():
+            print("Updating target price for ", c["Stock"])
+            ask_price = c["Ask"]
+            close = c["Close"]
+            open = c["Open"]
+            last = c["LastPrice"]
+            average_daily_dropP = c["averagePriceDropP"]
+            tipRank = c["tipranksRank"]
+            print("Close:", c["Close"])
+            print("Open:", c["Open"])
+            print("LastPrice:", c["LastPrice"])
+
+            if open != '-':  # market is closed
+                c["target_price"] = open - open / 100 * average_daily_dropP
+                print("Target price for ", c["Stock"], " updated to ", c["target_price"], " based on Open price")
+            elif close != '-':  # market is open
+                c["target_price"] = close - close / 100 * average_daily_dropP
+                print("Target price for ", c["Stock"], " updated to ", c["target_price"], " based on Close price")
+            else:
+                c["target_price"] = last - last / 100 * average_daily_dropP
+                print("Target price for ", c["Stock"], " updated to ", c["target_price"], " based on last price")
+
+    def buy_the_stock(self, price, s):
+        """
+Creates order to buy a stock at specific price
+        :param price: price to buy at limit
+        :param s: Stocks to buy
+        """
         contract = createContract(s)
-        stocksToBuy = int(int(self.BULCKAMOUNT) / ask_price)
+        stocksToBuy = int(int(self.BULCKAMOUNT) / price)
         if stocksToBuy > 0:
-            print("Issued the BUY order at ", ask_price, "for ", stocksToBuy, " Stocks of ", s)
-            order = createLMTbuyorder(stocksToBuy, ask_price)
+            order = create_limit_buy_order(stocksToBuy, price)
             self.app.placeOrder(self.app.nextorderId, contract, order)
             self.app.nextorderId = self.app.nextorderId + 1
+            print("Issued the BUY order at ", price, "for ", stocksToBuy, " Stocks of ", s)
         else:
             print("The single stock is too expensive - skipping")
 
-    def processCandidates(self):
-
+    def process_candidates(self):
+        """
+processes candidates for buying
+        :return:
+        """
         excessLiquidity = self.app.excessLiquidity
         if float(excessLiquidity) < 1000:
+            print("Excess liquidity is ", excessLiquidity, " it is less than 1000 - skipping buy")
             return
         else:
             print("The Excess liquidity is :", excessLiquidity, " searching candidates")
+            # updating the targets if market was open in the middle
+            self.update_target_price_for_tracked_stocks()
             res = sorted(self.app.candidatesLive.items(), key=lambda x: x[1]['tipranksRank'], reverse=True)
+            print(len(res), "Candidates found,sorted by Tipranks ranks")
             for i, c in res:
                 if c['Stock'] in self.app.openPositions:
+                    print("Skipping ", c['Stock'], " as it is in open positions.")
                     continue
                 else:
-                    self.evaluateBuy(c['Stock'])
+                    self.evaluate_stock_for_buy(c['Stock'])
 
     def workerGo_test_module(self, sc):
         est = timezone('EST')
@@ -234,9 +275,8 @@ Starts tracking the Candidates and adds the statistics
         print("-------Processing Worker...---Local Time", local_time, "----EST Time: ", est_time,
               "--------------------")
         # collect and update
-        self.requestOrders()
+        self.update_open_orders()
         self.update_open_positions()
-        self.updateCandidatesInDB()
 
         # print("Open positions:")
         # pprint.pprint(app.openPositions)
@@ -244,51 +284,35 @@ Starts tracking the Candidates and adds the statistics
         # pprint.pprint(app.candidatesLive)
 
         # process
-        self.processCandidates()
-        self.processProfits()
+        self.process_candidates()
+        self.process_positions()
         print("...............Worker finished.........................")
 
         self.s.enter(float(self.INTERVAL), 1, self.process_positions_candidates, (sc,))
 
     def process_positions_candidates(self):
+        """
+Process Open positions and Candidates
+        """
         est = timezone('EST')
         fmt = '%Y-%m-%d %H:%M:%S'
         local_time = datetime.now().strftime(fmt)
         est_time = datetime.now(est).strftime(fmt)
 
-        print("-------Processing Worker...---Local Time", local_time, "----EST Time: ", est_time,
-              "--------------------")
-        # collect and update
-        self.requestOrders()
-        self.update_open_positions()
-        self.updateCandidatesInDB()
+        print("-------Starting Worker..", "----EST Time: ", est_time, "--------------------")
 
-        # print("Open positions:")
-        # pprint.pprint(app.openPositions)
-        # print("Tracked Candidates:")
-        # pprint.pprint(app.candidatesLive)
+        # collect and update
+        self.update_open_orders()
+        self.update_open_positions()
 
         # process
-        self.processCandidates()
-        self.processProfits()
+        self.process_candidates()
+        self.process_positions()
         print("...............Worker finished.........................")
+        return "Last worker execution" + local_time
 
     def run_loop(self):
         self.app.run()
-
-    def updateOpenPositionsInDB(self):
-        dropPositions()
-        flushOpenPositionsToDB(self.app.openPositions)
-        print(len(self.app.openPositionsLiveDataRequests), " open positions info updated in DB")
-
-    def updateCandidatesInDB(self):
-        dropLiveCandidates()
-        flushLiveCandidatestoDB(self.app.candidatesLive)
-        print(len(self.app.candidatesLive), " Candidates updated in DB")
-
-    def updateOpenOrdersInDB(self):
-        dropOpenOrders()
-        updateOpenOrdersinDB(self.app.openOrders)
 
     def update_open_positions(self):
         """
@@ -299,6 +323,7 @@ updating all openPositions
         self.app.openPositionsLiveDataRequests = {}  # reset requests dictionary
         self.app.reqPositions()  # requesting open positions
         time.sleep(1)
+        lastId=0
         for s, p in self.app.openPositions.items():  # start tracking one by one
             if s not in self.app.openPositionsLiveDataRequests.values():
                 id = self.app.nextorderId
@@ -306,18 +331,22 @@ updating all openPositions
                 self.app.openPositionsLiveDataRequests[id] = s
                 self.app.reqPnLSingle(id, self.ACCOUNT, "", p["conId"])
                 print("Started tracking ", s, " position PnL")
+                lastId=s
                 self.app.nextorderId += 1
-        time.sleep(1)
+
+        time.sleep(3)
         print(len(self.app.openPositions), " open positions updated")
 
-    def requestOrders(self):
-        print("Updating all open Orders")
+    def update_open_orders(self):
+        """
+Requests all open orders
+        """
+        print("Updating all open orders")
         self.app.openOrders = {}
         self.app.reqAllOpenOrders()
         time.sleep(1)
-        self.updateOpenOrdersInDB()
 
-        print(len(self.app.openOrders), " Orders found and saved to DB")
+        print(len(self.app.openOrders), " open orders found ")
 
     def start_tracking_excess_liquidity(self):
         """
