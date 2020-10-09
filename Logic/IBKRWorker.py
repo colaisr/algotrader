@@ -4,11 +4,8 @@ import time
 import threading
 from datetime import datetime
 from sys import platform
-
 from Logic.ApiWrapper import IBapi, createContract, createTrailingStopOrder, create_limit_buy_order, createMktSellOrder
-
 from pytz import timezone
-
 from Research.UpdateCandidates import get_yahoo_stats_for_candidate
 from Research.tipRanksScrapper import get_tiprank_ratings_to_Stocks
 

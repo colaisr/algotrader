@@ -198,6 +198,8 @@ Updates UI after connection/worker execution
         self.lAcc.setText(self.ibkrworker.ACCOUNT)
         self.update_open_positions()
         self.update_live_candidates()
+        self.update_open_orders()
+
         self.statusbar.showMessage(s)
 
     def update_live_candidates(self):
@@ -244,6 +246,19 @@ Updates Positions table
             else:
                 self.tPositions.item(line, 4).setBackgroundColor(QColor(255, 51, 0))
                 self.tPositions.item(line, 5).setBackgroundColor(QColor(255, 51, 0))
+            line += 1
+
+    def update_open_orders(self):
+        """
+Updates Positions table
+        """
+        openOrders = self.ibkrworker.app.openOrders
+        line = 0
+        self.tOrders.setRowCount(len(openOrders))
+        for k, v in openOrders.items():
+            self.tOrders.setItem(line, 0, QTableWidgetItem(k))
+            self.tOrders.setItem(line, 1, QTableWidgetItem(v['Action']))
+            self.tOrders.setItem(line, 2, QTableWidgetItem(v['Type']))
             line += 1
 
     def thread_complete(self):
