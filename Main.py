@@ -22,7 +22,7 @@ class OutLog:
         color = alternate color (i.e. color stderr a different color)
         """
         self.edit = edit
-        self.out = None
+        self.out = out
         self.color = color
 
     def write(self, m):
@@ -30,6 +30,7 @@ class OutLog:
 writes text to Qedit
         :param m: text to write
         """
+
         if self.color:
             tc = self.edit.textColor()
             self.edit.setTextColor(self.color)
@@ -55,11 +56,10 @@ required to avoid error
 adds message to the log file
         :param m:
         """
-        f = open(LOGFILE, "a")
-        currentDt = datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
-        m = currentDt + '---' + m
-        f.write(m)
-        f.close()
+        with open(LOGFILE, "a") as f:
+            currentDt = datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
+            m = currentDt + '---' + m
+            f.write(m)
 
 
 class WorkerSignals(QObject):

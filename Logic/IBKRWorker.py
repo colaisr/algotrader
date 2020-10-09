@@ -102,10 +102,9 @@ getting and updating tiprank rank for live candidates
         """
         print("Getting ranks for :", self.TRANDINGSTOCKS)
         ranks = get_tiprank_ratings_to_Stocks(self.TRANDINGSTOCKS, self.PATHTOWEBDRIVER)
-        for s in self.TRANDINGSTOCKS:
-            for k, v in self.app.candidatesLive.items():
-                v["tipranksRank"] = ranks[v["Stock"]]
-                print("Updated ", v["tipranksRank"], " rank for ", v["Stock"])
+        for k, v in self.app.candidatesLive.items():
+            v["tipranksRank"] = ranks[v["Stock"]]
+            print("Updated ", v["tipranksRank"], " rank for ", v["Stock"])
 
     def evaluate_and_track_candidates(self):
         """
@@ -113,9 +112,10 @@ Starts tracking the Candidates and adds the statistics
         """
         print("Starting to track ", len(self.TRANDINGSTOCKS), " Candidates")
         # starting querry
+        trackedStockN=1
         for s in self.TRANDINGSTOCKS:
             id = self.app.nextorderId
-            print("starting to track: ", s, "traking with Id:", id)
+            print("starting to track: ",trackedStockN," of ",len(self.TRANDINGSTOCKS)," ", s, "traking with Id:", id)
             c = createContract(s)
             self.app.candidatesLive[id] = {"Stock": s,
                                            "Close": "-",
@@ -131,6 +131,7 @@ Starts tracking the Candidates and adds the statistics
             self.app.reqMktData(id, c, '', False, False, [])
             self.app.nextorderId += 1
             time.sleep(1)
+            trackedStockN+=1
 
         # updateYahooStatistics
         self.add_yahoo_stats_to_live_candidates()
