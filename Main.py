@@ -1,7 +1,7 @@
 from datetime import datetime
 import traceback, sys
 
-from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer, QTextStream
+from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer
 from PySide2.QtGui import QColor, QTextCursor
 from PySide2.QtUiTools import loadUiType
 from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem
@@ -155,6 +155,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
 Starts the connection to the IBKR terminal in separate thread
         """
+
         self.btnConnect.setEnabled(False)
 
         connector = Worker(self.ibkrworker.connect_to_IBKR)  # Any other args, kwargs are passed to the run function
@@ -163,6 +164,7 @@ Starts the connection to the IBKR terminal in separate thread
         # Execute
         self.threadpool.start(connector)
         self.btnStart.setEnabled(True)
+        self.statusbar.showMessage("Started Connect")
 
     def start_timer(self):
         """
@@ -190,6 +192,7 @@ Updates UI after connection/worker execution
         self.lAcc.setText(self.ibkrworker.ACCOUNT)
         self.update_open_positions()
         self.update_live_candidates()
+        self.statusbar.showMessage(s)
 
     def update_live_candidates(self):
         """

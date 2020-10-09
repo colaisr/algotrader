@@ -74,7 +74,7 @@ Connecting to IBKR API and initiating the connection instance
         # start tracking candidates
         self.evaluate_and_track_candidates()
         print("Connected to IBKR and READY")
-        return "All Data ready"
+        return "Successfully Connected"
 
     def runMainLoop(self):
         # starting worker in loop...
