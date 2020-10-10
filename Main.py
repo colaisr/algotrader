@@ -27,7 +27,7 @@ class OutLog:
         self.edit = edit
         self.out = out
         self.color = color
-        self.logLine=""
+        self.logLine = ""
 
     def write(self, m):
         """
@@ -42,7 +42,7 @@ writes text to Qedit
             # self.edit.moveCursor(QTextCursor.End)
             # self.edit.insertPlainText(m)
             # self.log_message(m)
-            self.logLine+=m
+            self.logLine += m
 
             if self.color:
                 self.edit.setTextColor(tc)
@@ -206,71 +206,87 @@ Updates UI after connection/worker execution
         self.update_console()
 
     def update_console(self):
+        # errors part
+        log = sys.stderr.logLine
+        self.consoleOut.append(log)
+        sys.stderr.flush_to_log_file(log)
+        sys.stderr.logLine = ""
+
+        # messages part
         log = sys.stdout.logLine
         self.consoleOut.append(log)
         sys.stdout.flush_to_log_file(log)
-        sys.stdout.logLine=""
+        sys.stdout.logLine = ""
 
     def update_live_candidates(self):
         """
 Updates Candidates table
         """
         liveCandidates = self.ibkrworker.app.candidatesLive
-        line = 0
-        self.tCandidates.setRowCount(len(liveCandidates))
-        for k, v in liveCandidates.items():
-            self.tCandidates.setItem(line, 0, QTableWidgetItem(v['Stock']))
-            self.tCandidates.setItem(line, 1, QTableWidgetItem(str(v['Open'])))
-            self.tCandidates.setItem(line, 2, QTableWidgetItem(str(v['Close'])))
-            self.tCandidates.setItem(line, 3, QTableWidgetItem(str(v['Bid'])))
-            self.tCandidates.setItem(line, 4, QTableWidgetItem(str(v['Ask'])))
-            self.tCandidates.setItem(line, 5, QTableWidgetItem(str(v['LastPrice'])))
-            self.tCandidates.setItem(line, 6, QTableWidgetItem(str(round(v['target_price'], 2))))
-            self.tCandidates.setItem(line, 7, QTableWidgetItem(str(round(v['averagePriceDropP'], 2))))
-            self.tCandidates.setItem(line, 8, QTableWidgetItem(str(v['tipranksRank'])))
-            self.tCandidates.setItem(line, 9, QTableWidgetItem(str(v['LastUpdate'])))
+        try:
+            line = 0
+            self.tCandidates.setRowCount(len(liveCandidates))
+            for k, v in liveCandidates.items():
+                self.tCandidates.setItem(line, 0, QTableWidgetItem(v['Stock']))
+                self.tCandidates.setItem(line, 1, QTableWidgetItem(str(v['Open'])))
+                self.tCandidates.setItem(line, 2, QTableWidgetItem(str(v['Close'])))
+                self.tCandidates.setItem(line, 3, QTableWidgetItem(str(v['Bid'])))
+                self.tCandidates.setItem(line, 4, QTableWidgetItem(str(v['Ask'])))
+                self.tCandidates.setItem(line, 5, QTableWidgetItem(str(v['LastPrice'])))
+                self.tCandidates.setItem(line, 6, QTableWidgetItem(str(round(v['target_price'], 2))))
+                self.tCandidates.setItem(line, 7, QTableWidgetItem(str(round(v['averagePriceDropP'], 2))))
+                self.tCandidates.setItem(line, 8, QTableWidgetItem(str(v['tipranksRank'])))
+                self.tCandidates.setItem(line, 9, QTableWidgetItem(str(v['LastUpdate'])))
 
-            line += 1
+                line += 1
+        except:
+            print("Error loading Candidates table")
 
     def update_open_positions(self):
         """
 Updates Positions table
         """
         openPostions = self.ibkrworker.app.openPositions
-        line = 0
-        self.tPositions.setRowCount(len(openPostions))
-        for k, v in openPostions.items():
-            vd=v['Value']
-            print("debug",vd)
-            self.tPositions.setItem(line, 0, QTableWidgetItem(k))
-            self.tPositions.setItem(line, 1, QTableWidgetItem(str(int(v['stocks']))))
-            self.tPositions.setItem(line, 2, QTableWidgetItem(str(round(v['cost'], 2))))
-            self.tPositions.setItem(line, 3, QTableWidgetItem(str(round(v['Value'], 2))))
-            self.tPositions.setItem(line, 4, QTableWidgetItem(str(round(v['UnrealizedPnL'], 2))))
+        try:
+            line = 0
+            self.tPositions.setRowCount(len(openPostions))
+            for k, v in openPostions.items():
+                vd = v['Value']
+                print("debug", vd)
+                self.tPositions.setItem(line, 0, QTableWidgetItem(k))
+                self.tPositions.setItem(line, 1, QTableWidgetItem(str(int(v['stocks']))))
+                self.tPositions.setItem(line, 2, QTableWidgetItem(str(round(v['cost'], 2))))
+                self.tPositions.setItem(line, 3, QTableWidgetItem(str(round(v['Value'], 2))))
+                self.tPositions.setItem(line, 4, QTableWidgetItem(str(round(v['UnrealizedPnL'], 2))))
 
-            profit = v['UnrealizedPnL'] / v['Value'] * 100
-            self.tPositions.setItem(line, 5, QTableWidgetItem(str(round(profit, 2))))
+                profit = v['UnrealizedPnL'] / v['Value'] * 100
+                self.tPositions.setItem(line, 5, QTableWidgetItem(str(round(profit, 2))))
 
-            if v['UnrealizedPnL'] > 0:
-                self.tPositions.item(line, 4).setBackgroundColor(QColor(51, 204, 51))
-                self.tPositions.item(line, 5).setBackgroundColor(QColor(51, 204, 51))
-            else:
-                self.tPositions.item(line, 4).setBackgroundColor(QColor(255, 51, 0))
-                self.tPositions.item(line, 5).setBackgroundColor(QColor(255, 51, 0))
-            line += 1
+                if v['UnrealizedPnL'] > 0:
+                    self.tPositions.item(line, 4).setBackgroundColor(QColor(51, 204, 51))
+                    self.tPositions.item(line, 5).setBackgroundColor(QColor(51, 204, 51))
+                else:
+                    self.tPositions.item(line, 4).setBackgroundColor(QColor(255, 51, 0))
+                    self.tPositions.item(line, 5).setBackgroundColor(QColor(255, 51, 0))
+                line += 1
+        except:
+            print("Error loading Open Positions table")
 
     def update_open_orders(self):
         """
 Updates Positions table
         """
         openOrders = self.ibkrworker.app.openOrders
-        line = 0
-        self.tOrders.setRowCount(len(openOrders))
-        for k, v in openOrders.items():
-            self.tOrders.setItem(line, 0, QTableWidgetItem(k))
-            self.tOrders.setItem(line, 1, QTableWidgetItem(v['Action']))
-            self.tOrders.setItem(line, 2, QTableWidgetItem(v['Type']))
-            line += 1
+        try:
+            line = 0
+            self.tOrders.setRowCount(len(openOrders))
+            for k, v in openOrders.items():
+                self.tOrders.setItem(line, 0, QTableWidgetItem(k))
+                self.tOrders.setItem(line, 1, QTableWidgetItem(v['Action']))
+                self.tOrders.setItem(line, 2, QTableWidgetItem(v['Type']))
+                line += 1
+        except:
+            print("Error loading Orders table")
 
     def thread_complete(self):
         """

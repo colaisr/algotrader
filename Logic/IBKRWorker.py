@@ -160,7 +160,8 @@ Processes the positions to identify Profit/Loss
                     self.app.placeOrder(self.app.nextorderId, contract, order)
                     self.app.nextorderId = self.app.nextorderId + 1
                     print("Created a Trailing Stop order for ", s, " at level of ", self.TRAIL, "%")
-                    self.log_decision("profits.txt","Created a Trailing Stop order for "+s+" at level of "+self.TRAIL+"%")
+                    self.log_decision("profits.txt",
+                                      "Created a Trailing Stop order for " + s + " at level of " + self.TRAIL + "%")
             elif profit < float(self.LOSS):
                 orders = self.app.openOrders
                 if s in orders:
@@ -172,8 +173,7 @@ Processes the positions to identify Profit/Loss
                     self.app.placeOrder(self.app.nextorderId, contract, order)
                     self.app.nextorderId = self.app.nextorderId + 1
                     print("Created a Market Sell order for ", s)
-                    self.log_decision("loses.txt","Created a Market Sell order for "+s)
-
+                    self.log_decision("loses.txt", "Created a Market Sell order for " + s)
 
     def evaluate_stock_for_buy(self, s):
         """
@@ -241,7 +241,7 @@ Creates order to buy a stock at specific price
             self.app.placeOrder(self.app.nextorderId, contract, order)
             self.app.nextorderId = self.app.nextorderId + 1
             print("Issued the BUY order at ", price, "for ", stocksToBuy, " Stocks of ", s)
-            self.log_decision("buys.txt","Issued the BUY order at "+price+"for "+stocksToBuy+" Stocks of "+s)
+            self.log_decision("buys.txt", "Issued the BUY order at " + price + "for " + stocksToBuy + " Stocks of " + s)
         else:
             print("The single stock is too expensive - skipping")
 
@@ -324,7 +324,7 @@ updating all openPositions
         self.app.openPositionsLiveDataRequests = {}  # reset requests dictionary
         self.app.reqPositions()  # requesting open positions
         time.sleep(1)
-        lastId=0
+        lastId = 0
         for s, p in self.app.openPositions.items():  # start tracking one by one
             if s not in self.app.openPositionsLiveDataRequests.values():
                 id = self.app.nextorderId
@@ -332,7 +332,7 @@ updating all openPositions
                 self.app.openPositionsLiveDataRequests[id] = s
                 self.app.reqPnLSingle(id, self.ACCOUNT, "", p["conId"])
                 print("Started tracking ", s, " position PnL")
-                lastId=s
+                lastId = s
                 self.app.nextorderId += 1
 
         time.sleep(3)
@@ -371,7 +371,7 @@ Creating a PnL request the result will be stored in generalStarus
         self.app.nextorderId = self.app.nextorderId + 1
         print(self.app.generalStatus)
 
-    def log_decision(self,logFile, order):
+    def log_decision(self, logFile, order):
         with open(logFile, "a") as f:
             currentDt = datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
             order = currentDt + '---' + order
