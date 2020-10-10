@@ -128,10 +128,10 @@ Starts tracking the Candidates and adds the statistics
             lastID = id
             self.app.nextorderId += 1
             trackedStockN += 1
-
-        while self.app.candidatesLive[lastID]["LastPrice"] == '-':
-            time.sleep(1)
-            print("Waiting for last Stock market data to receive")
+        time.sleep(1)
+        # while self.app.candidatesLive[lastID]["LastPrice"] == '-':
+        #     time.sleep(1)
+        #     print("Waiting for last Stock market data to receive")
 
         # updateYahooStatistics
         self.add_yahoo_stats_to_live_candidates()
