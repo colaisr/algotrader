@@ -1,3 +1,4 @@
+import ast
 from datetime import datetime
 import traceback, sys
 import configparser
@@ -140,34 +141,41 @@ class Worker(QRunnable):
 
 class TraderSettings():
     def __init__(self):
-        config = configparser.ConfigParser()
-        config.read('config.ini')
-        self.PORT = config['Connection']['portp']
-        self.ACCOUNT = config['Account']['accp']
-        self.INTERVAL = config['Connection']['interval']
+        self.config = configparser.ConfigParser()
+        self.read_config()
 
+    def read_config(self):
+        self.config.read('config.ini')
+        self.PORT = self.config['Connection']['portp']
+        self.ACCOUNT = self.config['Account']['accp']
+        self.INTERVAL = self.config['Connection']['interval']
         if platform == "linux" or platform == "linux2":
-            self.PATHTOWEBDRIVER = config['Connection']['macPathToWebdriver']
+            self.PATHTOWEBDRIVER = self.config['Connection']['macPathToWebdriver']
         elif platform == "darwin":  # mac os
-            self.PATHTOWEBDRIVER = config['Connection']['macPathToWebdriver']
+            self.PATHTOWEBDRIVER = self.config['Connection']['macPathToWebdriver']
         elif platform == "win32":
-            self.PATHTOWEBDRIVER = config['Connection']['winPathToWebdriver']
+            self.PATHTOWEBDRIVER = self.config['Connection']['winPathToWebdriver']
         # alg
-        self.PROFIT = config['Algo']['gainP']
-        self.LOSS = config['Algo']['lossP']
-        self.TRAIL = config['Algo']['trailstepP']
-        self.BULCKAMOUNT = config['Algo']['bulkAmountUSD']
-        self.TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL", "ETSY", "IVAC"]
-        # self.TRANDINGSTOCKS = ["AAPL"]
+        self.PROFIT = self.config['Algo']['gainP']
+        self.LOSS = self.config['Algo']['lossP']
+        self.TRAIL = self.config['Algo']['trailstepP']
+        self.BULCKAMOUNT = self.config['Algo']['bulkAmountUSD']
+        self.TRANDINGSTOCKS =ast.literal_eval(self.config['Algo']['TrandingStocks'])
+
+        # self.TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL", "ETSY", "IVAC"]
+
+    def write_config(self):
+        with open('config.ini', 'w') as configfile:
+            self.config.write(configfile)
 
 
 class MainWindow(MainBaseClass, Ui_MainWindow):
-    def __init__(self):
+    def __init__(self, settings):
         # mandatory
         QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
-        self.settings = TraderSettings()
+        self.settings = settings
         self.ibkrworker = IBKRWorker(self.settings)
         self.threadpool = QThreadPool()
 
@@ -326,15 +334,18 @@ After threaded task finished
 
 
 class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
-    def __init__(self):
+    def __init__(self, settings):
         # mandatory
         SettingsBaseClass.__init__(self)
         Ui_SettingsWindow.__init__(self)
+        self.settings = settings
         self.setupUi(self)
 
 
 app = QApplication(sys.argv)
-window = MainWindow()
-settingsW = SettingsWindow()
+settings = TraderSettings()
+settings.write_config()
+window = MainWindow(settings)
+settingsW = SettingsWindow(settings)
 window.show()
 sys.exit(app.exec_())

@@ -13,9 +13,6 @@ class IBKRWorker():
         self.app = IBapi()
         self.settings=settings
 
-        self.TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL", "ETSY", "IVAC"]
-        # self.TRANDINGSTOCKS = ["AAPL"]
-
         # debug
         self.s = sched.scheduler(time.time, time.sleep)
 
