@@ -39,10 +39,24 @@ class IBKRWorker():
         self.WORKERCOUNTER = 0
         self.s = sched.scheduler(time.time, time.sleep)
 
-    def connect_to_IBKR(self):
+    def connect_and_prepare(self):
         """
 Connecting to IBKR API and initiating the connection instance
         :return:
+        """
+        self.connect_to_tws()
+        self.start_tracking_excess_liquidity()
+        # start tracking open positions
+        self.update_open_positions()
+        # start tracking candidates
+        self.evaluate_and_track_candidates()
+        self.update_target_price_for_tracked_stocks()
+        print("Connected to IBKR and READY")
+        return "Successfully Connected"
+
+    def connect_to_tws(self):
+        """
+Creates the connection - starts listner for events
         """
         print("Starting connection to IBKR")
         self.app.connect('127.0.0.1', int(self.PORT), 123)
@@ -60,16 +74,7 @@ Connecting to IBKR API and initiating the connection instance
                 time.sleep(1)
         # General Account info:
         # self.request_current_PnL()
-
         # start tracking liquidity
-        self.start_tracking_excess_liquidity()
-        # start tracking open positions
-        self.update_open_positions()
-        # start tracking candidates
-        self.evaluate_and_track_candidates()
-        self.update_target_price_for_tracked_stocks()
-        print("Connected to IBKR and READY")
-        return "Successfully Connected"
 
     def runMainLoop(self):
         # starting worker in loop...
@@ -302,6 +307,15 @@ Process Open positions and Candidates
 
         print("-------Starting Worker..", "----EST Time: ", est_time, "--------------------")
 
+        print("Checking connection")
+        conState=self.app.isConnected()
+        if conState:
+            print("Connection is fine- proceeding")
+        else:
+            print("Connection lost-reconnecting")
+            self.connect_to_tws()
+
+
         # collect and update
         self.update_open_orders()
         self.update_open_positions()
@@ -380,5 +394,5 @@ Creating a PnL request the result will be stored in generalStarus
 
 if __name__ == '__main__':
     w = IBKRWorker()
-    w.connect_to_IBKR()
+    w.connect_and_prepare()
     w.runMainLoop()

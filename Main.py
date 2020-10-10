@@ -165,7 +165,7 @@ Starts the connection to the IBKR terminal in separate thread
 
         self.btnConnect.setEnabled(False)
 
-        connector = Worker(self.ibkrworker.connect_to_IBKR)  # Any other args, kwargs are passed to the run function
+        connector = Worker(self.ibkrworker.connect_and_prepare)  # Any other args, kwargs are passed to the run function
         connector.signals.result.connect(self.update_ui)
         connector.signals.finished.connect(self.thread_complete)
         # Execute
