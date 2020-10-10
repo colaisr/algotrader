@@ -1,9 +1,7 @@
-import configparser
 import sched
 import time
 import threading
 from datetime import datetime
-from sys import platform
 from Logic.ApiWrapper import IBapi, createContract, createTrailingStopOrder, create_limit_buy_order, createMktSellOrder
 from pytz import timezone
 from Research.UpdateCandidates import get_yahoo_stats_for_candidate
@@ -11,32 +9,14 @@ from Research.tipRanksScrapper import get_tiprank_ratings_to_Stocks
 
 
 class IBKRWorker():
-    def __init__(self):
+    def __init__(self,settings):
         self.app = IBapi()
-        config = configparser.ConfigParser()
-        config.read('config.ini')
-        self.PORT = config['Connection']['portp']
-        self.ACCOUNT = config['Account']['accp']
-        self.INTERVAL = config['Connection']['interval']
+        self.settings=settings
 
-        self.MACPATHTOWEBDRIVER = config['Connection']['macPathToWebdriver']
-        if platform == "linux" or platform == "linux2":
-            self.PATHTOWEBDRIVER = config['Connection']['macPathToWebdriver']
-        elif platform == "darwin":  # mac os
-            self.PATHTOWEBDRIVER = config['Connection']['macPathToWebdriver']
-        elif platform == "win32":
-            self.PATHTOWEBDRIVER = config['Connection']['winPathToWebdriver']
-        # alg
-        self.PROFIT = config['Algo']['gainP']
-        self.LOSS = config['Algo']['lossP']
-        self.TRAIL = config['Algo']['trailstepP']
-        self.BULCKAMOUNT = config['Algo']['bulkAmountUSD']
         self.TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL", "ETSY", "IVAC"]
         # self.TRANDINGSTOCKS = ["AAPL"]
 
         # debug
-        self.REUSECANDIDATESFROMDB = config['Debug']['reuseCandidatesFromDb']
-        self.WORKERCOUNTER = 0
         self.s = sched.scheduler(time.time, time.sleep)
 
     def connect_and_prepare(self):
@@ -59,7 +39,7 @@ Connecting to IBKR API and initiating the connection instance
 Creates the connection - starts listner for events
         """
         print("Starting connection to IBKR")
-        self.app.connect('127.0.0.1', int(self.PORT), 123)
+        self.app.connect('127.0.0.1', int(self.settings.PORT), 123)
         self.app.nextorderId = None
         # Start the socket in a thread
         api_thread = threading.Thread(target=self.run_loop, daemon=True)
@@ -100,8 +80,8 @@ gets a Yahoo statistics to all tracked candidates and adds it to them
         """
 getting and updating tiprank rank for live candidates
         """
-        print("Getting ranks for :", self.TRANDINGSTOCKS)
-        ranks = get_tiprank_ratings_to_Stocks(self.TRANDINGSTOCKS, self.PATHTOWEBDRIVER)
+        print("Getting ranks for :", self.settings.TRANDINGSTOCKS)
+        ranks = get_tiprank_ratings_to_Stocks(self.settings.TRANDINGSTOCKS, self.settings.PATHTOWEBDRIVER)
         for k, v in self.app.candidatesLive.items():
             v["tipranksRank"] = ranks[v["Stock"]]
             print("Updated ", v["tipranksRank"], " rank for ", v["Stock"])
@@ -110,12 +90,12 @@ getting and updating tiprank rank for live candidates
         """
 Starts tracking the Candidates and adds the statistics
         """
-        print("Starting to track ", len(self.TRANDINGSTOCKS), " Candidates")
+        print("Starting to track ", len(self.settings.TRANDINGSTOCKS), " Candidates")
         # starting querry
         trackedStockN = 1
-        for s in self.TRANDINGSTOCKS:
+        for s in self.settings.TRANDINGSTOCKS:
             id = self.app.nextorderId
-            print("starting to track: ", trackedStockN, " of ", len(self.TRANDINGSTOCKS), " ", s, "traking with Id:",
+            print("starting to track: ", trackedStockN, " of ", len(self.settings.TRANDINGSTOCKS), " ", s, "traking with Id:",
                   id)
             c = createContract(s)
             self.app.candidatesLive[id] = {"Stock": s,
@@ -154,20 +134,20 @@ Processes the positions to identify Profit/Loss
         for s, p in self.app.openPositions.items():
             profit = p["UnrealizedPnL"] / p["Value"] * 100
             print("The profit for ", s, " is ", profit, " %")
-            if profit > float(self.PROFIT):
+            if profit > float(self.settings.PROFIT):
                 orders = self.app.openOrders
                 if s in orders:
                     print("Order for ", s, "already exist- skipping")
                 else:
                     print("Profit for: ", s, " is ", profit, "Creating a trailing Stop Order to take a Profit")
                     contract = createContract(s)
-                    order = createTrailingStopOrder(p["stocks"], self.TRAIL)
+                    order = createTrailingStopOrder(p["stocks"], self.settings.TRAIL)
                     self.app.placeOrder(self.app.nextorderId, contract, order)
                     self.app.nextorderId = self.app.nextorderId + 1
-                    print("Created a Trailing Stop order for ", s, " at level of ", self.TRAIL, "%")
+                    print("Created a Trailing Stop order for ", s, " at level of ", self.settings.TRAIL, "%")
                     self.log_decision("profits.txt",
-                                      "Created a Trailing Stop order for " + s + " at level of " + self.TRAIL + "%")
-            elif profit < float(self.LOSS):
+                                      "Created a Trailing Stop order for " + s + " at level of " + self.settings.TRAIL + "%")
+            elif profit < float(self.settings.LOSS):
                 orders = self.app.openOrders
                 if s in orders:
                     print("Order for ", s, "already exist- skipping")
@@ -240,7 +220,7 @@ Creates order to buy a stock at specific price
         :param s: Stocks to buy
         """
         contract = createContract(s)
-        stocksToBuy = int(int(self.BULCKAMOUNT) / price)
+        stocksToBuy = int(int(self.settings.BULCKAMOUNT) / price)
         if stocksToBuy > 0:
             order = create_limit_buy_order(stocksToBuy, price)
             self.app.placeOrder(self.app.nextorderId, contract, order)
@@ -294,7 +274,7 @@ processes candidates for buying
         self.process_positions()
         print("...............Worker finished.........................")
 
-        self.s.enter(float(self.INTERVAL), 1, self.process_positions_candidates, (sc,))
+        self.s.enter(float(self.settings.INTERVAL), 1, self.process_positions_candidates, (sc,))
 
     def process_positions_candidates(self):
         """
@@ -344,7 +324,7 @@ updating all openPositions
                 id = self.app.nextorderId
                 p["tracking_id"] = id
                 self.app.openPositionsLiveDataRequests[id] = s
-                self.app.reqPnLSingle(id, self.ACCOUNT, "", p["conId"])
+                self.app.reqPnLSingle(id, self.settings.ACCOUNT, "", p["conId"])
                 print("Started tracking ", s, " position PnL")
                 lastId = s
                 self.app.nextorderId += 1
@@ -380,7 +360,7 @@ Creating a PnL request the result will be stored in generalStarus
         global id, status
         id = self.app.nextorderId
         print("Requesting Daily PnL")
-        self.app.reqPnL(id, self.ACCOUNT, "")
+        self.app.reqPnL(id, self.settings.ACCOUNT, "")
         time.sleep(0.5)
         self.app.nextorderId = self.app.nextorderId + 1
         print(self.app.generalStatus)

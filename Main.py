@@ -1,18 +1,22 @@
 from datetime import datetime
 import traceback, sys
+import configparser
+from sys import platform
 
 from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer
 from PySide2.QtGui import QColor, QTextCursor
 from PySide2.QtUiTools import loadUiType
-from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem
+from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QWidget
 
 from Logic.IBKRWorker import IBKRWorker
 
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
 
-qt_creator_file = "UI/MainWindow.ui"
-Ui_MainWindow, QtBaseClass = loadUiType(qt_creator_file)
+main_window_file = "UI/MainWindow.ui"
+settings_window_file = "UI/SettingsWindow.ui"
+Ui_MainWindow, MainBaseClass = loadUiType(main_window_file)
+Ui_SettingsWindow, SettingsBaseClass = loadUiType(settings_window_file)
 LOGFILE = "log.txt"
 
 
@@ -134,13 +138,37 @@ class Worker(QRunnable):
             self.signals.finished.emit()  # Done
 
 
-class MainWindow(QMainWindow, Ui_MainWindow):
+class TraderSettings():
+    def __init__(self):
+        config = configparser.ConfigParser()
+        config.read('config.ini')
+        self.PORT = config['Connection']['portp']
+        self.ACCOUNT = config['Account']['accp']
+        self.INTERVAL = config['Connection']['interval']
+
+        if platform == "linux" or platform == "linux2":
+            self.PATHTOWEBDRIVER = config['Connection']['macPathToWebdriver']
+        elif platform == "darwin":  # mac os
+            self.PATHTOWEBDRIVER = config['Connection']['macPathToWebdriver']
+        elif platform == "win32":
+            self.PATHTOWEBDRIVER = config['Connection']['winPathToWebdriver']
+        # alg
+        self.PROFIT = config['Algo']['gainP']
+        self.LOSS = config['Algo']['lossP']
+        self.TRAIL = config['Algo']['trailstepP']
+        self.BULCKAMOUNT = config['Algo']['bulkAmountUSD']
+        self.TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL", "ETSY", "IVAC"]
+        # self.TRANDINGSTOCKS = ["AAPL"]
+
+
+class MainWindow(MainBaseClass, Ui_MainWindow):
     def __init__(self):
         # mandatory
         QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
-        self.ibkrworker = IBKRWorker()
+        self.settings = TraderSettings()
+        self.ibkrworker = IBKRWorker(self.settings)
         self.threadpool = QThreadPool()
 
         # redirecting Cosole to UI and Log
@@ -154,6 +182,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # connecting a buttons
         self.btnConnect.pressed.connect(self.connect_to_ibkr)
         self.btnStart.pressed.connect(self.start_timer)
+        self.btnSettings.pressed.connect(self.show_settings)
 
         self.statusbar.showMessage("Ready")
         print("AlgoTraider is started... waiting to connect...")
@@ -177,7 +206,7 @@ Starts the connection to the IBKR terminal in separate thread
         """
 Starts the Timer with interval from Config file
         """
-        self.timer.start(int(self.ibkrworker.INTERVAL) * 1000)
+        self.timer.start(int(self.settings.INTERVAL) * 1000)
 
     def run_worker(self):
         """
@@ -197,7 +226,7 @@ Updates UI after connection/worker execution
         :param s:
         """
         self.lLiq.setText(self.ibkrworker.app.excessLiquidity)
-        self.lAcc.setText(self.ibkrworker.ACCOUNT)
+        self.lAcc.setText(self.settings.ACCOUNT)
         self.update_open_positions()
         self.update_live_candidates()
         self.update_open_orders()
@@ -239,8 +268,8 @@ Updates Candidates table
                 self.tCandidates.setItem(line, 9, QTableWidgetItem(str(v['LastUpdate'])))
 
                 line += 1
-        except:
-            print("Error loading Candidates table")
+        except Exception as e:
+            print("Error loading Candidates table: ", str(e))
 
     def update_open_positions(self):
         """
@@ -251,8 +280,6 @@ Updates Positions table
             line = 0
             self.tPositions.setRowCount(len(openPostions))
             for k, v in openPostions.items():
-                vd = v['Value']
-                print("debug", vd)
                 self.tPositions.setItem(line, 0, QTableWidgetItem(k))
                 self.tPositions.setItem(line, 1, QTableWidgetItem(str(int(v['stocks']))))
                 self.tPositions.setItem(line, 2, QTableWidgetItem(str(round(v['cost'], 2))))
@@ -269,8 +296,8 @@ Updates Positions table
                     self.tPositions.item(line, 4).setBackgroundColor(QColor(255, 51, 0))
                     self.tPositions.item(line, 5).setBackgroundColor(QColor(255, 51, 0))
                 line += 1
-        except:
-            print("Error loading Open Positions table")
+        except Exception as e:
+            print("Error loading Open Positions table: ", str(e))
 
     def update_open_orders(self):
         """
@@ -285,8 +312,8 @@ Updates Positions table
                 self.tOrders.setItem(line, 1, QTableWidgetItem(v['Action']))
                 self.tOrders.setItem(line, 2, QTableWidgetItem(v['Type']))
                 line += 1
-        except:
-            print("Error loading Orders table")
+        except Exception as e:
+            print("Error loading Orders table: ", str(e))
 
     def thread_complete(self):
         """
@@ -294,8 +321,20 @@ After threaded task finished
         """
         print("TASK COMPLETE!")
 
+    def show_settings(self):
+        settingsW.show()
+
+
+class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
+    def __init__(self):
+        # mandatory
+        SettingsBaseClass.__init__(self)
+        Ui_SettingsWindow.__init__(self)
+        self.setupUi(self)
+
 
 app = QApplication(sys.argv)
 window = MainWindow()
+settingsW = SettingsWindow()
 window.show()
 sys.exit(app.exec_())
