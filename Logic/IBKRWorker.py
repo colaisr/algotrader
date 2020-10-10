@@ -160,6 +160,7 @@ Processes the positions to identify Profit/Loss
                     self.app.placeOrder(self.app.nextorderId, contract, order)
                     self.app.nextorderId = self.app.nextorderId + 1
                     print("Created a Trailing Stop order for ", s, " at level of ", self.TRAIL, "%")
+                    self.log_decision("profits.txt","Created a Trailing Stop order for "+s+" at level of "+self.TRAIL+"%")
             elif profit < float(self.LOSS):
                 orders = self.app.openOrders
                 if s in orders:
@@ -171,6 +172,8 @@ Processes the positions to identify Profit/Loss
                     self.app.placeOrder(self.app.nextorderId, contract, order)
                     self.app.nextorderId = self.app.nextorderId + 1
                     print("Created a Market Sell order for ", s)
+                    self.log_decision("loses.txt","Created a Market Sell order for "+s)
+
 
     def evaluate_stock_for_buy(self, s):
         """
@@ -238,6 +241,7 @@ Creates order to buy a stock at specific price
             self.app.placeOrder(self.app.nextorderId, contract, order)
             self.app.nextorderId = self.app.nextorderId + 1
             print("Issued the BUY order at ", price, "for ", stocksToBuy, " Stocks of ", s)
+            self.log_decision("buys.txt","Issued the BUY order at "+price+"for "+stocksToBuy+" Stocks of "+s)
         else:
             print("The single stock is too expensive - skipping")
 
@@ -366,6 +370,12 @@ Creating a PnL request the result will be stored in generalStarus
         time.sleep(0.5)
         self.app.nextorderId = self.app.nextorderId + 1
         print(self.app.generalStatus)
+
+    def log_decision(self,logFile, order):
+        with open(logFile, "a") as f:
+            currentDt = datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
+            order = currentDt + '---' + order
+            f.write(order)
 
 
 if __name__ == '__main__':
