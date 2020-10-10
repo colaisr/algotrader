@@ -9,12 +9,10 @@ from Research.tipRanksScrapper import get_tiprank_ratings_to_Stocks
 
 
 class IBKRWorker():
-    def __init__(self,settings):
+    def __init__(self, settings):
         self.app = IBapi()
-        self.settings=settings
+        self.settings = settings
 
-        # debug
-        self.s = sched.scheduler(time.time, time.sleep)
 
     def connect_and_prepare(self):
         """
@@ -53,15 +51,6 @@ Creates the connection - starts listner for events
         # self.request_current_PnL()
         # start tracking liquidity
 
-    def runMainLoop(self):
-        # starting worker in loop...
-        mainWorkerThread = threading.Thread(target=self.startLooping(), daemon=True)
-        mainWorkerThread.start()
-
-    def startLooping(self):
-        self.s.enter(2, 1, self.workerGo_test_module, (self.s,))
-        self.s.run()
-
     def add_yahoo_stats_to_live_candidates(self):
         """
 gets a Yahoo statistics to all tracked candidates and adds it to them
@@ -92,7 +81,8 @@ Starts tracking the Candidates and adds the statistics
         trackedStockN = 1
         for s in self.settings.TRANDINGSTOCKS:
             id = self.app.nextorderId
-            print("starting to track: ", trackedStockN, " of ", len(self.settings.TRANDINGSTOCKS), " ", s, "traking with Id:",
+            print("starting to track: ", trackedStockN, " of ", len(self.settings.TRANDINGSTOCKS), " ", s,
+                  "traking with Id:",
                   id)
             c = createContract(s)
             self.app.candidatesLive[id] = {"Stock": s,
@@ -249,30 +239,6 @@ processes candidates for buying
                 else:
                     self.evaluate_stock_for_buy(c['Stock'])
 
-    def workerGo_test_module(self, sc):
-        est = timezone('EST')
-        fmt = '%Y-%m-%d %H:%M:%S'
-        local_time = datetime.now().strftime(fmt)
-        est_time = datetime.now(est).strftime(fmt)
-
-        print("-------Processing Worker...---Local Time", local_time, "----EST Time: ", est_time,
-              "--------------------")
-        # collect and update
-        self.update_open_orders()
-        self.update_open_positions()
-
-        # print("Open positions:")
-        # pprint.pprint(app.openPositions)
-        # print("Tracked Candidates:")
-        # pprint.pprint(app.candidatesLive)
-
-        # process
-        self.process_candidates()
-        self.process_positions()
-        print("...............Worker finished.........................")
-
-        self.s.enter(float(self.settings.INTERVAL), 1, self.process_positions_candidates, (sc,))
-
     def process_positions_candidates(self):
         """
 Process Open positions and Candidates
@@ -285,13 +251,12 @@ Process Open positions and Candidates
         print("-------Starting Worker..", "----EST Time: ", est_time, "--------------------")
 
         print("Checking connection")
-        conState=self.app.isConnected()
+        conState = self.app.isConnected()
         if conState:
             print("Connection is fine- proceeding")
         else:
             print("Connection lost-reconnecting")
             self.connect_to_tws()
-
 
         # collect and update
         self.update_open_orders()
@@ -368,8 +333,3 @@ Creating a PnL request the result will be stored in generalStarus
             order = currentDt + '---' + order
             f.write(order)
 
-
-if __name__ == '__main__':
-    w = IBKRWorker()
-    w.connect_and_prepare()
-    w.runMainLoop()
