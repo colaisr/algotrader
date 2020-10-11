@@ -5,7 +5,7 @@ import traceback, sys
 import configparser
 from sys import platform
 
-from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer
+from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer, QTime
 from PySide2.QtGui import QColor, QTextCursor
 from PySide2.QtUiTools import loadUiType
 from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QWidget, QMessageBox
@@ -162,6 +162,10 @@ class TraderSettings():
         self.TRAIL = self.config['Algo']['trailstepP']
         self.BULCKAMOUNT = self.config['Algo']['bulkAmountUSD']
         self.TRANDINGSTOCKS =ast.literal_eval(self.config['Algo']['TrandingStocks'])
+        self.TECHFROMHOUR=self.config['Connection']['techfromHour']
+        self.TECHFROMMIN=self.config['Connection']['techfromMin']
+        self.TECHTOHOUR=self.config['Connection']['techtoHour']
+        self.TECHTOMIN=self.config['Connection']['techtoMin']
 
         # self.TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL", "ETSY", "IVAC"]
 
@@ -181,6 +185,11 @@ class TraderSettings():
         self.config['Algo']['trailstepP']=str(self.TRAIL)
         self.config['Algo']['bulkAmountUSD']=str(self.BULCKAMOUNT)
         self.config['Algo']['TrandingStocks']=str(self.TRANDINGSTOCKS)
+        self.config['Connection']['techfromHour'] = str(self.TECHFROMHOUR)
+        self.config['Connection']['techfromMin'] = str(self.TECHFROMMIN)
+        self.config['Connection']['techtoHour'] = str(self.TECHTOHOUR)
+        self.config['Connection']['techtoMin'] = str(self.TECHTOMIN)
+
 
         with open('config.ini', 'w') as configfile:
             self.config.write(configfile)
@@ -370,6 +379,10 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
         self.settings.ACCOUNT = self.txtAccount.text()
         self.settings.PORT = self.txtPort.text()
         self.settings.INTERVAL = self.spInterval.value()
+        self.settings.TECHFROMHOUR=self.tmTechFrom.time().hour()
+        self.settings.TECHFROMMIN=self.tmTechFrom.time().minute()
+        self.settings.TECHTOHOUR=self.tmTechTo.time().hour()
+        self.settings.TECHTOMIN=self.tmTechTo.time().minute()
 
         self.changedSettings = True
         print("Setting was changed.")
@@ -399,6 +412,12 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
 
         self.spInterval.setValue(int(self.settings.INTERVAL))
         self.spInterval.valueChanged.connect(self.setting_change)
+
+        self.tmTechFrom.setTime(QTime(int(self.settings.TECHFROMHOUR),int(self.settings.TECHFROMMIN)))
+        self.tmTechFrom.timeChanged.connect(self.setting_change)
+
+        self.tmTechTo.setTime(QTime(int(self.settings.TECHTOHOUR),int(self.settings.TECHTOMIN)))
+        self.tmTechTo.timeChanged.connect(self.setting_change)
 
 
     def closeEvent(self, event):

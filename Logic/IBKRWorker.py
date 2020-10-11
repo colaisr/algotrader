@@ -36,7 +36,7 @@ Creates the connection - starts listner for events
         self.app.connect('127.0.0.1', int(self.settings.PORT), 123)
         self.app.nextorderId = None
         # Start the socket in a thread
-        api_thread = threading.Thread(target=self.run_loop, daemon=True)
+        api_thread = threading.Thread(target=self.run_loop,name='ibkrConnection', daemon=True)
         api_thread.start()
         # Check if the API is connected via orderid
         while True:
@@ -46,6 +46,7 @@ Creates the connection - starts listner for events
             else:
                 print('Waiting for connection...')
                 time.sleep(1)
+        i=2
         # General Account info:
         # self.request_current_PnL()
         # start tracking liquidity
@@ -246,6 +247,7 @@ Process Open positions and Candidates
         fmt = '%Y-%m-%d %H:%M:%S'
         local_time = datetime.now().strftime(fmt)
         est_time = datetime.now(est).strftime(fmt)
+        #todo not in restart window
 
         print("-------Starting Worker..", "----EST Time: ", est_time, "--------------------")
 
