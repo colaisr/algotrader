@@ -246,13 +246,20 @@ Starts the Timer with interval from Config file
         """
 Executed the Worker in separate thread
         """
-        worker = Worker(
-            self.ibkrworker.process_positions_candidates)  # Any other args, kwargs are passed to the run function
-        worker.signals.result.connect(self.update_ui)
-        worker.signals.finished.connect(self.thread_complete)
-        # Execute
-        self.threadpool.start(worker)
-        self.statusbar.showMessage("Executing Worker")
+        currentTime=QTime().currentTime()
+        fromTime=QTime(int(self.settings.TECHFROMHOUR),int(self.settings.TECHFROMMIN))
+        toTime=QTime(int(self.settings.TECHTOHOUR),int(self.settings.TECHTOMIN))
+        if currentTime>fromTime and currentTime<toTime:
+            print("Worker skept-Technical break : ",fromTime.toString("hh:mm")," to ",toTime.toString("hh:mm"))
+            self.update_ui("Technical break untill "+toTime.toString("hh:mm"))
+        else:
+            worker = Worker(
+                self.ibkrworker.process_positions_candidates)  # Any other args, kwargs are passed to the run function
+            worker.signals.result.connect(self.update_ui)
+            worker.signals.finished.connect(self.thread_complete)
+            # Execute
+            self.threadpool.start(worker)
+            self.statusbar.showMessage("Executing Worker")
 
     def update_ui(self, s):
         """
