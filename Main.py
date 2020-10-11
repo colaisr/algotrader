@@ -1,4 +1,5 @@
 import ast
+import copy
 from datetime import datetime
 import traceback, sys
 import configparser
@@ -7,7 +8,7 @@ from sys import platform
 from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer
 from PySide2.QtGui import QColor, QTextCursor
 from PySide2.QtUiTools import loadUiType
-from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QWidget
+from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QWidget, QMessageBox
 
 from Logic.IBKRWorker import IBKRWorker
 
@@ -146,8 +147,8 @@ class TraderSettings():
 
     def read_config(self):
         self.config.read('config.ini')
-        self.PORT = self.config['Connection']['portp']
-        self.ACCOUNT = self.config['Account']['accp']
+        self.PORT = self.config['Connection']['port']
+        self.ACCOUNT = self.config['Account']['acc']
         self.INTERVAL = self.config['Connection']['interval']
         if platform == "linux" or platform == "linux2":
             self.PATHTOWEBDRIVER = self.config['Connection']['macPathToWebdriver']
@@ -165,6 +166,22 @@ class TraderSettings():
         # self.TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL", "ETSY", "IVAC"]
 
     def write_config(self):
+        self.config['Connection']['port']=self.PORT
+        self.config['Account']['acc']=self.ACCOUNT
+        self.config['Connection']['interval']=str(self.INTERVAL)
+        if platform == "linux" or platform == "linux2":
+             self.config['Connection']['macPathToWebdriver']=self.PATHTOWEBDRIVER
+        elif platform == "darwin":  # mac os
+             self.config['Connection']['macPathToWebdriver']=self.PATHTOWEBDRIVER
+        elif platform == "win32":
+             self.config['Connection']['winPathToWebdriver']=self.PATHTOWEBDRIVER
+        # alg
+        self.config['Algo']['gainP']=str(self.PROFIT)
+        self.config['Algo']['lossP']=str(self.LOSS)
+        self.config['Algo']['trailstepP']=str(self.TRAIL)
+        self.config['Algo']['bulkAmountUSD']=str(self.BULCKAMOUNT)
+        self.config['Algo']['TrandingStocks']=str(self.TRANDINGSTOCKS)
+
         with open('config.ini', 'w') as configfile:
             self.config.write(configfile)
 
@@ -331,20 +348,76 @@ After threaded task finished
 
     def show_settings(self):
         settingsW.show()
+        settingsW.changedSettings=False
 
 
 class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
-    def __init__(self, settings):
+    def __init__(self, inSettings):
         # mandatory
         SettingsBaseClass.__init__(self)
         Ui_SettingsWindow.__init__(self)
-        self.settings = settings
+        self.settings = inSettings
         self.setupUi(self)
+        self.changedSettings=False
+
+
+
+    def setting_change(self):
+        self.settings.PROFIT=self.spProfit.value()
+        self.settings.TRAIL = self.spTrail.value()
+        self.settings.LOSS = self.spLoss.value()
+        self.settings.BULCKAMOUNT = self.spBulck.value()
+        self.settings.ACCOUNT = self.txtAccount.text()
+        self.settings.PORT = self.txtPort.text()
+        self.settings.INTERVAL = self.spInterval.value()
+
+        self.changedSettings = True
+        print("Setting was changed.")
+
+
+    def showEvent(self, event):
+        self.settingsBackup = copy.deepcopy(self.settings)
+        self.lstCandidates.insertItems(0, self.settings.TRANDINGSTOCKS)
+
+        self.spProfit.setValue(int(self.settings.PROFIT))
+        self.spProfit.valueChanged.connect(self.setting_change)
+
+        self.spTrail.setValue(int(self.settings.TRAIL))
+        self.spTrail.valueChanged.connect(self.setting_change)
+
+        self.spLoss.setValue(int(self.settings.LOSS))
+        self.spLoss.valueChanged.connect(self.setting_change)
+
+        self.spBulck.setValue(int(self.settings.BULCKAMOUNT))
+        self.spBulck.valueChanged.connect(self.setting_change)
+
+        self.txtAccount.setText(self.settings.ACCOUNT)
+        self.txtAccount.textChanged.connect(self.setting_change)
+
+        self.txtPort.setText(self.settings.PORT)
+        self.txtPort.textChanged.connect(self.setting_change)
+
+        self.spInterval.setValue(int(self.settings.INTERVAL))
+        self.spInterval.valueChanged.connect(self.setting_change)
+
+
+    def closeEvent(self, event):
+        if self.changedSettings:
+            reply = QMessageBox.question(self, 'Settings Changed', 'Accepting will cause connection restart-save changes?',
+                                         QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+
+            if reply == QMessageBox.Yes:
+                event.accept()
+                self.settings.write_config()
+                print("Settings were changed.Saved to file")
+            else:
+                self.settings=copy.deepcopy(self.settingsBackup)
+
+
 
 
 app = QApplication(sys.argv)
 settings = TraderSettings()
-settings.write_config()
 window = MainWindow(settings)
 settingsW = SettingsWindow(settings)
 window.show()

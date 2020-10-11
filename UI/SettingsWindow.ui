@@ -56,7 +56,11 @@
         </layout>
        </item>
        <item>
-        <widget class="QListWidget" name="lstCandidates"/>
+        <widget class="QListWidget" name="lstCandidates">
+         <property name="selectionMode">
+          <enum>QAbstractItemView::NoSelection</enum>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -151,7 +155,7 @@
             </spacer>
            </item>
            <item>
-            <widget class="QSpinBox" name="stTrail"/>
+            <widget class="QSpinBox" name="spTrail"/>
            </item>
           </layout>
          </item>
