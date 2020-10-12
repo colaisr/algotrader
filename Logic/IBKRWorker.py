@@ -286,7 +286,7 @@ updating all openPositions
         """
         # update positions from IBKR
         notification_callback.emit("Updating open Positions:")
-        self.app.openPositionsLiveDataRequests = {}  # reset requests dictionary
+        self.app.openPositionsLiveDataRequests = {}  # reset requests dictionary as positions could be changed...
         self.app.reqPositions()  # requesting open positions
         time.sleep(1)
         lastId = 0

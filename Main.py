@@ -370,6 +370,7 @@ Updates Positions table
                 self.tPositions.setItem(line, 2, QTableWidgetItem(str(round(v['cost'], 2))))
                 self.tPositions.setItem(line, 3, QTableWidgetItem(str(round(v['Value'], 2))))
                 self.tPositions.setItem(line, 4, QTableWidgetItem(str(round(v['UnrealizedPnL'], 2))))
+                self.tPositions.setItem(line, 6, QTableWidgetItem(str(v['LastUpdate'])))
 
                 profit = v['UnrealizedPnL'] / v['Value'] * 100
                 self.tPositions.setItem(line, 5, QTableWidgetItem(str(round(profit, 2))))

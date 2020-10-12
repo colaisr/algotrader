@@ -148,6 +148,11 @@
          <string>% Profit</string>
         </property>
        </column>
+       <column>
+        <property name="text">
+         <string>Last Update</string>
+        </property>
+       </column>
       </widget>
       <widget class="QLabel" name="lblCandidates">
        <property name="text">
