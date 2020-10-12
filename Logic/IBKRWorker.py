@@ -29,7 +29,6 @@ Connecting to IBKR API and initiating the connection instance
         notification_callback.emit("Connected to IBKR and READY")
         status_callback.emit("Connected and ready")
 
-
     def connect_to_tws(self, notification_callback):
         """
 Creates the connection - starts listner for events
@@ -58,7 +57,7 @@ gets a Yahoo statistics to all tracked candidates and adds it to them
         """
         for k, v in self.app.candidatesLive.items():
             notification_callback.emit("Getting Yahoo market data for " + v['Stock'])
-            drop, change = get_yahoo_stats_for_candidate(v['Stock'],notification_callback)
+            drop, change = get_yahoo_stats_for_candidate(v['Stock'], notification_callback)
             self.app.candidatesLive[k]["averagePriceDropP"] = drop
             self.app.candidatesLive[k]["averagePriceSpreadP"] = change
             notification_callback.emit(
@@ -123,42 +122,58 @@ Processes the positions to identify Profit/Loss
         notification_callback.emit("Processing profits")
         for s, p in self.app.openPositions.items():
             profit = p["UnrealizedPnL"] / p["Value"] * 100
-            notification_callback.emit("The profit for "+ s+ " is "+ str(profit)+ " %")
+            notification_callback.emit("The profit for " + s + " is " + str(profit) + " %")
             if profit > float(self.settings.PROFIT):
                 orders = self.app.openOrders
                 if s in orders:
-                    notification_callback.emit("Order for "+ s+ "already exist- skipping")
+                    notification_callback.emit("Order for " + s + "already exist- skipping")
                 else:
-                    notification_callback.emit("Profit for: "+ s+ " is "+ str(profit)+
+                    notification_callback.emit("Profit for: " + s + " is " + str(profit) +
                                                "Creating a trailing Stop Order to take a Profit")
                     contract = createContract(s)
                     order = createTrailingStopOrder(p["stocks"], self.settings.TRAIL)
                     self.app.placeOrder(self.app.nextorderId, contract, order)
                     self.app.nextorderId = self.app.nextorderId + 1
-                    notification_callback.emit("Created a Trailing Stop order for "+s+ " at level of "+
-                                               str(self.settings.TRAIL)+ "%")
+                    notification_callback.emit("Created a Trailing Stop order for " + s + " at level of " +
+                                               str(self.settings.TRAIL) + "%")
                     self.log_decision("profits.txt",
                                       "Created a Trailing Stop order for " + s + " at level of " + self.settings.TRAIL + "%")
+                    for k, v in self.app.candidatesLive.items():
+                        if v['Stock'] == s:
+                            self.log_decision("buys.txt", "Candidate was : Open: " + str(v['Open']) + " Close: " + str(
+                                v['Close']) + " Bid : " + str(v['Bid']) + " Ask:  " + str(
+                                v['Ask']) + " Last Price: " + str(
+                                v['LastPrice']) + " Average drop: " + str(
+                                round(v['averagePriceDropP'], 2)) + "Target price: " + str(
+                                round(v['target_price'], 2)) + " Rank: " + str(v['tipranksRank']))
             elif profit < float(self.settings.LOSS):
                 orders = self.app.openOrders
                 if s in orders:
-                    notification_callback.emit("Order for "+ s+ "already exist- skipping")
+                    notification_callback.emit("Order for " + s + "already exist- skipping")
                 else:
-                    notification_callback.emit("loss for: "+ s+ " is "+ str(profit)+
+                    notification_callback.emit("loss for: " + s + " is " + str(profit) +
                                                "Creating a Market Sell Order to minimize the Loss")
                     contract = createContract(s)
                     order = createMktSellOrder(p['stocks'])
                     self.app.placeOrder(self.app.nextorderId, contract, order)
                     self.app.nextorderId = self.app.nextorderId + 1
-                    notification_callback.emit("Created a Market Sell order for "+ s)
+                    notification_callback.emit("Created a Market Sell order for " + s)
                     self.log_decision("loses.txt", "Created a Market Sell order for " + s)
+                    for k, v in self.app.candidatesLive.items():
+                        if v['Stock'] == s:
+                            self.log_decision("buys.txt", "Candidate was : Open: " + str(v['Open']) + " Close: " + str(
+                                v['Close']) + " Bid : " + str(v['Bid']) + " Ask:  " + str(
+                                v['Ask']) + " Last Price: " + str(
+                                v['LastPrice']) + " Average drop: " + str(
+                                round(v['averagePriceDropP'], 2)) + "Target price: " + str(
+                                round(v['target_price'], 2)) + " Rank: " + str(v['tipranksRank']))
 
     def evaluate_stock_for_buy(self, s, notification_callback=None):
         """
 Evaluates stock for buying
         :param s:
         """
-        notification_callback.emit("Evaluating "+ s+ "for a Buy")
+        notification_callback.emit("Evaluating " + s + "for a Buy")
         # finding stock in Candidates
         for c in self.app.candidatesLive.values():
             if c["Stock"] == s:
@@ -173,8 +188,9 @@ Evaluates stock for buying
         elif ask_price < target_price and float(tipRank) > 8:
             self.buy_the_stock(ask_price, s)
         else:
-            notification_callback.emit("The price of :"+str(ask_price)+ "was not in range of :"+ str(average_daily_dropP)+ " % "+
-                                       " Or the Rating of "+ str(tipRank)+ " was not good enough")
+            notification_callback.emit(
+                "The price of :" + str(ask_price) + "was not in range of :" + str(average_daily_dropP) + " % " +
+                " Or the Rating of " + str(tipRank) + " was not good enough")
 
         pass
 
@@ -223,6 +239,14 @@ Creates order to buy a stock at specific price
             self.app.nextorderId = self.app.nextorderId + 1
             notification_callback.emit("Issued the BUY order at ", price, "for ", stocksToBuy, " Stocks of ", s)
             self.log_decision("buys.txt", "Issued the BUY order at " + price + "for " + stocksToBuy + " Stocks of " + s)
+            for k, v in self.app.candidatesLive.items():
+                if v['Stock'] == s:
+                    self.log_decision("buys.txt", "Candidate was : Open: " + str(v['Open']) + " Close: " + str(
+                        v['Close']) + " Bid : " + str(v['Bid']) + " Ask:  " + str(v['Ask']) + " Last Price: " + str(
+                        v['LastPrice']) + " Average drop: " + str(
+                        round(v['averagePriceDropP'], 2)) + "Target price: " + str(
+                        round(v['target_price'], 2)) + " Rank: " + str(v['tipranksRank']))
+
         else:
             notification_callback.emit("The single stock is too expensive - skipping")
 
@@ -236,17 +260,17 @@ processes candidates for buying
             notification_callback.emit("Excess liquidity is ", excessLiquidity, " it is less than 1000 - skipping buy")
             return
         else:
-            notification_callback.emit("The Excess liquidity is :"+str(excessLiquidity)+ " searching candidates")
+            notification_callback.emit("The Excess liquidity is :" + str(excessLiquidity) + " searching candidates")
             # updating the targets if market was open in the middle
             self.update_target_price_for_tracked_stocks(notification_callback)
             res = sorted(self.app.candidatesLive.items(), key=lambda x: x[1]['tipranksRank'], reverse=True)
-            notification_callback.emit(str(len(res))+ "Candidates found,sorted by Tipranks ranks")
+            notification_callback.emit(str(len(res)) + "Candidates found,sorted by Tipranks ranks")
             for i, c in res:
                 if c['Stock'] in self.app.openPositions:
-                    notification_callback.emit("Skipping "+c['Stock']+ " as it is in open positions.")
+                    notification_callback.emit("Skipping " + c['Stock'] + " as it is in open positions.")
                     continue
                 else:
-                    self.evaluate_stock_for_buy(c['Stock'],notification_callback)
+                    self.evaluate_stock_for_buy(c['Stock'], notification_callback)
 
     def process_positions_candidates(self, status_callback, notification_callback):
         """
@@ -257,7 +281,7 @@ Process Open positions and Candidates
         fmt = '%Y-%m-%d %H:%M:%S'
         local_time = datetime.now().strftime(fmt)
         est_time = datetime.now(est).strftime(fmt)
-        notification_callback.emit("-------Starting Worker...----EST Time: "+ est_time+ "--------------------")
+        notification_callback.emit("-------Starting Worker...----EST Time: " + est_time + "--------------------")
 
         notification_callback.emit("Checking connection")
         conState = self.app.isConnected()
@@ -274,8 +298,7 @@ Process Open positions and Candidates
         # process
         self.process_candidates(notification_callback)
         self.process_positions(notification_callback)
-        notification_callback.emit("...............Worker finished....."+local_time+"....................")
-
+        notification_callback.emit("...............Worker finished....." + local_time + "....................")
 
     def run_loop(self):
         self.app.run()
@@ -312,7 +335,7 @@ Requests all open orders
         self.app.reqAllOpenOrders()
         time.sleep(1)
 
-        notification_callback.emit(str(len(self.app.openOrders))+ " open orders found ")
+        notification_callback.emit(str(len(self.app.openOrders)) + " open orders found ")
 
     def start_tracking_excess_liquidity(self, notification_callback=None):
         """
