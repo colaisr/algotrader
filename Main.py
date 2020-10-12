@@ -397,6 +397,7 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
 
     def showEvent(self, event):
         self.settingsBackup = copy.deepcopy(self.settings)
+        self.lstCandidates.clear()
         self.lstCandidates.insertItems(0, self.settings.TRANDINGSTOCKS)
 
         self.spProfit.setValue(int(self.settings.PROFIT))
@@ -429,7 +430,7 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
 
     def closeEvent(self, event):
         if self.changedSettings:
-            reply = QMessageBox.question(self, 'Settings Changed', 'Accepting will cause connection restart-save changes?',
+            reply = QMessageBox.question(self, 'Settings Changed', 'Accepting requires manual restart-automatic-to be delivered-save changes?',
                                          QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 
             if reply == QMessageBox.Yes:
