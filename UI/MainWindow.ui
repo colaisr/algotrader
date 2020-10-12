@@ -85,19 +85,12 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="btnConnect">
-          <property name="text">
-           <string>Connect</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="btnStart">
+         <widget class="QCheckBox" name="chbxProcess">
           <property name="enabled">
            <bool>false</bool>
           </property>
           <property name="text">
-           <string>Start</string>
+           <string>Process Positions and Candidates</string>
           </property>
          </widget>
         </item>

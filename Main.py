@@ -226,8 +226,7 @@ class MainWindow(MainBaseClass, Ui_MainWindow):
         self.workerTimer.timeout.connect(self.run_worker)
 
         # connecting a buttons
-        self.btnConnect.pressed.connect(self.connect_to_ibkr)
-        self.btnStart.pressed.connect(self.start_worker)
+        self.chbxProcess.stateChanged.connect(self.process_checked)
         self.btnSettings.pressed.connect(self.show_settings)
 
         self.statusbar.showMessage("Ready")
@@ -238,21 +237,22 @@ class MainWindow(MainBaseClass, Ui_MainWindow):
 Starts the connection to the IBKR terminal in separate thread
         """
 
-        self.btnConnect.setEnabled(False)
-
         connector = Worker(self.ibkrworker.connect_and_prepare)  # Any other args, kwargs are passed to the run function
         connector.signals.result.connect(self.update_ui)
         connector.signals.status.connect(self.update_status)
         connector.signals.notification.connect(self.update_console)
         # Execute
         self.threadpool.start(connector)
-        self.btnStart.setEnabled(True)
+        self.chbxProcess.setEnabled(True)
 
-    def start_worker(self):
+    def process_checked(self):
         """
 Starts the Timer with interval from Config file
         """
-        self.workerTimer.start(int(self.settings.INTERVALWORKER) * 1000)
+        if self.chbxProcess.isChecked():
+            self.workerTimer.start(int(self.settings.INTERVALWORKER) * 1000)
+        else:
+            self.workerTimer.stop()
 
     def run_worker(self):
         """
