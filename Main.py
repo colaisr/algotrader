@@ -219,16 +219,18 @@ class MainWindow(MainBaseClass, Ui_MainWindow):
         # sys.stderr = OutLog(self.consoleOut, sys.stderr)
 
         # setting a timer for Worker
-        self.timer = QTimer()
-        self.timer.timeout.connect(self.run_worker)
+        self.uiTimer = QTimer()
+        self.uiTimer.timeout.connect(self.update_ui)
+
+        self.workerTimer = QTimer()
+        self.workerTimer.timeout.connect(self.run_worker)
 
         # connecting a buttons
         self.btnConnect.pressed.connect(self.connect_to_ibkr)
-        self.btnStart.pressed.connect(self.start_timer)
+        self.btnStart.pressed.connect(self.start_worker)
         self.btnSettings.pressed.connect(self.show_settings)
 
         self.statusbar.showMessage("Ready")
-        print("AlgoTraider is started... waiting to connect...")
         self.connect_to_ibkr()
 
     def connect_to_ibkr(self):
@@ -246,11 +248,11 @@ Starts the connection to the IBKR terminal in separate thread
         self.threadpool.start(connector)
         self.btnStart.setEnabled(True)
 
-    def start_timer(self):
+    def start_worker(self):
         """
 Starts the Timer with interval from Config file
         """
-        self.timer.start(int(self.settings.INTERVALUI) * 1000)
+        self.workerTimer.start(int(self.settings.INTERVALWORKER) * 1000)
 
     def run_worker(self):
         """
@@ -271,7 +273,7 @@ Executed the Worker in separate thread
             # Execute
             self.threadpool.start(worker)
 
-    def update_ui(self, s):
+    def update_ui(self):
         """
 Updates UI after connection/worker execution
         :param s:
@@ -282,7 +284,9 @@ Updates UI after connection/worker execution
         self.update_live_candidates()
         self.update_open_orders()
 
-        self.statusbar.showMessage(s)  # display result
+        self.uiTimer.start(int(self.settings.INTERVALUI) * 1000)  # reset the ui timer
+        self.update_status("Updated: " + QTime.currentTime().toString())
+
         # self.update_consoleO()
 
     def progress_fn(self, n):
@@ -305,16 +309,15 @@ Adds Message to console- upon event
         self.consoleOut.append(n)
         self.log_message(n)
 
-    def log_message(self,message):
+    def log_message(self, message):
         """
 Adds message to the standard log
         :param message:
         """
         with open(LOGFILE, "a") as f:
             currentDt = datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
-            message = "\n"+currentDt + '---' + message
+            message = "\n" + currentDt + '---' + message
             f.write(message)
-
 
     def update_consoleO(self):
         # errors part

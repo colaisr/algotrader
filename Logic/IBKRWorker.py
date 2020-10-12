@@ -28,7 +28,7 @@ Connecting to IBKR API and initiating the connection instance
         self.update_target_price_for_tracked_stocks(notification_callback)
         notification_callback.emit("Connected to IBKR and READY")
         status_callback.emit("Connected and ready")
-        return "Successfully Connected"
+
 
     def connect_to_tws(self, notification_callback):
         """
@@ -58,7 +58,7 @@ gets a Yahoo statistics to all tracked candidates and adds it to them
         """
         for k, v in self.app.candidatesLive.items():
             notification_callback.emit("Getting Yahoo market data for " + v['Stock'])
-            drop, change = get_yahoo_stats_for_candidate(v['Stock'])
+            drop, change = get_yahoo_stats_for_candidate(v['Stock'],notification_callback)
             self.app.candidatesLive[k]["averagePriceDropP"] = drop
             self.app.candidatesLive[k]["averagePriceSpreadP"] = change
             notification_callback.emit(
@@ -274,8 +274,8 @@ Process Open positions and Candidates
         # process
         self.process_candidates(notification_callback)
         self.process_positions(notification_callback)
-        notification_callback.emit("...............Worker finished.........................")
-        return "Last worker execution" + local_time
+        notification_callback.emit("...............Worker finished....."+local_time+"....................")
+
 
     def run_loop(self):
         self.app.run()
