@@ -157,7 +157,8 @@ class TraderSettings():
         self.config.read('config.ini')
         self.PORT = self.config['Connection']['port']
         self.ACCOUNT = self.config['Account']['acc']
-        self.INTERVAL = self.config['Connection']['interval']
+        self.INTERVALUI = self.config['Connection']['INTERVALUI']
+        self.INTERVALWORKER = self.config['Connection']['INTERVALWORKER']
         if platform == "linux" or platform == "linux2":
             self.PATHTOWEBDRIVER = self.config['Connection']['macPathToWebdriver']
         elif platform == "darwin":  # mac os
@@ -180,7 +181,8 @@ class TraderSettings():
     def write_config(self):
         self.config['Connection']['port'] = self.PORT
         self.config['Account']['acc'] = self.ACCOUNT
-        self.config['Connection']['interval'] = str(self.INTERVAL)
+        self.config['Connection']['INTERVALUI'] = str(self.INTERVALUI)
+        self.config['Connection']['INTERVALWORKER'] = str(self.INTERVALWORKER)
         if platform == "linux" or platform == "linux2":
             self.config['Connection']['macPathToWebdriver'] = self.PATHTOWEBDRIVER
         elif platform == "darwin":  # mac os
@@ -248,7 +250,7 @@ Starts the connection to the IBKR terminal in separate thread
         """
 Starts the Timer with interval from Config file
         """
-        self.timer.start(int(self.settings.INTERVAL) * 1000)
+        self.timer.start(int(self.settings.INTERVALUI) * 1000)
 
     def run_worker(self):
         """
@@ -422,7 +424,8 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
         self.settings.BULCKAMOUNT = self.spBulck.value()
         self.settings.ACCOUNT = self.txtAccount.text()
         self.settings.PORT = self.txtPort.text()
-        self.settings.INTERVAL = self.spInterval.value()
+        self.settings.INTERVALUI = self.spINTERVALUI.value()
+        self.settings.INTERVALWORKER = self.spINTERVALWORKER.value()
         self.settings.TECHFROMHOUR = self.tmTechFrom.time().hour()
         self.settings.TECHFROMMIN = self.tmTechFrom.time().minute()
         self.settings.TECHTOHOUR = self.tmTechTo.time().hour()
@@ -454,8 +457,8 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
         self.txtPort.setText(self.settings.PORT)
         self.txtPort.textChanged.connect(self.setting_change)
 
-        self.spInterval.setValue(int(self.settings.INTERVAL))
-        self.spInterval.valueChanged.connect(self.setting_change)
+        self.spIntervalWorker.setValue(int(self.settings.INTERVALWORKER))
+        self.spIntervalWorker.valueChanged.connect(self.setting_change)
 
         self.tmTechFrom.setTime(QTime(int(self.settings.TECHFROMHOUR), int(self.settings.TECHFROMMIN)))
         self.tmTechFrom.timeChanged.connect(self.setting_change)
