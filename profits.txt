@@ -1,0 +1,1 @@
+12-Oct-2020 (17:43:43.558175)---Created a Trailing Stop order for AAPL at level of 1%

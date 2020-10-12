@@ -90,11 +90,16 @@ class WorkerSignals(QObject):
     result
         `object` data returned from processing, anything
 
+    progress
+        `int` indicating % progress
+
     '''
     finished = Signal()  # QtCore.Signal
     error = Signal(tuple)
-    result = Signal(object)
-    status = Signal(object)
+    result = Signal(object)  # returned by end of function
+    status = Signal(object)  # to update a status bar
+    notification = Signal(object)  # to update a Console
+    progress = Signal(int)  # to use for progress if needed
 
 
 class Worker(QRunnable):
@@ -113,13 +118,18 @@ class Worker(QRunnable):
 
     def __init__(self, fn, *args, **kwargs):
         super(Worker, self).__init__()
+
         # Store constructor arguments (re-used for processing)
         self.fn = fn
         self.args = args
         self.kwargs = kwargs
         self.signals = WorkerSignals()
 
-    @Slot()  # QtCore.Slot
+        # Add the callback to our kwargs
+        self.kwargs['notification_callback'] = self.signals.notification
+        self.kwargs['status_callback'] = self.signals.status
+
+    @Slot()
     def run(self):
         '''
         Initialise the runner function with passed args, kwargs.
@@ -127,9 +137,7 @@ class Worker(QRunnable):
 
         # Retrieve args/kwargs here; and fire processing using them
         try:
-            result = self.fn(
-                *self.args, **self.kwargs
-            )
+            result = self.fn(*self.args, **self.kwargs)
         except:
             traceback.print_exc()
             exctype, value = sys.exc_info()[:2]
@@ -161,35 +169,34 @@ class TraderSettings():
         self.LOSS = self.config['Algo']['lossP']
         self.TRAIL = self.config['Algo']['trailstepP']
         self.BULCKAMOUNT = self.config['Algo']['bulkAmountUSD']
-        self.TRANDINGSTOCKS =ast.literal_eval(self.config['Algo']['TrandingStocks'])
-        self.TECHFROMHOUR=self.config['Connection']['techfromHour']
-        self.TECHFROMMIN=self.config['Connection']['techfromMin']
-        self.TECHTOHOUR=self.config['Connection']['techtoHour']
-        self.TECHTOMIN=self.config['Connection']['techtoMin']
+        self.TRANDINGSTOCKS = ast.literal_eval(self.config['Algo']['TrandingStocks'])
+        self.TECHFROMHOUR = self.config['Connection']['techfromHour']
+        self.TECHFROMMIN = self.config['Connection']['techfromMin']
+        self.TECHTOHOUR = self.config['Connection']['techtoHour']
+        self.TECHTOMIN = self.config['Connection']['techtoMin']
 
         # self.TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL", "ETSY", "IVAC"]
 
     def write_config(self):
-        self.config['Connection']['port']=self.PORT
-        self.config['Account']['acc']=self.ACCOUNT
-        self.config['Connection']['interval']=str(self.INTERVAL)
+        self.config['Connection']['port'] = self.PORT
+        self.config['Account']['acc'] = self.ACCOUNT
+        self.config['Connection']['interval'] = str(self.INTERVAL)
         if platform == "linux" or platform == "linux2":
-             self.config['Connection']['macPathToWebdriver']=self.PATHTOWEBDRIVER
+            self.config['Connection']['macPathToWebdriver'] = self.PATHTOWEBDRIVER
         elif platform == "darwin":  # mac os
-             self.config['Connection']['macPathToWebdriver']=self.PATHTOWEBDRIVER
+            self.config['Connection']['macPathToWebdriver'] = self.PATHTOWEBDRIVER
         elif platform == "win32":
-             self.config['Connection']['winPathToWebdriver']=self.PATHTOWEBDRIVER
+            self.config['Connection']['winPathToWebdriver'] = self.PATHTOWEBDRIVER
         # alg
-        self.config['Algo']['gainP']=str(self.PROFIT)
-        self.config['Algo']['lossP']=str(self.LOSS)
-        self.config['Algo']['trailstepP']=str(self.TRAIL)
-        self.config['Algo']['bulkAmountUSD']=str(self.BULCKAMOUNT)
-        self.config['Algo']['TrandingStocks']=str(self.TRANDINGSTOCKS)
+        self.config['Algo']['gainP'] = str(self.PROFIT)
+        self.config['Algo']['lossP'] = str(self.LOSS)
+        self.config['Algo']['trailstepP'] = str(self.TRAIL)
+        self.config['Algo']['bulkAmountUSD'] = str(self.BULCKAMOUNT)
+        self.config['Algo']['TrandingStocks'] = str(self.TRANDINGSTOCKS)
         self.config['Connection']['techfromHour'] = str(self.TECHFROMHOUR)
         self.config['Connection']['techfromMin'] = str(self.TECHFROMMIN)
         self.config['Connection']['techtoHour'] = str(self.TECHTOHOUR)
         self.config['Connection']['techtoMin'] = str(self.TECHTOMIN)
-
 
         with open('config.ini', 'w') as configfile:
             self.config.write(configfile)
@@ -205,9 +212,9 @@ class MainWindow(MainBaseClass, Ui_MainWindow):
         self.ibkrworker = IBKRWorker(self.settings)
         self.threadpool = QThreadPool()
 
-        # redirecting Cosole to UI and Log
-        sys.stdout = OutLog(self.consoleOut, sys.stdout)
-        sys.stderr = OutLog(self.consoleOut, sys.stderr)
+        # # redirecting Cosole to UI and Log
+        # sys.stdout = OutLog(self.consoleOut, sys.stdout)
+        # sys.stderr = OutLog(self.consoleOut, sys.stderr)
 
         # setting a timer for Worker
         self.timer = QTimer()
@@ -220,6 +227,7 @@ class MainWindow(MainBaseClass, Ui_MainWindow):
 
         self.statusbar.showMessage("Ready")
         print("AlgoTraider is started... waiting to connect...")
+        self.connect_to_ibkr()
 
     def connect_to_ibkr(self):
         """
@@ -230,11 +238,11 @@ Starts the connection to the IBKR terminal in separate thread
 
         connector = Worker(self.ibkrworker.connect_and_prepare)  # Any other args, kwargs are passed to the run function
         connector.signals.result.connect(self.update_ui)
-        connector.signals.finished.connect(self.thread_complete)
+        connector.signals.status.connect(self.update_status)
+        connector.signals.notification.connect(self.update_console)
         # Execute
         self.threadpool.start(connector)
         self.btnStart.setEnabled(True)
-        self.statusbar.showMessage("Started Connect")
 
     def start_timer(self):
         """
@@ -246,20 +254,20 @@ Starts the Timer with interval from Config file
         """
 Executed the Worker in separate thread
         """
-        currentTime=QTime().currentTime()
-        fromTime=QTime(int(self.settings.TECHFROMHOUR),int(self.settings.TECHFROMMIN))
-        toTime=QTime(int(self.settings.TECHTOHOUR),int(self.settings.TECHTOMIN))
-        if currentTime>fromTime and currentTime<toTime:
-            print("Worker skept-Technical break : ",fromTime.toString("hh:mm")," to ",toTime.toString("hh:mm"))
-            self.update_ui("Technical break untill "+toTime.toString("hh:mm"))
+        currentTime = QTime().currentTime()
+        fromTime = QTime(int(self.settings.TECHFROMHOUR), int(self.settings.TECHFROMMIN))
+        toTime = QTime(int(self.settings.TECHTOHOUR), int(self.settings.TECHTOMIN))
+        if currentTime > fromTime and currentTime < toTime:
+            print("Worker skept-Technical break : ", fromTime.toString("hh:mm"), " to ", toTime.toString("hh:mm"))
+            self.update_ui("Technical break untill " + toTime.toString("hh:mm"))
         else:
             worker = Worker(
                 self.ibkrworker.process_positions_candidates)  # Any other args, kwargs are passed to the run function
             worker.signals.result.connect(self.update_ui)
-            worker.signals.finished.connect(self.thread_complete)
+            worker.signals.status.connect(self.update_status)
+            worker.signals.notification.connect(self.update_console)
             # Execute
             self.threadpool.start(worker)
-            self.statusbar.showMessage("Executing Worker")
 
     def update_ui(self, s):
         """
@@ -272,10 +280,41 @@ Updates UI after connection/worker execution
         self.update_live_candidates()
         self.update_open_orders()
 
-        self.statusbar.showMessage(s)
-        self.update_console()
+        self.statusbar.showMessage(s)  # display result
+        # self.update_consoleO()
 
-    def update_console(self):
+    def progress_fn(self, n):
+        msgBox = QMessageBox()
+        msgBox.setText(str(n))
+        retval = msgBox.exec_()
+
+    def update_status(self, s):
+        """
+Updates StatusBar on event of Status
+        :param s:
+        """
+        self.statusbar.showMessage(s)
+
+    def update_console(self, n):
+        """
+Adds Message to console- upon event
+        :param n:
+        """
+        self.consoleOut.append(n)
+        self.log_message(n)
+
+    def log_message(self,message):
+        """
+Adds message to the standard log
+        :param message:
+        """
+        with open(LOGFILE, "a") as f:
+            currentDt = datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
+            message = "\n"+currentDt + '---' + message
+            f.write(message)
+
+
+    def update_consoleO(self):
         # errors part
         log = sys.stderr.logLine
         self.consoleOut.append(log)
@@ -360,11 +399,11 @@ Updates Positions table
         """
 After threaded task finished
         """
-        print("TASK COMPLETE!")
+        print("TREAD COMPLETE (good or bad)!")
 
     def show_settings(self):
         settingsW.show()
-        settingsW.changedSettings=False
+        settingsW.changedSettings = False
 
 
 class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
@@ -374,26 +413,23 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
         Ui_SettingsWindow.__init__(self)
         self.settings = inSettings
         self.setupUi(self)
-        self.changedSettings=False
-
-
+        self.changedSettings = False
 
     def setting_change(self):
-        self.settings.PROFIT=self.spProfit.value()
+        self.settings.PROFIT = self.spProfit.value()
         self.settings.TRAIL = self.spTrail.value()
         self.settings.LOSS = self.spLoss.value()
         self.settings.BULCKAMOUNT = self.spBulck.value()
         self.settings.ACCOUNT = self.txtAccount.text()
         self.settings.PORT = self.txtPort.text()
         self.settings.INTERVAL = self.spInterval.value()
-        self.settings.TECHFROMHOUR=self.tmTechFrom.time().hour()
-        self.settings.TECHFROMMIN=self.tmTechFrom.time().minute()
-        self.settings.TECHTOHOUR=self.tmTechTo.time().hour()
-        self.settings.TECHTOMIN=self.tmTechTo.time().minute()
+        self.settings.TECHFROMHOUR = self.tmTechFrom.time().hour()
+        self.settings.TECHFROMMIN = self.tmTechFrom.time().minute()
+        self.settings.TECHTOHOUR = self.tmTechTo.time().hour()
+        self.settings.TECHTOMIN = self.tmTechTo.time().minute()
 
         self.changedSettings = True
         print("Setting was changed.")
-
 
     def showEvent(self, event):
         self.settingsBackup = copy.deepcopy(self.settings)
@@ -421,16 +457,16 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
         self.spInterval.setValue(int(self.settings.INTERVAL))
         self.spInterval.valueChanged.connect(self.setting_change)
 
-        self.tmTechFrom.setTime(QTime(int(self.settings.TECHFROMHOUR),int(self.settings.TECHFROMMIN)))
+        self.tmTechFrom.setTime(QTime(int(self.settings.TECHFROMHOUR), int(self.settings.TECHFROMMIN)))
         self.tmTechFrom.timeChanged.connect(self.setting_change)
 
-        self.tmTechTo.setTime(QTime(int(self.settings.TECHTOHOUR),int(self.settings.TECHTOMIN)))
+        self.tmTechTo.setTime(QTime(int(self.settings.TECHTOHOUR), int(self.settings.TECHTOMIN)))
         self.tmTechTo.timeChanged.connect(self.setting_change)
-
 
     def closeEvent(self, event):
         if self.changedSettings:
-            reply = QMessageBox.question(self, 'Settings Changed', 'Accepting requires manual restart-automatic-to be delivered-save changes?',
+            reply = QMessageBox.question(self, 'Settings Changed',
+                                         'Accepting requires manual restart-automatic-to be delivered-save changes?',
                                          QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 
             if reply == QMessageBox.Yes:
@@ -438,9 +474,7 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
                 self.settings.write_config()
                 print("Settings were changed.Saved to file")
             else:
-                self.settings=copy.deepcopy(self.settingsBackup)
-
-
+                self.settings = copy.deepcopy(self.settingsBackup)
 
 
 app = QApplication(sys.argv)
