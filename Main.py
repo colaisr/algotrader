@@ -243,7 +243,7 @@ Starts the connection to the IBKR terminal in separate thread
         connector.signals.notification.connect(self.update_console)
         # Execute
         self.threadpool.start(connector)
-        self.chbxProcess.setEnabled(True)
+
 
     def process_checked(self):
         """
@@ -272,6 +272,7 @@ Executed the Worker in separate thread
             worker.signals.notification.connect(self.update_console)
             # Execute
             self.threadpool.start(worker)
+            i=3
 
     def update_ui(self):
         """
@@ -283,6 +284,10 @@ Updates UI after connection/worker execution
         self.update_open_positions()
         self.update_live_candidates()
         self.update_open_orders()
+
+        #everything disabled for safety - is now enabled
+        self.chbxProcess.setEnabled(True)
+        self.btnSettings.setEnabled(True)
 
         self.uiTimer.start(int(self.settings.INTERVALUI) * 1000)  # reset the ui timer
         self.update_status("Updated: " + QTime.currentTime().toString())
@@ -318,19 +323,6 @@ Adds message to the standard log
             currentDt = datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
             message = "\n" + currentDt + '---' + message
             f.write(message)
-
-    def update_consoleO(self):
-        # errors part
-        log = sys.stderr.logLine
-        self.consoleOut.append(log)
-        sys.stderr.flush_to_log_file(log)
-        sys.stderr.logLine = ""
-
-        # messages part
-        log = sys.stdout.logLine
-        self.consoleOut.append(log)
-        sys.stdout.flush_to_log_file(log)
-        sys.stdout.logLine = ""
 
     def update_live_candidates(self):
         """
@@ -412,6 +404,27 @@ After threaded task finished
         settingsW.changedSettings = False
 
 
+    def restart_all(self):
+        """
+Restarts everything after Save
+        """
+        self.threadpool.waitForDone()
+        self.uiTimer.stop()
+        self.workerTimer.stop()
+        self.update_console("Configuration changed - restarting everything")
+        self.chbxProcess.setEnabled(False)
+        self.chbxProcess.setChecked(False)
+        self.btnSettings.setEnabled(False)
+        self.ibkrworker.app.disconnect()
+        self.ibkrworker =None
+        self.ibkrworker = IBKRWorker(self.settings)
+        self.connect_to_ibkr()
+
+
+        i=4
+
+
+
 class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
     def __init__(self, inSettings):
         # mandatory
@@ -428,8 +441,8 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
         self.settings.BULCKAMOUNT = self.spBulck.value()
         self.settings.ACCOUNT = self.txtAccount.text()
         self.settings.PORT = self.txtPort.text()
-        self.settings.INTERVALUI = self.spINTERVALUI.value()
-        self.settings.INTERVALWORKER = self.spINTERVALWORKER.value()
+        self.settings.INTERVALUI = self.spIntervalUi.value()
+        self.settings.INTERVALWORKER = self.spIntervalWorker.value()
         self.settings.TECHFROMHOUR = self.tmTechFrom.time().hour()
         self.settings.TECHFROMMIN = self.tmTechFrom.time().minute()
         self.settings.TECHTOHOUR = self.tmTechTo.time().hour()
@@ -464,6 +477,9 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
         self.spIntervalWorker.setValue(int(self.settings.INTERVALWORKER))
         self.spIntervalWorker.valueChanged.connect(self.setting_change)
 
+        self.spIntervalUi.setValue(int(self.settings.INTERVALUI))
+        self.spIntervalUi.valueChanged.connect(self.setting_change)
+
         self.tmTechFrom.setTime(QTime(int(self.settings.TECHFROMHOUR), int(self.settings.TECHFROMMIN)))
         self.tmTechFrom.timeChanged.connect(self.setting_change)
 
@@ -480,6 +496,7 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
                 event.accept()
                 self.settings.write_config()
                 print("Settings were changed.Saved to file")
+                window.restart_all()
             else:
                 self.settings = copy.deepcopy(self.settingsBackup)
 

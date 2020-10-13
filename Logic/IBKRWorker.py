@@ -186,7 +186,7 @@ Evaluates stock for buying
         if ask_price == -1:  # market is closed
             notification_callback.emit('The market is closed skipping...')
         elif ask_price < target_price and float(tipRank) > 8:
-            self.buy_the_stock(ask_price, s)
+            self.buy_the_stock(ask_price, s,notification_callback)
         else:
             notification_callback.emit(
                 "The price of :" + str(ask_price) + "was not in range of :" + str(average_daily_dropP) + " % " +
