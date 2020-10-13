@@ -5,10 +5,10 @@ import traceback, sys
 import configparser
 from sys import platform
 
-from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer, QTime
+from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer, QTime, QDir
 from PySide2.QtGui import QColor, QTextCursor
 from PySide2.QtUiTools import loadUiType
-from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QWidget, QMessageBox
+from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QWidget, QMessageBox, QInputDialog, QLineEdit
 
 from Logic.IBKRWorker import IBKRWorker
 
@@ -244,7 +244,6 @@ Starts the connection to the IBKR terminal in separate thread
         # Execute
         self.threadpool.start(connector)
 
-
     def process_checked(self):
         """
 Starts the Timer with interval from Config file
@@ -272,7 +271,7 @@ Executed the Worker in separate thread
             worker.signals.notification.connect(self.update_console)
             # Execute
             self.threadpool.start(worker)
-            i=3
+            i = 3
 
     def update_ui(self):
         """
@@ -285,7 +284,7 @@ Updates UI after connection/worker execution
         self.update_live_candidates()
         self.update_open_orders()
 
-        #everything disabled for safety - is now enabled
+        # everything disabled for safety - is now enabled
         self.chbxProcess.setEnabled(True)
         self.btnSettings.setEnabled(True)
 
@@ -403,7 +402,6 @@ After threaded task finished
         settingsW.show()
         settingsW.changedSettings = False
 
-
     def restart_all(self):
         """
 Restarts everything after Save
@@ -416,13 +414,11 @@ Restarts everything after Save
         self.chbxProcess.setChecked(False)
         self.btnSettings.setEnabled(False)
         self.ibkrworker.app.disconnect()
-        self.ibkrworker =None
+        self.ibkrworker = None
         self.ibkrworker = IBKRWorker(self.settings)
         self.connect_to_ibkr()
 
-
-        i=4
-
+        i = 4
 
 
 class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
@@ -448,8 +444,8 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
         self.settings.TECHTOHOUR = self.tmTechTo.time().hour()
         self.settings.TECHTOMIN = self.tmTechTo.time().minute()
 
-        self.settings.TRANDINGSTOCKS=[str(self.lstCandidates.item(i).text()) for i in range(self.lstCandidates.count())]
-
+        self.settings.TRANDINGSTOCKS = [str(self.lstCandidates.item(i).text()) for i in
+                                        range(self.lstCandidates.count())]
 
         self.changedSettings = True
         print("Setting was changed.")
@@ -491,9 +487,8 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
         self.tmTechTo.setTime(QTime(int(self.settings.TECHTOHOUR), int(self.settings.TECHTOMIN)))
         self.tmTechTo.timeChanged.connect(self.setting_change)
 
-
         self.btnRemoveC.clicked.connect(self.remove_Candidate)
-
+        self.btnAddC.clicked.connect(self.add_candidate)
 
     def remove_Candidate(self):
         item = self.lstCandidates.takeItem(self.lstCandidates.currentRow())
@@ -505,6 +500,15 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
         # for i in range(self.lstCandidates.count()):
         #     item = self.lstCandidates.item(i)
         #     self.lstCandidates.setItemSelected(item, False)
+
+    def add_candidate(self):
+        text, ok = QInputDialog().getText(self, "New Candidate",
+                                          "Stock:", QLineEdit.Normal)
+
+        if ok and text:
+            self.lstCandidates.addItem(text.upper())
+
+        self.setting_change()
 
     def candidate_selected(self):
         self.btnRemoveC.setEnabled(True)
