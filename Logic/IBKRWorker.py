@@ -221,9 +221,14 @@ Update target price for all tracked stocks
                 notification_callback.emit("Target price for " + str(c["Stock"]) + " updated to " + str(
                     c["target_price"]) + " based on Close price")
             else:
-                c["target_price"] = last - last / 100 * average_daily_dropP
-                notification_callback.emit("Target price for " + str(c["Stock"]) + " updated to " + str(
-                    c["target_price"]) + " based on last price")
+                if last=='-':
+                    c["target_price"]=0
+                    notification_callback.emit("Skept target price for "+str(c["Stock"])+" last prise missing")
+                    continue
+                else:
+                    c["target_price"] = last - last / 100 * average_daily_dropP
+                    notification_callback.emit("Target price for " + str(c["Stock"]) + " updated to " + str(
+                        c["target_price"]) + " based on last price")
 
     def buy_the_stock(self, price, s, notification_callback=None):
         """

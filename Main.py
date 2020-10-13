@@ -448,13 +448,18 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
         self.settings.TECHTOHOUR = self.tmTechTo.time().hour()
         self.settings.TECHTOMIN = self.tmTechTo.time().minute()
 
+        self.settings.TRANDINGSTOCKS=[str(self.lstCandidates.item(i).text()) for i in range(self.lstCandidates.count())]
+
+
         self.changedSettings = True
         print("Setting was changed.")
 
     def showEvent(self, event):
         self.settingsBackup = copy.deepcopy(self.settings)
         self.lstCandidates.clear()
+        self.btnRemoveC.setEnabled(False)
         self.lstCandidates.insertItems(0, self.settings.TRANDINGSTOCKS)
+        self.lstCandidates.itemClicked.connect(self.candidate_selected)
 
         self.spProfit.setValue(int(self.settings.PROFIT))
         self.spProfit.valueChanged.connect(self.setting_change)
@@ -485,6 +490,24 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
 
         self.tmTechTo.setTime(QTime(int(self.settings.TECHTOHOUR), int(self.settings.TECHTOMIN)))
         self.tmTechTo.timeChanged.connect(self.setting_change)
+
+
+        self.btnRemoveC.clicked.connect(self.remove_Candidate)
+
+
+    def remove_Candidate(self):
+        item = self.lstCandidates.takeItem(self.lstCandidates.currentRow())
+
+        item = None
+        self.setting_change()
+        self.btnRemoveC.setEnabled(False)
+
+        # for i in range(self.lstCandidates.count()):
+        #     item = self.lstCandidates.item(i)
+        #     self.lstCandidates.setItemSelected(item, False)
+
+    def candidate_selected(self):
+        self.btnRemoveC.setEnabled(True)
 
     def closeEvent(self, event):
         if self.changedSettings:
