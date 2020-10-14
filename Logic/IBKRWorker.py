@@ -136,7 +136,7 @@ Processes the positions to identify Profit/Loss
                     self.app.nextorderId = self.app.nextorderId + 1
                     notification_callback.emit("Created a Trailing Stop order for " + s + " at level of " +
                                                str(self.settings.TRAIL) + "%")
-                    self.log_decision("profits.txt",
+                    self.log_decision("LOGS/profits.txt",
                                       "Created a Trailing Stop order for " + s + " at level of " + self.settings.TRAIL + "%")
                     for k, v in self.app.candidatesLive.items():
                         if v['Stock'] == s:
@@ -158,7 +158,7 @@ Processes the positions to identify Profit/Loss
                     self.app.placeOrder(self.app.nextorderId, contract, order)
                     self.app.nextorderId = self.app.nextorderId + 1
                     notification_callback.emit("Created a Market Sell order for " + s)
-                    self.log_decision("loses.txt", "Created a Market Sell order for " + s)
+                    self.log_decision("LOGS/loses.txt", "Created a Market Sell order for " + s)
                     for k, v in self.app.candidatesLive.items():
                         if v['Stock'] == s:
                             self.log_decision("buys.txt", "Candidate was : Open: " + str(v['Open']) + " Close: " + str(
@@ -243,7 +243,7 @@ Creates order to buy a stock at specific price
             self.app.placeOrder(self.app.nextorderId, contract, order)
             self.app.nextorderId = self.app.nextorderId + 1
             notification_callback.emit("Issued the BUY order at ", price, "for ", stocksToBuy, " Stocks of ", s)
-            self.log_decision("buys.txt", "Issued the BUY order at " + price + "for " + stocksToBuy + " Stocks of " + s)
+            self.log_decision("LOGS/buys.txt", "Issued the BUY order at " + price + "for " + stocksToBuy + " Stocks of " + s)
             for k, v in self.app.candidatesLive.items():
                 if v['Stock'] == s:
                     self.log_decision("buys.txt", "Candidate was : Open: " + str(v['Open']) + " Close: " + str(
