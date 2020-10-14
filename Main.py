@@ -215,6 +215,8 @@ class MainWindow(MainBaseClass, Ui_MainWindow):
         self.ibkrworker = IBKRWorker(self.settings)
         self.threadpool = QThreadPool()
 
+        sys.stderr = open('LOG/errorLog.txt', 'w')
+
         # # redirecting Cosole to UI and Log
         # sys.stdout = OutLog(self.consoleOut, sys.stdout)
         # sys.stderr = OutLog(self.consoleOut, sys.stderr)
