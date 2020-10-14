@@ -4,6 +4,7 @@ from datetime import datetime
 import traceback, sys
 import configparser
 from sys import platform
+from pytz import timezone
 
 from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer, QTime, QDir
 from PySide2.QtGui import QColor, QTextCursor
@@ -288,10 +289,33 @@ Updates UI after connection/worker execution
         self.chbxProcess.setEnabled(True)
         self.btnSettings.setEnabled(True)
 
+        self.update_session_state()
+
         self.uiTimer.start(int(self.settings.INTERVALUI) * 1000)  # reset the ui timer
-        self.update_status("Updated: " + QTime.currentTime().toString())
 
         # self.update_consoleO()
+
+    def update_session_state(self):
+        est = timezone('US/Eastern')
+        fmt = '%Y-%m-%d %H:%M:%S'
+        self.est_dateTime = datetime.now(est)
+        self.est_current_time=QTime(self.est_dateTime.hour,self.est_dateTime.minute,self.est_dateTime.second)
+        self.lblTime.setText(self.est_current_time.toString())
+        dStart=QTime(4,00)
+        dEnd=QTime(20,00)
+        tStart=QTime(9,30)
+        tEnd=QTime(16,0)
+        if self.est_current_time>dStart and self.est_current_time<=tStart:
+            self.lblMarket.setText("Pre Market")
+        elif self.est_current_time>tStart and self.est_current_time<=tEnd:
+            self.lblMarket.setText("Open")
+        elif self.est_current_time>tEnd and self.est_current_time<=dEnd:
+            self.lblMarket.setText("After Market")
+        else:
+            self.lblMarket.setText("Closed")
+
+
+
 
     def progress_fn(self, n):
         msgBox = QMessageBox()
@@ -345,7 +369,7 @@ Updates Candidates table
 
                 line += 1
         except Exception as e:
-            print("Error loading Candidates table: ", str(e))
+            self.update_console("Error loading Candidates table: "+ str(e))
 
     def update_open_positions(self):
         """
@@ -374,7 +398,7 @@ Updates Positions table
                     self.tPositions.item(line, 5).setBackgroundColor(QColor(255, 51, 0))
                 line += 1
         except Exception as e:
-            print("Error loading Open Positions table: ", str(e))
+            self.update_console("Error loading Open Positions table: "+ str(e))
 
     def update_open_orders(self):
         """
@@ -390,7 +414,7 @@ Updates Positions table
                 self.tOrders.setItem(line, 2, QTableWidgetItem(v['Type']))
                 line += 1
         except Exception as e:
-            print("Error loading Orders table: ", str(e))
+            self.update_console("Error loading Orders table: "+str(e))
 
     def thread_complete(self):
         """

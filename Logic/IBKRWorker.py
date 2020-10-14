@@ -282,7 +282,7 @@ processes candidates for buying
 Process Open positions and Candidates
         """
         status_callback.emit("Processing Positions-Candidates ")
-        est = timezone('EST')
+        est = timezone('US/Eastern')
         fmt = '%Y-%m-%d %H:%M:%S'
         local_time = datetime.now().strftime(fmt)
         est_time = datetime.now(est).strftime(fmt)
@@ -303,7 +303,7 @@ Process Open positions and Candidates
         # process
         self.process_candidates(notification_callback)
         self.process_positions(notification_callback)
-        notification_callback.emit("...............Worker finished....." + local_time + "....................")
+        notification_callback.emit("...............Worker finished....EST Time: " + est_time + "...................")
 
     def run_loop(self):
         self.app.run()

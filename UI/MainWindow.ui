@@ -20,14 +20,14 @@
      <height>400</height>
     </size>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
      <widget class="QSplitter" name="splitter">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
-      <widget class="QWidget" name="layoutWidget">
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <widget class="QWidget" name="">
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
@@ -88,6 +88,46 @@
          </spacer>
         </item>
         <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+             <widget class="QLabel" name="label_4">
+              <property name="text">
+               <string>EST time :</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_5">
+              <property name="text">
+               <string>US Market:</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <widget class="QLabel" name="lblTime">
+              <property name="text">
+               <string>tbd</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lblMarket">
+              <property name="text">
+               <string>tbd</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
          <widget class="QCheckBox" name="chbxProcess">
           <property name="enabled">
            <bool>false</bool>
@@ -99,159 +139,181 @@
         </item>
        </layout>
       </widget>
-      <widget class="QLabel" name="lblPositions">
-       <property name="text">
-        <string>Positions</string>
-       </property>
+      <widget class="QWidget" name="">
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <widget class="QLabel" name="lblPositions">
+          <property name="text">
+           <string>Positions</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tPositions">
+          <column>
+           <property name="text">
+            <string>Stock</string>
+           </property>
+           <property name="foreground">
+            <brush brushstyle="NoBrush">
+             <color alpha="255">
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+            </brush>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Quantity</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Av. Price</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Market Value</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>General PnL</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>% Profit</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Last Update</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
       </widget>
-      <widget class="QTableWidget" name="tPositions">
-       <column>
-        <property name="text">
-         <string>Stock</string>
-        </property>
-        <property name="foreground">
-         <brush brushstyle="NoBrush">
-          <color alpha="255">
-           <red>0</red>
-           <green>0</green>
-           <blue>0</blue>
-          </color>
-         </brush>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Quantity</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Av. Price</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Market Value</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>General PnL</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>% Profit</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Last Update</string>
-        </property>
-       </column>
+      <widget class="QWidget" name="">
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="QLabel" name="lblCandidates">
+          <property name="text">
+           <string>Candidates</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tCandidates">
+          <column>
+           <property name="text">
+            <string>Stock</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Open</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Close</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Bid</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Ask</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Last price</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Target price</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Average drop</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Rank</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Last Update</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
       </widget>
-      <widget class="QLabel" name="lblCandidates">
-       <property name="text">
-        <string>Candidates</string>
-       </property>
+      <widget class="QWidget" name="">
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QLabel" name="lblOrders">
+          <property name="text">
+           <string>Orders</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tOrders">
+          <column>
+           <property name="text">
+            <string>Stock</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Action</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Type</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
       </widget>
-      <widget class="QTableWidget" name="tCandidates">
-       <column>
-        <property name="text">
-         <string>Stock</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Open</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Close</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Bid</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Ask</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Last price</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Target price</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Average drop</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Rank</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Last Update</string>
-        </property>
-       </column>
-      </widget>
-      <widget class="QLabel" name="lblOrders">
-       <property name="text">
-        <string>Orders</string>
-       </property>
-      </widget>
-      <widget class="QTableWidget" name="tOrders">
-       <column>
-        <property name="text">
-         <string>Stock</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Action</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Type</string>
-        </property>
-       </column>
-      </widget>
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>Console</string>
-       </property>
-      </widget>
-      <widget class="QTextEdit" name="consoleOut">
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
+      <widget class="QWidget" name="">
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Console</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="consoleOut">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
    </layout>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1282</width>
-     <height>22</height>
-    </rect>
-   </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
