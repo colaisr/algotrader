@@ -20,7 +20,7 @@ main_window_file = "UI/MainWindow.ui"
 settings_window_file = "UI/SettingsWindow.ui"
 Ui_MainWindow, MainBaseClass = loadUiType(main_window_file)
 Ui_SettingsWindow, SettingsBaseClass = loadUiType(settings_window_file)
-LOGFILE = "LOGS/log.txt"
+LOGFILE = "LOG/log.txt"
 
 
 class OutLog:
