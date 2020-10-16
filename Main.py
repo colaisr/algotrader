@@ -1,6 +1,6 @@
 import ast
 import copy
-from datetime import datetime
+from datetime import datetime, time
 import traceback, sys
 import configparser
 from sys import platform
@@ -265,8 +265,9 @@ Executed the Worker in separate thread
         toTime = QTime(int(self.settings.TECHTOHOUR), int(self.settings.TECHTOMIN))
         if currentTime > fromTime and currentTime < toTime:
             print("Worker skept-Technical break : ", fromTime.toString("hh:mm"), " to ", toTime.toString("hh:mm"))
-            self.update_ui("Technical break untill " + toTime.toString("hh:mm"))
+            self.update_console("Technical break untill " + toTime.toString("hh:mm"))
         else:
+            self.uiTimer.stop()# to not cause an errors when lists will be resetted
             worker = Worker(
                 self.ibkrworker.process_positions_candidates)  # Any other args, kwargs are passed to the run function
             worker.signals.result.connect(self.update_ui)
@@ -274,13 +275,14 @@ Executed the Worker in separate thread
             worker.signals.notification.connect(self.update_console)
             # Execute
             self.threadpool.start(worker)
-            i = 3
+
 
     def update_ui(self):
         """
 Updates UI after connection/worker execution
         :param s:
         """
+
         self.lLiq.setText(self.ibkrworker.app.excessLiquidity)
         self.lAcc.setText(self.settings.ACCOUNT)
         self.update_open_positions()
@@ -293,6 +295,8 @@ Updates UI after connection/worker execution
 
         self.update_session_state()
 
+        if not self.uiTimer.isActive():
+           self.update_console("UI resumed.")
         self.uiTimer.start(int(self.settings.INTERVALUI) * 1000)  # reset the ui timer
 
         # self.update_consoleO()
@@ -353,6 +357,7 @@ Adds message to the standard log
         """
 Updates Candidates table
         """
+
         liveCandidates = self.ibkrworker.app.candidatesLive
         try:
             line = 0
@@ -388,9 +393,11 @@ Updates Positions table
                 self.tPositions.setItem(line, 3, QTableWidgetItem(str(round(v['Value'], 2))))
                 self.tPositions.setItem(line, 4, QTableWidgetItem(str(round(v['UnrealizedPnL'], 2))))
                 self.tPositions.setItem(line, 6, QTableWidgetItem(str(v['LastUpdate'])))
-
-                profit = v['UnrealizedPnL'] / v['Value'] * 100
-                self.tPositions.setItem(line, 5, QTableWidgetItem(str(round(profit, 2))))
+                if v['Value']!=0:
+                    profit = v['UnrealizedPnL'] / v['Value'] * 100
+                    self.tPositions.setItem(line, 5, QTableWidgetItem(str(round(profit, 2))))
+                else:
+                    profit=0
 
                 if v['UnrealizedPnL'] > 0:
                     self.tPositions.item(line, 4).setBackgroundColor(QColor(51, 204, 51))
@@ -433,13 +440,19 @@ After threaded task finished
 Restarts everything after Save
         """
         self.threadpool.waitForDone()
+        self.update_console("UI paused- for restart")
         self.uiTimer.stop()
+
         self.workerTimer.stop()
         self.update_console("Configuration changed - restarting everything")
         self.chbxProcess.setEnabled(False)
         self.chbxProcess.setChecked(False)
         self.btnSettings.setEnabled(False)
         self.ibkrworker.app.disconnect()
+        while self.ibkrworker.app.isConnected():
+            print("waiting for disconnect")
+            time.sleep(1)
+
         self.ibkrworker = None
         self.ibkrworker = IBKRWorker(self.settings)
         self.connect_to_ibkr()

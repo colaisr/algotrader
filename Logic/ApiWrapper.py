@@ -17,6 +17,8 @@ class IBapi(EWrapper, EClient):
         self.candidatesLive = {}
         self.excessLiquidity = ""
         self.generalStatus = "PnL not yet received"
+        self.finishedPostitionsGeneral=False
+        self.finishedReceivingOrders=False
 
     # def error(self, reqId: int, errorCode: int, errorString: str):
     #     if reqId > -1:
@@ -34,6 +36,8 @@ class IBapi(EWrapper, EClient):
     def pnlSingle(self, reqId: int, pos: int, dailyPnL: float, unrealizedPnL: float, realizedPnL: float, value: float):
         super().pnlSingle(reqId, pos, dailyPnL, unrealizedPnL, realizedPnL, value)
 
+
+
         if reqId in self.openPositionsLiveDataRequests.keys():
             print("position key is in requests- updating")
             s = self.openPositionsLiveDataRequests[reqId]
@@ -42,20 +46,21 @@ class IBapi(EWrapper, EClient):
             self.openPositions[s]["RealizedPnL"] = realizedPnL
             self.openPositions[s]["Value"] = value
             self.openPositions[s]["LastUpdate"] = datetime.datetime.now()
-            print("Position updated for request",str(reqId))
+            print("detailed position updated for request",str(reqId))
         else:
-            print(str(reqId)+" not found cancelling the requests")
+            print(str(reqId)+" detailed position not found cancelling the requests")
             self.cancelPnLSingle(reqId);  # cancel subscription after getting
 
     def position(self, account: str, contract: Contract, position: float, avgCost: float):
         super().position(account, contract, position, avgCost)
-        if position != 0:
-            self.openPositions[contract.symbol] = {"stocks": position, "cost": avgCost, "conId": contract.conId,
-                                                   "tracking_id": -1}
+        if position != 0:# if 0 means its empty - already sold
+            self.openPositions[contract.symbol] = {"stocks": position, "cost": avgCost, "conId": contract.conId}
+        print("Position general data received.", "Account:", account, "Symbol:", contract.symbol, "SecType:",contract.secType, "Currency:", contract.currency,contract.secType, "Currency:", contract.currency,"Position:", position, "Avg cost:", avgCost)
 
     def positionEnd(self):
         super().positionEnd()
-        print("Finished getting ", len(self.openPositions), " open Positions")
+        self.finishedPostitionsGeneral=True
+        print("Finished getting ", len(self.openPositions), " open Positions General info - requesting data per each position")
 
     def orderStatus(self, orderId, status, filled, remaining, avgFullPrice, permId, parentId, lastFillPrice, clientId,
                     whyHeld, mktCapPrice):
@@ -69,6 +74,11 @@ class IBapi(EWrapper, EClient):
         self.openOrders[contract.symbol] = {"Action": order.action, "Type": order.orderType}
         print('openOrder id:', orderId, contract.symbol, contract.secType, '@', contract.exchange, ':', order.action,
               order.orderType, order.totalQuantity, orderState.status)
+
+    def openOrderEnd(self):
+        super().openOrderEnd()
+        self.finishedReceivingOrders=True
+        print("Finished getting ", len(self.openOrders), " open Orders")
 
     def execDetails(self, reqId, contract, execution):
         super().execDetails(reqId, contract, execution)

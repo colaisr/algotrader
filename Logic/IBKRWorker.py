@@ -23,6 +23,8 @@ Connecting to IBKR API and initiating the connection instance
         self.start_tracking_excess_liquidity(notification_callback)
         # start tracking open positions
         self.update_open_positions(notification_callback)
+        #request open orders
+        self.update_open_orders(notification_callback)
         # start tracking candidates
         self.evaluate_and_track_candidates(notification_callback)
         self.update_target_price_for_tracked_stocks(notification_callback)
@@ -120,7 +122,10 @@ Starts tracking the Candidates and adds the statistics
 Processes the positions to identify Profit/Loss
         """
         notification_callback.emit("Processing profits")
+
+
         for s, p in self.app.openPositions.items():
+            notification_callback.emit("Processing "+s)
             profit = p["UnrealizedPnL"] / p["Value"] * 100
             notification_callback.emit("The profit for " + s + " is " + str(profit) + " %")
             if profit > float(self.settings.PROFIT):
@@ -304,24 +309,31 @@ Process Open positions and Candidates
         self.process_candidates(notification_callback)
         self.process_positions(notification_callback)
         notification_callback.emit("...............Worker finished....EST Time: " + est_time + "...................")
+        status_callback.emit("Connected")
 
     def run_loop(self):
         self.app.run()
 
     def update_open_positions(self, notification_callback=None):
         """
-updating all openPositions
+updating all openPositions, refreshed on each worker- to include changes from new positions after BUY
         """
         # update positions from IBKR
         notification_callback.emit("Updating open Positions:")
+        print("Request all positions general info")
+
         self.app.openPositionsLiveDataRequests = {}  # reset requests dictionary as positions could be changed...
+        self.app.openPositions={}  #reset open positions
+        self.app.finishedPostitionsGeneral=False #flag to ensure all positions received
         self.app.reqPositions()  # requesting open positions
-        time.sleep(1)
+        while(self.app.finishedPostitionsGeneral!=True):
+            print("waiting to get all general positions info")
+            time.sleep(1)
         lastId = 0
         for s, p in self.app.openPositions.items():  # start tracking one by one
             if s not in self.app.openPositionsLiveDataRequests.values():
                 id = self.app.nextorderId
-                p["tracking_id"] = id
+                self.app.openPositions[s]["tracking_id"] = id
                 self.app.openPositionsLiveDataRequests[id] = s
                 self.app.reqPnLSingle(id, self.settings.ACCOUNT, "", p["conId"])
                 notification_callback.emit("Started tracking " + s + " position PnL")
@@ -329,7 +341,7 @@ updating all openPositions
                 self.app.nextorderId += 1
 
         time.sleep(3)
-        notification_callback.emit(str(len(self.app.openPositions)) + " open positions updated")
+        notification_callback.emit(str(len(self.app.openPositions)) + " open positions completely updated")
 
     def update_open_orders(self, notification_callback=None):
         """
@@ -337,8 +349,11 @@ Requests all open orders
         """
         notification_callback.emit("Updating all open orders")
         self.app.openOrders = {}
+        self.app.finishedReceivingOrders=False
         self.app.reqAllOpenOrders()
-        time.sleep(1)
+        while(self.app.finishedReceivingOrders!=True):
+            print("waiting to get all orders info")
+            time.sleep(1)
 
         notification_callback.emit(str(len(self.app.openOrders)) + " open orders found ")
 
