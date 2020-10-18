@@ -149,30 +149,52 @@
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="hl">
-          <item>
-           <widget class="QScrollArea" name="scrollArea">
-            <property name="widgetResizable">
-             <bool>true</bool>
-            </property>
-            <widget class="QWidget" name="scrollAreaWidgetContents">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>0</y>
-               <width>1252</width>
-               <height>77</height>
-              </rect>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_2">
-              <item row="0" column="0">
-               <layout class="QGridLayout" name="gp"/>
-              </item>
-             </layout>
-            </widget>
-           </widget>
-          </item>
-         </layout>
+         <widget class="QTableWidget" name="tPositions">
+          <column>
+           <property name="text">
+            <string>Stock</string>
+           </property>
+           <property name="foreground">
+            <brush brushstyle="NoBrush">
+             <color alpha="255">
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+            </brush>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Quantity</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Av. Price</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Market Value</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>General PnL</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>% Profit</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Last Update</string>
+           </property>
+          </column>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -187,9 +209,6 @@
         </item>
         <item>
          <widget class="QTableWidget" name="tCandidates">
-          <property name="verticalScrollBarPolicy">
-           <enum>Qt::ScrollBarAlwaysOn</enum>
-          </property>
           <column>
            <property name="text">
             <string>Stock</string>

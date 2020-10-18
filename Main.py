@@ -4,17 +4,23 @@ from datetime import datetime, time
 import traceback, sys
 import configparser
 from sys import platform
+
+from PySide2 import QtWidgets, QtGui, QtCore
+from PySide2.QtGui import QPainter, Qt, QPalette, QColor
 from pytz import timezone
 
-from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer, QTime, QDir
-from PySide2.QtGui import QColor, QTextCursor
+from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer, QTime, QSize
+
 from PySide2.QtUiTools import loadUiType
-from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QWidget, QMessageBox, QInputDialog, QLineEdit
+from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QWidget, QMessageBox, QInputDialog, \
+    QLineEdit, QFormLayout, QLabel, QGridLayout, QHBoxLayout, QVBoxLayout, QSpacerItem, QSizePolicy, QDial, QScrollArea
+from qtpy import uic
 
 from Logic.IBKRWorker import IBKRWorker
 
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
+from UI.pos import Ui_position_canvas
 
 main_window_file = "UI/MainWindow.ui"
 settings_window_file = "UI/SettingsWindow.ui"
@@ -233,6 +239,7 @@ class MainWindow(MainBaseClass, Ui_MainWindow):
         self.btnSettings.pressed.connect(self.show_settings)
 
         self.statusbar.showMessage("Ready")
+        self.update_session_state()
         self.connect_to_ibkr()
 
     def connect_to_ibkr(self):
@@ -267,7 +274,7 @@ Executed the Worker in separate thread
             print("Worker skept-Technical break : ", fromTime.toString("hh:mm"), " to ", toTime.toString("hh:mm"))
             self.update_console("Technical break untill " + toTime.toString("hh:mm"))
         else:
-            self.uiTimer.stop()# to not cause an errors when lists will be resetted
+            self.uiTimer.stop()  # to not cause an errors when lists will be resetted
             worker = Worker(
                 self.ibkrworker.process_positions_candidates)  # Any other args, kwargs are passed to the run function
             worker.signals.result.connect(self.update_ui)
@@ -275,7 +282,6 @@ Executed the Worker in separate thread
             worker.signals.notification.connect(self.update_console)
             # Execute
             self.threadpool.start(worker)
-
 
     def update_ui(self):
         """
@@ -296,7 +302,7 @@ Updates UI after connection/worker execution
         self.update_session_state()
 
         if not self.uiTimer.isActive():
-           self.update_console("UI resumed.")
+            self.update_console("UI resumed.")
         self.uiTimer.start(int(self.settings.INTERVALUI) * 1000)  # reset the ui timer
 
         # self.update_consoleO()
@@ -305,23 +311,20 @@ Updates UI after connection/worker execution
         est = timezone('US/Eastern')
         fmt = '%Y-%m-%d %H:%M:%S'
         self.est_dateTime = datetime.now(est)
-        self.est_current_time=QTime(self.est_dateTime.hour,self.est_dateTime.minute,self.est_dateTime.second)
+        self.est_current_time = QTime(self.est_dateTime.hour, self.est_dateTime.minute, self.est_dateTime.second)
         self.lblTime.setText(self.est_current_time.toString())
-        dStart=QTime(4,00)
-        dEnd=QTime(20,00)
-        tStart=QTime(9,30)
-        tEnd=QTime(16,0)
-        if self.est_current_time>dStart and self.est_current_time<=tStart:
+        dStart = QTime(4, 00)
+        dEnd = QTime(20, 00)
+        tStart = QTime(9, 30)
+        tEnd = QTime(16, 0)
+        if self.est_current_time > dStart and self.est_current_time <= tStart:
             self.lblMarket.setText("Pre Market")
-        elif self.est_current_time>tStart and self.est_current_time<=tEnd:
+        elif self.est_current_time > tStart and self.est_current_time <= tEnd:
             self.lblMarket.setText("Open")
-        elif self.est_current_time>tEnd and self.est_current_time<=dEnd:
+        elif self.est_current_time > tEnd and self.est_current_time <= dEnd:
             self.lblMarket.setText("After Market")
         else:
             self.lblMarket.setText("Closed")
-
-
-
 
     def progress_fn(self, n):
         msgBox = QMessageBox()
@@ -376,38 +379,36 @@ Updates Candidates table
 
                 line += 1
         except Exception as e:
-            self.update_console("Error loading Candidates table: "+ str(e))
+            if hasattr(e, 'message'):
+                self.update_console("Error in connection and preparation : " + str(e.message))
+            else:
+                self.update_console("Error in connection and preparation : " + str(e))
 
     def update_open_positions(self):
         """
-Updates Positions table
+Updates Positions grid
         """
         openPostions = self.ibkrworker.app.openPositions
         try:
-            line = 0
-            self.tPositions.setRowCount(len(openPostions))
-            for k, v in openPostions.items():
-                self.tPositions.setItem(line, 0, QTableWidgetItem(k))
-                self.tPositions.setItem(line, 1, QTableWidgetItem(str(int(v['stocks']))))
-                self.tPositions.setItem(line, 2, QTableWidgetItem(str(round(v['cost'], 2))))
-                self.tPositions.setItem(line, 3, QTableWidgetItem(str(round(v['Value'], 2))))
-                self.tPositions.setItem(line, 4, QTableWidgetItem(str(round(v['UnrealizedPnL'], 2))))
-                self.tPositions.setItem(line, 6, QTableWidgetItem(str(v['LastUpdate'])))
-                if v['Value']!=0:
-                    profit = v['UnrealizedPnL'] / v['Value'] * 100
-                    self.tPositions.setItem(line, 5, QTableWidgetItem(str(round(profit, 2))))
-                else:
-                    profit=0
+            clearLayout(self.gp)
+            counter = 0
+            col = 0
+            row = 0
 
-                if v['UnrealizedPnL'] > 0:
-                    self.tPositions.item(line, 4).setBackgroundColor(QColor(51, 204, 51))
-                    self.tPositions.item(line, 5).setBackgroundColor(QColor(51, 204, 51))
-                else:
-                    self.tPositions.item(line, 4).setBackgroundColor(QColor(255, 51, 0))
-                    self.tPositions.item(line, 5).setBackgroundColor(QColor(255, 51, 0))
-                line += 1
+            for k, v in openPostions.items():
+                if counter % 3 == 0:
+                    col = 0
+                    row += 1
+                p = PositionPanel(k, v)
+                self.gp.addWidget(p, row, col)
+                counter += 1
+                col += 1
+
         except Exception as e:
-            self.update_console("Error loading Open Positions table: "+ str(e))
+            if hasattr(e, 'message'):
+                self.update_console("Error in connection and preparation : " + str(e.message))
+            else:
+                self.update_console("Error in connection and preparation : " + str(e))
 
     def update_open_orders(self):
         """
@@ -423,7 +424,10 @@ Updates Positions table
                 self.tOrders.setItem(line, 2, QTableWidgetItem(v['Type']))
                 line += 1
         except Exception as e:
-            self.update_console("Error loading Orders table: "+str(e))
+            if hasattr(e, 'message'):
+                self.update_console("Error in connection and preparation : " + str(e.message))
+            else:
+                self.update_console("Error in connection and preparation : " + str(e))
 
     def thread_complete(self):
         """
@@ -458,6 +462,7 @@ Restarts everything after Save
         self.connect_to_ibkr()
 
         i = 4
+
 
 
 class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
@@ -565,6 +570,36 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
                 window.restart_all()
             else:
                 self.settings = copy.deepcopy(self.settingsBackup)
+
+
+class PositionPanel(QWidget):
+    def __init__(self, stock, values):
+        super(PositionPanel, self).__init__()
+        self.ui = Ui_position_canvas()
+        self.ui.setupUi(self)
+        stock=stock
+        number_of_stocks=str(values['stocks'])
+        bid_price=str(round(values['cost'], 2))
+        if 'Value' in values.keys():
+            bulk_value=str(round(values['Value'], 2))
+        if 'UnrealizedPnL' in values.keys():
+            unrealized_pnl=str(round(values['UnrealizedPnL'], 2))
+            profit = values['UnrealizedPnL'] / values['Value'] * 100
+        if 'LastUpdate' in values.keys():
+            last_updatestr=(values['LastUpdate'])
+
+
+
+
+        self.ui.lStock.setText(stock)
+        self.ui.lVolume.setText(number_of_stocks)
+
+
+def clearLayout(layout):
+    while layout.count():
+        child = layout.takeAt(0)
+        if child.widget():
+            child.widget().deleteLater()
 
 
 app = QApplication(sys.argv)

@@ -1,6 +1,8 @@
 import time
 import threading
-from datetime import datetime
+from datetime import datetime, timedelta
+
+from DataBase.db import add_deal_for_candidate, checkDB
 from Logic.ApiWrapper import IBapi, createContract, createTrailingStopOrder, create_limit_buy_order, createMktSellOrder
 from pytz import timezone
 from Research.UpdateCandidates import get_yahoo_stats_for_candidate
@@ -11,6 +13,7 @@ class IBKRWorker():
     def __init__(self, settings):
         self.app = IBapi()
         self.settings = settings
+        checkDB()
 
     def connect_and_prepare(self, status_callback, notification_callback):
         """
@@ -18,18 +21,24 @@ Connecting to IBKR API and initiating the connection instance
         :return:
         """
         status_callback.emit("Connecting")
-        notification_callback.emit("Begin connect and prepare")
-        self.connect_to_tws(notification_callback)
-        self.start_tracking_excess_liquidity(notification_callback)
-        # start tracking open positions
-        self.update_open_positions(notification_callback)
-        #request open orders
-        self.update_open_orders(notification_callback)
-        # start tracking candidates
-        self.evaluate_and_track_candidates(notification_callback)
-        self.update_target_price_for_tracked_stocks(notification_callback)
-        notification_callback.emit("Connected to IBKR and READY")
-        status_callback.emit("Connected and ready")
+        try:
+            notification_callback.emit("Begin connect and prepare")
+            self.connect_to_tws(notification_callback)
+            self.start_tracking_excess_liquidity(notification_callback)
+            # start tracking open positions
+            self.update_open_positions(notification_callback)
+            #request open orders
+            self.update_open_orders(notification_callback)
+            # start tracking candidates
+            self.evaluate_and_track_candidates(notification_callback)
+            self.update_target_price_for_tracked_stocks(notification_callback)
+            notification_callback.emit("Connected to IBKR and READY")
+            status_callback.emit("Connected and ready")
+        except Exception as e:
+            if hasattr(e, 'message'):
+                notification_callback.emit("Error in connection and preparation : "+ str(e.message))
+            else:
+                notification_callback.emit("Error in connection and preparation : " + str(e))
 
     def connect_to_tws(self, notification_callback):
         """
@@ -246,6 +255,9 @@ Creates order to buy a stock at specific price
         if stocksToBuy > 0:
             order = create_limit_buy_order(stocksToBuy, price)
             self.app.placeOrder(self.app.nextorderId, contract, order)
+            now=datetime.now()
+            add_deal_for_candidate(self.app.candidatesLive[s],price,stocksToBuy,now)
+
             self.app.nextorderId = self.app.nextorderId + 1
             notification_callback.emit("Issued the BUY order at ", price, "for ", stocksToBuy, " Stocks of ", s)
             self.log_decision("LOG/buys.txt", "Issued the BUY order at " + price + "for " + stocksToBuy + " Stocks of " + s)
@@ -287,29 +299,35 @@ processes candidates for buying
 Process Open positions and Candidates
         """
         status_callback.emit("Processing Positions-Candidates ")
-        est = timezone('US/Eastern')
-        fmt = '%Y-%m-%d %H:%M:%S'
-        local_time = datetime.now().strftime(fmt)
-        est_time = datetime.now(est).strftime(fmt)
-        notification_callback.emit("-------Starting Worker...----EST Time: " + est_time + "--------------------")
+        try:
+            est = timezone('US/Eastern')
+            fmt = '%Y-%m-%d %H:%M:%S'
+            local_time = datetime.now().strftime(fmt)
+            est_time = datetime.now(est).strftime(fmt)
+            notification_callback.emit("-------Starting Worker...----EST Time: " + est_time + "--------------------")
 
-        notification_callback.emit("Checking connection")
-        conState = self.app.isConnected()
-        if conState:
-            notification_callback.emit("Connection is fine- proceeding")
-        else:
-            notification_callback.emit("Connection lost-reconnecting")
-            self.connect_to_tws()
+            notification_callback.emit("Checking connection")
+            conState = self.app.isConnected()
+            if conState:
+                notification_callback.emit("Connection is fine- proceeding")
+            else:
+                notification_callback.emit("Connection lost-reconnecting")
+                self.connect_to_tws()
 
-        # collect and update
-        self.update_open_orders(notification_callback)
-        self.update_open_positions(notification_callback)
+            # collect and update
+            self.update_open_orders(notification_callback)
+            self.update_open_positions(notification_callback)
 
-        # process
-        self.process_candidates(notification_callback)
-        self.process_positions(notification_callback)
-        notification_callback.emit("...............Worker finished....EST Time: " + est_time + "...................")
-        status_callback.emit("Connected")
+            # process
+            self.process_candidates(notification_callback)
+            self.process_positions(notification_callback)
+            notification_callback.emit("...............Worker finished....EST Time: " + est_time + "...................")
+            status_callback.emit("Connected")
+        except Exception as e:
+            if hasattr(e, 'message'):
+                notification_callback.emit("Error in connection and preparation : "+ str(e.message))
+            else:
+                notification_callback.emit("Error in connection and preparation : " + str(e))
 
     def run_loop(self):
         self.app.run()
@@ -339,6 +357,13 @@ updating all openPositions, refreshed on each worker- to include changes from ne
                 notification_callback.emit("Started tracking " + s + " position PnL")
                 lastId = s
                 self.app.nextorderId += 1
+        for s, p in self.app.openPositions.items():
+            id = self.app.nextorderId
+            #queryTime = (datetime.today() - timedelta(days=180)).strftime("%Y%m%d %H:%M:%S")
+            queryTime = datetime.today().strftime("%Y%m%d %H:%M:%S")
+            contract=createContract(s)
+            self.app.reqHistoricalData(id, contract,queryTime,"1 D", "1 min", "MIDPOINT", 0, 1,False,[])
+            self.app.nextorderId += 1
 
         time.sleep(3)
         notification_callback.emit(str(len(self.app.openPositions)) + " open positions completely updated")

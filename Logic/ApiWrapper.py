@@ -1,6 +1,7 @@
 import datetime
 
-from ibapi.common import MarketDataTypeEnum
+from DataBase.db import checkDB
+from ibapi.common import MarketDataTypeEnum, HistogramDataList, BarData
 from twsapi.ibapi.contract import Contract, ContractDetails
 from twsapi.ibapi.order import Order
 from twsapi.ibapi.client import EClient
@@ -19,6 +20,7 @@ class IBapi(EWrapper, EClient):
         self.generalStatus = "PnL not yet received"
         self.finishedPostitionsGeneral=False
         self.finishedReceivingOrders=False
+        checkDB()
 
     # def error(self, reqId: int, errorCode: int, errorString: str):
     #     if reqId > -1:
@@ -112,6 +114,20 @@ class IBapi(EWrapper, EClient):
         super().accountSummary(reqId, account, tag, value, currency)
         self.excessLiquidity = value
         print("Liquidity updated")
+
+    def historicalData(self, reqId: int, bar: BarData):
+        print("HistoricalData. ", reqId, " Date:", bar.date, "Open:", bar.open,
+              "High:", bar.high, "Low:", bar.low, "Close:", bar.close, "Volume:", bar.volume,
+              "Count:", bar.barCount, "WAP:", bar.average)
+
+    def historicalDataEnd(self, reqId: int, start: str, end: str):
+        super().historicalDataEnd(reqId, start, end)
+        print("HistoricalDataEnd ", reqId, "from", start, "to", end)
+
+    def historicalDataUpdate(self, reqId: int, bar: BarData):
+        print("HistoricalDataUpdate. ", reqId, " Date:", bar.date, "Open:", bar.open,
+              "High:", bar.high, "Low:", bar.low, "Close:", bar.close, "Volume:", bar.volume,
+              "Count:", bar.barCount, "WAP:", bar.average)
 
 
 def createContract(symbol: str):

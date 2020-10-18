@@ -1,3 +1,5 @@
 pyuic5 MainWindow.ui -o MainWindow.py -x
 
-pyside2-uic MainWindow.ui > MainWindow.py -x
+pyside2-uic Position.ui > Position.py -x
+
+pyside2-uic pos.ui -o pos.py
