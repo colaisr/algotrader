@@ -612,11 +612,49 @@ class PositionPanel(QWidget):
                 self.graphWidget.plot(counter, values, pen=pen)
                 self.graphWidget.setBackground('w')
 
+
+
         # UI set
         self.ui.lStock.setText(stock)
         self.ui.lVolume.setText(str(int(number_of_stocks)))
         self.ui.lBulckValue.setText(str(bulk_value))
         self.ui.lProfitP.setText(str(round(profit, 2)))
+
+        if profit>0:
+            self.ui.prgProfit.setMinimum(0)
+            self.ui.prgProfit.setMaximum(int(settings.PROFIT)*10)
+            self.ui.prgProfit.setValue(int(profit*10))
+            self.ui.prgProfit.setObjectName("prgProfit")
+
+        else:
+            #self.ui.prgProfit.setInvertedAppearance(True)
+            self.ui.prgProfit.setMinimum(0)
+            self.ui.prgProfit.setMaximum(int(settings.LOSS)*-10)
+            self.ui.prgProfit.setValue(int(profit*-10))
+            self.ui.prgProfit.setObjectName("prgLoss")
+
+        StyleSheet = '''
+        #prgProfit {
+            border: 2px solid green;
+        }
+        #prgProfit::chunk {
+            background-color: green;
+        }
+        #prgLoss {
+            border: 2px solid red;
+        }
+        #prgLoss::chunk {
+            background-color: #F44336;
+        }
+        '''
+        self.setStyleSheet(StyleSheet)
+
+
+
+
+
+
+
 
 
 

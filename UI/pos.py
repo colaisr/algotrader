@@ -17,7 +17,7 @@ class Ui_position_canvas(object):
     def setupUi(self, position_canvas):
         if not position_canvas.objectName():
             position_canvas.setObjectName(u"position_canvas")
-        position_canvas.resize(388, 128)
+        position_canvas.resize(388, 179)
         position_canvas.setStyleSheet(u"")
         self.gridLayout = QGridLayout(position_canvas)
         self.gridLayout.setObjectName(u"gridLayout")
@@ -28,8 +28,8 @@ class Ui_position_canvas(object):
         self.border_frame.setFrameShadow(QFrame.Raised)
         self.gridLayout_2 = QGridLayout(self.border_frame)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.horizontalLayout_2 = QHBoxLayout()
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalLayout_4 = QHBoxLayout()
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.bulck_data = QVBoxLayout()
         self.bulck_data.setObjectName(u"bulck_data")
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
@@ -61,21 +61,36 @@ class Ui_position_canvas(object):
         self.bulck_data.addItem(self.verticalSpacer_3)
 
 
-        self.horizontalLayout_2.addLayout(self.bulck_data)
+        self.horizontalLayout_4.addLayout(self.bulck_data)
+
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_4.addItem(self.horizontalSpacer_3)
 
         self.gg = QGridLayout()
         self.gg.setObjectName(u"gg")
 
-        self.horizontalLayout_2.addLayout(self.gg)
+        self.horizontalLayout_4.addLayout(self.gg)
+
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_4.addItem(self.horizontalSpacer_4)
+
+        self.verticalLayout_2 = QVBoxLayout()
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalSpacer_4 = QSpacerItem(20, 28, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_2.addItem(self.verticalSpacer_4)
 
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout.addItem(self.verticalSpacer_4)
-
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+
+        self.horizontalLayout.addLayout(self.horizontalLayout_2)
+
         self.lProfitP = QLabel(self.border_frame)
         self.lProfitP.setObjectName(u"lProfitP")
 
@@ -86,18 +101,46 @@ class Ui_position_canvas(object):
 
         self.horizontalLayout.addWidget(self.label_2)
 
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+
+        self.horizontalLayout.addLayout(self.horizontalLayout_3)
+
 
         self.verticalLayout.addLayout(self.horizontalLayout)
 
+        self.pbl = QHBoxLayout()
+        self.pbl.setObjectName(u"pbl")
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.pbl.addItem(self.horizontalSpacer_2)
+
+        self.prgProfit = QProgressBar(self.border_frame)
+        self.prgProfit.setObjectName(u"prgProfit")
+        self.prgProfit.setValue(24)
+        self.prgProfit.setOrientation(Qt.Vertical)
+
+        self.pbl.addWidget(self.prgProfit)
+
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.pbl.addItem(self.horizontalSpacer)
+
+
+        self.verticalLayout.addLayout(self.pbl)
+
+
+        self.verticalLayout_2.addLayout(self.verticalLayout)
+
         self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.verticalLayout.addItem(self.verticalSpacer_5)
+        self.verticalLayout_2.addItem(self.verticalSpacer_5)
 
 
-        self.horizontalLayout_2.addLayout(self.verticalLayout)
+        self.horizontalLayout_4.addLayout(self.verticalLayout_2)
 
 
-        self.gridLayout_2.addLayout(self.horizontalLayout_2, 0, 0, 1, 1)
+        self.gridLayout_2.addLayout(self.horizontalLayout_4, 0, 0, 1, 1)
 
 
         self.gridLayout.addWidget(self.border_frame, 1, 0, 1, 1)
