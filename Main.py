@@ -5,6 +5,8 @@ import traceback, sys
 import configparser
 from sys import platform
 
+import pyqtgraph as pg
+
 from PySide2 import QtWidgets, QtGui, QtCore
 from PySide2.QtGui import QPainter, Qt, QPalette, QColor
 from pytz import timezone
@@ -577,8 +579,10 @@ class PositionPanel(QWidget):
         super(PositionPanel, self).__init__()
         self.ui = Ui_position_canvas()
         self.ui.setupUi(self)
+
+        #Data preparation
         stock=stock
-        number_of_stocks=str(values['stocks'])
+        number_of_stocks=values['stocks']
         bid_price=str(round(values['cost'], 2))
         if 'Value' in values.keys():
             bulk_value=str(round(values['Value'], 2))
@@ -590,9 +594,14 @@ class PositionPanel(QWidget):
 
 
 
-
+        #UI set
         self.ui.lStock.setText(stock)
-        self.ui.lVolume.setText(number_of_stocks)
+        self.ui.lVolume.setText(str(int(number_of_stocks)))
+        self.ui.lBulckValue.setText(str(bulk_value))
+        self.ui.lProfitP.setText(str(round(profit,2)))
+
+        #graph
+
 
 
 def clearLayout(layout):
