@@ -5,8 +5,6 @@ import traceback, sys
 import configparser
 from sys import platform
 
-import pyqtgraph as pg
-
 from PySide2 import QtWidgets, QtGui, QtCore
 from PySide2.QtGui import QPainter, Qt, QPalette, QColor
 from pytz import timezone
@@ -16,8 +14,8 @@ from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer
 from PySide2.QtUiTools import loadUiType
 from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QWidget, QMessageBox, QInputDialog, \
     QLineEdit, QFormLayout, QLabel, QGridLayout, QHBoxLayout, QVBoxLayout, QSpacerItem, QSizePolicy, QDial, QScrollArea
-from qtpy import uic
 
+import pyqtgraph as pg
 from Logic.IBKRWorker import IBKRWorker
 
 # The bid price refers to the highest price a buyer will pay for a security.
@@ -466,7 +464,6 @@ Restarts everything after Save
         i = 4
 
 
-
 class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
     def __init__(self, inSettings):
         # mandatory
@@ -580,27 +577,47 @@ class PositionPanel(QWidget):
         self.ui = Ui_position_canvas()
         self.ui.setupUi(self)
 
-        #Data preparation
-        stock=stock
-        number_of_stocks=values['stocks']
-        bid_price=str(round(values['cost'], 2))
+        # Data preparation
+        stock = stock
+        number_of_stocks = values['stocks']
+        bulk_value=0
+        profit=0
+        bid_price = str(round(values['cost'], 2))
         if 'Value' in values.keys():
-            bulk_value=str(round(values['Value'], 2))
+            bulk_value = str(round(values['Value'], 2))
         if 'UnrealizedPnL' in values.keys():
-            unrealized_pnl=str(round(values['UnrealizedPnL'], 2))
+            unrealized_pnl = str(round(values['UnrealizedPnL'], 2))
             profit = values['UnrealizedPnL'] / values['Value'] * 100
         if 'LastUpdate' in values.keys():
-            last_updatestr=(values['LastUpdate'])
+            last_updatestr = (values['LastUpdate'])
+        if 'HistoricalData' in values.keys():
+            if len(values['HistoricalData'])>0:
+                hist_data = values['HistoricalData']
+                dates=[]
+                counter=[]
+                values=[]
+                i=0
+                for item in hist_data:
+                    dates.append(item.date)
+                    values.append(item.close)
+                    counter.append(i)
+                    i+=1
 
+                # graph
+                self.graphWidget = pg.PlotWidget()
+                self.ui.gg.addWidget(self.graphWidget)
+                hour = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                temperature = [3.0, 3.2, 3.4, 3.2, 3.3, 3.1, 2.9, 3.2, 3.5, 4.5]
+                pen = pg.mkPen(color=(255, 0, 0))
+                self.graphWidget.plot(counter, values, pen=pen)
+                self.graphWidget.setBackground('w')
 
-
-        #UI set
+        # UI set
         self.ui.lStock.setText(stock)
         self.ui.lVolume.setText(str(int(number_of_stocks)))
         self.ui.lBulckValue.setText(str(bulk_value))
-        self.ui.lProfitP.setText(str(round(profit,2)))
+        self.ui.lProfitP.setText(str(round(profit, 2)))
 
-        #graph
 
 
 

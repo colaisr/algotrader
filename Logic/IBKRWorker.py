@@ -1,5 +1,6 @@
 import time
 import threading
+from collections import defaultdict
 from datetime import datetime, timedelta
 
 from DataBase.db import add_deal_for_candidate, checkDB
@@ -362,7 +363,8 @@ updating all openPositions, refreshed on each worker- to include changes from ne
             #queryTime = (datetime.today() - timedelta(days=180)).strftime("%Y%m%d %H:%M:%S")
             queryTime = datetime.today().strftime("%Y%m%d %H:%M:%S")
             contract=createContract(s)
-            self.app.reqHistoricalData(id, contract,queryTime,"1 D", "1 min", "MIDPOINT", 0, 1,False,[])
+            self.app.reqHistoricalData(id, contract,queryTime,"1 D", "1 hour", "BID", 0, 1,False,[])
+            self.app.openPositionsLiveHistoryRequests[id] = s
             self.app.nextorderId += 1
 
         time.sleep(3)
@@ -376,9 +378,9 @@ Requests all open orders
         self.app.openOrders = {}
         self.app.finishedReceivingOrders=False
         self.app.reqAllOpenOrders()
-        while(self.app.finishedReceivingOrders!=True):
-            print("waiting to get all orders info")
-            time.sleep(1)
+        #while(self.app.finishedReceivingOrders!=True):
+        print("waiting to get all orders info")
+        time.sleep(1)
 
         notification_callback.emit(str(len(self.app.openOrders)) + " open orders found ")
 

@@ -16,10 +16,12 @@ class IBapi(EWrapper, EClient):
         self.openPositionsLiveDataRequests = {}
         self.openOrders = {}
         self.candidatesLive = {}
+        self.openPositionsHistolicalData={}
         self.excessLiquidity = ""
         self.generalStatus = "PnL not yet received"
         self.finishedPostitionsGeneral=False
         self.finishedReceivingOrders=False
+        self.openPositionsLiveHistoryRequests={}
         checkDB()
 
     # def error(self, reqId: int, errorCode: int, errorString: str):
@@ -56,7 +58,7 @@ class IBapi(EWrapper, EClient):
     def position(self, account: str, contract: Contract, position: float, avgCost: float):
         super().position(account, contract, position, avgCost)
         if position != 0:# if 0 means its empty - already sold
-            self.openPositions[contract.symbol] = {"stocks": position, "cost": avgCost, "conId": contract.conId}
+            self.openPositions[contract.symbol] = {"stocks": position, "cost": avgCost, "conId": contract.conId,"HistoricalData":[]}
         print("Position general data received.", "Account:", account, "Symbol:", contract.symbol, "SecType:",contract.secType, "Currency:", contract.currency,contract.secType, "Currency:", contract.currency,"Position:", position, "Avg cost:", avgCost)
 
     def positionEnd(self):
@@ -116,15 +118,21 @@ class IBapi(EWrapper, EClient):
         print("Liquidity updated")
 
     def historicalData(self, reqId: int, bar: BarData):
-        print("HistoricalData. ", reqId, " Date:", bar.date, "Open:", bar.open,
-              "High:", bar.high, "Low:", bar.low, "Close:", bar.close, "Volume:", bar.volume,
-              "Count:", bar.barCount, "WAP:", bar.average)
+        if reqId in self.openPositionsLiveHistoryRequests.keys():
+            s = self.openPositionsLiveHistoryRequests[reqId]
+            self.openPositions[s]["HistoricalData"].append(bar)
+
+            print("HistoricalData. ", reqId, " Date:", bar.date, "Open:", bar.open,
+                  "High:", bar.high, "Low:", bar.low, "Close:", bar.close, "Volume:", bar.volume,
+                  "Count:", bar.barCount, "WAP:", bar.average)
 
     def historicalDataEnd(self, reqId: int, start: str, end: str):
         super().historicalDataEnd(reqId, start, end)
         print("HistoricalDataEnd ", reqId, "from", start, "to", end)
 
     def historicalDataUpdate(self, reqId: int, bar: BarData):
+        s = self.openPositionsLiveHistoryRequests[reqId]
+        self.openPositions[s]["HistoricalData"].append(bar)
         print("HistoricalDataUpdate. ", reqId, " Date:", bar.date, "Open:", bar.open,
               "High:", bar.high, "Low:", bar.low, "Close:", bar.close, "Volume:", bar.volume,
               "Count:", bar.barCount, "WAP:", bar.average)

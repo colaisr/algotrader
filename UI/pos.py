@@ -28,9 +28,8 @@ class Ui_position_canvas(object):
         self.border_frame.setFrameShadow(QFrame.Raised)
         self.gridLayout_2 = QGridLayout(self.border_frame)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.gridLayout_2.setContentsMargins(3, 3, 3, 3)
-        self.mainholder = QHBoxLayout()
-        self.mainholder.setObjectName(u"mainholder")
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.bulck_data = QVBoxLayout()
         self.bulck_data.setObjectName(u"bulck_data")
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
@@ -62,32 +61,18 @@ class Ui_position_canvas(object):
         self.bulck_data.addItem(self.verticalSpacer_3)
 
 
-        self.mainholder.addLayout(self.bulck_data)
+        self.horizontalLayout_2.addLayout(self.bulck_data)
 
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.mainholder.addItem(self.horizontalSpacer_2)
-
-        self.scrollArea = QScrollArea(self.border_frame)
-        self.scrollArea.setObjectName(u"scrollArea")
-        self.scrollArea.setWidgetResizable(True)
-        self.scrollAreaWidgetContents = QWidget()
-        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 91, 114))
-        self.gridLayout_4 = QGridLayout(self.scrollAreaWidgetContents)
-        self.gridLayout_4.setObjectName(u"gridLayout_4")
         self.gg = QGridLayout()
         self.gg.setObjectName(u"gg")
 
-        self.gridLayout_4.addLayout(self.gg, 0, 0, 1, 1)
+        self.horizontalLayout_2.addLayout(self.gg)
 
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.verticalLayout = QVBoxLayout()
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.mainholder.addWidget(self.scrollArea)
-
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.mainholder.addItem(self.horizontalSpacer)
+        self.verticalLayout.addItem(self.verticalSpacer_4)
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -102,10 +87,17 @@ class Ui_position_canvas(object):
         self.horizontalLayout.addWidget(self.label_2)
 
 
-        self.mainholder.addLayout(self.horizontalLayout)
+        self.verticalLayout.addLayout(self.horizontalLayout)
+
+        self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout.addItem(self.verticalSpacer_5)
 
 
-        self.gridLayout_2.addLayout(self.mainholder, 0, 0, 1, 1)
+        self.horizontalLayout_2.addLayout(self.verticalLayout)
+
+
+        self.gridLayout_2.addLayout(self.horizontalLayout_2, 0, 0, 1, 1)
 
 
         self.gridLayout.addWidget(self.border_frame, 1, 0, 1, 1)
