@@ -241,6 +241,15 @@ class MainWindow(MainBaseClass, Ui_MainWindow):
         self.statusbar.showMessage("Ready")
         self.update_session_state()
         self.connect_to_ibkr()
+        StyleSheet = '''
+        #lcdPNLgreen {
+            border: 3px solid green;
+        }
+        #lcdPNLred {
+            border: 3px solid red;
+        }
+        '''
+        self.setStyleSheet(StyleSheet)
 
     def connect_to_ibkr(self):
         """
@@ -288,9 +297,20 @@ Executed the Worker in separate thread
 Updates UI after connection/worker execution
         :param s:
         """
-
-        self.lLiq.setText(self.ibkrworker.app.excessLiquidity)
+        #main data
         self.lAcc.setText(self.settings.ACCOUNT)
+        self.lExcessLiquidity.setText(str(self.ibkrworker.app.excessLiquidity))
+        self.lMarketValue.setText(str(self.ibkrworker.app.netLiquidation))
+        self.lcdPNL.display(self.ibkrworker.app.dailyPnl)
+        if self.ibkrworker.app.dailyPnl>0:
+            palette = self.lcdPNL.palette()
+            palette.setColor(palette.WindowText, QtGui.QColor(51, 153, 51))
+            self.lcdPNL.setPalette(palette)
+        elif self.ibkrworker.app.dailyPnl<0:
+            palette = self.lcdPNL.palette()
+            palette.setColor(palette.WindowText, QtGui.QColor(255, 0, 0))
+            self.lcdPNL.setPalette(palette)
+
         self.update_open_positions()
         self.update_live_candidates()
         self.update_open_orders()
@@ -620,18 +640,36 @@ class PositionPanel(QWidget):
         self.ui.lBulckValue.setText(str(bulk_value))
         self.ui.lProfitP.setText(str(round(profit, 2)))
 
+        #setting progressBar and percent label
+        self.ui.prgProfit.setTextVisible(False)
         if profit>0:
             self.ui.prgProfit.setMinimum(0)
-            self.ui.prgProfit.setMaximum(int(settings.PROFIT)*10)
+            if profit>=int(settings.PROFIT):
+                self.ui.prgProfit.setMaximum(profit*10)
+            else:
+                self.ui.prgProfit.setMaximum(int(settings.PROFIT)*10)
             self.ui.prgProfit.setValue(int(profit*10))
             self.ui.prgProfit.setObjectName("prgProfit")
 
+
+            palette = self.ui.lProfitP.palette();
+            palette.setColor(palette.WindowText, QtGui.QColor(51, 153, 51));
+            self.ui.lProfitP.setPalette(palette)
+            self.ui.lp.setPalette(palette)
+
         else:
-            #self.ui.prgProfit.setInvertedAppearance(True)
             self.ui.prgProfit.setMinimum(0)
-            self.ui.prgProfit.setMaximum(int(settings.LOSS)*-10)
+            if profit<=int(settings.LOSS):
+                self.ui.prgProfit.setMaximum(profit*-10)
+            else:
+                self.ui.prgProfit.setMaximum(int(settings.LOSS)*-10)
             self.ui.prgProfit.setValue(int(profit*-10))
             self.ui.prgProfit.setObjectName("prgLoss")
+
+            palette = self.ui.lProfitP.palette();
+            palette.setColor(palette.WindowText, QtGui.QColor(255, 0, 0));
+            self.ui.lProfitP.setPalette(palette)
+            self.ui.lp.setPalette(palette)
 
         StyleSheet = '''
         #prgProfit {

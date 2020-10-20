@@ -26,39 +26,61 @@
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
-      <widget class="QWidget" name="">
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <widget class="QWidget" name="layoutWidget">
+       <layout class="QHBoxLayout" name="General">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
+         <layout class="QVBoxLayout" name="verticalLayout_7">
           <item>
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>Account</string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>Account:    </string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lAcc">
+              <property name="text">
+               <string>00000</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item>
-           <widget class="QLabel" name="lAcc">
-            <property name="text">
-             <string>00000</string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <widget class="QLabel" name="label_8">
+              <property name="text">
+               <string>Market Value: </string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lMarketValue">
+              <property name="text">
+               <string>000000</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <layout class="QVBoxLayout" name="verticalLayout_8">
           <item>
-           <widget class="QLabel" name="label_3">
+           <widget class="QLabel" name="label_6">
             <property name="text">
-             <string>Exccess liq.</string>
+             <string>Excess Liquidity</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="lLiq">
+           <widget class="QLabel" name="lExcessLiquidity">
             <property name="text">
-             <string>000</string>
+             <string>000000</string>
             </property>
            </widget>
           </item>
@@ -71,6 +93,35 @@
           </property>
           <property name="text">
            <string>Settings</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLCDNumber" name="lcdPNL">
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
+          <property name="lineWidth">
+           <number>2</number>
+          </property>
+          <property name="midLineWidth">
+           <number>0</number>
           </property>
          </widget>
         </item>
@@ -139,8 +190,8 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
-       <layout class="QVBoxLayout" name="verticalLayout_6">
+      <widget class="QWidget" name="layoutWidget1">
+       <layout class="QVBoxLayout" name="Positions">
         <item>
          <widget class="QLabel" name="lblPositions">
           <property name="text">
@@ -176,12 +227,19 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
-       <layout class="QVBoxLayout" name="verticalLayout_5">
+      <widget class="QWidget" name="layoutWidget2">
+       <layout class="QVBoxLayout" name="candidates">
         <item>
          <widget class="QLabel" name="lblCandidates">
           <property name="text">
            <string>Candidates</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lLiq">
+          <property name="text">
+           <string>000</string>
           </property>
          </widget>
         </item>
@@ -244,8 +302,8 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
-       <layout class="QVBoxLayout" name="verticalLayout_4">
+      <widget class="QWidget" name="layoutWidget3">
+       <layout class="QVBoxLayout" name="Orders">
         <item>
          <widget class="QLabel" name="lblOrders">
           <property name="text">
@@ -274,8 +332,8 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
-       <layout class="QVBoxLayout" name="verticalLayout_3">
+      <widget class="QWidget" name="layoutWidget4">
+       <layout class="QVBoxLayout" name="Console">
         <item>
          <widget class="QLabel" name="label_2">
           <property name="text">

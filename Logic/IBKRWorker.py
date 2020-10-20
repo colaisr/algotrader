@@ -25,6 +25,7 @@ Connecting to IBKR API and initiating the connection instance
         try:
             notification_callback.emit("Begin connect and prepare")
             self.connect_to_tws(notification_callback)
+            self.request_current_PnL(notification_callback)
             self.start_tracking_excess_liquidity(notification_callback)
             # start tracking open positions
             self.update_open_positions(notification_callback)
@@ -153,14 +154,15 @@ Processes the positions to identify Profit/Loss
                                                str(self.settings.TRAIL) + "%")
                     self.log_decision("LOG/profits.txt",
                                       "Created a Trailing Stop order for " + s + " at level of " + self.settings.TRAIL + "%")
-                    for k, v in self.app.candidatesLive.items():
-                        if v['Stock'] == s:
-                            self.log_decision("buys.txt", "Candidate was : Open: " + str(v['Open']) + " Close: " + str(
-                                v['Close']) + " Bid : " + str(v['Bid']) + " Ask:  " + str(
-                                v['Ask']) + " Last Price: " + str(
-                                v['LastPrice']) + " Average drop: " + str(
-                                round(v['averagePriceDropP'], 2)) + "Target price: " + str(
-                                round(v['target_price'], 2)) + " Rank: " + str(v['tipranksRank']))
+                    #not clear what is it for.... i think copied by mistake
+                    # for k, v in self.app.candidatesLive.items():
+                    #     if v['Stock'] == s:
+                    #         self.log_decision("buys.txt", "Candidate was : Open: " + str(v['Open']) + " Close: " + str(
+                    #             v['Close']) + " Bid : " + str(v['Bid']) + " Ask:  " + str(
+                    #             v['Ask']) + " Last Price: " + str(
+                    #             v['LastPrice']) + " Average drop: " + str(
+                    #             round(v['averagePriceDropP'], 2)) + "Target price: " + str(
+                    #             round(v['target_price'], 2)) + " Rank: " + str(v['tipranksRank']))
             elif profit < float(self.settings.LOSS):
                 orders = self.app.openOrders
                 if s in orders:
@@ -174,14 +176,16 @@ Processes the positions to identify Profit/Loss
                     self.app.nextorderId = self.app.nextorderId + 1
                     notification_callback.emit("Created a Market Sell order for " + s)
                     self.log_decision("LOG/loses.txt", "Created a Market Sell order for " + s)
-                    for k, v in self.app.candidatesLive.items():
-                        if v['Stock'] == s:
-                            self.log_decision("buys.txt", "Candidate was : Open: " + str(v['Open']) + " Close: " + str(
-                                v['Close']) + " Bid : " + str(v['Bid']) + " Ask:  " + str(
-                                v['Ask']) + " Last Price: " + str(
-                                v['LastPrice']) + " Average drop: " + str(
-                                round(v['averagePriceDropP'], 2)) + "Target price: " + str(
-                                round(v['target_price'], 2)) + " Rank: " + str(v['tipranksRank']))
+
+                    #not clear what is it for
+                    # for k, v in self.app.candidatesLive.items():
+                    #     if v['Stock'] == s:
+                    #         self.log_decision("buys.txt", "Candidate was : Open: " + str(v['Open']) + " Close: " + str(
+                    #             v['Close']) + " Bid : " + str(v['Bid']) + " Ask:  " + str(
+                    #             v['Ask']) + " Last Price: " + str(
+                    #             v['LastPrice']) + " Average drop: " + str(
+                    #             round(v['averagePriceDropP'], 2)) + "Target price: " + str(
+                    #             round(v['target_price'], 2)) + " Rank: " + str(v['tipranksRank']))
 
     def evaluate_stock_for_buy(self, s, notification_callback=None):
         """
@@ -348,7 +352,6 @@ updating all openPositions, refreshed on each worker- to include changes from ne
         while(self.app.finishedPostitionsGeneral!=True):
             print("waiting to get all general positions info")
             time.sleep(1)
-        lastId = 0
         for s, p in self.app.openPositions.items():  # start tracking one by one
             if s not in self.app.openPositionsLiveDataRequests.values():
                 id = self.app.nextorderId
@@ -356,13 +359,12 @@ updating all openPositions, refreshed on each worker- to include changes from ne
                 self.app.openPositionsLiveDataRequests[id] = s
                 self.app.reqPnLSingle(id, self.settings.ACCOUNT, "", p["conId"])
                 notification_callback.emit("Started tracking " + s + " position PnL")
-                lastId = s
                 self.app.nextorderId += 1
         for s, p in self.app.openPositions.items():
             id = self.app.nextorderId
-            #queryTime = (datetime.today() - timedelta(days=180)).strftime("%Y%m%d %H:%M:%S")
             queryTime = datetime.today().strftime("%Y%m%d %H:%M:%S")
             contract=createContract(s)
+            notification_callback.emit("Requesting History for "+s+" position for last 24H BID price")
             self.app.reqHistoricalData(id, contract,queryTime,"1 D", "1 hour", "BID", 0, 1,False,[])
             self.app.openPositionsLiveHistoryRequests[id] = s
             self.app.nextorderId += 1
@@ -391,7 +393,7 @@ Start tracking excess liquidity - the value is updated every 3 minutes
         # todo: add safety to not buy faster than every 3 minutes
         notification_callback.emit("Starting to track Excess liquidity")
         id = self.app.nextorderId
-        self.app.reqAccountSummary(id, "All", "ExcessLiquidity")
+        self.app.reqAccountSummary(id, "All", "ExcessLiquidity,DayTradesRemaining,NetLiquidation")
         self.app.nextorderId += 1
 
     def request_current_PnL(self, notification_callback=None):
@@ -402,7 +404,7 @@ Creating a PnL request the result will be stored in generalStarus
         id = self.app.nextorderId
         notification_callback.emit("Requesting Daily PnL")
         self.app.reqPnL(id, self.settings.ACCOUNT, "")
-        time.sleep(0.5)
+        # time.sleep(0.5)
         self.app.nextorderId = self.app.nextorderId + 1
         notification_callback.emit(self.app.generalStatus)
 

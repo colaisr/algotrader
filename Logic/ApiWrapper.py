@@ -17,11 +17,14 @@ class IBapi(EWrapper, EClient):
         self.openOrders = {}
         self.candidatesLive = {}
         self.openPositionsHistolicalData={}
-        self.excessLiquidity = ""
         self.generalStatus = "PnL not yet received"
+        self.dailyPnl =0
         self.finishedPostitionsGeneral=False
         self.finishedReceivingOrders=False
         self.openPositionsLiveHistoryRequests={}
+        self.excessLiquidity = 0
+        self.tradesRemaining=-1
+        self.netLiquidation=0
         checkDB()
 
     # def error(self, reqId: int, errorCode: int, errorString: str):
@@ -36,6 +39,7 @@ class IBapi(EWrapper, EClient):
         super().pnl(reqId, dailyPnL, unrealizedPnL, realizedPnL)
         self.generalStatus = "DailyPnL: " + str(dailyPnL) + " UnrealizedPnL: " + str(
             unrealizedPnL) + " RealizedPnL: " + str(realizedPnL)
+        self.dailyPnl=dailyPnL
 
     def pnlSingle(self, reqId: int, pos: int, dailyPnL: float, unrealizedPnL: float, realizedPnL: float, value: float):
         super().pnlSingle(reqId, pos, dailyPnL, unrealizedPnL, realizedPnL, value)
@@ -114,8 +118,14 @@ class IBapi(EWrapper, EClient):
     def accountSummary(self, reqId: int, account: str, tag: str, value: str,
                        currency: str):
         super().accountSummary(reqId, account, tag, value, currency)
-        self.excessLiquidity = value
-        print("Liquidity updated")
+        if tag=='DayTradesRemaining':
+            self.tradesRemaining=int(value)
+        elif tag=='ExcessLiquidity':
+            self.excessLiquidity=float(value)
+        elif tag=="NetLiquidation":
+            self.netLiquidation=float(value)
+
+        print("AccountSummary. ReqId:", reqId, "Account:", account,"Tag: ", tag, "Value:", value, "Currency:", currency)
 
     def historicalData(self, reqId: int, bar: BarData):
         if reqId in self.openPositionsLiveHistoryRequests.keys():
@@ -136,6 +146,7 @@ class IBapi(EWrapper, EClient):
         print("HistoricalDataUpdate. ", reqId, " Date:", bar.date, "Open:", bar.open,
               "High:", bar.high, "Low:", bar.low, "Close:", bar.close, "Volume:", bar.volume,
               "Count:", bar.barCount, "WAP:", bar.average)
+
 
 
 def createContract(symbol: str):

@@ -39,20 +39,19 @@ class Ui_position_canvas(object):
         self.lStock = QLabel(self.border_frame)
         self.lStock.setObjectName(u"lStock")
         self.lStock.setStyleSheet(u"color: rgb(0, 0, 255);")
+        self.lStock.setAlignment(Qt.AlignCenter)
 
         self.bulck_data.addWidget(self.lStock)
 
-        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.bulck_data.addItem(self.verticalSpacer_2)
-
         self.lVolume = QLabel(self.border_frame)
         self.lVolume.setObjectName(u"lVolume")
+        self.lVolume.setAlignment(Qt.AlignCenter)
 
         self.bulck_data.addWidget(self.lVolume)
 
         self.lBulckValue = QLabel(self.border_frame)
         self.lBulckValue.setObjectName(u"lBulckValue")
+        self.lBulckValue.setAlignment(Qt.AlignCenter)
 
         self.bulck_data.addWidget(self.lBulckValue)
 
@@ -96,10 +95,10 @@ class Ui_position_canvas(object):
 
         self.horizontalLayout.addWidget(self.lProfitP)
 
-        self.label_2 = QLabel(self.border_frame)
-        self.label_2.setObjectName(u"label_2")
+        self.lp = QLabel(self.border_frame)
+        self.lp.setObjectName(u"lp")
 
-        self.horizontalLayout.addWidget(self.label_2)
+        self.horizontalLayout.addWidget(self.lp)
 
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
@@ -119,6 +118,7 @@ class Ui_position_canvas(object):
         self.prgProfit.setObjectName(u"prgProfit")
         self.prgProfit.setValue(24)
         self.prgProfit.setOrientation(Qt.Vertical)
+        self.prgProfit.setInvertedAppearance(False)
 
         self.pbl.addWidget(self.prgProfit)
 
@@ -157,6 +157,6 @@ class Ui_position_canvas(object):
         self.lVolume.setText(QCoreApplication.translate("position_canvas", u"-", None))
         self.lBulckValue.setText(QCoreApplication.translate("position_canvas", u"--", None))
         self.lProfitP.setText(QCoreApplication.translate("position_canvas", u"-", None))
-        self.label_2.setText(QCoreApplication.translate("position_canvas", u"%", None))
+        self.lp.setText(QCoreApplication.translate("position_canvas", u"%", None))
     # retranslateUi
 
