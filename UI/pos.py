@@ -38,6 +38,9 @@ class Ui_position_canvas(object):
 
         self.lStock = QLabel(self.border_frame)
         self.lStock.setObjectName(u"lStock")
+        font = QFont()
+        font.setPointSize(22)
+        self.lStock.setFont(font)
         self.lStock.setStyleSheet(u"color: rgb(0, 0, 255);")
         self.lStock.setAlignment(Qt.AlignCenter)
 

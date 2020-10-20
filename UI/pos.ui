@@ -57,6 +57,11 @@
           </item>
           <item>
            <widget class="QLabel" name="lStock">
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+             </font>
+            </property>
             <property name="styleSheet">
              <string notr="true">color: rgb(0, 0, 255);</string>
             </property>

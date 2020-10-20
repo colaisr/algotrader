@@ -629,8 +629,10 @@ class PositionPanel(QWidget):
                 hour = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
                 temperature = [3.0, 3.2, 3.4, 3.2, 3.3, 3.1, 2.9, 3.2, 3.5, 4.5]
                 pen = pg.mkPen(color=(255, 0, 0))
-                self.graphWidget.plot(counter, values, pen=pen)
+                self.graphWidget.plot(counter, values, pen=pen,title="24 H")
                 self.graphWidget.setBackground('w')
+                self.graphWidget.setTitle(values[-1], color="#d1d1e0", size="16pt")
+                self.graphWidget.hideAxis('bottom')
 
 
 

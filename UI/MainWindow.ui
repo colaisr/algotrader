@@ -237,13 +237,6 @@
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="lLiq">
-          <property name="text">
-           <string>000</string>
-          </property>
-         </widget>
-        </item>
-        <item>
          <widget class="QTableWidget" name="tCandidates">
           <property name="verticalScrollBarPolicy">
            <enum>Qt::ScrollBarAlwaysOn</enum>
