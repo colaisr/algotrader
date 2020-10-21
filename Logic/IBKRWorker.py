@@ -3,7 +3,6 @@ import threading
 from collections import defaultdict
 from datetime import datetime, timedelta
 
-from DataBase.db import add_deal_for_candidate, checkDB
 from Logic.ApiWrapper import IBapi, createContract, createTrailingStopOrder, create_limit_buy_order, createMktSellOrder
 from pytz import timezone
 from Research.UpdateCandidates import get_yahoo_stats_for_candidate
@@ -14,7 +13,6 @@ class IBKRWorker():
     def __init__(self, settings):
         self.app = IBapi()
         self.settings = settings
-        checkDB()
 
     def connect_and_prepare(self, status_callback, notification_callback):
         """
@@ -29,7 +27,7 @@ Connecting to IBKR API and initiating the connection instance
             self.start_tracking_excess_liquidity(notification_callback)
             # start tracking open positions
             self.update_open_positions(notification_callback)
-            #request open orders
+            # request open orders
             self.update_open_orders(notification_callback)
             # start tracking candidates
             self.evaluate_and_track_candidates(notification_callback)
@@ -38,7 +36,7 @@ Connecting to IBKR API and initiating the connection instance
             status_callback.emit("Connected and ready")
         except Exception as e:
             if hasattr(e, 'message'):
-                notification_callback.emit("Error in connection and preparation : "+ str(e.message))
+                notification_callback.emit("Error in connection and preparation : " + str(e.message))
             else:
                 notification_callback.emit("Error in connection and preparation : " + str(e))
 
@@ -134,9 +132,8 @@ Processes the positions to identify Profit/Loss
         """
         notification_callback.emit("Processing profits")
 
-
         for s, p in self.app.openPositions.items():
-            notification_callback.emit("Processing "+s)
+            notification_callback.emit("Processing " + s)
             profit = p["UnrealizedPnL"] / p["Value"] * 100
             notification_callback.emit("The profit for " + s + " is " + str(profit) + " %")
             if profit > float(self.settings.PROFIT):
@@ -154,7 +151,7 @@ Processes the positions to identify Profit/Loss
                                                str(self.settings.TRAIL) + "%")
                     self.log_decision("LOG/profits.txt",
                                       "Created a Trailing Stop order for " + s + " at level of " + self.settings.TRAIL + "%")
-                    #not clear what is it for.... i think copied by mistake
+                    # not clear what is it for.... i think copied by mistake
                     # for k, v in self.app.candidatesLive.items():
                     #     if v['Stock'] == s:
                     #         self.log_decision("buys.txt", "Candidate was : Open: " + str(v['Open']) + " Close: " + str(
@@ -177,7 +174,7 @@ Processes the positions to identify Profit/Loss
                     notification_callback.emit("Created a Market Sell order for " + s)
                     self.log_decision("LOG/loses.txt", "Created a Market Sell order for " + s)
 
-                    #not clear what is it for
+                    # not clear what is it for
                     # for k, v in self.app.candidatesLive.items():
                     #     if v['Stock'] == s:
                     #         self.log_decision("buys.txt", "Candidate was : Open: " + str(v['Open']) + " Close: " + str(
@@ -205,7 +202,7 @@ Evaluates stock for buying
         if ask_price == -1:  # market is closed
             notification_callback.emit('The market is closed skipping...')
         elif ask_price < target_price and float(tipRank) > 8:
-            self.buy_the_stock(ask_price, s,notification_callback)
+            self.buy_the_stock(ask_price, s, notification_callback)
         else:
             notification_callback.emit(
                 "The price of :" + str(ask_price) + "was not in range of :" + str(average_daily_dropP) + " % " +
@@ -240,9 +237,9 @@ Update target price for all tracked stocks
                 notification_callback.emit("Target price for " + str(c["Stock"]) + " updated to " + str(
                     c["target_price"]) + " based on Close price")
             else:
-                if last=='-':
-                    c["target_price"]=0
-                    notification_callback.emit("Skept target price for "+str(c["Stock"])+" last prise missing")
+                if last == '-':
+                    c["target_price"] = 0
+                    notification_callback.emit("Skept target price for " + str(c["Stock"]) + " last prise missing")
                     continue
                 else:
                     c["target_price"] = last - last / 100 * average_daily_dropP
@@ -257,22 +254,24 @@ Creates order to buy a stock at specific price
         """
         contract = createContract(s)
         stocksToBuy = int(int(self.settings.BULCKAMOUNT) / price)
-        if stocksToBuy > 0:
+        if stocksToBuy > 0:  # very important - check for available trades everywhere!!!
+
             order = create_limit_buy_order(stocksToBuy, price)
             self.app.placeOrder(self.app.nextorderId, contract, order)
-            now=datetime.now()
-            add_deal_for_candidate(self.app.candidatesLive[s],price,stocksToBuy,now)
 
             self.app.nextorderId = self.app.nextorderId + 1
-            notification_callback.emit("Issued the BUY order at ", price, "for ", stocksToBuy, " Stocks of ", s)
-            self.log_decision("LOG/buys.txt", "Issued the BUY order at " + price + "for " + stocksToBuy + " Stocks of " + s)
-            for k, v in self.app.candidatesLive.items():
-                if v['Stock'] == s:
-                    self.log_decision("buys.txt", "Candidate was : Open: " + str(v['Open']) + " Close: " + str(
-                        v['Close']) + " Bid : " + str(v['Bid']) + " Ask:  " + str(v['Ask']) + " Last Price: " + str(
-                        v['LastPrice']) + " Average drop: " + str(
-                        round(v['averagePriceDropP'], 2)) + "Target price: " + str(
-                        round(v['target_price'], 2)) + " Rank: " + str(v['tipranksRank']))
+            notification_callback.emit(
+                "Issued the BUY order at " + str(price) + "for " + str(stocksToBuy) + " Stocks of " + s)
+            self.log_decision("LOG/buys.txt",
+                              "Issued the BUY order at " + str(price) + "for " + str(stocksToBuy) + " Stocks of " + s)
+
+            # for k, v in self.app.candidatesLive.items():
+            #     if v['Stock'] == s:
+            #         self.log_decision("buys.txt", "Candidate was : Open: " + str(v['Open']) + " Close: " + str(
+            #             v['Close']) + " Bid : " + str(v['Bid']) + " Ask:  " + str(v['Ask']) + " Last Price: " + str(
+            #             v['LastPrice']) + " Average drop: " + str(
+            #             round(v['averagePriceDropP'], 2)) + "Target price: " + str(
+            #             round(v['target_price'], 2)) + " Rank: " + str(v['tipranksRank']))
 
         else:
             notification_callback.emit("The single stock is too expensive - skipping")
@@ -295,6 +294,9 @@ processes candidates for buying
             for i, c in res:
                 if c['Stock'] in self.app.openPositions:
                     notification_callback.emit("Skipping " + c['Stock'] + " as it is in open positions.")
+                    continue
+                elif c['Stock'] in self.app.openOrders.keys():
+                    notification_callback.emit("Skipping " + c['Stock'] + " as it is in open orders.")
                     continue
                 else:
                     self.evaluate_stock_for_buy(c['Stock'], notification_callback)
@@ -326,11 +328,12 @@ Process Open positions and Candidates
             # process
             self.process_candidates(notification_callback)
             self.process_positions(notification_callback)
-            notification_callback.emit("...............Worker finished....EST Time: " + est_time + "...................")
+            notification_callback.emit(
+                "...............Worker finished....EST Time: " + est_time + "...................")
             status_callback.emit("Connected")
         except Exception as e:
             if hasattr(e, 'message'):
-                notification_callback.emit("Error in connection and preparation : "+ str(e.message))
+                notification_callback.emit("Error in connection and preparation : " + str(e.message))
             else:
                 notification_callback.emit("Error in connection and preparation : " + str(e))
 
@@ -346,10 +349,10 @@ updating all openPositions, refreshed on each worker- to include changes from ne
         print("Request all positions general info")
 
         self.app.openPositionsLiveDataRequests = {}  # reset requests dictionary as positions could be changed...
-        self.app.openPositions={}  #reset open positions
-        self.app.finishedPostitionsGeneral=False #flag to ensure all positions received
+        self.app.openPositions = {}  # reset open positions
+        self.app.finishedPostitionsGeneral = False  # flag to ensure all positions received
         self.app.reqPositions()  # requesting open positions
-        while(self.app.finishedPostitionsGeneral!=True):
+        while (self.app.finishedPostitionsGeneral != True):
             print("waiting to get all general positions info")
             time.sleep(1)
         for s, p in self.app.openPositions.items():  # start tracking one by one
@@ -363,9 +366,9 @@ updating all openPositions, refreshed on each worker- to include changes from ne
         for s, p in self.app.openPositions.items():
             id = self.app.nextorderId
             queryTime = datetime.today().strftime("%Y%m%d %H:%M:%S")
-            contract=createContract(s)
-            notification_callback.emit("Requesting History for "+s+" position for last 24H BID price")
-            self.app.reqHistoricalData(id, contract,queryTime,"1 D", "1 hour", "BID", 0, 1,False,[])
+            contract = createContract(s)
+            notification_callback.emit("Requesting History for " + s + " position for last 24H BID price")
+            self.app.reqHistoricalData(id, contract, queryTime, "1 D", "1 hour", "BID", 0, 1, False, [])
             self.app.openPositionsLiveHistoryRequests[id] = s
             self.app.nextorderId += 1
 
@@ -378,9 +381,9 @@ Requests all open orders
         """
         notification_callback.emit("Updating all open orders")
         self.app.openOrders = {}
-        self.app.finishedReceivingOrders=False
+        self.app.finishedReceivingOrders = False
         self.app.reqAllOpenOrders()
-        #while(self.app.finishedReceivingOrders!=True):
+        # while(self.app.finishedReceivingOrders!=True):
         print("waiting to get all orders info")
         time.sleep(1)
 

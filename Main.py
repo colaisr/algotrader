@@ -268,6 +268,7 @@ Starts the connection to the IBKR terminal in separate thread
 Starts the Timer with interval from Config file
         """
         if self.chbxProcess.isChecked():
+            self.run_worker()
             self.workerTimer.start(int(self.settings.INTERVALWORKER) * 1000)
         else:
             self.workerTimer.stop()

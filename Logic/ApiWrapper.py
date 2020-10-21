@@ -1,6 +1,5 @@
 import datetime
 
-from DataBase.db import checkDB
 from ibapi.common import MarketDataTypeEnum, HistogramDataList, BarData
 from twsapi.ibapi.contract import Contract, ContractDetails
 from twsapi.ibapi.order import Order
@@ -25,7 +24,7 @@ class IBapi(EWrapper, EClient):
         self.excessLiquidity = 0
         self.tradesRemaining=-1
         self.netLiquidation=0
-        checkDB()
+
 
     # def error(self, reqId: int, errorCode: int, errorString: str):
     #     if reqId > -1:
@@ -79,7 +78,7 @@ class IBapi(EWrapper, EClient):
 
     def openOrder(self, orderId, contract, order, orderState):
         super().openOrder(orderId, contract, order, orderState)
-        self.openOrders[contract.symbol] = {"Action": order.action, "Type": order.orderType}
+        self.openOrders[contract.symbol] = {"Action": order.action, "Type": order.orderType,"OrderId":orderId}
         print('openOrder id:', orderId, contract.symbol, contract.secType, '@', contract.exchange, ':', order.action,
               order.orderType, order.totalQuantity, orderState.status)
 
@@ -105,9 +104,11 @@ class IBapi(EWrapper, EClient):
         elif tickType == 9:
             self.candidatesLive[reqId]["Close"] = price
         elif tickType == 6:
-            self.candidatesLive[reqId]["High"] = price
+            return
+            # self.candidatesLive[reqId]["High"] = price
         elif tickType == 7:
-            self.candidatesLive[reqId]["Low"] = price
+            # self.candidatesLive[reqId]["Low"] = price
+            return
         elif tickType == 14:
             self.candidatesLive[reqId]["Open"] = price
         else:
