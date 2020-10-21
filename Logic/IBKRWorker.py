@@ -145,21 +145,19 @@ Processes the positions to identify Profit/Loss
                                                "Creating a trailing Stop Order to take a Profit")
                     contract = createContract(s)
                     order = createTrailingStopOrder(p["stocks"], self.settings.TRAIL)
-                    self.app.placeOrder(self.app.nextorderId, contract, order)
-                    self.app.nextorderId = self.app.nextorderId + 1
-                    notification_callback.emit("Created a Trailing Stop order for " + s + " at level of " +
-                                               str(self.settings.TRAIL) + "%")
-                    self.log_decision("LOG/profits.txt",
-                                      "Created a Trailing Stop order for " + s + " at level of " + self.settings.TRAIL + "%")
-                    # not clear what is it for.... i think copied by mistake
-                    # for k, v in self.app.candidatesLive.items():
-                    #     if v['Stock'] == s:
-                    #         self.log_decision("buys.txt", "Candidate was : Open: " + str(v['Open']) + " Close: " + str(
-                    #             v['Close']) + " Bid : " + str(v['Bid']) + " Ask:  " + str(
-                    #             v['Ask']) + " Last Price: " + str(
-                    #             v['LastPrice']) + " Average drop: " + str(
-                    #             round(v['averagePriceDropP'], 2)) + "Target price: " + str(
-                    #             round(v['target_price'], 2)) + " Rank: " + str(v['tipranksRank']))
+                    if self.app.tradesRemaining>0 or self.app.tradesRemaining==-1:
+
+                        self.app.placeOrder(self.app.nextorderId, contract, order)
+                        self.app.nextorderId = self.app.nextorderId + 1
+                        notification_callback.emit("Created a Trailing Stop order for " + s + " at level of " +
+                                                   str(self.settings.TRAIL) + "%")
+                        self.log_decision("LOG/profits.txt",
+                                          "Created a Trailing Stop order for " + s + " at level of " + self.settings.TRAIL + "%")
+                    else:
+                        notification_callback.emit("NO TRADES remain -Skept creation of Trailing Stop order for " + s + " at level of " +
+                                                   str(self.settings.TRAIL) + "%")
+                        self.log_decision("LOG/missed.txt",
+                                          " Skept :Created a Trailing Stop order for " + s + " at level of " + self.settings.TRAIL + "%")
             elif profit < float(self.settings.LOSS):
                 orders = self.app.openOrders
                 if s in orders:
@@ -169,20 +167,14 @@ Processes the positions to identify Profit/Loss
                                                "Creating a Market Sell Order to minimize the Loss")
                     contract = createContract(s)
                     order = createMktSellOrder(p['stocks'])
-                    self.app.placeOrder(self.app.nextorderId, contract, order)
-                    self.app.nextorderId = self.app.nextorderId + 1
-                    notification_callback.emit("Created a Market Sell order for " + s)
-                    self.log_decision("LOG/loses.txt", "Created a Market Sell order for " + s)
-
-                    # not clear what is it for
-                    # for k, v in self.app.candidatesLive.items():
-                    #     if v['Stock'] == s:
-                    #         self.log_decision("buys.txt", "Candidate was : Open: " + str(v['Open']) + " Close: " + str(
-                    #             v['Close']) + " Bid : " + str(v['Bid']) + " Ask:  " + str(
-                    #             v['Ask']) + " Last Price: " + str(
-                    #             v['LastPrice']) + " Average drop: " + str(
-                    #             round(v['averagePriceDropP'], 2)) + "Target price: " + str(
-                    #             round(v['target_price'], 2)) + " Rank: " + str(v['tipranksRank']))
+                    if self.app.tradesRemaining > 0 or self.app.tradesRemaining == -1:
+                        self.app.placeOrder(self.app.nextorderId, contract, order)
+                        self.app.nextorderId = self.app.nextorderId + 1
+                        notification_callback.emit("Created a Market Sell order for " + s)
+                        self.log_decision("LOG/loses.txt", "Created a Market Sell order for " + s)
+                    else:
+                        notification_callback.emit("NO TRADES remain -Skept:Created a Market Sell (Stoploss) order for " + s)
+                        self.log_decision("LOG/missed.txt", "Skept: Created a Market Sell order for " + s)
 
     def evaluate_stock_for_buy(self, s, notification_callback=None):
         """
@@ -292,14 +284,17 @@ processes candidates for buying
             res = sorted(self.app.candidatesLive.items(), key=lambda x: x[1]['tipranksRank'], reverse=True)
             notification_callback.emit(str(len(res)) + "Candidates found,sorted by Tipranks ranks")
             for i, c in res:
-                if c['Stock'] in self.app.openPositions:
-                    notification_callback.emit("Skipping " + c['Stock'] + " as it is in open positions.")
-                    continue
-                elif c['Stock'] in self.app.openOrders.keys():
-                    notification_callback.emit("Skipping " + c['Stock'] + " as it is in open orders.")
-                    continue
+                if self.app.tradesRemaining > 0 or self.app.tradesRemaining == -1:
+                    if c['Stock'] in self.app.openPositions:
+                        notification_callback.emit("Skipping " + c['Stock'] + " as it is in open positions.")
+                        continue
+                    elif c['Stock'] in self.app.openOrders.keys():
+                        notification_callback.emit("Skipping " + c['Stock'] + " as it is in open orders.")
+                        continue
+                    else:
+                        self.evaluate_stock_for_buy(c['Stock'], notification_callback)
                 else:
-                    self.evaluate_stock_for_buy(c['Stock'], notification_callback)
+                    notification_callback.emit("Skipping " + c['Stock'] + " no available trades.")
 
     def process_positions_candidates(self, status_callback, notification_callback):
         """

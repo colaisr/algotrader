@@ -302,6 +302,7 @@ Updates UI after connection/worker execution
         self.lAcc.setText(self.settings.ACCOUNT)
         self.lExcessLiquidity.setText(str(self.ibkrworker.app.excessLiquidity))
         self.lMarketValue.setText(str(self.ibkrworker.app.netLiquidation))
+        self.lblAvailTrades.setText(str(self.ibkrworker.app.tradesRemaining))
         self.lcdPNL.display(self.ibkrworker.app.dailyPnl)
         if self.ibkrworker.app.dailyPnl>0:
             palette = self.lcdPNL.palette()

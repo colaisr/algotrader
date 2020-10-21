@@ -22,7 +22,7 @@ class IBapi(EWrapper, EClient):
         self.finishedReceivingOrders=False
         self.openPositionsLiveHistoryRequests={}
         self.excessLiquidity = 0
-        self.tradesRemaining=-1
+        self.tradesRemaining=0
         self.netLiquidation=0
 
 

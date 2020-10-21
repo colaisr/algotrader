@@ -27,7 +27,7 @@
        <enum>Qt::Vertical</enum>
       </property>
       <widget class="QWidget" name="layoutWidget">
-       <layout class="QHBoxLayout" name="General">
+       <layout class="QHBoxLayout" name="general">
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_7">
           <item>
@@ -179,14 +179,36 @@
          </layout>
         </item>
         <item>
-         <widget class="QCheckBox" name="chbxProcess">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>Process Positions and Candidates</string>
-          </property>
-         </widget>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QCheckBox" name="chbxProcess">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Process Positions and Candidates</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>Trades available: </string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lblAvailTrades">
+              <property name="text">
+               <string>0</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
