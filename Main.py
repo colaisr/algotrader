@@ -220,6 +220,7 @@ class MainWindow(MainBaseClass, Ui_MainWindow):
         self.settings = settings
         self.ibkrworker = IBKRWorker(self.settings)
         self.threadpool = QThreadPool()
+        self.setWindowTitle("Algo Traider v 1.0")
 
         sys.stderr = open('LOG/errorLog.txt', 'w')
 
@@ -228,6 +229,7 @@ class MainWindow(MainBaseClass, Ui_MainWindow):
         # sys.stderr = OutLog(self.consoleOut, sys.stderr)
 
         # setting a timer for Worker
+
         self.uiTimer = QTimer()
         self.uiTimer.timeout.connect(self.update_ui)
 

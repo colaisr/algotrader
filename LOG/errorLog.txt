@@ -1,4 +1,43 @@
-ERROR -1 2104 Market data farm connection is OK:cashfarm
+ERROR -1 2158 Sec-def data farm connection is OK:secdefil
+ERROR -1 2119 Market data farm is connecting:usfarm
+ERROR -1 2119 Market data farm is connecting:usfarm
 ERROR -1 2104 Market data farm connection is OK:usfarm
 ERROR -1 2106 HMDS data farm connection is OK:ushmds
-ERROR -1 2158 Sec-def data farm connection is OK:secdefil
+Traceback (most recent call last):
+  File "/Users/colakamornik/Desktop/algotrader/Logic/IBKRWorker.py", line 29, in connect_and_prepare
+    self.update_open_positions(notification_callback)
+  File "/Users/colakamornik/Desktop/algotrader/Logic/IBKRWorker.py", line 375, in update_open_positions
+    notification_callback.emit(str(len(self.app.openPositions)) + " open positions completely updated")
+RuntimeError: Internal C++ object (WorkerSignals) already deleted.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/colakamornik/Desktop/algotrader/Main.py", line 147, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Users/colakamornik/Desktop/algotrader/Logic/IBKRWorker.py", line 41, in connect_and_prepare
+    notification_callback.emit("Error in connection and preparation : " + str(e))
+RuntimeError: Internal C++ object (WorkerSignals) already deleted.
+Traceback (most recent call last):
+  File "/Users/colakamornik/Desktop/algotrader/Logic/IBKRWorker.py", line 29, in connect_and_prepare
+  File "/Users/colakamornik/Desktop/algotrader/Logic/IBKRWorker.py", line 375, in update_open_positions
+RuntimeError: Internal C++ object (WorkerSignals) already deleted.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/colakamornik/Desktop/algotrader/Main.py", line 147, in run
+  File "/Users/colakamornik/Desktop/algotrader/Logic/IBKRWorker.py", line 41, in connect_and_prepare
+RuntimeError: Internal C++ object (WorkerSignals) already deleted.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/colakamornik/Desktop/algotrader/Main.py", line 151, in run
+RuntimeError: Internal C++ object (WorkerSignals) already deleted.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/colakamornik/Desktop/algotrader/Main.py", line 155, in run
+RuntimeError: Internal C++ object (WorkerSignals) already deleted.
