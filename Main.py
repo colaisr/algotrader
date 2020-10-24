@@ -5,18 +5,22 @@ import traceback, sys
 import configparser
 from sys import platform
 
-from PySide2 import QtWidgets, QtGui, QtCore
-from PySide2.QtGui import QPainter, Qt, QPalette, QColor
+from PySide2 import QtGui
+
 from pytz import timezone
 
 from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer, QTime, QSize
 
 from PySide2.QtUiTools import loadUiType
 from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QWidget, QMessageBox, QInputDialog, \
-    QLineEdit, QFormLayout, QLabel, QGridLayout, QHBoxLayout, QVBoxLayout, QSpacerItem, QSizePolicy, QDial, QScrollArea
+    QLineEdit
 
 import pyqtgraph as pg
+from setproctitle import setproctitle
+
 from Logic.IBKRWorker import IBKRWorker
+
+
 
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
@@ -27,6 +31,9 @@ settings_window_file = "UI/SettingsWindow.ui"
 Ui_MainWindow, MainBaseClass = loadUiType(main_window_file)
 Ui_SettingsWindow, SettingsBaseClass = loadUiType(settings_window_file)
 LOGFILE = "LOG/log.txt"
+
+# from guppy import hpy
+# h=hpy()
 
 
 class OutLog:
@@ -294,6 +301,7 @@ Executed the Worker in separate thread
             worker.signals.notification.connect(self.update_console)
             # Execute
             self.threadpool.start(worker)
+
 
     def update_ui(self):
         """
@@ -709,7 +717,7 @@ def clearLayout(layout):
         if child.widget():
             child.widget().deleteLater()
 
-
+setproctitle("AlgoTraderProcess")
 app = QApplication(sys.argv)
 settings = TraderSettings()
 window = MainWindow(settings)
