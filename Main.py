@@ -16,7 +16,7 @@ from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QWidg
     QLineEdit
 
 import pyqtgraph as pg
-from setproctitle import setproctitle
+
 
 from Logic.IBKRWorker import IBKRWorker
 
@@ -717,7 +717,7 @@ def clearLayout(layout):
         if child.widget():
             child.widget().deleteLater()
 
-setproctitle("AlgoTraderProcess")
+
 app = QApplication(sys.argv)
 settings = TraderSettings()
 window = MainWindow(settings)
