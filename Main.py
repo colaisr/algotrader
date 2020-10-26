@@ -323,8 +323,8 @@ Updates UI after connection/worker execution
             self.lcdPNL.setPalette(palette)
 
         self.update_open_positions()
-        # self.update_live_candidates()
-        # self.update_open_orders()
+        self.update_live_candidates()
+        self.update_open_orders()
 
         # everything disabled for safety - is now enabled
         self.chbxProcess.setEnabled(True)
@@ -418,24 +418,19 @@ Updates Candidates table
 Updates Positions grid
         """
         openPostions = self.ibkrworker.app.openPositions
-        # positionWidgets=[]
-        # for i in range(self.gp.count()):
-        #     positionWidgets.append(self.gp.itemAt(i).widget())
-        #
-        # posWidgetPairs=zip(openPostions,positionWidgets)
-        allKeys=[*openPostions]
-        lastUpdatedWidget=0
+        allKeys = [*openPostions]
+        lastUpdatedWidget = 0
         try:
             for i in range(len(openPostions)):
-                widget=self.gp.itemAt(i).widget()
-                key=allKeys[i]
-                value=openPostions[key]
-                widget.update_view(key,value)
+                widget = self.gp.itemAt(i).widget()
+                key = allKeys[i]
+                value = openPostions[key]
+                widget.update_view(key, value)
                 widget.show()
-                lastUpdatedWidget=i
+                lastUpdatedWidget = i
 
             for i in range(self.gp.count()):
-                if i>lastUpdatedWidget:
+                if i > lastUpdatedWidget:
                     widgetToRemove = self.gp.itemAt(i).widget()
                     widgetToRemove.hide()
 
@@ -484,7 +479,7 @@ Updates Positions grid
             col = 0
             row = 0
 
-            for i in range(0,99):
+            for i in range(0, 99):
                 if counter % 3 == 0:
                     col = 0
                     row += 1
@@ -689,10 +684,9 @@ class PositionPanel(QWidget):
         self.ui = Ui_position_canvas()
         self.ui.setupUi(self)
 
+        # to be able to address it  on refresh
         self.graphWidget = pg.PlotWidget()
         self.ui.gg.addWidget(self.graphWidget)
-
-
 
         StyleSheet = '''
         #prgProfit {
