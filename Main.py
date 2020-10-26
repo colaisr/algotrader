@@ -17,10 +17,7 @@ from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QWidg
 
 import pyqtgraph as pg
 
-
 from Logic.IBKRWorker import IBKRWorker
-
-
 
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
@@ -31,6 +28,7 @@ settings_window_file = "UI/SettingsWindow.ui"
 Ui_MainWindow, MainBaseClass = loadUiType(main_window_file)
 Ui_SettingsWindow, SettingsBaseClass = loadUiType(settings_window_file)
 LOGFILE = "LOG/log.txt"
+
 
 # from guppy import hpy
 # h=hpy()
@@ -231,6 +229,8 @@ class MainWindow(MainBaseClass, Ui_MainWindow):
 
         sys.stderr = open('LOG/errorLog.txt', 'w')
 
+        self.create_open_positions_grid()
+
         # # redirecting Cosole to UI and Log
         # sys.stdout = OutLog(self.consoleOut, sys.stdout)
         # sys.stderr = OutLog(self.consoleOut, sys.stderr)
@@ -302,30 +302,29 @@ Executed the Worker in separate thread
             # Execute
             self.threadpool.start(worker)
 
-
     def update_ui(self):
         """
 Updates UI after connection/worker execution
         :param s:
         """
-        #main data
+        # main data
         self.lAcc.setText(self.settings.ACCOUNT)
         self.lExcessLiquidity.setText(str(self.ibkrworker.app.excessLiquidity))
         self.lMarketValue.setText(str(self.ibkrworker.app.netLiquidation))
         self.lblAvailTrades.setText(str(self.ibkrworker.app.tradesRemaining))
         self.lcdPNL.display(self.ibkrworker.app.dailyPnl)
-        if self.ibkrworker.app.dailyPnl>0:
+        if self.ibkrworker.app.dailyPnl > 0:
             palette = self.lcdPNL.palette()
             palette.setColor(palette.WindowText, QtGui.QColor(51, 153, 51))
             self.lcdPNL.setPalette(palette)
-        elif self.ibkrworker.app.dailyPnl<0:
+        elif self.ibkrworker.app.dailyPnl < 0:
             palette = self.lcdPNL.palette()
             palette.setColor(palette.WindowText, QtGui.QColor(255, 0, 0))
             self.lcdPNL.setPalette(palette)
 
         self.update_open_positions()
-        self.update_live_candidates()
-        self.update_open_orders()
+        # self.update_live_candidates()
+        # self.update_open_orders()
 
         # everything disabled for safety - is now enabled
         self.chbxProcess.setEnabled(True)
@@ -336,8 +335,6 @@ Updates UI after connection/worker execution
         if not self.uiTimer.isActive():
             self.update_console("UI resumed.")
         self.uiTimer.start(int(self.settings.INTERVALUI) * 1000)  # reset the ui timer
-
-        # self.update_consoleO()
 
     def update_session_state(self):
         est = timezone('US/Eastern')
@@ -421,6 +418,40 @@ Updates Candidates table
 Updates Positions grid
         """
         openPostions = self.ibkrworker.app.openPositions
+        # positionWidgets=[]
+        # for i in range(self.gp.count()):
+        #     positionWidgets.append(self.gp.itemAt(i).widget())
+        #
+        # posWidgetPairs=zip(openPostions,positionWidgets)
+        allKeys=[*openPostions]
+        lastUpdatedWidget=0
+        try:
+            for i in range(len(openPostions)):
+                widget=self.gp.itemAt(i).widget()
+                key=allKeys[i]
+                value=openPostions[key]
+                widget.update_view(key,value)
+                widget.show()
+                lastUpdatedWidget=i
+
+            for i in range(self.gp.count()):
+                if i>lastUpdatedWidget:
+                    widgetToRemove = self.gp.itemAt(i).widget()
+                    widgetToRemove.hide()
+
+
+
+        except Exception as e:
+            if hasattr(e, 'message'):
+                self.update_console("Error in connection and preparation : " + str(e.message))
+            else:
+                self.update_console("Error in connection and preparation : " + str(e))
+
+    def update_open_positions_old(self):
+        """
+Updates Positions grid
+        """
+        openPostions = self.ibkrworker.app.openPositions
         try:
             clearLayout(self.gp)
             counter = 0
@@ -431,8 +462,34 @@ Updates Positions grid
                 if counter % 3 == 0:
                     col = 0
                     row += 1
-                p = PositionPanel(k, v)
-                self.gp.addWidget(p, row, col)
+                # p = PositionPanel(k, v)
+                self.gp.addWidget(PositionPanel(k, v), row, col)
+                counter += 1
+                col += 1
+
+        except Exception as e:
+            if hasattr(e, 'message'):
+                self.update_console("Error in connection and preparation : " + str(e.message))
+            else:
+                self.update_console("Error in connection and preparation : " + str(e))
+
+    def create_open_positions_grid(self):
+        """
+Updates Positions grid
+        """
+        openPostions = self.ibkrworker.app.openPositions
+        try:
+            clearLayout(self.gp)
+            counter = 0
+            col = 0
+            row = 0
+
+            for i in range(0,99):
+                if counter % 3 == 0:
+                    col = 0
+                    row += 1
+                # p = PositionPanel(k, v)
+                self.gp.addWidget(PositionPanel(), row, col)
                 counter += 1
                 col += 1
 
@@ -609,81 +666,7 @@ class PositionPanel(QWidget):
         self.ui = Ui_position_canvas()
         self.ui.setupUi(self)
 
-        # Data preparation
-        stock = stock
-        number_of_stocks = values['stocks']
-        bulk_value=0
-        profit=0
-        bid_price = str(round(values['cost'], 2))
-        if 'Value' in values.keys():
-            bulk_value = str(round(values['Value'], 2))
-        if 'UnrealizedPnL' in values.keys():
-            unrealized_pnl = str(round(values['UnrealizedPnL'], 2))
-            profit = values['UnrealizedPnL'] / values['Value'] * 100
-        if 'LastUpdate' in values.keys():
-            last_updatestr = (values['LastUpdate'])
-        if 'HistoricalData' in values.keys():
-            if len(values['HistoricalData'])>0:
-                hist_data = values['HistoricalData']
-                dates=[]
-                counter=[]
-                values=[]
-                i=0
-                for item in hist_data:
-                    dates.append(item.date)
-                    values.append(item.close)
-                    counter.append(i)
-                    i+=1
-
-                # graph
-                self.graphWidget = pg.PlotWidget()
-                self.ui.gg.addWidget(self.graphWidget)
-                hour = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-                temperature = [3.0, 3.2, 3.4, 3.2, 3.3, 3.1, 2.9, 3.2, 3.5, 4.5]
-                pen = pg.mkPen(color=(255, 0, 0))
-                self.graphWidget.plot(counter, values, pen=pen,title="24 H")
-                self.graphWidget.setBackground('w')
-                self.graphWidget.setTitle(values[-1], color="#d1d1e0", size="16pt")
-                self.graphWidget.hideAxis('bottom')
-
-
-
-        # UI set
-        self.ui.lStock.setText(stock)
-        self.ui.lVolume.setText(str(int(number_of_stocks)))
-        self.ui.lBulckValue.setText(str(bulk_value))
-        self.ui.lProfitP.setText(str(round(profit, 2)))
-
-        #setting progressBar and percent label
-        self.ui.prgProfit.setTextVisible(False)
-        if profit>0:
-            self.ui.prgProfit.setMinimum(0)
-            if profit>=int(settings.PROFIT):
-                self.ui.prgProfit.setMaximum(profit*10)
-            else:
-                self.ui.prgProfit.setMaximum(int(settings.PROFIT)*10)
-            self.ui.prgProfit.setValue(int(profit*10))
-            self.ui.prgProfit.setObjectName("prgProfit")
-
-
-            palette = self.ui.lProfitP.palette();
-            palette.setColor(palette.WindowText, QtGui.QColor(51, 153, 51));
-            self.ui.lProfitP.setPalette(palette)
-            self.ui.lp.setPalette(palette)
-
-        else:
-            self.ui.prgProfit.setMinimum(0)
-            if profit<=int(settings.LOSS):
-                self.ui.prgProfit.setMaximum(profit*-10)
-            else:
-                self.ui.prgProfit.setMaximum(int(settings.LOSS)*-10)
-            self.ui.prgProfit.setValue(int(profit*-10))
-            self.ui.prgProfit.setObjectName("prgLoss")
-
-            palette = self.ui.lProfitP.palette();
-            palette.setColor(palette.WindowText, QtGui.QColor(255, 0, 0));
-            self.ui.lProfitP.setPalette(palette)
-            self.ui.lp.setPalette(palette)
+        self.update_view()
 
         StyleSheet = '''
         #prgProfit {
@@ -701,21 +684,117 @@ class PositionPanel(QWidget):
         '''
         self.setStyleSheet(StyleSheet)
 
+    def __init__(self):
+        super(PositionPanel, self).__init__()
+        self.ui = Ui_position_canvas()
+        self.ui.setupUi(self)
+
+        self.graphWidget = pg.PlotWidget()
+        self.ui.gg.addWidget(self.graphWidget)
 
 
 
+        StyleSheet = '''
+        #prgProfit {
+            border: 2px solid green;
+        }
+        #prgProfit::chunk {
+            background-color: green;
+        }
+        #prgLoss {
+            border: 2px solid red;
+        }
+        #prgLoss::chunk {
+            background-color: #F44336;
+        }
+        '''
+        self.setStyleSheet(StyleSheet)
 
+    def update_view(self, stock, values):
+        # Data preparation
+        stock = stock
+        number_of_stocks = values['stocks']
+        bulk_value = 0
+        profit = 0
+        bid_price = str(round(values['cost'], 2))
+        if 'Value' in values.keys():
+            bulk_value = str(round(values['Value'], 2))
+        if 'UnrealizedPnL' in values.keys():
+            unrealized_pnl = str(round(values['UnrealizedPnL'], 2))
+            profit = values['UnrealizedPnL'] / values['Value'] * 100
+        if 'LastUpdate' in values.keys():
+            last_updatestr = (values['LastUpdate'])
+        if 'HistoricalData' in values.keys():
+            if len(values['HistoricalData']) > 0:
+                hist_data = values['HistoricalData']
+                dates = []
+                counter = []
+                values = []
+                i = 0
+                for item in hist_data:
+                    dates.append(item.date)
+                    values.append(item.close)
+                    counter.append(i)
+                    i += 1
 
+                # graph
 
+                pen = pg.mkPen(color=(255, 0, 0))
 
+                self.graphWidget.clear()
+                self.graphWidget.plot(counter, values, pen=pen, title="24 H")
+                self.graphWidget.setBackground('w')
+                self.graphWidget.setTitle(values[-1], color="#d1d1e0", size="16pt")
+                self.graphWidget.hideAxis('bottom')
 
+        # UI set
+        self.ui.lStock.setText(stock)
+        self.ui.lVolume.setText(str(int(number_of_stocks)))
+        self.ui.lBulckValue.setText(str(bulk_value))
+        self.ui.lProfitP.setText(str(round(profit, 2)))
+
+        # setting progressBar and percent label
+        self.ui.prgProfit.setTextVisible(False)
+        if profit > 0:
+            self.ui.prgProfit.setMinimum(0)
+            if profit >= int(settings.PROFIT):
+                self.ui.prgProfit.setMaximum(profit * 10)
+            else:
+                self.ui.prgProfit.setMaximum(int(settings.PROFIT) * 10)
+            self.ui.prgProfit.setValue(int(profit * 10))
+            self.ui.prgProfit.setObjectName("prgProfit")
+
+            palette = self.ui.lProfitP.palette();
+            palette.setColor(palette.WindowText, QtGui.QColor(51, 153, 51));
+            self.ui.lProfitP.setPalette(palette)
+            self.ui.lp.setPalette(palette)
+
+        else:
+            self.ui.prgProfit.setMinimum(0)
+            if profit <= int(settings.LOSS):
+                self.ui.prgProfit.setMaximum(profit * -10)
+            else:
+                self.ui.prgProfit.setMaximum(int(settings.LOSS) * -10)
+            self.ui.prgProfit.setValue(int(profit * -10))
+            self.ui.prgProfit.setObjectName("prgLoss")
+
+            palette = self.ui.lProfitP.palette();
+            palette.setColor(palette.WindowText, QtGui.QColor(255, 0, 0));
+            self.ui.lProfitP.setPalette(palette)
+            self.ui.lp.setPalette(palette)
 
 
 def clearLayout(layout):
-    while layout.count():
-        child = layout.takeAt(0)
-        if child.widget():
-            child.widget().deleteLater()
+    # while layout.count():
+    #     child = layout.takeAt(0)
+    #     if child.widget():
+    #         child.widget().setParent(None)
+    for i in reversed(range(layout.count())):
+        widgetToRemove = layout.itemAt(i).widget()
+        # remove it from the layout list
+        layout.removeWidget(widgetToRemove)
+        # remove it from the gui
+        widgetToRemove.setParent(None)
 
 
 app = QApplication(sys.argv)

@@ -36,9 +36,11 @@ class IBapi(EWrapper, EClient):
 
     def pnl(self, reqId: int, dailyPnL: float, unrealizedPnL: float, realizedPnL: float):
         super().pnl(reqId, dailyPnL, unrealizedPnL, realizedPnL)
+
         self.generalStatus = "DailyPnL: " + str(dailyPnL) + " UnrealizedPnL: " + str(
             unrealizedPnL) + " RealizedPnL: " + str(realizedPnL)
         self.dailyPnl=dailyPnL
+        print("PNL status updated:"+self.generalStatus)
 
     def pnlSingle(self, reqId: int, pos: int, dailyPnL: float, unrealizedPnL: float, realizedPnL: float, value: float):
         super().pnlSingle(reqId, pos, dailyPnL, unrealizedPnL, realizedPnL, value)
@@ -95,6 +97,7 @@ class IBapi(EWrapper, EClient):
 
     def tickPrice(self, reqId, tickType, price, attrib):
         super().tickPrice(reqId, tickType, price, attrib)
+        print("Tick received")
         if tickType == 1:
             self.candidatesLive[reqId]["Bid"] = price
         elif tickType == 2:
@@ -119,6 +122,7 @@ class IBapi(EWrapper, EClient):
     def accountSummary(self, reqId: int, account: str, tag: str, value: str,
                        currency: str):
         super().accountSummary(reqId, account, tag, value, currency)
+        print("Account summary received")
         if tag=='DayTradesRemaining':
             self.tradesRemaining=int(value)
         elif tag=='ExcessLiquidity':

@@ -1,19 +1,10 @@
 ERROR -1 2104 Market data farm connection is OK:usfarm
 ERROR -1 2106 HMDS data farm connection is OK:ushmds
 ERROR -1 2158 Sec-def data farm connection is OK:secdefil
-ERROR 236 162 Historical Market Data Service error message:Trading TWS session is connected from a different IP address
-ERROR 238 162 Historical Market Data Service error message:Trading TWS session is connected from a different IP address
-ERROR 237 162 Historical Market Data Service error message:Trading TWS session is connected from a different IP address
-ERROR 239 162 Historical Market Data Service error message:Trading TWS session is connected from a different IP address
-ERROR 240 162 Historical Market Data Service error message:Trading TWS session is connected from a different IP address
-ERROR 241 162 Historical Market Data Service error message:Trading TWS session is connected from a different IP address
-ERROR 242 162 Historical Market Data Service error message:Trading TWS session is connected from a different IP address
-ERROR 251 10197 No market data during competing live session
-ERROR 248 10197 No market data during competing live session
-ERROR 250 10197 No market data during competing live session
-ERROR 247 10197 No market data during competing live session
-ERROR 245 10197 No market data during competing live session
-ERROR 246 10197 No market data during competing live session
-ERROR 249 10197 No market data during competing live session
-ERROR 243 10197 No market data during competing live session
-ERROR 244 10197 No market data during competing live session
+ERROR 231 2150 Invalid position trade derived value
+ERROR 229 2150 Invalid position trade derived value
+ERROR 232 2150 Invalid position trade derived value
+ERROR 233 2150 Invalid position trade derived value
+ERROR 230 2150 Invalid position trade derived value
+ERROR 234 2150 Invalid position trade derived value
+ERROR 235 2150 Invalid position trade derived value
