@@ -62,8 +62,7 @@ class IBapi(EWrapper, EClient):
 
     def position(self, account: str, contract: Contract, position: float, avgCost: float):
         super().position(account, contract, position, avgCost)
-        if position != 0:# if 0 means its empty - already sold
-            self.openPositions[contract.symbol] = {"stocks": position, "cost": avgCost, "conId": contract.conId,"HistoricalData":[]}
+        self.openPositions[contract.symbol] = {"stocks": position, "cost": avgCost, "conId": contract.conId,"HistoricalData":[]}
         print("Position general data received.", "Account:", account, "Symbol:", contract.symbol, "SecType:",contract.secType, "Currency:", contract.currency,contract.secType, "Currency:", contract.currency,"Position:", position, "Avg cost:", avgCost)
 
     def positionEnd(self):
