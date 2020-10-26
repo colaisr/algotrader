@@ -1,10 +1,4 @@
 ERROR -1 2104 Market data farm connection is OK:usfarm
-ERROR -1 2106 HMDS data farm connection is OK:ushmds
+ERROR -1 2107 HMDS data farm connection is inactive but should be available upon demand.ushmds
 ERROR -1 2158 Sec-def data farm connection is OK:secdefil
-ERROR 231 2150 Invalid position trade derived value
-ERROR 229 2150 Invalid position trade derived value
-ERROR 232 2150 Invalid position trade derived value
-ERROR 233 2150 Invalid position trade derived value
-ERROR 230 2150 Invalid position trade derived value
-ERROR 234 2150 Invalid position trade derived value
-ERROR 235 2150 Invalid position trade derived value
+ERROR -1 2106 HMDS data farm connection is OK:ushmds

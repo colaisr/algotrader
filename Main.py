@@ -34,59 +34,6 @@ LOGFILE = "LOG/log.txt"
 # h=hpy()
 
 
-class OutLog:
-    def __init__(self, edit, out=None, color=None):
-        """(edit, out=None, color=None) -> can redirect Console output to a
-        QTextEdit.
-        edit = QTextEdit
-        out = alternate stream ( can be the original sys.stdout )
-        color = alternate color (i.e. color stderr a different color)
-        """
-        self.edit = edit
-        self.out = out
-        self.color = color
-        self.logLine = ""
-
-    def write(self, m):
-        """
-writes text to Qedit
-        :param m: text to write
-        """
-        try:
-            if self.color:
-                tc = self.edit.textColor()
-                self.edit.setTextColor(self.color)
-
-            # self.edit.moveCursor(QTextCursor.End)
-            # self.edit.insertPlainText(m)
-            # self.log_message(m)
-            self.logLine += m
-
-            if self.color:
-                self.edit.setTextColor(tc)
-
-            if self.out:
-                self.out.write(m)
-        except:
-            print("OUTERRORHAPPENED")
-
-    def flush(self):
-        """
-required to avoid error
-        """
-        r = 3
-
-    def flush_to_log_file(self, m):
-        """
-adds portion to the log file
-        :param m:
-        """
-        with open(LOGFILE, "a") as f:
-            currentDt = datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
-            m = currentDt + '---' + m
-            f.write(m)
-
-
 class WorkerSignals(QObject):
     '''
     Defines the signals available from a running worker thread.
@@ -293,6 +240,7 @@ Executed the Worker in separate thread
             print("Worker skept-Technical break : ", fromTime.toString("hh:mm"), " to ", toTime.toString("hh:mm"))
             self.update_console("Technical break untill " + toTime.toString("hh:mm"))
         else:
+            self.update_console("Starting Worker- UI Paused")
             self.uiTimer.stop()  # to not cause an errors when lists will be resetted
             worker = Worker(
                 self.ibkrworker.process_positions_candidates)  # Any other args, kwargs are passed to the run function
@@ -421,7 +369,7 @@ Updates Positions grid
         allKeys = [*openPostions]
         lastUpdatedWidget = 0
         try:
-            for i in range(len(openPostions)):
+            for i in range(len(openPostions)):         #Update positions Panels
                 widget = self.gp.itemAt(i).widget()
                 key = allKeys[i]
                 value = openPostions[key]
@@ -429,7 +377,7 @@ Updates Positions grid
                 widget.show()
                 lastUpdatedWidget = i
 
-            for i in range(self.gp.count()):
+            for i in range(self.gp.count()):            #Hide the rest of the panels
                 if i > lastUpdatedWidget:
                     widgetToRemove = self.gp.itemAt(i).widget()
                     widgetToRemove.hide()
@@ -442,39 +390,11 @@ Updates Positions grid
             else:
                 self.update_console("Error in connection and preparation : " + str(e))
 
-    def update_open_positions_old(self):
-        """
-Updates Positions grid
-        """
-        openPostions = self.ibkrworker.app.openPositions
-        try:
-            clearLayout(self.gp)
-            counter = 0
-            col = 0
-            row = 0
-
-            for k, v in openPostions.items():
-                if counter % 3 == 0:
-                    col = 0
-                    row += 1
-                # p = PositionPanel(k, v)
-                self.gp.addWidget(PositionPanel(k, v), row, col)
-                counter += 1
-                col += 1
-
-        except Exception as e:
-            if hasattr(e, 'message'):
-                self.update_console("Error in connection and preparation : " + str(e.message))
-            else:
-                self.update_console("Error in connection and preparation : " + str(e))
-
     def create_open_positions_grid(self):
         """
-Updates Positions grid
+Creates Open positions grid with 99 Positions widgets
         """
-        openPostions = self.ibkrworker.app.openPositions
         try:
-            clearLayout(self.gp)
             counter = 0
             col = 0
             row = 0
@@ -483,7 +403,6 @@ Updates Positions grid
                 if counter % 3 == 0:
                     col = 0
                     row += 1
-                # p = PositionPanel(k, v)
                 self.gp.addWidget(PositionPanel(), row, col)
                 counter += 1
                 col += 1
@@ -738,7 +657,7 @@ class PositionPanel(QWidget):
                 self.graphWidget.clear()
                 self.graphWidget.plot(counter, values, pen=pen, title="24 H")
                 self.graphWidget.setBackground('w')
-                self.graphWidget.setTitle(values[-1], color="#d1d1e0", size="16pt")
+                self.graphWidget.setTitle(values[-1] , color="#d1d1e0", size="16pt")
                 self.graphWidget.hideAxis('bottom')
 
         # UI set
@@ -777,18 +696,21 @@ class PositionPanel(QWidget):
             self.ui.lProfitP.setPalette(palette)
             self.ui.lp.setPalette(palette)
 
-
-def clearLayout(layout):
-    # while layout.count():
-    #     child = layout.takeAt(0)
-    #     if child.widget():
-    #         child.widget().setParent(None)
-    for i in reversed(range(layout.count())):
-        widgetToRemove = layout.itemAt(i).widget()
-        # remove it from the layout list
-        layout.removeWidget(widgetToRemove)
-        # remove it from the gui
-        widgetToRemove.setParent(None)
+        # StyleSheet = '''
+        # #prgProfit {
+        #     border: 2px solid green;
+        # }
+        # #prgProfit::chunk {
+        #     background-color: green;
+        # }
+        # #prgLoss {
+        #     border: 2px solid red;
+        # }
+        # #prgLoss::chunk {
+        #     background-color: #F44336;
+        # }
+        # '''
+        # self.setStyleSheet(StyleSheet)
 
 
 app = QApplication(sys.argv)
