@@ -369,12 +369,12 @@ Updates Positions grid
         allKeys = [*openPostions]
         lastUpdatedWidget = 0
         try:
-            for i in range(len(openPostions)):         #Update positions Panels
+            for i in range(len(openPostions)):  # Update positions Panels
 
                 widget = self.gp.itemAt(i).widget()
                 key = allKeys[i]
                 value = openPostions[key]
-                if value['Value']!=0:
+                if value['Value'] != 0:
                     widget.update_view(key, value)
                     widget.show()
                     lastUpdatedWidget = i
@@ -382,7 +382,7 @@ Updates Positions grid
                     widgetToRemove = self.gp.itemAt(i).widget()
                     widgetToRemove.hide()
 
-            for i in range(self.gp.count()):            #Hide the rest of the panels
+            for i in range(self.gp.count()):  # Hide the rest of the panels
                 if i > lastUpdatedWidget:
                     widgetToRemove = self.gp.itemAt(i).widget()
                     widgetToRemove.hide()
@@ -587,21 +587,21 @@ class PositionPanel(QWidget):
 
         self.update_view()
 
-        StyleSheet = '''
-        #prgProfit {
-            border: 2px solid green;
-        }
-        #prgProfit::chunk {
-            background-color: green;
-        }
-        #prgLoss {
-            border: 2px solid red;
-        }
-        #prgLoss::chunk {
-            background-color: #F44336;
-        }
-        '''
-        self.setStyleSheet(StyleSheet)
+        # StyleSheet = '''
+        # #prgProfit {
+        #     border: 2px solid green;
+        # }
+        # #prgProfit::chunk {
+        #     background-color: green;
+        # }
+        # #prgLoss {
+        #     border: 2px solid red;
+        # }
+        # #prgLoss::chunk {
+        #     background-color: #F44336;
+        # }
+        # '''
+        # self.setStyleSheet(StyleSheet)
 
     def __init__(self):
         super(PositionPanel, self).__init__()
@@ -611,22 +611,6 @@ class PositionPanel(QWidget):
         # to be able to address it  on refresh
         self.graphWidget = pg.PlotWidget()
         self.ui.gg.addWidget(self.graphWidget)
-
-        StyleSheet = '''
-        #prgProfit {
-            border: 2px solid green;
-        }
-        #prgProfit::chunk {
-            background-color: green;
-        }
-        #prgLoss {
-            border: 2px solid red;
-        }
-        #prgLoss::chunk {
-            background-color: #F44336;
-        }
-        '''
-        self.setStyleSheet(StyleSheet)
 
     def update_view(self, stock, values):
         # Data preparation
@@ -643,6 +627,7 @@ class PositionPanel(QWidget):
         if 'LastUpdate' in values.keys():
             last_updatestr = (values['LastUpdate'])
         if 'HistoricalData' in values.keys():
+            print("Updating Graph for " + stock + " using " + str(len(values['HistoricalData'])) + " points")
             if len(values['HistoricalData']) > 0:
                 hist_data = values['HistoricalData']
                 dates = []
@@ -662,7 +647,7 @@ class PositionPanel(QWidget):
                 self.graphWidget.clear()
                 self.graphWidget.plot(counter, values, pen=pen, title="24 H")
                 self.graphWidget.setBackground('w')
-                self.graphWidget.setTitle(values[-1] , color="#d1d1e0", size="16pt")
+                self.graphWidget.setTitle(values[-1], color="#d1d1e0", size="16pt")
                 self.graphWidget.hideAxis('bottom')
 
         # UI set
@@ -680,7 +665,15 @@ class PositionPanel(QWidget):
             else:
                 self.ui.prgProfit.setMaximum(int(settings.PROFIT) * 10)
             self.ui.prgProfit.setValue(int(profit * 10))
-            self.ui.prgProfit.setObjectName("prgProfit")
+            self.ui.prgProfit.setStyleSheet("QProgressBar"
+                                            "{"
+                                            "border: 2px solid green;"
+                                            "}"
+                                            "QProgressBar::chunk"
+                                            "{"
+                                            "background-color: green;"
+                                            "}"
+                                            )
 
             palette = self.ui.lProfitP.palette();
             palette.setColor(palette.WindowText, QtGui.QColor(51, 153, 51));
@@ -694,7 +687,15 @@ class PositionPanel(QWidget):
             else:
                 self.ui.prgProfit.setMaximum(int(settings.LOSS) * -10)
             self.ui.prgProfit.setValue(int(profit * -10))
-            self.ui.prgProfit.setObjectName("prgLoss")
+            self.ui.prgProfit.setStyleSheet("QProgressBar"
+                                            "{"
+                                            "border: 2px solid red;"
+                                            "}"
+                                            "QProgressBar::chunk"
+                                            "{"
+                                            "background-color: #F44336;"
+                                            "}"
+                                            )
 
             palette = self.ui.lProfitP.palette();
             palette.setColor(palette.WindowText, QtGui.QColor(255, 0, 0));

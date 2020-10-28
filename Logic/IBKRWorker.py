@@ -216,9 +216,6 @@ Update target price for all tracked stocks
             last = c["LastPrice"]
             average_daily_dropP = c["averagePriceDropP"]
             tipRank = c["tipranksRank"]
-            notification_callback.emit("Close:" + str(c["Close"]))
-            notification_callback.emit("Open:" + str(c["Open"]))
-            notification_callback.emit("LastPrice:" + str(c["LastPrice"]))
 
             if open != '-':  # market is closed
                 c["target_price"] = open - open / 100 * average_daily_dropP
