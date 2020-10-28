@@ -361,9 +361,9 @@ Updates Candidates table
                 line += 1
         except Exception as e:
             if hasattr(e, 'message'):
-                self.update_console("Error in connection and preparation : " + str(e.message))
+                self.update_console("Error in updating Candidates: " + str(e.message))
             else:
-                self.update_console("Error in connection and preparation : " + str(e))
+                self.update_console("Error in updating Candidates: " + str(e))
 
     def update_open_positions(self):
         """
@@ -390,37 +390,28 @@ Updates Positions grid
                 if i > lastUpdatedWidget:
                     widgetToRemove = self.gp.itemAt(i).widget()
                     widgetToRemove.hide()
-
-
-
         except Exception as e:
             if hasattr(e, 'message'):
-                self.update_console("Error in connection and preparation : " + str(e.message))
+                self.update_console("Error in refreshing Positions: " + str(e.message))
             else:
-                self.update_console("Error in connection and preparation : " + str(e))
+                self.update_console("Error in refreshing Positions: " + str(e))
 
     def create_open_positions_grid(self):
         """
 Creates Open positions grid with 99 Positions widgets
         """
-        try:
-            counter = 0
-            col = 0
-            row = 0
 
-            for i in range(0, 99):
-                if counter % 3 == 0:
-                    col = 0
-                    row += 1
-                self.gp.addWidget(PositionPanel(), row, col)
-                counter += 1
-                col += 1
+        counter = 0
+        col = 0
+        row = 0
 
-        except Exception as e:
-            if hasattr(e, 'message'):
-                self.update_console("Error in connection and preparation : " + str(e.message))
-            else:
-                self.update_console("Error in connection and preparation : " + str(e))
+        for i in range(0, 99):
+            if counter % 3 == 0:
+                col = 0
+                row += 1
+            self.gp.addWidget(PositionPanel(), row, col)
+            counter += 1
+            col += 1
 
     def update_open_orders(self):
         """
@@ -437,9 +428,9 @@ Updates Positions table
                 line += 1
         except Exception as e:
             if hasattr(e, 'message'):
-                self.update_console("Error in connection and preparation : " + str(e.message))
+                self.update_console("Error in Updating open Orders : " + str(e.message))
             else:
-                self.update_console("Error in connection and preparation : " + str(e))
+                self.update_console("Error in Updating open Orders : " + str(e))
 
     def thread_complete(self):
         """
@@ -711,7 +702,6 @@ class PositionPanel(QWidget):
                 self.update_console("Error in updating position: " + str(e.message))
             else:
                 self.update_console("Error in updating position : " + str(e))
-
 
 
 app = QApplication(sys.argv)
