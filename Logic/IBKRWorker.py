@@ -133,48 +133,54 @@ Processes the positions to identify Profit/Loss
         notification_callback.emit("Processing profits")
 
         for s, p in self.app.openPositions.items():
-            notification_callback.emit("Processing " + s)
-            profit = p["UnrealizedPnL"] / p["Value"] * 100
-            notification_callback.emit("The profit for " + s + " is " + str(profit) + " %")
-            if profit > float(self.settings.PROFIT):
-                orders = self.app.openOrders
-                if s in orders:
-                    notification_callback.emit("Order for " + s + "already exist- skipping")
-                else:
-                    notification_callback.emit("Profit for: " + s + " is " + str(profit) +
-                                               "Creating a trailing Stop Order to take a Profit")
-                    contract = createContract(s)
-                    order = createTrailingStopOrder(p["stocks"], self.settings.TRAIL)
-                    if self.app.tradesRemaining>0 or self.app.tradesRemaining==-1:
+            if 'Value' in p.keys():
+                if p["Value"]!=0:
+                    notification_callback.emit("Processing " + s)
+                    profit = p["UnrealizedPnL"] / p["Value"] * 100
+                    notification_callback.emit("The profit for " + s + " is " + str(profit) + " %")
+                    if profit > float(self.settings.PROFIT):
+                        orders = self.app.openOrders
+                        if s in orders:
+                            notification_callback.emit("Order for " + s + "already exist- skipping")
+                        else:
+                            notification_callback.emit("Profit for: " + s + " is " + str(profit) +
+                                                       "Creating a trailing Stop Order to take a Profit")
+                            contract = createContract(s)
+                            order = createTrailingStopOrder(p["stocks"], self.settings.TRAIL)
+                            if self.app.tradesRemaining>0 or self.app.tradesRemaining==-1:
 
-                        self.app.placeOrder(self.app.nextorderId, contract, order)
-                        self.app.nextorderId = self.app.nextorderId + 1
-                        notification_callback.emit("Created a Trailing Stop order for " + s + " at level of " +
-                                                   str(self.settings.TRAIL) + "%")
-                        self.log_decision("LOG/profits.txt",
-                                          "Created a Trailing Stop order for " + s + " at level of " + self.settings.TRAIL + "%")
-                    else:
-                        notification_callback.emit("NO TRADES remain -Skept creation of Trailing Stop order for " + s + " at level of " +
-                                                   str(self.settings.TRAIL) + "%")
-                        self.log_decision("LOG/missed.txt",
-                                          " Skept :Created a Trailing Stop order for " + s + " at level of " + self.settings.TRAIL + "%")
-            elif profit < float(self.settings.LOSS):
-                orders = self.app.openOrders
-                if s in orders:
-                    notification_callback.emit("Order for " + s + "already exist- skipping")
+                                self.app.placeOrder(self.app.nextorderId, contract, order)
+                                self.app.nextorderId = self.app.nextorderId + 1
+                                notification_callback.emit("Created a Trailing Stop order for " + s + " at level of " +
+                                                           str(self.settings.TRAIL) + "%")
+                                self.log_decision("LOG/profits.txt",
+                                                  "Created a Trailing Stop order for " + s + " at level of " + self.settings.TRAIL + "%")
+                            else:
+                                notification_callback.emit("NO TRADES remain -Skept creation of Trailing Stop order for " + s + " at level of " +
+                                                           str(self.settings.TRAIL) + "%")
+                                self.log_decision("LOG/missed.txt",
+                                                  " Skept :Created a Trailing Stop order for " + s + " at level of " + self.settings.TRAIL + "%")
+                    elif profit < float(self.settings.LOSS):
+                        orders = self.app.openOrders
+                        if s in orders:
+                            notification_callback.emit("Order for " + s + "already exist- skipping")
+                        else:
+                            notification_callback.emit("loss for: " + s + " is " + str(profit) +
+                                                       "Creating a Market Sell Order to minimize the Loss")
+                            contract = createContract(s)
+                            order = createMktSellOrder(p['stocks'])
+                            if self.app.tradesRemaining > 0 or self.app.tradesRemaining == -1:
+                                self.app.placeOrder(self.app.nextorderId, contract, order)
+                                self.app.nextorderId = self.app.nextorderId + 1
+                                notification_callback.emit("Created a Market Sell order for " + s)
+                                self.log_decision("LOG/loses.txt", "Created a Market Sell order for " + s)
+                            else:
+                                notification_callback.emit("NO TRADES remain -Skept:Created a Market Sell (Stoploss) order for " + s)
+                                self.log_decision("LOG/missed.txt", "Skept: Created a Market Sell order for " + s)
                 else:
-                    notification_callback.emit("loss for: " + s + " is " + str(profit) +
-                                               "Creating a Market Sell Order to minimize the Loss")
-                    contract = createContract(s)
-                    order = createMktSellOrder(p['stocks'])
-                    if self.app.tradesRemaining > 0 or self.app.tradesRemaining == -1:
-                        self.app.placeOrder(self.app.nextorderId, contract, order)
-                        self.app.nextorderId = self.app.nextorderId + 1
-                        notification_callback.emit("Created a Market Sell order for " + s)
-                        self.log_decision("LOG/loses.txt", "Created a Market Sell order for " + s)
-                    else:
-                        notification_callback.emit("NO TRADES remain -Skept:Created a Market Sell (Stoploss) order for " + s)
-                        self.log_decision("LOG/missed.txt", "Skept: Created a Market Sell order for " + s)
+                    notification_callback.emit("Position " + s + " skept its Value is 0")
+            else:
+                notification_callback.emit("Position "+s+" skept it has no Value")
 
     def evaluate_stock_for_buy(self, s, notification_callback=None):
         """

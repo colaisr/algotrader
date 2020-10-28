@@ -236,11 +236,12 @@ Executed the Worker in separate thread
         currentTime = QTime().currentTime()
         fromTime = QTime(int(self.settings.TECHFROMHOUR), int(self.settings.TECHFROMMIN))
         toTime = QTime(int(self.settings.TECHTOHOUR), int(self.settings.TECHTOMIN))
+        sessionState=self.lblMarket.text()
         if currentTime > fromTime and currentTime < toTime:
             print("Worker skept-Technical break : ", fromTime.toString("hh:mm"), " to ", toTime.toString("hh:mm"))
             self.update_console("Technical break untill " + toTime.toString("hh:mm"))
 
-        elif self.lblMarket.Text() == "Closed":
+        elif sessionState == "Closed":
             print("Worker skept-Trading Session is Closed .......... ")
             self.update_console("Worker skept-Trading Session is Closed .......... ")
         else:
