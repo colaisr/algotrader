@@ -377,14 +377,15 @@ Updates Positions grid
 
                 widget = self.gp.itemAt(i).widget()
                 key = allKeys[i]
-                value = openPostions[key]
-                if value['Value'] != 0:
-                    widget.update_view(key, value)
-                    widget.show()
-                    lastUpdatedWidget = i
-                else:
-                    widgetToRemove = self.gp.itemAt(i).widget()
-                    widgetToRemove.hide()
+                values = openPostions[key]
+                if 'Value' in values.keys():
+                    if values['Value'] != 0:
+                        widget.update_view(key, values)
+                        widget.show()
+                        lastUpdatedWidget = i
+                    else:
+                        widgetToRemove = self.gp.itemAt(i).widget()
+                        widgetToRemove.hide()
 
             for i in range(self.gp.count()):  # Hide the rest of the panels
                 if i > lastUpdatedWidget:
