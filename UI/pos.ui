@@ -62,6 +62,12 @@
               <pointsize>22</pointsize>
              </font>
             </property>
+            <property name="toolTip">
+             <string>Ticker</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>-1</number>
+            </property>
             <property name="styleSheet">
              <string notr="true">color: rgb(0, 0, 255);</string>
             </property>
@@ -75,6 +81,9 @@
           </item>
           <item>
            <widget class="QLabel" name="lVolume">
+            <property name="toolTip">
+             <string>Number of Stocks</string>
+            </property>
             <property name="text">
              <string>-</string>
             </property>
@@ -85,6 +94,12 @@
           </item>
           <item>
            <widget class="QLabel" name="lBulckValue">
+            <property name="toolTip">
+             <string>Position value</string>
+            </property>
+            <property name="toolTipDuration">
+             <number>-1</number>
+            </property>
             <property name="text">
              <string>--</string>
             </property>
@@ -161,6 +176,9 @@
               </item>
               <item>
                <widget class="QLabel" name="lProfitP">
+                <property name="toolTip">
+                 <string>Position profit</string>
+                </property>
                 <property name="text">
                  <string>-</string>
                 </property>

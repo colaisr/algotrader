@@ -318,7 +318,7 @@ Process Open positions and Candidates
                     notification_callback.emit("Connection is fine- proceeding")
                 else:
                     notification_callback.emit("Connection lost-reconnecting")
-                    self.connect_to_tws()
+                    self.connect_to_tws(notification_callback)
 
                 # collect and update
                 self.update_open_orders(notification_callback)
