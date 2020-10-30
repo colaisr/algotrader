@@ -80,6 +80,8 @@ getting and updating tiprank rank for live candidates
         """
         notification_callback.emit("Getting ranks for :" + str(self.settings.TRANDINGSTOCKS))
         ranks = get_tiprank_ratings_to_Stocks(self.settings.TRANDINGSTOCKS, self.settings.PATHTOWEBDRIVER)
+        # ranks = get_tiprank_ratings_to_Stocks(self.settings.TRANDINGSTOCKS)
+
         for k, v in self.app.candidatesLive.items():
             v["tipranksRank"] = ranks[v["Stock"]]
             notification_callback.emit("Updated " + str(v["tipranksRank"]) + " rank for " + v["Stock"])

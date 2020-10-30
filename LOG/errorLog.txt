@@ -1,14 +1,5 @@
 ERROR -1 2104 Market data farm connection is OK:usfarm
-ERROR -1 2106 HMDS data farm connection is OK:ushmds
-ERROR -1 2158 Sec-def data farm connection is OK:secdefil
 ERROR -1 2107 HMDS data farm connection is inactive but should be available upon demand.ushmds
-ERROR -1 1100 Connectivity between IB and Trader Workstation has been lost.
-ERROR -1 2157 Sec-def data farm connection is broken:secdefil
 ERROR -1 2158 Sec-def data farm connection is OK:secdefil
-ERROR -1 1102 Connectivity between IB and Trader Workstation has been restored - data maintained. The following farms are connected: usfarm; secdefil. The following farms are not connected: ushmds.
-ERROR -1 2157 Sec-def data farm connection is broken:secdefil
-ERROR -1 2158 Sec-def data farm connection is OK:secdefil
-ERROR -1 2103 Market data farm connection is broken:usfarm
-ERROR -1 2104 Market data farm connection is OK:usfarm
-ERROR -1 2103 Market data farm connection is broken:usfarm
-ERROR -1 2104 Market data farm connection is OK:usfarm
+ERROR -1 2106 HMDS data farm connection is OK:ushmds
+ERROR -1 1102 Connectivity between IB and Trader Workstation has been restored - data maintained. All data farms are connected: usfarm; ushmds; secdefil.
