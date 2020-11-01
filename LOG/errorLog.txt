@@ -1,5 +1,7 @@
 ERROR -1 2104 Market data farm connection is OK:usfarm
-ERROR -1 2107 HMDS data farm connection is inactive but should be available upon demand.ushmds
-ERROR -1 2158 Sec-def data farm connection is OK:secdefil
 ERROR -1 2106 HMDS data farm connection is OK:ushmds
-ERROR -1 1102 Connectivity between IB and Trader Workstation has been restored - data maintained. All data farms are connected: usfarm; ushmds; secdefil.
+ERROR -1 2158 Sec-def data farm connection is OK:secdefil
+Traceback (most recent call last):
+  File "/Users/colakamornik/Desktop/algotrader/Main.py", line 261, in update_ui
+    def update_ui(self):
+KeyboardInterrupt

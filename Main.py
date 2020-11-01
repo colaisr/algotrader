@@ -21,6 +21,7 @@ from Logic.IBKRWorker import IBKRWorker
 
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
+from Research.tipRanksScrapperRequestsHtmlThreaded import get_tiprank_ratings_to_Stocks
 from UI.pos import Ui_position_canvas
 
 main_window_file = "UI/MainWindow.ui"
@@ -184,6 +185,7 @@ class MainWindow(MainBaseClass, Ui_MainWindow):
 
         # setting a timer for Worker
 
+
         self.uiTimer = QTimer()
         self.uiTimer.timeout.connect(self.update_ui)
 
@@ -196,6 +198,7 @@ class MainWindow(MainBaseClass, Ui_MainWindow):
 
         self.statusbar.showMessage("Ready")
         self.update_session_state()
+
         self.connect_to_ibkr()
         StyleSheet = '''
         #lcdPNLgreen {
@@ -354,7 +357,10 @@ Updates Candidates table
                 self.tCandidates.setItem(line, 3, QTableWidgetItem(str(v['Bid'])))
                 self.tCandidates.setItem(line, 4, QTableWidgetItem(str(v['Ask'])))
                 self.tCandidates.setItem(line, 5, QTableWidgetItem(str(v['LastPrice'])))
-                self.tCandidates.setItem(line, 6, QTableWidgetItem(str(round(v['target_price'], 2))))
+                if v['target_price'] is float:
+                    self.tCandidates.setItem(line, 6, QTableWidgetItem(str(round(v['target_price'], 2))))
+                else:
+                    self.tCandidates.setItem(line, 6, QTableWidgetItem(str(v['target_price'])))
                 self.tCandidates.setItem(line, 7, QTableWidgetItem(str(round(v['averagePriceDropP'], 2))))
                 self.tCandidates.setItem(line, 8, QTableWidgetItem(str(v['tipranksRank'])))
                 self.tCandidates.setItem(line, 9, QTableWidgetItem(str(v['LastUpdate'])))

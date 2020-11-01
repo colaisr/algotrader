@@ -6,13 +6,14 @@ from datetime import datetime, timedelta
 from Logic.ApiWrapper import IBapi, createContract, createTrailingStopOrder, create_limit_buy_order, createMktSellOrder
 from pytz import timezone
 from Research.UpdateCandidates import get_yahoo_stats_for_candidate
-from Research.tipRanksScrapper import get_tiprank_ratings_to_Stocks
+from Research.tipRanksScrapperSelenium import get_tiprank_ratings_to_Stocks
 
 
 class IBKRWorker():
     def __init__(self, settings):
         self.app = IBapi()
         self.settings = settings
+
 
     def connect_and_prepare(self, status_callback, notification_callback):
         """
@@ -79,7 +80,7 @@ gets a Yahoo statistics to all tracked candidates and adds it to them
 getting and updating tiprank rank for live candidates
         """
         notification_callback.emit("Getting ranks for :" + str(self.settings.TRANDINGSTOCKS))
-        ranks = get_tiprank_ratings_to_Stocks(self.settings.TRANDINGSTOCKS, self.settings.PATHTOWEBDRIVER)
+        ranks = get_tiprank_ratings_to_Stocks(self.settings.TRANDINGSTOCKS, self.settings.PATHTOWEBDRIVER,notification_callback)
         # ranks = get_tiprank_ratings_to_Stocks(self.settings.TRANDINGSTOCKS)
 
         for k, v in self.app.candidatesLive.items():
