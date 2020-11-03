@@ -151,6 +151,9 @@
             </item>
             <item>
              <widget class="QLabel" name="label_5">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Available hours: 04:00-20:00 EST&lt;/p&gt;&lt;p&gt;Actual trade:      09:30-16:00 EST&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="text">
                <string>US Market:</string>
               </property>
