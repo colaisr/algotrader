@@ -1,8 +1,29 @@
 ERROR -1 2104 Market data farm connection is OK:usfarm
-ERROR -1 2107 HMDS data farm connection is inactive but should be available upon demand.ushmds
-ERROR -1 2158 Sec-def data farm connection is OK:secdefil
 ERROR -1 2106 HMDS data farm connection is OK:ushmds
-Traceback (most recent call last):
-  File "/Users/colakamornik/Desktop/algotrader/Main.py", line 261, in update_ui
-    def update_ui(self):
-KeyboardInterrupt
+ERROR -1 2158 Sec-def data farm connection is OK:secdefil
+ERROR -1 2103 Market data farm connection is broken:usfarm
+ERROR -1 2105 HMDS data farm connection is broken:ushmds
+ERROR -1 2157 Sec-def data farm connection is broken:secdefil
+ERROR -1 1100 Connectivity between IB and Trader Workstation has been lost.
+ERROR 753 200 No security definition has been found for the request
+ERROR 752 200 No security definition has been found for the request
+ERROR 751 200 No security definition has been found for the request
+ERROR 748 200 No security definition has been found for the request
+ERROR 747 200 No security definition has been found for the request
+ERROR 750 200 No security definition has been found for the request
+ERROR 749 200 No security definition has been found for the request
+ERROR 761 200 No security definition has been found for the request
+ERROR 762 200 No security definition has been found for the request
+ERROR 763 200 No security definition has been found for the request
+ERROR 764 200 No security definition has been found for the request
+ERROR 765 200 No security definition has been found for the request
+ERROR 766 200 No security definition has been found for the request
+ERROR 767 200 No security definition has been found for the request
+ERROR -1 1100 Connectivity between IB and Trader Workstation has been lost.
+ERROR -1 2106 HMDS data farm connection is OK:ushmds
+ERROR -1 2158 Sec-def data farm connection is OK:secdefil
+ERROR -1 2119 Market data farm is connecting:usfarm
+ERROR -1 2104 Market data farm connection is OK:usfarm
+ERROR -1 1102 Connectivity between IB and Trader Workstation has been restored - data maintained. All data farms are connected: usfarm; ushmds; secdefil.
+ERROR 1373 10186 Failed to cancel PNL single (not subscribed)
+ERROR 1373 10186 Failed to cancel PNL single (not subscribed)

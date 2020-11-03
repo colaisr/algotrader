@@ -34,7 +34,9 @@ LOGFILE = "LOG/log.txt"
 # from guppy import hpy
 # h=hpy()
 
-
+class TimeAxisItem(pg.AxisItem):
+    def tickStrings(self, values, scale, spacing):
+        return [datetime.fromtimestamp(value) for value in values]
 class WorkerSignals(QObject):
     '''
     Defines the signals available from a running worker thread.
@@ -244,9 +246,6 @@ Executed the Worker in separate thread
             print("Worker skept-Technical break : ", fromTime.toString("hh:mm"), " to ", toTime.toString("hh:mm"))
             self.update_console("Technical break untill " + toTime.toString("hh:mm"))
 
-        elif sessionState == "Closed":
-            print("Worker skept-Trading Session is Closed .......... ")
-            self.update_console("Worker skept-Trading Session is Closed .......... ")
         else:
             self.update_console("Starting Worker- UI Paused")
             self.uiTimer.stop()  # to not cause an errors when lists will be resetted
@@ -397,6 +396,8 @@ Updates Positions grid
                     else:
                         widgetToRemove = self.gp.itemAt(i).widget()
                         widgetToRemove.hide()
+                else:
+                    print("value not yet received")
 
             for i in range(self.gp.count()):  # Hide the rest of the panels
                 if i > lastUpdatedWidget:
@@ -616,7 +617,8 @@ class PositionPanel(QWidget):
         self.ui.setupUi(self)
 
         # to be able to address it  on refresh
-        self.graphWidget = pg.PlotWidget()
+        date_axis = TimeAxisItem(orientation='bottom')
+        self.graphWidget = pg.PlotWidget(axisItems = {'bottom': date_axis})
         self.ui.gg.addWidget(self.graphWidget)
 
     def update_view(self, stock, values):
@@ -643,17 +645,23 @@ class PositionPanel(QWidget):
                     values = []
                     i = 0
                     for item in hist_data:
-                        dates.append(item.date)
+                        d=item.date
+                        date = datetime.strptime(item.date, '%Y%m%d %H:%M:%S')
+                        dates.append(date)
                         values.append(item.close)
                         counter.append(i)
                         i += 1
 
                     # graph
 
-                    pen = pg.mkPen(color=(255, 0, 0))
+                    penStock = pg.mkPen(color=(0, 0, 0))
+                    penProfit = pg.mkPen(color=(0, 255, 0))
+                    penLoss = pg.mkPen(color=(255, 0, 0))
+
 
                     self.graphWidget.clear()
-                    self.graphWidget.plot(counter, values, pen=pen, title="24 H")
+                    # self.graphWidget.plot( y=values, pen=penProfit)
+                    self.graphWidget.plot(x=[x.timestamp() for x in dates], y=values, pen=penStock, title="10 Last minutes")
                     self.graphWidget.setBackground('w')
                     self.graphWidget.setTitle(values[-1], color="#d1d1e0", size="16pt")
                     self.graphWidget.hideAxis('bottom')

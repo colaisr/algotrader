@@ -339,10 +339,10 @@ Process Open positions and Candidates
                         notification_callback.emit("Error in connection and preparation : " + str(e.message))
                     else:
                         notification_callback.emit("Error in connection and preparation : " + str(e))
-            else:status_callback.emit("Trading session is not Open - worker skept")
+            else:notification_callback.emit("Trading session is not Open - worker skept")
 
         else:
-            status_callback.emit("-----------------Worker skept - no available trades----------------------")
+            notification_callback.emit("-----------------Worker skept - no available trades----------------------")
 
 
     def run_loop(self):
@@ -375,8 +375,8 @@ updating all openPositions, refreshed on each worker- to include changes from ne
             id = self.app.nextorderId
             queryTime = datetime.today().strftime("%Y%m%d %H:%M:%S")
             contract = createContract(s)
-            notification_callback.emit("Requesting History for " + s + " position for last 24H BID price")
-            self.app.reqHistoricalData(id, contract, queryTime, "1 D", "1 hour", "BID", 0, 1, False, [])
+            notification_callback.emit("Requesting History for " + s + " position for last 10 minute BID price")
+            self.app.reqHistoricalData(id, contract, "", "600 S", "10 secs", "BID", 1, 1, False, [])
             self.app.openPositionsLiveHistoryRequests[id] = s
             self.app.nextorderId += 1
 
