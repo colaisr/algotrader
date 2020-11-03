@@ -303,12 +303,16 @@ Updates UI after connection/worker execution
         tStart = QTime(9, 30)
         tEnd = QTime(16, 0)
         if self.est_current_time > dStart and self.est_current_time <= tStart:
+            self.ibkrworker.trading_session_state="Pre Market"
             self.lblMarket.setText("Pre Market")
         elif self.est_current_time > tStart and self.est_current_time <= tEnd:
+            self.ibkrworker.trading_session_state = "Open"
             self.lblMarket.setText("Open")
         elif self.est_current_time > tEnd and self.est_current_time <= dEnd:
+            self.ibkrworker.trading_session_state = "After Market"
             self.lblMarket.setText("After Market")
         else:
+            self.ibkrworker.trading_session_state = "Closed"
             self.lblMarket.setText("Closed")
 
     def progress_fn(self, n):

@@ -308,36 +308,39 @@ Process Open positions and Candidates
         """
         status_callback.emit("Processing Positions-Candidates ")
         if self.app.tradesRemaining > 0 or self.app.tradesRemaining == -1:
-            try:
-                est = timezone('US/Eastern')
-                fmt = '%Y-%m-%d %H:%M:%S'
-                local_time = datetime.now().strftime(fmt)
-                est_time = datetime.now(est).strftime(fmt)
-                notification_callback.emit("-------Starting Worker...----EST Time: " + est_time + "--------------------")
+            if self.trading_session_state == "Open":
+                try:
+                    est = timezone('US/Eastern')
+                    fmt = '%Y-%m-%d %H:%M:%S'
+                    local_time = datetime.now().strftime(fmt)
+                    est_time = datetime.now(est).strftime(fmt)
+                    notification_callback.emit("-------Starting Worker...----EST Time: " + est_time + "--------------------")
 
-                notification_callback.emit("Checking connection")
-                conState = self.app.isConnected()
-                if conState:
-                    notification_callback.emit("Connection is fine- proceeding")
-                else:
-                    notification_callback.emit("Connection lost-reconnecting")
-                    self.connect_to_tws(notification_callback)
+                    notification_callback.emit("Checking connection")
+                    conState = self.app.isConnected()
+                    if conState:
+                        notification_callback.emit("Connection is fine- proceeding")
+                    else:
+                        notification_callback.emit("Connection lost-reconnecting")
+                        self.connect_to_tws(notification_callback)
 
-                # collect and update
-                self.update_open_orders(notification_callback)
-                self.update_open_positions(notification_callback)
+                    # collect and update
+                    self.update_open_orders(notification_callback)
+                    self.update_open_positions(notification_callback)
 
-                # process
-                self.process_candidates(notification_callback)
-                self.process_positions(notification_callback)
-                notification_callback.emit(
-                    "...............Worker finished....EST Time: " + est_time + "...................")
-                status_callback.emit("Connected")
-            except Exception as e:
-                if hasattr(e, 'message'):
-                    notification_callback.emit("Error in connection and preparation : " + str(e.message))
-                else:
-                    notification_callback.emit("Error in connection and preparation : " + str(e))
+                    # process
+                    self.process_candidates(notification_callback)
+                    self.process_positions(notification_callback)
+                    notification_callback.emit(
+                        "...............Worker finished....EST Time: " + est_time + "...................")
+                    status_callback.emit("Connected")
+                except Exception as e:
+                    if hasattr(e, 'message'):
+                        notification_callback.emit("Error in connection and preparation : " + str(e.message))
+                    else:
+                        notification_callback.emit("Error in connection and preparation : " + str(e))
+            else:status_callback.emit("Trading session is not Open - worker skept")
+
         else:
             status_callback.emit("-----------------Worker skept - no available trades----------------------")
 
