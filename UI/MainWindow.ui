@@ -293,11 +293,6 @@
           </column>
           <column>
            <property name="text">
-            <string>Last price</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
             <string>Target price</string>
            </property>
           </column>

@@ -106,7 +106,6 @@ Starts tracking the Candidates and adds the statistics
                                            "Open": "-",
                                            "Bid": "-",
                                            "Ask": "-",
-                                           "LastPrice": "-",
                                            "averagePriceDropP": "-",
                                            "averagePriceSpreadP": "-",
                                            "tipranksRank": "-",
@@ -219,12 +218,9 @@ Update target price for all tracked stocks
         notification_callback.emit("Updating target prices for Candidates")
         for c in self.app.candidatesLive.values():
             notification_callback.emit("Updating target price for " + c["Stock"])
-            ask_price = c["Ask"]
             close = c["Close"]
             open = c["Open"]
-            last = c["LastPrice"]
             average_daily_dropP = c["averagePriceDropP"]
-            tipRank = c["tipranksRank"]
 
             if open != '-':  # market is closed
                 c["target_price"] = open - open / 100 * average_daily_dropP
@@ -235,14 +231,10 @@ Update target price for all tracked stocks
                 notification_callback.emit("Target price for " + str(c["Stock"]) + " updated to " + str(
                     c["target_price"]) + " based on Close price")
             else:
-                if last == '-':
-                    c["target_price"] = 0
-                    notification_callback.emit("Skept target price for " + str(c["Stock"]) + " last prise missing")
-                    continue
-                else:
-                    c["target_price"] = last - last / 100 * average_daily_dropP
-                    notification_callback.emit("Target price for " + str(c["Stock"]) + " updated to " + str(
-                        c["target_price"]) + " based on last price")
+
+                c["target_price"] = 0
+                notification_callback.emit("Skept target price for " + str(c["Stock"]) + "Closing price missing")
+                continue
 
     def buy_the_stock(self, price, s, notification_callback=None):
         """

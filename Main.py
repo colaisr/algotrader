@@ -359,14 +359,13 @@ Updates Candidates table
                 self.tCandidates.setItem(line, 2, QTableWidgetItem(str(v['Close'])))
                 self.tCandidates.setItem(line, 3, QTableWidgetItem(str(v['Bid'])))
                 self.tCandidates.setItem(line, 4, QTableWidgetItem(str(v['Ask'])))
-                self.tCandidates.setItem(line, 5, QTableWidgetItem(str(v['LastPrice'])))
                 if v['target_price'] is float:
-                    self.tCandidates.setItem(line, 6, QTableWidgetItem(str(round(v['target_price'], 2))))
+                    self.tCandidates.setItem(line, 5, QTableWidgetItem(str(round(v['target_price'], 2))))
                 else:
-                    self.tCandidates.setItem(line, 6, QTableWidgetItem(str(v['target_price'])))
-                self.tCandidates.setItem(line, 7, QTableWidgetItem(str(round(v['averagePriceDropP'], 2))))
-                self.tCandidates.setItem(line, 8, QTableWidgetItem(str(v['tipranksRank'])))
-                self.tCandidates.setItem(line, 9, QTableWidgetItem(str(v['LastUpdate'])))
+                    self.tCandidates.setItem(line, 5, QTableWidgetItem(str(v['target_price'])))
+                self.tCandidates.setItem(line, 6, QTableWidgetItem(str(round(v['averagePriceDropP'], 2))))
+                self.tCandidates.setItem(line, 7, QTableWidgetItem(str(v['tipranksRank'])))
+                self.tCandidates.setItem(line, 8, QTableWidgetItem(str(v['LastUpdate'])))
 
                 line += 1
         except Exception as e:

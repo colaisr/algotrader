@@ -102,7 +102,8 @@ class IBapi(EWrapper, EClient):
         elif tickType == 2:
             self.candidatesLive[reqId]["Ask"] = price
         elif tickType == 4:
-            self.candidatesLive[reqId]["LastPrice"] = price
+            #last price ignored - have no value
+            return
         elif tickType == 9:
             self.candidatesLive[reqId]["Close"] = price
         elif tickType == 6:
