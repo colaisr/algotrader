@@ -112,13 +112,19 @@ Starts tracking the Candidates and adds the statistics
                                            "LastUpdate": "-"}
             self.app.reqMarketDataType(1)
             self.app.reqMktData(id, c, '', False, False, [])
-            lastID = id
             self.app.nextorderId += 1
             trackedStockN += 1
-        time.sleep(1)
-        # while self.app.candidatesLive[lastID]["LastPrice"] == '-':
-        #     time.sleep(1)
-        #     notification_callback.emit("Waiting for last Stock market data to receive")
+
+
+        have_empty=True
+        while have_empty:
+            time.sleep(1)
+            notification_callback.emit("Waiting for last requested candidate Close price ")
+            closings=[str(x['Close']) for x in self.app.candidatesLive.values()]
+            if '-' in closings:
+                have_empty = True
+            else:
+                have_empty=False
 
         # updateYahooStatistics
         self.add_yahoo_stats_to_live_candidates(notification_callback)
