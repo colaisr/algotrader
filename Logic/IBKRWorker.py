@@ -263,13 +263,6 @@ Creates order to buy a stock at specific price
             self.log_decision("LOG/buys.txt",
                               "Issued the BUY order at " + str(price) + "for " + str(stocksToBuy) + " Stocks of " + s)
 
-            # for k, v in self.app.candidatesLive.items():
-            #     if v['Stock'] == s:
-            #         self.log_decision("buys.txt", "Candidate was : Open: " + str(v['Open']) + " Close: " + str(
-            #             v['Close']) + " Bid : " + str(v['Bid']) + " Ask:  " + str(v['Ask']) + " Last Price: " + str(
-            #             v['LastPrice']) + " Average drop: " + str(
-            #             round(v['averagePriceDropP'], 2)) + "Target price: " + str(
-            #             round(v['target_price'], 2)) + " Rank: " + str(v['tipranksRank']))
 
         else:
             notification_callback.emit("The single stock is too expensive - skipping")
@@ -375,8 +368,8 @@ updating all openPositions, refreshed on each worker- to include changes from ne
             id = self.app.nextorderId
             queryTime = datetime.today().strftime("%Y%m%d %H:%M:%S")
             contract = createContract(s)
-            notification_callback.emit("Requesting History for " + s + " position for last 10 minute BID price")
-            self.app.reqHistoricalData(id, contract, "", "600 S", "10 secs", "BID", 1, 1, False, [])
+            notification_callback.emit("Requesting History for " + s + " position for last 1 hour BID price")
+            self.app.reqHistoricalData(id, contract, "", "3600 S", "1 min", "BID", 1, 1, False, [])
             self.app.openPositionsLiveHistoryRequests[id] = s
             self.app.nextorderId += 1
 

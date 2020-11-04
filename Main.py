@@ -661,10 +661,11 @@ class PositionPanel(QWidget):
 
                     self.graphWidget.clear()
                     # self.graphWidget.plot( y=values, pen=penProfit)
-                    self.graphWidget.plot(x=[x.timestamp() for x in dates], y=values, pen=penStock, title="10 Last minutes")
+                    xline=[x.minute for x in dates]
+                    self.graphWidget.plot(x=xline, y=values, pen=penStock, title="1 Last Hour ")
                     self.graphWidget.setBackground('w')
                     self.graphWidget.setTitle(values[-1], color="#d1d1e0", size="16pt")
-                    self.graphWidget.hideAxis('bottom')
+                    # self.graphWidget.hideAxis('bottom')
 
             # UI set
             self.ui.lStock.setText(stock)
