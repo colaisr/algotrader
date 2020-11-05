@@ -379,7 +379,8 @@ updating all openPositions, refreshed on each worker- to include changes from ne
             queryTime = datetime.today().strftime("%Y%m%d %H:%M:%S")
             contract = createContract(s)
             notification_callback.emit("Requesting History for " + s + " position for last 1 hour BID price")
-            self.app.reqHistoricalData(id, contract, "", "3600 S", "1 min", "BID", 1, 1, False, [])
+            # self.app.reqHistoricalData(id, contract, "", "3600 S", "1 min", "BID", 0, 1, False, [])
+            self.app.reqHistoricalData(id, contract, "", "1 D", "1 min", "BID", 0, 1, False, [])
             self.app.openPositionsLiveHistoryRequests[id] = s
             self.app.nextorderId += 1
 

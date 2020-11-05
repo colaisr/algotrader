@@ -145,7 +145,7 @@ class IBapi(EWrapper, EClient):
 
     def historicalDataUpdate(self, reqId: int, bar: BarData):
         s = self.openPositionsLiveHistoryRequests[reqId]
-        self.openPositions[s]["HistoricalData"].append(bar)
+        self.openPositions[s]["HistoricalData"][-1]=bar
         print("HistoricalDataUpdate. ", reqId, " Date:", bar.date, "Open:", bar.open,
               "High:", bar.high, "Low:", bar.low, "Close:", bar.close, "Volume:", bar.volume,
               "Count:", bar.barCount, "WAP:", bar.average)
