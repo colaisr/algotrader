@@ -2,3 +2,7 @@ ERROR -1 2104 Market data farm connection is OK:usfarm.nj
 ERROR -1 2104 Market data farm connection is OK:usfarm
 ERROR -1 2106 HMDS data farm connection is OK:ushmds
 ERROR -1 2158 Sec-def data farm connection is OK:secdefil
+Traceback (most recent call last):
+  File "/Users/colakamornik/Desktop/algotrader/Main.py", line 260, in update_ui
+    def update_ui(self):
+KeyboardInterrupt

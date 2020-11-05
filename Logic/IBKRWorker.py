@@ -363,15 +363,17 @@ updating all openPositions, refreshed on each worker- to include changes from ne
                 notification_callback.emit("Started tracking " + s + " position PnL")
                 self.app.nextorderId += 1
 
-        # have_empty=True
-        # while have_empty:
-        #     time.sleep(1)
-        #     notification_callback.emit("Waiting for position info Close price ")
-        #     closings=[str(x['Close']) for x in self.app.candidatesLive.values()]
-        #     if '-' in closings:
-        #         have_empty = True
-        #     else:
-        #         have_empty=False
+         #validate all values received
+        have_empty=True
+        while have_empty:
+            time.sleep(1)
+            have_empty=False
+            notification_callback.emit("Waiting to receive Value for all positions ")
+            for c, v in self.app.openPositions.items():
+                closings=[str(x['Close']) for x in self.app.candidatesLive.values()]
+                if 'Value' not in v.keys():
+                    have_empty = True
+
 
         for s, p in self.app.openPositions.items(): #requesting history
             id = self.app.nextorderId

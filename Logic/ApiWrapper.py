@@ -45,8 +45,6 @@ class IBapi(EWrapper, EClient):
     def pnlSingle(self, reqId: int, pos: int, dailyPnL: float, unrealizedPnL: float, realizedPnL: float, value: float):
         super().pnlSingle(reqId, pos, dailyPnL, unrealizedPnL, realizedPnL, value)
 
-
-
         if reqId in self.openPositionsLiveDataRequests.keys():
             print("position key is in requests- updating")
             s = self.openPositionsLiveDataRequests[reqId]
