@@ -362,7 +362,18 @@ updating all openPositions, refreshed on each worker- to include changes from ne
                 self.app.reqPnLSingle(id, self.settings.ACCOUNT, "", p["conId"])
                 notification_callback.emit("Started tracking " + s + " position PnL")
                 self.app.nextorderId += 1
-        for s, p in self.app.openPositions.items():
+
+        # have_empty=True
+        # while have_empty:
+        #     time.sleep(1)
+        #     notification_callback.emit("Waiting for position info Close price ")
+        #     closings=[str(x['Close']) for x in self.app.candidatesLive.values()]
+        #     if '-' in closings:
+        #         have_empty = True
+        #     else:
+        #         have_empty=False
+
+        for s, p in self.app.openPositions.items(): #requesting history
             id = self.app.nextorderId
             queryTime = datetime.today().strftime("%Y%m%d %H:%M:%S")
             contract = createContract(s)
