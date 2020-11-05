@@ -370,7 +370,6 @@ updating all openPositions, refreshed on each worker- to include changes from ne
             have_empty=False
             notification_callback.emit("Waiting to receive Value for all positions ")
             for c, v in self.app.openPositions.items():
-                closings=[str(x['Close']) for x in self.app.candidatesLive.values()]
                 if 'Value' not in v.keys():
                     have_empty = True
 
@@ -384,7 +383,16 @@ updating all openPositions, refreshed on each worker- to include changes from ne
             self.app.openPositionsLiveHistoryRequests[id] = s
             self.app.nextorderId += 1
 
-        time.sleep(3)
+         #validate all positions have history
+        have_empty=True
+        while have_empty:
+            time.sleep(1)
+            have_empty=False
+            notification_callback.emit("Waiting to receive Hisory for all positions ")
+            for c, v in self.app.openPositions.items():
+                if len(v["HistoricalData"])==0:
+                    have_empty = True
+
         notification_callback.emit(str(len(self.app.openPositions)) + " open positions completely updated")
 
     def update_open_orders(self, notification_callback=None):
