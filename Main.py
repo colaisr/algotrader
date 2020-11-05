@@ -36,7 +36,7 @@ LOGFILE = "LOG/log.txt"
 
 class TimeAxisItem(pg.AxisItem):
     def tickStrings(self, values, scale, spacing):
-        return [datetime.fromtimestamp(value) for value in values]
+        return [datetime.fromtimestamp(value).strftime("%H:%M") for value in values]
 class WorkerSignals(QObject):
     '''
     Defines the signals available from a running worker thread.
@@ -664,7 +664,7 @@ class PositionPanel(QWidget):
 
                     self.graphWidget.clear()
                     # self.graphWidget.plot( y=values, pen=penProfit)
-                    xline=[x.minute for x in dates]
+                    xline=[x.timestamp() for x in dates]
                     self.graphWidget.plot(x=xline, y=values, pen=penStock, title="1 Last Hour ")
                     self.graphWidget.setBackground('w')
                     self.graphWidget.setTitle(values[-1], color="#d1d1e0", size="16pt")
