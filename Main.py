@@ -21,7 +21,7 @@ from Logic.IBKRWorker import IBKRWorker
 
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
-from Research.tipRanksScrapperRequestsHtmlThreaded import get_tiprank_ratings_to_Stocks
+# from Research.tipRanksScrapperRequestsHtmlThreaded import get_tiprank_ratings_to_Stocks
 from UI.pos import Ui_position_canvas
 
 main_window_file = "UI/MainWindow.ui"
@@ -391,8 +391,8 @@ Updates Positions grid
                 widget = self.gp.itemAt(i).widget()
                 key = allKeys[i]
                 values = openPostions[key]
-                if 'Value' in values.keys():
-                    if values['Value'] != 0:
+                if 'stocks' in values.keys():
+                    if values['stocks'] != 0:
                         widget.update_view(key, values)
                         widget.show()
                         lastUpdatedWidget = i
