@@ -122,7 +122,7 @@ class TraderSettings():
         self.INTERVALUI = self.config['Connection']['INTERVALUI']
         self.INTERVALWORKER = self.config['Connection']['INTERVALWORKER']
         if platform == "linux" or platform == "linux2":
-            self.PATHTOWEBDRIVER = self.config['Connection']['macPathToWebdriver']
+            self.PATHTOWEBDRIVER = self.config['Connection']['linuxpathtowebdriver']
         elif platform == "darwin":  # mac os
             self.PATHTOWEBDRIVER = self.config['Connection']['macPathToWebdriver']
         elif platform == "win32":
@@ -146,7 +146,7 @@ class TraderSettings():
         self.config['Connection']['INTERVALUI'] = str(self.INTERVALUI)
         self.config['Connection']['INTERVALWORKER'] = str(self.INTERVALWORKER)
         if platform == "linux" or platform == "linux2":
-            self.config['Connection']['macPathToWebdriver'] = self.PATHTOWEBDRIVER
+            self.config['Connection']['linuxpathtowebdriver'] = self.PATHTOWEBDRIVER
         elif platform == "darwin":  # mac os
             self.config['Connection']['macPathToWebdriver'] = self.PATHTOWEBDRIVER
         elif platform == "win32":
