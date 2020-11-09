@@ -272,7 +272,7 @@ processes candidates for buying
         """
         excessLiquidity = self.app.excessLiquidity
         if float(excessLiquidity) < 1000:
-            notification_callback.emit("Excess liquidity is ", excessLiquidity, " it is less than 1000 - skipping buy")
+            notification_callback.emit("Excess liquidity is "+str(excessLiquidity)+" it is less than 1000 - skipping buy")
             return
         else:
             notification_callback.emit("The Excess liquidity is :" + str(excessLiquidity) + " searching candidates")
@@ -334,9 +334,9 @@ Process Open positions and Candidates
             status_callback.emit("Connected")
         except Exception as e:
             if hasattr(e, 'message'):
-                notification_callback.emit("Error in connection and preparation : " + str(e.message))
+                notification_callback.emit("Error in processing Worker : " + str(e.message))
             else:
-                notification_callback.emit("Error in connection and preparation : " + str(e))
+                notification_callback.emit("Error in processing Worker : " + str(e))
 
 
 
