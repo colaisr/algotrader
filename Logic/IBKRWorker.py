@@ -320,7 +320,8 @@ Process Open positions and Candidates
             if self.app.tradesRemaining > 0 or self.app.tradesRemaining == -1:
                 if self.trading_session_state == "Open":
                     # process
-                    self.process_candidates(notification_callback)
+                    notification_callback.emit("Buying is cancelled for now- until switched to measure SMA")
+                    # self.process_candidates(notification_callback)
                     self.process_positions(notification_callback)
                 else:
                     notification_callback.emit("Trading session is not Open - processing skept")
