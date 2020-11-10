@@ -1,18 +1,6 @@
-ERROR -1 2104 Market data farm connection is OK:eufarm
+ERROR -1 2104 Market data farm connection is OK:cashfarm
 ERROR -1 2104 Market data farm connection is OK:usfarm
-ERROR -1 2106 HMDS data farm connection is OK:euhmds
 ERROR -1 2106 HMDS data farm connection is OK:ushmds
 ERROR -1 2158 Sec-def data farm connection is OK:secdefil
-ERROR -1 2148 Based upon a review, the subject account is currently non-compliant with respect to Regulation T, which is 
-enforced from 15:50 ET â 17:20 ET. Please note that an account with either an SMA or an Excess Liquidity 
-value < $0.00 when Regulation T is enforced, may be subject to forced liquidation of positions to ensure 
-margin compliance. To avoid this action, please review the account balances within the TWS Account Window and 
-take the steps necessary to reduce margin exposure.
-
-Account: U4263540
-ERROR -1 2108 Market data farm connection is inactive but should be available upon demand.eufarm
-ERROR -1 2108 Market data farm connection is inactive but should be available upon demand.eufarm
-Traceback (most recent call last):
-  File "/Users/colakamornik/Desktop/algotrader/Main.py", line 260, in update_ui
-    def update_ui(self):
-KeyboardInterrupt
+ERROR -1 2108 Market data farm connection is inactive but should be available upon demand.cashfarm
+ERROR -1 2108 Market data farm connection is inactive but should be available upon demand.cashfarm

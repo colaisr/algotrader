@@ -265,6 +265,7 @@ Updates UI after connection/worker execution
         # main data
         self.lAcc.setText(self.settings.ACCOUNT)
         self.lExcessLiquidity.setText(str(self.ibkrworker.app.excessLiquidity))
+        self.lSma.setText(str(self.ibkrworker.app.sMa))
         self.lMarketValue.setText(str(self.ibkrworker.app.netLiquidation))
         self.lblAvailTrades.setText(str(self.ibkrworker.app.tradesRemaining))
         self.lcdPNL.display(self.ibkrworker.app.dailyPnl)
@@ -276,6 +277,11 @@ Updates UI after connection/worker execution
             palette = self.lcdPNL.palette()
             palette.setColor(palette.WindowText, QtGui.QColor(255, 0, 0))
             self.lcdPNL.setPalette(palette)
+
+        total_positions_value=0
+        for p in self.ibkrworker.app.openPositions.values():
+            total_positions_value+=p["Value"]
+        self.lPositionsTotalValue.setText(str(round(total_positions_value,2)))
 
         self.update_open_positions()
         self.update_live_candidates()

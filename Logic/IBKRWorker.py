@@ -422,7 +422,7 @@ Start tracking excess liquidity - the value is updated every 3 minutes
         # todo: add safety to not buy faster than every 3 minutes
         notification_callback.emit("Starting to track Excess liquidity")
         id = self.app.nextorderId
-        self.app.reqAccountSummary(id, "All", "ExcessLiquidity,DayTradesRemaining,NetLiquidation")
+        self.app.reqAccountSummary(id, "All", "ExcessLiquidity,DayTradesRemaining,NetLiquidation,SMA")
         self.app.nextorderId += 1
 
     def request_current_PnL(self, notification_callback=None):

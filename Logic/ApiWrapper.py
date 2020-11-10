@@ -22,6 +22,7 @@ class IBapi(EWrapper, EClient):
         self.finishedReceivingOrders=False
         self.openPositionsLiveHistoryRequests={}
         self.excessLiquidity = 0
+        self.sMa=0
         self.tradesRemaining=0
         self.netLiquidation=0
 
@@ -125,6 +126,8 @@ class IBapi(EWrapper, EClient):
             self.tradesRemaining=int(value)
         elif tag=='ExcessLiquidity':
             self.excessLiquidity=float(value)
+        elif tag=='SMA':
+            self.sMa=float(value)
         elif tag=="NetLiquidation":
             self.netLiquidation=float(value)
 
