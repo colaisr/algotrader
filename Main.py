@@ -1,15 +1,17 @@
 import ast
 import copy
+import json
 from datetime import datetime, time
 import traceback, sys
 import configparser
 from sys import platform
 
+import requests
 from PySide2 import QtGui
 
 from pytz import timezone
 
-from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer, QTime, QSize
+from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer, QTime, QSize, Qt
 
 from PySide2.QtUiTools import loadUiType
 from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QWidget, QMessageBox, QInputDialog, \
@@ -524,6 +526,7 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
         self.btnRemoveC.setEnabled(False)
         self.lstCandidates.insertItems(0, self.settings.TRANDINGSTOCKS)
         self.lstCandidates.itemClicked.connect(self.candidate_selected)
+        self.setClearButtonState()
 
         self.spProfit.setValue(int(self.settings.PROFIT))
         self.spProfit.valueChanged.connect(self.setting_change)
@@ -558,6 +561,15 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
         self.btnRemoveC.clicked.connect(self.remove_Candidate)
         self.btnAddC.clicked.connect(self.add_candidate)
 
+        self.btnGet.clicked.connect(self.updateStocksFromCloud)
+        self.btnClear.clicked.connect(self.clear_Candidates)
+
+    def setClearButtonState(self):
+        if self.lstCandidates.count() > 0:
+            self.btnClear.setEnabled(True)
+        else:
+            self.btnClear.setEnabled(False)
+
     def remove_Candidate(self):
         item = self.lstCandidates.takeItem(self.lstCandidates.currentRow())
 
@@ -577,6 +589,7 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
             self.lstCandidates.addItem(text.upper())
 
         self.setting_change()
+        self.setClearButtonState()
 
     def candidate_selected(self):
         self.btnRemoveC.setEnabled(True)
@@ -594,6 +607,25 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
                 window.restart_all()
             else:
                 self.settings = copy.deepcopy(self.settingsBackup)
+
+    def updateStocksFromCloud(self):
+        received_stocks=[]
+        try:
+            x = requests.get('https://147u4tq4w4.execute-api.eu-west-3.amazonaws.com/default/ptest')
+            received_stocks=json.loads(x.text)
+            for s in received_stocks:
+                self.lstCandidates.addItem(s['ticker'])
+                i=self.lstCandidates.findItems(s['ticker'],Qt.MatchExactly)
+                i[0].setToolTip(s['reason'])
+            self.setClearButtonState()
+            self.setting_change()
+
+        except:
+            print('Failed to get the stocks from cloud')
+
+    def clear_Candidates(self):
+        self.lstCandidates.clear()
+        self.setting_change()
 
 
 class PositionPanel(QWidget):
