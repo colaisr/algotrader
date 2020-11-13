@@ -33,9 +33,6 @@ Ui_SettingsWindow, SettingsBaseClass = loadUiType(settings_window_file)
 LOGFILE = "LOG/log.txt"
 
 
-# from guppy import hpy
-# h=hpy()
-
 class TimeAxisItem(pg.AxisItem):
     def tickStrings(self, values, scale, spacing):
         return [datetime.fromtimestamp(value).strftime("%H:%M") for value in values]
@@ -135,12 +132,11 @@ class TraderSettings():
         self.TRAIL = self.config['Algo']['trailstepP']
         self.BULCKAMOUNT = self.config['Algo']['bulkAmountUSD']
         self.TRANDINGSTOCKS = ast.literal_eval(self.config['Algo']['TrandingStocks'])
+        self.CANDIDATES = []
         self.TECHFROMHOUR = self.config['Connection']['techfromHour']
         self.TECHFROMMIN = self.config['Connection']['techfromMin']
         self.TECHTOHOUR = self.config['Connection']['techtoHour']
         self.TECHTOMIN = self.config['Connection']['techtoMin']
-
-        # self.TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL", "ETSY", "IVAC"]
 
     def write_config(self):
         self.config['Connection']['port'] = self.PORT
@@ -159,6 +155,7 @@ class TraderSettings():
         self.config['Algo']['trailstepP'] = str(self.TRAIL)
         self.config['Algo']['bulkAmountUSD'] = str(self.BULCKAMOUNT)
         self.config['Algo']['TrandingStocks'] = str(self.TRANDINGSTOCKS)
+        self.config['Algo']['Candidates'] = str(self.CANDIDATES)
         self.config['Connection']['techfromHour'] = str(self.TECHFROMHOUR)
         self.config['Connection']['techfromMin'] = str(self.TECHFROMMIN)
         self.config['Connection']['techtoHour'] = str(self.TECHTOHOUR)
@@ -367,7 +364,7 @@ Updates Candidates table
                 self.tCandidates.setItem(line, 2, QTableWidgetItem(str(v['Close'])))
                 self.tCandidates.setItem(line, 3, QTableWidgetItem(str(v['Bid'])))
                 self.tCandidates.setItem(line, 4, QTableWidgetItem(str(v['Ask'])))
-                if v['Ask']<v['target_price']:
+                if v['Ask']<v['target_price'] and v['Ask']!=-1:
                     self.tCandidates.item(line, 4).setBackground(QtGui.QColor(0, 255, 0))
                 if v['target_price'] is float:
                     self.tCandidates.setItem(line, 5, QTableWidgetItem(str(round(v['target_price'], 2))))
