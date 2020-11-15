@@ -762,6 +762,11 @@ class PositionPanel(QWidget):
             else:
                 self.update_console("Error in updating position : " + str(e))
 
+#weird thing
+import matplotlib
+import matplotlib.pyplot as plt
+matplotlib.use('TkAgg')
+#end of weird ...
 
 app = QApplication(sys.argv)
 settings = TraderSettings()
