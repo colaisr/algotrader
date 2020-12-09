@@ -267,15 +267,17 @@ Creates order to buy a stock at specific price
 
     def process_candidates(self, notification_callback=None):
         """
-processes candidates for buying
+processes candidates for buying if enough SMA
         :return:
         """
-        excessLiquidity = self.app.excessLiquidity
-        if float(excessLiquidity) < 1000:
-            notification_callback.emit("Excess liquidity is "+str(excessLiquidity)+" it is less than 1000 - skipping buy")
+        requiredCushionForOpenPositions = self.get_required_cushion_for_open_positions()
+        remainingFunds = float(self.app.sMa)
+        real_remaining_funds=remainingFunds-requiredCushionForOpenPositions
+        if real_remaining_funds < 1000:
+            notification_callback.emit("SMA (including open positions cushion) is "+str(real_remaining_funds)+" it is less than 1000 - skipping buy")
             return
         else:
-            notification_callback.emit("The Excess liquidity is :" + str(excessLiquidity) + " searching candidates")
+            notification_callback.emit("SMA (including open positions cushion) is :" + str(real_remaining_funds) + " searching candidates")
             # updating the targets if market was open in the middle
             self.update_target_price_for_tracked_stocks(notification_callback)
             res = sorted(self.app.candidatesLive.items(), key=lambda x: x[1]['tipranksRank'], reverse=True)
@@ -320,10 +322,11 @@ Process Open positions and Candidates
             if self.app.tradesRemaining > 0 or self.app.tradesRemaining == -1:
                 if self.trading_session_state == "Open":
                     # process
-                    notification_callback.emit("Buying is cancelled for now- until switched to measure SMA")
-                    # self.process_candidates(notification_callback)
+                    self.process_candidates(notification_callback)
                     self.process_positions(notification_callback)
                 else:
+                    # remainingFunds = self.app.sMa
+                    # existing_positions = self.app.openPositions
                     notification_callback.emit("Trading session is not Open - processing skept")
 
             else:
@@ -442,3 +445,19 @@ Creating a PnL request the result will be stored in generalStarus
             currentDt = datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
             order = currentDt + '---' + order
             f.write(order)
+
+    def get_required_cushion_for_open_positions(self):
+        requiredCushion=0
+        existing_positions = self.app.openPositions
+        for k,v in existing_positions.items():
+            value=v['Value']
+            profit=v['UnrealizedPnL']
+            clearvalue=value-profit
+            canLose=abs(int(self.settings.LOSS))
+            requiredcushionForPosition=clearvalue/100*canLose
+            requiredcushionForPosition+=profit
+            requiredCushion+=requiredcushionForPosition
+        return requiredCushion
+
+
+

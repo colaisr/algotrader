@@ -36,6 +36,8 @@ LOGFILE = "LOG/log.txt"
 class TimeAxisItem(pg.AxisItem):
     def tickStrings(self, values, scale, spacing):
         return [datetime.fromtimestamp(value).strftime("%H:%M") for value in values]
+
+
 class WorkerSignals(QObject):
     '''
     Defines the signals available from a running worker thread.
@@ -186,7 +188,6 @@ class MainWindow(MainBaseClass, Ui_MainWindow):
 
         # setting a timer for Worker
 
-
         self.uiTimer = QTimer()
         self.uiTimer.timeout.connect(self.update_ui)
 
@@ -240,7 +241,7 @@ Executed the Worker in separate thread
         currentTime = QTime().currentTime()
         fromTime = QTime(int(self.settings.TECHFROMHOUR), int(self.settings.TECHFROMMIN))
         toTime = QTime(int(self.settings.TECHTOHOUR), int(self.settings.TECHTOMIN))
-        sessionState=self.lblMarket.text()
+        sessionState = self.lblMarket.text()
         if currentTime > fromTime and currentTime < toTime:
             print("Worker skept-Technical break : ", fromTime.toString("hh:mm"), " to ", toTime.toString("hh:mm"))
             self.update_console("Technical break untill " + toTime.toString("hh:mm"))
@@ -277,10 +278,10 @@ Updates UI after connection/worker execution
             palette.setColor(palette.WindowText, QtGui.QColor(255, 0, 0))
             self.lcdPNL.setPalette(palette)
 
-        total_positions_value=0
+        total_positions_value = 0
         for p in self.ibkrworker.app.openPositions.values():
-            total_positions_value+=p["Value"]
-        self.lPositionsTotalValue.setText(str(round(total_positions_value,2)))
+            total_positions_value += p["Value"]
+        self.lPositionsTotalValue.setText(str(round(total_positions_value, 2)))
 
         self.update_open_positions()
         self.update_live_candidates()
@@ -307,7 +308,7 @@ Updates UI after connection/worker execution
         tStart = QTime(9, 30)
         tEnd = QTime(16, 0)
         if self.est_current_time > dStart and self.est_current_time <= tStart:
-            self.ibkrworker.trading_session_state="Pre Market"
+            self.ibkrworker.trading_session_state = "Pre Market"
             self.lblMarket.setText("Pre Market")
         elif self.est_current_time > tStart and self.est_current_time <= tEnd:
             self.ibkrworker.trading_session_state = "Open"
@@ -364,7 +365,7 @@ Updates Candidates table
                 self.tCandidates.setItem(line, 2, QTableWidgetItem(str(v['Close'])))
                 self.tCandidates.setItem(line, 3, QTableWidgetItem(str(v['Bid'])))
                 self.tCandidates.setItem(line, 4, QTableWidgetItem(str(v['Ask'])))
-                if v['Ask']<v['target_price'] and v['Ask']!=-1:
+                if v['Ask'] < v['target_price'] and v['Ask'] != -1:
                     self.tCandidates.item(line, 4).setBackground(QtGui.QColor(0, 255, 0))
                 if v['target_price'] is float:
                     self.tCandidates.setItem(line, 5, QTableWidgetItem(str(round(v['target_price'], 2))))
@@ -372,7 +373,7 @@ Updates Candidates table
                     self.tCandidates.setItem(line, 5, QTableWidgetItem(str(v['target_price'])))
                 self.tCandidates.setItem(line, 6, QTableWidgetItem(str(round(v['averagePriceDropP'], 2))))
                 self.tCandidates.setItem(line, 7, QTableWidgetItem(str(v['tipranksRank'])))
-                if int(v['tipranksRank'])>7:
+                if int(v['tipranksRank']) > 7:
                     self.tCandidates.item(line, 7).setBackground(QtGui.QColor(0, 255, 0))
                 self.tCandidates.setItem(line, 8, QTableWidgetItem(str(v['LastUpdate'])))
 
@@ -606,13 +607,14 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
                 self.settings = copy.deepcopy(self.settingsBackup)
 
     def updateStocksFromCloud(self):
-        received_stocks=[]
+        received_stocks = []
         try:
             x = requests.get('https://147u4tq4w4.execute-api.eu-west-3.amazonaws.com/default/ptest')
-            received_stocks=json.loads(x.text)
+            received_stocks = json.loads(x.text)
+            self.settings.CANDIDATES = received_stocks
             for s in received_stocks:
                 self.lstCandidates.addItem(s['ticker'])
-                i=self.lstCandidates.findItems(s['ticker'],Qt.MatchExactly)
+                i = self.lstCandidates.findItems(s['ticker'], Qt.MatchExactly)
                 i[0].setToolTip(s['reason'])
             self.setClearButtonState()
             self.setting_change()
@@ -633,22 +635,6 @@ class PositionPanel(QWidget):
 
         self.update_view()
 
-        # StyleSheet = '''
-        # #prgProfit {
-        #     border: 2px solid green;
-        # }
-        # #prgProfit::chunk {
-        #     background-color: green;
-        # }
-        # #prgLoss {
-        #     border: 2px solid red;
-        # }
-        # #prgLoss::chunk {
-        #     background-color: #F44336;
-        # }
-        # '''
-        # self.setStyleSheet(StyleSheet)
-
     def __init__(self):
         super(PositionPanel, self).__init__()
         self.ui = Ui_position_canvas()
@@ -656,7 +642,7 @@ class PositionPanel(QWidget):
 
         # to be able to address it  on refresh
         date_axis = TimeAxisItem(orientation='bottom')
-        self.graphWidget = pg.PlotWidget(axisItems = {'bottom': date_axis})
+        self.graphWidget = pg.PlotWidget(axisItems={'bottom': date_axis})
         self.ui.gg.addWidget(self.graphWidget)
 
     def update_view(self, stock, values):
@@ -683,7 +669,7 @@ class PositionPanel(QWidget):
                     values = []
                     i = 0
                     for item in hist_data:
-                        d=item.date
+                        d = item.date
                         date = datetime.strptime(item.date, '%Y%m%d %H:%M:%S')
                         dates.append(date)
                         values.append(item.close)
@@ -696,10 +682,9 @@ class PositionPanel(QWidget):
                     penProfit = pg.mkPen(color=(0, 255, 0))
                     penLoss = pg.mkPen(color=(255, 0, 0))
 
-
                     self.graphWidget.clear()
                     # self.graphWidget.plot( y=values, pen=penProfit)
-                    xline=[x.timestamp() for x in dates]
+                    xline = [x.timestamp() for x in dates]
                     self.graphWidget.plot(x=xline, y=values, pen=penStock, title="1 Last Hour ")
                     self.graphWidget.setBackground('w')
                     self.graphWidget.setTitle(values[-1], color="#d1d1e0", size="16pt")
@@ -762,11 +747,13 @@ class PositionPanel(QWidget):
             else:
                 self.update_console("Error in updating position : " + str(e))
 
-#weird thing
-import matplotlib
-import matplotlib.pyplot as plt
-matplotlib.use('TkAgg')
-#end of weird ...
+
+# weird thing
+# import matplotlib
+# import matplotlib.pyplot as plt
+#
+# matplotlib.use('TkAgg')
+# end of weird ...
 
 app = QApplication(sys.argv)
 settings = TraderSettings()
