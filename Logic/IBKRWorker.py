@@ -451,12 +451,13 @@ Creating a PnL request the result will be stored in generalStarus
         existing_positions = self.app.openPositions
         for k,v in existing_positions.items():
             value=v['Value']
-            profit=v['UnrealizedPnL']
-            clearvalue=value-profit
-            canLose=abs(int(self.settings.LOSS))
-            requiredcushionForPosition=clearvalue/100*canLose
-            requiredcushionForPosition+=profit
-            requiredCushion+=requiredcushionForPosition
+            if value!=0:
+                profit=v['UnrealizedPnL']
+                clearvalue=value-profit
+                canLose=abs(int(self.settings.LOSS))
+                requiredcushionForPosition=clearvalue/100*canLose
+                requiredcushionForPosition+=profit
+                requiredCushion+=requiredcushionForPosition
         return requiredCushion
 
 
