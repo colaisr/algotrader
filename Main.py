@@ -135,6 +135,8 @@ class TraderSettings():
         self.BULCKAMOUNT = self.config['Algo']['bulkAmountUSD']
         self.TRANDINGSTOCKS = ast.literal_eval(self.config['Algo']['TrandingStocks'])
         self.CANDIDATES = []
+        self.NEWCANDIDATES=self.config['Algo']['newcandidates']
+        self.NEWCANDIDATES=self.NEWCANDIDATES.replace("\n","")
         self.TECHFROMHOUR = self.config['Connection']['techfromHour']
         self.TECHFROMMIN = self.config['Connection']['techfromMin']
         self.TECHTOHOUR = self.config['Connection']['techtoHour']
@@ -157,7 +159,8 @@ class TraderSettings():
         self.config['Algo']['trailstepP'] = str(self.TRAIL)
         self.config['Algo']['bulkAmountUSD'] = str(self.BULCKAMOUNT)
         self.config['Algo']['TrandingStocks'] = str(self.TRANDINGSTOCKS)
-        self.config['Algo']['Candidates'] = str(self.CANDIDATES)
+        # self.config['Algo']['Candidates'] = str(self.CANDIDATES)
+        self.config['Algo']['newcandidates'] = str(self.NEWCANDIDATES)
         self.config['Connection']['techfromHour'] = str(self.TECHFROMHOUR)
         self.config['Connection']['techfromMin'] = str(self.TECHFROMMIN)
         self.config['Connection']['techtoHour'] = str(self.TECHTOHOUR)
