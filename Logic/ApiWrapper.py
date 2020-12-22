@@ -22,6 +22,7 @@ class IBapi(EWrapper, EClient):
         self.finishedReceivingOrders=False
         self.openPositionsLiveHistoryRequests={}
         self.excessLiquidity = 0
+        self.sMa=0
         self.tradesRemaining=0
         self.netLiquidation=0
 
@@ -44,8 +45,6 @@ class IBapi(EWrapper, EClient):
 
     def pnlSingle(self, reqId: int, pos: int, dailyPnL: float, unrealizedPnL: float, realizedPnL: float, value: float):
         super().pnlSingle(reqId, pos, dailyPnL, unrealizedPnL, realizedPnL, value)
-
-
 
         if reqId in self.openPositionsLiveDataRequests.keys():
             print("position key is in requests- updating")
@@ -102,7 +101,8 @@ class IBapi(EWrapper, EClient):
         elif tickType == 2:
             self.candidatesLive[reqId]["Ask"] = price
         elif tickType == 4:
-            self.candidatesLive[reqId]["LastPrice"] = price
+            #last price ignored - have no value
+            return
         elif tickType == 9:
             self.candidatesLive[reqId]["Close"] = price
         elif tickType == 6:
@@ -126,6 +126,8 @@ class IBapi(EWrapper, EClient):
             self.tradesRemaining=int(value)
         elif tag=='ExcessLiquidity':
             self.excessLiquidity=float(value)
+        elif tag=='SMA':
+            self.sMa=float(value)
         elif tag=="NetLiquidation":
             self.netLiquidation=float(value)
 
@@ -146,7 +148,7 @@ class IBapi(EWrapper, EClient):
 
     def historicalDataUpdate(self, reqId: int, bar: BarData):
         s = self.openPositionsLiveHistoryRequests[reqId]
-        self.openPositions[s]["HistoricalData"].append(bar)
+        self.openPositions[s]["HistoricalData"][-1]=bar
         print("HistoricalDataUpdate. ", reqId, " Date:", bar.date, "Open:", bar.open,
               "High:", bar.high, "Low:", bar.low, "Close:", bar.close, "Volume:", bar.volume,
               "Count:", bar.barCount, "WAP:", bar.average)

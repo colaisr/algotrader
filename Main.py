@@ -1,15 +1,17 @@
 import ast
 import copy
+import json
 from datetime import datetime, time
 import traceback, sys
 import configparser
 from sys import platform
 
+import requests
 from PySide2 import QtGui
 
 from pytz import timezone
 
-from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer, QTime, QSize
+from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer, QTime, QSize, Qt
 
 from PySide2.QtUiTools import loadUiType
 from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QWidget, QMessageBox, QInputDialog, \
@@ -21,6 +23,7 @@ from Logic.IBKRWorker import IBKRWorker
 
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
+# from Research.tipRanksScrapperRequestsHtmlThreaded import get_tiprank_ratings_to_Stocks
 from UI.pos import Ui_position_canvas
 
 main_window_file = "UI/MainWindow.ui"
@@ -30,8 +33,9 @@ Ui_SettingsWindow, SettingsBaseClass = loadUiType(settings_window_file)
 LOGFILE = "LOG/log.txt"
 
 
-# from guppy import hpy
-# h=hpy()
+class TimeAxisItem(pg.AxisItem):
+    def tickStrings(self, values, scale, spacing):
+        return [datetime.fromtimestamp(value).strftime("%H:%M") for value in values]
 
 
 class WorkerSignals(QObject):
@@ -119,7 +123,7 @@ class TraderSettings():
         self.INTERVALUI = self.config['Connection']['INTERVALUI']
         self.INTERVALWORKER = self.config['Connection']['INTERVALWORKER']
         if platform == "linux" or platform == "linux2":
-            self.PATHTOWEBDRIVER = self.config['Connection']['macPathToWebdriver']
+            self.PATHTOWEBDRIVER = self.config['Connection']['linuxpathtowebdriver']
         elif platform == "darwin":  # mac os
             self.PATHTOWEBDRIVER = self.config['Connection']['macPathToWebdriver']
         elif platform == "win32":
@@ -130,12 +134,13 @@ class TraderSettings():
         self.TRAIL = self.config['Algo']['trailstepP']
         self.BULCKAMOUNT = self.config['Algo']['bulkAmountUSD']
         self.TRANDINGSTOCKS = ast.literal_eval(self.config['Algo']['TrandingStocks'])
+        self.CANDIDATES = []
+        self.NEWCANDIDATES=self.config['Algo']['newcandidates']
+        self.NEWCANDIDATES=self.NEWCANDIDATES.replace("\n","")
         self.TECHFROMHOUR = self.config['Connection']['techfromHour']
         self.TECHFROMMIN = self.config['Connection']['techfromMin']
         self.TECHTOHOUR = self.config['Connection']['techtoHour']
         self.TECHTOMIN = self.config['Connection']['techtoMin']
-
-        # self.TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL", "ETSY", "IVAC"]
 
     def write_config(self):
         self.config['Connection']['port'] = self.PORT
@@ -143,7 +148,7 @@ class TraderSettings():
         self.config['Connection']['INTERVALUI'] = str(self.INTERVALUI)
         self.config['Connection']['INTERVALWORKER'] = str(self.INTERVALWORKER)
         if platform == "linux" or platform == "linux2":
-            self.config['Connection']['macPathToWebdriver'] = self.PATHTOWEBDRIVER
+            self.config['Connection']['linuxpathtowebdriver'] = self.PATHTOWEBDRIVER
         elif platform == "darwin":  # mac os
             self.config['Connection']['macPathToWebdriver'] = self.PATHTOWEBDRIVER
         elif platform == "win32":
@@ -154,6 +159,8 @@ class TraderSettings():
         self.config['Algo']['trailstepP'] = str(self.TRAIL)
         self.config['Algo']['bulkAmountUSD'] = str(self.BULCKAMOUNT)
         self.config['Algo']['TrandingStocks'] = str(self.TRANDINGSTOCKS)
+        # self.config['Algo']['Candidates'] = str(self.CANDIDATES)
+        self.config['Algo']['newcandidates'] = str(self.NEWCANDIDATES)
         self.config['Connection']['techfromHour'] = str(self.TECHFROMHOUR)
         self.config['Connection']['techfromMin'] = str(self.TECHFROMMIN)
         self.config['Connection']['techtoHour'] = str(self.TECHTOHOUR)
@@ -196,6 +203,7 @@ class MainWindow(MainBaseClass, Ui_MainWindow):
 
         self.statusbar.showMessage("Ready")
         self.update_session_state()
+
         self.connect_to_ibkr()
         StyleSheet = '''
         #lcdPNLgreen {
@@ -236,9 +244,11 @@ Executed the Worker in separate thread
         currentTime = QTime().currentTime()
         fromTime = QTime(int(self.settings.TECHFROMHOUR), int(self.settings.TECHFROMMIN))
         toTime = QTime(int(self.settings.TECHTOHOUR), int(self.settings.TECHTOMIN))
+        sessionState = self.lblMarket.text()
         if currentTime > fromTime and currentTime < toTime:
             print("Worker skept-Technical break : ", fromTime.toString("hh:mm"), " to ", toTime.toString("hh:mm"))
             self.update_console("Technical break untill " + toTime.toString("hh:mm"))
+
         else:
             self.update_console("Starting Worker- UI Paused")
             self.uiTimer.stop()  # to not cause an errors when lists will be resetted
@@ -258,6 +268,7 @@ Updates UI after connection/worker execution
         # main data
         self.lAcc.setText(self.settings.ACCOUNT)
         self.lExcessLiquidity.setText(str(self.ibkrworker.app.excessLiquidity))
+        self.lSma.setText(str(self.ibkrworker.app.sMa))
         self.lMarketValue.setText(str(self.ibkrworker.app.netLiquidation))
         self.lblAvailTrades.setText(str(self.ibkrworker.app.tradesRemaining))
         self.lcdPNL.display(self.ibkrworker.app.dailyPnl)
@@ -269,6 +280,11 @@ Updates UI after connection/worker execution
             palette = self.lcdPNL.palette()
             palette.setColor(palette.WindowText, QtGui.QColor(255, 0, 0))
             self.lcdPNL.setPalette(palette)
+
+        total_positions_value = 0
+        for p in self.ibkrworker.app.openPositions.values():
+            total_positions_value += p["Value"]
+        self.lPositionsTotalValue.setText(str(round(total_positions_value, 2)))
 
         self.update_open_positions()
         self.update_live_candidates()
@@ -295,12 +311,16 @@ Updates UI after connection/worker execution
         tStart = QTime(9, 30)
         tEnd = QTime(16, 0)
         if self.est_current_time > dStart and self.est_current_time <= tStart:
+            self.ibkrworker.trading_session_state = "Pre Market"
             self.lblMarket.setText("Pre Market")
         elif self.est_current_time > tStart and self.est_current_time <= tEnd:
+            self.ibkrworker.trading_session_state = "Open"
             self.lblMarket.setText("Open")
         elif self.est_current_time > tEnd and self.est_current_time <= dEnd:
+            self.ibkrworker.trading_session_state = "After Market"
             self.lblMarket.setText("After Market")
         else:
+            self.ibkrworker.trading_session_state = "Closed"
             self.lblMarket.setText("Closed")
 
     def progress_fn(self, n):
@@ -348,18 +368,24 @@ Updates Candidates table
                 self.tCandidates.setItem(line, 2, QTableWidgetItem(str(v['Close'])))
                 self.tCandidates.setItem(line, 3, QTableWidgetItem(str(v['Bid'])))
                 self.tCandidates.setItem(line, 4, QTableWidgetItem(str(v['Ask'])))
-                self.tCandidates.setItem(line, 5, QTableWidgetItem(str(v['LastPrice'])))
-                self.tCandidates.setItem(line, 6, QTableWidgetItem(str(round(v['target_price'], 2))))
-                self.tCandidates.setItem(line, 7, QTableWidgetItem(str(round(v['averagePriceDropP'], 2))))
-                self.tCandidates.setItem(line, 8, QTableWidgetItem(str(v['tipranksRank'])))
-                self.tCandidates.setItem(line, 9, QTableWidgetItem(str(v['LastUpdate'])))
+                if v['Ask'] < v['target_price'] and v['Ask'] != -1:
+                    self.tCandidates.item(line, 4).setBackground(QtGui.QColor(0, 255, 0))
+                if v['target_price'] is float:
+                    self.tCandidates.setItem(line, 5, QTableWidgetItem(str(round(v['target_price'], 2))))
+                else:
+                    self.tCandidates.setItem(line, 5, QTableWidgetItem(str(v['target_price'])))
+                self.tCandidates.setItem(line, 6, QTableWidgetItem(str(round(v['averagePriceDropP'], 2))))
+                self.tCandidates.setItem(line, 7, QTableWidgetItem(str(v['tipranksRank'])))
+                if int(v['tipranksRank']) > 7:
+                    self.tCandidates.item(line, 7).setBackground(QtGui.QColor(0, 255, 0))
+                self.tCandidates.setItem(line, 8, QTableWidgetItem(str(v['LastUpdate'])))
 
                 line += 1
         except Exception as e:
             if hasattr(e, 'message'):
-                self.update_console("Error in connection and preparation : " + str(e.message))
+                self.update_console("Error in updating Candidates: " + str(e.message))
             else:
-                self.update_console("Error in connection and preparation : " + str(e))
+                self.update_console("Error in updating Candidates: " + str(e))
 
     def update_open_positions(self):
         """
@@ -369,54 +395,48 @@ Updates Positions grid
         allKeys = [*openPostions]
         lastUpdatedWidget = 0
         try:
-            for i in range(len(openPostions)):         #Update positions Panels
+            for i in range(len(openPostions)):  # Update positions Panels
 
                 widget = self.gp.itemAt(i).widget()
                 key = allKeys[i]
-                value = openPostions[key]
-                if value['Value']!=0:
-                    widget.update_view(key, value)
-                    widget.show()
-                    lastUpdatedWidget = i
+                values = openPostions[key]
+                if 'stocks' in values.keys():
+                    if values['stocks'] != 0:
+                        widget.update_view(key, values)
+                        widget.show()
+                        lastUpdatedWidget = i
+                    else:
+                        widgetToRemove = self.gp.itemAt(i).widget()
+                        widgetToRemove.hide()
                 else:
-                    widgetToRemove = self.gp.itemAt(i).widget()
-                    widgetToRemove.hide()
+                    print("value not yet received")
 
-            for i in range(self.gp.count()):            #Hide the rest of the panels
+            for i in range(self.gp.count()):  # Hide the rest of the panels
                 if i > lastUpdatedWidget:
                     widgetToRemove = self.gp.itemAt(i).widget()
                     widgetToRemove.hide()
-
-
-
         except Exception as e:
             if hasattr(e, 'message'):
-                self.update_console("Error in connection and preparation : " + str(e.message))
+                self.update_console("Error in refreshing Positions: " + str(e.message))
             else:
-                self.update_console("Error in connection and preparation : " + str(e))
+                self.update_console("Error in refreshing Positions: " + str(e))
 
     def create_open_positions_grid(self):
         """
 Creates Open positions grid with 99 Positions widgets
         """
-        try:
-            counter = 0
-            col = 0
-            row = 0
 
-            for i in range(0, 99):
-                if counter % 3 == 0:
-                    col = 0
-                    row += 1
-                self.gp.addWidget(PositionPanel(), row, col)
-                counter += 1
-                col += 1
+        counter = 0
+        col = 0
+        row = 0
 
-        except Exception as e:
-            if hasattr(e, 'message'):
-                self.update_console("Error in connection and preparation : " + str(e.message))
-            else:
-                self.update_console("Error in connection and preparation : " + str(e))
+        for i in range(0, 99):
+            if counter % 3 == 0:
+                col = 0
+                row += 1
+            self.gp.addWidget(PositionPanel(), row, col)
+            counter += 1
+            col += 1
 
     def update_open_orders(self):
         """
@@ -433,9 +453,9 @@ Updates Positions table
                 line += 1
         except Exception as e:
             if hasattr(e, 'message'):
-                self.update_console("Error in connection and preparation : " + str(e.message))
+                self.update_console("Error in Updating open Orders : " + str(e.message))
             else:
-                self.update_console("Error in connection and preparation : " + str(e))
+                self.update_console("Error in Updating open Orders : " + str(e))
 
     def thread_complete(self):
         """
@@ -507,6 +527,7 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
         self.btnRemoveC.setEnabled(False)
         self.lstCandidates.insertItems(0, self.settings.TRANDINGSTOCKS)
         self.lstCandidates.itemClicked.connect(self.candidate_selected)
+        self.setClearButtonState()
 
         self.spProfit.setValue(int(self.settings.PROFIT))
         self.spProfit.valueChanged.connect(self.setting_change)
@@ -541,6 +562,15 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
         self.btnRemoveC.clicked.connect(self.remove_Candidate)
         self.btnAddC.clicked.connect(self.add_candidate)
 
+        self.btnGet.clicked.connect(self.updateStocksFromCloud)
+        self.btnClear.clicked.connect(self.clear_Candidates)
+
+    def setClearButtonState(self):
+        if self.lstCandidates.count() > 0:
+            self.btnClear.setEnabled(True)
+        else:
+            self.btnClear.setEnabled(False)
+
     def remove_Candidate(self):
         item = self.lstCandidates.takeItem(self.lstCandidates.currentRow())
 
@@ -560,6 +590,7 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
             self.lstCandidates.addItem(text.upper())
 
         self.setting_change()
+        self.setClearButtonState()
 
     def candidate_selected(self):
         self.btnRemoveC.setEnabled(True)
@@ -578,6 +609,26 @@ class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
             else:
                 self.settings = copy.deepcopy(self.settingsBackup)
 
+    def updateStocksFromCloud(self):
+        received_stocks = []
+        try:
+            x = requests.get('https://147u4tq4w4.execute-api.eu-west-3.amazonaws.com/default/ptest')
+            received_stocks = json.loads(x.text)
+            self.settings.CANDIDATES = received_stocks
+            for s in received_stocks:
+                self.lstCandidates.addItem(s['ticker'])
+                i = self.lstCandidates.findItems(s['ticker'], Qt.MatchExactly)
+                i[0].setToolTip(s['reason'])
+            self.setClearButtonState()
+            self.setting_change()
+
+        except:
+            print('Failed to get the stocks from cloud')
+
+    def clear_Candidates(self):
+        self.lstCandidates.clear()
+        self.setting_change()
+
 
 class PositionPanel(QWidget):
     def __init__(self, stock, values):
@@ -587,136 +638,125 @@ class PositionPanel(QWidget):
 
         self.update_view()
 
-        StyleSheet = '''
-        #prgProfit {
-            border: 2px solid green;
-        }
-        #prgProfit::chunk {
-            background-color: green;
-        }
-        #prgLoss {
-            border: 2px solid red;
-        }
-        #prgLoss::chunk {
-            background-color: #F44336;
-        }
-        '''
-        self.setStyleSheet(StyleSheet)
-
     def __init__(self):
         super(PositionPanel, self).__init__()
         self.ui = Ui_position_canvas()
         self.ui.setupUi(self)
 
         # to be able to address it  on refresh
-        self.graphWidget = pg.PlotWidget()
+        date_axis = TimeAxisItem(orientation='bottom')
+        self.graphWidget = pg.PlotWidget(axisItems={'bottom': date_axis})
         self.ui.gg.addWidget(self.graphWidget)
-
-        StyleSheet = '''
-        #prgProfit {
-            border: 2px solid green;
-        }
-        #prgProfit::chunk {
-            background-color: green;
-        }
-        #prgLoss {
-            border: 2px solid red;
-        }
-        #prgLoss::chunk {
-            background-color: #F44336;
-        }
-        '''
-        self.setStyleSheet(StyleSheet)
 
     def update_view(self, stock, values):
         # Data preparation
-        stock = stock
-        number_of_stocks = values['stocks']
-        bulk_value = 0
-        profit = 0
-        bid_price = str(round(values['cost'], 2))
-        if 'Value' in values.keys():
-            bulk_value = str(round(values['Value'], 2))
-        if 'UnrealizedPnL' in values.keys():
-            unrealized_pnl = str(round(values['UnrealizedPnL'], 2))
-            profit = values['UnrealizedPnL'] / values['Value'] * 100
-        if 'LastUpdate' in values.keys():
-            last_updatestr = (values['LastUpdate'])
-        if 'HistoricalData' in values.keys():
-            if len(values['HistoricalData']) > 0:
-                hist_data = values['HistoricalData']
-                dates = []
-                counter = []
-                values = []
-                i = 0
-                for item in hist_data:
-                    dates.append(item.date)
-                    values.append(item.close)
-                    counter.append(i)
-                    i += 1
+        try:
+            stock = stock
+            number_of_stocks = values['stocks']
+            bulk_value = 0
+            profit = 0
+            bid_price = str(round(values['cost'], 2))
+            if 'Value' in values.keys():
+                bulk_value = str(round(values['Value'], 2))
+            if 'UnrealizedPnL' in values.keys():
+                unrealized_pnl = str(round(values['UnrealizedPnL'], 2))
+                profit = values['UnrealizedPnL'] / values['Value'] * 100
+            if 'LastUpdate' in values.keys():
+                last_updatestr = (values['LastUpdate'])
+            if 'HistoricalData' in values.keys():
+                print("Updating Graph for " + stock + " using " + str(len(values['HistoricalData'])) + " points")
+                if len(values['HistoricalData']) > 0:
+                    hist_data = values['HistoricalData']
+                    dates = []
+                    counter = []
+                    values = []
+                    i = 0
+                    for item in hist_data:
+                        d = item.date
+                        date = datetime.strptime(item.date, '%Y%m%d %H:%M:%S')
+                        dates.append(date)
+                        values.append(item.close)
+                        counter.append(i)
+                        i += 1
 
-                # graph
+                    # graph
 
-                pen = pg.mkPen(color=(255, 0, 0))
+                    penStock = pg.mkPen(color=(0, 0, 0))
+                    penProfit = pg.mkPen(color=(0, 255, 0))
+                    penLoss = pg.mkPen(color=(255, 0, 0))
 
-                self.graphWidget.clear()
-                self.graphWidget.plot(counter, values, pen=pen, title="24 H")
-                self.graphWidget.setBackground('w')
-                self.graphWidget.setTitle(values[-1] , color="#d1d1e0", size="16pt")
-                self.graphWidget.hideAxis('bottom')
+                    self.graphWidget.clear()
+                    # self.graphWidget.plot( y=values, pen=penProfit)
+                    xline = [x.timestamp() for x in dates]
+                    self.graphWidget.plot(x=xline, y=values, pen=penStock, title="1 Last Hour ")
+                    self.graphWidget.setBackground('w')
+                    self.graphWidget.setTitle(values[-1], color="#d1d1e0", size="16pt")
+                    # self.graphWidget.hideAxis('bottom')
 
-        # UI set
-        self.ui.lStock.setText(stock)
-        self.ui.lVolume.setText(str(int(number_of_stocks)))
-        self.ui.lBulckValue.setText(str(bulk_value))
-        self.ui.lProfitP.setText(str(round(profit, 2)))
+            # UI set
+            self.ui.lStock.setText(stock)
+            self.ui.lVolume.setText(str(int(number_of_stocks)))
+            self.ui.lBulckValue.setText(str(bulk_value))
+            self.ui.lProfitP.setText(str(round(profit, 2)))
 
-        # setting progressBar and percent label
-        self.ui.prgProfit.setTextVisible(False)
-        if profit > 0:
-            self.ui.prgProfit.setMinimum(0)
-            if profit >= int(settings.PROFIT):
-                self.ui.prgProfit.setMaximum(profit * 10)
+            # setting progressBar and percent label
+            self.ui.prgProfit.setTextVisible(False)
+            if profit > 0:
+                self.ui.prgProfit.setMinimum(0)
+                if profit >= int(settings.PROFIT):
+                    self.ui.prgProfit.setMaximum(profit * 10)
+                else:
+                    self.ui.prgProfit.setMaximum(int(settings.PROFIT) * 10)
+                self.ui.prgProfit.setValue(int(profit * 10))
+                self.ui.prgProfit.setStyleSheet("QProgressBar"
+                                                "{"
+                                                "border: 2px solid green;"
+                                                "}"
+                                                "QProgressBar::chunk"
+                                                "{"
+                                                "background-color: green;"
+                                                "}"
+                                                )
+
+                palette = self.ui.lProfitP.palette();
+                palette.setColor(palette.WindowText, QtGui.QColor(51, 153, 51));
+                self.ui.lProfitP.setPalette(palette)
+                self.ui.lp.setPalette(palette)
+
             else:
-                self.ui.prgProfit.setMaximum(int(settings.PROFIT) * 10)
-            self.ui.prgProfit.setValue(int(profit * 10))
-            self.ui.prgProfit.setObjectName("prgProfit")
+                self.ui.prgProfit.setMinimum(0)
+                if profit <= int(settings.LOSS):
+                    self.ui.prgProfit.setMaximum(profit * -10)
+                else:
+                    self.ui.prgProfit.setMaximum(int(settings.LOSS) * -10)
+                self.ui.prgProfit.setValue(int(profit * -10))
+                self.ui.prgProfit.setStyleSheet("QProgressBar"
+                                                "{"
+                                                "border: 2px solid red;"
+                                                "}"
+                                                "QProgressBar::chunk"
+                                                "{"
+                                                "background-color: #F44336;"
+                                                "}"
+                                                )
 
-            palette = self.ui.lProfitP.palette();
-            palette.setColor(palette.WindowText, QtGui.QColor(51, 153, 51));
-            self.ui.lProfitP.setPalette(palette)
-            self.ui.lp.setPalette(palette)
-
-        else:
-            self.ui.prgProfit.setMinimum(0)
-            if profit <= int(settings.LOSS):
-                self.ui.prgProfit.setMaximum(profit * -10)
+                palette = self.ui.lProfitP.palette();
+                palette.setColor(palette.WindowText, QtGui.QColor(255, 0, 0));
+                self.ui.lProfitP.setPalette(palette)
+                self.ui.lp.setPalette(palette)
+        except Exception as e:
+            if hasattr(e, 'message'):
+                self.update_console("Error in updating position: " + str(e.message))
             else:
-                self.ui.prgProfit.setMaximum(int(settings.LOSS) * -10)
-            self.ui.prgProfit.setValue(int(profit * -10))
-            self.ui.prgProfit.setObjectName("prgLoss")
+                self.update_console("Error in updating position : " + str(e))
 
-            palette = self.ui.lProfitP.palette();
-            palette.setColor(palette.WindowText, QtGui.QColor(255, 0, 0));
-            self.ui.lProfitP.setPalette(palette)
-            self.ui.lp.setPalette(palette)
 
-        # StyleSheet = '''
-        # #prgProfit {
-        #     border: 2px solid green;
-        # }
-        # #prgProfit::chunk {
-        #     background-color: green;
-        # }
-        # #prgLoss {
-        #     border: 2px solid red;
-        # }
-        # #prgLoss::chunk {
-        #     background-color: #F44336;
-        # }
-        # '''
-        # self.setStyleSheet(StyleSheet)
-
+# weird thing
+# import matplotlib
+# import matplotlib.pyplot as plt
+#
+# matplotlib.use('TkAgg')
+# end of weird ...
 
 app = QApplication(sys.argv)
 settings = TraderSettings()

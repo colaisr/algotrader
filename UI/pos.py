@@ -41,6 +41,7 @@ class Ui_position_canvas(object):
         font = QFont()
         font.setPointSize(22)
         self.lStock.setFont(font)
+        self.lStock.setToolTipDuration(-1)
         self.lStock.setStyleSheet(u"color: rgb(0, 0, 255);")
         self.lStock.setAlignment(Qt.AlignCenter)
 
@@ -54,6 +55,7 @@ class Ui_position_canvas(object):
 
         self.lBulckValue = QLabel(self.border_frame)
         self.lBulckValue.setObjectName(u"lBulckValue")
+        self.lBulckValue.setToolTipDuration(-1)
         self.lBulckValue.setAlignment(Qt.AlignCenter)
 
         self.bulck_data.addWidget(self.lBulckValue)
@@ -156,9 +158,21 @@ class Ui_position_canvas(object):
 
     def retranslateUi(self, position_canvas):
         position_canvas.setWindowTitle(QCoreApplication.translate("position_canvas", u"Form", None))
+#if QT_CONFIG(tooltip)
+        self.lStock.setToolTip(QCoreApplication.translate("position_canvas", u"Ticker", None))
+#endif // QT_CONFIG(tooltip)
         self.lStock.setText(QCoreApplication.translate("position_canvas", u"STK", None))
+#if QT_CONFIG(tooltip)
+        self.lVolume.setToolTip(QCoreApplication.translate("position_canvas", u"Number of Stocks", None))
+#endif // QT_CONFIG(tooltip)
         self.lVolume.setText(QCoreApplication.translate("position_canvas", u"-", None))
+#if QT_CONFIG(tooltip)
+        self.lBulckValue.setToolTip(QCoreApplication.translate("position_canvas", u"Position value", None))
+#endif // QT_CONFIG(tooltip)
         self.lBulckValue.setText(QCoreApplication.translate("position_canvas", u"--", None))
+#if QT_CONFIG(tooltip)
+        self.lProfitP.setToolTip(QCoreApplication.translate("position_canvas", u"Position profit", None))
+#endif // QT_CONFIG(tooltip)
         self.lProfitP.setText(QCoreApplication.translate("position_canvas", u"-", None))
         self.lp.setText(QCoreApplication.translate("position_canvas", u"%", None))
     # retranslateUi
