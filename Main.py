@@ -24,12 +24,14 @@ from Logic.IBKRWorker import IBKRWorker
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
 # from Research.tipRanksScrapperRequestsHtmlThreaded import get_tiprank_ratings_to_Stocks
+from UI.SettingsWindow import Ui_fmSettings
 from UI.pos import Ui_position_canvas
+
 
 main_window_file = "UI/MainWindow.ui"
 settings_window_file = "UI/SettingsWindow.ui"
 Ui_MainWindow, MainBaseClass = loadUiType(main_window_file)
-Ui_SettingsWindow, SettingsBaseClass = loadUiType(settings_window_file)
+# Ui_SettingsWindow, SettingsBaseClass = loadUiType(settings_window_file)
 LOGFILE = "LOG/log.txt"
 
 
@@ -464,8 +466,11 @@ After threaded task finished
         print("TREAD COMPLETE (good or bad)!")
 
     def show_settings(self):
-        settingsW.show()
-        settingsW.changedSettings = False
+
+        self.settingsWindow = SettingsWindow(self.settings)
+        self.settingsWindow.show()  # Показываем окно
+        #maybe not needed
+        self.settingsWindow.changedSettings = False
 
     def restart_all(self):
         """
@@ -491,14 +496,12 @@ Restarts everything after Save
 
         i = 4
 
-
-class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
-    def __init__(self, inSettings):
-        # mandatory
-        SettingsBaseClass.__init__(self)
-        Ui_SettingsWindow.__init__(self)
-        self.settings = inSettings
+class SettingsWindow(QMainWindow, Ui_fmSettings):
+    def __init__(self,inSettings):
+        super().__init__()
         self.setupUi(self)
+        #code
+        self.settings = inSettings
         self.changedSettings = False
 
     def setting_change(self):
@@ -761,6 +764,6 @@ class PositionPanel(QWidget):
 app = QApplication(sys.argv)
 settings = TraderSettings()
 window = MainWindow(settings)
-settingsW = SettingsWindow(settings)
+# settingsW = SettingsWindow(settings)
 window.show()
 sys.exit(app.exec_())
