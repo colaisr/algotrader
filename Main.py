@@ -29,9 +29,7 @@ from UI.pos import Ui_position_canvas
 
 
 main_window_file = "UI/MainWindow.ui"
-settings_window_file = "UI/SettingsWindow.ui"
 Ui_MainWindow, MainBaseClass = loadUiType(main_window_file)
-# Ui_SettingsWindow, SettingsBaseClass = loadUiType(settings_window_file)
 LOGFILE = "LOG/log.txt"
 
 
@@ -764,6 +762,5 @@ class PositionPanel(QWidget):
 app = QApplication(sys.argv)
 settings = TraderSettings()
 window = MainWindow(settings)
-# settingsW = SettingsWindow(settings)
 window.show()
 sys.exit(app.exec_())
