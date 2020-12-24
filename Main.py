@@ -24,13 +24,15 @@ from Logic.IBKRWorker import IBKRWorker
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
 # from Research.tipRanksScrapperRequestsHtmlThreaded import get_tiprank_ratings_to_Stocks
+# UI Imports
+from UI.MainWindow import Ui_MainWindow
+from UI.SettingsWindow import Ui_fmSettings
 from UI.pos import Ui_position_canvas
 
-main_window_file = "UI/MainWindow.ui"
-settings_window_file = "UI/SettingsWindow.ui"
-Ui_MainWindow, MainBaseClass = loadUiType(main_window_file)
-Ui_SettingsWindow, SettingsBaseClass = loadUiType(settings_window_file)
 LOGFILE = "LOG/log.txt"
+
+global window
+global settings
 
 
 class TimeAxisItem(pg.AxisItem):
@@ -135,8 +137,8 @@ class TraderSettings():
         self.BULCKAMOUNT = self.config['Algo']['bulkAmountUSD']
         self.TRANDINGSTOCKS = ast.literal_eval(self.config['Algo']['TrandingStocks'])
         self.CANDIDATES = []
-        self.NEWCANDIDATES=self.config['Algo']['newcandidates']
-        self.NEWCANDIDATES=self.NEWCANDIDATES.replace("\n","")
+        self.NEWCANDIDATES = self.config['Algo']['newcandidates']
+        self.NEWCANDIDATES = self.NEWCANDIDATES.replace("\n", "")
         self.TECHFROMHOUR = self.config['Connection']['techfromHour']
         self.TECHFROMMIN = self.config['Connection']['techfromMin']
         self.TECHTOHOUR = self.config['Connection']['techtoHour']
@@ -170,7 +172,7 @@ class TraderSettings():
             self.config.write(configfile)
 
 
-class MainWindow(MainBaseClass, Ui_MainWindow):
+class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, settings):
         # mandatory
         QMainWindow.__init__(self)
@@ -391,15 +393,15 @@ Updates Candidates table
         """
 Updates Positions grid
         """
-        openPostions = self.ibkrworker.app.openPositions
-        allKeys = [*openPostions]
+        open_positions = self.ibkrworker.app.openPositions
+        allKeys = [*open_positions]
         lastUpdatedWidget = 0
         try:
-            for i in range(len(openPostions)):  # Update positions Panels
+            for i in range(len(open_positions)):  # Update positions Panels
 
                 widget = self.gp.itemAt(i).widget()
                 key = allKeys[i]
-                values = openPostions[key]
+                values = open_positions[key]
                 if 'stocks' in values.keys():
                     if values['stocks'] != 0:
                         widget.update_view(key, values)
@@ -464,8 +466,11 @@ After threaded task finished
         print("TREAD COMPLETE (good or bad)!")
 
     def show_settings(self):
-        settingsW.show()
-        settingsW.changedSettings = False
+
+        self.settingsWindow = SettingsWindow(self.settings)
+        self.settingsWindow.show()  # Показываем окно
+        # maybe not needed
+        self.settingsWindow.changedSettings = False
 
     def restart_all(self):
         """
@@ -492,13 +497,12 @@ Restarts everything after Save
         i = 4
 
 
-class SettingsWindow(SettingsBaseClass, Ui_SettingsWindow):
+class SettingsWindow(QMainWindow, Ui_fmSettings):
     def __init__(self, inSettings):
-        # mandatory
-        SettingsBaseClass.__init__(self)
-        Ui_SettingsWindow.__init__(self)
-        self.settings = inSettings
+        super().__init__()
         self.setupUi(self)
+        # code
+        self.settings = inSettings
         self.changedSettings = False
 
     def setting_change(self):
@@ -751,16 +755,15 @@ class PositionPanel(QWidget):
                 self.update_console("Error in updating position : " + str(e))
 
 
-# weird thing
-# import matplotlib
-# import matplotlib.pyplot as plt
-#
-# matplotlib.use('TkAgg')
-# end of weird ...
+def main():
+    app = QApplication(sys.argv)
+    global settings
+    settings = TraderSettings()
+    global window
+    window = MainWindow(settings)
+    window.show()
+    sys.exit(app.exec_())
 
-app = QApplication(sys.argv)
-settings = TraderSettings()
-window = MainWindow(settings)
-settingsW = SettingsWindow(settings)
-window.show()
-sys.exit(app.exec_())
+
+if __name__ == '__main__':
+    main()
