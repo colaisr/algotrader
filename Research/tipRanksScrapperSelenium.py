@@ -26,9 +26,9 @@ def get_tiprank_ratings_to_Stocks(stocks, path, notification_callback=None):
 
     stocksRanks={}
     for s in stocks:
-        notification_callback.emit("Getting TipRank Rating for : " + s)
+        notification_callback.emit("Getting TipRank Rating for : " + s.ticker)
 
-        url="https://www.tipranks.com/stocks/"+s+"/stock-analysis"
+        url="https://www.tipranks.com/stocks/"+s.ticker+"/stock-analysis"
         driver.get(url)
         selector="#app > div > div > main > div > div > article > div.client-components-stock-research-tabbed-style__contentArea > div > main > div:nth-child(1) > div.client-components-stock-research-smart-score-style__SmartScore > section.client-components-stock-research-smart-score-style__topSection > div.client-components-stock-research-smart-score-style__rank.client-components-stock-research-smart-score-style__rankSmartScoreTab > div.client-components-stock-research-smart-score-style__OctagonContainer > div > svg > text > tspan"
         xp='//*[@id="app"]/div/div/main/div/div/article/div[2]/div/main/div[1]/div[2]/section[1]/div[1]/div[1]/div/svg/text/tspan'
@@ -38,12 +38,12 @@ def get_tiprank_ratings_to_Stocks(stocks, path, notification_callback=None):
                 EC.visibility_of_element_located((By.TAG_NAME, 'svg'))
             )
             rating = element.text
-            stocksRanks[s]=rating
+            stocksRanks[s.ticker]=rating
             notification_callback.emit("Found Rating of : " + rating)
 
         except Exception as e:
 
-            notification_callback.emit("Could not find  TipRank Rating for : " + s)
+            notification_callback.emit("Could not find  TipRank Rating for : " + s.ticker)
             continue
 
     driver.quit()

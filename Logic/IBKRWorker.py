@@ -79,8 +79,9 @@ gets a Yahoo statistics to all tracked candidates and adds it to them
         """
 getting and updating tiprank rank for live candidates
         """
-        notification_callback.emit("Getting ranks for :" + str(self.settings.TRANDINGSTOCKS))
-        ranks = get_tiprank_ratings_to_Stocks(self.settings.TRANDINGSTOCKS, self.settings.PATHTOWEBDRIVER,notification_callback)
+        stock_names=[o.ticker for o in self.settings.CANDIDATES]
+        notification_callback.emit("Getting ranks for :"+','.join(stock_names) )
+        ranks = get_tiprank_ratings_to_Stocks(self.settings.CANDIDATES, self.settings.PATHTOWEBDRIVER,notification_callback)
         # ranks = get_tiprank_ratings_to_Stocks(self.settings.TRANDINGSTOCKS)
 
         for k, v in self.app.candidatesLive.items():
@@ -91,17 +92,18 @@ getting and updating tiprank rank for live candidates
         """
 Starts tracking the Candidates and adds the statistics
         """
-        notification_callback.emit("Starting to track " + str(len(self.settings.TRANDINGSTOCKS)) + " Candidates")
+        stock_names = [o.ticker for o in self.settings.CANDIDATES]
+        notification_callback.emit("Starting to track " +','.join(stock_names) + " Candidates")
         # starting querry
         trackedStockN = 1
-        for s in self.settings.TRANDINGSTOCKS:
+        for s in self.settings.CANDIDATES:
             id = self.app.nextorderId
             notification_callback.emit(
-                "starting to track: " + str(trackedStockN) + " of " + str(len(self.settings.TRANDINGSTOCKS)) + " " + s +
+                "starting to track: " + str(trackedStockN) + " of " + str(len(self.settings.CANDIDATES)) + " " + s.ticker +
                 " traking with Id:" +
                 str(id))
-            c = createContract(s)
-            self.app.candidatesLive[id] = {"Stock": s,
+            c = createContract(s.ticker)
+            self.app.candidatesLive[id] = {"Stock": s.ticker,
                                            "Close": "-",
                                            "Open": "-",
                                            "Bid": "-",
