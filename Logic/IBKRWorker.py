@@ -70,6 +70,7 @@ gets a Yahoo statistics to all tracked candidates and adds it to them
         """
         for k, v in self.app.candidatesLive.items():
             notification_callback.emit("Getting Yahoo market data for " + v['Stock'])
+            found=False
             for m, n in self.saved_candidates_data.items():
                 if n['Stock']==v['Stock']:
                     date=n['LastUpdate']
@@ -77,14 +78,16 @@ gets a Yahoo statistics to all tracked candidates and adds it to them
                     if date_dt.date()==v['LastUpdate'].date():
                         self.app.candidatesLive[k]["averagePriceDropP"] = n['averagePriceDropP']
                         self.app.candidatesLive[k]["averagePriceSpreadP"] = n['averagePriceSpreadP']
+                        found=True
                         notification_callback.emit(
                             "Yahoo market data for " + v['Stock'] + " already exist shows average " + str(n['averagePriceDropP']) + " % drop")
-                    else:
-                        drop, change = get_yahoo_stats_for_candidate(v['Stock'], notification_callback)
-                        self.app.candidatesLive[k]["averagePriceDropP"] = drop
-                        self.app.candidatesLive[k]["averagePriceSpreadP"] = change
-                        notification_callback.emit(
-                            "Yahoo market data for " + v['Stock'] + "received shows average " + str(drop) + " % drop")
+                        break
+            if not found:
+                drop, change = get_yahoo_stats_for_candidate(v['Stock'], notification_callback)
+                self.app.candidatesLive[k]["averagePriceDropP"] = drop
+                self.app.candidatesLive[k]["averagePriceSpreadP"] = change
+                notification_callback.emit(
+                    "Yahoo market data for " + v['Stock'] + "received shows average " + str(drop) + " % drop")
 
     def add_ratings_to_liveCandidates(self, notification_callback=None):
         """
@@ -92,13 +95,13 @@ getting and updating tiprank rank for live candidates
         """
         stock_names = [o.ticker for o in self.settings.CANDIDATES]
         notification_callback.emit("Getting ranks for :" + ','.join(stock_names))
-        ranks = get_tiprank_ratings_to_Stocks(self.settings.CANDIDATES, self.settings.PATHTOWEBDRIVER,
+        ranks = get_tiprank_ratings_to_Stocks(self.settings.CANDIDATES, self.settings.PATHTOWEBDRIVER,self.saved_candidates_data,
                                               notification_callback)
         # ranks = get_tiprank_ratings_to_Stocks(self.settings.TRANDINGSTOCKS)
 
         for k, v in self.app.candidatesLive.items():
             v["tipranksRank"] = ranks[v["Stock"]]
-            notification_callback.emit("Updated " + str(v["tipranksRank"]) + " rank for " + v["Stock"])
+            # notification_callback.emit("Updated " + str(v["tipranksRank"]) + " rank for " + v["Stock"])
 
     def evaluate_and_track_candidates(self, notification_callback=None):
         """
