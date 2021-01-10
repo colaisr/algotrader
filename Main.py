@@ -156,6 +156,8 @@ class TraderSettings():
         self.TECHTOHOUR = self.config['Connection']['techtoHour']
         self.TECHTOMIN = self.config['Connection']['techtoMin']
 
+        self.UIDEBUG=self.config['Soft']['uidebug']
+
     def write_config(self):
         self.config['Connection']['port'] = self.PORT
         self.config['Account']['acc'] = self.ACCOUNT
@@ -219,6 +221,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.update_session_state()
 
         self.connect_to_ibkr()
+
+        # if not bool(self.settings.UIDEBUG):
+        #     self.connect_to_ibkr()
+        # else:
+        #     self.btnSettings.setEnabled(True)
         StyleSheet = '''
         #lcdPNLgreen {
             border: 3px solid green;
