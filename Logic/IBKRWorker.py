@@ -298,6 +298,7 @@ processes candidates for buying if enough SMA
         requiredCushionForOpenPositions = self.get_required_cushion_for_open_positions()
         remainingFunds = float(self.app.sMa)
         real_remaining_funds = remainingFunds - requiredCushionForOpenPositions
+        self.app.smaWithSafety=real_remaining_funds
         if real_remaining_funds < 1000:
             notification_callback.emit("SMA (including open positions cushion) is " + str(
                 real_remaining_funds) + " it is less than 1000 - skipping buy")

@@ -289,8 +289,12 @@ Updates UI after connection/worker execution
         """
         # main data
         self.lAcc.setText(self.settings.ACCOUNT)
-        self.lExcessLiquidity.setText(str(self.ibkrworker.app.excessLiquidity))
-        self.lSma.setText(str(self.ibkrworker.app.sMa))
+        # self.lExcessLiquidity.setText(str(self.ibkrworker.app.excessLiquidity))
+        # self.lSma.setText(str(self.ibkrworker.app.sMa))
+        if hasattr(self.ibkrworker.app, 'smaWithSafety'):
+            self.lSma.setText(str(round(self.ibkrworker.app.smaWithSafety,1)))
+        else:
+            self.lSma.setText(str(round(self.ibkrworker.app.sMa,1)))
         self.lMarketValue.setText(str(self.ibkrworker.app.netLiquidation))
         self.lblAvailTrades.setText(str(self.ibkrworker.app.tradesRemaining))
         self.lcdPNL.display(self.ibkrworker.app.dailyPnl)
@@ -306,7 +310,7 @@ Updates UI after connection/worker execution
         total_positions_value = 0
         for p in self.ibkrworker.app.openPositions.values():
             total_positions_value += p["Value"]
-        self.lPositionsTotalValue.setText(str(round(total_positions_value, 2)))
+        self.lPositionsTotalValue.setText(str(round(total_positions_value, 1)))
 
         self.update_open_positions()
         self.update_live_candidates()
