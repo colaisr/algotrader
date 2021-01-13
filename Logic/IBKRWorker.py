@@ -5,6 +5,8 @@ from datetime import datetime, timedelta
 
 from Logic.ApiWrapper import IBapi, createContract, createTrailingStopOrder, create_limit_buy_order, createMktSellOrder
 from pytz import timezone
+
+from Research.TodaysStorage import get_last_saved_stats_for_candidates, update_last_saved_stats_for_candidates
 from Research.UpdateCandidates import get_yahoo_stats_for_candidate
 from Research.tipRanksScrapperSelenium import get_tiprank_ratings_to_Stocks
 
@@ -13,7 +15,6 @@ class IBKRWorker():
     def __init__(self, settings):
         self.app = IBapi()
         self.settings = settings
-
 
     def connect_and_prepare(self, status_callback, notification_callback):
         """
@@ -69,39 +70,56 @@ gets a Yahoo statistics to all tracked candidates and adds it to them
         """
         for k, v in self.app.candidatesLive.items():
             notification_callback.emit("Getting Yahoo market data for " + v['Stock'])
-            drop, change = get_yahoo_stats_for_candidate(v['Stock'], notification_callback)
-            self.app.candidatesLive[k]["averagePriceDropP"] = drop
-            self.app.candidatesLive[k]["averagePriceSpreadP"] = change
-            notification_callback.emit(
-                "Yahoo market data for " + v['Stock'] + " shows average " + str(drop) + " % drop")
+            found=False
+            for m, n in self.saved_candidates_data.items():
+                if n['Stock']==v['Stock']:
+                    date=n['LastUpdate']
+                    date_dt=datetime.strptime(date, '%Y-%m-%d')
+                    if date_dt.date()==v['LastUpdate'].date():
+                        self.app.candidatesLive[k]["averagePriceDropP"] = n['averagePriceDropP']
+                        self.app.candidatesLive[k]["averagePriceSpreadP"] = n['averagePriceSpreadP']
+                        found=True
+                        notification_callback.emit(
+                            "Yahoo market data for " + v['Stock'] + " already exist shows average " + str(n['averagePriceDropP']) + " % drop")
+                        break
+            if not found:
+                drop, change = get_yahoo_stats_for_candidate(v['Stock'], notification_callback)
+                self.app.candidatesLive[k]["averagePriceDropP"] = drop
+                self.app.candidatesLive[k]["averagePriceSpreadP"] = change
+                notification_callback.emit(
+                    "Yahoo market data for " + v['Stock'] + "received shows average " + str(drop) + " % drop")
 
     def add_ratings_to_liveCandidates(self, notification_callback=None):
         """
 getting and updating tiprank rank for live candidates
         """
-        notification_callback.emit("Getting ranks for :" + str(self.settings.TRANDINGSTOCKS))
-        ranks = get_tiprank_ratings_to_Stocks(self.settings.TRANDINGSTOCKS, self.settings.PATHTOWEBDRIVER,notification_callback)
+        stock_names = [o.ticker for o in self.settings.CANDIDATES]
+        notification_callback.emit("Getting ranks for :" + ','.join(stock_names))
+        ranks = get_tiprank_ratings_to_Stocks(self.settings.CANDIDATES, self.settings.PATHTOWEBDRIVER,self.saved_candidates_data,
+                                              notification_callback)
         # ranks = get_tiprank_ratings_to_Stocks(self.settings.TRANDINGSTOCKS)
 
         for k, v in self.app.candidatesLive.items():
             v["tipranksRank"] = ranks[v["Stock"]]
-            notification_callback.emit("Updated " + str(v["tipranksRank"]) + " rank for " + v["Stock"])
+            # notification_callback.emit("Updated " + str(v["tipranksRank"]) + " rank for " + v["Stock"])
 
     def evaluate_and_track_candidates(self, notification_callback=None):
         """
 Starts tracking the Candidates and adds the statistics
         """
-        notification_callback.emit("Starting to track " + str(len(self.settings.TRANDINGSTOCKS)) + " Candidates")
+        stock_names = [o.ticker for o in self.settings.CANDIDATES]
+        notification_callback.emit("Starting to track " + ','.join(stock_names) + " Candidates")
         # starting querry
         trackedStockN = 1
-        for s in self.settings.TRANDINGSTOCKS:
+        for s in self.settings.CANDIDATES:
             id = self.app.nextorderId
             notification_callback.emit(
-                "starting to track: " + str(trackedStockN) + " of " + str(len(self.settings.TRANDINGSTOCKS)) + " " + s +
+                "starting to track: " + str(trackedStockN) + " of " + str(
+                    len(self.settings.CANDIDATES)) + " " + s.ticker +
                 " traking with Id:" +
                 str(id))
-            c = createContract(s)
-            self.app.candidatesLive[id] = {"Stock": s,
+            c = createContract(s.ticker)
+            self.app.candidatesLive[id] = {"Stock": s.ticker,
                                            "Close": "-",
                                            "Open": "-",
                                            "Bid": "-",
@@ -115,22 +133,27 @@ Starts tracking the Candidates and adds the statistics
             self.app.nextorderId += 1
             trackedStockN += 1
 
-
-        have_empty=True
+        have_empty = True
         while have_empty:
             time.sleep(1)
             notification_callback.emit("Waiting for last requested candidate Close price ")
-            closings=[str(x['Close']) for x in self.app.candidatesLive.values()]
+            closings = [str(x['Close']) for x in self.app.candidatesLive.values()]
             if '-' in closings:
                 have_empty = True
             else:
-                have_empty=False
+                have_empty = False
+
+        # get last saves for candidates for reuse
+        self.saved_candidates_data = get_last_saved_stats_for_candidates()
 
         # updateYahooStatistics
         self.add_yahoo_stats_to_live_candidates(notification_callback)
 
         # update TipranksData
         self.add_ratings_to_liveCandidates(notification_callback)
+
+        # update candidates in storage for reuse
+        update_last_saved_stats_for_candidates(self.app.candidatesLive)
 
         notification_callback.emit(str(len(self.app.candidatesLive)) + " Candidates evaluated and started to track")
 
@@ -142,7 +165,7 @@ Processes the positions to identify Profit/Loss
 
         for s, p in self.app.openPositions.items():
             if 'Value' in p.keys():
-                if p["Value"]!=0:
+                if p["Value"] != 0:
                     notification_callback.emit("Processing " + s)
                     profit = p["UnrealizedPnL"] / p["Value"] * 100
                     notification_callback.emit("The profit for " + s + " is " + str(profit) + " %")
@@ -155,7 +178,7 @@ Processes the positions to identify Profit/Loss
                                                        "Creating a trailing Stop Order to take a Profit")
                             contract = createContract(s)
                             order = createTrailingStopOrder(p["stocks"], self.settings.TRAIL)
-                            if self.app.tradesRemaining>0 or self.app.tradesRemaining==-1:
+                            if self.app.tradesRemaining > 0 or self.app.tradesRemaining == -1:
 
                                 self.app.placeOrder(self.app.nextorderId, contract, order)
                                 self.app.nextorderId = self.app.nextorderId + 1
@@ -164,8 +187,9 @@ Processes the positions to identify Profit/Loss
                                 self.log_decision("LOG/profits.txt",
                                                   "Created a Trailing Stop order for " + s + " at level of " + self.settings.TRAIL + "%")
                             else:
-                                notification_callback.emit("NO TRADES remain -Skept creation of Trailing Stop order for " + s + " at level of " +
-                                                           str(self.settings.TRAIL) + "%")
+                                notification_callback.emit(
+                                    "NO TRADES remain -Skept creation of Trailing Stop order for " + s + " at level of " +
+                                    str(self.settings.TRAIL) + "%")
                                 self.log_decision("LOG/missed.txt",
                                                   " Skept :Created a Trailing Stop order for " + s + " at level of " + self.settings.TRAIL + "%")
                     elif profit < float(self.settings.LOSS):
@@ -183,12 +207,13 @@ Processes the positions to identify Profit/Loss
                                 notification_callback.emit("Created a Market Sell order for " + s)
                                 self.log_decision("LOG/loses.txt", "Created a Market Sell order for " + s)
                             else:
-                                notification_callback.emit("NO TRADES remain -Skept:Created a Market Sell (Stoploss) order for " + s)
+                                notification_callback.emit(
+                                    "NO TRADES remain -Skept:Created a Market Sell (Stoploss) order for " + s)
                                 self.log_decision("LOG/missed.txt", "Skept: Created a Market Sell order for " + s)
                 else:
                     notification_callback.emit("Position " + s + " skept its Value is 0")
             else:
-                notification_callback.emit("Position "+s+" skept it has no Value")
+                notification_callback.emit("Position " + s + " skept it has no Value")
 
     def evaluate_stock_for_buy(self, s, notification_callback=None):
         """
@@ -272,12 +297,15 @@ processes candidates for buying if enough SMA
         """
         requiredCushionForOpenPositions = self.get_required_cushion_for_open_positions()
         remainingFunds = float(self.app.sMa)
-        real_remaining_funds=remainingFunds-requiredCushionForOpenPositions
+        real_remaining_funds = remainingFunds - requiredCushionForOpenPositions
+        self.app.smaWithSafety=real_remaining_funds
         if real_remaining_funds < 1000:
-            notification_callback.emit("SMA (including open positions cushion) is "+str(real_remaining_funds)+" it is less than 1000 - skipping buy")
+            notification_callback.emit("SMA (including open positions cushion) is " + str(
+                real_remaining_funds) + " it is less than 1000 - skipping buy")
             return
         else:
-            notification_callback.emit("SMA (including open positions cushion) is :" + str(real_remaining_funds) + " searching candidates")
+            notification_callback.emit(
+                "SMA (including open positions cushion) is :" + str(real_remaining_funds) + " searching candidates")
             # updating the targets if market was open in the middle
             self.update_target_price_for_tracked_stocks(notification_callback)
             res = sorted(self.app.candidatesLive.items(), key=lambda x: x[1]['tipranksRank'], reverse=True)
@@ -342,8 +370,6 @@ Process Open positions and Candidates
             else:
                 notification_callback.emit("Error in processing Worker : " + str(e))
 
-
-
     def run_loop(self):
         self.app.run()
 
@@ -371,18 +397,17 @@ updating all openPositions, refreshed on each worker- to include changes from ne
                 notification_callback.emit("Started tracking " + s + " position PnL")
                 self.app.nextorderId += 1
 
-         #validate all values received
-        have_empty=True
+        # validate all values received
+        have_empty = True
         while have_empty:
             time.sleep(1)
-            have_empty=False
+            have_empty = False
             notification_callback.emit("Waiting to receive Value for all positions ")
             for c, v in self.app.openPositions.items():
                 if 'Value' not in v.keys():
                     have_empty = True
 
-
-        for s, p in self.app.openPositions.items(): #requesting history
+        for s, p in self.app.openPositions.items():  # requesting history
             id = self.app.nextorderId
             queryTime = datetime.today().strftime("%Y%m%d %H:%M:%S")
             contract = createContract(s)
@@ -392,14 +417,14 @@ updating all openPositions, refreshed on each worker- to include changes from ne
             self.app.openPositionsLiveHistoryRequests[id] = s
             self.app.nextorderId += 1
 
-         #validate all positions have history
-        have_empty=True
+        # validate all positions have history
+        have_empty = True
         while have_empty:
             time.sleep(1)
-            have_empty=False
+            have_empty = False
             notification_callback.emit("Waiting to receive Hisory for all positions ")
             for c, v in self.app.openPositions.items():
-                if len(v["HistoricalData"])==0:
+                if len(v["HistoricalData"]) == 0:
                     have_empty = True
 
         notification_callback.emit(str(len(self.app.openPositions)) + " open positions completely updated")
@@ -447,18 +472,15 @@ Creating a PnL request the result will be stored in generalStarus
             f.write(order)
 
     def get_required_cushion_for_open_positions(self):
-        requiredCushion=0
+        requiredCushion = 0
         existing_positions = self.app.openPositions
-        for k,v in existing_positions.items():
-            value=v['Value']
-            if value!=0:
-                profit=v['UnrealizedPnL']
-                clearvalue=value-profit
-                canLose=abs(int(self.settings.LOSS))
-                requiredcushionForPosition=clearvalue/100*canLose
-                requiredcushionForPosition+=profit
-                requiredCushion+=requiredcushionForPosition
+        for k, v in existing_positions.items():
+            value = v['Value']
+            if value != 0:
+                profit = v['UnrealizedPnL']
+                clearvalue = value - profit
+                canLose = abs(int(self.settings.LOSS))
+                requiredcushionForPosition = clearvalue / 100 * canLose
+                requiredcushionForPosition += profit
+                requiredCushion += requiredcushionForPosition
         return requiredCushion
-
-
-
