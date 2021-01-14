@@ -235,6 +235,11 @@ class Ui_setWin(object):
 
         self.station.addLayout(self.verticalLayout_5)
 
+        self.chbxUiDebug = QCheckBox(setWin)
+        self.chbxUiDebug.setObjectName(u"chbxUiDebug")
+
+        self.station.addWidget(self.chbxUiDebug)
+
         self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.station.addItem(self.verticalSpacer_2)
@@ -389,6 +394,7 @@ class Ui_setWin(object):
         self.label_13.setText(QCoreApplication.translate("setWin", u"Worker interval (sec)", None))
         self.label_12.setText(QCoreApplication.translate("setWin", u"Technical breack", None))
         self.label_11.setText(QCoreApplication.translate("setWin", u"to", None))
+        self.chbxUiDebug.setText(QCoreApplication.translate("setWin", u"UI only (debug)", None))
         self.label_2.setText(QCoreApplication.translate("setWin", u"Algorithm settings", None))
         self.label_4.setText(QCoreApplication.translate("setWin", u"Profit", None))
         self.label_6.setText(QCoreApplication.translate("setWin", u"Trail %", None))

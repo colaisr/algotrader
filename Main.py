@@ -69,7 +69,6 @@ class WorkerSignals(QObject):
     progress = Signal(int)  # to use for progress if needed
 
 
-# noinspection PyUnresolvedReferences
 class Worker(QRunnable):
     """
     Worker thread
@@ -156,7 +155,13 @@ class TraderSettings():
         self.TECHTOHOUR = self.config['Connection']['techtoHour']
         self.TECHTOMIN = self.config['Connection']['techtoMin']
 
-        self.UIDEBUG = self.config['Soft']['uidebug']
+        ui_debug=self.config['Soft']['uidebug']
+        if ui_debug=='False':
+            self.UIDEBUG =False
+        else:
+            self.UIDEBUG = True
+        i=2
+
 
     def write_config(self):
         self.config['Connection']['port'] = self.PORT
@@ -181,6 +186,7 @@ class TraderSettings():
         self.config['Connection']['techfromMin'] = str(self.TECHFROMMIN)
         self.config['Connection']['techtoHour'] = str(self.TECHTOHOUR)
         self.config['Connection']['techtoMin'] = str(self.TECHTOMIN)
+        self.config['Soft']['uidebug'] = str(self.UIDEBUG)
 
         with open('config.ini', 'w') as configfile:
             self.config.write(configfile)
@@ -223,7 +229,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # self.connect_to_ibkr()
 
-        if not bool(self.settings.UIDEBUG):
+
+        if not self.settings.UIDEBUG:
             self.connect_to_ibkr()
         else:
             self.btnSettings.setEnabled(True)
@@ -676,6 +683,7 @@ class SettingsWindow(QDialog, Ui_setWin):
         self.existingSettings.TECHFROMMIN = self.tmTechFrom.time().minute()
         self.existingSettings.TECHTOHOUR = self.tmTechTo.time().hour()
         self.existingSettings.TECHTOMIN = self.tmTechTo.time().minute()
+        self.existingSettings.UIDEBUG=self.chbxUiDebug.isChecked()
 
         self.changedSettings = True
         print("Setting was changed.")
@@ -714,6 +722,9 @@ class SettingsWindow(QDialog, Ui_setWin):
 
         self.tmTechTo.setTime(QTime(int(self.existingSettings.TECHTOHOUR), int(self.existingSettings.TECHTOMIN)))
         self.tmTechTo.timeChanged.connect(self.setting_change)
+
+        self.chbxUiDebug.setChecked(self.existingSettings.UIDEBUG)
+        self.chbxUiDebug.stateChanged.connect(self.setting_change)
 
         self.btnRemoveC.clicked.connect(self.remove_candidate)
         self.btnAddC.clicked.connect(self.add_candidate)
@@ -815,7 +826,7 @@ def main():
     app = QApplication(sys.argv)
     global settings
     settings = TraderSettings()
-    settings.write_config()
+    # settings.write_config()
     global window
     window = MainWindow(settings)
     window.show()

@@ -356,6 +356,13 @@
           </layout>
          </item>
          <item>
+          <widget class="QCheckBox" name="chbxUiDebug">
+           <property name="text">
+            <string>UI only (debug)</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="verticalSpacer_2">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
