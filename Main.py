@@ -22,7 +22,8 @@ from Logic.IBKRWorker import IBKRWorker
 # UI Imports
 from UI.MainWindow import Ui_MainWindow
 from UI.NewStockWindow import Ui_newStockDlg
-from UI.SettingsWindow import Ui_fmSettings
+from UI.SettingsWindow import Ui_setWin
+from UI.SettingsWindowO import Ui_fmSettings
 from UI.pos import Ui_position_canvas
 
 LOGFILE = "LOG/log.txt"
@@ -156,7 +157,7 @@ class TraderSettings():
         self.TECHTOHOUR = self.config['Connection']['techtoHour']
         self.TECHTOMIN = self.config['Connection']['techtoMin']
 
-        self.UIDEBUG=self.config['Soft']['uidebug']
+        self.UIDEBUG = self.config['Soft']['uidebug']
 
     def write_config(self):
         self.config['Connection']['port'] = self.PORT
@@ -191,6 +192,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # mandatory
         QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
+        self.settingsWindow = SettingsWindow()
         self.setupUi(self)
         self.settings = settings
         self.ibkrworker = IBKRWorker(self.settings)
@@ -220,12 +222,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.statusbar.showMessage("Ready")
         self.update_session_state()
 
-        self.connect_to_ibkr()
+        # self.connect_to_ibkr()
 
-        # if not bool(self.settings.UIDEBUG):
-        #     self.connect_to_ibkr()
-        # else:
-        #     self.btnSettings.setEnabled(True)
+        if not bool(self.settings.UIDEBUG):
+            self.connect_to_ibkr()
+        else:
+            self.btnSettings.setEnabled(True)
+
         StyleSheet = '''
         #lcdPNLgreen {
             border: 3px solid green;
@@ -292,9 +295,9 @@ Updates UI after connection/worker execution
         # self.lExcessLiquidity.setText(str(self.ibkrworker.app.excessLiquidity))
         # self.lSma.setText(str(self.ibkrworker.app.sMa))
         if hasattr(self.ibkrworker.app, 'smaWithSafety'):
-            self.lSma.setText(str(round(self.ibkrworker.app.smaWithSafety,1)))
+            self.lSma.setText(str(round(self.ibkrworker.app.smaWithSafety, 1)))
         else:
-            self.lSma.setText(str(round(self.ibkrworker.app.sMa,1)))
+            self.lSma.setText(str(round(self.ibkrworker.app.sMa, 1)))
         self.lMarketValue.setText(str(self.ibkrworker.app.netLiquidation))
         self.lblAvailTrades.setText(str(self.ibkrworker.app.tradesRemaining))
         self.lcdPNL.display(self.ibkrworker.app.dailyPnl)
@@ -491,10 +494,19 @@ After threaded task finished
 
     def show_settings(self):
 
-        self.settingsWindow = SettingsWindow(self.settings)
-        self.settingsWindow.show()  # Показываем окно
-        # maybe not needed
+        # self.settingsWindow = SettingsWindowO(self.settings)
+        # self.settingsWindow.show()  # Показываем окно
+        # # maybe not needed
+        # self.settingsWindow.changedSettings = False
+        self.settingsWindow.existingSettings = copy.deepcopy(self.settings)
         self.settingsWindow.changedSettings = False
+        if self.settingsWindow.exec_():
+            self.settings = self.settingsWindow.existingSettings
+            self.settings.write_config()
+            # self.restart_all()
+        else:
+            print("Settings window Canceled")
+        self.settingsWindow = SettingsWindow()
 
     def restart_all(self):
         """
@@ -643,7 +655,7 @@ class PositionPanel(QWidget):
                 self.update_console("Error in updating position : " + str(e))
 
 
-class SettingsWindow(QMainWindow, Ui_fmSettings):
+class SettingsWindowO(QMainWindow, Ui_fmSettings):
     def __init__(self, inSettings):
         super().__init__()
         self.dlg = StockWindow()
@@ -788,6 +800,150 @@ class SettingsWindow(QMainWindow, Ui_fmSettings):
     def clear_candidates(self):
         self.lstCandidates.clear()
         self.setting_change()
+
+
+class SettingsWindow(QDialog, Ui_setWin):
+
+    def __init__(self):
+        super().__init__()
+        self.dlg = StockWindow()
+        self.setupUi(self)
+        # code
+        self.changedSettings = False
+
+    def setting_change(self):
+        self.existingSettings.PROFIT = self.spProfit.value()
+        self.existingSettings.TRAIL = self.spTrail.value()
+        self.existingSettings.LOSS = self.spLoss.value()
+        self.existingSettings.BULCKAMOUNT = self.spBulck.value()
+        self.existingSettings.ACCOUNT = self.txtAccount.text()
+        self.existingSettings.PORT = self.txtPort.text()
+        self.existingSettings.INTERVALUI = self.spIntervalUi.value()
+        self.existingSettings.INTERVALWORKER = self.spIntervalWorker.value()
+        self.existingSettings.TECHFROMHOUR = self.tmTechFrom.time().hour()
+        self.existingSettings.TECHFROMMIN = self.tmTechFrom.time().minute()
+        self.existingSettings.TECHTOHOUR = self.tmTechTo.time().hour()
+        self.existingSettings.TECHTOMIN = self.tmTechTo.time().minute()
+
+        self.changedSettings = True
+        print("Setting was changed.")
+
+    def showEvent(self, event):
+        self.btnRemoveC.setEnabled(False)
+        self.redraw_candidates_list()
+        self.lstCandidates.itemClicked.connect(self.candidate_selected)
+
+        self.spProfit.setValue(int(self.existingSettings.PROFIT))
+        self.spProfit.valueChanged.connect(self.setting_change)
+
+        self.spTrail.setValue(int(self.existingSettings.TRAIL))
+        self.spTrail.valueChanged.connect(self.setting_change)
+
+        self.spLoss.setValue(int(self.existingSettings.LOSS))
+        self.spLoss.valueChanged.connect(self.setting_change)
+
+        self.spBulck.setValue(int(self.existingSettings.BULCKAMOUNT))
+        self.spBulck.valueChanged.connect(self.setting_change)
+
+        self.txtAccount.setText(self.existingSettings.ACCOUNT)
+        self.txtAccount.textChanged.connect(self.setting_change)
+
+        self.txtPort.setText(self.existingSettings.PORT)
+        self.txtPort.textChanged.connect(self.setting_change)
+
+        self.spIntervalWorker.setValue(int(self.existingSettings.INTERVALWORKER))
+        self.spIntervalWorker.valueChanged.connect(self.setting_change)
+
+        self.spIntervalUi.setValue(int(self.existingSettings.INTERVALUI))
+        self.spIntervalUi.valueChanged.connect(self.setting_change)
+
+        self.tmTechFrom.setTime(QTime(int(self.existingSettings.TECHFROMHOUR), int(self.existingSettings.TECHFROMMIN)))
+        self.tmTechFrom.timeChanged.connect(self.setting_change)
+
+        self.tmTechTo.setTime(QTime(int(self.existingSettings.TECHTOHOUR), int(self.existingSettings.TECHTOMIN)))
+        self.tmTechTo.timeChanged.connect(self.setting_change)
+
+        self.btnRemoveC.clicked.connect(self.remove_candidate)
+        self.btnAddC.clicked.connect(self.add_candidate)
+
+        self.btnGet.clicked.connect(self.update_stocks_from_cloud)
+        self.btnClear.clicked.connect(self.clear_candidates)
+
+        self.accepted.connect(self.check_changed)
+
+    def check_changed(self):
+        if self.changedSettings:
+            reply = QMessageBox.question(self, 'Settings Changed',
+                                         'Accepting will cause the restart,Sure?',
+                                         QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+
+            if reply == QMessageBox.No:
+                self.reject()
+
+    def redraw_candidates_list(self):
+        self.lstCandidates.clear()
+
+        for candidate in self.existingSettings.CANDIDATES:
+            ticker = candidate.ticker
+            reason = candidate.reason
+            o = 3
+            item_to_add = QListWidgetItem()
+            item_to_add.setText(ticker)
+            item_to_add.setToolTip(reason)
+            self.lstCandidates.addItem(item_to_add)
+        self.btnRemoveC.setEnabled(False)
+        self.set_clear_button_state()
+
+    def set_clear_button_state(self):
+        if self.lstCandidates.count() > 0:
+            self.btnClear.setEnabled(True)
+        else:
+            self.btnClear.setEnabled(False)
+
+    def remove_candidate(self):
+        stock_to_remove = self.lstCandidates.selectedItems()[0].text()
+        for x in self.existingSettings.CANDIDATES:
+            if x.ticker == stock_to_remove:
+                self.existingSettings.CANDIDATES.remove(x)
+                break
+        self.changedSettings = True
+        self.redraw_candidates_list()
+
+    def add_candidate(self):
+        self.dlg = StockWindow()
+        if self.dlg.exec_():
+            ca = SettingsCandidate()
+            ca.ticker = self.dlg.txtTicker.text().upper()
+            ca.reason = self.dlg.txtReason.toPlainText()
+            self.existingSettings.CANDIDATES.append(ca)
+            self.changedSettings = True
+            self.redraw_candidates_list()
+        else:
+            print("Adding Canceled")
+
+    def candidate_selected(self):
+        self.btnRemoveC.setEnabled(True)
+
+    def update_stocks_from_cloud(self):
+        received_stocks = []
+        try:
+            x = requests.get('https://147u4tq4w4.execute-api.eu-west-3.amazonaws.com/default/ptest')
+            received_stocks = json.loads(x.text)
+            self.settings.CANDIDATES = received_stocks
+            for s in received_stocks:
+                self.lstCandidates.addItem(s['ticker'])
+                i = self.lstCandidates.findItems(s['ticker'], Qt.MatchExactly)
+                i[0].setToolTip(s['reason'])
+            self.set_clear_button_state()
+            self.setting_change()
+
+        except:
+            print('Failed to get the stocks from cloud')
+
+    def clear_candidates(self):
+        self.existingSettings.CANDIDATES=[]
+        self.changedSettings = True
+        self.redraw_candidates_list()
 
 
 class StockWindow(QDialog, Ui_newStockDlg):
