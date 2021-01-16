@@ -4,6 +4,4 @@ pyside2-uic MainWindow.ui -o MainWindow.py
 
 pyside2-uic SettingsWindow.ui -o SettingsWindow.py
 
-pyside2-uic StockWindow.ui -o StockWindow.py
-
 pyside2-uic NewStockWindow.ui -o NewStockWindow.py

@@ -30,6 +30,9 @@
        </item>
        <item>
         <widget class="QPushButton" name="btnValidate">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="text">
           <string>Validate</string>
          </property>

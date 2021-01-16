@@ -155,13 +155,12 @@ class TraderSettings():
         self.TECHTOHOUR = self.config['Connection']['techtoHour']
         self.TECHTOMIN = self.config['Connection']['techtoMin']
 
-        ui_debug=self.config['Soft']['uidebug']
-        if ui_debug=='False':
-            self.UIDEBUG =False
+        ui_debug = self.config['Soft']['uidebug']
+        if ui_debug == 'False':
+            self.UIDEBUG = False
         else:
             self.UIDEBUG = True
-        i=2
-
+        i = 2
 
     def write_config(self):
         self.config['Connection']['port'] = self.PORT
@@ -228,7 +227,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.update_session_state()
 
         # self.connect_to_ibkr()
-
 
         if not self.settings.UIDEBUG:
             self.connect_to_ibkr()
@@ -506,6 +504,7 @@ After threaded task finished
         # self.settingsWindow.changedSettings = False
         self.settingsWindow.existingSettings = copy.deepcopy(self.settings)
         self.settingsWindow.changedSettings = False
+        self.settingsWindow.ibkrClient=self.ibkrworker
         if self.settingsWindow.exec_():
             self.settings = self.settingsWindow.existingSettings
             self.settings.write_config()
@@ -683,7 +682,7 @@ class SettingsWindow(QDialog, Ui_setWin):
         self.existingSettings.TECHFROMMIN = self.tmTechFrom.time().minute()
         self.existingSettings.TECHTOHOUR = self.tmTechTo.time().hour()
         self.existingSettings.TECHTOMIN = self.tmTechTo.time().minute()
-        self.existingSettings.UIDEBUG=self.chbxUiDebug.isChecked()
+        self.existingSettings.UIDEBUG = self.chbxUiDebug.isChecked()
 
         self.changedSettings = True
         print("Setting was changed.")
@@ -774,6 +773,7 @@ class SettingsWindow(QDialog, Ui_setWin):
 
     def add_candidate(self):
         self.dlg = StockWindow()
+        self.dlg.client=self.ibkrClient
         if self.dlg.exec_():
             ca = SettingsCandidate()
             ca.ticker = self.dlg.txtTicker.text().upper()
@@ -804,7 +804,7 @@ class SettingsWindow(QDialog, Ui_setWin):
             print('Failed to get the stocks from cloud')
 
     def clear_candidates(self):
-        self.existingSettings.CANDIDATES=[]
+        self.existingSettings.CANDIDATES = []
         self.changedSettings = True
         self.redraw_candidates_list()
 
@@ -814,6 +814,15 @@ class StockWindow(QDialog, Ui_newStockDlg):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.btnValidate.clicked.connect(self.validate_ticker)
+
+    def validate_ticker(self):
+        ticker=self.txtTicker.text()
+        try:
+            c=self.client.request_ticker_data(ticker)
+            r=2
+        except Exception as e:
+            p=3
 
     def addStock(self):
         ca = SettingsCandidate()

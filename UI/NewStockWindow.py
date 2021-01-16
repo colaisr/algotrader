@@ -36,6 +36,7 @@ class Ui_newStockDlg(object):
 
         self.btnValidate = QPushButton(newStockDlg)
         self.btnValidate.setObjectName(u"btnValidate")
+        self.btnValidate.setEnabled(False)
 
         self.horizontalLayout_2.addWidget(self.btnValidate)
 

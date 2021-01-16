@@ -484,3 +484,17 @@ Creating a PnL request the result will be stored in generalStarus
                 requiredcushionForPosition += profit
                 requiredCushion += requiredcushionForPosition
         return requiredCushion
+
+    def request_ticker_data(self, ticker: str):
+        #todo implement ticker data functionality
+
+        contract = createContract(ticker)
+        id = self.app.nextorderId
+        self.app.contract_processing = True
+        self.app.reqContractDetails(self.app.nextorderId, contract)
+        self.app.nextorderId = self.app.nextorderId + 1
+        while self.app.contract_processing:
+            time.sleep(0.1)
+        cd = self.app.contractDetailsList[id]
+        i=5
+        return cd

@@ -60,7 +60,14 @@ async def get_all_stocks_statistics(stocks):
 
 if __name__ == '__main__':
     try:
-        dict=get_statistics_to_Stocks(TRANDINGSTOCKS)
-        m=2
+        msft = yf.Ticker("MSFrereT")
+        f=msft.financials
+        print(f)
+        u=msft.sustainability
+        print(u)
+        r=msft.recommendations
+        print(r)
+
+        r=2
     except (Exception, KeyboardInterrupt) as e:
         print('ERROR', str(e))

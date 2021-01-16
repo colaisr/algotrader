@@ -25,6 +25,7 @@ class IBapi(EWrapper, EClient):
         self.sMa=0
         self.tradesRemaining=0
         self.netLiquidation=0
+        self.contract_processing=False
 
 
     # def error(self, reqId: int, errorCode: int, errorString: str):
@@ -152,6 +153,18 @@ class IBapi(EWrapper, EClient):
         print("HistoricalDataUpdate. ", reqId, " Date:", bar.date, "Open:", bar.open,
               "High:", bar.high, "Low:", bar.low, "Close:", bar.close, "Volume:", bar.volume,
               "Count:", bar.barCount, "WAP:", bar.average)
+
+    def contractDetails(self, reqId: int, contractDetails: ContractDetails):
+        super().contractDetails(reqId, contractDetails)
+        self.contractDetailsList[reqId]= contractDetails
+        self.contract_processing = False
+        r=7
+
+    def contractDetailsEnd(self, reqId: int):
+        super().contractDetailsEnd(reqId)
+
+
+
 
 
 

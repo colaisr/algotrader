@@ -1,9 +1,34 @@
+ERROR -1 2104 Market data farm connection is OK:usfarm
+ERROR -1 2106 HMDS data farm connection is OK:ushmds
+ERROR -1 2158 Sec-def data farm connection is OK:secdefil
 Traceback (most recent call last):
-  File "/Users/colakamornik/PycharmProjects/algotrader/venv/lib/python3.9/site-packages/pyqtgraph/widgets/GraphicsView.py", line 213, in resizeEvent
-ERROR -1 502 Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
-is enabled and connection port is the same as "Socket Port" on the 
-TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
-TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
-of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
-    def resizeEvent(self, ev):
-KeyboardInterrupt
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py", line 888, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/colakamornik/PycharmProjects/algotrader/Logic/IBKRWorker.py", line 374, in run_loop
+    self.app.run()
+  File "/Users/colakamornik/PycharmProjects/algotrader/twsapi/ibapi/client.py", line 239, in run
+    self.decoder.interpret(fields)
+  File "/Users/colakamornik/PycharmProjects/algotrader/twsapi/ibapi/decoder.py", line 1280, in interpret
+    handleInfo.processMeth(self, iter(fields))
+  File "/Users/colakamornik/PycharmProjects/algotrader/twsapi/ibapi/decoder.py", line 328, in processContractDataMsg
+    self.wrapper.contractDetails(reqId, contract)
+  File "/Users/colakamornik/PycharmProjects/algotrader/Logic/ApiWrapper.py", line 159, in contractDetails
+    self.contractDetailsList[reqId]= contractDetails
+AttributeError: 'IBapi' object has no attribute 'contractDetailsList'
+Exception in thread ibkrConnection:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py", line 950, in _bootstrap_inner
+    self.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/threading.py", line 888, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/colakamornik/PycharmProjects/algotrader/Logic/IBKRWorker.py", line 374, in run_loop
+    self.app.run()
+  File "/Users/colakamornik/PycharmProjects/algotrader/twsapi/ibapi/client.py", line 239, in run
+    self.decoder.interpret(fields)
+  File "/Users/colakamornik/PycharmProjects/algotrader/twsapi/ibapi/decoder.py", line 1280, in interpret
+    handleInfo.processMeth(self, iter(fields))
+  File "/Users/colakamornik/PycharmProjects/algotrader/twsapi/ibapi/decoder.py", line 328, in processContractDataMsg
+    self.wrapper.contractDetails(reqId, contract)
+  File "/Users/colakamornik/PycharmProjects/algotrader/Logic/ApiWrapper.py", line 159, in contractDetails
+    self.contractDetailsList[reqId]= contractDetails
+AttributeError: 'IBapi' object has no attribute 'contractDetailsList'
