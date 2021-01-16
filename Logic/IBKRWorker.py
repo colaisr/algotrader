@@ -46,6 +46,33 @@ Connecting to IBKR API and initiating the connection instance
         """
 Creates the connection - starts listner for events
         """
+
+        self.app.nextorderId = None
+        while not isinstance(self.app.nextorderId, int):
+            retries=0
+            notification_callback.emit("Restarting connection to IBKR")
+            self.app.connect('127.0.0.1', int(self.settings.PORT), 123)
+
+            # Start the socket in a thread
+            api_thread = threading.Thread(target=self.run_loop, name='ibkrConnection', daemon=True)
+            api_thread.start()
+            # Check if the API is connected via orderid
+
+            while True:
+                if isinstance(self.app.nextorderId, int):
+                    notification_callback.emit('Successfully connected to API')
+                    break
+                else:
+                    notification_callback.emit('Waiting for connection...attempt:' + str(retries))
+                    time.sleep(1)
+                    retries = retries + 1
+                    if retries>10:
+                        break
+
+    def connect_to_tws_backup(self, notification_callback):
+        """
+Creates the connection - starts listner for events
+        """
         notification_callback.emit("Starting connection to IBKR")
         self.app.connect('127.0.0.1', int(self.settings.PORT), 123)
         self.app.nextorderId = None
@@ -53,16 +80,16 @@ Creates the connection - starts listner for events
         api_thread = threading.Thread(target=self.run_loop, name='ibkrConnection', daemon=True)
         api_thread.start()
         # Check if the API is connected via orderid
+        retries=0
         while True:
             if isinstance(self.app.nextorderId, int):
                 notification_callback.emit('Successfully connected to API')
                 break
             else:
-                notification_callback.emit('Waiting for connection...')
+                notification_callback.emit('Waiting for connection...attempt:'+str(retries))
                 time.sleep(1)
-        # General Account info:
-        # self.request_current_PnL()
-        # start tracking liquidity
+                retries=retries+1
+
 
     def add_yahoo_stats_to_live_candidates(self, notification_callback=None):
         """
