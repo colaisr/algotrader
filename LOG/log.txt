@@ -451,3 +451,2299 @@
 16-Jan-2021 (16:28:18.627920)---Target price for TSLA updated to 819.8580308604542 based on Close price
 16-Jan-2021 (16:28:18.628280)---Connected to IBKR and READY
 16-Jan-2021 (16:28:18.796774)---UI resumed.
+16-Jan-2021 (16:45:04.646645)---Begin connect and prepare
+16-Jan-2021 (16:45:04.647750)---Restarting connection to IBKR
+16-Jan-2021 (16:45:04.648027)---Waiting for connection...attempt:0
+16-Jan-2021 (16:45:05.456633)---Successfully connected to API
+16-Jan-2021 (16:45:05.457052)---Requesting Daily PnL
+16-Jan-2021 (16:45:05.457327)---PnL not yet received
+16-Jan-2021 (16:45:05.457581)---Starting to track Excess liquidity
+16-Jan-2021 (16:45:05.457826)---Updating open Positions:
+16-Jan-2021 (16:45:06.460418)---Started tracking MSFT position PnL
+16-Jan-2021 (16:45:06.461543)---Started tracking AAPL position PnL
+16-Jan-2021 (16:45:06.463110)---Started tracking AZN position PnL
+16-Jan-2021 (16:45:06.467411)---Started tracking SQ position PnL
+16-Jan-2021 (16:45:06.468156)---Started tracking BEP position PnL
+16-Jan-2021 (16:45:06.469390)---Started tracking CRWD position PnL
+16-Jan-2021 (16:45:07.465079)---Waiting to receive Value for all positions 
+16-Jan-2021 (16:45:08.469659)---Waiting to receive Value for all positions 
+16-Jan-2021 (16:45:08.470696)---Requesting History for MSFT position for last 1 hour BID price
+16-Jan-2021 (16:45:08.471895)---Requesting History for AAPL position for last 1 hour BID price
+16-Jan-2021 (16:45:08.476313)---Requesting History for AZN position for last 1 hour BID price
+16-Jan-2021 (16:45:08.476999)---Requesting History for SQ position for last 1 hour BID price
+16-Jan-2021 (16:45:08.477469)---Requesting History for BEP position for last 1 hour BID price
+16-Jan-2021 (16:45:08.478053)---Requesting History for CRWD position for last 1 hour BID price
+16-Jan-2021 (16:45:09.473679)---Waiting to receive Hisory for all positions 
+16-Jan-2021 (16:45:10.475916)---Waiting to receive Hisory for all positions 
+16-Jan-2021 (16:45:11.477516)---Waiting to receive Hisory for all positions 
+16-Jan-2021 (16:45:12.482413)---Waiting to receive Hisory for all positions 
+16-Jan-2021 (16:45:13.486879)---Waiting to receive Hisory for all positions 
+16-Jan-2021 (16:45:13.487524)---6 open positions completely updated
+16-Jan-2021 (16:45:13.487938)---Updating all open orders
+16-Jan-2021 (16:45:14.490718)---0 open orders found 
+16-Jan-2021 (16:45:14.492366)---Starting to track FB,BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA Candidates
+16-Jan-2021 (16:45:14.493646)---starting to track: 1 of 34 FB traking with Id:26378
+16-Jan-2021 (16:45:14.494785)---starting to track: 2 of 34 BYND traking with Id:26379
+16-Jan-2021 (16:45:14.501656)---starting to track: 3 of 34 SEDG traking with Id:26380
+16-Jan-2021 (16:45:14.502784)---starting to track: 4 of 34 LTHM traking with Id:26381
+16-Jan-2021 (16:45:14.504219)---starting to track: 5 of 34 SQ traking with Id:26382
+16-Jan-2021 (16:45:14.505963)---starting to track: 6 of 34 TTWO traking with Id:26383
+16-Jan-2021 (16:45:14.506710)---starting to track: 7 of 34 OTRK traking with Id:26384
+16-Jan-2021 (16:45:14.507558)---starting to track: 8 of 34 HUM traking with Id:26385
+16-Jan-2021 (16:45:14.509533)---starting to track: 9 of 34 AAPL traking with Id:26386
+16-Jan-2021 (16:45:14.510434)---starting to track: 10 of 34 ZG traking with Id:26387
+16-Jan-2021 (16:45:14.512948)---starting to track: 11 of 34 MSFT traking with Id:26388
+16-Jan-2021 (16:45:14.516092)---starting to track: 12 of 34 NVDA traking with Id:26389
+16-Jan-2021 (16:45:14.518962)---starting to track: 13 of 34 BEP traking with Id:26390
+16-Jan-2021 (16:45:14.519986)---starting to track: 14 of 34 GOOGL traking with Id:26391
+16-Jan-2021 (16:45:14.521025)---starting to track: 15 of 34 ETSY traking with Id:26392
+16-Jan-2021 (16:45:14.522123)---starting to track: 16 of 34 IVAC traking with Id:26393
+16-Jan-2021 (16:45:14.523612)---starting to track: 17 of 34 PTON traking with Id:26394
+16-Jan-2021 (16:45:14.526537)---starting to track: 18 of 34 ADI traking with Id:26395
+16-Jan-2021 (16:45:14.528824)---starting to track: 19 of 34 CRM traking with Id:26396
+16-Jan-2021 (16:45:14.530157)---starting to track: 20 of 34 CHWY traking with Id:26397
+16-Jan-2021 (16:45:14.531245)---starting to track: 21 of 34 AZN traking with Id:26398
+16-Jan-2021 (16:45:14.532465)---starting to track: 22 of 34 NICE traking with Id:26399
+16-Jan-2021 (16:45:14.534216)---starting to track: 23 of 34 CSCO traking with Id:26400
+16-Jan-2021 (16:45:14.535040)---starting to track: 24 of 34 PANW traking with Id:26401
+16-Jan-2021 (16:45:14.535912)---starting to track: 25 of 34 NET traking with Id:26402
+16-Jan-2021 (16:45:14.536863)---starting to track: 26 of 34 CRWD traking with Id:26403
+16-Jan-2021 (16:45:14.537819)---starting to track: 27 of 34 CHKP traking with Id:26404
+16-Jan-2021 (16:45:14.538688)---starting to track: 28 of 34 CVLT traking with Id:26405
+16-Jan-2021 (16:45:14.539410)---starting to track: 29 of 34 RPD traking with Id:26406
+16-Jan-2021 (16:45:14.540237)---starting to track: 30 of 34 TENB traking with Id:26407
+16-Jan-2021 (16:45:14.543226)---starting to track: 31 of 34 ADBE traking with Id:26408
+16-Jan-2021 (16:45:14.546940)---starting to track: 32 of 34 SHOP traking with Id:26409
+16-Jan-2021 (16:45:14.549475)---starting to track: 33 of 34 NIO traking with Id:26410
+16-Jan-2021 (16:45:14.551075)---starting to track: 34 of 34 TSLA traking with Id:26411
+16-Jan-2021 (16:45:15.503187)---Waiting for last requested candidate Close price 
+16-Jan-2021 (16:45:16.506620)---Waiting for last requested candidate Close price 
+16-Jan-2021 (16:45:17.507365)---Waiting for last requested candidate Close price 
+16-Jan-2021 (16:45:18.511588)---Waiting for last requested candidate Close price 
+16-Jan-2021 (16:45:19.514445)---Waiting for last requested candidate Close price 
+16-Jan-2021 (16:45:20.517127)---Waiting for last requested candidate Close price 
+16-Jan-2021 (16:45:20.521120)---Getting Yahoo market data for FB
+16-Jan-2021 (16:45:20.521972)---Yahoo market data for FB already exist shows average 1.5939409967963405 % drop
+16-Jan-2021 (16:45:20.523087)---Getting Yahoo market data for BYND
+16-Jan-2021 (16:45:20.523956)---Yahoo market data for BYND already exist shows average 3.0114061962475254 % drop
+16-Jan-2021 (16:45:20.524528)---Getting Yahoo market data for SEDG
+16-Jan-2021 (16:45:20.525125)---Yahoo market data for SEDG already exist shows average 3.148417553437745 % drop
+16-Jan-2021 (16:45:20.525770)---Getting Yahoo market data for LTHM
+16-Jan-2021 (16:45:20.526349)---Yahoo market data for LTHM already exist shows average 3.4470081118270515 % drop
+16-Jan-2021 (16:45:20.526935)---Getting Yahoo market data for SQ
+16-Jan-2021 (16:45:20.537472)---Yahoo market data for SQ already exist shows average 2.704412215860051 % drop
+16-Jan-2021 (16:45:20.538171)---Getting Yahoo market data for TTWO
+16-Jan-2021 (16:45:20.538716)---Yahoo market data for TTWO already exist shows average 1.6344628980329425 % drop
+16-Jan-2021 (16:45:20.539573)---Getting Yahoo market data for OTRK
+16-Jan-2021 (16:45:20.540367)---Yahoo market data for OTRK already exist shows average 4.218634778578903 % drop
+16-Jan-2021 (16:45:20.540869)---Getting Yahoo market data for HUM
+16-Jan-2021 (16:45:20.541605)---Yahoo market data for HUM already exist shows average 1.7579989298586436 % drop
+16-Jan-2021 (16:45:20.542300)---Getting Yahoo market data for AAPL
+16-Jan-2021 (16:45:20.542931)---Yahoo market data for AAPL already exist shows average 1.4284538359930694 % drop
+16-Jan-2021 (16:45:20.543536)---Getting Yahoo market data for ZG
+16-Jan-2021 (16:45:20.544276)---Yahoo market data for ZG already exist shows average 2.6455700275497946 % drop
+16-Jan-2021 (16:45:20.544997)---Getting Yahoo market data for MSFT
+16-Jan-2021 (16:45:20.545801)---Yahoo market data for MSFT already exist shows average 1.357874155038504 % drop
+16-Jan-2021 (16:45:20.546530)---Getting Yahoo market data for NVDA
+16-Jan-2021 (16:45:20.546958)---Yahoo market data for NVDA already exist shows average 1.9927272844254353 % drop
+16-Jan-2021 (16:45:20.547359)---Getting Yahoo market data for BEP
+16-Jan-2021 (16:45:20.548251)---Yahoo market data for BEP already exist shows average 1.7702667254556268 % drop
+16-Jan-2021 (16:45:20.548776)---Getting Yahoo market data for GOOGL
+16-Jan-2021 (16:45:20.549272)---Yahoo market data for GOOGL already exist shows average 1.2828004754438798 % drop
+16-Jan-2021 (16:45:20.549834)---Getting Yahoo market data for ETSY
+16-Jan-2021 (16:45:20.550199)---Yahoo market data for ETSY already exist shows average 2.687263868599716 % drop
+16-Jan-2021 (16:45:20.550579)---Getting Yahoo market data for IVAC
+16-Jan-2021 (16:45:20.550952)---Yahoo market data for IVAC already exist shows average 2.815338819557766 % drop
+16-Jan-2021 (16:45:20.551354)---Getting Yahoo market data for PTON
+16-Jan-2021 (16:45:20.551728)---Yahoo market data for PTON already exist shows average 3.112702513029877 % drop
+16-Jan-2021 (16:45:20.552099)---Getting Yahoo market data for ADI
+16-Jan-2021 (16:45:20.552472)---Yahoo market data for ADI already exist shows average 1.5076442603600653 % drop
+16-Jan-2021 (16:45:20.552835)---Getting Yahoo market data for CRM
+16-Jan-2021 (16:45:20.553204)---Yahoo market data for CRM already exist shows average 1.7676652179365107 % drop
+16-Jan-2021 (16:45:20.553593)---Getting Yahoo market data for CHWY
+16-Jan-2021 (16:45:20.553984)---Yahoo market data for CHWY already exist shows average 2.8737376208232885 % drop
+16-Jan-2021 (16:45:20.554395)---Getting Yahoo market data for AZN
+16-Jan-2021 (16:45:20.554778)---Yahoo market data for AZN already exist shows average 1.14118544572701 % drop
+16-Jan-2021 (16:45:20.555191)---Getting Yahoo market data for NICE
+16-Jan-2021 (16:45:20.555702)---Yahoo market data for NICE already exist shows average 1.1767815579971954 % drop
+16-Jan-2021 (16:45:20.556216)---Getting Yahoo market data for CSCO
+16-Jan-2021 (16:45:20.557306)---Yahoo market data for CSCO already exist shows average 1.2600916433685043 % drop
+16-Jan-2021 (16:45:20.558172)---Getting Yahoo market data for PANW
+16-Jan-2021 (16:45:20.558667)---Yahoo market data for PANW already exist shows average 1.42575769134158 % drop
+16-Jan-2021 (16:45:20.559140)---Getting Yahoo market data for NET
+16-Jan-2021 (16:45:20.559567)---Yahoo market data for NET already exist shows average 2.852122170526456 % drop
+16-Jan-2021 (16:45:20.560024)---Getting Yahoo market data for CRWD
+16-Jan-2021 (16:45:20.560426)---Yahoo market data for CRWD already exist shows average 2.7044342830653707 % drop
+16-Jan-2021 (16:45:20.560869)---Getting Yahoo market data for CHKP
+16-Jan-2021 (16:45:20.561286)---Yahoo market data for CHKP already exist shows average 1.3206793196844606 % drop
+16-Jan-2021 (16:45:20.561621)---Getting Yahoo market data for CVLT
+16-Jan-2021 (16:45:20.561941)---Yahoo market data for CVLT already exist shows average 1.874573773744088 % drop
+16-Jan-2021 (16:45:20.562282)---Getting Yahoo market data for RPD
+16-Jan-2021 (16:45:20.562642)---Yahoo market data for RPD already exist shows average 2.189268217529833 % drop
+16-Jan-2021 (16:45:20.562981)---Getting Yahoo market data for TENB
+16-Jan-2021 (16:45:20.563325)---Yahoo market data for TENB already exist shows average 2.2903188837384114 % drop
+16-Jan-2021 (16:45:20.563667)---Getting Yahoo market data for ADBE
+16-Jan-2021 (16:45:20.564043)---Yahoo market data for ADBE already exist shows average 1.6769929589078862 % drop
+16-Jan-2021 (16:45:20.564379)---Getting Yahoo market data for SHOP
+16-Jan-2021 (16:45:20.564698)---Yahoo market data for SHOP already exist shows average 2.6733419314860813 % drop
+16-Jan-2021 (16:45:20.565013)---Getting Yahoo market data for NIO
+16-Jan-2021 (16:45:20.565342)---Yahoo market data for NIO already exist shows average 4.1292518505050175 % drop
+16-Jan-2021 (16:45:20.565751)---Getting Yahoo market data for TSLA
+16-Jan-2021 (16:45:20.566094)---Yahoo market data for TSLA already exist shows average 2.97538096325986 % drop
+16-Jan-2021 (16:45:20.566628)---Getting ranks for :FB,BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA
+16-Jan-2021 (16:45:22.065428)---Getting TipRank Rating for : FB
+16-Jan-2021 (16:45:22.067189)---Existing  rating from today found: 7
+16-Jan-2021 (16:45:22.070089)---Getting TipRank Rating for : BYND
+16-Jan-2021 (16:45:22.074082)---Existing  rating from today found: 7
+16-Jan-2021 (16:45:22.077679)---Getting TipRank Rating for : SEDG
+16-Jan-2021 (16:45:22.080521)---Existing  rating from today found: 5
+16-Jan-2021 (16:45:22.083148)---Getting TipRank Rating for : LTHM
+16-Jan-2021 (16:45:22.086321)---Existing  rating from today found: 8
+16-Jan-2021 (16:45:22.089760)---Getting TipRank Rating for : SQ
+16-Jan-2021 (16:45:22.091061)---Existing  rating from today found: 10
+16-Jan-2021 (16:45:22.092054)---Getting TipRank Rating for : TTWO
+16-Jan-2021 (16:45:22.093466)---Existing  rating from today found: 6
+16-Jan-2021 (16:45:22.094644)---Getting TipRank Rating for : OTRK
+16-Jan-2021 (16:45:22.095953)---Existing  rating from today found: 5
+16-Jan-2021 (16:45:22.096748)---Getting TipRank Rating for : HUM
+16-Jan-2021 (16:45:22.102205)---Existing  rating from today found: 5
+16-Jan-2021 (16:45:22.103768)---Getting TipRank Rating for : AAPL
+16-Jan-2021 (16:45:22.104840)---Existing  rating from today found: 9
+16-Jan-2021 (16:45:22.105830)---Getting TipRank Rating for : ZG
+16-Jan-2021 (16:45:22.106877)---Existing  rating from today found: 4
+16-Jan-2021 (16:45:22.107949)---Getting TipRank Rating for : MSFT
+16-Jan-2021 (16:45:22.108991)---Existing  rating from today found: 9
+16-Jan-2021 (16:45:22.110167)---Getting TipRank Rating for : NVDA
+16-Jan-2021 (16:45:22.111190)---Existing  rating from today found: 7
+16-Jan-2021 (16:45:22.111856)---Getting TipRank Rating for : BEP
+16-Jan-2021 (16:45:22.112601)---Existing  rating from today found: 9
+16-Jan-2021 (16:45:22.113286)---Getting TipRank Rating for : GOOGL
+16-Jan-2021 (16:45:22.113769)---Existing  rating from today found: 6
+16-Jan-2021 (16:45:22.114162)---Getting TipRank Rating for : ETSY
+16-Jan-2021 (16:45:22.114554)---Existing  rating from today found: 8
+16-Jan-2021 (16:45:22.115011)---Getting TipRank Rating for : IVAC
+16-Jan-2021 (16:45:22.115409)---Existing  rating from today found: 5
+16-Jan-2021 (16:45:22.115816)---Getting TipRank Rating for : PTON
+16-Jan-2021 (16:45:22.116441)---Existing  rating from today found: 10
+16-Jan-2021 (16:45:22.116952)---Getting TipRank Rating for : ADI
+16-Jan-2021 (16:45:22.117340)---Existing  rating from today found: 9
+16-Jan-2021 (16:45:22.117752)---Getting TipRank Rating for : CRM
+16-Jan-2021 (16:45:22.118137)---Existing  rating from today found: 7
+16-Jan-2021 (16:45:22.118589)---Getting TipRank Rating for : CHWY
+16-Jan-2021 (16:45:22.118982)---Existing  rating from today found: 6
+16-Jan-2021 (16:45:22.119346)---Getting TipRank Rating for : AZN
+16-Jan-2021 (16:45:22.119711)---Existing  rating from today found: 7
+16-Jan-2021 (16:45:22.120083)---Getting TipRank Rating for : NICE
+16-Jan-2021 (16:45:22.120469)---Existing  rating from today found: 8
+16-Jan-2021 (16:45:22.120841)---Getting TipRank Rating for : CSCO
+16-Jan-2021 (16:45:22.121240)---Existing  rating from today found: 10
+16-Jan-2021 (16:45:22.121685)---Getting TipRank Rating for : PANW
+16-Jan-2021 (16:45:22.122055)---Existing  rating from today found: 5
+16-Jan-2021 (16:45:22.122426)---Getting TipRank Rating for : NET
+16-Jan-2021 (16:45:22.122804)---Existing  rating from today found: 9
+16-Jan-2021 (16:45:22.123183)---Getting TipRank Rating for : CRWD
+16-Jan-2021 (16:45:22.123570)---Existing  rating from today found: 10
+16-Jan-2021 (16:45:22.124005)---Getting TipRank Rating for : CHKP
+16-Jan-2021 (16:45:22.124420)---Existing  rating from today found: 6
+16-Jan-2021 (16:45:22.124876)---Getting TipRank Rating for : CVLT
+16-Jan-2021 (16:45:22.125319)---Existing  rating from today found: 8
+16-Jan-2021 (16:45:22.125700)---Getting TipRank Rating for : RPD
+16-Jan-2021 (16:45:22.126087)---Existing  rating from today found: 7
+16-Jan-2021 (16:45:22.126454)---Getting TipRank Rating for : TENB
+16-Jan-2021 (16:45:22.126847)---Existing  rating from today found: 7
+16-Jan-2021 (16:45:22.127213)---Getting TipRank Rating for : ADBE
+16-Jan-2021 (16:45:22.127584)---Existing  rating from today found: 8
+16-Jan-2021 (16:45:22.128032)---Getting TipRank Rating for : SHOP
+16-Jan-2021 (16:45:22.128452)---Existing  rating from today found: 7
+16-Jan-2021 (16:45:22.128833)---Getting TipRank Rating for : NIO
+16-Jan-2021 (16:45:22.129205)---Existing  rating from today found: 10
+16-Jan-2021 (16:45:22.129585)---Getting TipRank Rating for : TSLA
+16-Jan-2021 (16:45:22.129976)---Existing  rating from today found: 7
+16-Jan-2021 (16:45:22.147839)---34 Candidates evaluated and started to track
+16-Jan-2021 (16:45:22.148401)---Updating target prices for Candidates
+16-Jan-2021 (16:45:22.148893)---Updating target price for FB
+16-Jan-2021 (16:45:22.149412)---Target price for FB updated to 241.72464333546947 based on Close price
+16-Jan-2021 (16:45:22.149986)---Updating target price for BYND
+16-Jan-2021 (16:45:22.150501)---Target price for BYND updated to 138.17964959220615 based on Close price
+16-Jan-2021 (16:45:22.150982)---Updating target price for SEDG
+16-Jan-2021 (16:45:22.151482)---Target price for SEDG updated to 324.84020752576976 based on Close price
+16-Jan-2021 (16:45:22.151877)---Updating target price for LTHM
+16-Jan-2021 (16:45:22.152286)---Target price for LTHM updated to 20.942343940544713 based on Close price
+16-Jan-2021 (16:45:22.152648)---Updating target price for SQ
+16-Jan-2021 (16:45:22.153087)---Target price for SQ updated to 226.49439880269938 based on Close price
+16-Jan-2021 (16:45:22.153477)---Updating target price for TTWO
+16-Jan-2021 (16:45:22.153864)---Target price for TTWO updated to 192.27511537321502 based on Close price
+16-Jan-2021 (16:45:22.154232)---Updating target price for OTRK
+16-Jan-2021 (16:45:22.154587)---Target price for OTRK updated to 59.690946805989626 based on Close price
+16-Jan-2021 (16:45:22.154946)---Updating target price for HUM
+16-Jan-2021 (16:45:22.155313)---Target price for HUM updated to 397.8801043340725 based on Close price
+16-Jan-2021 (16:45:22.155698)---Updating target price for AAPL
+16-Jan-2021 (16:45:22.156054)---Target price for AAPL updated to 127.06858016002133 based on Close price
+16-Jan-2021 (16:45:22.156420)---Updating target price for ZG
+16-Jan-2021 (16:45:22.156782)---Target price for ZG updated to 146.8494221704439 based on Close price
+16-Jan-2021 (16:45:22.157150)---Updating target price for MSFT
+16-Jan-2021 (16:45:22.157511)---Target price for MSFT updated to 210.127456474937 based on Close price
+16-Jan-2021 (16:45:22.157877)---Updating target price for NVDA
+16-Jan-2021 (16:45:22.158243)---Target price for NVDA updated to 517.4882006655052 based on Close price
+16-Jan-2021 (16:45:22.158608)---Updating target price for BEP
+16-Jan-2021 (16:45:22.158969)---Target price for BEP updated to 44.89098810646678 based on Close price
+16-Jan-2021 (16:45:22.159340)---Updating target price for GOOGL
+16-Jan-2021 (16:45:22.159709)---Target price for GOOGL updated to 1708.7157500104468 based on Close price
+16-Jan-2021 (16:45:22.162415)---Updating target price for ETSY
+16-Jan-2021 (16:45:22.162906)---Target price for ETSY updated to 205.83589946513789 based on Close price
+16-Jan-2021 (16:45:22.163288)---Updating target price for IVAC
+16-Jan-2021 (16:45:22.163657)---Target price for IVAC updated to 7.191664927352726 based on Close price
+16-Jan-2021 (16:45:22.164029)---Updating target price for PTON
+16-Jan-2021 (16:45:22.164403)---Target price for PTON updated to 160.10625909721813 based on Close price
+16-Jan-2021 (16:45:22.164769)---Updating target price for ADI
+16-Jan-2021 (16:45:22.165149)---Target price for ADI updated to 157.05591046242984 based on Close price
+16-Jan-2021 (16:45:22.165541)---Updating target price for CRM
+16-Jan-2021 (16:45:22.165972)---Target price for CRM updated to 211.78891379012887 based on Close price
+16-Jan-2021 (16:45:22.166342)---Updating target price for CHWY
+16-Jan-2021 (16:45:22.166716)---Target price for CHWY updated to 111.33583456525027 based on Close price
+16-Jan-2021 (16:45:22.167019)---Updating target price for AZN
+16-Jan-2021 (16:45:22.167323)---Target price for AZN updated to 50.704685984886616 based on Close price
+16-Jan-2021 (16:45:22.167625)---Updating target price for NICE
+16-Jan-2021 (16:45:22.167929)---Target price for NICE updated to 270.2815024388777 based on Close price
+16-Jan-2021 (16:45:22.168232)---Updating target price for CSCO
+16-Jan-2021 (16:45:22.168528)---Target price for CSCO updated to 44.58106862301912 based on Close price
+16-Jan-2021 (16:45:22.168830)---Updating target price for PANW
+16-Jan-2021 (16:45:22.169131)---Target price for PANW updated to 357.98221836812394 based on Close price
+16-Jan-2021 (16:45:22.169472)---Updating target price for NET
+16-Jan-2021 (16:45:22.169826)---Target price for NET updated to 78.21375644050916 based on Close price
+16-Jan-2021 (16:45:22.170122)---Updating target price for CRWD
+16-Jan-2021 (16:45:22.170449)---Target price for CRWD updated to 219.5182553705479 based on Close price
+16-Jan-2021 (16:45:22.170772)---Updating target price for CHKP
+16-Jan-2021 (16:45:22.171133)---Target price for CHKP updated to 126.93121019108987 based on Close price
+16-Jan-2021 (16:45:22.171457)---Updating target price for CVLT
+16-Jan-2021 (16:45:22.171753)---Target price for CVLT updated to 56.157181429286254 based on Close price
+16-Jan-2021 (16:45:22.172057)---Updating target price for RPD
+16-Jan-2021 (16:45:22.172366)---Target price for RPD updated to 86.50381118841662 based on Close price
+16-Jan-2021 (16:45:22.172675)---Updating target price for TENB
+16-Jan-2021 (16:45:22.173008)---Target price for TENB updated to 53.114982654799796 based on Close price
+16-Jan-2021 (16:45:22.173344)---Updating target price for ADBE
+16-Jan-2021 (16:45:22.173659)---Target price for ADBE updated to 455.5009947192674 based on Close price
+16-Jan-2021 (16:45:22.173973)---Updating target price for SHOP
+16-Jan-2021 (16:45:22.174282)---Target price for SHOP updated to 1147.3450413064832 based on Close price
+16-Jan-2021 (16:45:22.174589)---Updating target price for NIO
+16-Jan-2021 (16:45:22.174885)---Target price for NIO updated to 58.35652439859759 based on Close price
+16-Jan-2021 (16:45:22.175195)---Updating target price for TSLA
+16-Jan-2021 (16:45:22.175510)---Target price for TSLA updated to 819.8580308604542 based on Close price
+16-Jan-2021 (16:45:22.175845)---Connected to IBKR and READY
+16-Jan-2021 (16:45:22.277517)---UI resumed.
+16-Jan-2021 (16:45:23.269267)---Starting Worker- UI Paused
+16-Jan-2021 (16:45:23.276894)----------Starting Worker...----EST Time: 2021-01-16 08:45:23--------------------
+16-Jan-2021 (16:45:23.277926)---Checking connection
+16-Jan-2021 (16:45:23.278434)---Connection is fine- proceeding
+16-Jan-2021 (16:45:23.278804)---Updating all open orders
+16-Jan-2021 (16:45:24.273014)---0 open orders found 
+16-Jan-2021 (16:45:24.273715)---Updating open Positions:
+16-Jan-2021 (16:45:25.278247)---Started tracking MSFT position PnL
+16-Jan-2021 (16:45:25.279005)---Started tracking AAPL position PnL
+16-Jan-2021 (16:45:25.279606)---Started tracking AZN position PnL
+16-Jan-2021 (16:45:25.280055)---Started tracking SQ position PnL
+16-Jan-2021 (16:45:25.280556)---Started tracking BEP position PnL
+16-Jan-2021 (16:45:25.281064)---Started tracking CRWD position PnL
+16-Jan-2021 (16:45:26.283813)---Waiting to receive Value for all positions 
+16-Jan-2021 (16:45:26.285535)---Requesting History for MSFT position for last 1 hour BID price
+16-Jan-2021 (16:45:26.287590)---Requesting History for AAPL position for last 1 hour BID price
+16-Jan-2021 (16:45:26.288874)---Requesting History for AZN position for last 1 hour BID price
+16-Jan-2021 (16:45:26.290174)---Requesting History for SQ position for last 1 hour BID price
+16-Jan-2021 (16:45:26.291456)---Requesting History for BEP position for last 1 hour BID price
+16-Jan-2021 (16:45:26.292530)---Requesting History for CRWD position for last 1 hour BID price
+16-Jan-2021 (16:45:27.291931)---Waiting to receive Hisory for all positions 
+16-Jan-2021 (16:45:27.293264)---6 open positions completely updated
+16-Jan-2021 (16:45:27.294670)---Trading session is not Open - processing skept
+16-Jan-2021 (16:45:27.295791)---...............Worker finished....EST Time: 2021-01-16 08:45:23...................
+16-Jan-2021 (16:45:27.331404)---UI resumed.
+16-Jan-2021 (16:46:23.536346)---Starting Worker- UI Paused
+16-Jan-2021 (16:46:23.543589)----------Starting Worker...----EST Time: 2021-01-16 08:46:23--------------------
+16-Jan-2021 (16:46:23.544390)---Checking connection
+16-Jan-2021 (16:46:23.545004)---Connection lost-reconnecting
+16-Jan-2021 (16:46:23.545623)---Restarting connection to IBKR
+16-Jan-2021 (16:46:23.546185)---Waiting for connection...attempt:0
+16-Jan-2021 (16:46:24.545863)---Waiting for connection...attempt:1
+16-Jan-2021 (16:46:25.550968)---Waiting for connection...attempt:2
+16-Jan-2021 (16:46:26.553278)---Waiting for connection...attempt:3
+16-Jan-2021 (16:46:27.557810)---Waiting for connection...attempt:4
+16-Jan-2021 (16:46:28.559131)---Waiting for connection...attempt:5
+16-Jan-2021 (16:46:29.560640)---Waiting for connection...attempt:6
+16-Jan-2021 (16:46:30.563374)---Waiting for connection...attempt:7
+16-Jan-2021 (16:46:31.566269)---Waiting for connection...attempt:8
+16-Jan-2021 (16:46:32.568385)---Waiting for connection...attempt:9
+16-Jan-2021 (16:46:33.571906)---Waiting for connection...attempt:10
+16-Jan-2021 (16:46:34.572297)---Restarting connection to IBKR
+16-Jan-2021 (16:46:34.574861)---Waiting for connection...attempt:0
+16-Jan-2021 (16:46:35.577737)---Waiting for connection...attempt:1
+16-Jan-2021 (16:46:36.580998)---Waiting for connection...attempt:2
+16-Jan-2021 (16:46:37.581279)---Waiting for connection...attempt:3
+16-Jan-2021 (16:46:38.586293)---Waiting for connection...attempt:4
+16-Jan-2021 (16:46:39.587325)---Waiting for connection...attempt:5
+16-Jan-2021 (16:46:40.592614)---Waiting for connection...attempt:6
+16-Jan-2021 (16:46:41.597940)---Waiting for connection...attempt:7
+16-Jan-2021 (16:46:42.599276)---Waiting for connection...attempt:8
+16-Jan-2021 (16:46:43.599615)---Waiting for connection...attempt:9
+16-Jan-2021 (16:46:44.600381)---Waiting for connection...attempt:10
+16-Jan-2021 (16:46:45.601795)---Restarting connection to IBKR
+16-Jan-2021 (16:46:45.607346)---Waiting for connection...attempt:0
+16-Jan-2021 (16:46:46.609396)---Waiting for connection...attempt:1
+16-Jan-2021 (16:46:47.610994)---Waiting for connection...attempt:2
+16-Jan-2021 (16:46:48.616937)---Waiting for connection...attempt:3
+16-Jan-2021 (16:46:49.620035)---Waiting for connection...attempt:4
+16-Jan-2021 (16:46:50.622512)---Waiting for connection...attempt:5
+16-Jan-2021 (16:46:51.622563)---Waiting for connection...attempt:6
+16-Jan-2021 (16:46:52.625135)---Waiting for connection...attempt:7
+16-Jan-2021 (16:46:53.631183)---Waiting for connection...attempt:8
+16-Jan-2021 (16:46:54.635460)---Waiting for connection...attempt:9
+16-Jan-2021 (16:46:55.637316)---Waiting for connection...attempt:10
+16-Jan-2021 (16:46:56.637889)---Restarting connection to IBKR
+16-Jan-2021 (16:46:56.641144)---Waiting for connection...attempt:0
+16-Jan-2021 (16:46:57.641919)---Waiting for connection...attempt:1
+16-Jan-2021 (16:46:58.641898)---Waiting for connection...attempt:2
+16-Jan-2021 (16:46:59.643441)---Waiting for connection...attempt:3
+16-Jan-2021 (16:47:00.644863)---Waiting for connection...attempt:4
+16-Jan-2021 (16:47:01.648220)---Waiting for connection...attempt:5
+16-Jan-2021 (16:47:02.650316)---Waiting for connection...attempt:6
+16-Jan-2021 (16:47:03.650462)---Waiting for connection...attempt:7
+16-Jan-2021 (16:47:04.651376)---Waiting for connection...attempt:8
+16-Jan-2021 (16:47:05.652025)---Waiting for connection...attempt:9
+16-Jan-2021 (16:47:06.656340)---Waiting for connection...attempt:10
+16-Jan-2021 (16:47:07.659703)---Restarting connection to IBKR
+16-Jan-2021 (16:47:07.704301)---Waiting for connection...attempt:0
+16-Jan-2021 (16:47:08.707716)---Waiting for connection...attempt:1
+16-Jan-2021 (16:47:09.803258)---Waiting for connection...attempt:2
+16-Jan-2021 (16:47:10.714978)---Waiting for connection...attempt:3
+16-Jan-2021 (16:47:11.718502)---Waiting for connection...attempt:4
+16-Jan-2021 (16:47:12.722841)---Waiting for connection...attempt:5
+16-Jan-2021 (16:47:13.728010)---Waiting for connection...attempt:6
+16-Jan-2021 (16:47:14.733297)---Waiting for connection...attempt:7
+16-Jan-2021 (16:47:15.735117)---Waiting for connection...attempt:8
+16-Jan-2021 (16:47:16.738667)---Waiting for connection...attempt:9
+16-Jan-2021 (16:47:17.741840)---Waiting for connection...attempt:10
+16-Jan-2021 (16:47:18.747230)---Restarting connection to IBKR
+16-Jan-2021 (16:47:18.759639)---Waiting for connection...attempt:0
+16-Jan-2021 (16:47:19.758826)---Successfully connected to API
+16-Jan-2021 (16:47:19.760021)---Updating all open orders
+16-Jan-2021 (16:47:20.765455)---0 open orders found 
+16-Jan-2021 (16:47:20.767193)---Updating open Positions:
+16-Jan-2021 (16:47:21.768418)---Started tracking MSFT position PnL
+16-Jan-2021 (16:47:21.770563)---Started tracking AAPL position PnL
+16-Jan-2021 (16:47:21.771418)---Started tracking AZN position PnL
+16-Jan-2021 (16:47:21.772024)---Started tracking SQ position PnL
+16-Jan-2021 (16:47:21.776253)---Started tracking BEP position PnL
+16-Jan-2021 (16:47:21.777014)---Started tracking CRWD position PnL
+16-Jan-2021 (16:47:22.778898)---Waiting to receive Value for all positions 
+16-Jan-2021 (16:47:22.780444)---Requesting History for MSFT position for last 1 hour BID price
+16-Jan-2021 (16:47:22.781282)---Requesting History for AAPL position for last 1 hour BID price
+16-Jan-2021 (16:47:22.781984)---Requesting History for AZN position for last 1 hour BID price
+16-Jan-2021 (16:47:22.782671)---Requesting History for SQ position for last 1 hour BID price
+16-Jan-2021 (16:47:22.783344)---Requesting History for BEP position for last 1 hour BID price
+16-Jan-2021 (16:47:22.784028)---Requesting History for CRWD position for last 1 hour BID price
+16-Jan-2021 (16:47:23.536800)---Starting Worker- UI Paused
+16-Jan-2021 (16:47:23.540181)----------Starting Worker...----EST Time: 2021-01-16 08:47:23--------------------
+16-Jan-2021 (16:47:23.540579)---Checking connection
+16-Jan-2021 (16:47:23.540841)---Connection is fine- proceeding
+16-Jan-2021 (16:47:23.541122)---Updating all open orders
+16-Jan-2021 (16:47:23.786119)---Waiting to receive Hisory for all positions 
+16-Jan-2021 (16:47:23.787226)---6 open positions completely updated
+16-Jan-2021 (16:47:23.788507)---Trading session is not Open - processing skept
+16-Jan-2021 (16:47:23.789916)---...............Worker finished....EST Time: 2021-01-16 08:46:23...................
+16-Jan-2021 (16:47:23.832629)---UI resumed.
+16-Jan-2021 (16:47:24.542975)---0 open orders found 
+16-Jan-2021 (16:47:24.544050)---Updating open Positions:
+16-Jan-2021 (16:47:25.549568)---Started tracking MSFT position PnL
+16-Jan-2021 (16:47:25.551729)---Started tracking AAPL position PnL
+16-Jan-2021 (16:47:25.553809)---Started tracking AZN position PnL
+16-Jan-2021 (16:47:25.559904)---Started tracking SQ position PnL
+16-Jan-2021 (16:47:25.562100)---Started tracking BEP position PnL
+16-Jan-2021 (16:47:25.564332)---Started tracking CRWD position PnL
+16-Jan-2021 (16:47:26.560607)---Waiting to receive Value for all positions 
+16-Jan-2021 (16:47:26.562453)---Requesting History for MSFT position for last 1 hour BID price
+16-Jan-2021 (16:47:26.564149)---Requesting History for AAPL position for last 1 hour BID price
+16-Jan-2021 (16:47:26.565053)---Requesting History for AZN position for last 1 hour BID price
+16-Jan-2021 (16:47:26.573175)---Requesting History for SQ position for last 1 hour BID price
+16-Jan-2021 (16:47:26.573849)---Requesting History for BEP position for last 1 hour BID price
+16-Jan-2021 (16:47:26.574453)---Requesting History for CRWD position for last 1 hour BID price
+16-Jan-2021 (16:47:27.569532)---Waiting to receive Hisory for all positions 
+16-Jan-2021 (16:47:27.570711)---6 open positions completely updated
+16-Jan-2021 (16:47:27.572143)---Trading session is not Open - processing skept
+16-Jan-2021 (16:47:27.576836)---...............Worker finished....EST Time: 2021-01-16 08:47:23...................
+16-Jan-2021 (16:48:23.537135)---Starting Worker- UI Paused
+16-Jan-2021 (16:48:23.546408)----------Starting Worker...----EST Time: 2021-01-16 08:48:23--------------------
+16-Jan-2021 (16:48:23.547082)---Checking connection
+16-Jan-2021 (16:48:23.547585)---Connection is fine- proceeding
+16-Jan-2021 (16:48:23.548092)---Updating all open orders
+16-Jan-2021 (16:48:24.541709)---0 open orders found 
+16-Jan-2021 (16:48:24.542956)---Updating open Positions:
+16-Jan-2021 (16:48:25.549168)---Started tracking MSFT position PnL
+16-Jan-2021 (16:48:25.551748)---Started tracking AAPL position PnL
+16-Jan-2021 (16:48:25.553988)---Started tracking AZN position PnL
+16-Jan-2021 (16:48:25.560337)---Started tracking SQ position PnL
+16-Jan-2021 (16:48:25.561904)---Started tracking BEP position PnL
+16-Jan-2021 (16:48:25.563280)---Started tracking CRWD position PnL
+16-Jan-2021 (16:48:26.557653)---Waiting to receive Value for all positions 
+16-Jan-2021 (16:48:27.559404)---Waiting to receive Value for all positions 
+16-Jan-2021 (16:48:27.561931)---Requesting History for MSFT position for last 1 hour BID price
+16-Jan-2021 (16:48:27.563566)---Requesting History for AAPL position for last 1 hour BID price
+16-Jan-2021 (16:48:27.564577)---Requesting History for AZN position for last 1 hour BID price
+16-Jan-2021 (16:48:27.565484)---Requesting History for SQ position for last 1 hour BID price
+16-Jan-2021 (16:48:27.570960)---Requesting History for BEP position for last 1 hour BID price
+16-Jan-2021 (16:48:27.571801)---Requesting History for CRWD position for last 1 hour BID price
+16-Jan-2021 (16:48:28.569694)---Waiting to receive Hisory for all positions 
+16-Jan-2021 (16:48:28.571026)---6 open positions completely updated
+16-Jan-2021 (16:48:28.572160)---Trading session is not Open - processing skept
+16-Jan-2021 (16:48:28.573258)---...............Worker finished....EST Time: 2021-01-16 08:48:23...................
+16-Jan-2021 (16:48:28.605553)---UI resumed.
+16-Jan-2021 (16:49:23.539090)---Starting Worker- UI Paused
+16-Jan-2021 (16:49:23.547851)----------Starting Worker...----EST Time: 2021-01-16 08:49:23--------------------
+16-Jan-2021 (16:49:23.548693)---Checking connection
+16-Jan-2021 (16:49:23.549326)---Connection is fine- proceeding
+16-Jan-2021 (16:49:23.549951)---Updating all open orders
+16-Jan-2021 (16:49:24.544835)---0 open orders found 
+16-Jan-2021 (16:49:24.546224)---Updating open Positions:
+16-Jan-2021 (16:49:25.550217)---Started tracking MSFT position PnL
+16-Jan-2021 (16:49:25.552567)---Started tracking AAPL position PnL
+16-Jan-2021 (16:49:25.554894)---Started tracking AZN position PnL
+16-Jan-2021 (16:49:25.561180)---Started tracking SQ position PnL
+16-Jan-2021 (16:49:25.562783)---Started tracking BEP position PnL
+16-Jan-2021 (16:49:25.563846)---Started tracking CRWD position PnL
+16-Jan-2021 (16:49:26.559440)---Waiting to receive Value for all positions 
+16-Jan-2021 (16:49:26.561618)---Requesting History for MSFT position for last 1 hour BID price
+16-Jan-2021 (16:49:26.563489)---Requesting History for AAPL position for last 1 hour BID price
+16-Jan-2021 (16:49:26.569370)---Requesting History for AZN position for last 1 hour BID price
+16-Jan-2021 (16:49:26.570726)---Requesting History for SQ position for last 1 hour BID price
+16-Jan-2021 (16:49:26.571664)---Requesting History for BEP position for last 1 hour BID price
+16-Jan-2021 (16:49:26.572558)---Requesting History for CRWD position for last 1 hour BID price
+16-Jan-2021 (16:49:27.570148)---Waiting to receive Hisory for all positions 
+16-Jan-2021 (16:49:27.571292)---6 open positions completely updated
+16-Jan-2021 (16:49:27.572079)---Trading session is not Open - processing skept
+16-Jan-2021 (16:49:27.572941)---...............Worker finished....EST Time: 2021-01-16 08:49:23...................
+16-Jan-2021 (16:49:27.611930)---UI resumed.
+16-Jan-2021 (16:50:23.539882)---Starting Worker- UI Paused
+16-Jan-2021 (16:50:23.547303)----------Starting Worker...----EST Time: 2021-01-16 08:50:23--------------------
+16-Jan-2021 (16:50:23.548158)---Checking connection
+16-Jan-2021 (16:50:23.548841)---Connection is fine- proceeding
+16-Jan-2021 (16:50:23.549461)---Updating all open orders
+16-Jan-2021 (16:50:24.548227)---0 open orders found 
+16-Jan-2021 (16:50:24.550016)---Updating open Positions:
+16-Jan-2021 (16:50:25.553451)---Started tracking MSFT position PnL
+16-Jan-2021 (16:50:25.556019)---Started tracking AAPL position PnL
+16-Jan-2021 (16:50:25.563368)---Started tracking AZN position PnL
+16-Jan-2021 (16:50:25.565110)---Started tracking SQ position PnL
+16-Jan-2021 (16:50:25.566759)---Started tracking BEP position PnL
+16-Jan-2021 (16:50:25.568115)---Started tracking CRWD position PnL
+16-Jan-2021 (16:50:26.561664)---Waiting to receive Value for all positions 
+16-Jan-2021 (16:50:26.563860)---Requesting History for MSFT position for last 1 hour BID price
+16-Jan-2021 (16:50:26.565386)---Requesting History for AAPL position for last 1 hour BID price
+16-Jan-2021 (16:50:26.566732)---Requesting History for AZN position for last 1 hour BID price
+16-Jan-2021 (16:50:26.567733)---Requesting History for SQ position for last 1 hour BID price
+16-Jan-2021 (16:50:26.568650)---Requesting History for BEP position for last 1 hour BID price
+16-Jan-2021 (16:50:26.569574)---Requesting History for CRWD position for last 1 hour BID price
+16-Jan-2021 (16:50:27.567776)---Waiting to receive Hisory for all positions 
+16-Jan-2021 (16:50:27.568879)---6 open positions completely updated
+16-Jan-2021 (16:50:27.569910)---Trading session is not Open - processing skept
+16-Jan-2021 (16:50:27.570915)---...............Worker finished....EST Time: 2021-01-16 08:50:23...................
+16-Jan-2021 (16:50:27.611673)---UI resumed.
+16-Jan-2021 (17:09:11.831139)---Begin connect and prepare
+16-Jan-2021 (17:09:11.831512)---Restarting connection to IBKR
+16-Jan-2021 (17:09:11.831986)---Waiting for connection...attempt:0
+16-Jan-2021 (17:09:12.657197)---Waiting for connection...attempt:1
+16-Jan-2021 (17:09:13.662130)---Waiting for connection...attempt:2
+16-Jan-2021 (17:09:14.666475)---Waiting for connection...attempt:3
+16-Jan-2021 (17:09:15.670458)---Waiting for connection...attempt:4
+16-Jan-2021 (17:09:16.672676)---Waiting for connection...attempt:5
+16-Jan-2021 (17:09:17.672805)---Waiting for connection...attempt:6
+16-Jan-2021 (17:09:18.677122)---Waiting for connection...attempt:7
+16-Jan-2021 (17:09:19.678749)---Waiting for connection...attempt:8
+16-Jan-2021 (17:09:20.681147)---Waiting for connection...attempt:9
+16-Jan-2021 (17:09:21.683333)---Waiting for connection...attempt:10
+16-Jan-2021 (17:09:22.684094)---Restarting connection to IBKR
+16-Jan-2021 (17:09:22.688530)---Waiting for connection...attempt:0
+16-Jan-2021 (17:09:23.691402)---Waiting for connection...attempt:1
+16-Jan-2021 (17:09:24.691945)---Waiting for connection...attempt:2
+16-Jan-2021 (17:09:25.694662)---Waiting for connection...attempt:3
+16-Jan-2021 (17:09:26.698387)---Waiting for connection...attempt:4
+16-Jan-2021 (17:09:27.702863)---Waiting for connection...attempt:5
+16-Jan-2021 (17:09:28.707217)---Waiting for connection...attempt:6
+16-Jan-2021 (17:09:29.712486)---Waiting for connection...attempt:7
+16-Jan-2021 (17:09:30.713735)---Waiting for connection...attempt:8
+16-Jan-2021 (17:09:31.718628)---Waiting for connection...attempt:9
+16-Jan-2021 (17:09:32.721976)---Waiting for connection...attempt:10
+16-Jan-2021 (17:09:33.726838)---Restarting connection to IBKR
+16-Jan-2021 (17:09:33.733029)---Waiting for connection...attempt:0
+16-Jan-2021 (17:09:34.732745)---Waiting for connection...attempt:1
+16-Jan-2021 (17:09:35.735982)---Waiting for connection...attempt:2
+16-Jan-2021 (17:09:36.741005)---Waiting for connection...attempt:3
+16-Jan-2021 (17:09:37.746165)---Waiting for connection...attempt:4
+16-Jan-2021 (17:09:38.749502)---Waiting for connection...attempt:5
+16-Jan-2021 (17:09:39.749461)---Waiting for connection...attempt:6
+16-Jan-2021 (17:09:40.753087)---Waiting for connection...attempt:7
+16-Jan-2021 (17:09:41.756680)---Waiting for connection...attempt:8
+16-Jan-2021 (17:09:42.761195)---Waiting for connection...attempt:9
+16-Jan-2021 (17:09:43.763482)---Waiting for connection...attempt:10
+16-Jan-2021 (17:09:44.766591)---Restarting connection to IBKR
+16-Jan-2021 (17:09:47.201478)---Waiting for connection...attempt:0
+16-Jan-2021 (17:09:48.202005)---Waiting for connection...attempt:1
+16-Jan-2021 (17:09:49.205096)---Waiting for connection...attempt:2
+16-Jan-2021 (17:09:50.209688)---Waiting for connection...attempt:3
+16-Jan-2021 (17:09:51.212080)---Waiting for connection...attempt:4
+16-Jan-2021 (17:09:52.215077)---Waiting for connection...attempt:5
+16-Jan-2021 (17:09:53.218623)---Waiting for connection...attempt:6
+16-Jan-2021 (17:09:54.220520)---Waiting for connection...attempt:7
+16-Jan-2021 (17:09:55.222356)---Waiting for connection...attempt:8
+16-Jan-2021 (17:09:56.224587)---Waiting for connection...attempt:9
+16-Jan-2021 (17:09:57.229254)---Waiting for connection...attempt:10
+16-Jan-2021 (17:09:58.234075)---Restarting connection to IBKR
+16-Jan-2021 (17:09:58.245850)---Waiting for connection...attempt:0
+16-Jan-2021 (17:09:59.245990)---Successfully connected to API
+16-Jan-2021 (17:09:59.247632)---Requesting Daily PnL
+16-Jan-2021 (17:09:59.248705)---PnL not yet received
+16-Jan-2021 (17:09:59.249513)---Starting to track Excess liquidity
+16-Jan-2021 (17:09:59.250210)---Updating open Positions:
+16-Jan-2021 (17:10:00.251981)---Started tracking MSFT position PnL
+16-Jan-2021 (17:10:00.254222)---Started tracking AAPL position PnL
+16-Jan-2021 (17:10:00.255366)---Started tracking AZN position PnL
+16-Jan-2021 (17:10:00.256268)---Started tracking SQ position PnL
+16-Jan-2021 (17:10:00.257413)---Started tracking BEP position PnL
+16-Jan-2021 (17:10:00.259538)---Started tracking CRWD position PnL
+16-Jan-2021 (17:10:01.259714)---Waiting to receive Value for all positions 
+16-Jan-2021 (17:10:02.267206)---Waiting to receive Value for all positions 
+16-Jan-2021 (17:10:02.268524)---Requesting History for MSFT position for last 1 hour BID price
+16-Jan-2021 (17:10:02.269455)---Requesting History for AAPL position for last 1 hour BID price
+16-Jan-2021 (17:10:02.270269)---Requesting History for AZN position for last 1 hour BID price
+16-Jan-2021 (17:10:02.271011)---Requesting History for SQ position for last 1 hour BID price
+16-Jan-2021 (17:10:02.271736)---Requesting History for BEP position for last 1 hour BID price
+16-Jan-2021 (17:10:02.272463)---Requesting History for CRWD position for last 1 hour BID price
+16-Jan-2021 (17:10:03.272765)---Waiting to receive Hisory for all positions 
+16-Jan-2021 (17:10:03.274032)---6 open positions completely updated
+16-Jan-2021 (17:10:03.275239)---Updating all open orders
+16-Jan-2021 (17:10:04.276765)---0 open orders found 
+16-Jan-2021 (17:10:04.279692)---Starting to track FB,BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA Candidates
+16-Jan-2021 (17:10:04.281781)---starting to track: 1 of 34 FB traking with Id:26378
+16-Jan-2021 (17:10:04.283679)---starting to track: 2 of 34 BYND traking with Id:26379
+16-Jan-2021 (17:10:04.286097)---starting to track: 3 of 34 SEDG traking with Id:26380
+16-Jan-2021 (17:10:04.287928)---starting to track: 4 of 34 LTHM traking with Id:26381
+16-Jan-2021 (17:10:04.289675)---starting to track: 5 of 34 SQ traking with Id:26382
+16-Jan-2021 (17:10:04.291241)---starting to track: 6 of 34 TTWO traking with Id:26383
+16-Jan-2021 (17:10:04.292701)---starting to track: 7 of 34 OTRK traking with Id:26384
+16-Jan-2021 (17:10:04.293862)---starting to track: 8 of 34 HUM traking with Id:26385
+16-Jan-2021 (17:10:04.294419)---starting to track: 9 of 34 AAPL traking with Id:26386
+16-Jan-2021 (17:10:04.294971)---starting to track: 10 of 34 ZG traking with Id:26387
+16-Jan-2021 (17:10:04.295540)---starting to track: 11 of 34 MSFT traking with Id:26388
+16-Jan-2021 (17:10:04.296136)---starting to track: 12 of 34 NVDA traking with Id:26389
+16-Jan-2021 (17:10:04.296835)---starting to track: 13 of 34 BEP traking with Id:26390
+16-Jan-2021 (17:10:04.297433)---starting to track: 14 of 34 GOOGL traking with Id:26391
+16-Jan-2021 (17:10:04.298016)---starting to track: 15 of 34 ETSY traking with Id:26392
+16-Jan-2021 (17:10:04.298567)---starting to track: 16 of 34 IVAC traking with Id:26393
+16-Jan-2021 (17:10:04.299132)---starting to track: 17 of 34 PTON traking with Id:26394
+16-Jan-2021 (17:10:04.299657)---starting to track: 18 of 34 ADI traking with Id:26395
+16-Jan-2021 (17:10:04.300162)---starting to track: 19 of 34 CRM traking with Id:26396
+16-Jan-2021 (17:10:04.300769)---starting to track: 20 of 34 CHWY traking with Id:26397
+16-Jan-2021 (17:10:04.301307)---starting to track: 21 of 34 AZN traking with Id:26398
+16-Jan-2021 (17:10:04.302028)---starting to track: 22 of 34 NICE traking with Id:26399
+16-Jan-2021 (17:10:04.302792)---starting to track: 23 of 34 CSCO traking with Id:26400
+16-Jan-2021 (17:10:04.303765)---starting to track: 24 of 34 PANW traking with Id:26401
+16-Jan-2021 (17:10:04.304449)---starting to track: 25 of 34 NET traking with Id:26402
+16-Jan-2021 (17:10:04.305123)---starting to track: 26 of 34 CRWD traking with Id:26403
+16-Jan-2021 (17:10:04.305812)---starting to track: 27 of 34 CHKP traking with Id:26404
+16-Jan-2021 (17:10:04.306403)---starting to track: 28 of 34 CVLT traking with Id:26405
+16-Jan-2021 (17:10:04.307042)---starting to track: 29 of 34 RPD traking with Id:26406
+16-Jan-2021 (17:10:04.309126)---starting to track: 30 of 34 TENB traking with Id:26407
+16-Jan-2021 (17:10:04.311627)---starting to track: 31 of 34 ADBE traking with Id:26408
+16-Jan-2021 (17:10:04.312412)---starting to track: 32 of 34 SHOP traking with Id:26409
+16-Jan-2021 (17:10:04.313332)---starting to track: 33 of 34 NIO traking with Id:26410
+16-Jan-2021 (17:10:04.314394)---starting to track: 34 of 34 TSLA traking with Id:26411
+16-Jan-2021 (17:10:05.299297)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:10:06.303295)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:10:07.307406)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:10:08.308193)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:10:09.313462)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:10:09.321601)---Getting Yahoo market data for FB
+16-Jan-2021 (17:10:09.323057)---Yahoo market data for FB already exist shows average 1.5939409967963405 % drop
+16-Jan-2021 (17:10:09.325157)---Getting Yahoo market data for BYND
+16-Jan-2021 (17:10:09.326081)---Yahoo market data for BYND already exist shows average 3.0114061962475254 % drop
+16-Jan-2021 (17:10:09.326936)---Getting Yahoo market data for SEDG
+16-Jan-2021 (17:10:09.334367)---Yahoo market data for SEDG already exist shows average 3.148417553437745 % drop
+16-Jan-2021 (17:10:09.335291)---Getting Yahoo market data for LTHM
+16-Jan-2021 (17:10:09.336593)---Yahoo market data for LTHM already exist shows average 3.4470081118270515 % drop
+16-Jan-2021 (17:10:09.341059)---Getting Yahoo market data for SQ
+16-Jan-2021 (17:10:09.342887)---Yahoo market data for SQ already exist shows average 2.704412215860051 % drop
+16-Jan-2021 (17:10:09.345509)---Getting Yahoo market data for TTWO
+16-Jan-2021 (17:10:09.346598)---Yahoo market data for TTWO already exist shows average 1.6344628980329425 % drop
+16-Jan-2021 (17:10:09.347698)---Getting Yahoo market data for OTRK
+16-Jan-2021 (17:10:09.348798)---Yahoo market data for OTRK already exist shows average 4.218634778578903 % drop
+16-Jan-2021 (17:10:09.349460)---Getting Yahoo market data for HUM
+16-Jan-2021 (17:10:09.350040)---Yahoo market data for HUM already exist shows average 1.7579989298586436 % drop
+16-Jan-2021 (17:10:09.350419)---Getting Yahoo market data for AAPL
+16-Jan-2021 (17:10:09.350873)---Yahoo market data for AAPL already exist shows average 1.4284538359930694 % drop
+16-Jan-2021 (17:10:09.351362)---Getting Yahoo market data for ZG
+16-Jan-2021 (17:10:09.351793)---Yahoo market data for ZG already exist shows average 2.6455700275497946 % drop
+16-Jan-2021 (17:10:09.352200)---Getting Yahoo market data for MSFT
+16-Jan-2021 (17:10:09.352593)---Yahoo market data for MSFT already exist shows average 1.357874155038504 % drop
+16-Jan-2021 (17:10:09.352990)---Getting Yahoo market data for NVDA
+16-Jan-2021 (17:10:09.353384)---Yahoo market data for NVDA already exist shows average 1.9927272844254353 % drop
+16-Jan-2021 (17:10:09.353776)---Getting Yahoo market data for BEP
+16-Jan-2021 (17:10:09.354156)---Yahoo market data for BEP already exist shows average 1.7702667254556268 % drop
+16-Jan-2021 (17:10:09.354546)---Getting Yahoo market data for GOOGL
+16-Jan-2021 (17:10:09.354935)---Yahoo market data for GOOGL already exist shows average 1.2828004754438798 % drop
+16-Jan-2021 (17:10:09.355371)---Getting Yahoo market data for ETSY
+16-Jan-2021 (17:10:09.355749)---Yahoo market data for ETSY already exist shows average 2.687263868599716 % drop
+16-Jan-2021 (17:10:09.356129)---Getting Yahoo market data for IVAC
+16-Jan-2021 (17:10:09.356504)---Yahoo market data for IVAC already exist shows average 2.815338819557766 % drop
+16-Jan-2021 (17:10:09.356882)---Getting Yahoo market data for PTON
+16-Jan-2021 (17:10:09.357267)---Yahoo market data for PTON already exist shows average 3.112702513029877 % drop
+16-Jan-2021 (17:10:09.357658)---Getting Yahoo market data for ADI
+16-Jan-2021 (17:10:09.363144)---Yahoo market data for ADI already exist shows average 1.5076442603600653 % drop
+16-Jan-2021 (17:10:09.363699)---Getting Yahoo market data for CRM
+16-Jan-2021 (17:10:09.364124)---Yahoo market data for CRM already exist shows average 1.7676652179365107 % drop
+16-Jan-2021 (17:10:09.364518)---Getting Yahoo market data for CHWY
+16-Jan-2021 (17:10:09.364920)---Yahoo market data for CHWY already exist shows average 2.8737376208232885 % drop
+16-Jan-2021 (17:10:09.365317)---Getting Yahoo market data for AZN
+16-Jan-2021 (17:10:09.365694)---Yahoo market data for AZN already exist shows average 1.14118544572701 % drop
+16-Jan-2021 (17:10:09.366069)---Getting Yahoo market data for NICE
+16-Jan-2021 (17:10:09.366461)---Yahoo market data for NICE already exist shows average 1.1767815579971954 % drop
+16-Jan-2021 (17:10:09.366834)---Getting Yahoo market data for CSCO
+16-Jan-2021 (17:10:09.367214)---Yahoo market data for CSCO already exist shows average 1.2600916433685043 % drop
+16-Jan-2021 (17:10:09.367587)---Getting Yahoo market data for PANW
+16-Jan-2021 (17:10:09.367959)---Yahoo market data for PANW already exist shows average 1.42575769134158 % drop
+16-Jan-2021 (17:10:09.368321)---Getting Yahoo market data for NET
+16-Jan-2021 (17:10:09.368704)---Yahoo market data for NET already exist shows average 2.852122170526456 % drop
+16-Jan-2021 (17:10:09.369080)---Getting Yahoo market data for CRWD
+16-Jan-2021 (17:10:09.369475)---Yahoo market data for CRWD already exist shows average 2.7044342830653707 % drop
+16-Jan-2021 (17:10:09.369868)---Getting Yahoo market data for CHKP
+16-Jan-2021 (17:10:09.370279)---Yahoo market data for CHKP already exist shows average 1.3206793196844606 % drop
+16-Jan-2021 (17:10:09.370643)---Getting Yahoo market data for CVLT
+16-Jan-2021 (17:10:09.371003)---Yahoo market data for CVLT already exist shows average 1.874573773744088 % drop
+16-Jan-2021 (17:10:09.371379)---Getting Yahoo market data for RPD
+16-Jan-2021 (17:10:09.371766)---Yahoo market data for RPD already exist shows average 2.189268217529833 % drop
+16-Jan-2021 (17:10:09.372131)---Getting Yahoo market data for TENB
+16-Jan-2021 (17:10:09.372497)---Yahoo market data for TENB already exist shows average 2.2903188837384114 % drop
+16-Jan-2021 (17:10:09.372858)---Getting Yahoo market data for ADBE
+16-Jan-2021 (17:10:09.373235)---Yahoo market data for ADBE already exist shows average 1.6769929589078862 % drop
+16-Jan-2021 (17:10:09.373682)---Getting Yahoo market data for SHOP
+16-Jan-2021 (17:10:09.374082)---Yahoo market data for SHOP already exist shows average 2.6733419314860813 % drop
+16-Jan-2021 (17:10:09.374440)---Getting Yahoo market data for NIO
+16-Jan-2021 (17:10:09.374787)---Yahoo market data for NIO already exist shows average 4.1292518505050175 % drop
+16-Jan-2021 (17:10:09.375272)---Getting Yahoo market data for TSLA
+16-Jan-2021 (17:10:09.375667)---Yahoo market data for TSLA already exist shows average 2.97538096325986 % drop
+16-Jan-2021 (17:10:09.376349)---Getting ranks for :FB,BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA
+16-Jan-2021 (17:10:11.018556)---Getting TipRank Rating for : FB
+16-Jan-2021 (17:10:11.019579)---Existing  rating from today found: 7
+16-Jan-2021 (17:10:11.020249)---Getting TipRank Rating for : BYND
+16-Jan-2021 (17:10:11.021180)---Existing  rating from today found: 7
+16-Jan-2021 (17:10:11.022572)---Getting TipRank Rating for : SEDG
+16-Jan-2021 (17:10:11.023875)---Existing  rating from today found: 5
+16-Jan-2021 (17:10:11.024553)---Getting TipRank Rating for : LTHM
+16-Jan-2021 (17:10:11.025230)---Existing  rating from today found: 8
+16-Jan-2021 (17:10:11.028513)---Getting TipRank Rating for : SQ
+16-Jan-2021 (17:10:11.030119)---Existing  rating from today found: 10
+16-Jan-2021 (17:10:11.031026)---Getting TipRank Rating for : TTWO
+16-Jan-2021 (17:10:11.031642)---Existing  rating from today found: 6
+16-Jan-2021 (17:10:11.032374)---Getting TipRank Rating for : OTRK
+16-Jan-2021 (17:10:11.033089)---Existing  rating from today found: 5
+16-Jan-2021 (17:10:11.033825)---Getting TipRank Rating for : HUM
+16-Jan-2021 (17:10:11.034547)---Existing  rating from today found: 5
+16-Jan-2021 (17:10:11.035107)---Getting TipRank Rating for : AAPL
+16-Jan-2021 (17:10:11.035510)---Existing  rating from today found: 9
+16-Jan-2021 (17:10:11.035874)---Getting TipRank Rating for : ZG
+16-Jan-2021 (17:10:11.036215)---Existing  rating from today found: 4
+16-Jan-2021 (17:10:11.036540)---Getting TipRank Rating for : MSFT
+16-Jan-2021 (17:10:11.036866)---Existing  rating from today found: 9
+16-Jan-2021 (17:10:11.037196)---Getting TipRank Rating for : NVDA
+16-Jan-2021 (17:10:11.037520)---Existing  rating from today found: 7
+16-Jan-2021 (17:10:11.037870)---Getting TipRank Rating for : BEP
+16-Jan-2021 (17:10:11.038214)---Existing  rating from today found: 9
+16-Jan-2021 (17:10:11.038683)---Getting TipRank Rating for : GOOGL
+16-Jan-2021 (17:10:11.039258)---Existing  rating from today found: 6
+16-Jan-2021 (17:10:11.039805)---Getting TipRank Rating for : ETSY
+16-Jan-2021 (17:10:11.040323)---Existing  rating from today found: 8
+16-Jan-2021 (17:10:11.040871)---Getting TipRank Rating for : IVAC
+16-Jan-2021 (17:10:11.041456)---Existing  rating from today found: 5
+16-Jan-2021 (17:10:11.042186)---Getting TipRank Rating for : PTON
+16-Jan-2021 (17:10:11.042881)---Existing  rating from today found: 10
+16-Jan-2021 (17:10:11.043360)---Getting TipRank Rating for : ADI
+16-Jan-2021 (17:10:11.043704)---Existing  rating from today found: 9
+16-Jan-2021 (17:10:11.044018)---Getting TipRank Rating for : CRM
+16-Jan-2021 (17:10:11.044328)---Existing  rating from today found: 7
+16-Jan-2021 (17:10:11.044674)---Getting TipRank Rating for : CHWY
+16-Jan-2021 (17:10:11.045062)---Existing  rating from today found: 6
+16-Jan-2021 (17:10:11.045434)---Getting TipRank Rating for : AZN
+16-Jan-2021 (17:10:11.045793)---Existing  rating from today found: 7
+16-Jan-2021 (17:10:11.046123)---Getting TipRank Rating for : NICE
+16-Jan-2021 (17:10:11.046463)---Existing  rating from today found: 8
+16-Jan-2021 (17:10:11.046824)---Getting TipRank Rating for : CSCO
+16-Jan-2021 (17:10:11.047228)---Existing  rating from today found: 10
+16-Jan-2021 (17:10:11.047651)---Getting TipRank Rating for : PANW
+16-Jan-2021 (17:10:11.048064)---Existing  rating from today found: 5
+16-Jan-2021 (17:10:11.048447)---Getting TipRank Rating for : NET
+16-Jan-2021 (17:10:11.048838)---Existing  rating from today found: 9
+16-Jan-2021 (17:10:11.049217)---Getting TipRank Rating for : CRWD
+16-Jan-2021 (17:10:11.049803)---Existing  rating from today found: 10
+16-Jan-2021 (17:10:11.050208)---Getting TipRank Rating for : CHKP
+16-Jan-2021 (17:10:11.050533)---Existing  rating from today found: 6
+16-Jan-2021 (17:10:11.050910)---Getting TipRank Rating for : CVLT
+16-Jan-2021 (17:10:11.051286)---Existing  rating from today found: 8
+16-Jan-2021 (17:10:11.051665)---Getting TipRank Rating for : RPD
+16-Jan-2021 (17:10:11.052102)---Existing  rating from today found: 7
+16-Jan-2021 (17:10:11.052469)---Getting TipRank Rating for : TENB
+16-Jan-2021 (17:10:11.054604)---Existing  rating from today found: 7
+16-Jan-2021 (17:10:11.054982)---Getting TipRank Rating for : ADBE
+16-Jan-2021 (17:10:11.055311)---Existing  rating from today found: 8
+16-Jan-2021 (17:10:11.055634)---Getting TipRank Rating for : SHOP
+16-Jan-2021 (17:10:11.055958)---Existing  rating from today found: 7
+16-Jan-2021 (17:10:11.056280)---Getting TipRank Rating for : NIO
+16-Jan-2021 (17:10:11.056604)---Existing  rating from today found: 10
+16-Jan-2021 (17:10:11.056929)---Getting TipRank Rating for : TSLA
+16-Jan-2021 (17:10:11.057205)---Existing  rating from today found: 7
+16-Jan-2021 (17:10:11.097385)---34 Candidates evaluated and started to track
+16-Jan-2021 (17:10:11.097924)---Updating target prices for Candidates
+16-Jan-2021 (17:10:11.098320)---Updating target price for FB
+16-Jan-2021 (17:10:11.098817)---Target price for FB updated to 241.72464333546947 based on Close price
+16-Jan-2021 (17:10:11.099284)---Updating target price for BYND
+16-Jan-2021 (17:10:11.099757)---Target price for BYND updated to 138.17964959220615 based on Close price
+16-Jan-2021 (17:10:11.100223)---Updating target price for SEDG
+16-Jan-2021 (17:10:11.100720)---Target price for SEDG updated to 324.84020752576976 based on Close price
+16-Jan-2021 (17:10:11.103721)---Updating target price for LTHM
+16-Jan-2021 (17:10:11.104128)---Target price for LTHM updated to 20.942343940544713 based on Close price
+16-Jan-2021 (17:10:11.104454)---Updating target price for SQ
+16-Jan-2021 (17:10:11.104807)---Target price for SQ updated to 226.49439880269938 based on Close price
+16-Jan-2021 (17:10:11.105118)---Updating target price for TTWO
+16-Jan-2021 (17:10:11.105429)---Target price for TTWO updated to 192.27511537321502 based on Close price
+16-Jan-2021 (17:10:11.105749)---Updating target price for OTRK
+16-Jan-2021 (17:10:11.106062)---Target price for OTRK updated to 59.690946805989626 based on Close price
+16-Jan-2021 (17:10:11.106372)---Updating target price for HUM
+16-Jan-2021 (17:10:11.106709)---Target price for HUM updated to 397.8801043340725 based on Close price
+16-Jan-2021 (17:10:11.107046)---Updating target price for AAPL
+16-Jan-2021 (17:10:11.107362)---Target price for AAPL updated to 127.06858016002133 based on Close price
+16-Jan-2021 (17:10:11.107695)---Updating target price for ZG
+16-Jan-2021 (17:10:11.107998)---Target price for ZG updated to 146.8494221704439 based on Close price
+16-Jan-2021 (17:10:11.108303)---Updating target price for MSFT
+16-Jan-2021 (17:10:11.108609)---Target price for MSFT updated to 210.127456474937 based on Close price
+16-Jan-2021 (17:10:11.108915)---Updating target price for NVDA
+16-Jan-2021 (17:10:11.109228)---Target price for NVDA updated to 517.4882006655052 based on Close price
+16-Jan-2021 (17:10:11.109537)---Updating target price for BEP
+16-Jan-2021 (17:10:11.109844)---Target price for BEP updated to 44.89098810646678 based on Close price
+16-Jan-2021 (17:10:11.110166)---Updating target price for GOOGL
+16-Jan-2021 (17:10:11.110464)---Target price for GOOGL updated to 1708.7157500104468 based on Close price
+16-Jan-2021 (17:10:11.110762)---Updating target price for ETSY
+16-Jan-2021 (17:10:11.111080)---Target price for ETSY updated to 205.83589946513789 based on Close price
+16-Jan-2021 (17:10:11.111383)---Updating target price for IVAC
+16-Jan-2021 (17:10:11.111684)---Target price for IVAC updated to 7.191664927352726 based on Close price
+16-Jan-2021 (17:10:11.111990)---Updating target price for PTON
+16-Jan-2021 (17:10:11.112292)---Target price for PTON updated to 160.10625909721813 based on Close price
+16-Jan-2021 (17:10:11.112593)---Updating target price for ADI
+16-Jan-2021 (17:10:11.112897)---Target price for ADI updated to 157.05591046242984 based on Close price
+16-Jan-2021 (17:10:11.113201)---Updating target price for CRM
+16-Jan-2021 (17:10:11.113503)---Target price for CRM updated to 211.78891379012887 based on Close price
+16-Jan-2021 (17:10:11.113836)---Updating target price for CHWY
+16-Jan-2021 (17:10:11.114171)---Target price for CHWY updated to 111.33583456525027 based on Close price
+16-Jan-2021 (17:10:11.114502)---Updating target price for AZN
+16-Jan-2021 (17:10:11.114850)---Target price for AZN updated to 50.704685984886616 based on Close price
+16-Jan-2021 (17:10:11.115284)---Updating target price for NICE
+16-Jan-2021 (17:10:11.115658)---Target price for NICE updated to 270.2815024388777 based on Close price
+16-Jan-2021 (17:10:11.115977)---Updating target price for CSCO
+16-Jan-2021 (17:10:11.116290)---Target price for CSCO updated to 44.58106862301912 based on Close price
+16-Jan-2021 (17:10:11.116604)---Updating target price for PANW
+16-Jan-2021 (17:10:11.116919)---Target price for PANW updated to 357.98221836812394 based on Close price
+16-Jan-2021 (17:10:11.117313)---Updating target price for NET
+16-Jan-2021 (17:10:11.117738)---Target price for NET updated to 78.21375644050916 based on Close price
+16-Jan-2021 (17:10:11.118123)---Updating target price for CRWD
+16-Jan-2021 (17:10:11.118549)---Target price for CRWD updated to 219.5182553705479 based on Close price
+16-Jan-2021 (17:10:11.118950)---Updating target price for CHKP
+16-Jan-2021 (17:10:11.119317)---Target price for CHKP updated to 126.93121019108987 based on Close price
+16-Jan-2021 (17:10:11.119687)---Updating target price for CVLT
+16-Jan-2021 (17:10:11.120064)---Target price for CVLT updated to 56.157181429286254 based on Close price
+16-Jan-2021 (17:10:11.120444)---Updating target price for RPD
+16-Jan-2021 (17:10:11.120764)---Target price for RPD updated to 86.50381118841662 based on Close price
+16-Jan-2021 (17:10:11.121083)---Updating target price for TENB
+16-Jan-2021 (17:10:11.121448)---Target price for TENB updated to 53.114982654799796 based on Close price
+16-Jan-2021 (17:10:11.121887)---Updating target price for ADBE
+16-Jan-2021 (17:10:11.122284)---Target price for ADBE updated to 455.5009947192674 based on Close price
+16-Jan-2021 (17:10:11.122603)---Updating target price for SHOP
+16-Jan-2021 (17:10:11.122932)---Target price for SHOP updated to 1147.3450413064832 based on Close price
+16-Jan-2021 (17:10:11.123255)---Updating target price for NIO
+16-Jan-2021 (17:10:11.123576)---Target price for NIO updated to 58.35652439859759 based on Close price
+16-Jan-2021 (17:10:11.123898)---Updating target price for TSLA
+16-Jan-2021 (17:10:11.124221)---Target price for TSLA updated to 819.8580308604542 based on Close price
+16-Jan-2021 (17:10:11.124549)---Connected to IBKR and READY
+16-Jan-2021 (17:10:11.211909)---UI resumed.
+16-Jan-2021 (17:10:15.931365)---Starting Worker- UI Paused
+16-Jan-2021 (17:10:15.940342)----------Starting Worker...----EST Time: 2021-01-16 09:10:15--------------------
+16-Jan-2021 (17:10:15.941078)---Checking connection
+16-Jan-2021 (17:10:15.941630)---Connection is fine- proceeding
+16-Jan-2021 (17:10:15.942305)---Updating all open orders
+16-Jan-2021 (17:10:16.939950)---0 open orders found 
+16-Jan-2021 (17:10:16.941137)---Updating open Positions:
+16-Jan-2021 (17:10:17.946516)---Started tracking MSFT position PnL
+16-Jan-2021 (17:10:17.948990)---Started tracking AAPL position PnL
+16-Jan-2021 (17:10:17.950755)---Started tracking AZN position PnL
+16-Jan-2021 (17:10:17.957523)---Started tracking SQ position PnL
+16-Jan-2021 (17:10:17.960104)---Started tracking BEP position PnL
+16-Jan-2021 (17:10:17.963077)---Started tracking CRWD position PnL
+16-Jan-2021 (17:10:18.956007)---Waiting to receive Value for all positions 
+16-Jan-2021 (17:10:18.958062)---Requesting History for MSFT position for last 1 hour BID price
+16-Jan-2021 (17:10:18.960078)---Requesting History for AAPL position for last 1 hour BID price
+16-Jan-2021 (17:10:18.961298)---Requesting History for AZN position for last 1 hour BID price
+16-Jan-2021 (17:10:18.968593)---Requesting History for SQ position for last 1 hour BID price
+16-Jan-2021 (17:10:18.969598)---Requesting History for BEP position for last 1 hour BID price
+16-Jan-2021 (17:10:18.970265)---Requesting History for CRWD position for last 1 hour BID price
+16-Jan-2021 (17:10:19.966476)---Waiting to receive Hisory for all positions 
+16-Jan-2021 (17:10:19.967346)---6 open positions completely updated
+16-Jan-2021 (17:10:19.970371)---Trading session is not Open - processing skept
+16-Jan-2021 (17:10:19.974387)---...............Worker finished....EST Time: 2021-01-16 09:10:15...................
+16-Jan-2021 (17:10:20.025262)---UI resumed.
+16-Jan-2021 (17:16:05.847923)---Begin connect and prepare
+16-Jan-2021 (17:16:05.849118)---Restarting connection to IBKR
+16-Jan-2021 (17:16:05.851808)---Waiting for connection...attempt:0
+16-Jan-2021 (17:16:06.670249)---Successfully connected to API
+16-Jan-2021 (17:16:06.670886)---Requesting Daily PnL
+16-Jan-2021 (17:16:06.671277)---PnL not yet received
+16-Jan-2021 (17:16:06.671571)---Starting to track Excess liquidity
+16-Jan-2021 (17:16:06.674094)---Updating open Positions:
+16-Jan-2021 (17:16:07.673689)---Started tracking MSFT position PnL
+16-Jan-2021 (17:16:07.677285)---Started tracking AAPL position PnL
+16-Jan-2021 (17:16:07.679864)---Started tracking AZN position PnL
+16-Jan-2021 (17:16:07.686624)---Started tracking SQ position PnL
+16-Jan-2021 (17:16:07.688822)---Started tracking BEP position PnL
+16-Jan-2021 (17:16:07.690646)---Started tracking CRWD position PnL
+16-Jan-2021 (17:16:08.683254)---Waiting to receive Value for all positions 
+16-Jan-2021 (17:16:09.688395)---Waiting to receive Value for all positions 
+16-Jan-2021 (17:16:09.689699)---Requesting History for MSFT position for last 1 hour BID price
+16-Jan-2021 (17:16:09.690709)---Requesting History for AAPL position for last 1 hour BID price
+16-Jan-2021 (17:16:09.691717)---Requesting History for AZN position for last 1 hour BID price
+16-Jan-2021 (17:16:09.692623)---Requesting History for SQ position for last 1 hour BID price
+16-Jan-2021 (17:16:09.693355)---Requesting History for BEP position for last 1 hour BID price
+16-Jan-2021 (17:16:09.698740)---Requesting History for CRWD position for last 1 hour BID price
+16-Jan-2021 (17:16:10.695116)---Waiting to receive Hisory for all positions 
+16-Jan-2021 (17:16:10.696189)---6 open positions completely updated
+16-Jan-2021 (17:16:10.696877)---Updating all open orders
+16-Jan-2021 (17:16:11.699848)---0 open orders found 
+16-Jan-2021 (17:16:11.702856)---Starting to track FB,BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA Candidates
+16-Jan-2021 (17:16:11.705353)---starting to track: 1 of 34 FB traking with Id:26378
+16-Jan-2021 (17:16:11.706952)---starting to track: 2 of 34 BYND traking with Id:26379
+16-Jan-2021 (17:16:11.709653)---starting to track: 3 of 34 SEDG traking with Id:26380
+16-Jan-2021 (17:16:11.723307)---starting to track: 4 of 34 LTHM traking with Id:26381
+16-Jan-2021 (17:16:11.727317)---starting to track: 5 of 34 SQ traking with Id:26382
+16-Jan-2021 (17:16:11.730466)---starting to track: 6 of 34 TTWO traking with Id:26383
+16-Jan-2021 (17:16:11.734502)---starting to track: 7 of 34 OTRK traking with Id:26384
+16-Jan-2021 (17:16:11.736140)---starting to track: 8 of 34 HUM traking with Id:26385
+16-Jan-2021 (17:16:11.737267)---starting to track: 9 of 34 AAPL traking with Id:26386
+16-Jan-2021 (17:16:11.739071)---starting to track: 10 of 34 ZG traking with Id:26387
+16-Jan-2021 (17:16:11.740647)---starting to track: 11 of 34 MSFT traking with Id:26388
+16-Jan-2021 (17:16:11.742163)---starting to track: 12 of 34 NVDA traking with Id:26389
+16-Jan-2021 (17:16:11.742969)---starting to track: 13 of 34 BEP traking with Id:26390
+16-Jan-2021 (17:16:11.745887)---starting to track: 14 of 34 GOOGL traking with Id:26391
+16-Jan-2021 (17:16:11.746747)---starting to track: 15 of 34 ETSY traking with Id:26392
+16-Jan-2021 (17:16:11.747465)---starting to track: 16 of 34 IVAC traking with Id:26393
+16-Jan-2021 (17:16:11.748166)---starting to track: 17 of 34 PTON traking with Id:26394
+16-Jan-2021 (17:16:11.748868)---starting to track: 18 of 34 ADI traking with Id:26395
+16-Jan-2021 (17:16:11.749988)---starting to track: 19 of 34 CRM traking with Id:26396
+16-Jan-2021 (17:16:11.754635)---starting to track: 20 of 34 CHWY traking with Id:26397
+16-Jan-2021 (17:16:11.755895)---starting to track: 21 of 34 AZN traking with Id:26398
+16-Jan-2021 (17:16:11.757839)---starting to track: 22 of 34 NICE traking with Id:26399
+16-Jan-2021 (17:16:11.759776)---starting to track: 23 of 34 CSCO traking with Id:26400
+16-Jan-2021 (17:16:11.761461)---starting to track: 24 of 34 PANW traking with Id:26401
+16-Jan-2021 (17:16:11.762928)---starting to track: 25 of 34 NET traking with Id:26402
+16-Jan-2021 (17:16:11.764254)---starting to track: 26 of 34 CRWD traking with Id:26403
+16-Jan-2021 (17:16:11.765345)---starting to track: 27 of 34 CHKP traking with Id:26404
+16-Jan-2021 (17:16:11.766369)---starting to track: 28 of 34 CVLT traking with Id:26405
+16-Jan-2021 (17:16:11.767293)---starting to track: 29 of 34 RPD traking with Id:26406
+16-Jan-2021 (17:16:11.767934)---starting to track: 30 of 34 TENB traking with Id:26407
+16-Jan-2021 (17:16:11.769594)---starting to track: 31 of 34 ADBE traking with Id:26408
+16-Jan-2021 (17:16:11.772900)---starting to track: 32 of 34 SHOP traking with Id:26409
+16-Jan-2021 (17:16:11.773883)---starting to track: 33 of 34 NIO traking with Id:26410
+16-Jan-2021 (17:16:11.774591)---starting to track: 34 of 34 TSLA traking with Id:26411
+16-Jan-2021 (17:16:12.738492)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:16:13.738390)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:16:14.743585)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:16:15.747594)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:16:16.752974)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:16:17.755256)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:16:17.762973)---Getting Yahoo market data for FB
+16-Jan-2021 (17:16:17.766113)---Yahoo market data for FB already exist shows average 1.5939409967963405 % drop
+16-Jan-2021 (17:16:17.767697)---Getting Yahoo market data for BYND
+16-Jan-2021 (17:16:17.768603)---Yahoo market data for BYND already exist shows average 3.0114061962475254 % drop
+16-Jan-2021 (17:16:17.769501)---Getting Yahoo market data for SEDG
+16-Jan-2021 (17:16:17.770240)---Yahoo market data for SEDG already exist shows average 3.148417553437745 % drop
+16-Jan-2021 (17:16:17.771010)---Getting Yahoo market data for LTHM
+16-Jan-2021 (17:16:17.777551)---Yahoo market data for LTHM already exist shows average 3.4470081118270515 % drop
+16-Jan-2021 (17:16:17.781848)---Getting Yahoo market data for SQ
+16-Jan-2021 (17:16:17.783632)---Yahoo market data for SQ already exist shows average 2.704412215860051 % drop
+16-Jan-2021 (17:16:17.784495)---Getting Yahoo market data for TTWO
+16-Jan-2021 (17:16:17.785258)---Yahoo market data for TTWO already exist shows average 1.6344628980329425 % drop
+16-Jan-2021 (17:16:17.785734)---Getting Yahoo market data for OTRK
+16-Jan-2021 (17:16:17.786179)---Yahoo market data for OTRK already exist shows average 4.218634778578903 % drop
+16-Jan-2021 (17:16:17.786616)---Getting Yahoo market data for HUM
+16-Jan-2021 (17:16:17.787040)---Yahoo market data for HUM already exist shows average 1.7579989298586436 % drop
+16-Jan-2021 (17:16:17.787471)---Getting Yahoo market data for AAPL
+16-Jan-2021 (17:16:17.787902)---Yahoo market data for AAPL already exist shows average 1.4284538359930694 % drop
+16-Jan-2021 (17:16:17.788332)---Getting Yahoo market data for ZG
+16-Jan-2021 (17:16:17.788755)---Yahoo market data for ZG already exist shows average 2.6455700275497946 % drop
+16-Jan-2021 (17:16:17.789181)---Getting Yahoo market data for MSFT
+16-Jan-2021 (17:16:17.789603)---Yahoo market data for MSFT already exist shows average 1.357874155038504 % drop
+16-Jan-2021 (17:16:17.790030)---Getting Yahoo market data for NVDA
+16-Jan-2021 (17:16:17.790455)---Yahoo market data for NVDA already exist shows average 1.9927272844254353 % drop
+16-Jan-2021 (17:16:17.790885)---Getting Yahoo market data for BEP
+16-Jan-2021 (17:16:17.791307)---Yahoo market data for BEP already exist shows average 1.7702667254556268 % drop
+16-Jan-2021 (17:16:17.791734)---Getting Yahoo market data for GOOGL
+16-Jan-2021 (17:16:17.792151)---Yahoo market data for GOOGL already exist shows average 1.2828004754438798 % drop
+16-Jan-2021 (17:16:17.792563)---Getting Yahoo market data for ETSY
+16-Jan-2021 (17:16:17.793042)---Yahoo market data for ETSY already exist shows average 2.687263868599716 % drop
+16-Jan-2021 (17:16:17.793616)---Getting Yahoo market data for IVAC
+16-Jan-2021 (17:16:17.794056)---Yahoo market data for IVAC already exist shows average 2.815338819557766 % drop
+16-Jan-2021 (17:16:17.794488)---Getting Yahoo market data for PTON
+16-Jan-2021 (17:16:17.794920)---Yahoo market data for PTON already exist shows average 3.112702513029877 % drop
+16-Jan-2021 (17:16:17.795345)---Getting Yahoo market data for ADI
+16-Jan-2021 (17:16:17.795755)---Yahoo market data for ADI already exist shows average 1.5076442603600653 % drop
+16-Jan-2021 (17:16:17.796164)---Getting Yahoo market data for CRM
+16-Jan-2021 (17:16:17.796577)---Yahoo market data for CRM already exist shows average 1.7676652179365107 % drop
+16-Jan-2021 (17:16:17.797009)---Getting Yahoo market data for CHWY
+16-Jan-2021 (17:16:17.797421)---Yahoo market data for CHWY already exist shows average 2.8737376208232885 % drop
+16-Jan-2021 (17:16:17.801790)---Getting Yahoo market data for AZN
+16-Jan-2021 (17:16:17.802256)---Yahoo market data for AZN already exist shows average 1.14118544572701 % drop
+16-Jan-2021 (17:16:17.802657)---Getting Yahoo market data for NICE
+16-Jan-2021 (17:16:17.803055)---Yahoo market data for NICE already exist shows average 1.1767815579971954 % drop
+16-Jan-2021 (17:16:17.803568)---Getting Yahoo market data for CSCO
+16-Jan-2021 (17:16:17.804011)---Yahoo market data for CSCO already exist shows average 1.2600916433685043 % drop
+16-Jan-2021 (17:16:17.804443)---Getting Yahoo market data for PANW
+16-Jan-2021 (17:16:17.804840)---Yahoo market data for PANW already exist shows average 1.42575769134158 % drop
+16-Jan-2021 (17:16:17.805240)---Getting Yahoo market data for NET
+16-Jan-2021 (17:16:17.805625)---Yahoo market data for NET already exist shows average 2.852122170526456 % drop
+16-Jan-2021 (17:16:17.806098)---Getting Yahoo market data for CRWD
+16-Jan-2021 (17:16:17.806510)---Yahoo market data for CRWD already exist shows average 2.7044342830653707 % drop
+16-Jan-2021 (17:16:17.806883)---Getting Yahoo market data for CHKP
+16-Jan-2021 (17:16:17.807250)---Yahoo market data for CHKP already exist shows average 1.3206793196844606 % drop
+16-Jan-2021 (17:16:17.807619)---Getting Yahoo market data for CVLT
+16-Jan-2021 (17:16:17.807996)---Yahoo market data for CVLT already exist shows average 1.874573773744088 % drop
+16-Jan-2021 (17:16:17.808405)---Getting Yahoo market data for RPD
+16-Jan-2021 (17:16:17.808771)---Yahoo market data for RPD already exist shows average 2.189268217529833 % drop
+16-Jan-2021 (17:16:17.809064)---Getting Yahoo market data for TENB
+16-Jan-2021 (17:16:17.809384)---Yahoo market data for TENB already exist shows average 2.2903188837384114 % drop
+16-Jan-2021 (17:16:17.809686)---Getting Yahoo market data for ADBE
+16-Jan-2021 (17:16:17.809979)---Yahoo market data for ADBE already exist shows average 1.6769929589078862 % drop
+16-Jan-2021 (17:16:17.810280)---Getting Yahoo market data for SHOP
+16-Jan-2021 (17:16:17.810584)---Yahoo market data for SHOP already exist shows average 2.6733419314860813 % drop
+16-Jan-2021 (17:16:17.810904)---Getting Yahoo market data for NIO
+16-Jan-2021 (17:16:17.811259)---Yahoo market data for NIO already exist shows average 4.1292518505050175 % drop
+16-Jan-2021 (17:16:17.811659)---Getting Yahoo market data for TSLA
+16-Jan-2021 (17:16:17.812124)---Yahoo market data for TSLA already exist shows average 2.97538096325986 % drop
+16-Jan-2021 (17:16:17.812587)---Getting ranks for :FB,BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA
+16-Jan-2021 (17:16:19.348812)---Getting TipRank Rating for : FB
+16-Jan-2021 (17:16:19.350484)---Existing  rating from today found: 7
+16-Jan-2021 (17:16:19.351276)---Getting TipRank Rating for : BYND
+16-Jan-2021 (17:16:19.352063)---Existing  rating from today found: 7
+16-Jan-2021 (17:16:19.355557)---Getting TipRank Rating for : SEDG
+16-Jan-2021 (17:16:19.356320)---Existing  rating from today found: 5
+16-Jan-2021 (17:16:19.357149)---Getting TipRank Rating for : LTHM
+16-Jan-2021 (17:16:19.358177)---Existing  rating from today found: 8
+16-Jan-2021 (17:16:19.359044)---Getting TipRank Rating for : SQ
+16-Jan-2021 (17:16:19.359854)---Existing  rating from today found: 10
+16-Jan-2021 (17:16:19.360602)---Getting TipRank Rating for : TTWO
+16-Jan-2021 (17:16:19.361440)---Existing  rating from today found: 6
+16-Jan-2021 (17:16:19.362078)---Getting TipRank Rating for : OTRK
+16-Jan-2021 (17:16:19.362609)---Existing  rating from today found: 5
+16-Jan-2021 (17:16:19.363179)---Getting TipRank Rating for : HUM
+16-Jan-2021 (17:16:19.363830)---Existing  rating from today found: 5
+16-Jan-2021 (17:16:19.364510)---Getting TipRank Rating for : AAPL
+16-Jan-2021 (17:16:19.365348)---Existing  rating from today found: 9
+16-Jan-2021 (17:16:19.366039)---Getting TipRank Rating for : ZG
+16-Jan-2021 (17:16:19.366836)---Existing  rating from today found: 4
+16-Jan-2021 (17:16:19.367577)---Getting TipRank Rating for : MSFT
+16-Jan-2021 (17:16:19.368061)---Existing  rating from today found: 9
+16-Jan-2021 (17:16:19.368424)---Getting TipRank Rating for : NVDA
+16-Jan-2021 (17:16:19.368772)---Existing  rating from today found: 7
+16-Jan-2021 (17:16:19.369113)---Getting TipRank Rating for : BEP
+16-Jan-2021 (17:16:19.369454)---Existing  rating from today found: 9
+16-Jan-2021 (17:16:19.369799)---Getting TipRank Rating for : GOOGL
+16-Jan-2021 (17:16:19.370217)---Existing  rating from today found: 6
+16-Jan-2021 (17:16:19.370571)---Getting TipRank Rating for : ETSY
+16-Jan-2021 (17:16:19.370914)---Existing  rating from today found: 8
+16-Jan-2021 (17:16:19.371338)---Getting TipRank Rating for : IVAC
+16-Jan-2021 (17:16:19.371713)---Existing  rating from today found: 5
+16-Jan-2021 (17:16:19.372059)---Getting TipRank Rating for : PTON
+16-Jan-2021 (17:16:19.372402)---Existing  rating from today found: 10
+16-Jan-2021 (17:16:19.372741)---Getting TipRank Rating for : ADI
+16-Jan-2021 (17:16:19.373177)---Existing  rating from today found: 9
+16-Jan-2021 (17:16:19.373531)---Getting TipRank Rating for : CRM
+16-Jan-2021 (17:16:19.373870)---Existing  rating from today found: 7
+16-Jan-2021 (17:16:19.374209)---Getting TipRank Rating for : CHWY
+16-Jan-2021 (17:16:19.374554)---Existing  rating from today found: 6
+16-Jan-2021 (17:16:19.374903)---Getting TipRank Rating for : AZN
+16-Jan-2021 (17:16:19.375230)---Existing  rating from today found: 7
+16-Jan-2021 (17:16:19.375559)---Getting TipRank Rating for : NICE
+16-Jan-2021 (17:16:19.375964)---Existing  rating from today found: 8
+16-Jan-2021 (17:16:19.376299)---Getting TipRank Rating for : CSCO
+16-Jan-2021 (17:16:19.376645)---Existing  rating from today found: 10
+16-Jan-2021 (17:16:19.376980)---Getting TipRank Rating for : PANW
+16-Jan-2021 (17:16:19.377312)---Existing  rating from today found: 5
+16-Jan-2021 (17:16:19.377644)---Getting TipRank Rating for : NET
+16-Jan-2021 (17:16:19.377985)---Existing  rating from today found: 9
+16-Jan-2021 (17:16:19.378306)---Getting TipRank Rating for : CRWD
+16-Jan-2021 (17:16:19.396896)---Existing  rating from today found: 10
+16-Jan-2021 (17:16:19.397794)---Getting TipRank Rating for : CHKP
+16-Jan-2021 (17:16:19.398499)---Existing  rating from today found: 6
+16-Jan-2021 (17:16:19.399192)---Getting TipRank Rating for : CVLT
+16-Jan-2021 (17:16:19.399791)---Existing  rating from today found: 8
+16-Jan-2021 (17:16:19.400401)---Getting TipRank Rating for : RPD
+16-Jan-2021 (17:16:19.400957)---Existing  rating from today found: 7
+16-Jan-2021 (17:16:19.401570)---Getting TipRank Rating for : TENB
+16-Jan-2021 (17:16:19.402135)---Existing  rating from today found: 7
+16-Jan-2021 (17:16:19.402689)---Getting TipRank Rating for : ADBE
+16-Jan-2021 (17:16:19.403249)---Existing  rating from today found: 8
+16-Jan-2021 (17:16:19.403803)---Getting TipRank Rating for : SHOP
+16-Jan-2021 (17:16:19.404361)---Existing  rating from today found: 7
+16-Jan-2021 (17:16:19.404909)---Getting TipRank Rating for : NIO
+16-Jan-2021 (17:16:19.405478)---Existing  rating from today found: 10
+16-Jan-2021 (17:16:19.405993)---Getting TipRank Rating for : TSLA
+16-Jan-2021 (17:16:19.406424)---Existing  rating from today found: 7
+16-Jan-2021 (17:16:19.420302)---34 Candidates evaluated and started to track
+16-Jan-2021 (17:16:19.420823)---Updating target prices for Candidates
+16-Jan-2021 (17:16:19.421261)---Updating target price for FB
+16-Jan-2021 (17:16:19.421714)---Target price for FB updated to 241.72464333546947 based on Close price
+16-Jan-2021 (17:16:19.422187)---Updating target price for BYND
+16-Jan-2021 (17:16:19.422639)---Target price for BYND updated to 138.17964959220615 based on Close price
+16-Jan-2021 (17:16:19.423165)---Updating target price for SEDG
+16-Jan-2021 (17:16:19.423706)---Target price for SEDG updated to 324.84020752576976 based on Close price
+16-Jan-2021 (17:16:19.424347)---Updating target price for LTHM
+16-Jan-2021 (17:16:19.424969)---Target price for LTHM updated to 20.942343940544713 based on Close price
+16-Jan-2021 (17:16:19.425559)---Updating target price for SQ
+16-Jan-2021 (17:16:19.426065)---Target price for SQ updated to 226.49439880269938 based on Close price
+16-Jan-2021 (17:16:19.431381)---Updating target price for TTWO
+16-Jan-2021 (17:16:19.432130)---Target price for TTWO updated to 192.27511537321502 based on Close price
+16-Jan-2021 (17:16:19.432518)---Updating target price for OTRK
+16-Jan-2021 (17:16:19.432990)---Target price for OTRK updated to 59.690946805989626 based on Close price
+16-Jan-2021 (17:16:19.433459)---Updating target price for HUM
+16-Jan-2021 (17:16:19.433839)---Target price for HUM updated to 397.8801043340725 based on Close price
+16-Jan-2021 (17:16:19.434192)---Updating target price for AAPL
+16-Jan-2021 (17:16:19.434550)---Target price for AAPL updated to 127.06858016002133 based on Close price
+16-Jan-2021 (17:16:19.434920)---Updating target price for ZG
+16-Jan-2021 (17:16:19.435348)---Target price for ZG updated to 146.8494221704439 based on Close price
+16-Jan-2021 (17:16:19.435708)---Updating target price for MSFT
+16-Jan-2021 (17:16:19.436064)---Target price for MSFT updated to 210.127456474937 based on Close price
+16-Jan-2021 (17:16:19.436440)---Updating target price for NVDA
+16-Jan-2021 (17:16:19.436795)---Target price for NVDA updated to 517.4882006655052 based on Close price
+16-Jan-2021 (17:16:19.437173)---Updating target price for BEP
+16-Jan-2021 (17:16:19.437529)---Target price for BEP updated to 44.89098810646678 based on Close price
+16-Jan-2021 (17:16:19.437913)---Updating target price for GOOGL
+16-Jan-2021 (17:16:19.438347)---Target price for GOOGL updated to 1708.7157500104468 based on Close price
+16-Jan-2021 (17:16:19.438712)---Updating target price for ETSY
+16-Jan-2021 (17:16:19.439084)---Target price for ETSY updated to 205.83589946513789 based on Close price
+16-Jan-2021 (17:16:19.439455)---Updating target price for IVAC
+16-Jan-2021 (17:16:19.439818)---Target price for IVAC updated to 7.191664927352726 based on Close price
+16-Jan-2021 (17:16:19.440207)---Updating target price for PTON
+16-Jan-2021 (17:16:19.440571)---Target price for PTON updated to 160.10625909721813 based on Close price
+16-Jan-2021 (17:16:19.440938)---Updating target price for ADI
+16-Jan-2021 (17:16:19.441374)---Target price for ADI updated to 157.05591046242984 based on Close price
+16-Jan-2021 (17:16:19.441736)---Updating target price for CRM
+16-Jan-2021 (17:16:19.442117)---Target price for CRM updated to 211.78891379012887 based on Close price
+16-Jan-2021 (17:16:19.442486)---Updating target price for CHWY
+16-Jan-2021 (17:16:19.442906)---Target price for CHWY updated to 111.33583456525027 based on Close price
+16-Jan-2021 (17:16:19.443283)---Updating target price for AZN
+16-Jan-2021 (17:16:19.443637)---Target price for AZN updated to 50.704685984886616 based on Close price
+16-Jan-2021 (17:16:19.443998)---Updating target price for NICE
+16-Jan-2021 (17:16:19.444425)---Target price for NICE updated to 270.2815024388777 based on Close price
+16-Jan-2021 (17:16:19.444793)---Updating target price for CSCO
+16-Jan-2021 (17:16:19.445102)---Target price for CSCO updated to 44.58106862301912 based on Close price
+16-Jan-2021 (17:16:19.445421)---Updating target price for PANW
+16-Jan-2021 (17:16:19.445736)---Target price for PANW updated to 357.98221836812394 based on Close price
+16-Jan-2021 (17:16:19.446045)---Updating target price for NET
+16-Jan-2021 (17:16:19.446466)---Target price for NET updated to 78.21375644050916 based on Close price
+16-Jan-2021 (17:16:19.446809)---Updating target price for CRWD
+16-Jan-2021 (17:16:19.447181)---Target price for CRWD updated to 219.5182553705479 based on Close price
+16-Jan-2021 (17:16:19.447472)---Updating target price for CHKP
+16-Jan-2021 (17:16:19.447764)---Target price for CHKP updated to 126.93121019108987 based on Close price
+16-Jan-2021 (17:16:19.448054)---Updating target price for CVLT
+16-Jan-2021 (17:16:19.448367)---Target price for CVLT updated to 56.157181429286254 based on Close price
+16-Jan-2021 (17:16:19.448764)---Updating target price for RPD
+16-Jan-2021 (17:16:19.449116)---Target price for RPD updated to 86.50381118841662 based on Close price
+16-Jan-2021 (17:16:19.449467)---Updating target price for TENB
+16-Jan-2021 (17:16:19.449901)---Target price for TENB updated to 53.114982654799796 based on Close price
+16-Jan-2021 (17:16:19.450267)---Updating target price for ADBE
+16-Jan-2021 (17:16:19.450613)---Target price for ADBE updated to 455.5009947192674 based on Close price
+16-Jan-2021 (17:16:19.450948)---Updating target price for SHOP
+16-Jan-2021 (17:16:19.451305)---Target price for SHOP updated to 1147.3450413064832 based on Close price
+16-Jan-2021 (17:16:19.451662)---Updating target price for NIO
+16-Jan-2021 (17:16:19.451955)---Target price for NIO updated to 58.35652439859759 based on Close price
+16-Jan-2021 (17:16:19.452254)---Updating target price for TSLA
+16-Jan-2021 (17:16:19.452677)---Target price for TSLA updated to 819.8580308604542 based on Close price
+16-Jan-2021 (17:16:19.453035)---Connected to IBKR and READY
+16-Jan-2021 (17:16:19.542838)---UI resumed.
+16-Jan-2021 (17:16:19.543391)---Starting Worker- UI Paused
+16-Jan-2021 (17:16:19.601662)----------Starting Worker...----EST Time: 2021-01-16 09:16:19--------------------
+16-Jan-2021 (17:16:19.602052)---Checking connection
+16-Jan-2021 (17:16:19.602474)---Connection is fine- proceeding
+16-Jan-2021 (17:16:19.602749)---Updating all open orders
+16-Jan-2021 (17:16:20.549419)---0 open orders found 
+16-Jan-2021 (17:16:20.550804)---Updating open Positions:
+16-Jan-2021 (17:16:21.554281)---Started tracking MSFT position PnL
+16-Jan-2021 (17:16:21.555987)---Started tracking AAPL position PnL
+16-Jan-2021 (17:16:21.558406)---Started tracking AZN position PnL
+16-Jan-2021 (17:16:21.560329)---Started tracking SQ position PnL
+16-Jan-2021 (17:16:21.566110)---Started tracking BEP position PnL
+16-Jan-2021 (17:16:21.568634)---Started tracking CRWD position PnL
+16-Jan-2021 (17:16:22.562845)---Waiting to receive Value for all positions 
+16-Jan-2021 (17:16:22.565248)---Requesting History for MSFT position for last 1 hour BID price
+16-Jan-2021 (17:16:22.567091)---Requesting History for AAPL position for last 1 hour BID price
+16-Jan-2021 (17:16:22.568270)---Requesting History for AZN position for last 1 hour BID price
+16-Jan-2021 (17:16:22.576407)---Requesting History for SQ position for last 1 hour BID price
+16-Jan-2021 (17:16:22.577320)---Requesting History for BEP position for last 1 hour BID price
+16-Jan-2021 (17:16:22.578112)---Requesting History for CRWD position for last 1 hour BID price
+16-Jan-2021 (17:16:23.570076)---Waiting to receive Hisory for all positions 
+16-Jan-2021 (17:16:23.570974)---6 open positions completely updated
+16-Jan-2021 (17:16:23.571951)---Trading session is not Open - processing skept
+16-Jan-2021 (17:16:23.572718)---...............Worker finished....EST Time: 2021-01-16 09:16:19...................
+16-Jan-2021 (17:16:23.612388)---UI resumed.
+16-Jan-2021 (17:17:19.558580)---Starting Worker- UI Paused
+16-Jan-2021 (17:17:19.566058)----------Starting Worker...----EST Time: 2021-01-16 09:17:19--------------------
+16-Jan-2021 (17:17:19.566882)---Checking connection
+16-Jan-2021 (17:17:19.567492)---Connection is fine- proceeding
+16-Jan-2021 (17:17:19.568091)---Updating all open orders
+16-Jan-2021 (17:17:20.566802)---0 open orders found 
+16-Jan-2021 (17:17:20.568418)---Updating open Positions:
+16-Jan-2021 (17:17:21.574259)---Started tracking MSFT position PnL
+16-Jan-2021 (17:17:21.576694)---Started tracking AAPL position PnL
+16-Jan-2021 (17:17:21.579077)---Started tracking AZN position PnL
+16-Jan-2021 (17:17:21.581344)---Started tracking SQ position PnL
+16-Jan-2021 (17:17:21.584095)---Started tracking BEP position PnL
+16-Jan-2021 (17:17:21.590593)---Started tracking CRWD position PnL
+16-Jan-2021 (17:17:22.577785)---Waiting to receive Value for all positions 
+16-Jan-2021 (17:17:22.580446)---Requesting History for MSFT position for last 1 hour BID price
+16-Jan-2021 (17:17:22.582722)---Requesting History for AAPL position for last 1 hour BID price
+16-Jan-2021 (17:17:22.583944)---Requesting History for AZN position for last 1 hour BID price
+16-Jan-2021 (17:17:22.595154)---Requesting History for SQ position for last 1 hour BID price
+16-Jan-2021 (17:17:22.597107)---Requesting History for BEP position for last 1 hour BID price
+16-Jan-2021 (17:17:22.598820)---Requesting History for CRWD position for last 1 hour BID price
+16-Jan-2021 (17:17:23.584421)---Waiting to receive Hisory for all positions 
+16-Jan-2021 (17:17:23.586130)---6 open positions completely updated
+16-Jan-2021 (17:17:23.623183)---Trading session is not Open - processing skept
+16-Jan-2021 (17:17:23.626076)---...............Worker finished....EST Time: 2021-01-16 09:17:19...................
+16-Jan-2021 (17:17:23.683048)---UI resumed.
+16-Jan-2021 (17:20:11.465809)---Begin connect and prepare
+16-Jan-2021 (17:20:11.466228)---Restarting connection to IBKR
+16-Jan-2021 (17:20:11.469118)---Waiting for connection...attempt:0
+16-Jan-2021 (17:20:12.289879)---Successfully connected to API
+16-Jan-2021 (17:20:12.291534)---Requesting Daily PnL
+16-Jan-2021 (17:20:12.292656)---PnL not yet received
+16-Jan-2021 (17:20:12.293943)---Starting to track Excess liquidity
+16-Jan-2021 (17:20:12.295435)---Updating open Positions:
+16-Jan-2021 (17:20:13.298719)---Started tracking MSFT position PnL
+16-Jan-2021 (17:20:13.300682)---Started tracking AAPL position PnL
+16-Jan-2021 (17:20:13.303054)---Started tracking AZN position PnL
+16-Jan-2021 (17:20:13.310655)---Started tracking SQ position PnL
+16-Jan-2021 (17:20:13.313029)---Started tracking BEP position PnL
+16-Jan-2021 (17:20:13.314439)---Started tracking CRWD position PnL
+16-Jan-2021 (17:20:14.311322)---Waiting to receive Value for all positions 
+16-Jan-2021 (17:20:15.312594)---Waiting to receive Value for all positions 
+16-Jan-2021 (17:20:15.315877)---Requesting History for MSFT position for last 1 hour BID price
+16-Jan-2021 (17:20:15.317144)---Requesting History for AAPL position for last 1 hour BID price
+16-Jan-2021 (17:20:15.317982)---Requesting History for AZN position for last 1 hour BID price
+16-Jan-2021 (17:20:15.318656)---Requesting History for SQ position for last 1 hour BID price
+16-Jan-2021 (17:20:15.324032)---Requesting History for BEP position for last 1 hour BID price
+16-Jan-2021 (17:20:15.324977)---Requesting History for CRWD position for last 1 hour BID price
+16-Jan-2021 (17:20:16.321401)---Waiting to receive Hisory for all positions 
+16-Jan-2021 (17:20:16.323114)---6 open positions completely updated
+16-Jan-2021 (17:20:16.324341)---Updating all open orders
+16-Jan-2021 (17:20:17.323899)---0 open orders found 
+16-Jan-2021 (17:20:17.326483)---Starting to track FB,BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA Candidates
+16-Jan-2021 (17:20:17.329364)---starting to track: 1 of 34 FB traking with Id:26378
+16-Jan-2021 (17:20:17.330798)---starting to track: 2 of 34 BYND traking with Id:26379
+16-Jan-2021 (17:20:17.333630)---starting to track: 3 of 34 SEDG traking with Id:26380
+16-Jan-2021 (17:20:17.336705)---starting to track: 4 of 34 LTHM traking with Id:26381
+16-Jan-2021 (17:20:17.346489)---starting to track: 5 of 34 SQ traking with Id:26382
+16-Jan-2021 (17:20:17.351002)---starting to track: 6 of 34 TTWO traking with Id:26383
+16-Jan-2021 (17:20:17.352075)---starting to track: 7 of 34 OTRK traking with Id:26384
+16-Jan-2021 (17:20:17.353953)---starting to track: 8 of 34 HUM traking with Id:26385
+16-Jan-2021 (17:20:17.355452)---starting to track: 9 of 34 AAPL traking with Id:26386
+16-Jan-2021 (17:20:17.356424)---starting to track: 10 of 34 ZG traking with Id:26387
+16-Jan-2021 (17:20:17.357879)---starting to track: 11 of 34 MSFT traking with Id:26388
+16-Jan-2021 (17:20:17.359484)---starting to track: 12 of 34 NVDA traking with Id:26389
+16-Jan-2021 (17:20:17.362181)---starting to track: 13 of 34 BEP traking with Id:26390
+16-Jan-2021 (17:20:17.364022)---starting to track: 14 of 34 GOOGL traking with Id:26391
+16-Jan-2021 (17:20:17.364924)---starting to track: 15 of 34 ETSY traking with Id:26392
+16-Jan-2021 (17:20:17.365740)---starting to track: 16 of 34 IVAC traking with Id:26393
+16-Jan-2021 (17:20:17.366507)---starting to track: 17 of 34 PTON traking with Id:26394
+16-Jan-2021 (17:20:17.367200)---starting to track: 18 of 34 ADI traking with Id:26395
+16-Jan-2021 (17:20:17.369389)---starting to track: 19 of 34 CRM traking with Id:26396
+16-Jan-2021 (17:20:17.371717)---starting to track: 20 of 34 CHWY traking with Id:26397
+16-Jan-2021 (17:20:17.372558)---starting to track: 21 of 34 AZN traking with Id:26398
+16-Jan-2021 (17:20:17.373289)---starting to track: 22 of 34 NICE traking with Id:26399
+16-Jan-2021 (17:20:17.374133)---starting to track: 23 of 34 CSCO traking with Id:26400
+16-Jan-2021 (17:20:17.375333)---starting to track: 24 of 34 PANW traking with Id:26401
+16-Jan-2021 (17:20:17.378096)---starting to track: 25 of 34 NET traking with Id:26402
+16-Jan-2021 (17:20:17.380245)---starting to track: 26 of 34 CRWD traking with Id:26403
+16-Jan-2021 (17:20:17.381499)---starting to track: 27 of 34 CHKP traking with Id:26404
+16-Jan-2021 (17:20:17.383375)---starting to track: 28 of 34 CVLT traking with Id:26405
+16-Jan-2021 (17:20:17.384360)---starting to track: 29 of 34 RPD traking with Id:26406
+16-Jan-2021 (17:20:17.385235)---starting to track: 30 of 34 TENB traking with Id:26407
+16-Jan-2021 (17:20:17.385760)---starting to track: 31 of 34 ADBE traking with Id:26408
+16-Jan-2021 (17:20:17.386567)---starting to track: 32 of 34 SHOP traking with Id:26409
+16-Jan-2021 (17:20:17.387396)---starting to track: 33 of 34 NIO traking with Id:26410
+16-Jan-2021 (17:20:17.390474)---starting to track: 34 of 34 TSLA traking with Id:26411
+16-Jan-2021 (17:20:18.359168)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:20:19.362483)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:20:20.363654)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:20:21.365369)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:20:22.368816)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:20:22.370849)---Getting Yahoo market data for FB
+16-Jan-2021 (17:20:22.378106)---Yahoo market data for FB already exist shows average 1.5939409967963405 % drop
+16-Jan-2021 (17:20:22.379716)---Getting Yahoo market data for BYND
+16-Jan-2021 (17:20:22.394795)---Yahoo market data for BYND already exist shows average 3.0114061962475254 % drop
+16-Jan-2021 (17:20:22.397541)---Getting Yahoo market data for SEDG
+16-Jan-2021 (17:20:22.399102)---Yahoo market data for SEDG already exist shows average 3.148417553437745 % drop
+16-Jan-2021 (17:20:22.400433)---Getting Yahoo market data for LTHM
+16-Jan-2021 (17:20:22.401298)---Yahoo market data for LTHM already exist shows average 3.4470081118270515 % drop
+16-Jan-2021 (17:20:22.402143)---Getting Yahoo market data for SQ
+16-Jan-2021 (17:20:22.403181)---Yahoo market data for SQ already exist shows average 2.704412215860051 % drop
+16-Jan-2021 (17:20:22.404002)---Getting Yahoo market data for TTWO
+16-Jan-2021 (17:20:22.404766)---Yahoo market data for TTWO already exist shows average 1.6344628980329425 % drop
+16-Jan-2021 (17:20:22.405335)---Getting Yahoo market data for OTRK
+16-Jan-2021 (17:20:22.405927)---Yahoo market data for OTRK already exist shows average 4.218634778578903 % drop
+16-Jan-2021 (17:20:22.406679)---Getting Yahoo market data for HUM
+16-Jan-2021 (17:20:22.407400)---Yahoo market data for HUM already exist shows average 1.7579989298586436 % drop
+16-Jan-2021 (17:20:22.407976)---Getting Yahoo market data for AAPL
+16-Jan-2021 (17:20:22.408596)---Yahoo market data for AAPL already exist shows average 1.4284538359930694 % drop
+16-Jan-2021 (17:20:22.409228)---Getting Yahoo market data for ZG
+16-Jan-2021 (17:20:22.409710)---Yahoo market data for ZG already exist shows average 2.6455700275497946 % drop
+16-Jan-2021 (17:20:22.410184)---Getting Yahoo market data for MSFT
+16-Jan-2021 (17:20:22.410643)---Yahoo market data for MSFT already exist shows average 1.357874155038504 % drop
+16-Jan-2021 (17:20:22.411115)---Getting Yahoo market data for NVDA
+16-Jan-2021 (17:20:22.411582)---Yahoo market data for NVDA already exist shows average 1.9927272844254353 % drop
+16-Jan-2021 (17:20:22.412056)---Getting Yahoo market data for BEP
+16-Jan-2021 (17:20:22.412490)---Yahoo market data for BEP already exist shows average 1.7702667254556268 % drop
+16-Jan-2021 (17:20:22.412924)---Getting Yahoo market data for GOOGL
+16-Jan-2021 (17:20:22.413386)---Yahoo market data for GOOGL already exist shows average 1.2828004754438798 % drop
+16-Jan-2021 (17:20:22.413839)---Getting Yahoo market data for ETSY
+16-Jan-2021 (17:20:22.414360)---Yahoo market data for ETSY already exist shows average 2.687263868599716 % drop
+16-Jan-2021 (17:20:22.414871)---Getting Yahoo market data for IVAC
+16-Jan-2021 (17:20:22.415399)---Yahoo market data for IVAC already exist shows average 2.815338819557766 % drop
+16-Jan-2021 (17:20:22.415986)---Getting Yahoo market data for PTON
+16-Jan-2021 (17:20:22.416566)---Yahoo market data for PTON already exist shows average 3.112702513029877 % drop
+16-Jan-2021 (17:20:22.418366)---Getting Yahoo market data for ADI
+16-Jan-2021 (17:20:22.419421)---Yahoo market data for ADI already exist shows average 1.5076442603600653 % drop
+16-Jan-2021 (17:20:22.419995)---Getting Yahoo market data for CRM
+16-Jan-2021 (17:20:22.420492)---Yahoo market data for CRM already exist shows average 1.7676652179365107 % drop
+16-Jan-2021 (17:20:22.420966)---Getting Yahoo market data for CHWY
+16-Jan-2021 (17:20:22.421441)---Yahoo market data for CHWY already exist shows average 2.8737376208232885 % drop
+16-Jan-2021 (17:20:22.422205)---Getting Yahoo market data for AZN
+16-Jan-2021 (17:20:22.422703)---Yahoo market data for AZN already exist shows average 1.14118544572701 % drop
+16-Jan-2021 (17:20:22.423179)---Getting Yahoo market data for NICE
+16-Jan-2021 (17:20:22.423860)---Yahoo market data for NICE already exist shows average 1.1767815579971954 % drop
+16-Jan-2021 (17:20:22.424356)---Getting Yahoo market data for CSCO
+16-Jan-2021 (17:20:22.424821)---Yahoo market data for CSCO already exist shows average 1.2600916433685043 % drop
+16-Jan-2021 (17:20:22.425297)---Getting Yahoo market data for PANW
+16-Jan-2021 (17:20:22.425755)---Yahoo market data for PANW already exist shows average 1.42575769134158 % drop
+16-Jan-2021 (17:20:22.426214)---Getting Yahoo market data for NET
+16-Jan-2021 (17:20:22.426675)---Yahoo market data for NET already exist shows average 2.852122170526456 % drop
+16-Jan-2021 (17:20:22.427118)---Getting Yahoo market data for CRWD
+16-Jan-2021 (17:20:22.427564)---Yahoo market data for CRWD already exist shows average 2.7044342830653707 % drop
+16-Jan-2021 (17:20:22.428025)---Getting Yahoo market data for CHKP
+16-Jan-2021 (17:20:22.428492)---Yahoo market data for CHKP already exist shows average 1.3206793196844606 % drop
+16-Jan-2021 (17:20:22.429024)---Getting Yahoo market data for CVLT
+16-Jan-2021 (17:20:22.429599)---Yahoo market data for CVLT already exist shows average 1.874573773744088 % drop
+16-Jan-2021 (17:20:22.431420)---Getting Yahoo market data for RPD
+16-Jan-2021 (17:20:22.432464)---Yahoo market data for RPD already exist shows average 2.189268217529833 % drop
+16-Jan-2021 (17:20:22.432961)---Getting Yahoo market data for TENB
+16-Jan-2021 (17:20:22.433332)---Yahoo market data for TENB already exist shows average 2.2903188837384114 % drop
+16-Jan-2021 (17:20:22.433714)---Getting Yahoo market data for ADBE
+16-Jan-2021 (17:20:22.434098)---Yahoo market data for ADBE already exist shows average 1.6769929589078862 % drop
+16-Jan-2021 (17:20:22.434550)---Getting Yahoo market data for SHOP
+16-Jan-2021 (17:20:22.434930)---Yahoo market data for SHOP already exist shows average 2.6733419314860813 % drop
+16-Jan-2021 (17:20:22.435297)---Getting Yahoo market data for NIO
+16-Jan-2021 (17:20:22.435658)---Yahoo market data for NIO already exist shows average 4.1292518505050175 % drop
+16-Jan-2021 (17:20:22.436052)---Getting Yahoo market data for TSLA
+16-Jan-2021 (17:20:22.436460)---Yahoo market data for TSLA already exist shows average 2.97538096325986 % drop
+16-Jan-2021 (17:20:22.437034)---Getting ranks for :FB,BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA
+16-Jan-2021 (17:20:23.875144)---Getting TipRank Rating for : FB
+16-Jan-2021 (17:20:23.876509)---Existing  rating from today found: 7
+16-Jan-2021 (17:20:23.878797)---Getting TipRank Rating for : BYND
+16-Jan-2021 (17:20:23.879554)---Existing  rating from today found: 7
+16-Jan-2021 (17:20:23.883621)---Getting TipRank Rating for : SEDG
+16-Jan-2021 (17:20:23.884216)---Existing  rating from today found: 5
+16-Jan-2021 (17:20:23.884836)---Getting TipRank Rating for : LTHM
+16-Jan-2021 (17:20:23.885529)---Existing  rating from today found: 8
+16-Jan-2021 (17:20:23.886159)---Getting TipRank Rating for : SQ
+16-Jan-2021 (17:20:23.886735)---Existing  rating from today found: 10
+16-Jan-2021 (17:20:23.887173)---Getting TipRank Rating for : TTWO
+16-Jan-2021 (17:20:23.887532)---Existing  rating from today found: 6
+16-Jan-2021 (17:20:23.887849)---Getting TipRank Rating for : OTRK
+16-Jan-2021 (17:20:23.888248)---Existing  rating from today found: 5
+16-Jan-2021 (17:20:23.888559)---Getting TipRank Rating for : HUM
+16-Jan-2021 (17:20:23.888848)---Existing  rating from today found: 5
+16-Jan-2021 (17:20:23.889156)---Getting TipRank Rating for : AAPL
+16-Jan-2021 (17:20:23.889463)---Existing  rating from today found: 9
+16-Jan-2021 (17:20:23.889766)---Getting TipRank Rating for : ZG
+16-Jan-2021 (17:20:23.890262)---Existing  rating from today found: 4
+16-Jan-2021 (17:20:23.890691)---Getting TipRank Rating for : MSFT
+16-Jan-2021 (17:20:23.891093)---Existing  rating from today found: 9
+16-Jan-2021 (17:20:23.891631)---Getting TipRank Rating for : NVDA
+16-Jan-2021 (17:20:23.892072)---Existing  rating from today found: 7
+16-Jan-2021 (17:20:23.892558)---Getting TipRank Rating for : BEP
+16-Jan-2021 (17:20:23.892976)---Existing  rating from today found: 9
+16-Jan-2021 (17:20:23.893480)---Getting TipRank Rating for : GOOGL
+16-Jan-2021 (17:20:23.894027)---Existing  rating from today found: 6
+16-Jan-2021 (17:20:23.894597)---Getting TipRank Rating for : ETSY
+16-Jan-2021 (17:20:23.895190)---Existing  rating from today found: 8
+16-Jan-2021 (17:20:23.895667)---Getting TipRank Rating for : IVAC
+16-Jan-2021 (17:20:23.899919)---Existing  rating from today found: 5
+16-Jan-2021 (17:20:23.900406)---Getting TipRank Rating for : PTON
+16-Jan-2021 (17:20:23.900736)---Existing  rating from today found: 10
+16-Jan-2021 (17:20:23.901028)---Getting TipRank Rating for : ADI
+16-Jan-2021 (17:20:23.901315)---Existing  rating from today found: 9
+16-Jan-2021 (17:20:23.901607)---Getting TipRank Rating for : CRM
+16-Jan-2021 (17:20:23.901900)---Existing  rating from today found: 7
+16-Jan-2021 (17:20:23.902183)---Getting TipRank Rating for : CHWY
+16-Jan-2021 (17:20:23.902464)---Existing  rating from today found: 6
+16-Jan-2021 (17:20:23.902741)---Getting TipRank Rating for : AZN
+16-Jan-2021 (17:20:23.903017)---Existing  rating from today found: 7
+16-Jan-2021 (17:20:23.903300)---Getting TipRank Rating for : NICE
+16-Jan-2021 (17:20:23.903582)---Existing  rating from today found: 8
+16-Jan-2021 (17:20:23.903867)---Getting TipRank Rating for : CSCO
+16-Jan-2021 (17:20:23.904154)---Existing  rating from today found: 10
+16-Jan-2021 (17:20:23.904438)---Getting TipRank Rating for : PANW
+16-Jan-2021 (17:20:23.904727)---Existing  rating from today found: 5
+16-Jan-2021 (17:20:23.905014)---Getting TipRank Rating for : NET
+16-Jan-2021 (17:20:23.905320)---Existing  rating from today found: 9
+16-Jan-2021 (17:20:23.905606)---Getting TipRank Rating for : CRWD
+16-Jan-2021 (17:20:23.905893)---Existing  rating from today found: 10
+16-Jan-2021 (17:20:23.906202)---Getting TipRank Rating for : CHKP
+16-Jan-2021 (17:20:23.906493)---Existing  rating from today found: 6
+16-Jan-2021 (17:20:23.906783)---Getting TipRank Rating for : CVLT
+16-Jan-2021 (17:20:23.907069)---Existing  rating from today found: 8
+16-Jan-2021 (17:20:23.907359)---Getting TipRank Rating for : RPD
+16-Jan-2021 (17:20:23.907668)---Existing  rating from today found: 7
+16-Jan-2021 (17:20:23.907957)---Getting TipRank Rating for : TENB
+16-Jan-2021 (17:20:23.908249)---Existing  rating from today found: 7
+16-Jan-2021 (17:20:23.908542)---Getting TipRank Rating for : ADBE
+16-Jan-2021 (17:20:23.908839)---Existing  rating from today found: 8
+16-Jan-2021 (17:20:23.909132)---Getting TipRank Rating for : SHOP
+16-Jan-2021 (17:20:23.909427)---Existing  rating from today found: 7
+16-Jan-2021 (17:20:23.909721)---Getting TipRank Rating for : NIO
+16-Jan-2021 (17:20:23.910009)---Existing  rating from today found: 10
+16-Jan-2021 (17:20:23.910313)---Getting TipRank Rating for : TSLA
+16-Jan-2021 (17:20:23.910655)---Existing  rating from today found: 7
+16-Jan-2021 (17:20:23.948473)---34 Candidates evaluated and started to track
+16-Jan-2021 (17:20:23.949160)---Updating target prices for Candidates
+16-Jan-2021 (17:20:23.949686)---Updating target price for FB
+16-Jan-2021 (17:20:23.950478)---Target price for FB updated to 241.72464333546947 based on Close price
+16-Jan-2021 (17:20:23.951109)---Updating target price for BYND
+16-Jan-2021 (17:20:23.951719)---Target price for BYND updated to 138.17964959220615 based on Close price
+16-Jan-2021 (17:20:23.952430)---Updating target price for SEDG
+16-Jan-2021 (17:20:23.952919)---Target price for SEDG updated to 324.84020752576976 based on Close price
+16-Jan-2021 (17:20:23.953390)---Updating target price for LTHM
+16-Jan-2021 (17:20:23.953857)---Target price for LTHM updated to 20.942343940544713 based on Close price
+16-Jan-2021 (17:20:23.954320)---Updating target price for SQ
+16-Jan-2021 (17:20:23.954780)---Target price for SQ updated to 226.49439880269938 based on Close price
+16-Jan-2021 (17:20:23.955255)---Updating target price for TTWO
+16-Jan-2021 (17:20:23.955696)---Target price for TTWO updated to 192.27511537321502 based on Close price
+16-Jan-2021 (17:20:23.956094)---Updating target price for OTRK
+16-Jan-2021 (17:20:23.956498)---Target price for OTRK updated to 59.690946805989626 based on Close price
+16-Jan-2021 (17:20:23.956899)---Updating target price for HUM
+16-Jan-2021 (17:20:23.957304)---Target price for HUM updated to 397.8801043340725 based on Close price
+16-Jan-2021 (17:20:23.957775)---Updating target price for AAPL
+16-Jan-2021 (17:20:23.958222)---Target price for AAPL updated to 127.06858016002133 based on Close price
+16-Jan-2021 (17:20:23.958631)---Updating target price for ZG
+16-Jan-2021 (17:20:23.959049)---Target price for ZG updated to 146.8494221704439 based on Close price
+16-Jan-2021 (17:20:23.959463)---Updating target price for MSFT
+16-Jan-2021 (17:20:23.959886)---Target price for MSFT updated to 210.127456474937 based on Close price
+16-Jan-2021 (17:20:23.960291)---Updating target price for NVDA
+16-Jan-2021 (17:20:23.960700)---Target price for NVDA updated to 517.4882006655052 based on Close price
+16-Jan-2021 (17:20:23.961136)---Updating target price for BEP
+16-Jan-2021 (17:20:23.961557)---Target price for BEP updated to 44.89098810646678 based on Close price
+16-Jan-2021 (17:20:23.961982)---Updating target price for GOOGL
+16-Jan-2021 (17:20:23.962399)---Target price for GOOGL updated to 1708.7157500104468 based on Close price
+16-Jan-2021 (17:20:23.962843)---Updating target price for ETSY
+16-Jan-2021 (17:20:23.963264)---Target price for ETSY updated to 205.83589946513789 based on Close price
+16-Jan-2021 (17:20:23.963684)---Updating target price for IVAC
+16-Jan-2021 (17:20:23.964102)---Target price for IVAC updated to 7.191664927352726 based on Close price
+16-Jan-2021 (17:20:23.964521)---Updating target price for PTON
+16-Jan-2021 (17:20:23.964940)---Target price for PTON updated to 160.10625909721813 based on Close price
+16-Jan-2021 (17:20:23.965365)---Updating target price for ADI
+16-Jan-2021 (17:20:23.965788)---Target price for ADI updated to 157.05591046242984 based on Close price
+16-Jan-2021 (17:20:23.966156)---Updating target price for CRM
+16-Jan-2021 (17:20:23.966521)---Target price for CRM updated to 211.78891379012887 based on Close price
+16-Jan-2021 (17:20:23.966893)---Updating target price for CHWY
+16-Jan-2021 (17:20:23.967261)---Target price for CHWY updated to 111.33583456525027 based on Close price
+16-Jan-2021 (17:20:23.967654)---Updating target price for AZN
+16-Jan-2021 (17:20:23.968018)---Target price for AZN updated to 50.704685984886616 based on Close price
+16-Jan-2021 (17:20:23.968475)---Updating target price for NICE
+16-Jan-2021 (17:20:23.968863)---Target price for NICE updated to 270.2815024388777 based on Close price
+16-Jan-2021 (17:20:23.969238)---Updating target price for CSCO
+16-Jan-2021 (17:20:23.969545)---Target price for CSCO updated to 44.58106862301912 based on Close price
+16-Jan-2021 (17:20:23.969842)---Updating target price for PANW
+16-Jan-2021 (17:20:23.970137)---Target price for PANW updated to 357.98221836812394 based on Close price
+16-Jan-2021 (17:20:23.970435)---Updating target price for NET
+16-Jan-2021 (17:20:23.970728)---Target price for NET updated to 78.21375644050916 based on Close price
+16-Jan-2021 (17:20:23.971021)---Updating target price for CRWD
+16-Jan-2021 (17:20:23.971318)---Target price for CRWD updated to 219.5182553705479 based on Close price
+16-Jan-2021 (17:20:23.971643)---Updating target price for CHKP
+16-Jan-2021 (17:20:23.971950)---Target price for CHKP updated to 126.93121019108987 based on Close price
+16-Jan-2021 (17:20:23.972252)---Updating target price for CVLT
+16-Jan-2021 (17:20:23.972549)---Target price for CVLT updated to 56.157181429286254 based on Close price
+16-Jan-2021 (17:20:23.972854)---Updating target price for RPD
+16-Jan-2021 (17:20:23.973149)---Target price for RPD updated to 86.50381118841662 based on Close price
+16-Jan-2021 (17:20:23.973450)---Updating target price for TENB
+16-Jan-2021 (17:20:23.976630)---Target price for TENB updated to 53.114982654799796 based on Close price
+16-Jan-2021 (17:20:23.977060)---Updating target price for ADBE
+16-Jan-2021 (17:20:23.977384)---Target price for ADBE updated to 455.5009947192674 based on Close price
+16-Jan-2021 (17:20:23.977693)---Updating target price for SHOP
+16-Jan-2021 (17:20:23.978005)---Target price for SHOP updated to 1147.3450413064832 based on Close price
+16-Jan-2021 (17:20:23.978313)---Updating target price for NIO
+16-Jan-2021 (17:20:23.978621)---Target price for NIO updated to 58.35652439859759 based on Close price
+16-Jan-2021 (17:20:23.979130)---Updating target price for TSLA
+16-Jan-2021 (17:20:23.979479)---Target price for TSLA updated to 819.8580308604542 based on Close price
+16-Jan-2021 (17:20:23.979804)---Connected to IBKR and READY
+16-Jan-2021 (17:20:24.077772)---UI resumed.
+16-Jan-2021 (17:20:31.554937)---UI paused- for restart
+16-Jan-2021 (17:20:31.555355)---Configuration changed - restarting everything
+16-Jan-2021 (17:20:31.611259)---Begin connect and prepare
+16-Jan-2021 (17:20:31.611681)---Restarting connection to IBKR
+16-Jan-2021 (17:20:31.612014)---Waiting for connection...attempt:0
+16-Jan-2021 (17:20:32.575421)---Successfully connected to API
+16-Jan-2021 (17:20:32.577225)---Requesting Daily PnL
+16-Jan-2021 (17:20:32.578607)---PnL not yet received
+16-Jan-2021 (17:20:32.580466)---Starting to track Excess liquidity
+16-Jan-2021 (17:20:32.581551)---Updating open Positions:
+16-Jan-2021 (17:20:33.582516)---Started tracking MSFT position PnL
+16-Jan-2021 (17:20:33.586103)---Started tracking AAPL position PnL
+16-Jan-2021 (17:20:33.588415)---Started tracking AZN position PnL
+16-Jan-2021 (17:20:33.594232)---Started tracking SQ position PnL
+16-Jan-2021 (17:20:33.596136)---Started tracking BEP position PnL
+16-Jan-2021 (17:20:33.597593)---Started tracking CRWD position PnL
+16-Jan-2021 (17:20:34.591134)---Waiting to receive Value for all positions 
+16-Jan-2021 (17:20:35.597027)---Waiting to receive Value for all positions 
+16-Jan-2021 (17:20:35.599856)---Requesting History for MSFT position for last 1 hour BID price
+16-Jan-2021 (17:20:35.600948)---Requesting History for AAPL position for last 1 hour BID price
+16-Jan-2021 (17:20:35.601789)---Requesting History for AZN position for last 1 hour BID price
+16-Jan-2021 (17:20:35.602520)---Requesting History for SQ position for last 1 hour BID price
+16-Jan-2021 (17:20:35.603231)---Requesting History for BEP position for last 1 hour BID price
+16-Jan-2021 (17:20:35.607477)---Requesting History for CRWD position for last 1 hour BID price
+16-Jan-2021 (17:20:36.601659)---Waiting to receive Hisory for all positions 
+16-Jan-2021 (17:20:36.603286)---6 open positions completely updated
+16-Jan-2021 (17:20:36.604749)---Updating all open orders
+16-Jan-2021 (17:20:37.607175)---0 open orders found 
+16-Jan-2021 (17:20:37.610291)---Starting to track FB,BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA Candidates
+16-Jan-2021 (17:20:37.613213)---starting to track: 1 of 34 FB traking with Id:26378
+16-Jan-2021 (17:20:37.617144)---starting to track: 2 of 34 BYND traking with Id:26379
+16-Jan-2021 (17:20:37.621037)---starting to track: 3 of 34 SEDG traking with Id:26380
+16-Jan-2021 (17:20:37.624312)---starting to track: 4 of 34 LTHM traking with Id:26381
+16-Jan-2021 (17:20:37.633564)---starting to track: 5 of 34 SQ traking with Id:26382
+16-Jan-2021 (17:20:37.634666)---starting to track: 6 of 34 TTWO traking with Id:26383
+16-Jan-2021 (17:20:37.636346)---starting to track: 7 of 34 OTRK traking with Id:26384
+16-Jan-2021 (17:20:37.638056)---starting to track: 8 of 34 HUM traking with Id:26385
+16-Jan-2021 (17:20:37.639386)---starting to track: 9 of 34 AAPL traking with Id:26386
+16-Jan-2021 (17:20:37.641218)---starting to track: 10 of 34 ZG traking with Id:26387
+16-Jan-2021 (17:20:37.642283)---starting to track: 11 of 34 MSFT traking with Id:26388
+16-Jan-2021 (17:20:37.644471)---starting to track: 12 of 34 NVDA traking with Id:26389
+16-Jan-2021 (17:20:37.645956)---starting to track: 13 of 34 BEP traking with Id:26390
+16-Jan-2021 (17:20:37.646857)---starting to track: 14 of 34 GOOGL traking with Id:26391
+16-Jan-2021 (17:20:37.647613)---starting to track: 15 of 34 ETSY traking with Id:26392
+16-Jan-2021 (17:20:37.651674)---starting to track: 16 of 34 IVAC traking with Id:26393
+16-Jan-2021 (17:20:37.653490)---starting to track: 17 of 34 PTON traking with Id:26394
+16-Jan-2021 (17:20:37.654477)---starting to track: 18 of 34 ADI traking with Id:26395
+16-Jan-2021 (17:20:37.655558)---starting to track: 19 of 34 CRM traking with Id:26396
+16-Jan-2021 (17:20:37.656467)---starting to track: 20 of 34 CHWY traking with Id:26397
+16-Jan-2021 (17:20:37.657253)---starting to track: 21 of 34 AZN traking with Id:26398
+16-Jan-2021 (17:20:37.658004)---starting to track: 22 of 34 NICE traking with Id:26399
+16-Jan-2021 (17:20:37.660850)---starting to track: 23 of 34 CSCO traking with Id:26400
+16-Jan-2021 (17:20:37.663034)---starting to track: 24 of 34 PANW traking with Id:26401
+16-Jan-2021 (17:20:37.664929)---starting to track: 25 of 34 NET traking with Id:26402
+16-Jan-2021 (17:20:37.666703)---starting to track: 26 of 34 CRWD traking with Id:26403
+16-Jan-2021 (17:20:37.668053)---starting to track: 27 of 34 CHKP traking with Id:26404
+16-Jan-2021 (17:20:37.669314)---starting to track: 28 of 34 CVLT traking with Id:26405
+16-Jan-2021 (17:20:37.670287)---starting to track: 29 of 34 RPD traking with Id:26406
+16-Jan-2021 (17:20:37.673231)---starting to track: 30 of 34 TENB traking with Id:26407
+16-Jan-2021 (17:20:37.676005)---starting to track: 31 of 34 ADBE traking with Id:26408
+16-Jan-2021 (17:20:37.677604)---starting to track: 32 of 34 SHOP traking with Id:26409
+16-Jan-2021 (17:20:37.679020)---starting to track: 33 of 34 NIO traking with Id:26410
+16-Jan-2021 (17:20:37.680052)---starting to track: 34 of 34 TSLA traking with Id:26411
+16-Jan-2021 (17:20:38.643927)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:20:39.645762)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:20:40.648210)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:20:41.653513)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:20:42.658421)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:20:42.662308)---Getting Yahoo market data for FB
+16-Jan-2021 (17:20:42.663905)---Yahoo market data for FB already exist shows average 1.5939409967963405 % drop
+16-Jan-2021 (17:20:42.665336)---Getting Yahoo market data for BYND
+16-Jan-2021 (17:20:42.666373)---Yahoo market data for BYND already exist shows average 3.0114061962475254 % drop
+16-Jan-2021 (17:20:42.667488)---Getting Yahoo market data for SEDG
+16-Jan-2021 (17:20:42.669380)---Yahoo market data for SEDG already exist shows average 3.148417553437745 % drop
+16-Jan-2021 (17:20:42.670599)---Getting Yahoo market data for LTHM
+16-Jan-2021 (17:20:42.671646)---Yahoo market data for LTHM already exist shows average 3.4470081118270515 % drop
+16-Jan-2021 (17:20:42.672522)---Getting Yahoo market data for SQ
+16-Jan-2021 (17:20:42.681266)---Yahoo market data for SQ already exist shows average 2.704412215860051 % drop
+16-Jan-2021 (17:20:42.682882)---Getting Yahoo market data for TTWO
+16-Jan-2021 (17:20:42.683744)---Yahoo market data for TTWO already exist shows average 1.6344628980329425 % drop
+16-Jan-2021 (17:20:42.684390)---Getting Yahoo market data for OTRK
+16-Jan-2021 (17:20:42.684935)---Yahoo market data for OTRK already exist shows average 4.218634778578903 % drop
+16-Jan-2021 (17:20:42.685462)---Getting Yahoo market data for HUM
+16-Jan-2021 (17:20:42.685994)---Yahoo market data for HUM already exist shows average 1.7579989298586436 % drop
+16-Jan-2021 (17:20:42.686533)---Getting Yahoo market data for AAPL
+16-Jan-2021 (17:20:42.687017)---Yahoo market data for AAPL already exist shows average 1.4284538359930694 % drop
+16-Jan-2021 (17:20:42.687471)---Getting Yahoo market data for ZG
+16-Jan-2021 (17:20:42.687917)---Yahoo market data for ZG already exist shows average 2.6455700275497946 % drop
+16-Jan-2021 (17:20:42.688361)---Getting Yahoo market data for MSFT
+16-Jan-2021 (17:20:42.688815)---Yahoo market data for MSFT already exist shows average 1.357874155038504 % drop
+16-Jan-2021 (17:20:42.689272)---Getting Yahoo market data for NVDA
+16-Jan-2021 (17:20:42.689736)---Yahoo market data for NVDA already exist shows average 1.9927272844254353 % drop
+16-Jan-2021 (17:20:42.690175)---Getting Yahoo market data for BEP
+16-Jan-2021 (17:20:42.694045)---Yahoo market data for BEP already exist shows average 1.7702667254556268 % drop
+16-Jan-2021 (17:20:42.694608)---Getting Yahoo market data for GOOGL
+16-Jan-2021 (17:20:42.695070)---Yahoo market data for GOOGL already exist shows average 1.2828004754438798 % drop
+16-Jan-2021 (17:20:42.695548)---Getting Yahoo market data for ETSY
+16-Jan-2021 (17:20:42.696013)---Yahoo market data for ETSY already exist shows average 2.687263868599716 % drop
+16-Jan-2021 (17:20:42.696469)---Getting Yahoo market data for IVAC
+16-Jan-2021 (17:20:42.696843)---Yahoo market data for IVAC already exist shows average 2.815338819557766 % drop
+16-Jan-2021 (17:20:42.697299)---Getting Yahoo market data for PTON
+16-Jan-2021 (17:20:42.697698)---Yahoo market data for PTON already exist shows average 3.112702513029877 % drop
+16-Jan-2021 (17:20:42.698058)---Getting Yahoo market data for ADI
+16-Jan-2021 (17:20:42.698420)---Yahoo market data for ADI already exist shows average 1.5076442603600653 % drop
+16-Jan-2021 (17:20:42.698794)---Getting Yahoo market data for CRM
+16-Jan-2021 (17:20:42.699153)---Yahoo market data for CRM already exist shows average 1.7676652179365107 % drop
+16-Jan-2021 (17:20:42.699511)---Getting Yahoo market data for CHWY
+16-Jan-2021 (17:20:42.699850)---Yahoo market data for CHWY already exist shows average 2.8737376208232885 % drop
+16-Jan-2021 (17:20:42.700186)---Getting Yahoo market data for AZN
+16-Jan-2021 (17:20:42.700531)---Yahoo market data for AZN already exist shows average 1.14118544572701 % drop
+16-Jan-2021 (17:20:42.700890)---Getting Yahoo market data for NICE
+16-Jan-2021 (17:20:42.701217)---Yahoo market data for NICE already exist shows average 1.1767815579971954 % drop
+16-Jan-2021 (17:20:42.701547)---Getting Yahoo market data for CSCO
+16-Jan-2021 (17:20:42.701894)---Yahoo market data for CSCO already exist shows average 1.2600916433685043 % drop
+16-Jan-2021 (17:20:42.702242)---Getting Yahoo market data for PANW
+16-Jan-2021 (17:20:42.702579)---Yahoo market data for PANW already exist shows average 1.42575769134158 % drop
+16-Jan-2021 (17:20:42.702900)---Getting Yahoo market data for NET
+16-Jan-2021 (17:20:42.703222)---Yahoo market data for NET already exist shows average 2.852122170526456 % drop
+16-Jan-2021 (17:20:42.703549)---Getting Yahoo market data for CRWD
+16-Jan-2021 (17:20:42.704021)---Yahoo market data for CRWD already exist shows average 2.7044342830653707 % drop
+16-Jan-2021 (17:20:42.704469)---Getting Yahoo market data for CHKP
+16-Jan-2021 (17:20:42.704829)---Yahoo market data for CHKP already exist shows average 1.3206793196844606 % drop
+16-Jan-2021 (17:20:42.705170)---Getting Yahoo market data for CVLT
+16-Jan-2021 (17:20:42.705503)---Yahoo market data for CVLT already exist shows average 1.874573773744088 % drop
+16-Jan-2021 (17:20:42.705832)---Getting Yahoo market data for RPD
+16-Jan-2021 (17:20:42.706210)---Yahoo market data for RPD already exist shows average 2.189268217529833 % drop
+16-Jan-2021 (17:20:42.706592)---Getting Yahoo market data for TENB
+16-Jan-2021 (17:20:42.706983)---Yahoo market data for TENB already exist shows average 2.2903188837384114 % drop
+16-Jan-2021 (17:20:42.707373)---Getting Yahoo market data for ADBE
+16-Jan-2021 (17:20:42.707744)---Yahoo market data for ADBE already exist shows average 1.6769929589078862 % drop
+16-Jan-2021 (17:20:42.708135)---Getting Yahoo market data for SHOP
+16-Jan-2021 (17:20:42.708529)---Yahoo market data for SHOP already exist shows average 2.6733419314860813 % drop
+16-Jan-2021 (17:20:42.708921)---Getting Yahoo market data for NIO
+16-Jan-2021 (17:20:42.709262)---Yahoo market data for NIO already exist shows average 4.1292518505050175 % drop
+16-Jan-2021 (17:20:42.709625)---Getting Yahoo market data for TSLA
+16-Jan-2021 (17:20:42.710000)---Yahoo market data for TSLA already exist shows average 2.97538096325986 % drop
+16-Jan-2021 (17:20:42.710581)---Getting ranks for :FB,BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA
+16-Jan-2021 (17:20:44.087599)---Getting TipRank Rating for : FB
+16-Jan-2021 (17:20:44.088133)---Existing  rating from today found: 7
+16-Jan-2021 (17:20:44.088623)---Getting TipRank Rating for : BYND
+16-Jan-2021 (17:20:44.089940)---Existing  rating from today found: 7
+16-Jan-2021 (17:20:44.091245)---Getting TipRank Rating for : SEDG
+16-Jan-2021 (17:20:44.095143)---Existing  rating from today found: 5
+16-Jan-2021 (17:20:44.098547)---Getting TipRank Rating for : LTHM
+16-Jan-2021 (17:20:44.099120)---Existing  rating from today found: 8
+16-Jan-2021 (17:20:44.099805)---Getting TipRank Rating for : SQ
+16-Jan-2021 (17:20:44.100501)---Existing  rating from today found: 10
+16-Jan-2021 (17:20:44.101241)---Getting TipRank Rating for : TTWO
+16-Jan-2021 (17:20:44.101940)---Existing  rating from today found: 6
+16-Jan-2021 (17:20:44.102573)---Getting TipRank Rating for : OTRK
+16-Jan-2021 (17:20:44.103052)---Existing  rating from today found: 5
+16-Jan-2021 (17:20:44.103462)---Getting TipRank Rating for : HUM
+16-Jan-2021 (17:20:44.103890)---Existing  rating from today found: 5
+16-Jan-2021 (17:20:44.104442)---Getting TipRank Rating for : AAPL
+16-Jan-2021 (17:20:44.104991)---Existing  rating from today found: 9
+16-Jan-2021 (17:20:44.105530)---Getting TipRank Rating for : ZG
+16-Jan-2021 (17:20:44.106151)---Existing  rating from today found: 4
+16-Jan-2021 (17:20:44.107035)---Getting TipRank Rating for : MSFT
+16-Jan-2021 (17:20:44.107698)---Existing  rating from today found: 9
+16-Jan-2021 (17:20:44.108535)---Getting TipRank Rating for : NVDA
+16-Jan-2021 (17:20:44.109942)---Existing  rating from today found: 7
+16-Jan-2021 (17:20:44.111160)---Getting TipRank Rating for : BEP
+16-Jan-2021 (17:20:44.112485)---Existing  rating from today found: 9
+16-Jan-2021 (17:20:44.112944)---Getting TipRank Rating for : GOOGL
+16-Jan-2021 (17:20:44.113378)---Existing  rating from today found: 6
+16-Jan-2021 (17:20:44.113794)---Getting TipRank Rating for : ETSY
+16-Jan-2021 (17:20:44.114167)---Existing  rating from today found: 8
+16-Jan-2021 (17:20:44.114517)---Getting TipRank Rating for : IVAC
+16-Jan-2021 (17:20:44.114929)---Existing  rating from today found: 5
+16-Jan-2021 (17:20:44.115318)---Getting TipRank Rating for : PTON
+16-Jan-2021 (17:20:44.115665)---Existing  rating from today found: 10
+16-Jan-2021 (17:20:44.116001)---Getting TipRank Rating for : ADI
+16-Jan-2021 (17:20:44.116337)---Existing  rating from today found: 9
+16-Jan-2021 (17:20:44.116744)---Getting TipRank Rating for : CRM
+16-Jan-2021 (17:20:44.117134)---Existing  rating from today found: 7
+16-Jan-2021 (17:20:44.117478)---Getting TipRank Rating for : CHWY
+16-Jan-2021 (17:20:44.117887)---Existing  rating from today found: 6
+16-Jan-2021 (17:20:44.118225)---Getting TipRank Rating for : AZN
+16-Jan-2021 (17:20:44.118557)---Existing  rating from today found: 7
+16-Jan-2021 (17:20:44.118910)---Getting TipRank Rating for : NICE
+16-Jan-2021 (17:20:44.119286)---Existing  rating from today found: 8
+16-Jan-2021 (17:20:44.119613)---Getting TipRank Rating for : CSCO
+16-Jan-2021 (17:20:44.119944)---Existing  rating from today found: 10
+16-Jan-2021 (17:20:44.120279)---Getting TipRank Rating for : PANW
+16-Jan-2021 (17:20:44.120685)---Existing  rating from today found: 5
+16-Jan-2021 (17:20:44.121019)---Getting TipRank Rating for : NET
+16-Jan-2021 (17:20:44.121331)---Existing  rating from today found: 9
+16-Jan-2021 (17:20:44.121647)---Getting TipRank Rating for : CRWD
+16-Jan-2021 (17:20:44.121976)---Existing  rating from today found: 10
+16-Jan-2021 (17:20:44.122293)---Getting TipRank Rating for : CHKP
+16-Jan-2021 (17:20:44.124063)---Existing  rating from today found: 6
+16-Jan-2021 (17:20:44.124426)---Getting TipRank Rating for : CVLT
+16-Jan-2021 (17:20:44.124812)---Existing  rating from today found: 8
+16-Jan-2021 (17:20:44.125117)---Getting TipRank Rating for : RPD
+16-Jan-2021 (17:20:44.125428)---Existing  rating from today found: 7
+16-Jan-2021 (17:20:44.125733)---Getting TipRank Rating for : TENB
+16-Jan-2021 (17:20:44.126042)---Existing  rating from today found: 7
+16-Jan-2021 (17:20:44.126348)---Getting TipRank Rating for : ADBE
+16-Jan-2021 (17:20:44.126653)---Existing  rating from today found: 8
+16-Jan-2021 (17:20:44.126994)---Getting TipRank Rating for : SHOP
+16-Jan-2021 (17:20:44.127380)---Existing  rating from today found: 7
+16-Jan-2021 (17:20:44.127690)---Getting TipRank Rating for : NIO
+16-Jan-2021 (17:20:44.128001)---Existing  rating from today found: 10
+16-Jan-2021 (17:20:44.128310)---Getting TipRank Rating for : TSLA
+16-Jan-2021 (17:20:44.128619)---Existing  rating from today found: 7
+16-Jan-2021 (17:20:44.162338)---34 Candidates evaluated and started to track
+16-Jan-2021 (17:20:44.163638)---Updating target prices for Candidates
+16-Jan-2021 (17:20:44.164736)---Updating target price for FB
+16-Jan-2021 (17:20:44.165585)---Target price for FB updated to 241.72464333546947 based on Close price
+16-Jan-2021 (17:20:44.166452)---Updating target price for BYND
+16-Jan-2021 (17:20:44.167330)---Target price for BYND updated to 138.17964959220615 based on Close price
+16-Jan-2021 (17:20:44.168044)---Updating target price for SEDG
+16-Jan-2021 (17:20:44.168661)---Target price for SEDG updated to 324.84020752576976 based on Close price
+16-Jan-2021 (17:20:44.169154)---Updating target price for LTHM
+16-Jan-2021 (17:20:44.169640)---Target price for LTHM updated to 20.942343940544713 based on Close price
+16-Jan-2021 (17:20:44.170132)---Updating target price for SQ
+16-Jan-2021 (17:20:44.170616)---Target price for SQ updated to 226.49439880269938 based on Close price
+16-Jan-2021 (17:20:44.171102)---Updating target price for TTWO
+16-Jan-2021 (17:20:44.171682)---Target price for TTWO updated to 192.27511537321502 based on Close price
+16-Jan-2021 (17:20:44.172238)---Updating target price for OTRK
+16-Jan-2021 (17:20:44.172752)---Target price for OTRK updated to 59.690946805989626 based on Close price
+16-Jan-2021 (17:20:44.176416)---Updating target price for HUM
+16-Jan-2021 (17:20:44.176988)---Target price for HUM updated to 397.8801043340725 based on Close price
+16-Jan-2021 (17:20:44.177442)---Updating target price for AAPL
+16-Jan-2021 (17:20:44.177808)---Target price for AAPL updated to 127.06858016002133 based on Close price
+16-Jan-2021 (17:20:44.178161)---Updating target price for ZG
+16-Jan-2021 (17:20:44.178507)---Target price for ZG updated to 146.8494221704439 based on Close price
+16-Jan-2021 (17:20:44.178851)---Updating target price for MSFT
+16-Jan-2021 (17:20:44.179200)---Target price for MSFT updated to 210.127456474937 based on Close price
+16-Jan-2021 (17:20:44.179555)---Updating target price for NVDA
+16-Jan-2021 (17:20:44.179914)---Target price for NVDA updated to 517.4882006655052 based on Close price
+16-Jan-2021 (17:20:44.180257)---Updating target price for BEP
+16-Jan-2021 (17:20:44.180603)---Target price for BEP updated to 44.89098810646678 based on Close price
+16-Jan-2021 (17:20:44.180968)---Updating target price for GOOGL
+16-Jan-2021 (17:20:44.181347)---Target price for GOOGL updated to 1708.7157500104468 based on Close price
+16-Jan-2021 (17:20:44.181722)---Updating target price for ETSY
+16-Jan-2021 (17:20:44.182272)---Target price for ETSY updated to 205.83589946513789 based on Close price
+16-Jan-2021 (17:20:44.182755)---Updating target price for IVAC
+16-Jan-2021 (17:20:44.183150)---Target price for IVAC updated to 7.191664927352726 based on Close price
+16-Jan-2021 (17:20:44.183607)---Updating target price for PTON
+16-Jan-2021 (17:20:44.183990)---Target price for PTON updated to 160.10625909721813 based on Close price
+16-Jan-2021 (17:20:44.184380)---Updating target price for ADI
+16-Jan-2021 (17:20:44.184803)---Target price for ADI updated to 157.05591046242984 based on Close price
+16-Jan-2021 (17:20:44.185230)---Updating target price for CRM
+16-Jan-2021 (17:20:44.185685)---Target price for CRM updated to 211.78891379012887 based on Close price
+16-Jan-2021 (17:20:44.186095)---Updating target price for CHWY
+16-Jan-2021 (17:20:44.186493)---Target price for CHWY updated to 111.33583456525027 based on Close price
+16-Jan-2021 (17:20:44.186929)---Updating target price for AZN
+16-Jan-2021 (17:20:44.187331)---Target price for AZN updated to 50.704685984886616 based on Close price
+16-Jan-2021 (17:20:44.187670)---Updating target price for NICE
+16-Jan-2021 (17:20:44.188004)---Target price for NICE updated to 270.2815024388777 based on Close price
+16-Jan-2021 (17:20:44.188359)---Updating target price for CSCO
+16-Jan-2021 (17:20:44.188725)---Target price for CSCO updated to 44.58106862301912 based on Close price
+16-Jan-2021 (17:20:44.189093)---Updating target price for PANW
+16-Jan-2021 (17:20:44.189424)---Target price for PANW updated to 357.98221836812394 based on Close price
+16-Jan-2021 (17:20:44.189744)---Updating target price for NET
+16-Jan-2021 (17:20:44.190138)---Target price for NET updated to 78.21375644050916 based on Close price
+16-Jan-2021 (17:20:44.190476)---Updating target price for CRWD
+16-Jan-2021 (17:20:44.190800)---Target price for CRWD updated to 219.5182553705479 based on Close price
+16-Jan-2021 (17:20:44.191143)---Updating target price for CHKP
+16-Jan-2021 (17:20:44.191477)---Target price for CHKP updated to 126.93121019108987 based on Close price
+16-Jan-2021 (17:20:44.191801)---Updating target price for CVLT
+16-Jan-2021 (17:20:44.192151)---Target price for CVLT updated to 56.157181429286254 based on Close price
+16-Jan-2021 (17:20:44.192470)---Updating target price for RPD
+16-Jan-2021 (17:20:44.192848)---Target price for RPD updated to 86.50381118841662 based on Close price
+16-Jan-2021 (17:20:44.193187)---Updating target price for TENB
+16-Jan-2021 (17:20:44.193518)---Target price for TENB updated to 53.114982654799796 based on Close price
+16-Jan-2021 (17:20:44.193841)---Updating target price for ADBE
+16-Jan-2021 (17:20:44.194163)---Target price for ADBE updated to 455.5009947192674 based on Close price
+16-Jan-2021 (17:20:44.194485)---Updating target price for SHOP
+16-Jan-2021 (17:20:44.194813)---Target price for SHOP updated to 1147.3450413064832 based on Close price
+16-Jan-2021 (17:20:44.195135)---Updating target price for NIO
+16-Jan-2021 (17:20:44.195457)---Target price for NIO updated to 58.35652439859759 based on Close price
+16-Jan-2021 (17:20:44.195787)---Updating target price for TSLA
+16-Jan-2021 (17:20:44.196115)---Target price for TSLA updated to 819.8580308604542 based on Close price
+16-Jan-2021 (17:20:44.196441)---Connected to IBKR and READY
+16-Jan-2021 (17:20:44.222410)---UI resumed.
+16-Jan-2021 (17:25:27.558294)---Begin connect and prepare
+16-Jan-2021 (17:25:27.558669)---Restarting connection to IBKR
+16-Jan-2021 (17:25:27.558972)---Waiting for connection...attempt:0
+16-Jan-2021 (17:25:28.309105)---Successfully connected to API
+16-Jan-2021 (17:25:28.309920)---Requesting Daily PnL
+16-Jan-2021 (17:25:28.310642)---PnL not yet received
+16-Jan-2021 (17:25:28.311280)---Starting to track Excess liquidity
+16-Jan-2021 (17:25:28.312022)---Updating open Positions:
+16-Jan-2021 (17:25:29.316265)---Started tracking MSFT position PnL
+16-Jan-2021 (17:25:29.318470)---Started tracking AAPL position PnL
+16-Jan-2021 (17:25:29.321282)---Started tracking AZN position PnL
+16-Jan-2021 (17:25:29.323434)---Started tracking SQ position PnL
+16-Jan-2021 (17:25:29.330396)---Started tracking BEP position PnL
+16-Jan-2021 (17:25:29.331204)---Started tracking CRWD position PnL
+16-Jan-2021 (17:25:30.324796)---Waiting to receive Value for all positions 
+16-Jan-2021 (17:25:31.328362)---Waiting to receive Value for all positions 
+16-Jan-2021 (17:25:31.331427)---Requesting History for MSFT position for last 1 hour BID price
+16-Jan-2021 (17:25:31.332496)---Requesting History for AAPL position for last 1 hour BID price
+16-Jan-2021 (17:25:31.333253)---Requesting History for AZN position for last 1 hour BID price
+16-Jan-2021 (17:25:31.333933)---Requesting History for SQ position for last 1 hour BID price
+16-Jan-2021 (17:25:31.339192)---Requesting History for BEP position for last 1 hour BID price
+16-Jan-2021 (17:25:31.340088)---Requesting History for CRWD position for last 1 hour BID price
+16-Jan-2021 (17:25:32.333410)---Waiting to receive Hisory for all positions 
+16-Jan-2021 (17:25:32.334973)---6 open positions completely updated
+16-Jan-2021 (17:25:32.336170)---Updating all open orders
+16-Jan-2021 (17:25:33.339279)---0 open orders found 
+16-Jan-2021 (17:25:33.342129)---Starting to track FB,BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA Candidates
+16-Jan-2021 (17:25:33.344161)---starting to track: 1 of 34 FB traking with Id:26378
+16-Jan-2021 (17:25:33.346141)---starting to track: 2 of 34 BYND traking with Id:26379
+16-Jan-2021 (17:25:33.348779)---starting to track: 3 of 34 SEDG traking with Id:26380
+16-Jan-2021 (17:25:33.359499)---starting to track: 4 of 34 LTHM traking with Id:26381
+16-Jan-2021 (17:25:33.364334)---starting to track: 5 of 34 SQ traking with Id:26382
+16-Jan-2021 (17:25:33.365438)---starting to track: 6 of 34 TTWO traking with Id:26383
+16-Jan-2021 (17:25:33.366514)---starting to track: 7 of 34 OTRK traking with Id:26384
+16-Jan-2021 (17:25:33.367914)---starting to track: 8 of 34 HUM traking with Id:26385
+16-Jan-2021 (17:25:33.370249)---starting to track: 9 of 34 AAPL traking with Id:26386
+16-Jan-2021 (17:25:33.372008)---starting to track: 10 of 34 ZG traking with Id:26387
+16-Jan-2021 (17:25:33.374344)---starting to track: 11 of 34 MSFT traking with Id:26388
+16-Jan-2021 (17:25:33.378306)---starting to track: 12 of 34 NVDA traking with Id:26389
+16-Jan-2021 (17:25:33.380072)---starting to track: 13 of 34 BEP traking with Id:26390
+16-Jan-2021 (17:25:33.381148)---starting to track: 14 of 34 GOOGL traking with Id:26391
+16-Jan-2021 (17:25:33.381901)---starting to track: 15 of 34 ETSY traking with Id:26392
+16-Jan-2021 (17:25:33.383285)---starting to track: 16 of 34 IVAC traking with Id:26393
+16-Jan-2021 (17:25:33.386302)---starting to track: 17 of 34 PTON traking with Id:26394
+16-Jan-2021 (17:25:33.387339)---starting to track: 18 of 34 ADI traking with Id:26395
+16-Jan-2021 (17:25:33.388098)---starting to track: 19 of 34 CRM traking with Id:26396
+16-Jan-2021 (17:25:33.388984)---starting to track: 20 of 34 CHWY traking with Id:26397
+16-Jan-2021 (17:25:33.389590)---starting to track: 21 of 34 AZN traking with Id:26398
+16-Jan-2021 (17:25:33.390642)---starting to track: 22 of 34 NICE traking with Id:26399
+16-Jan-2021 (17:25:33.393782)---starting to track: 23 of 34 CSCO traking with Id:26400
+16-Jan-2021 (17:25:33.397103)---starting to track: 24 of 34 PANW traking with Id:26401
+16-Jan-2021 (17:25:33.399681)---starting to track: 25 of 34 NET traking with Id:26402
+16-Jan-2021 (17:25:33.401227)---starting to track: 26 of 34 CRWD traking with Id:26403
+16-Jan-2021 (17:25:33.402329)---starting to track: 27 of 34 CHKP traking with Id:26404
+16-Jan-2021 (17:25:33.402977)---starting to track: 28 of 34 CVLT traking with Id:26405
+16-Jan-2021 (17:25:33.404034)---starting to track: 29 of 34 RPD traking with Id:26406
+16-Jan-2021 (17:25:33.406224)---starting to track: 30 of 34 TENB traking with Id:26407
+16-Jan-2021 (17:25:33.408558)---starting to track: 31 of 34 ADBE traking with Id:26408
+16-Jan-2021 (17:25:33.409230)---starting to track: 32 of 34 SHOP traking with Id:26409
+16-Jan-2021 (17:25:33.410022)---starting to track: 33 of 34 NIO traking with Id:26410
+16-Jan-2021 (17:25:33.410678)---starting to track: 34 of 34 TSLA traking with Id:26411
+16-Jan-2021 (17:25:34.386441)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:25:35.388660)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:25:36.392027)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:25:37.396422)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:25:38.399996)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:25:38.402864)---Getting Yahoo market data for FB
+16-Jan-2021 (17:25:38.411529)---Yahoo market data for FB already exist shows average 1.5939409967963405 % drop
+16-Jan-2021 (17:25:38.413099)---Getting Yahoo market data for BYND
+16-Jan-2021 (17:25:38.420709)---Yahoo market data for BYND already exist shows average 3.0114061962475254 % drop
+16-Jan-2021 (17:25:38.424692)---Getting Yahoo market data for SEDG
+16-Jan-2021 (17:25:38.433029)---Yahoo market data for SEDG already exist shows average 3.148417553437745 % drop
+16-Jan-2021 (17:25:38.435394)---Getting Yahoo market data for LTHM
+16-Jan-2021 (17:25:38.437403)---Yahoo market data for LTHM already exist shows average 3.4470081118270515 % drop
+16-Jan-2021 (17:25:38.438784)---Getting Yahoo market data for SQ
+16-Jan-2021 (17:25:38.439306)---Yahoo market data for SQ already exist shows average 2.704412215860051 % drop
+16-Jan-2021 (17:25:38.439802)---Getting Yahoo market data for TTWO
+16-Jan-2021 (17:25:38.440352)---Yahoo market data for TTWO already exist shows average 1.6344628980329425 % drop
+16-Jan-2021 (17:25:38.441410)---Getting Yahoo market data for OTRK
+16-Jan-2021 (17:25:38.442518)---Yahoo market data for OTRK already exist shows average 4.218634778578903 % drop
+16-Jan-2021 (17:25:38.443412)---Getting Yahoo market data for HUM
+16-Jan-2021 (17:25:38.443900)---Yahoo market data for HUM already exist shows average 1.7579989298586436 % drop
+16-Jan-2021 (17:25:38.444465)---Getting Yahoo market data for AAPL
+16-Jan-2021 (17:25:38.444949)---Yahoo market data for AAPL already exist shows average 1.4284538359930694 % drop
+16-Jan-2021 (17:25:38.445411)---Getting Yahoo market data for ZG
+16-Jan-2021 (17:25:38.445879)---Yahoo market data for ZG already exist shows average 2.6455700275497946 % drop
+16-Jan-2021 (17:25:38.446354)---Getting Yahoo market data for MSFT
+16-Jan-2021 (17:25:38.446831)---Yahoo market data for MSFT already exist shows average 1.357874155038504 % drop
+16-Jan-2021 (17:25:38.447288)---Getting Yahoo market data for NVDA
+16-Jan-2021 (17:25:38.447748)---Yahoo market data for NVDA already exist shows average 1.9927272844254353 % drop
+16-Jan-2021 (17:25:38.448209)---Getting Yahoo market data for BEP
+16-Jan-2021 (17:25:38.448744)---Yahoo market data for BEP already exist shows average 1.7702667254556268 % drop
+16-Jan-2021 (17:25:38.449245)---Getting Yahoo market data for GOOGL
+16-Jan-2021 (17:25:38.449709)---Yahoo market data for GOOGL already exist shows average 1.2828004754438798 % drop
+16-Jan-2021 (17:25:38.450210)---Getting Yahoo market data for ETSY
+16-Jan-2021 (17:25:38.450705)---Yahoo market data for ETSY already exist shows average 2.687263868599716 % drop
+16-Jan-2021 (17:25:38.451180)---Getting Yahoo market data for IVAC
+16-Jan-2021 (17:25:38.451638)---Yahoo market data for IVAC already exist shows average 2.815338819557766 % drop
+16-Jan-2021 (17:25:38.452099)---Getting Yahoo market data for PTON
+16-Jan-2021 (17:25:38.452661)---Yahoo market data for PTON already exist shows average 3.112702513029877 % drop
+16-Jan-2021 (17:25:38.453105)---Getting Yahoo market data for ADI
+16-Jan-2021 (17:25:38.453561)---Yahoo market data for ADI already exist shows average 1.5076442603600653 % drop
+16-Jan-2021 (17:25:38.454018)---Getting Yahoo market data for CRM
+16-Jan-2021 (17:25:38.454459)---Yahoo market data for CRM already exist shows average 1.7676652179365107 % drop
+16-Jan-2021 (17:25:38.454912)---Getting Yahoo market data for CHWY
+16-Jan-2021 (17:25:38.455371)---Yahoo market data for CHWY already exist shows average 2.8737376208232885 % drop
+16-Jan-2021 (17:25:38.456288)---Getting Yahoo market data for AZN
+16-Jan-2021 (17:25:38.456780)---Yahoo market data for AZN already exist shows average 1.14118544572701 % drop
+16-Jan-2021 (17:25:38.457232)---Getting Yahoo market data for NICE
+16-Jan-2021 (17:25:38.457674)---Yahoo market data for NICE already exist shows average 1.1767815579971954 % drop
+16-Jan-2021 (17:25:38.458114)---Getting Yahoo market data for CSCO
+16-Jan-2021 (17:25:38.458564)---Yahoo market data for CSCO already exist shows average 1.2600916433685043 % drop
+16-Jan-2021 (17:25:38.459025)---Getting Yahoo market data for PANW
+16-Jan-2021 (17:25:38.459523)---Yahoo market data for PANW already exist shows average 1.42575769134158 % drop
+16-Jan-2021 (17:25:38.459992)---Getting Yahoo market data for NET
+16-Jan-2021 (17:25:38.460436)---Yahoo market data for NET already exist shows average 2.852122170526456 % drop
+16-Jan-2021 (17:25:38.460870)---Getting Yahoo market data for CRWD
+16-Jan-2021 (17:25:38.461297)---Yahoo market data for CRWD already exist shows average 2.7044342830653707 % drop
+16-Jan-2021 (17:25:38.461733)---Getting Yahoo market data for CHKP
+16-Jan-2021 (17:25:38.462165)---Yahoo market data for CHKP already exist shows average 1.3206793196844606 % drop
+16-Jan-2021 (17:25:38.462598)---Getting Yahoo market data for CVLT
+16-Jan-2021 (17:25:38.463050)---Yahoo market data for CVLT already exist shows average 1.874573773744088 % drop
+16-Jan-2021 (17:25:38.463470)---Getting Yahoo market data for RPD
+16-Jan-2021 (17:25:38.463883)---Yahoo market data for RPD already exist shows average 2.189268217529833 % drop
+16-Jan-2021 (17:25:38.464299)---Getting Yahoo market data for TENB
+16-Jan-2021 (17:25:38.464634)---Yahoo market data for TENB already exist shows average 2.2903188837384114 % drop
+16-Jan-2021 (17:25:38.464983)---Getting Yahoo market data for ADBE
+16-Jan-2021 (17:25:38.465337)---Yahoo market data for ADBE already exist shows average 1.6769929589078862 % drop
+16-Jan-2021 (17:25:38.465676)---Getting Yahoo market data for SHOP
+16-Jan-2021 (17:25:38.466025)---Yahoo market data for SHOP already exist shows average 2.6733419314860813 % drop
+16-Jan-2021 (17:25:38.466362)---Getting Yahoo market data for NIO
+16-Jan-2021 (17:25:38.466702)---Yahoo market data for NIO already exist shows average 4.1292518505050175 % drop
+16-Jan-2021 (17:25:38.467040)---Getting Yahoo market data for TSLA
+16-Jan-2021 (17:25:38.467381)---Yahoo market data for TSLA already exist shows average 2.97538096325986 % drop
+16-Jan-2021 (17:25:38.467896)---Getting ranks for :FB,BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA
+16-Jan-2021 (17:25:40.005661)---Getting TipRank Rating for : FB
+16-Jan-2021 (17:25:40.007040)---Existing  rating from today found: 7
+16-Jan-2021 (17:25:40.008312)---Getting TipRank Rating for : BYND
+16-Jan-2021 (17:25:40.009456)---Existing  rating from today found: 7
+16-Jan-2021 (17:25:40.010388)---Getting TipRank Rating for : SEDG
+16-Jan-2021 (17:25:40.011702)---Existing  rating from today found: 5
+16-Jan-2021 (17:25:40.012756)---Getting TipRank Rating for : LTHM
+16-Jan-2021 (17:25:40.015175)---Existing  rating from today found: 8
+16-Jan-2021 (17:25:40.015999)---Getting TipRank Rating for : SQ
+16-Jan-2021 (17:25:40.016457)---Existing  rating from today found: 10
+16-Jan-2021 (17:25:40.017221)---Getting TipRank Rating for : TTWO
+16-Jan-2021 (17:25:40.018048)---Existing  rating from today found: 6
+16-Jan-2021 (17:25:40.018700)---Getting TipRank Rating for : OTRK
+16-Jan-2021 (17:25:40.019391)---Existing  rating from today found: 5
+16-Jan-2021 (17:25:40.019990)---Getting TipRank Rating for : HUM
+16-Jan-2021 (17:25:40.020526)---Existing  rating from today found: 5
+16-Jan-2021 (17:25:40.020982)---Getting TipRank Rating for : AAPL
+16-Jan-2021 (17:25:40.021381)---Existing  rating from today found: 9
+16-Jan-2021 (17:25:40.021865)---Getting TipRank Rating for : ZG
+16-Jan-2021 (17:25:40.022304)---Existing  rating from today found: 4
+16-Jan-2021 (17:25:40.022776)---Getting TipRank Rating for : MSFT
+16-Jan-2021 (17:25:40.023334)---Existing  rating from today found: 9
+16-Jan-2021 (17:25:40.023898)---Getting TipRank Rating for : NVDA
+16-Jan-2021 (17:25:40.024394)---Existing  rating from today found: 7
+16-Jan-2021 (17:25:40.024908)---Getting TipRank Rating for : BEP
+16-Jan-2021 (17:25:40.029869)---Existing  rating from today found: 9
+16-Jan-2021 (17:25:40.030299)---Getting TipRank Rating for : GOOGL
+16-Jan-2021 (17:25:40.030590)---Existing  rating from today found: 6
+16-Jan-2021 (17:25:40.030886)---Getting TipRank Rating for : ETSY
+16-Jan-2021 (17:25:40.031181)---Existing  rating from today found: 8
+16-Jan-2021 (17:25:40.031471)---Getting TipRank Rating for : IVAC
+16-Jan-2021 (17:25:40.031756)---Existing  rating from today found: 5
+16-Jan-2021 (17:25:40.032085)---Getting TipRank Rating for : PTON
+16-Jan-2021 (17:25:40.032393)---Existing  rating from today found: 10
+16-Jan-2021 (17:25:40.032720)---Getting TipRank Rating for : ADI
+16-Jan-2021 (17:25:40.033026)---Existing  rating from today found: 9
+16-Jan-2021 (17:25:40.033338)---Getting TipRank Rating for : CRM
+16-Jan-2021 (17:25:40.033619)---Existing  rating from today found: 7
+16-Jan-2021 (17:25:40.033899)---Getting TipRank Rating for : CHWY
+16-Jan-2021 (17:25:40.034175)---Existing  rating from today found: 6
+16-Jan-2021 (17:25:40.034475)---Getting TipRank Rating for : AZN
+16-Jan-2021 (17:25:40.034749)---Existing  rating from today found: 7
+16-Jan-2021 (17:25:40.035028)---Getting TipRank Rating for : NICE
+16-Jan-2021 (17:25:40.035305)---Existing  rating from today found: 8
+16-Jan-2021 (17:25:40.035581)---Getting TipRank Rating for : CSCO
+16-Jan-2021 (17:25:40.035863)---Existing  rating from today found: 10
+16-Jan-2021 (17:25:40.036231)---Getting TipRank Rating for : PANW
+16-Jan-2021 (17:25:40.036581)---Existing  rating from today found: 5
+16-Jan-2021 (17:25:40.036872)---Getting TipRank Rating for : NET
+16-Jan-2021 (17:25:40.037161)---Existing  rating from today found: 9
+16-Jan-2021 (17:25:40.037452)---Getting TipRank Rating for : CRWD
+16-Jan-2021 (17:25:40.037745)---Existing  rating from today found: 10
+16-Jan-2021 (17:25:40.038064)---Getting TipRank Rating for : CHKP
+16-Jan-2021 (17:25:40.038421)---Existing  rating from today found: 6
+16-Jan-2021 (17:25:40.038739)---Getting TipRank Rating for : CVLT
+16-Jan-2021 (17:25:40.039038)---Existing  rating from today found: 8
+16-Jan-2021 (17:25:40.039363)---Getting TipRank Rating for : RPD
+16-Jan-2021 (17:25:40.039656)---Existing  rating from today found: 7
+16-Jan-2021 (17:25:40.039956)---Getting TipRank Rating for : TENB
+16-Jan-2021 (17:25:40.040250)---Existing  rating from today found: 7
+16-Jan-2021 (17:25:40.040637)---Getting TipRank Rating for : ADBE
+16-Jan-2021 (17:25:40.041025)---Existing  rating from today found: 8
+16-Jan-2021 (17:25:40.041392)---Getting TipRank Rating for : SHOP
+16-Jan-2021 (17:25:40.041723)---Existing  rating from today found: 7
+16-Jan-2021 (17:25:40.042019)---Getting TipRank Rating for : NIO
+16-Jan-2021 (17:25:40.042317)---Existing  rating from today found: 10
+16-Jan-2021 (17:25:40.042644)---Getting TipRank Rating for : TSLA
+16-Jan-2021 (17:25:40.043025)---Existing  rating from today found: 7
+16-Jan-2021 (17:25:40.081877)---34 Candidates evaluated and started to track
+16-Jan-2021 (17:25:40.083328)---Updating target prices for Candidates
+16-Jan-2021 (17:25:40.084199)---Updating target price for FB
+16-Jan-2021 (17:25:40.085021)---Target price for FB updated to 241.72464333546947 based on Close price
+16-Jan-2021 (17:25:40.085811)---Updating target price for BYND
+16-Jan-2021 (17:25:40.086609)---Target price for BYND updated to 138.17964959220615 based on Close price
+16-Jan-2021 (17:25:40.087454)---Updating target price for SEDG
+16-Jan-2021 (17:25:40.088208)---Target price for SEDG updated to 324.84020752576976 based on Close price
+16-Jan-2021 (17:25:40.089045)---Updating target price for LTHM
+16-Jan-2021 (17:25:40.092686)---Target price for LTHM updated to 20.942343940544713 based on Close price
+16-Jan-2021 (17:25:40.093258)---Updating target price for SQ
+16-Jan-2021 (17:25:40.093750)---Target price for SQ updated to 226.49439880269938 based on Close price
+16-Jan-2021 (17:25:40.094233)---Updating target price for TTWO
+16-Jan-2021 (17:25:40.094727)---Target price for TTWO updated to 192.27511537321502 based on Close price
+16-Jan-2021 (17:25:40.095212)---Updating target price for OTRK
+16-Jan-2021 (17:25:40.095703)---Target price for OTRK updated to 59.690946805989626 based on Close price
+16-Jan-2021 (17:25:40.096189)---Updating target price for HUM
+16-Jan-2021 (17:25:40.096678)---Target price for HUM updated to 397.8801043340725 based on Close price
+16-Jan-2021 (17:25:40.097167)---Updating target price for AAPL
+16-Jan-2021 (17:25:40.097584)---Target price for AAPL updated to 127.06858016002133 based on Close price
+16-Jan-2021 (17:25:40.097997)---Updating target price for ZG
+16-Jan-2021 (17:25:40.098409)---Target price for ZG updated to 146.8494221704439 based on Close price
+16-Jan-2021 (17:25:40.098823)---Updating target price for MSFT
+16-Jan-2021 (17:25:40.099244)---Target price for MSFT updated to 210.127456474937 based on Close price
+16-Jan-2021 (17:25:40.099802)---Updating target price for NVDA
+16-Jan-2021 (17:25:40.100224)---Target price for NVDA updated to 517.4882006655052 based on Close price
+16-Jan-2021 (17:25:40.100626)---Updating target price for BEP
+16-Jan-2021 (17:25:40.101023)---Target price for BEP updated to 44.89098810646678 based on Close price
+16-Jan-2021 (17:25:40.101423)---Updating target price for GOOGL
+16-Jan-2021 (17:25:40.101827)---Target price for GOOGL updated to 1708.7157500104468 based on Close price
+16-Jan-2021 (17:25:40.102229)---Updating target price for ETSY
+16-Jan-2021 (17:25:40.102633)---Target price for ETSY updated to 205.83589946513789 based on Close price
+16-Jan-2021 (17:25:40.103039)---Updating target price for IVAC
+16-Jan-2021 (17:25:40.103452)---Target price for IVAC updated to 7.191664927352726 based on Close price
+16-Jan-2021 (17:25:40.103858)---Updating target price for PTON
+16-Jan-2021 (17:25:40.104263)---Target price for PTON updated to 160.10625909721813 based on Close price
+16-Jan-2021 (17:25:40.104670)---Updating target price for ADI
+16-Jan-2021 (17:25:40.105076)---Target price for ADI updated to 157.05591046242984 based on Close price
+16-Jan-2021 (17:25:40.105507)---Updating target price for CRM
+16-Jan-2021 (17:25:40.105911)---Target price for CRM updated to 211.78891379012887 based on Close price
+16-Jan-2021 (17:25:40.106316)---Updating target price for CHWY
+16-Jan-2021 (17:25:40.106724)---Target price for CHWY updated to 111.33583456525027 based on Close price
+16-Jan-2021 (17:25:40.107131)---Updating target price for AZN
+16-Jan-2021 (17:25:40.107548)---Target price for AZN updated to 50.704685984886616 based on Close price
+16-Jan-2021 (17:25:40.107910)---Updating target price for NICE
+16-Jan-2021 (17:25:40.108271)---Target price for NICE updated to 270.2815024388777 based on Close price
+16-Jan-2021 (17:25:40.108632)---Updating target price for CSCO
+16-Jan-2021 (17:25:40.108947)---Target price for CSCO updated to 44.58106862301912 based on Close price
+16-Jan-2021 (17:25:40.109246)---Updating target price for PANW
+16-Jan-2021 (17:25:40.109557)---Target price for PANW updated to 357.98221836812394 based on Close price
+16-Jan-2021 (17:25:40.109945)---Updating target price for NET
+16-Jan-2021 (17:25:40.110311)---Target price for NET updated to 78.21375644050916 based on Close price
+16-Jan-2021 (17:25:40.110711)---Updating target price for CRWD
+16-Jan-2021 (17:25:40.111096)---Target price for CRWD updated to 219.5182553705479 based on Close price
+16-Jan-2021 (17:25:40.111419)---Updating target price for CHKP
+16-Jan-2021 (17:25:40.111729)---Target price for CHKP updated to 126.93121019108987 based on Close price
+16-Jan-2021 (17:25:40.112037)---Updating target price for CVLT
+16-Jan-2021 (17:25:40.112371)---Target price for CVLT updated to 56.157181429286254 based on Close price
+16-Jan-2021 (17:25:40.112686)---Updating target price for RPD
+16-Jan-2021 (17:25:40.113053)---Target price for RPD updated to 86.50381118841662 based on Close price
+16-Jan-2021 (17:25:40.113423)---Updating target price for TENB
+16-Jan-2021 (17:25:40.113835)---Target price for TENB updated to 53.114982654799796 based on Close price
+16-Jan-2021 (17:25:40.114208)---Updating target price for ADBE
+16-Jan-2021 (17:25:40.114571)---Target price for ADBE updated to 455.5009947192674 based on Close price
+16-Jan-2021 (17:25:40.114933)---Updating target price for SHOP
+16-Jan-2021 (17:25:40.115285)---Target price for SHOP updated to 1147.3450413064832 based on Close price
+16-Jan-2021 (17:25:40.115652)---Updating target price for NIO
+16-Jan-2021 (17:25:40.116026)---Target price for NIO updated to 58.35652439859759 based on Close price
+16-Jan-2021 (17:25:40.116334)---Updating target price for TSLA
+16-Jan-2021 (17:25:40.116646)---Target price for TSLA updated to 819.8580308604542 based on Close price
+16-Jan-2021 (17:25:40.117050)---Connected to IBKR and READY
+16-Jan-2021 (17:25:40.207897)---UI resumed.
+16-Jan-2021 (17:25:49.286601)---UI paused- for restart
+16-Jan-2021 (17:25:49.287150)---Configuration changed - restarting everything
+16-Jan-2021 (17:25:49.342129)---Begin connect and prepare
+16-Jan-2021 (17:25:49.342549)---Restarting connection to IBKR
+16-Jan-2021 (17:25:49.343012)---Waiting for connection...attempt:0
+16-Jan-2021 (17:25:50.311338)---Successfully connected to API
+16-Jan-2021 (17:25:50.313021)---Requesting Daily PnL
+16-Jan-2021 (17:25:50.314290)---PnL not yet received
+16-Jan-2021 (17:25:50.316072)---Starting to track Excess liquidity
+16-Jan-2021 (17:25:50.317257)---Updating open Positions:
+16-Jan-2021 (17:25:51.319853)---Started tracking MSFT position PnL
+16-Jan-2021 (17:25:51.322143)---Started tracking AAPL position PnL
+16-Jan-2021 (17:25:51.324196)---Started tracking AZN position PnL
+16-Jan-2021 (17:25:51.326657)---Started tracking SQ position PnL
+16-Jan-2021 (17:25:51.328541)---Started tracking BEP position PnL
+16-Jan-2021 (17:25:51.330749)---Started tracking CRWD position PnL
+16-Jan-2021 (17:25:52.324892)---Waiting to receive Value for all positions 
+16-Jan-2021 (17:25:53.329483)---Waiting to receive Value for all positions 
+16-Jan-2021 (17:25:53.331423)---Requesting History for MSFT position for last 1 hour BID price
+16-Jan-2021 (17:25:53.332779)---Requesting History for AAPL position for last 1 hour BID price
+16-Jan-2021 (17:25:53.333527)---Requesting History for AZN position for last 1 hour BID price
+16-Jan-2021 (17:25:53.334232)---Requesting History for SQ position for last 1 hour BID price
+16-Jan-2021 (17:25:53.334929)---Requesting History for BEP position for last 1 hour BID price
+16-Jan-2021 (17:25:53.335648)---Requesting History for CRWD position for last 1 hour BID price
+16-Jan-2021 (17:25:54.333393)---Waiting to receive Hisory for all positions 
+16-Jan-2021 (17:25:54.335136)---6 open positions completely updated
+16-Jan-2021 (17:25:54.336478)---Updating all open orders
+16-Jan-2021 (17:25:55.335694)---0 open orders found 
+16-Jan-2021 (17:25:55.338514)---Starting to track FB,BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA Candidates
+16-Jan-2021 (17:25:55.340837)---starting to track: 1 of 34 FB traking with Id:26378
+16-Jan-2021 (17:25:55.342505)---starting to track: 2 of 34 BYND traking with Id:26379
+16-Jan-2021 (17:25:55.345349)---starting to track: 3 of 34 SEDG traking with Id:26380
+16-Jan-2021 (17:25:55.348740)---starting to track: 4 of 34 LTHM traking with Id:26381
+16-Jan-2021 (17:25:55.356762)---starting to track: 5 of 34 SQ traking with Id:26382
+16-Jan-2021 (17:25:55.362341)---starting to track: 6 of 34 TTWO traking with Id:26383
+16-Jan-2021 (17:25:55.366732)---starting to track: 7 of 34 OTRK traking with Id:26384
+16-Jan-2021 (17:25:55.368950)---starting to track: 8 of 34 HUM traking with Id:26385
+16-Jan-2021 (17:25:55.370939)---starting to track: 9 of 34 AAPL traking with Id:26386
+16-Jan-2021 (17:25:55.372390)---starting to track: 10 of 34 ZG traking with Id:26387
+16-Jan-2021 (17:25:55.378203)---starting to track: 11 of 34 MSFT traking with Id:26388
+16-Jan-2021 (17:25:55.380982)---starting to track: 12 of 34 NVDA traking with Id:26389
+16-Jan-2021 (17:25:55.382797)---starting to track: 13 of 34 BEP traking with Id:26390
+16-Jan-2021 (17:25:55.384539)---starting to track: 14 of 34 GOOGL traking with Id:26391
+16-Jan-2021 (17:25:55.386811)---starting to track: 15 of 34 ETSY traking with Id:26392
+16-Jan-2021 (17:25:55.387825)---starting to track: 16 of 34 IVAC traking with Id:26393
+16-Jan-2021 (17:25:55.388695)---starting to track: 17 of 34 PTON traking with Id:26394
+16-Jan-2021 (17:25:55.389533)---starting to track: 18 of 34 ADI traking with Id:26395
+16-Jan-2021 (17:25:55.390686)---starting to track: 19 of 34 CRM traking with Id:26396
+16-Jan-2021 (17:25:55.393991)---starting to track: 20 of 34 CHWY traking with Id:26397
+16-Jan-2021 (17:25:55.397156)---starting to track: 21 of 34 AZN traking with Id:26398
+16-Jan-2021 (17:25:55.398718)---starting to track: 22 of 34 NICE traking with Id:26399
+16-Jan-2021 (17:25:55.400012)---starting to track: 23 of 34 CSCO traking with Id:26400
+16-Jan-2021 (17:25:55.401052)---starting to track: 24 of 34 PANW traking with Id:26401
+16-Jan-2021 (17:25:55.402027)---starting to track: 25 of 34 NET traking with Id:26402
+16-Jan-2021 (17:25:55.402980)---starting to track: 26 of 34 CRWD traking with Id:26403
+16-Jan-2021 (17:25:55.403766)---starting to track: 27 of 34 CHKP traking with Id:26404
+16-Jan-2021 (17:25:55.404785)---starting to track: 28 of 34 CVLT traking with Id:26405
+16-Jan-2021 (17:25:55.407977)---starting to track: 29 of 34 RPD traking with Id:26406
+16-Jan-2021 (17:25:55.408761)---starting to track: 30 of 34 TENB traking with Id:26407
+16-Jan-2021 (17:25:55.409452)---starting to track: 31 of 34 ADBE traking with Id:26408
+16-Jan-2021 (17:25:55.410451)---starting to track: 32 of 34 SHOP traking with Id:26409
+16-Jan-2021 (17:25:55.414316)---starting to track: 33 of 34 NIO traking with Id:26410
+16-Jan-2021 (17:25:55.415646)---starting to track: 34 of 34 TSLA traking with Id:26411
+16-Jan-2021 (17:25:56.384566)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:25:57.389185)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:25:58.393129)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:25:59.396340)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:26:00.400275)---Waiting for last requested candidate Close price 
+16-Jan-2021 (17:26:00.416680)---Getting Yahoo market data for FB
+16-Jan-2021 (17:26:00.417856)---Yahoo market data for FB already exist shows average 1.5939409967963405 % drop
+16-Jan-2021 (17:26:00.418455)---Getting Yahoo market data for BYND
+16-Jan-2021 (17:26:00.419008)---Yahoo market data for BYND already exist shows average 3.0114061962475254 % drop
+16-Jan-2021 (17:26:00.419548)---Getting Yahoo market data for SEDG
+16-Jan-2021 (17:26:00.420086)---Yahoo market data for SEDG already exist shows average 3.148417553437745 % drop
+16-Jan-2021 (17:26:00.420631)---Getting Yahoo market data for LTHM
+16-Jan-2021 (17:26:00.421210)---Yahoo market data for LTHM already exist shows average 3.4470081118270515 % drop
+16-Jan-2021 (17:26:00.421796)---Getting Yahoo market data for SQ
+16-Jan-2021 (17:26:00.422643)---Yahoo market data for SQ already exist shows average 2.704412215860051 % drop
+16-Jan-2021 (17:26:00.423371)---Getting Yahoo market data for TTWO
+16-Jan-2021 (17:26:00.423993)---Yahoo market data for TTWO already exist shows average 1.6344628980329425 % drop
+16-Jan-2021 (17:26:00.424492)---Getting Yahoo market data for OTRK
+16-Jan-2021 (17:26:00.424972)---Yahoo market data for OTRK already exist shows average 4.218634778578903 % drop
+16-Jan-2021 (17:26:00.425533)---Getting Yahoo market data for HUM
+16-Jan-2021 (17:26:00.426073)---Yahoo market data for HUM already exist shows average 1.7579989298586436 % drop
+16-Jan-2021 (17:26:00.426584)---Getting Yahoo market data for AAPL
+16-Jan-2021 (17:26:00.427137)---Yahoo market data for AAPL already exist shows average 1.4284538359930694 % drop
+16-Jan-2021 (17:26:00.427796)---Getting Yahoo market data for ZG
+16-Jan-2021 (17:26:00.428703)---Yahoo market data for ZG already exist shows average 2.6455700275497946 % drop
+16-Jan-2021 (17:26:00.429438)---Getting Yahoo market data for MSFT
+16-Jan-2021 (17:26:00.430092)---Yahoo market data for MSFT already exist shows average 1.357874155038504 % drop
+16-Jan-2021 (17:26:00.430764)---Getting Yahoo market data for NVDA
+16-Jan-2021 (17:26:00.431333)---Yahoo market data for NVDA already exist shows average 1.9927272844254353 % drop
+16-Jan-2021 (17:26:00.431914)---Getting Yahoo market data for BEP
+16-Jan-2021 (17:26:00.432525)---Yahoo market data for BEP already exist shows average 1.7702667254556268 % drop
+16-Jan-2021 (17:26:00.433046)---Getting Yahoo market data for GOOGL
+16-Jan-2021 (17:26:00.433699)---Yahoo market data for GOOGL already exist shows average 1.2828004754438798 % drop
+16-Jan-2021 (17:26:00.434271)---Getting Yahoo market data for ETSY
+16-Jan-2021 (17:26:00.434872)---Yahoo market data for ETSY already exist shows average 2.687263868599716 % drop
+16-Jan-2021 (17:26:00.435397)---Getting Yahoo market data for IVAC
+16-Jan-2021 (17:26:00.435806)---Yahoo market data for IVAC already exist shows average 2.815338819557766 % drop
+16-Jan-2021 (17:26:00.436282)---Getting Yahoo market data for PTON
+16-Jan-2021 (17:26:00.436869)---Yahoo market data for PTON already exist shows average 3.112702513029877 % drop
+16-Jan-2021 (17:26:00.437428)---Getting Yahoo market data for ADI
+16-Jan-2021 (17:26:00.437945)---Yahoo market data for ADI already exist shows average 1.5076442603600653 % drop
+16-Jan-2021 (17:26:00.438985)---Getting Yahoo market data for CRM
+16-Jan-2021 (17:26:00.439666)---Yahoo market data for CRM already exist shows average 1.7676652179365107 % drop
+16-Jan-2021 (17:26:00.440215)---Getting Yahoo market data for CHWY
+16-Jan-2021 (17:26:00.440617)---Yahoo market data for CHWY already exist shows average 2.8737376208232885 % drop
+16-Jan-2021 (17:26:00.441005)---Getting Yahoo market data for AZN
+16-Jan-2021 (17:26:00.441474)---Yahoo market data for AZN already exist shows average 1.14118544572701 % drop
+16-Jan-2021 (17:26:00.441869)---Getting Yahoo market data for NICE
+16-Jan-2021 (17:26:00.442263)---Yahoo market data for NICE already exist shows average 1.1767815579971954 % drop
+16-Jan-2021 (17:26:00.442630)---Getting Yahoo market data for CSCO
+16-Jan-2021 (17:26:00.442999)---Yahoo market data for CSCO already exist shows average 1.2600916433685043 % drop
+16-Jan-2021 (17:26:00.443360)---Getting Yahoo market data for PANW
+16-Jan-2021 (17:26:00.443790)---Yahoo market data for PANW already exist shows average 1.42575769134158 % drop
+16-Jan-2021 (17:26:00.444521)---Getting Yahoo market data for NET
+16-Jan-2021 (17:26:00.444910)---Yahoo market data for NET already exist shows average 2.852122170526456 % drop
+16-Jan-2021 (17:26:00.445283)---Getting Yahoo market data for CRWD
+16-Jan-2021 (17:26:00.445657)---Yahoo market data for CRWD already exist shows average 2.7044342830653707 % drop
+16-Jan-2021 (17:26:00.446032)---Getting Yahoo market data for CHKP
+16-Jan-2021 (17:26:00.446408)---Yahoo market data for CHKP already exist shows average 1.3206793196844606 % drop
+16-Jan-2021 (17:26:00.446767)---Getting Yahoo market data for CVLT
+16-Jan-2021 (17:26:00.447124)---Yahoo market data for CVLT already exist shows average 1.874573773744088 % drop
+16-Jan-2021 (17:26:00.447484)---Getting Yahoo market data for RPD
+16-Jan-2021 (17:26:00.447855)---Yahoo market data for RPD already exist shows average 2.189268217529833 % drop
+16-Jan-2021 (17:26:00.448221)---Getting Yahoo market data for TENB
+16-Jan-2021 (17:26:00.448661)---Yahoo market data for TENB already exist shows average 2.2903188837384114 % drop
+16-Jan-2021 (17:26:00.449085)---Getting Yahoo market data for ADBE
+16-Jan-2021 (17:26:00.449455)---Yahoo market data for ADBE already exist shows average 1.6769929589078862 % drop
+16-Jan-2021 (17:26:00.449825)---Getting Yahoo market data for SHOP
+16-Jan-2021 (17:26:00.450198)---Yahoo market data for SHOP already exist shows average 2.6733419314860813 % drop
+16-Jan-2021 (17:26:00.450587)---Getting Yahoo market data for NIO
+16-Jan-2021 (17:26:00.451297)---Yahoo market data for NIO already exist shows average 4.1292518505050175 % drop
+16-Jan-2021 (17:26:00.451792)---Getting Yahoo market data for TSLA
+16-Jan-2021 (17:26:00.452227)---Yahoo market data for TSLA already exist shows average 2.97538096325986 % drop
+16-Jan-2021 (17:26:00.452806)---Getting ranks for :FB,BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA
+16-Jan-2021 (17:26:01.852469)---Getting TipRank Rating for : FB
+16-Jan-2021 (17:26:01.853785)---Existing  rating from today found: 7
+16-Jan-2021 (17:26:01.856692)---Getting TipRank Rating for : BYND
+16-Jan-2021 (17:26:01.857406)---Existing  rating from today found: 7
+16-Jan-2021 (17:26:01.860633)---Getting TipRank Rating for : SEDG
+16-Jan-2021 (17:26:01.862138)---Existing  rating from today found: 5
+16-Jan-2021 (17:26:01.864364)---Getting TipRank Rating for : LTHM
+16-Jan-2021 (17:26:01.864865)---Existing  rating from today found: 8
+16-Jan-2021 (17:26:01.865530)---Getting TipRank Rating for : SQ
+16-Jan-2021 (17:26:01.866357)---Existing  rating from today found: 10
+16-Jan-2021 (17:26:01.867123)---Getting TipRank Rating for : TTWO
+16-Jan-2021 (17:26:01.867873)---Existing  rating from today found: 6
+16-Jan-2021 (17:26:01.868484)---Getting TipRank Rating for : OTRK
+16-Jan-2021 (17:26:01.872337)---Existing  rating from today found: 5
+16-Jan-2021 (17:26:01.873029)---Getting TipRank Rating for : HUM
+16-Jan-2021 (17:26:01.873634)---Existing  rating from today found: 5
+16-Jan-2021 (17:26:01.874198)---Getting TipRank Rating for : AAPL
+16-Jan-2021 (17:26:01.874800)---Existing  rating from today found: 9
+16-Jan-2021 (17:26:01.875236)---Getting TipRank Rating for : ZG
+16-Jan-2021 (17:26:01.875569)---Existing  rating from today found: 4
+16-Jan-2021 (17:26:01.875873)---Getting TipRank Rating for : MSFT
+16-Jan-2021 (17:26:01.876170)---Existing  rating from today found: 9
+16-Jan-2021 (17:26:01.876469)---Getting TipRank Rating for : NVDA
+16-Jan-2021 (17:26:01.876766)---Existing  rating from today found: 7
+16-Jan-2021 (17:26:01.877053)---Getting TipRank Rating for : BEP
+16-Jan-2021 (17:26:01.877351)---Existing  rating from today found: 9
+16-Jan-2021 (17:26:01.877713)---Getting TipRank Rating for : GOOGL
+16-Jan-2021 (17:26:01.878066)---Existing  rating from today found: 6
+16-Jan-2021 (17:26:01.878383)---Getting TipRank Rating for : ETSY
+16-Jan-2021 (17:26:01.878698)---Existing  rating from today found: 8
+16-Jan-2021 (17:26:01.879007)---Getting TipRank Rating for : IVAC
+16-Jan-2021 (17:26:01.879314)---Existing  rating from today found: 5
+16-Jan-2021 (17:26:01.879621)---Getting TipRank Rating for : PTON
+16-Jan-2021 (17:26:01.879934)---Existing  rating from today found: 10
+16-Jan-2021 (17:26:01.880243)---Getting TipRank Rating for : ADI
+16-Jan-2021 (17:26:01.880572)---Existing  rating from today found: 9
+16-Jan-2021 (17:26:01.880876)---Getting TipRank Rating for : CRM
+16-Jan-2021 (17:26:01.881180)---Existing  rating from today found: 7
+16-Jan-2021 (17:26:01.881489)---Getting TipRank Rating for : CHWY
+16-Jan-2021 (17:26:01.881825)---Existing  rating from today found: 6
+16-Jan-2021 (17:26:01.882145)---Getting TipRank Rating for : AZN
+16-Jan-2021 (17:26:01.882498)---Existing  rating from today found: 7
+16-Jan-2021 (17:26:01.882908)---Getting TipRank Rating for : NICE
+16-Jan-2021 (17:26:01.883243)---Existing  rating from today found: 8
+16-Jan-2021 (17:26:01.883557)---Getting TipRank Rating for : CSCO
+16-Jan-2021 (17:26:01.883866)---Existing  rating from today found: 10
+16-Jan-2021 (17:26:01.884175)---Getting TipRank Rating for : PANW
+16-Jan-2021 (17:26:01.884549)---Existing  rating from today found: 5
+16-Jan-2021 (17:26:01.884928)---Getting TipRank Rating for : NET
+16-Jan-2021 (17:26:01.885274)---Existing  rating from today found: 9
+16-Jan-2021 (17:26:01.885600)---Getting TipRank Rating for : CRWD
+16-Jan-2021 (17:26:01.885923)---Existing  rating from today found: 10
+16-Jan-2021 (17:26:01.886302)---Getting TipRank Rating for : CHKP
+16-Jan-2021 (17:26:01.886763)---Existing  rating from today found: 6
+16-Jan-2021 (17:26:01.887151)---Getting TipRank Rating for : CVLT
+16-Jan-2021 (17:26:01.887531)---Existing  rating from today found: 8
+16-Jan-2021 (17:26:01.887892)---Getting TipRank Rating for : RPD
+16-Jan-2021 (17:26:01.888361)---Existing  rating from today found: 7
+16-Jan-2021 (17:26:01.888766)---Getting TipRank Rating for : TENB
+16-Jan-2021 (17:26:01.889289)---Existing  rating from today found: 7
+16-Jan-2021 (17:26:01.889676)---Getting TipRank Rating for : ADBE
+16-Jan-2021 (17:26:01.890009)---Existing  rating from today found: 8
+16-Jan-2021 (17:26:01.890372)---Getting TipRank Rating for : SHOP
+16-Jan-2021 (17:26:01.890763)---Existing  rating from today found: 7
+16-Jan-2021 (17:26:01.891152)---Getting TipRank Rating for : NIO
+16-Jan-2021 (17:26:01.891488)---Existing  rating from today found: 10
+16-Jan-2021 (17:26:01.891839)---Getting TipRank Rating for : TSLA
+16-Jan-2021 (17:26:01.892262)---Existing  rating from today found: 7
+16-Jan-2021 (17:26:01.927197)---34 Candidates evaluated and started to track
+16-Jan-2021 (17:26:01.928135)---Updating target prices for Candidates
+16-Jan-2021 (17:26:01.929568)---Updating target price for FB
+16-Jan-2021 (17:26:01.930250)---Target price for FB updated to 241.72464333546947 based on Close price
+16-Jan-2021 (17:26:01.930823)---Updating target price for BYND
+16-Jan-2021 (17:26:01.931326)---Target price for BYND updated to 138.17964959220615 based on Close price
+16-Jan-2021 (17:26:01.931831)---Updating target price for SEDG
+16-Jan-2021 (17:26:01.932330)---Target price for SEDG updated to 324.84020752576976 based on Close price
+16-Jan-2021 (17:26:01.932831)---Updating target price for LTHM
+16-Jan-2021 (17:26:01.933329)---Target price for LTHM updated to 20.942343940544713 based on Close price
+16-Jan-2021 (17:26:01.933825)---Updating target price for SQ
+16-Jan-2021 (17:26:01.934328)---Target price for SQ updated to 226.49439880269938 based on Close price
+16-Jan-2021 (17:26:01.934831)---Updating target price for TTWO
+16-Jan-2021 (17:26:01.935333)---Target price for TTWO updated to 192.27511537321502 based on Close price
+16-Jan-2021 (17:26:01.935831)---Updating target price for OTRK
+16-Jan-2021 (17:26:01.936400)---Target price for OTRK updated to 59.690946805989626 based on Close price
+16-Jan-2021 (17:26:01.936946)---Updating target price for HUM
+16-Jan-2021 (17:26:01.937460)---Target price for HUM updated to 397.8801043340725 based on Close price
+16-Jan-2021 (17:26:01.937922)---Updating target price for AAPL
+16-Jan-2021 (17:26:01.938272)---Target price for AAPL updated to 127.06858016002133 based on Close price
+16-Jan-2021 (17:26:01.938613)---Updating target price for ZG
+16-Jan-2021 (17:26:01.938958)---Target price for ZG updated to 146.8494221704439 based on Close price
+16-Jan-2021 (17:26:01.939296)---Updating target price for MSFT
+16-Jan-2021 (17:26:01.939642)---Target price for MSFT updated to 210.127456474937 based on Close price
+16-Jan-2021 (17:26:01.939995)---Updating target price for NVDA
+16-Jan-2021 (17:26:01.940354)---Target price for NVDA updated to 517.4882006655052 based on Close price
+16-Jan-2021 (17:26:01.940707)---Updating target price for BEP
+16-Jan-2021 (17:26:01.941053)---Target price for BEP updated to 44.89098810646678 based on Close price
+16-Jan-2021 (17:26:01.941397)---Updating target price for GOOGL
+16-Jan-2021 (17:26:01.941753)---Target price for GOOGL updated to 1708.7157500104468 based on Close price
+16-Jan-2021 (17:26:01.942112)---Updating target price for ETSY
+16-Jan-2021 (17:26:01.945107)---Target price for ETSY updated to 205.83589946513789 based on Close price
+16-Jan-2021 (17:26:01.945560)---Updating target price for IVAC
+16-Jan-2021 (17:26:01.945939)---Target price for IVAC updated to 7.191664927352726 based on Close price
+16-Jan-2021 (17:26:01.946296)---Updating target price for PTON
+16-Jan-2021 (17:26:01.946657)---Target price for PTON updated to 160.10625909721813 based on Close price
+16-Jan-2021 (17:26:01.947090)---Updating target price for ADI
+16-Jan-2021 (17:26:01.947478)---Target price for ADI updated to 157.05591046242984 based on Close price
+16-Jan-2021 (17:26:01.947820)---Updating target price for CRM
+16-Jan-2021 (17:26:01.948136)---Target price for CRM updated to 211.78891379012887 based on Close price
+16-Jan-2021 (17:26:01.948448)---Updating target price for CHWY
+16-Jan-2021 (17:26:01.948762)---Target price for CHWY updated to 111.33583456525027 based on Close price
+16-Jan-2021 (17:26:01.949076)---Updating target price for AZN
+16-Jan-2021 (17:26:01.949394)---Target price for AZN updated to 50.704685984886616 based on Close price
+16-Jan-2021 (17:26:01.949707)---Updating target price for NICE
+16-Jan-2021 (17:26:01.950019)---Target price for NICE updated to 270.2815024388777 based on Close price
+16-Jan-2021 (17:26:01.950331)---Updating target price for CSCO
+16-Jan-2021 (17:26:01.950641)---Target price for CSCO updated to 44.58106862301912 based on Close price
+16-Jan-2021 (17:26:01.950957)---Updating target price for PANW
+16-Jan-2021 (17:26:01.951275)---Target price for PANW updated to 357.98221836812394 based on Close price
+16-Jan-2021 (17:26:01.951593)---Updating target price for NET
+16-Jan-2021 (17:26:01.951903)---Target price for NET updated to 78.21375644050916 based on Close price
+16-Jan-2021 (17:26:01.952214)---Updating target price for CRWD
+16-Jan-2021 (17:26:01.952532)---Target price for CRWD updated to 219.5182553705479 based on Close price
+16-Jan-2021 (17:26:01.952855)---Updating target price for CHKP
+16-Jan-2021 (17:26:01.953175)---Target price for CHKP updated to 126.93121019108987 based on Close price
+16-Jan-2021 (17:26:01.953507)---Updating target price for CVLT
+16-Jan-2021 (17:26:01.953858)---Target price for CVLT updated to 56.157181429286254 based on Close price
+16-Jan-2021 (17:26:01.954221)---Updating target price for RPD
+16-Jan-2021 (17:26:01.954668)---Target price for RPD updated to 86.50381118841662 based on Close price
+16-Jan-2021 (17:26:01.955041)---Updating target price for TENB
+16-Jan-2021 (17:26:01.955391)---Target price for TENB updated to 53.114982654799796 based on Close price
+16-Jan-2021 (17:26:01.955732)---Updating target price for ADBE
+16-Jan-2021 (17:26:01.956085)---Target price for ADBE updated to 455.5009947192674 based on Close price
+16-Jan-2021 (17:26:01.956474)---Updating target price for SHOP
+16-Jan-2021 (17:26:01.956914)---Target price for SHOP updated to 1147.3450413064832 based on Close price
+16-Jan-2021 (17:26:01.957326)---Updating target price for NIO
+16-Jan-2021 (17:26:01.957967)---Target price for NIO updated to 58.35652439859759 based on Close price
+16-Jan-2021 (17:26:01.958465)---Updating target price for TSLA
+16-Jan-2021 (17:26:01.958856)---Target price for TSLA updated to 819.8580308604542 based on Close price
+16-Jan-2021 (17:26:01.959291)---Connected to IBKR and READY
+16-Jan-2021 (17:26:01.986453)---UI resumed.
+16-Jan-2021 (17:26:01.986874)---Starting Worker- UI Paused
+16-Jan-2021 (17:26:02.003410)----------Starting Worker...----EST Time: 2021-01-16 09:26:01--------------------
+16-Jan-2021 (17:26:02.003846)---Checking connection
+16-Jan-2021 (17:26:02.004137)---Connection is fine- proceeding
+16-Jan-2021 (17:26:02.004420)---Updating all open orders
+16-Jan-2021 (17:26:02.989582)---0 open orders found 
+16-Jan-2021 (17:26:02.991969)---Updating open Positions:
+16-Jan-2021 (17:26:03.996704)---Started tracking MSFT position PnL
+16-Jan-2021 (17:26:03.999436)---Started tracking AAPL position PnL
+16-Jan-2021 (17:26:04.002168)---Started tracking AZN position PnL
+16-Jan-2021 (17:26:04.010884)---Started tracking SQ position PnL
+16-Jan-2021 (17:26:04.012045)---Started tracking BEP position PnL
+16-Jan-2021 (17:26:04.013047)---Started tracking CRWD position PnL
+16-Jan-2021 (17:26:05.008476)---Waiting to receive Value for all positions 
+16-Jan-2021 (17:26:05.012517)---Requesting History for MSFT position for last 1 hour BID price
+16-Jan-2021 (17:26:05.017807)---Requesting History for AAPL position for last 1 hour BID price
+16-Jan-2021 (17:26:05.018755)---Requesting History for AZN position for last 1 hour BID price
+16-Jan-2021 (17:26:05.019494)---Requesting History for SQ position for last 1 hour BID price
+16-Jan-2021 (17:26:05.032009)---Requesting History for BEP position for last 1 hour BID price
+16-Jan-2021 (17:26:05.033285)---Requesting History for CRWD position for last 1 hour BID price
+16-Jan-2021 (17:26:06.023180)---Waiting to receive Hisory for all positions 
+16-Jan-2021 (17:26:06.025591)---6 open positions completely updated
+16-Jan-2021 (17:26:06.026881)---Trading session is not Open - processing skept
+16-Jan-2021 (17:26:06.027737)---...............Worker finished....EST Time: 2021-01-16 09:26:01...................
+16-Jan-2021 (17:26:06.072765)---UI resumed.

@@ -160,6 +160,12 @@ class TraderSettings():
             self.UIDEBUG = False
         else:
             self.UIDEBUG = True
+
+        autostart = self.config['Soft']['autostart']
+        if autostart == 'False':
+            self.AUTOSTART = False
+        else:
+            self.AUTOSTART = True
         i = 2
 
     def write_config(self):
@@ -186,7 +192,7 @@ class TraderSettings():
         self.config['Connection']['techtoHour'] = str(self.TECHTOHOUR)
         self.config['Connection']['techtoMin'] = str(self.TECHTOMIN)
         self.config['Soft']['uidebug'] = str(self.UIDEBUG)
-
+        self.config['Soft']['autostart'] = str(self.AUTOSTART)
         with open('config.ini', 'w') as configfile:
             self.config.write(configfile)
 
@@ -250,7 +256,7 @@ Starts the connection to the IBKR terminal in separate thread
         """
 
         connector = Worker(self.ibkrworker.connect_and_prepare)  # Any other args, kwargs are passed to the run function
-        connector.signals.result.connect(self.update_ui)
+        connector.signals.result.connect(self.connection_done)
         connector.signals.status.connect(self.update_status)
         connector.signals.notification.connect(self.update_console)
         # Execute
@@ -289,6 +295,11 @@ Executed the Worker in separate thread
             worker.signals.notification.connect(self.update_console)
             # Execute
             self.threadpool.start(worker)
+    def connection_done(self):
+        # add processing
+        self.update_ui()
+        if self.settings.AUTOSTART:
+            self.chbxProcess.setChecked(True)
 
     def update_ui(self):
         """
@@ -683,6 +694,7 @@ class SettingsWindow(QDialog, Ui_setWin):
         self.existingSettings.TECHTOHOUR = self.tmTechTo.time().hour()
         self.existingSettings.TECHTOMIN = self.tmTechTo.time().minute()
         self.existingSettings.UIDEBUG = self.chbxUiDebug.isChecked()
+        self.existingSettings.AUTOSTART = self.chbxAutostart.isChecked()
 
         self.changedSettings = True
         print("Setting was changed.")
@@ -724,6 +736,9 @@ class SettingsWindow(QDialog, Ui_setWin):
 
         self.chbxUiDebug.setChecked(self.existingSettings.UIDEBUG)
         self.chbxUiDebug.stateChanged.connect(self.setting_change)
+
+        self.chbxAutostart.setChecked(self.existingSettings.AUTOSTART)
+        self.chbxAutostart.stateChanged.connect(self.setting_change)
 
         self.btnRemoveC.clicked.connect(self.remove_candidate)
         self.btnAddC.clicked.connect(self.add_candidate)

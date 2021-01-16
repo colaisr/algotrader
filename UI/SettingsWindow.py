@@ -240,6 +240,11 @@ class Ui_setWin(object):
 
         self.station.addWidget(self.chbxUiDebug)
 
+        self.chbxAutostart = QCheckBox(setWin)
+        self.chbxAutostart.setObjectName(u"chbxAutostart")
+
+        self.station.addWidget(self.chbxAutostart)
+
         self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.station.addItem(self.verticalSpacer_2)
@@ -394,7 +399,14 @@ class Ui_setWin(object):
         self.label_13.setText(QCoreApplication.translate("setWin", u"Worker interval (sec)", None))
         self.label_12.setText(QCoreApplication.translate("setWin", u"Technical breack", None))
         self.label_11.setText(QCoreApplication.translate("setWin", u"to", None))
+#if QT_CONFIG(tooltip)
+        self.chbxUiDebug.setToolTip(QCoreApplication.translate("setWin", u"UI only no any data loaded for Development", None))
+#endif // QT_CONFIG(tooltip)
         self.chbxUiDebug.setText(QCoreApplication.translate("setWin", u"UI only (debug)", None))
+#if QT_CONFIG(tooltip)
+        self.chbxAutostart.setToolTip(QCoreApplication.translate("setWin", u"Automatically start positions processing when all data loaded", None))
+#endif // QT_CONFIG(tooltip)
+        self.chbxAutostart.setText(QCoreApplication.translate("setWin", u"Auto start processing", None))
         self.label_2.setText(QCoreApplication.translate("setWin", u"Algorithm settings", None))
         self.label_4.setText(QCoreApplication.translate("setWin", u"Profit", None))
         self.label_6.setText(QCoreApplication.translate("setWin", u"Trail %", None))

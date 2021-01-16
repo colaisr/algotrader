@@ -357,8 +357,21 @@
          </item>
          <item>
           <widget class="QCheckBox" name="chbxUiDebug">
+           <property name="toolTip">
+            <string>UI only no any data loaded for Development</string>
+           </property>
            <property name="text">
             <string>UI only (debug)</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="chbxAutostart">
+           <property name="toolTip">
+            <string>Automatically start positions processing when all data loaded</string>
+           </property>
+           <property name="text">
+            <string>Auto start processing</string>
            </property>
           </widget>
          </item>
