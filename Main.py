@@ -508,7 +508,7 @@ After threaded task finished
         if self.settingsWindow.exec_():
             self.settings = self.settingsWindow.existingSettings
             self.settings.write_config()
-            # self.restart_all()
+            self.restart_all()
         else:
             print("Settings window Canceled")
         self.settingsWindow = SettingsWindow()
