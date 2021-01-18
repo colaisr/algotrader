@@ -281,7 +281,7 @@ Executed the Worker in separate thread
         fromTime = QTime(int(self.settings.TECHFROMHOUR), int(self.settings.TECHFROMMIN))
         toTime = QTime(int(self.settings.TECHTOHOUR), int(self.settings.TECHTOMIN))
         sessionState = self.lblMarket.text()
-        if currentTime > fromTime and currentTime < toTime:
+        if fromTime < currentTime < toTime:
             print("Worker skept-Technical break : ", fromTime.toString("hh:mm"), " to ", toTime.toString("hh:mm"))
             self.update_console("Technical break untill " + toTime.toString("hh:mm"))
 
@@ -703,6 +703,7 @@ class SettingsWindow(QDialog, Ui_setWin):
         self.btnRemoveC.setEnabled(False)
         self.redraw_candidates_list()
         self.lstCandidates.itemClicked.connect(self.candidate_selected)
+        self.lstCandidates.itemDoubleClicked.connect(self.candidate_double_clicked)
 
         self.spProfit.setValue(int(self.existingSettings.PROFIT))
         self.spProfit.valueChanged.connect(self.setting_change)
@@ -822,6 +823,25 @@ class SettingsWindow(QDialog, Ui_setWin):
         self.existingSettings.CANDIDATES = []
         self.changedSettings = True
         self.redraw_candidates_list()
+
+    def candidate_double_clicked(self):
+        stock_to_edit = self.lstCandidates.selectedItems()[0].text()
+        for index, item in enumerate(self.existingSettings.CANDIDATES):
+            if item.ticker == stock_to_edit:
+                self.dlg = StockWindow()
+                self.dlg.client = self.ibkrClient
+                self.dlg.txtTicker.setText(item.ticker)
+                self.dlg.txtReason.setPlainText(item.reason)
+                if self.dlg.exec_():
+                    ca = SettingsCandidate()
+                    ca.ticker = self.dlg.txtTicker.text().upper()
+                    ca.reason = self.dlg.txtReason.toPlainText()
+                    self.existingSettings.CANDIDATES[index]=ca
+                    self.changedSettings = True
+                    self.redraw_candidates_list()
+                else:
+                    print("Modify Canceled")
+                break
 
 
 class StockWindow(QDialog, Ui_newStockDlg):

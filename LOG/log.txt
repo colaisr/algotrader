@@ -2747,3 +2747,12 @@
 16-Jan-2021 (17:26:06.026881)---Trading session is not Open - processing skept
 16-Jan-2021 (17:26:06.027737)---...............Worker finished....EST Time: 2021-01-16 09:26:01...................
 16-Jan-2021 (17:26:06.072765)---UI resumed.
+19-Jan-2021 (00:00:57.821296)---UI paused- for restart
+19-Jan-2021 (00:00:57.822440)---Configuration changed - restarting everything
+19-Jan-2021 (00:00:57.864160)---Begin connect and prepare
+19-Jan-2021 (00:00:57.864532)---Restarting connection to IBKR
+19-Jan-2021 (00:00:57.864780)---Waiting for connection...attempt:0
+19-Jan-2021 (00:00:58.835394)---Waiting for connection...attempt:1
+19-Jan-2021 (00:00:59.840313)---Waiting for connection...attempt:2
+19-Jan-2021 (00:01:00.843379)---Waiting for connection...attempt:3
+19-Jan-2021 (00:01:01.849190)---Waiting for connection...attempt:4
