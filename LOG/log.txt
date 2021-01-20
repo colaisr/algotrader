@@ -2756,3 +2756,1339 @@
 19-Jan-2021 (00:00:59.840313)---Waiting for connection...attempt:2
 19-Jan-2021 (00:01:00.843379)---Waiting for connection...attempt:3
 19-Jan-2021 (00:01:01.849190)---Waiting for connection...attempt:4
+19-Jan-2021 (01:14:40.869248)---UI paused- for restart
+19-Jan-2021 (01:14:40.870661)---Configuration changed - restarting everything
+19-Jan-2021 (01:14:40.918045)---Begin connect and prepare
+19-Jan-2021 (01:14:40.918494)---Restarting connection to IBKR
+19-Jan-2021 (01:14:40.918870)---Waiting for connection...attempt:0
+19-Jan-2021 (01:14:41.886513)---Waiting for connection...attempt:1
+19-Jan-2021 (01:14:42.889908)---Waiting for connection...attempt:2
+19-Jan-2021 (01:14:43.895366)---Waiting for connection...attempt:3
+19-Jan-2021 (01:14:44.899057)---Waiting for connection...attempt:4
+19-Jan-2021 (01:14:46.903225)---Waiting for connection...attempt:6
+20-Jan-2021 (12:35:42.517372)---Begin connect and prepare
+20-Jan-2021 (12:35:42.519065)---Restarting connection to IBKR
+20-Jan-2021 (12:35:42.522397)---Waiting for connection...attempt:0
+20-Jan-2021 (12:35:43.343824)---Successfully connected to API
+20-Jan-2021 (12:35:43.345124)---Requesting Daily PnL
+20-Jan-2021 (12:35:43.345965)---PnL not yet received
+20-Jan-2021 (12:35:43.346686)---Starting to track Excess liquidity
+20-Jan-2021 (12:35:43.347379)---Updating open Positions:
+20-Jan-2021 (12:35:44.349845)---Started tracking SQ position PnL
+20-Jan-2021 (12:35:44.351307)---Started tracking BEP position PnL
+20-Jan-2021 (12:35:44.352235)---Started tracking CRWD position PnL
+20-Jan-2021 (12:35:44.352872)---Started tracking MSFT position PnL
+20-Jan-2021 (12:35:44.353537)---Started tracking AAPL position PnL
+20-Jan-2021 (12:35:44.354515)---Started tracking AZN position PnL
+20-Jan-2021 (12:35:44.356555)---Started tracking PTON position PnL
+20-Jan-2021 (12:35:45.352855)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:35:46.358134)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:35:46.361163)---Requesting History for SQ position for last 1 hour BID price
+20-Jan-2021 (12:35:46.362297)---Requesting History for BEP position for last 1 hour BID price
+20-Jan-2021 (12:35:46.363091)---Requesting History for CRWD position for last 1 hour BID price
+20-Jan-2021 (12:35:46.363831)---Requesting History for MSFT position for last 1 hour BID price
+20-Jan-2021 (12:35:46.364519)---Requesting History for AAPL position for last 1 hour BID price
+20-Jan-2021 (12:35:46.365185)---Requesting History for AZN position for last 1 hour BID price
+20-Jan-2021 (12:35:46.365843)---Requesting History for PTON position for last 1 hour BID price
+20-Jan-2021 (12:35:47.367325)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:35:47.368561)---7 open positions completely updated
+20-Jan-2021 (12:35:47.369433)---Updating all open orders
+20-Jan-2021 (12:35:48.374246)---1 open orders found 
+20-Jan-2021 (12:35:48.376775)---Starting to track FB,BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA,SPCE,BABA Candidates
+20-Jan-2021 (12:35:48.379623)---starting to track: 1 of 36 FB traking with Id:27018
+20-Jan-2021 (12:35:48.380863)---starting to track: 2 of 36 BYND traking with Id:27019
+20-Jan-2021 (12:35:48.382923)---starting to track: 3 of 36 SEDG traking with Id:27020
+20-Jan-2021 (12:35:48.384650)---starting to track: 4 of 36 LTHM traking with Id:27021
+20-Jan-2021 (12:35:48.390625)---starting to track: 5 of 36 SQ traking with Id:27022
+20-Jan-2021 (12:35:48.391242)---starting to track: 6 of 36 TTWO traking with Id:27023
+20-Jan-2021 (12:35:48.391708)---starting to track: 7 of 36 OTRK traking with Id:27024
+20-Jan-2021 (12:35:48.392162)---starting to track: 8 of 36 HUM traking with Id:27025
+20-Jan-2021 (12:35:48.392665)---starting to track: 9 of 36 AAPL traking with Id:27026
+20-Jan-2021 (12:35:48.393135)---starting to track: 10 of 36 ZG traking with Id:27027
+20-Jan-2021 (12:35:48.393625)---starting to track: 11 of 36 MSFT traking with Id:27028
+20-Jan-2021 (12:35:48.394141)---starting to track: 12 of 36 NVDA traking with Id:27029
+20-Jan-2021 (12:35:48.394675)---starting to track: 13 of 36 BEP traking with Id:27030
+20-Jan-2021 (12:35:48.395205)---starting to track: 14 of 36 GOOGL traking with Id:27031
+20-Jan-2021 (12:35:48.395729)---starting to track: 15 of 36 ETSY traking with Id:27032
+20-Jan-2021 (12:35:48.396291)---starting to track: 16 of 36 IVAC traking with Id:27033
+20-Jan-2021 (12:35:48.396826)---starting to track: 17 of 36 PTON traking with Id:27034
+20-Jan-2021 (12:35:48.397347)---starting to track: 18 of 36 ADI traking with Id:27035
+20-Jan-2021 (12:35:48.397860)---starting to track: 19 of 36 CRM traking with Id:27036
+20-Jan-2021 (12:35:48.398604)---starting to track: 20 of 36 CHWY traking with Id:27037
+20-Jan-2021 (12:35:48.399340)---starting to track: 21 of 36 AZN traking with Id:27038
+20-Jan-2021 (12:35:48.399830)---starting to track: 22 of 36 NICE traking with Id:27039
+20-Jan-2021 (12:35:48.400302)---starting to track: 23 of 36 CSCO traking with Id:27040
+20-Jan-2021 (12:35:48.401405)---starting to track: 24 of 36 PANW traking with Id:27041
+20-Jan-2021 (12:35:48.402513)---starting to track: 25 of 36 NET traking with Id:27042
+20-Jan-2021 (12:35:48.403684)---starting to track: 26 of 36 CRWD traking with Id:27043
+20-Jan-2021 (12:35:48.404804)---starting to track: 27 of 36 CHKP traking with Id:27044
+20-Jan-2021 (12:35:48.405935)---starting to track: 28 of 36 CVLT traking with Id:27045
+20-Jan-2021 (12:35:48.407020)---starting to track: 29 of 36 RPD traking with Id:27046
+20-Jan-2021 (12:35:48.407941)---starting to track: 30 of 36 TENB traking with Id:27047
+20-Jan-2021 (12:35:48.408999)---starting to track: 31 of 36 ADBE traking with Id:27048
+20-Jan-2021 (12:35:48.409673)---starting to track: 32 of 36 SHOP traking with Id:27049
+20-Jan-2021 (12:35:48.411369)---starting to track: 33 of 36 NIO traking with Id:27050
+20-Jan-2021 (12:35:48.414116)---starting to track: 34 of 36 TSLA traking with Id:27051
+20-Jan-2021 (12:35:48.415500)---starting to track: 35 of 36 SPCE traking with Id:27052
+20-Jan-2021 (12:35:48.417540)---starting to track: 36 of 36 BABA traking with Id:27053
+20-Jan-2021 (12:35:49.392948)---Waiting for last requested candidate Close price 
+20-Jan-2021 (12:35:50.396476)---Waiting for last requested candidate Close price 
+20-Jan-2021 (12:35:50.403471)---Getting Yahoo market data for FB
+20-Jan-2021 (12:35:50.416654)---Downloading the data for: FB
+20-Jan-2021 (12:35:50.748616)---Figuring average Drop and Change for: FB
+20-Jan-2021 (12:35:50.757019)---Yahoo market data for FBreceived shows average 1.600155184841437 % drop
+20-Jan-2021 (12:35:50.757541)---Getting Yahoo market data for BYND
+20-Jan-2021 (12:35:50.758177)---Downloading the data for: BYND
+20-Jan-2021 (12:35:50.981394)---Figuring average Drop and Change for: BYND
+20-Jan-2021 (12:35:50.988430)---Yahoo market data for BYNDreceived shows average 3.0098832318570476 % drop
+20-Jan-2021 (12:35:50.989055)---Getting Yahoo market data for SEDG
+20-Jan-2021 (12:35:50.989738)---Downloading the data for: SEDG
+20-Jan-2021 (12:35:51.267622)---Figuring average Drop and Change for: SEDG
+20-Jan-2021 (12:35:51.277808)---Yahoo market data for SEDGreceived shows average 3.150440748827992 % drop
+20-Jan-2021 (12:35:51.278958)---Getting Yahoo market data for LTHM
+20-Jan-2021 (12:35:51.280503)---Downloading the data for: LTHM
+20-Jan-2021 (12:35:51.509895)---Figuring average Drop and Change for: LTHM
+20-Jan-2021 (12:35:51.515567)---Yahoo market data for LTHMreceived shows average 3.4554896738608325 % drop
+20-Jan-2021 (12:35:51.516559)---Getting Yahoo market data for SQ
+20-Jan-2021 (12:35:51.516932)---Downloading the data for: SQ
+20-Jan-2021 (12:35:51.745969)---Figuring average Drop and Change for: SQ
+20-Jan-2021 (12:35:51.753144)---Yahoo market data for SQreceived shows average 2.7150366942829174 % drop
+20-Jan-2021 (12:35:51.753738)---Getting Yahoo market data for TTWO
+20-Jan-2021 (12:35:51.754273)---Downloading the data for: TTWO
+20-Jan-2021 (12:35:51.982851)---Figuring average Drop and Change for: TTWO
+20-Jan-2021 (12:35:51.988871)---Yahoo market data for TTWOreceived shows average 1.637229593737535 % drop
+20-Jan-2021 (12:35:51.991531)---Getting Yahoo market data for OTRK
+20-Jan-2021 (12:35:51.991971)---Downloading the data for: OTRK
+20-Jan-2021 (12:35:52.287689)---Figuring average Drop and Change for: OTRK
+20-Jan-2021 (12:35:52.297666)---Yahoo market data for OTRKreceived shows average 4.232170050923361 % drop
+20-Jan-2021 (12:35:52.298549)---Getting Yahoo market data for HUM
+20-Jan-2021 (12:35:52.299901)---Downloading the data for: HUM
+20-Jan-2021 (12:35:52.562649)---Figuring average Drop and Change for: HUM
+20-Jan-2021 (12:35:52.574033)---Yahoo market data for HUMreceived shows average 1.7651679520645749 % drop
+20-Jan-2021 (12:35:52.574682)---Getting Yahoo market data for AAPL
+20-Jan-2021 (12:35:52.575087)---Downloading the data for: AAPL
+20-Jan-2021 (12:35:52.809204)---Figuring average Drop and Change for: AAPL
+20-Jan-2021 (12:35:52.817335)---Yahoo market data for AAPLreceived shows average 1.4332393403179338 % drop
+20-Jan-2021 (12:35:52.818080)---Getting Yahoo market data for ZG
+20-Jan-2021 (12:35:52.818995)---Downloading the data for: ZG
+20-Jan-2021 (12:35:53.040330)---Figuring average Drop and Change for: ZG
+20-Jan-2021 (12:35:53.046921)---Yahoo market data for ZGreceived shows average 2.6472204658723855 % drop
+20-Jan-2021 (12:35:53.047648)---Getting Yahoo market data for MSFT
+20-Jan-2021 (12:35:53.048431)---Downloading the data for: MSFT
+20-Jan-2021 (12:35:53.292641)---Figuring average Drop and Change for: MSFT
+20-Jan-2021 (12:35:53.301852)---Yahoo market data for MSFTreceived shows average 1.3598523570710244 % drop
+20-Jan-2021 (12:35:53.303422)---Getting Yahoo market data for NVDA
+20-Jan-2021 (12:35:53.304019)---Downloading the data for: NVDA
+20-Jan-2021 (12:35:53.541145)---Figuring average Drop and Change for: NVDA
+20-Jan-2021 (12:35:53.542572)---Yahoo market data for NVDAreceived shows average 2.000677656251213 % drop
+20-Jan-2021 (12:35:53.543304)---Getting Yahoo market data for BEP
+20-Jan-2021 (12:35:53.544499)---Downloading the data for: BEP
+20-Jan-2021 (12:35:53.786594)---Figuring average Drop and Change for: BEP
+20-Jan-2021 (12:35:53.796297)---Yahoo market data for BEPreceived shows average 1.780785170045177 % drop
+20-Jan-2021 (12:35:53.797289)---Getting Yahoo market data for GOOGL
+20-Jan-2021 (12:35:53.798660)---Downloading the data for: GOOGL
+20-Jan-2021 (12:35:54.052960)---Figuring average Drop and Change for: GOOGL
+20-Jan-2021 (12:35:54.063508)---Yahoo market data for GOOGLreceived shows average 1.2870849085634797 % drop
+20-Jan-2021 (12:35:54.064648)---Getting Yahoo market data for ETSY
+20-Jan-2021 (12:35:54.065146)---Downloading the data for: ETSY
+20-Jan-2021 (12:35:54.271506)---Figuring average Drop and Change for: ETSY
+20-Jan-2021 (12:35:54.277506)---Yahoo market data for ETSYreceived shows average 2.6953569529030306 % drop
+20-Jan-2021 (12:35:54.278050)---Getting Yahoo market data for IVAC
+20-Jan-2021 (12:35:54.278499)---Downloading the data for: IVAC
+20-Jan-2021 (12:35:54.485373)---Figuring average Drop and Change for: IVAC
+20-Jan-2021 (12:35:54.486373)---Yahoo market data for IVACreceived shows average 2.8227089301017143 % drop
+20-Jan-2021 (12:35:54.486730)---Getting Yahoo market data for PTON
+20-Jan-2021 (12:35:54.487015)---Downloading the data for: PTON
+20-Jan-2021 (12:35:54.787692)---Figuring average Drop and Change for: PTON
+20-Jan-2021 (12:35:54.794730)---Yahoo market data for PTONreceived shows average 3.132734418870234 % drop
+20-Jan-2021 (12:35:54.795984)---Getting Yahoo market data for ADI
+20-Jan-2021 (12:35:54.796429)---Downloading the data for: ADI
+20-Jan-2021 (12:35:55.146435)---Figuring average Drop and Change for: ADI
+20-Jan-2021 (12:35:55.153413)---Yahoo market data for ADIreceived shows average 1.5100344184310424 % drop
+20-Jan-2021 (12:35:55.153879)---Getting Yahoo market data for CRM
+20-Jan-2021 (12:35:55.154226)---Downloading the data for: CRM
+20-Jan-2021 (12:35:55.490948)---Figuring average Drop and Change for: CRM
+20-Jan-2021 (12:35:55.493771)---Yahoo market data for CRMreceived shows average 1.7709048050869711 % drop
+20-Jan-2021 (12:35:55.494364)---Getting Yahoo market data for CHWY
+20-Jan-2021 (12:35:55.495375)---Downloading the data for: CHWY
+20-Jan-2021 (12:35:55.838728)---Figuring average Drop and Change for: CHWY
+20-Jan-2021 (12:35:55.839532)---Yahoo market data for CHWYreceived shows average 2.8520360124859288 % drop
+20-Jan-2021 (12:35:55.840384)---Getting Yahoo market data for AZN
+20-Jan-2021 (12:35:55.840935)---Downloading the data for: AZN
+20-Jan-2021 (12:35:56.209941)---Figuring average Drop and Change for: AZN
+20-Jan-2021 (12:35:56.218644)---Yahoo market data for AZNreceived shows average 1.1430718477503552 % drop
+20-Jan-2021 (12:35:56.219446)---Getting Yahoo market data for NICE
+20-Jan-2021 (12:35:56.220636)---Downloading the data for: NICE
+20-Jan-2021 (12:35:56.454621)---Figuring average Drop and Change for: NICE
+20-Jan-2021 (12:35:56.461410)---Yahoo market data for NICEreceived shows average 1.1691354096823505 % drop
+20-Jan-2021 (12:35:56.461902)---Getting Yahoo market data for CSCO
+20-Jan-2021 (12:35:56.463398)---Downloading the data for: CSCO
+20-Jan-2021 (12:35:56.745405)---Figuring average Drop and Change for: CSCO
+20-Jan-2021 (12:35:56.752158)---Yahoo market data for CSCOreceived shows average 1.2652230405859437 % drop
+20-Jan-2021 (12:35:56.752748)---Getting Yahoo market data for PANW
+20-Jan-2021 (12:35:56.753777)---Downloading the data for: PANW
+20-Jan-2021 (12:35:57.056819)---Figuring average Drop and Change for: PANW
+20-Jan-2021 (12:35:57.066371)---Yahoo market data for PANWreceived shows average 1.4312268181907108 % drop
+20-Jan-2021 (12:35:57.067000)---Getting Yahoo market data for NET
+20-Jan-2021 (12:35:57.067700)---Downloading the data for: NET
+20-Jan-2021 (12:35:57.305076)---Figuring average Drop and Change for: NET
+20-Jan-2021 (12:35:57.306261)---Yahoo market data for NETreceived shows average 2.839288289115999 % drop
+20-Jan-2021 (12:35:57.306687)---Getting Yahoo market data for CRWD
+20-Jan-2021 (12:35:57.307012)---Downloading the data for: CRWD
+20-Jan-2021 (12:35:57.547393)---Figuring average Drop and Change for: CRWD
+20-Jan-2021 (12:35:57.557195)---Yahoo market data for CRWDreceived shows average 2.717206390240328 % drop
+20-Jan-2021 (12:35:57.558722)---Getting Yahoo market data for CHKP
+20-Jan-2021 (12:35:57.559318)---Downloading the data for: CHKP
+20-Jan-2021 (12:35:57.785824)---Figuring average Drop and Change for: CHKP
+20-Jan-2021 (12:35:57.786704)---Yahoo market data for CHKPreceived shows average 1.3233586894440452 % drop
+20-Jan-2021 (12:35:57.787181)---Getting Yahoo market data for CVLT
+20-Jan-2021 (12:35:57.787585)---Downloading the data for: CVLT
+20-Jan-2021 (12:35:58.007428)---Figuring average Drop and Change for: CVLT
+20-Jan-2021 (12:35:58.015220)---Yahoo market data for CVLTreceived shows average 1.8661429059064134 % drop
+20-Jan-2021 (12:35:58.015900)---Getting Yahoo market data for RPD
+20-Jan-2021 (12:35:58.016671)---Downloading the data for: RPD
+20-Jan-2021 (12:35:58.246650)---Figuring average Drop and Change for: RPD
+20-Jan-2021 (12:35:58.252854)---Yahoo market data for RPDreceived shows average 2.1987851458000716 % drop
+20-Jan-2021 (12:35:58.253276)---Getting Yahoo market data for TENB
+20-Jan-2021 (12:35:58.253748)---Downloading the data for: TENB
+20-Jan-2021 (12:35:58.481166)---Figuring average Drop and Change for: TENB
+20-Jan-2021 (12:35:58.487655)---Yahoo market data for TENBreceived shows average 2.2949512160435463 % drop
+20-Jan-2021 (12:35:58.488483)---Getting Yahoo market data for ADBE
+20-Jan-2021 (12:35:58.489954)---Downloading the data for: ADBE
+20-Jan-2021 (12:35:58.730675)---Figuring average Drop and Change for: ADBE
+20-Jan-2021 (12:35:58.736746)---Yahoo market data for ADBEreceived shows average 1.6837129873921417 % drop
+20-Jan-2021 (12:35:58.737181)---Getting Yahoo market data for SHOP
+20-Jan-2021 (12:35:58.737518)---Downloading the data for: SHOP
+20-Jan-2021 (12:35:58.962912)---Figuring average Drop and Change for: SHOP
+20-Jan-2021 (12:35:58.976035)---Yahoo market data for SHOPreceived shows average 2.6902441683933893 % drop
+20-Jan-2021 (12:35:58.977145)---Getting Yahoo market data for NIO
+20-Jan-2021 (12:35:58.978864)---Downloading the data for: NIO
+20-Jan-2021 (12:35:59.209894)---Figuring average Drop and Change for: NIO
+20-Jan-2021 (12:35:59.217650)---Yahoo market data for NIOreceived shows average 4.14555280503442 % drop
+20-Jan-2021 (12:35:59.218515)---Getting Yahoo market data for TSLA
+20-Jan-2021 (12:35:59.219702)---Downloading the data for: TSLA
+20-Jan-2021 (12:35:59.459537)---Figuring average Drop and Change for: TSLA
+20-Jan-2021 (12:35:59.468972)---Yahoo market data for TSLAreceived shows average 2.9847129079063253 % drop
+20-Jan-2021 (12:35:59.470532)---Getting Yahoo market data for SPCE
+20-Jan-2021 (12:35:59.471224)---Downloading the data for: SPCE
+20-Jan-2021 (12:35:59.698738)---Figuring average Drop and Change for: SPCE
+20-Jan-2021 (12:35:59.706072)---Yahoo market data for SPCEreceived shows average 4.452573964528306 % drop
+20-Jan-2021 (12:35:59.706584)---Getting Yahoo market data for BABA
+20-Jan-2021 (12:35:59.707145)---Downloading the data for: BABA
+20-Jan-2021 (12:35:59.930576)---Figuring average Drop and Change for: BABA
+20-Jan-2021 (12:35:59.935325)---Yahoo market data for BABAreceived shows average 1.488179644135837 % drop
+20-Jan-2021 (12:35:59.937068)---Getting ranks for :FB,BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA,SPCE,BABA
+20-Jan-2021 (12:36:01.568583)---Getting TipRank Rating for : FB
+20-Jan-2021 (12:36:05.589136)---Rating found on TipRanks : 7
+20-Jan-2021 (12:36:05.589620)---Getting TipRank Rating for : BYND
+20-Jan-2021 (12:36:07.724339)---Rating found on TipRanks : 6
+20-Jan-2021 (12:36:07.725066)---Getting TipRank Rating for : SEDG
+20-Jan-2021 (12:36:09.657706)---Rating found on TipRanks : 7
+20-Jan-2021 (12:36:09.659673)---Getting TipRank Rating for : LTHM
+20-Jan-2021 (12:36:11.600732)---Rating found on TipRanks : 8
+20-Jan-2021 (12:36:11.601268)---Getting TipRank Rating for : SQ
+20-Jan-2021 (12:36:13.784860)---Rating found on TipRanks : 10
+20-Jan-2021 (12:36:13.785668)---Getting TipRank Rating for : TTWO
+20-Jan-2021 (12:36:15.760390)---Rating found on TipRanks : 4
+20-Jan-2021 (12:36:15.761193)---Getting TipRank Rating for : OTRK
+20-Jan-2021 (12:36:17.638342)---Rating found on TipRanks : 4
+20-Jan-2021 (12:36:17.638777)---Getting TipRank Rating for : HUM
+20-Jan-2021 (12:36:19.716948)---Rating found on TipRanks : 5
+20-Jan-2021 (12:36:19.718354)---Getting TipRank Rating for : AAPL
+20-Jan-2021 (12:36:21.710706)---Rating found on TipRanks : 9
+20-Jan-2021 (12:36:21.711168)---Getting TipRank Rating for : ZG
+20-Jan-2021 (12:36:23.753269)---Rating found on TipRanks : 4
+20-Jan-2021 (12:36:23.753814)---Getting TipRank Rating for : MSFT
+20-Jan-2021 (12:36:25.877425)---Rating found on TipRanks : 9
+20-Jan-2021 (12:36:25.878215)---Getting TipRank Rating for : NVDA
+20-Jan-2021 (12:36:27.871678)---Rating found on TipRanks : 6
+20-Jan-2021 (12:36:27.872172)---Getting TipRank Rating for : BEP
+20-Jan-2021 (12:36:29.922055)---Rating found on TipRanks : 9
+20-Jan-2021 (12:36:29.922570)---Getting TipRank Rating for : GOOGL
+20-Jan-2021 (12:36:31.756323)---Rating found on TipRanks : 6
+20-Jan-2021 (12:36:31.756790)---Getting TipRank Rating for : ETSY
+20-Jan-2021 (12:36:33.665642)---Rating found on TipRanks : 7
+20-Jan-2021 (12:36:33.666159)---Getting TipRank Rating for : IVAC
+20-Jan-2021 (12:36:35.956797)---Rating found on TipRanks : 5
+20-Jan-2021 (12:36:35.957694)---Getting TipRank Rating for : PTON
+20-Jan-2021 (12:36:37.836579)---Rating found on TipRanks : 8
+20-Jan-2021 (12:36:37.837084)---Getting TipRank Rating for : ADI
+20-Jan-2021 (12:36:40.185626)---Rating found on TipRanks : 9
+20-Jan-2021 (12:36:40.186335)---Getting TipRank Rating for : CRM
+20-Jan-2021 (12:36:42.099775)---Rating found on TipRanks : 7
+20-Jan-2021 (12:36:42.100284)---Getting TipRank Rating for : CHWY
+20-Jan-2021 (12:36:44.110667)---Rating found on TipRanks : 6
+20-Jan-2021 (12:36:44.111256)---Getting TipRank Rating for : AZN
+20-Jan-2021 (12:36:56.106847)---Could not find  TipRank Rating for : AZN
+20-Jan-2021 (12:36:56.114543)---Getting TipRank Rating for : NICE
+20-Jan-2021 (12:37:07.921892)---Could not find  TipRank Rating for : NICE
+20-Jan-2021 (12:37:07.922866)---Getting TipRank Rating for : CSCO
+20-Jan-2021 (12:37:17.911106)---Rating found on TipRanks : 10
+20-Jan-2021 (12:37:17.911946)---Getting TipRank Rating for : PANW
+20-Jan-2021 (12:37:22.619748)---Rating found on TipRanks : 5
+20-Jan-2021 (12:37:22.624451)---Getting TipRank Rating for : NET
+20-Jan-2021 (12:37:24.769927)---Rating found on TipRanks : 8
+20-Jan-2021 (12:37:24.770678)---Getting TipRank Rating for : CRWD
+20-Jan-2021 (12:37:26.843714)---Rating found on TipRanks : 10
+20-Jan-2021 (12:37:26.844350)---Getting TipRank Rating for : CHKP
+20-Jan-2021 (12:37:28.721773)---Rating found on TipRanks : 5
+20-Jan-2021 (12:37:28.723210)---Getting TipRank Rating for : CVLT
+20-Jan-2021 (12:37:30.588476)---Rating found on TipRanks : 7
+20-Jan-2021 (12:37:30.589843)---Getting TipRank Rating for : RPD
+20-Jan-2021 (12:37:33.829562)---Rating found on TipRanks : 7
+20-Jan-2021 (12:37:33.853202)---Getting TipRank Rating for : TENB
+20-Jan-2021 (12:37:45.806783)---Could not find  TipRank Rating for : TENB
+20-Jan-2021 (12:37:45.808990)---Getting TipRank Rating for : ADBE
+20-Jan-2021 (12:37:56.596262)---Rating found on TipRanks : 5
+20-Jan-2021 (12:37:56.597453)---Getting TipRank Rating for : SHOP
+20-Jan-2021 (12:38:03.336060)---Rating found on TipRanks : 8
+20-Jan-2021 (12:38:03.337256)---Getting TipRank Rating for : NIO
+20-Jan-2021 (12:38:05.030323)---Rating found on TipRanks : 10
+20-Jan-2021 (12:38:05.030754)---Getting TipRank Rating for : TSLA
+20-Jan-2021 (12:38:06.902616)---Rating found on TipRanks : 7
+20-Jan-2021 (12:38:06.903301)---Getting TipRank Rating for : SPCE
+20-Jan-2021 (12:38:08.920050)---Rating found on TipRanks : 7
+20-Jan-2021 (12:38:08.920628)---Getting TipRank Rating for : BABA
+20-Jan-2021 (12:38:10.936673)---Rating found on TipRanks : 7
+20-Jan-2021 (12:38:11.146455)---Error in connection and preparation : 'AZN'
+20-Jan-2021 (12:38:11.188888)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:11.189445)---UI resumed.
+20-Jan-2021 (12:38:11.190062)---Starting Worker- UI Paused
+20-Jan-2021 (12:38:11.231454)----------Starting Worker...----EST Time: 2021-01-20 04:38:11--------------------
+20-Jan-2021 (12:38:11.231989)---Checking connection
+20-Jan-2021 (12:38:11.232348)---Connection is fine- proceeding
+20-Jan-2021 (12:38:11.232654)---Updating all open orders
+20-Jan-2021 (12:38:12.193152)---1 open orders found 
+20-Jan-2021 (12:38:12.193908)---Updating open Positions:
+20-Jan-2021 (12:38:13.198849)---Started tracking SQ position PnL
+20-Jan-2021 (12:38:13.200656)---Started tracking BEP position PnL
+20-Jan-2021 (12:38:13.201589)---Started tracking CRWD position PnL
+20-Jan-2021 (12:38:13.202713)---Started tracking MSFT position PnL
+20-Jan-2021 (12:38:13.204687)---Started tracking AAPL position PnL
+20-Jan-2021 (12:38:13.206861)---Started tracking AZN position PnL
+20-Jan-2021 (12:38:13.208430)---Started tracking PTON position PnL
+20-Jan-2021 (12:38:14.207384)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:38:14.209403)---Requesting History for SQ position for last 1 hour BID price
+20-Jan-2021 (12:38:14.212204)---Requesting History for BEP position for last 1 hour BID price
+20-Jan-2021 (12:38:14.213474)---Requesting History for CRWD position for last 1 hour BID price
+20-Jan-2021 (12:38:14.214456)---Requesting History for MSFT position for last 1 hour BID price
+20-Jan-2021 (12:38:14.215334)---Requesting History for AAPL position for last 1 hour BID price
+20-Jan-2021 (12:38:14.216301)---Requesting History for AZN position for last 1 hour BID price
+20-Jan-2021 (12:38:14.217481)---Requesting History for PTON position for last 1 hour BID price
+20-Jan-2021 (12:38:15.218124)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:38:15.218917)---7 open positions completely updated
+20-Jan-2021 (12:38:15.219596)---Trading session is not Open - processing skept
+20-Jan-2021 (12:38:15.220262)---...............Worker finished....EST Time: 2021-01-20 04:38:11...................
+20-Jan-2021 (12:38:15.253435)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:15.253991)---UI resumed.
+20-Jan-2021 (12:38:16.339513)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:17.425566)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:18.488569)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:19.473629)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:20.470941)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:21.481436)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:22.472460)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:23.469512)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:24.478941)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:25.472385)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:26.483488)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:27.480968)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:28.475315)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:29.466328)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:30.473254)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:31.471056)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:32.472739)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:33.472775)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:34.469945)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:35.471904)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:36.473215)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:37.474604)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:38.475834)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:39.531769)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:40.520581)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:41.510614)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:42.523582)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:38:53.528837)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:39:04.530621)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:39:12.183875)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:39:12.185259)---Starting Worker- UI Paused
+20-Jan-2021 (12:39:12.191849)----------Starting Worker...----EST Time: 2021-01-20 04:39:12--------------------
+20-Jan-2021 (12:39:12.192509)---Checking connection
+20-Jan-2021 (12:39:12.194623)---Connection is fine- proceeding
+20-Jan-2021 (12:39:12.195212)---Updating all open orders
+20-Jan-2021 (12:39:23.188452)---1 open orders found 
+20-Jan-2021 (12:39:23.189851)---Updating open Positions:
+20-Jan-2021 (12:39:24.939819)---Started tracking SQ position PnL
+20-Jan-2021 (12:39:24.943043)---Started tracking BEP position PnL
+20-Jan-2021 (12:39:24.945014)---Started tracking CRWD position PnL
+20-Jan-2021 (12:39:24.947056)---Started tracking MSFT position PnL
+20-Jan-2021 (12:39:24.948925)---Started tracking AAPL position PnL
+20-Jan-2021 (12:39:24.950657)---Started tracking AZN position PnL
+20-Jan-2021 (12:39:24.954698)---Started tracking PTON position PnL
+20-Jan-2021 (12:39:25.923258)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:39:28.593621)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:39:28.595268)---Requesting History for SQ position for last 1 hour BID price
+20-Jan-2021 (12:39:28.596806)---Requesting History for BEP position for last 1 hour BID price
+20-Jan-2021 (12:39:28.598829)---Requesting History for CRWD position for last 1 hour BID price
+20-Jan-2021 (12:39:28.601019)---Requesting History for MSFT position for last 1 hour BID price
+20-Jan-2021 (12:39:28.602285)---Requesting History for AAPL position for last 1 hour BID price
+20-Jan-2021 (12:39:28.603342)---Requesting History for AZN position for last 1 hour BID price
+20-Jan-2021 (12:39:28.604250)---Requesting History for PTON position for last 1 hour BID price
+20-Jan-2021 (12:39:29.600134)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:39:30.605433)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:39:30.607081)---7 open positions completely updated
+20-Jan-2021 (12:39:30.608775)---Trading session is not Open - processing skept
+20-Jan-2021 (12:39:30.610148)---...............Worker finished....EST Time: 2021-01-20 04:39:12...................
+20-Jan-2021 (12:39:30.684414)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:39:30.686041)---UI resumed.
+20-Jan-2021 (12:39:41.808623)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:39:44.988244)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:39:56.009852)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:39:59.104431)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:40:10.122179)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:40:21.147415)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:40:21.148586)---Starting Worker- UI Paused
+20-Jan-2021 (12:40:21.164766)----------Starting Worker...----EST Time: 2021-01-20 04:40:21--------------------
+20-Jan-2021 (12:40:21.166111)---Checking connection
+20-Jan-2021 (12:40:21.167071)---Connection is fine- proceeding
+20-Jan-2021 (12:40:21.167930)---Updating all open orders
+20-Jan-2021 (12:40:32.152053)---1 open orders found 
+20-Jan-2021 (12:40:32.157852)---Updating open Positions:
+20-Jan-2021 (12:40:33.156060)---Started tracking SQ position PnL
+20-Jan-2021 (12:40:33.158748)---Started tracking BEP position PnL
+20-Jan-2021 (12:40:33.160943)---Started tracking CRWD position PnL
+20-Jan-2021 (12:40:33.163725)---Started tracking MSFT position PnL
+20-Jan-2021 (12:40:33.166974)---Started tracking AAPL position PnL
+20-Jan-2021 (12:40:33.168980)---Started tracking AZN position PnL
+20-Jan-2021 (12:40:33.170611)---Started tracking PTON position PnL
+20-Jan-2021 (12:40:44.159983)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:40:44.161654)---Requesting History for SQ position for last 1 hour BID price
+20-Jan-2021 (12:40:44.168241)---Requesting History for BEP position for last 1 hour BID price
+20-Jan-2021 (12:40:44.168945)---Requesting History for CRWD position for last 1 hour BID price
+20-Jan-2021 (12:40:44.169608)---Requesting History for MSFT position for last 1 hour BID price
+20-Jan-2021 (12:40:44.170415)---Requesting History for AAPL position for last 1 hour BID price
+20-Jan-2021 (12:40:44.171213)---Requesting History for AZN position for last 1 hour BID price
+20-Jan-2021 (12:40:44.171854)---Requesting History for PTON position for last 1 hour BID price
+20-Jan-2021 (12:40:55.165802)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:40:55.166673)---7 open positions completely updated
+20-Jan-2021 (12:40:55.167494)---Trading session is not Open - processing skept
+20-Jan-2021 (12:40:55.168261)---...............Worker finished....EST Time: 2021-01-20 04:40:21...................
+20-Jan-2021 (12:40:55.239482)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:40:55.242167)---UI resumed.
+20-Jan-2021 (12:41:06.363080)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:41:07.487766)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:41:18.509310)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:41:18.511493)---Starting Worker- UI Paused
+20-Jan-2021 (12:41:18.521961)----------Starting Worker...----EST Time: 2021-01-20 04:41:18--------------------
+20-Jan-2021 (12:41:18.523094)---Checking connection
+20-Jan-2021 (12:41:18.523965)---Connection is fine- proceeding
+20-Jan-2021 (12:41:18.524818)---Updating all open orders
+20-Jan-2021 (12:41:29.514806)---1 open orders found 
+20-Jan-2021 (12:41:29.518578)---Updating open Positions:
+20-Jan-2021 (12:41:40.518122)---Started tracking SQ position PnL
+20-Jan-2021 (12:41:40.522532)---Started tracking BEP position PnL
+20-Jan-2021 (12:41:40.526138)---Started tracking CRWD position PnL
+20-Jan-2021 (12:41:40.528529)---Started tracking MSFT position PnL
+20-Jan-2021 (12:41:40.540846)---Started tracking AAPL position PnL
+20-Jan-2021 (12:41:40.551961)---Started tracking AZN position PnL
+20-Jan-2021 (12:41:40.554424)---Started tracking PTON position PnL
+20-Jan-2021 (12:41:51.326557)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:41:51.330482)---Requesting History for SQ position for last 1 hour BID price
+20-Jan-2021 (12:41:51.332181)---Requesting History for BEP position for last 1 hour BID price
+20-Jan-2021 (12:41:51.333483)---Requesting History for CRWD position for last 1 hour BID price
+20-Jan-2021 (12:41:51.334872)---Requesting History for MSFT position for last 1 hour BID price
+20-Jan-2021 (12:41:51.336093)---Requesting History for AAPL position for last 1 hour BID price
+20-Jan-2021 (12:41:51.337438)---Requesting History for AZN position for last 1 hour BID price
+20-Jan-2021 (12:41:51.339418)---Requesting History for PTON position for last 1 hour BID price
+20-Jan-2021 (12:42:02.331282)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:42:02.333052)---7 open positions completely updated
+20-Jan-2021 (12:42:02.343150)---Trading session is not Open - processing skept
+20-Jan-2021 (12:42:02.344387)---...............Worker finished....EST Time: 2021-01-20 04:41:18...................
+20-Jan-2021 (12:42:02.423628)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:42:02.424972)---UI resumed.
+20-Jan-2021 (12:42:13.510225)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:42:13.512206)---Starting Worker- UI Paused
+20-Jan-2021 (12:42:13.528303)----------Starting Worker...----EST Time: 2021-01-20 04:42:13--------------------
+20-Jan-2021 (12:42:13.529665)---Checking connection
+20-Jan-2021 (12:42:13.530497)---Connection is fine- proceeding
+20-Jan-2021 (12:42:13.531163)---Updating all open orders
+20-Jan-2021 (12:42:24.516786)---1 open orders found 
+20-Jan-2021 (12:42:24.518703)---Updating open Positions:
+20-Jan-2021 (12:42:25.520101)---Started tracking SQ position PnL
+20-Jan-2021 (12:42:25.523776)---Started tracking BEP position PnL
+20-Jan-2021 (12:42:25.526749)---Started tracking CRWD position PnL
+20-Jan-2021 (12:42:25.530045)---Started tracking MSFT position PnL
+20-Jan-2021 (12:42:25.532413)---Started tracking AAPL position PnL
+20-Jan-2021 (12:42:25.537535)---Started tracking AZN position PnL
+20-Jan-2021 (12:42:25.541566)---Started tracking PTON position PnL
+20-Jan-2021 (12:42:36.528544)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:42:36.531039)---Requesting History for SQ position for last 1 hour BID price
+20-Jan-2021 (12:42:36.532227)---Requesting History for BEP position for last 1 hour BID price
+20-Jan-2021 (12:42:36.533274)---Requesting History for CRWD position for last 1 hour BID price
+20-Jan-2021 (12:42:36.534163)---Requesting History for MSFT position for last 1 hour BID price
+20-Jan-2021 (12:42:36.534998)---Requesting History for AAPL position for last 1 hour BID price
+20-Jan-2021 (12:42:36.535839)---Requesting History for AZN position for last 1 hour BID price
+20-Jan-2021 (12:42:36.536984)---Requesting History for PTON position for last 1 hour BID price
+20-Jan-2021 (12:42:47.531466)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:42:47.532440)---7 open positions completely updated
+20-Jan-2021 (12:42:47.533685)---Trading session is not Open - processing skept
+20-Jan-2021 (12:42:47.534787)---...............Worker finished....EST Time: 2021-01-20 04:42:13...................
+20-Jan-2021 (12:42:47.586943)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:42:47.588389)---UI resumed.
+20-Jan-2021 (12:42:57.287276)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:42:58.410252)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:42:59.511532)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:00.502722)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:01.522478)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:08.629257)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:19.654092)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:19.659851)---Starting Worker- UI Paused
+20-Jan-2021 (12:43:19.672779)----------Starting Worker...----EST Time: 2021-01-20 04:43:19--------------------
+20-Jan-2021 (12:43:19.673713)---Checking connection
+20-Jan-2021 (12:43:19.674489)---Connection is fine- proceeding
+20-Jan-2021 (12:43:19.675232)---Updating all open orders
+20-Jan-2021 (12:43:20.663921)---1 open orders found 
+20-Jan-2021 (12:43:20.665653)---Updating open Positions:
+20-Jan-2021 (12:43:21.669992)---Started tracking SQ position PnL
+20-Jan-2021 (12:43:21.674113)---Started tracking BEP position PnL
+20-Jan-2021 (12:43:21.676322)---Started tracking CRWD position PnL
+20-Jan-2021 (12:43:21.683343)---Started tracking MSFT position PnL
+20-Jan-2021 (12:43:21.685419)---Started tracking AAPL position PnL
+20-Jan-2021 (12:43:21.687108)---Started tracking AZN position PnL
+20-Jan-2021 (12:43:21.689174)---Started tracking PTON position PnL
+20-Jan-2021 (12:43:22.679678)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:43:22.682313)---Requesting History for SQ position for last 1 hour BID price
+20-Jan-2021 (12:43:22.683636)---Requesting History for BEP position for last 1 hour BID price
+20-Jan-2021 (12:43:22.684589)---Requesting History for CRWD position for last 1 hour BID price
+20-Jan-2021 (12:43:22.685435)---Requesting History for MSFT position for last 1 hour BID price
+20-Jan-2021 (12:43:22.686283)---Requesting History for AAPL position for last 1 hour BID price
+20-Jan-2021 (12:43:22.687105)---Requesting History for AZN position for last 1 hour BID price
+20-Jan-2021 (12:43:22.691627)---Requesting History for PTON position for last 1 hour BID price
+20-Jan-2021 (12:43:23.686813)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:43:23.688141)---7 open positions completely updated
+20-Jan-2021 (12:43:23.689553)---Trading session is not Open - processing skept
+20-Jan-2021 (12:43:23.690573)---...............Worker finished....EST Time: 2021-01-20 04:43:19...................
+20-Jan-2021 (12:43:23.724397)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:23.724908)---UI resumed.
+20-Jan-2021 (12:43:24.810358)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:25.898867)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:26.976958)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:27.970629)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:28.985383)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:29.971307)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:30.994607)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:31.982606)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:32.966056)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:33.968479)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:34.974133)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:35.972873)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:36.975454)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:37.976166)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:38.975578)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:39.976608)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:40.976536)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:41.972703)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:42.978039)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:43.969362)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:44.978214)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:45.975877)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:46.974329)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:47.972903)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:48.978373)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:49.975288)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:50.975434)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:51.976157)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:52.971634)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:53.982076)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:54.976639)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:55.977379)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:56.973494)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:57.976418)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:58.976296)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:43:59.977903)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:00.977530)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:01.980568)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:02.977752)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:03.976773)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:04.965187)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:05.975811)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:06.976617)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:07.978379)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:08.975670)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:09.981405)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:10.982444)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:11.441383)---Starting Worker- UI Paused
+20-Jan-2021 (12:44:11.444030)----------Starting Worker...----EST Time: 2021-01-20 04:44:11--------------------
+20-Jan-2021 (12:44:11.445280)---Checking connection
+20-Jan-2021 (12:44:11.451366)---Connection is fine- proceeding
+20-Jan-2021 (12:44:11.452412)---Updating all open orders
+20-Jan-2021 (12:44:12.447685)---1 open orders found 
+20-Jan-2021 (12:44:12.449888)---Updating open Positions:
+20-Jan-2021 (12:44:17.862204)---Started tracking SQ position PnL
+20-Jan-2021 (12:44:17.865938)---Started tracking BEP position PnL
+20-Jan-2021 (12:44:17.869558)---Started tracking CRWD position PnL
+20-Jan-2021 (12:44:17.873293)---Started tracking MSFT position PnL
+20-Jan-2021 (12:44:17.875294)---Started tracking AAPL position PnL
+20-Jan-2021 (12:44:17.877776)---Started tracking AZN position PnL
+20-Jan-2021 (12:44:17.879649)---Started tracking PTON position PnL
+20-Jan-2021 (12:44:20.135291)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:44:20.138087)---Requesting History for SQ position for last 1 hour BID price
+20-Jan-2021 (12:44:20.157853)---Requesting History for BEP position for last 1 hour BID price
+20-Jan-2021 (12:44:20.158724)---Requesting History for CRWD position for last 1 hour BID price
+20-Jan-2021 (12:44:20.162402)---Requesting History for MSFT position for last 1 hour BID price
+20-Jan-2021 (12:44:20.180518)---Requesting History for AAPL position for last 1 hour BID price
+20-Jan-2021 (12:44:20.181085)---Requesting History for AZN position for last 1 hour BID price
+20-Jan-2021 (12:44:20.185416)---Requesting History for PTON position for last 1 hour BID price
+20-Jan-2021 (12:44:21.141650)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:44:21.144057)---7 open positions completely updated
+20-Jan-2021 (12:44:21.145936)---Trading session is not Open - processing skept
+20-Jan-2021 (12:44:21.147423)---...............Worker finished....EST Time: 2021-01-20 04:44:11...................
+20-Jan-2021 (12:44:21.219104)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:21.220498)---UI resumed.
+20-Jan-2021 (12:44:24.111718)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:25.093855)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:29.110985)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:30.399076)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:36.429026)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:37.495529)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:38.520826)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:39.540430)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:41.105847)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:42.115713)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:43.114763)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:44.103470)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:45.091479)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:46.148818)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:47.169358)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:48.174399)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:49.163643)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:50.151194)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:51.186922)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:52.176033)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:53.160907)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:54.151166)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:55.136527)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:56.163788)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:44:57.157721)---Error in updating Candidates: 'target_price'
+20-Jan-2021 (12:45:10.257438)---Begin connect and prepare
+20-Jan-2021 (12:45:10.257884)---Restarting connection to IBKR
+20-Jan-2021 (12:45:10.260314)---Waiting for connection...attempt:0
+20-Jan-2021 (12:45:11.072942)---Successfully connected to API
+20-Jan-2021 (12:45:11.074191)---Requesting Daily PnL
+20-Jan-2021 (12:45:11.075094)---PnL not yet received
+20-Jan-2021 (12:45:11.075856)---Starting to track Excess liquidity
+20-Jan-2021 (12:45:11.077252)---Updating open Positions:
+20-Jan-2021 (12:45:12.079128)---Started tracking SQ position PnL
+20-Jan-2021 (12:45:12.082960)---Started tracking BEP position PnL
+20-Jan-2021 (12:45:12.085371)---Started tracking CRWD position PnL
+20-Jan-2021 (12:45:12.087468)---Started tracking MSFT position PnL
+20-Jan-2021 (12:45:12.093951)---Started tracking AAPL position PnL
+20-Jan-2021 (12:45:12.094509)---Started tracking AZN position PnL
+20-Jan-2021 (12:45:12.094969)---Started tracking PTON position PnL
+20-Jan-2021 (12:45:13.087397)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:45:14.090616)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:45:14.092204)---Requesting History for SQ position for last 1 hour BID price
+20-Jan-2021 (12:45:14.093184)---Requesting History for BEP position for last 1 hour BID price
+20-Jan-2021 (12:45:14.093951)---Requesting History for CRWD position for last 1 hour BID price
+20-Jan-2021 (12:45:14.094726)---Requesting History for MSFT position for last 1 hour BID price
+20-Jan-2021 (12:45:14.095428)---Requesting History for AAPL position for last 1 hour BID price
+20-Jan-2021 (12:45:14.096091)---Requesting History for AZN position for last 1 hour BID price
+20-Jan-2021 (12:45:14.096750)---Requesting History for PTON position for last 1 hour BID price
+20-Jan-2021 (12:45:15.095230)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:45:15.096421)---7 open positions completely updated
+20-Jan-2021 (12:45:15.102888)---Updating all open orders
+20-Jan-2021 (12:45:16.098953)---1 open orders found 
+20-Jan-2021 (12:45:16.101481)---Starting to track FB,BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA,SPCE,BABA Candidates
+20-Jan-2021 (12:45:16.103834)---starting to track: 1 of 36 FB traking with Id:27018
+20-Jan-2021 (12:45:16.105540)---starting to track: 2 of 36 BYND traking with Id:27019
+20-Jan-2021 (12:45:16.119410)---starting to track: 3 of 36 SEDG traking with Id:27020
+20-Jan-2021 (12:45:16.122729)---starting to track: 4 of 36 LTHM traking with Id:27021
+20-Jan-2021 (12:45:16.125560)---starting to track: 5 of 36 SQ traking with Id:27022
+20-Jan-2021 (12:45:16.129822)---starting to track: 6 of 36 TTWO traking with Id:27023
+20-Jan-2021 (12:45:16.132285)---starting to track: 7 of 36 OTRK traking with Id:27024
+20-Jan-2021 (12:45:16.133820)---starting to track: 8 of 36 HUM traking with Id:27025
+20-Jan-2021 (12:45:16.138589)---starting to track: 9 of 36 AAPL traking with Id:27026
+20-Jan-2021 (12:45:16.140983)---starting to track: 10 of 36 ZG traking with Id:27027
+20-Jan-2021 (12:45:16.142209)---starting to track: 11 of 36 MSFT traking with Id:27028
+20-Jan-2021 (12:45:16.145115)---starting to track: 12 of 36 NVDA traking with Id:27029
+20-Jan-2021 (12:45:16.149205)---starting to track: 13 of 36 BEP traking with Id:27030
+20-Jan-2021 (12:45:16.155456)---starting to track: 14 of 36 GOOGL traking with Id:27031
+20-Jan-2021 (12:45:16.157759)---starting to track: 15 of 36 ETSY traking with Id:27032
+20-Jan-2021 (12:45:16.158827)---starting to track: 16 of 36 IVAC traking with Id:27033
+20-Jan-2021 (12:45:16.160386)---starting to track: 17 of 36 PTON traking with Id:27034
+20-Jan-2021 (12:45:16.161618)---starting to track: 18 of 36 ADI traking with Id:27035
+20-Jan-2021 (12:45:16.167776)---starting to track: 19 of 36 CRM traking with Id:27036
+20-Jan-2021 (12:45:16.170003)---starting to track: 20 of 36 CHWY traking with Id:27037
+20-Jan-2021 (12:45:16.171526)---starting to track: 21 of 36 AZN traking with Id:27038
+20-Jan-2021 (12:45:16.172550)---starting to track: 22 of 36 NICE traking with Id:27039
+20-Jan-2021 (12:45:16.173580)---starting to track: 23 of 36 CSCO traking with Id:27040
+20-Jan-2021 (12:45:16.174336)---starting to track: 24 of 36 PANW traking with Id:27041
+20-Jan-2021 (12:45:16.175205)---starting to track: 25 of 36 NET traking with Id:27042
+20-Jan-2021 (12:45:16.175933)---starting to track: 26 of 36 CRWD traking with Id:27043
+20-Jan-2021 (12:45:16.176748)---starting to track: 27 of 36 CHKP traking with Id:27044
+20-Jan-2021 (12:45:16.177957)---starting to track: 28 of 36 CVLT traking with Id:27045
+20-Jan-2021 (12:45:16.179098)---starting to track: 29 of 36 RPD traking with Id:27046
+20-Jan-2021 (12:45:16.182693)---starting to track: 30 of 36 TENB traking with Id:27047
+20-Jan-2021 (12:45:16.183752)---starting to track: 31 of 36 ADBE traking with Id:27048
+20-Jan-2021 (12:45:16.184757)---starting to track: 32 of 36 SHOP traking with Id:27049
+20-Jan-2021 (12:45:16.187754)---starting to track: 33 of 36 NIO traking with Id:27050
+20-Jan-2021 (12:45:16.191246)---starting to track: 34 of 36 TSLA traking with Id:27051
+20-Jan-2021 (12:45:16.192892)---starting to track: 35 of 36 SPCE traking with Id:27052
+20-Jan-2021 (12:45:16.194551)---starting to track: 36 of 36 BABA traking with Id:27053
+20-Jan-2021 (12:45:17.143769)---Waiting for last requested candidate Close price 
+20-Jan-2021 (12:45:17.157952)---Getting Yahoo market data for FB
+20-Jan-2021 (12:45:17.158374)---Downloading the data for: FB
+20-Jan-2021 (12:45:17.429289)---Figuring average Drop and Change for: FB
+20-Jan-2021 (12:45:17.449890)---Yahoo market data for FBreceived shows average 1.600155184841437 % drop
+20-Jan-2021 (12:45:17.451273)---Getting Yahoo market data for BYND
+20-Jan-2021 (12:45:17.451982)---Downloading the data for: BYND
+20-Jan-2021 (12:45:17.691759)---Figuring average Drop and Change for: BYND
+20-Jan-2021 (12:45:17.693047)---Yahoo market data for BYNDreceived shows average 3.0098832318570476 % drop
+20-Jan-2021 (12:45:17.693501)---Getting Yahoo market data for SEDG
+20-Jan-2021 (12:45:17.694397)---Downloading the data for: SEDG
+20-Jan-2021 (12:45:17.949462)---Figuring average Drop and Change for: SEDG
+20-Jan-2021 (12:45:17.950550)---Yahoo market data for SEDGreceived shows average 3.150440748827992 % drop
+20-Jan-2021 (12:45:17.952016)---Getting Yahoo market data for LTHM
+20-Jan-2021 (12:45:17.952637)---Downloading the data for: LTHM
+20-Jan-2021 (12:45:18.246501)---Figuring average Drop and Change for: LTHM
+20-Jan-2021 (12:45:18.253943)---Yahoo market data for LTHMreceived shows average 3.4554896738608325 % drop
+20-Jan-2021 (12:45:18.254587)---Getting Yahoo market data for SQ
+20-Jan-2021 (12:45:18.254976)---Downloading the data for: SQ
+20-Jan-2021 (12:45:18.480494)---Figuring average Drop and Change for: SQ
+20-Jan-2021 (12:45:18.487461)---Yahoo market data for SQreceived shows average 2.7150366942829174 % drop
+20-Jan-2021 (12:45:18.487930)---Getting Yahoo market data for TTWO
+20-Jan-2021 (12:45:18.488426)---Downloading the data for: TTWO
+20-Jan-2021 (12:45:18.715502)---Figuring average Drop and Change for: TTWO
+20-Jan-2021 (12:45:18.722200)---Yahoo market data for TTWOreceived shows average 1.637229593737535 % drop
+20-Jan-2021 (12:45:18.722723)---Getting Yahoo market data for OTRK
+20-Jan-2021 (12:45:18.723654)---Downloading the data for: OTRK
+20-Jan-2021 (12:45:19.108823)---Figuring average Drop and Change for: OTRK
+20-Jan-2021 (12:45:19.133071)---Yahoo market data for OTRKreceived shows average 4.232170050923361 % drop
+20-Jan-2021 (12:45:19.134517)---Getting Yahoo market data for HUM
+20-Jan-2021 (12:45:19.135668)---Downloading the data for: HUM
+20-Jan-2021 (12:45:19.439127)---Figuring average Drop and Change for: HUM
+20-Jan-2021 (12:45:19.446613)---Yahoo market data for HUMreceived shows average 1.7651679520645749 % drop
+20-Jan-2021 (12:45:19.447487)---Getting Yahoo market data for AAPL
+20-Jan-2021 (12:45:19.448053)---Downloading the data for: AAPL
+20-Jan-2021 (12:45:19.734923)---Figuring average Drop and Change for: AAPL
+20-Jan-2021 (12:45:19.736380)---Yahoo market data for AAPLreceived shows average 1.4332393403179338 % drop
+20-Jan-2021 (12:45:19.737062)---Getting Yahoo market data for ZG
+20-Jan-2021 (12:45:19.738303)---Downloading the data for: ZG
+20-Jan-2021 (12:45:19.985410)---Figuring average Drop and Change for: ZG
+20-Jan-2021 (12:45:19.991726)---Yahoo market data for ZGreceived shows average 2.6472204658723855 % drop
+20-Jan-2021 (12:45:19.992314)---Getting Yahoo market data for MSFT
+20-Jan-2021 (12:45:19.992964)---Downloading the data for: MSFT
+20-Jan-2021 (12:45:20.328351)---Figuring average Drop and Change for: MSFT
+20-Jan-2021 (12:45:20.336794)---Yahoo market data for MSFTreceived shows average 1.3598523570710244 % drop
+20-Jan-2021 (12:45:20.337626)---Getting Yahoo market data for NVDA
+20-Jan-2021 (12:45:20.338843)---Downloading the data for: NVDA
+20-Jan-2021 (12:45:20.625268)---Figuring average Drop and Change for: NVDA
+20-Jan-2021 (12:45:20.634874)---Yahoo market data for NVDAreceived shows average 2.000677656251213 % drop
+20-Jan-2021 (12:45:20.635743)---Getting Yahoo market data for BEP
+20-Jan-2021 (12:45:20.636916)---Downloading the data for: BEP
+20-Jan-2021 (12:45:20.980324)---Figuring average Drop and Change for: BEP
+20-Jan-2021 (12:45:20.981516)---Yahoo market data for BEPreceived shows average 1.780785170045177 % drop
+20-Jan-2021 (12:45:20.983057)---Getting Yahoo market data for GOOGL
+20-Jan-2021 (12:45:20.983673)---Downloading the data for: GOOGL
+20-Jan-2021 (12:45:21.250613)---Figuring average Drop and Change for: GOOGL
+20-Jan-2021 (12:45:21.258438)---Yahoo market data for GOOGLreceived shows average 1.2870849085634797 % drop
+20-Jan-2021 (12:45:21.259508)---Getting Yahoo market data for ETSY
+20-Jan-2021 (12:45:21.260929)---Downloading the data for: ETSY
+20-Jan-2021 (12:45:21.481442)---Figuring average Drop and Change for: ETSY
+20-Jan-2021 (12:45:21.488237)---Yahoo market data for ETSYreceived shows average 2.6953569529030306 % drop
+20-Jan-2021 (12:45:21.488797)---Getting Yahoo market data for IVAC
+20-Jan-2021 (12:45:21.489128)---Downloading the data for: IVAC
+20-Jan-2021 (12:45:21.807569)---Figuring average Drop and Change for: IVAC
+20-Jan-2021 (12:45:21.817189)---Yahoo market data for IVACreceived shows average 2.8227089301017143 % drop
+20-Jan-2021 (12:45:21.817985)---Getting Yahoo market data for PTON
+20-Jan-2021 (12:45:21.818707)---Downloading the data for: PTON
+20-Jan-2021 (12:45:22.051494)---Figuring average Drop and Change for: PTON
+20-Jan-2021 (12:45:22.058535)---Yahoo market data for PTONreceived shows average 3.132734418870234 % drop
+20-Jan-2021 (12:45:22.059013)---Getting Yahoo market data for ADI
+20-Jan-2021 (12:45:22.060038)---Downloading the data for: ADI
+20-Jan-2021 (12:45:22.397604)---Figuring average Drop and Change for: ADI
+20-Jan-2021 (12:45:22.398705)---Yahoo market data for ADIreceived shows average 1.5100344184310424 % drop
+20-Jan-2021 (12:45:22.399167)---Getting Yahoo market data for CRM
+20-Jan-2021 (12:45:22.399595)---Downloading the data for: CRM
+20-Jan-2021 (12:45:22.815561)---Figuring average Drop and Change for: CRM
+20-Jan-2021 (12:45:22.822180)---Yahoo market data for CRMreceived shows average 1.7709048050869711 % drop
+20-Jan-2021 (12:45:22.822632)---Getting Yahoo market data for CHWY
+20-Jan-2021 (12:45:22.823156)---Downloading the data for: CHWY
+20-Jan-2021 (12:45:23.157784)---Figuring average Drop and Change for: CHWY
+20-Jan-2021 (12:45:23.165586)---Yahoo market data for CHWYreceived shows average 2.8520360124859288 % drop
+20-Jan-2021 (12:45:23.166365)---Getting Yahoo market data for AZN
+20-Jan-2021 (12:45:23.167589)---Downloading the data for: AZN
+20-Jan-2021 (12:45:23.481554)---Figuring average Drop and Change for: AZN
+20-Jan-2021 (12:45:23.482552)---Yahoo market data for AZNreceived shows average 1.1430718477503552 % drop
+20-Jan-2021 (12:45:23.483872)---Getting Yahoo market data for NICE
+20-Jan-2021 (12:45:23.484785)---Downloading the data for: NICE
+20-Jan-2021 (12:45:23.761126)---Figuring average Drop and Change for: NICE
+20-Jan-2021 (12:45:23.765534)---Yahoo market data for NICEreceived shows average 1.1691354096823505 % drop
+20-Jan-2021 (12:45:23.766012)---Getting Yahoo market data for CSCO
+20-Jan-2021 (12:45:23.766352)---Downloading the data for: CSCO
+20-Jan-2021 (12:45:24.284675)---Figuring average Drop and Change for: CSCO
+20-Jan-2021 (12:45:24.297075)---Yahoo market data for CSCOreceived shows average 1.2652230405859437 % drop
+20-Jan-2021 (12:45:24.297751)---Getting Yahoo market data for PANW
+20-Jan-2021 (12:45:24.298161)---Downloading the data for: PANW
+20-Jan-2021 (12:45:24.553462)---Figuring average Drop and Change for: PANW
+20-Jan-2021 (12:45:24.554693)---Yahoo market data for PANWreceived shows average 1.4312268181907108 % drop
+20-Jan-2021 (12:45:24.555177)---Getting Yahoo market data for NET
+20-Jan-2021 (12:45:24.556372)---Downloading the data for: NET
+20-Jan-2021 (12:45:24.988123)---Figuring average Drop and Change for: NET
+20-Jan-2021 (12:45:24.995100)---Yahoo market data for NETreceived shows average 2.839288289115999 % drop
+20-Jan-2021 (12:45:24.995784)---Getting Yahoo market data for CRWD
+20-Jan-2021 (12:45:24.996378)---Downloading the data for: CRWD
+20-Jan-2021 (12:45:25.331985)---Figuring average Drop and Change for: CRWD
+20-Jan-2021 (12:45:25.341640)---Yahoo market data for CRWDreceived shows average 2.717206390240328 % drop
+20-Jan-2021 (12:45:25.342297)---Getting Yahoo market data for CHKP
+20-Jan-2021 (12:45:25.343508)---Downloading the data for: CHKP
+20-Jan-2021 (12:45:25.838508)---Figuring average Drop and Change for: CHKP
+20-Jan-2021 (12:45:25.839531)---Yahoo market data for CHKPreceived shows average 1.3233586894440452 % drop
+20-Jan-2021 (12:45:25.840307)---Getting Yahoo market data for CVLT
+20-Jan-2021 (12:45:25.841659)---Downloading the data for: CVLT
+20-Jan-2021 (12:45:26.140820)---Figuring average Drop and Change for: CVLT
+20-Jan-2021 (12:45:26.141848)---Yahoo market data for CVLTreceived shows average 1.8661429059064134 % drop
+20-Jan-2021 (12:45:26.143006)---Getting Yahoo market data for RPD
+20-Jan-2021 (12:45:26.143431)---Downloading the data for: RPD
+20-Jan-2021 (12:45:26.382135)---Figuring average Drop and Change for: RPD
+20-Jan-2021 (12:45:26.391802)---Yahoo market data for RPDreceived shows average 2.1987851458000716 % drop
+20-Jan-2021 (12:45:26.392396)---Getting Yahoo market data for TENB
+20-Jan-2021 (12:45:26.393611)---Downloading the data for: TENB
+20-Jan-2021 (12:45:26.623996)---Figuring average Drop and Change for: TENB
+20-Jan-2021 (12:45:26.631341)---Yahoo market data for TENBreceived shows average 2.2949512160435463 % drop
+20-Jan-2021 (12:45:26.632059)---Getting Yahoo market data for ADBE
+20-Jan-2021 (12:45:26.633329)---Downloading the data for: ADBE
+20-Jan-2021 (12:45:27.006593)---Figuring average Drop and Change for: ADBE
+20-Jan-2021 (12:45:27.016382)---Yahoo market data for ADBEreceived shows average 1.6837129873921417 % drop
+20-Jan-2021 (12:45:27.016969)---Getting Yahoo market data for SHOP
+20-Jan-2021 (12:45:27.018091)---Downloading the data for: SHOP
+20-Jan-2021 (12:45:27.242842)---Figuring average Drop and Change for: SHOP
+20-Jan-2021 (12:45:27.249541)---Yahoo market data for SHOPreceived shows average 2.6902441683933893 % drop
+20-Jan-2021 (12:45:27.250444)---Getting Yahoo market data for NIO
+20-Jan-2021 (12:45:27.250810)---Downloading the data for: NIO
+20-Jan-2021 (12:45:27.662987)---Figuring average Drop and Change for: NIO
+20-Jan-2021 (12:45:27.669706)---Yahoo market data for NIOreceived shows average 4.14555280503442 % drop
+20-Jan-2021 (12:45:27.670811)---Getting Yahoo market data for TSLA
+20-Jan-2021 (12:45:27.671228)---Downloading the data for: TSLA
+20-Jan-2021 (12:45:28.007179)---Figuring average Drop and Change for: TSLA
+20-Jan-2021 (12:45:28.008479)---Yahoo market data for TSLAreceived shows average 2.9847129079063253 % drop
+20-Jan-2021 (12:45:28.008948)---Getting Yahoo market data for SPCE
+20-Jan-2021 (12:45:28.009334)---Downloading the data for: SPCE
+20-Jan-2021 (12:45:28.359515)---Figuring average Drop and Change for: SPCE
+20-Jan-2021 (12:45:28.363549)---Yahoo market data for SPCEreceived shows average 4.452573964528306 % drop
+20-Jan-2021 (12:45:28.364182)---Getting Yahoo market data for BABA
+20-Jan-2021 (12:45:28.364718)---Downloading the data for: BABA
+20-Jan-2021 (12:45:28.717356)---Figuring average Drop and Change for: BABA
+20-Jan-2021 (12:45:28.723307)---Yahoo market data for BABAreceived shows average 1.488179644135837 % drop
+20-Jan-2021 (12:45:28.725365)---Getting ranks for :FB,BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA,SPCE,BABA
+20-Jan-2021 (12:45:30.264469)---Getting TipRank Rating for : FB
+20-Jan-2021 (12:45:36.678141)---Rating found on TipRanks : 7
+20-Jan-2021 (12:45:36.679267)---Getting TipRank Rating for : BYND
+20-Jan-2021 (12:45:38.594300)---Rating found on TipRanks : 6
+20-Jan-2021 (12:45:38.594885)---Getting TipRank Rating for : SEDG
+20-Jan-2021 (12:45:40.927214)---Rating found on TipRanks : 7
+20-Jan-2021 (12:45:40.928192)---Getting TipRank Rating for : LTHM
+20-Jan-2021 (12:45:43.034980)---Rating found on TipRanks : 8
+20-Jan-2021 (12:45:43.036227)---Getting TipRank Rating for : SQ
+20-Jan-2021 (12:45:45.187838)---Rating found on TipRanks : 10
+20-Jan-2021 (12:45:45.188402)---Getting TipRank Rating for : TTWO
+20-Jan-2021 (12:45:47.212703)---Rating found on TipRanks : 4
+20-Jan-2021 (12:45:47.213160)---Getting TipRank Rating for : OTRK
+20-Jan-2021 (12:45:49.345486)---Rating found on TipRanks : 4
+20-Jan-2021 (12:45:49.347368)---Getting TipRank Rating for : HUM
+20-Jan-2021 (12:45:51.890928)---Rating found on TipRanks : 5
+20-Jan-2021 (12:45:51.891395)---Getting TipRank Rating for : AAPL
+20-Jan-2021 (12:45:54.339572)---Rating found on TipRanks : 9
+20-Jan-2021 (12:45:54.340012)---Getting TipRank Rating for : ZG
+20-Jan-2021 (12:45:56.466141)---Rating found on TipRanks : 4
+20-Jan-2021 (12:45:56.470072)---Getting TipRank Rating for : MSFT
+20-Jan-2021 (12:45:58.812193)---Rating found on TipRanks : 9
+20-Jan-2021 (12:45:58.812872)---Getting TipRank Rating for : NVDA
+20-Jan-2021 (12:46:00.528046)---Rating found on TipRanks : 6
+20-Jan-2021 (12:46:00.528595)---Getting TipRank Rating for : BEP
+20-Jan-2021 (12:46:02.523839)---Rating found on TipRanks : 9
+20-Jan-2021 (12:46:02.524477)---Getting TipRank Rating for : GOOGL
+20-Jan-2021 (12:46:04.802537)---Rating found on TipRanks : 6
+20-Jan-2021 (12:46:04.803100)---Getting TipRank Rating for : ETSY
+20-Jan-2021 (12:46:06.955089)---Rating found on TipRanks : 7
+20-Jan-2021 (12:46:06.955953)---Getting TipRank Rating for : IVAC
+20-Jan-2021 (12:46:08.806611)---Rating found on TipRanks : 5
+20-Jan-2021 (12:46:08.808271)---Getting TipRank Rating for : PTON
+20-Jan-2021 (12:46:11.325464)---Rating found on TipRanks : 8
+20-Jan-2021 (12:46:11.326350)---Getting TipRank Rating for : ADI
+20-Jan-2021 (12:46:13.764805)---Rating found on TipRanks : 9
+20-Jan-2021 (12:46:13.765862)---Getting TipRank Rating for : CRM
+20-Jan-2021 (12:46:15.878514)---Rating found on TipRanks : 7
+20-Jan-2021 (12:46:15.879175)---Getting TipRank Rating for : CHWY
+20-Jan-2021 (12:46:17.611265)---Rating found on TipRanks : 6
+20-Jan-2021 (12:46:17.611671)---Getting TipRank Rating for : AZN
+20-Jan-2021 (12:46:19.810312)---Rating found on TipRanks : 6
+20-Jan-2021 (12:46:19.810805)---Getting TipRank Rating for : NICE
+20-Jan-2021 (12:46:21.792352)---Rating found on TipRanks : 6
+20-Jan-2021 (12:46:21.792784)---Getting TipRank Rating for : CSCO
+20-Jan-2021 (12:46:23.614348)---Rating found on TipRanks : 10
+20-Jan-2021 (12:46:23.614963)---Getting TipRank Rating for : PANW
+20-Jan-2021 (12:46:25.747099)---Rating found on TipRanks : 5
+20-Jan-2021 (12:46:25.748451)---Getting TipRank Rating for : NET
+20-Jan-2021 (12:46:27.854979)---Rating found on TipRanks : 8
+20-Jan-2021 (12:46:27.855390)---Getting TipRank Rating for : CRWD
+20-Jan-2021 (12:46:29.692552)---Rating found on TipRanks : 10
+20-Jan-2021 (12:46:29.693310)---Getting TipRank Rating for : CHKP
+20-Jan-2021 (12:46:31.614209)---Rating found on TipRanks : 5
+20-Jan-2021 (12:46:31.614635)---Getting TipRank Rating for : CVLT
+20-Jan-2021 (12:46:33.654715)---Rating found on TipRanks : 7
+20-Jan-2021 (12:46:33.655131)---Getting TipRank Rating for : RPD
+20-Jan-2021 (12:46:35.341070)---Rating found on TipRanks : 7
+20-Jan-2021 (12:46:35.341487)---Getting TipRank Rating for : TENB
+20-Jan-2021 (12:46:38.213226)---Rating found on TipRanks : 8
+20-Jan-2021 (12:46:38.213664)---Getting TipRank Rating for : ADBE
+20-Jan-2021 (12:46:40.037389)---Rating found on TipRanks : 5
+20-Jan-2021 (12:46:40.037806)---Getting TipRank Rating for : SHOP
+20-Jan-2021 (12:46:42.277582)---Rating found on TipRanks : 8
+20-Jan-2021 (12:46:42.278049)---Getting TipRank Rating for : NIO
+20-Jan-2021 (12:46:44.204130)---Rating found on TipRanks : 10
+20-Jan-2021 (12:46:44.204692)---Getting TipRank Rating for : TSLA
+20-Jan-2021 (12:46:46.671387)---Rating found on TipRanks : 7
+20-Jan-2021 (12:46:46.671834)---Getting TipRank Rating for : SPCE
+20-Jan-2021 (12:46:48.611374)---Rating found on TipRanks : 7
+20-Jan-2021 (12:46:48.612733)---Getting TipRank Rating for : BABA
+20-Jan-2021 (12:46:50.577076)---Rating found on TipRanks : 7
+20-Jan-2021 (12:46:50.767464)---36 Candidates evaluated and started to track
+20-Jan-2021 (12:46:50.767934)---Updating target prices for Candidates
+20-Jan-2021 (12:46:50.768724)---Updating target price for FB
+20-Jan-2021 (12:46:50.769510)---Target price for FB updated to 252.64160156291962 based on Open price
+20-Jan-2021 (12:46:50.769872)---Updating target price for BYND
+20-Jan-2021 (12:46:50.770208)---Target price for BYND updated to 137.37680139039767 based on Close price
+20-Jan-2021 (12:46:50.770536)---Updating target price for SEDG
+20-Jan-2021 (12:46:50.770858)---Target price for SEDG updated to 285.754624570583 based on Close price
+20-Jan-2021 (12:46:50.771168)---Updating target price for LTHM
+20-Jan-2021 (12:46:50.771504)---Target price for LTHM updated to 22.601069867349178 based on Close price
+20-Jan-2021 (12:46:50.771819)---Updating target price for SQ
+20-Jan-2021 (12:46:50.772154)---Target price for SQ updated to 221.08980760857264 based on Close price
+20-Jan-2021 (12:46:50.772478)---Updating target price for TTWO
+20-Jan-2021 (12:46:50.772795)---Target price for TTWO updated to 195.47633362836538 based on Close price
+20-Jan-2021 (12:46:50.773110)---Updating target price for OTRK
+20-Jan-2021 (12:46:50.773425)---Target price for OTRK updated to 71.37576366104682 based on Close price
+20-Jan-2021 (12:46:50.773745)---Updating target price for HUM
+20-Jan-2021 (12:46:50.774074)---Target price for HUM updated to 400.12029441444577 based on Close price
+20-Jan-2021 (12:46:50.774417)---Updating target price for AAPL
+20-Jan-2021 (12:46:50.774737)---Target price for AAPL updated to 125.88946671454593 based on Open price
+20-Jan-2021 (12:46:50.775051)---Updating target price for ZG
+20-Jan-2021 (12:46:50.775367)---Target price for ZG updated to 146.0096987452846 based on Close price
+20-Jan-2021 (12:46:50.775682)---Updating target price for MSFT
+20-Jan-2021 (12:46:50.776090)---Target price for MSFT updated to 210.88277164581785 based on Open price
+20-Jan-2021 (12:46:50.776458)---Updating target price for NVDA
+20-Jan-2021 (12:46:50.776780)---Target price for NVDA updated to 510.58626934316555 based on Close price
+20-Jan-2021 (12:46:50.777101)---Updating target price for BEP
+20-Jan-2021 (12:46:50.777418)---Target price for BEP updated to 46.02552406931683 based on Close price
+20-Jan-2021 (12:46:50.777737)---Updating target price for GOOGL
+20-Jan-2021 (12:46:50.778061)---Target price for GOOGL updated to 1761.5023559321573 based on Close price
+20-Jan-2021 (12:46:50.778376)---Updating target price for ETSY
+20-Jan-2021 (12:46:50.778700)---Target price for ETSY updated to 215.3449055275303 based on Close price
+20-Jan-2021 (12:46:50.779021)---Updating target price for IVAC
+20-Jan-2021 (12:46:50.779340)---Target price for IVAC updated to 6.996764957032677 based on Close price
+20-Jan-2021 (12:46:50.779663)---Updating target price for PTON
+20-Jan-2021 (12:46:50.779985)---Target price for PTON updated to 147.77101364401346 based on Open price
+20-Jan-2021 (12:46:50.780313)---Updating target price for ADI
+20-Jan-2021 (12:46:50.780636)---Target price for ADI updated to 158.1157907446508 based on Close price
+20-Jan-2021 (12:46:50.780954)---Updating target price for CRM
+20-Jan-2021 (12:46:50.781276)---Target price for CRM updated to 212.92138674449347 based on Close price
+20-Jan-2021 (12:46:50.781597)---Updating target price for CHWY
+20-Jan-2021 (12:46:50.781916)---Target price for CHWY updated to 104.25919495140009 based on Close price
+20-Jan-2021 (12:46:50.782239)---Updating target price for AZN
+20-Jan-2021 (12:46:50.782562)---Target price for AZN updated to 51.969087129637636 based on Close price
+20-Jan-2021 (12:46:50.782884)---Updating target price for NICE
+20-Jan-2021 (12:46:50.783206)---Target price for NICE updated to 268.13801871999084 based on Close price
+20-Jan-2021 (12:46:50.783527)---Updating target price for CSCO
+20-Jan-2021 (12:46:50.783850)---Target price for CSCO updated to 44.61824570795921 based on Close price
+20-Jan-2021 (12:46:50.784177)---Updating target price for PANW
+20-Jan-2021 (12:46:50.784504)---Target price for PANW updated to 358.83961876837674 based on Close price
+20-Jan-2021 (12:46:50.784834)---Updating target price for NET
+20-Jan-2021 (12:46:50.785158)---Target price for NET updated to 79.12768361734393 based on Close price
+20-Jan-2021 (12:46:50.785481)---Updating target price for CRWD
+20-Jan-2021 (12:46:50.785804)---Target price for CRWD updated to 215.88997557877866 based on Close price
+20-Jan-2021 (12:46:50.786134)---Updating target price for CHKP
+20-Jan-2021 (12:46:50.786537)---Target price for CHKP updated to 125.94099730466256 based on Close price
+20-Jan-2021 (12:46:50.786914)---Updating target price for CVLT
+20-Jan-2021 (12:46:50.787270)---Target price for CVLT updated to 57.329799314369474 based on Close price
+20-Jan-2021 (12:46:50.787613)---Updating target price for RPD
+20-Jan-2021 (12:46:50.787954)---Target price for RPD updated to 87.13110231360672 based on Close price
+20-Jan-2021 (12:46:50.788296)---Updating target price for TENB
+20-Jan-2021 (12:46:50.788639)---Target price for TENB updated to 54.9688604458539 based on Close price
+20-Jan-2021 (12:46:50.788976)---Updating target price for ADBE
+20-Jan-2021 (12:46:50.789320)---Target price for ADBE updated to 448.8138502125549 based on Close price
+20-Jan-2021 (12:46:50.789667)---Updating target price for SHOP
+20-Jan-2021 (12:46:50.790016)---Target price for SHOP updated to 1142.3873405363122 based on Close price
+20-Jan-2021 (12:46:50.790362)---Updating target price for NIO
+20-Jan-2021 (12:46:50.790711)---Target price for NIO updated to 56.017338940737886 based on Close price
+20-Jan-2021 (12:46:50.791061)---Updating target price for TSLA
+20-Jan-2021 (12:46:50.791410)---Target price for TSLA updated to 812.7358660853056 based on Open price
+20-Jan-2021 (12:46:50.791757)---Updating target price for SPCE
+20-Jan-2021 (12:46:50.792104)---Target price for SPCE updated to 30.24076034022679 based on Close price
+20-Jan-2021 (12:46:50.792453)---Updating target price for BABA
+20-Jan-2021 (12:46:50.795020)---Target price for BABA updated to 247.90499592553218 based on Close price
+20-Jan-2021 (12:46:50.795439)---Connected to IBKR and READY
+20-Jan-2021 (12:46:50.907309)---UI resumed.
+20-Jan-2021 (12:46:50.908431)---Starting Worker- UI Paused
+20-Jan-2021 (12:46:50.982319)----------Starting Worker...----EST Time: 2021-01-20 04:46:50--------------------
+20-Jan-2021 (12:46:50.982759)---Checking connection
+20-Jan-2021 (12:46:50.983072)---Connection is fine- proceeding
+20-Jan-2021 (12:46:50.983377)---Updating all open orders
+20-Jan-2021 (12:46:51.912874)---1 open orders found 
+20-Jan-2021 (12:46:51.914934)---Updating open Positions:
+20-Jan-2021 (12:46:52.919389)---Started tracking SQ position PnL
+20-Jan-2021 (12:46:52.922590)---Started tracking BEP position PnL
+20-Jan-2021 (12:46:52.925087)---Started tracking CRWD position PnL
+20-Jan-2021 (12:46:52.927104)---Started tracking MSFT position PnL
+20-Jan-2021 (12:46:52.932475)---Started tracking AAPL position PnL
+20-Jan-2021 (12:46:52.934163)---Started tracking AZN position PnL
+20-Jan-2021 (12:46:52.935298)---Started tracking PTON position PnL
+20-Jan-2021 (12:46:53.925503)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:46:54.926908)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:46:54.929654)---Requesting History for SQ position for last 1 hour BID price
+20-Jan-2021 (12:46:54.931463)---Requesting History for BEP position for last 1 hour BID price
+20-Jan-2021 (12:46:54.936917)---Requesting History for CRWD position for last 1 hour BID price
+20-Jan-2021 (12:46:54.937772)---Requesting History for MSFT position for last 1 hour BID price
+20-Jan-2021 (12:46:54.938444)---Requesting History for AAPL position for last 1 hour BID price
+20-Jan-2021 (12:46:54.939186)---Requesting History for AZN position for last 1 hour BID price
+20-Jan-2021 (12:46:54.939797)---Requesting History for PTON position for last 1 hour BID price
+20-Jan-2021 (12:46:55.934761)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:46:56.936626)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:46:57.938892)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:46:57.939980)---7 open positions completely updated
+20-Jan-2021 (12:46:57.941097)---Trading session is not Open - processing skept
+20-Jan-2021 (12:46:57.942091)---...............Worker finished....EST Time: 2021-01-20 04:46:50...................
+20-Jan-2021 (12:46:57.979988)---UI resumed.
+20-Jan-2021 (12:47:50.442531)---Starting Worker- UI Paused
+20-Jan-2021 (12:47:50.460287)----------Starting Worker...----EST Time: 2021-01-20 04:47:50--------------------
+20-Jan-2021 (12:47:50.460881)---Checking connection
+20-Jan-2021 (12:47:50.461260)---Connection is fine- proceeding
+20-Jan-2021 (12:47:50.461610)---Updating all open orders
+20-Jan-2021 (12:47:51.448798)---1 open orders found 
+20-Jan-2021 (12:47:51.450198)---Updating open Positions:
+20-Jan-2021 (12:47:52.456348)---Started tracking SQ position PnL
+20-Jan-2021 (12:47:52.460342)---Started tracking BEP position PnL
+20-Jan-2021 (12:47:52.462628)---Started tracking CRWD position PnL
+20-Jan-2021 (12:47:52.468662)---Started tracking MSFT position PnL
+20-Jan-2021 (12:47:52.469845)---Started tracking AAPL position PnL
+20-Jan-2021 (12:47:52.471450)---Started tracking AZN position PnL
+20-Jan-2021 (12:47:52.472758)---Started tracking PTON position PnL
+20-Jan-2021 (12:47:53.467266)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:47:53.469925)---Requesting History for SQ position for last 1 hour BID price
+20-Jan-2021 (12:47:53.471431)---Requesting History for BEP position for last 1 hour BID price
+20-Jan-2021 (12:47:53.472342)---Requesting History for CRWD position for last 1 hour BID price
+20-Jan-2021 (12:47:53.473446)---Requesting History for MSFT position for last 1 hour BID price
+20-Jan-2021 (12:47:53.474198)---Requesting History for AAPL position for last 1 hour BID price
+20-Jan-2021 (12:47:53.479235)---Requesting History for AZN position for last 1 hour BID price
+20-Jan-2021 (12:47:53.479968)---Requesting History for PTON position for last 1 hour BID price
+20-Jan-2021 (12:47:54.474264)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:47:55.478257)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:47:56.480146)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:47:56.481405)---7 open positions completely updated
+20-Jan-2021 (12:47:56.482481)---Trading session is not Open - processing skept
+20-Jan-2021 (12:47:56.483532)---...............Worker finished....EST Time: 2021-01-20 04:47:50...................
+20-Jan-2021 (12:47:56.519884)---UI resumed.
+20-Jan-2021 (12:48:50.444477)---Starting Worker- UI Paused
+20-Jan-2021 (12:48:50.446927)----------Starting Worker...----EST Time: 2021-01-20 04:48:50--------------------
+20-Jan-2021 (12:48:50.448708)---Checking connection
+20-Jan-2021 (12:48:50.454281)---Connection is fine- proceeding
+20-Jan-2021 (12:48:50.454952)---Updating all open orders
+20-Jan-2021 (12:48:51.450354)---1 open orders found 
+20-Jan-2021 (12:48:51.452311)---Updating open Positions:
+20-Jan-2021 (12:48:52.454971)---Started tracking SQ position PnL
+20-Jan-2021 (12:48:52.458631)---Started tracking BEP position PnL
+20-Jan-2021 (12:48:52.461558)---Started tracking CRWD position PnL
+20-Jan-2021 (12:48:52.463815)---Started tracking MSFT position PnL
+20-Jan-2021 (12:48:52.465766)---Started tracking AAPL position PnL
+20-Jan-2021 (12:48:52.469893)---Started tracking AZN position PnL
+20-Jan-2021 (12:48:52.472224)---Started tracking PTON position PnL
+20-Jan-2021 (12:48:53.470402)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:48:53.472943)---Requesting History for SQ position for last 1 hour BID price
+20-Jan-2021 (12:48:53.479330)---Requesting History for BEP position for last 1 hour BID price
+20-Jan-2021 (12:48:53.483062)---Requesting History for CRWD position for last 1 hour BID price
+20-Jan-2021 (12:48:53.485931)---Requesting History for MSFT position for last 1 hour BID price
+20-Jan-2021 (12:48:53.487364)---Requesting History for AAPL position for last 1 hour BID price
+20-Jan-2021 (12:48:53.488199)---Requesting History for AZN position for last 1 hour BID price
+20-Jan-2021 (12:48:53.489075)---Requesting History for PTON position for last 1 hour BID price
+20-Jan-2021 (12:48:54.487656)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:48:54.488323)---7 open positions completely updated
+20-Jan-2021 (12:48:54.488920)---Trading session is not Open - processing skept
+20-Jan-2021 (12:48:54.489468)---...............Worker finished....EST Time: 2021-01-20 04:48:50...................
+20-Jan-2021 (12:48:54.526772)---UI resumed.
+20-Jan-2021 (12:49:50.445926)---Starting Worker- UI Paused
+20-Jan-2021 (12:49:50.456608)----------Starting Worker...----EST Time: 2021-01-20 04:49:50--------------------
+20-Jan-2021 (12:49:50.457504)---Checking connection
+20-Jan-2021 (12:49:50.458147)---Connection is fine- proceeding
+20-Jan-2021 (12:49:50.458933)---Updating all open orders
+20-Jan-2021 (12:49:51.456469)---1 open orders found 
+20-Jan-2021 (12:49:51.458306)---Updating open Positions:
+20-Jan-2021 (12:49:52.463074)---Started tracking SQ position PnL
+20-Jan-2021 (12:49:52.466626)---Started tracking BEP position PnL
+20-Jan-2021 (12:49:52.470133)---Started tracking CRWD position PnL
+20-Jan-2021 (12:49:52.474972)---Started tracking MSFT position PnL
+20-Jan-2021 (12:49:52.476481)---Started tracking AAPL position PnL
+20-Jan-2021 (12:49:52.478160)---Started tracking AZN position PnL
+20-Jan-2021 (12:49:52.479313)---Started tracking PTON position PnL
+20-Jan-2021 (12:49:53.474538)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:49:53.478190)---Requesting History for SQ position for last 1 hour BID price
+20-Jan-2021 (12:49:53.479456)---Requesting History for BEP position for last 1 hour BID price
+20-Jan-2021 (12:49:53.480502)---Requesting History for CRWD position for last 1 hour BID price
+20-Jan-2021 (12:49:53.481409)---Requesting History for MSFT position for last 1 hour BID price
+20-Jan-2021 (12:49:53.482232)---Requesting History for AAPL position for last 1 hour BID price
+20-Jan-2021 (12:49:53.487308)---Requesting History for AZN position for last 1 hour BID price
+20-Jan-2021 (12:49:53.488234)---Requesting History for PTON position for last 1 hour BID price
+20-Jan-2021 (12:49:54.483975)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:49:54.485476)---7 open positions completely updated
+20-Jan-2021 (12:49:54.486840)---Trading session is not Open - processing skept
+20-Jan-2021 (12:49:54.487996)---...............Worker finished....EST Time: 2021-01-20 04:49:50...................
+20-Jan-2021 (12:49:54.554865)---UI resumed.
+20-Jan-2021 (12:50:50.446604)---Starting Worker- UI Paused
+20-Jan-2021 (12:50:50.451947)----------Starting Worker...----EST Time: 2021-01-20 04:50:50--------------------
+20-Jan-2021 (12:50:50.453745)---Checking connection
+20-Jan-2021 (12:50:50.459103)---Connection is fine- proceeding
+20-Jan-2021 (12:50:50.459909)---Updating all open orders
+20-Jan-2021 (12:50:51.458683)---1 open orders found 
+20-Jan-2021 (12:50:51.461088)---Updating open Positions:
+20-Jan-2021 (12:50:52.463201)---Started tracking SQ position PnL
+20-Jan-2021 (12:50:52.467176)---Started tracking BEP position PnL
+20-Jan-2021 (12:50:52.469574)---Started tracking CRWD position PnL
+20-Jan-2021 (12:50:52.470940)---Started tracking MSFT position PnL
+20-Jan-2021 (12:50:52.472617)---Started tracking AAPL position PnL
+20-Jan-2021 (12:50:52.473724)---Started tracking AZN position PnL
+20-Jan-2021 (12:50:52.474952)---Started tracking PTON position PnL
+20-Jan-2021 (12:50:53.474102)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:50:53.476712)---Requesting History for SQ position for last 1 hour BID price
+20-Jan-2021 (12:50:53.478815)---Requesting History for BEP position for last 1 hour BID price
+20-Jan-2021 (12:50:53.481249)---Requesting History for CRWD position for last 1 hour BID price
+20-Jan-2021 (12:50:53.482487)---Requesting History for MSFT position for last 1 hour BID price
+20-Jan-2021 (12:50:53.483616)---Requesting History for AAPL position for last 1 hour BID price
+20-Jan-2021 (12:50:53.484599)---Requesting History for AZN position for last 1 hour BID price
+20-Jan-2021 (12:50:53.485558)---Requesting History for PTON position for last 1 hour BID price
+20-Jan-2021 (12:50:54.486832)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:50:54.488129)---7 open positions completely updated
+20-Jan-2021 (12:50:54.489475)---Trading session is not Open - processing skept
+20-Jan-2021 (12:50:54.490718)---...............Worker finished....EST Time: 2021-01-20 04:50:50...................
+20-Jan-2021 (12:50:54.526410)---UI resumed.
+20-Jan-2021 (12:51:50.446654)---Starting Worker- UI Paused
+20-Jan-2021 (12:51:50.460717)----------Starting Worker...----EST Time: 2021-01-20 04:51:50--------------------
+20-Jan-2021 (12:51:50.461380)---Checking connection
+20-Jan-2021 (12:51:50.461827)---Connection is fine- proceeding
+20-Jan-2021 (12:51:50.462179)---Updating all open orders
+20-Jan-2021 (12:51:51.456026)---1 open orders found 
+20-Jan-2021 (12:51:51.458983)---Updating open Positions:
+20-Jan-2021 (12:51:52.462235)---Started tracking SQ position PnL
+20-Jan-2021 (12:51:52.465628)---Started tracking BEP position PnL
+20-Jan-2021 (12:51:52.468613)---Started tracking CRWD position PnL
+20-Jan-2021 (12:51:52.473641)---Started tracking MSFT position PnL
+20-Jan-2021 (12:51:52.475190)---Started tracking AAPL position PnL
+20-Jan-2021 (12:51:52.476730)---Started tracking AZN position PnL
+20-Jan-2021 (12:51:52.478066)---Started tracking PTON position PnL
+20-Jan-2021 (12:51:53.472514)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:51:53.476014)---Requesting History for SQ position for last 1 hour BID price
+20-Jan-2021 (12:51:53.477764)---Requesting History for BEP position for last 1 hour BID price
+20-Jan-2021 (12:51:53.478474)---Requesting History for CRWD position for last 1 hour BID price
+20-Jan-2021 (12:51:53.481450)---Requesting History for MSFT position for last 1 hour BID price
+20-Jan-2021 (12:51:53.495812)---Requesting History for AAPL position for last 1 hour BID price
+20-Jan-2021 (12:51:53.496447)---Requesting History for AZN position for last 1 hour BID price
+20-Jan-2021 (12:51:53.496898)---Requesting History for PTON position for last 1 hour BID price
+20-Jan-2021 (12:51:54.483714)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:51:54.484929)---7 open positions completely updated
+20-Jan-2021 (12:51:54.486005)---Trading session is not Open - processing skept
+20-Jan-2021 (12:51:54.487050)---...............Worker finished....EST Time: 2021-01-20 04:51:50...................
+20-Jan-2021 (12:51:54.522550)---UI resumed.
+20-Jan-2021 (12:52:50.448414)---Starting Worker- UI Paused
+20-Jan-2021 (12:52:50.457118)----------Starting Worker...----EST Time: 2021-01-20 04:52:50--------------------
+20-Jan-2021 (12:52:50.457941)---Checking connection
+20-Jan-2021 (12:52:50.458460)---Connection is fine- proceeding
+20-Jan-2021 (12:52:50.459019)---Updating all open orders
+20-Jan-2021 (12:52:51.456645)---1 open orders found 
+20-Jan-2021 (12:52:51.459316)---Updating open Positions:
+20-Jan-2021 (12:52:52.461610)---Started tracking SQ position PnL
+20-Jan-2021 (12:52:52.465205)---Started tracking BEP position PnL
+20-Jan-2021 (12:52:52.471601)---Started tracking CRWD position PnL
+20-Jan-2021 (12:52:52.473032)---Started tracking MSFT position PnL
+20-Jan-2021 (12:52:52.474470)---Started tracking AAPL position PnL
+20-Jan-2021 (12:52:52.475486)---Started tracking AZN position PnL
+20-Jan-2021 (12:52:52.477134)---Started tracking PTON position PnL
+20-Jan-2021 (12:52:53.473830)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:52:53.476979)---Requesting History for SQ position for last 1 hour BID price
+20-Jan-2021 (12:52:53.478084)---Requesting History for BEP position for last 1 hour BID price
+20-Jan-2021 (12:52:53.478884)---Requesting History for CRWD position for last 1 hour BID price
+20-Jan-2021 (12:52:53.479706)---Requesting History for MSFT position for last 1 hour BID price
+20-Jan-2021 (12:52:53.484410)---Requesting History for AAPL position for last 1 hour BID price
+20-Jan-2021 (12:52:53.485346)---Requesting History for AZN position for last 1 hour BID price
+20-Jan-2021 (12:52:53.486074)---Requesting History for PTON position for last 1 hour BID price
+20-Jan-2021 (12:52:54.483897)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:52:54.485438)---7 open positions completely updated
+20-Jan-2021 (12:52:54.486798)---Trading session is not Open - processing skept
+20-Jan-2021 (12:52:54.487752)---...............Worker finished....EST Time: 2021-01-20 04:52:50...................
+20-Jan-2021 (12:52:54.524085)---UI resumed.
+20-Jan-2021 (12:53:50.449352)---Starting Worker- UI Paused
+20-Jan-2021 (12:53:50.459835)----------Starting Worker...----EST Time: 2021-01-20 04:53:50--------------------
+20-Jan-2021 (12:53:50.460678)---Checking connection
+20-Jan-2021 (12:53:50.461301)---Connection lost-reconnecting
+20-Jan-2021 (12:53:50.461935)---Restarting connection to IBKR
+20-Jan-2021 (12:53:50.506083)---Waiting for connection...attempt:0
+20-Jan-2021 (12:53:51.513298)---Successfully connected to API
+20-Jan-2021 (12:53:51.516905)---Updating all open orders
+20-Jan-2021 (12:53:52.519116)---1 open orders found 
+20-Jan-2021 (12:53:52.522216)---Updating open Positions:
+20-Jan-2021 (12:53:53.526393)---Started tracking SQ position PnL
+20-Jan-2021 (12:53:53.529633)---Started tracking BEP position PnL
+20-Jan-2021 (12:53:53.532074)---Started tracking CRWD position PnL
+20-Jan-2021 (12:53:53.541383)---Started tracking MSFT position PnL
+20-Jan-2021 (12:53:53.542117)---Started tracking AAPL position PnL
+20-Jan-2021 (12:53:53.542553)---Started tracking AZN position PnL
+20-Jan-2021 (12:53:53.543004)---Started tracking PTON position PnL
+20-Jan-2021 (12:53:54.534618)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:53:54.536939)---Requesting History for SQ position for last 1 hour BID price
+20-Jan-2021 (12:53:54.537904)---Requesting History for BEP position for last 1 hour BID price
+20-Jan-2021 (12:53:54.538397)---Requesting History for CRWD position for last 1 hour BID price
+20-Jan-2021 (12:53:54.538864)---Requesting History for MSFT position for last 1 hour BID price
+20-Jan-2021 (12:53:54.542842)---Requesting History for AAPL position for last 1 hour BID price
+20-Jan-2021 (12:53:54.543564)---Requesting History for AZN position for last 1 hour BID price
+20-Jan-2021 (12:53:54.544139)---Requesting History for PTON position for last 1 hour BID price
+20-Jan-2021 (12:53:55.543014)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:53:56.543623)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:53:56.544874)---7 open positions completely updated
+20-Jan-2021 (12:53:56.546164)---Trading session is not Open - processing skept
+20-Jan-2021 (12:53:56.547341)---...............Worker finished....EST Time: 2021-01-20 04:53:50...................
+20-Jan-2021 (12:53:56.583121)---UI resumed.
+20-Jan-2021 (12:54:50.449520)---Starting Worker- UI Paused
+20-Jan-2021 (12:54:50.460103)----------Starting Worker...----EST Time: 2021-01-20 04:54:50--------------------
+20-Jan-2021 (12:54:50.461165)---Checking connection
+20-Jan-2021 (12:54:50.461928)---Connection is fine- proceeding
+20-Jan-2021 (12:54:50.462560)---Updating all open orders
+20-Jan-2021 (12:54:51.457680)---1 open orders found 
+20-Jan-2021 (12:54:51.459195)---Updating open Positions:
+20-Jan-2021 (12:54:52.463001)---Started tracking SQ position PnL
+20-Jan-2021 (12:54:52.466362)---Started tracking BEP position PnL
+20-Jan-2021 (12:54:52.468441)---Started tracking CRWD position PnL
+20-Jan-2021 (12:54:52.470385)---Started tracking MSFT position PnL
+20-Jan-2021 (12:54:52.476551)---Started tracking AAPL position PnL
+20-Jan-2021 (12:54:52.478472)---Started tracking AZN position PnL
+20-Jan-2021 (12:54:52.480388)---Started tracking PTON position PnL
+20-Jan-2021 (12:54:53.469698)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:54:53.471582)---Requesting History for SQ position for last 1 hour BID price
+20-Jan-2021 (12:54:53.473917)---Requesting History for BEP position for last 1 hour BID price
+20-Jan-2021 (12:54:53.475508)---Requesting History for CRWD position for last 1 hour BID price
+20-Jan-2021 (12:54:53.480416)---Requesting History for MSFT position for last 1 hour BID price
+20-Jan-2021 (12:54:53.481484)---Requesting History for AAPL position for last 1 hour BID price
+20-Jan-2021 (12:54:53.482318)---Requesting History for AZN position for last 1 hour BID price
+20-Jan-2021 (12:54:53.482921)---Requesting History for PTON position for last 1 hour BID price
+20-Jan-2021 (12:54:54.479810)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:54:54.480758)---7 open positions completely updated
+20-Jan-2021 (12:54:54.481763)---Trading session is not Open - processing skept
+20-Jan-2021 (12:54:54.482551)---...............Worker finished....EST Time: 2021-01-20 04:54:50...................
+20-Jan-2021 (12:54:54.515390)---UI resumed.
+20-Jan-2021 (12:55:50.449791)---Starting Worker- UI Paused
+20-Jan-2021 (12:55:50.458116)----------Starting Worker...----EST Time: 2021-01-20 04:55:50--------------------
+20-Jan-2021 (12:55:50.459078)---Checking connection
+20-Jan-2021 (12:55:50.459715)---Connection is fine- proceeding
+20-Jan-2021 (12:55:50.460296)---Updating all open orders
+20-Jan-2021 (12:55:51.456780)---1 open orders found 
+20-Jan-2021 (12:55:51.459333)---Updating open Positions:
+20-Jan-2021 (12:55:52.461084)---Started tracking SQ position PnL
+20-Jan-2021 (12:55:52.466325)---Started tracking BEP position PnL
+20-Jan-2021 (12:55:52.473023)---Started tracking CRWD position PnL
+20-Jan-2021 (12:55:52.476895)---Started tracking MSFT position PnL
+20-Jan-2021 (12:55:52.483848)---Started tracking AAPL position PnL
+20-Jan-2021 (12:55:52.485823)---Started tracking AZN position PnL
+20-Jan-2021 (12:55:52.488046)---Started tracking PTON position PnL
+20-Jan-2021 (12:55:53.478809)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:55:53.481855)---Requesting History for SQ position for last 1 hour BID price
+20-Jan-2021 (12:55:53.483363)---Requesting History for BEP position for last 1 hour BID price
+20-Jan-2021 (12:55:53.484160)---Requesting History for CRWD position for last 1 hour BID price
+20-Jan-2021 (12:55:53.484865)---Requesting History for MSFT position for last 1 hour BID price
+20-Jan-2021 (12:55:53.485515)---Requesting History for AAPL position for last 1 hour BID price
+20-Jan-2021 (12:55:53.490250)---Requesting History for AZN position for last 1 hour BID price
+20-Jan-2021 (12:55:53.490981)---Requesting History for PTON position for last 1 hour BID price
+20-Jan-2021 (12:55:54.486170)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:55:54.487356)---7 open positions completely updated
+20-Jan-2021 (12:55:54.488368)---Trading session is not Open - processing skept
+20-Jan-2021 (12:55:54.489412)---...............Worker finished....EST Time: 2021-01-20 04:55:50...................
+20-Jan-2021 (12:55:54.525250)---UI resumed.
+20-Jan-2021 (12:56:50.451052)---Starting Worker- UI Paused
+20-Jan-2021 (12:56:50.459386)----------Starting Worker...----EST Time: 2021-01-20 04:56:50--------------------
+20-Jan-2021 (12:56:50.460605)---Checking connection
+20-Jan-2021 (12:56:50.461213)---Connection is fine- proceeding
+20-Jan-2021 (12:56:50.461778)---Updating all open orders
+20-Jan-2021 (12:56:51.455236)---1 open orders found 
+20-Jan-2021 (12:56:51.456277)---Updating open Positions:
+20-Jan-2021 (12:56:52.461143)---Started tracking SQ position PnL
+20-Jan-2021 (12:56:52.463297)---Started tracking BEP position PnL
+20-Jan-2021 (12:56:52.465900)---Started tracking CRWD position PnL
+20-Jan-2021 (12:56:52.472541)---Started tracking MSFT position PnL
+20-Jan-2021 (12:56:52.474445)---Started tracking AAPL position PnL
+20-Jan-2021 (12:56:52.476407)---Started tracking AZN position PnL
+20-Jan-2021 (12:56:52.478248)---Started tracking PTON position PnL
+20-Jan-2021 (12:56:53.468181)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:56:53.472932)---Requesting History for SQ position for last 1 hour BID price
+20-Jan-2021 (12:56:53.474954)---Requesting History for BEP position for last 1 hour BID price
+20-Jan-2021 (12:56:53.476512)---Requesting History for CRWD position for last 1 hour BID price
+20-Jan-2021 (12:56:53.477873)---Requesting History for MSFT position for last 1 hour BID price
+20-Jan-2021 (12:56:53.484076)---Requesting History for AAPL position for last 1 hour BID price
+20-Jan-2021 (12:56:53.484691)---Requesting History for AZN position for last 1 hour BID price
+20-Jan-2021 (12:56:53.485186)---Requesting History for PTON position for last 1 hour BID price
+20-Jan-2021 (12:56:54.481435)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:56:54.483376)---7 open positions completely updated
+20-Jan-2021 (12:56:54.485135)---Trading session is not Open - processing skept
+20-Jan-2021 (12:56:54.486297)---...............Worker finished....EST Time: 2021-01-20 04:56:50...................
+20-Jan-2021 (12:56:54.525014)---UI resumed.
+20-Jan-2021 (12:57:50.451031)---Starting Worker- UI Paused
+20-Jan-2021 (12:57:50.459910)----------Starting Worker...----EST Time: 2021-01-20 04:57:50--------------------
+20-Jan-2021 (12:57:50.460753)---Checking connection
+20-Jan-2021 (12:57:50.461284)---Connection is fine- proceeding
+20-Jan-2021 (12:57:50.461793)---Updating all open orders
+20-Jan-2021 (12:57:51.459436)---1 open orders found 
+20-Jan-2021 (12:57:51.460707)---Updating open Positions:
+20-Jan-2021 (12:57:52.465522)---Started tracking SQ position PnL
+20-Jan-2021 (12:57:52.468831)---Started tracking BEP position PnL
+20-Jan-2021 (12:57:52.470860)---Started tracking CRWD position PnL
+20-Jan-2021 (12:57:52.477889)---Started tracking MSFT position PnL
+20-Jan-2021 (12:57:52.479921)---Started tracking AAPL position PnL
+20-Jan-2021 (12:57:52.482072)---Started tracking AZN position PnL
+20-Jan-2021 (12:57:52.483461)---Started tracking PTON position PnL
+20-Jan-2021 (12:57:53.477889)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:57:53.481137)---Requesting History for SQ position for last 1 hour BID price
+20-Jan-2021 (12:57:53.482313)---Requesting History for BEP position for last 1 hour BID price
+20-Jan-2021 (12:57:53.483240)---Requesting History for CRWD position for last 1 hour BID price
+20-Jan-2021 (12:57:53.484113)---Requesting History for MSFT position for last 1 hour BID price
+20-Jan-2021 (12:57:53.488883)---Requesting History for AAPL position for last 1 hour BID price
+20-Jan-2021 (12:57:53.489654)---Requesting History for AZN position for last 1 hour BID price
+20-Jan-2021 (12:57:53.490470)---Requesting History for PTON position for last 1 hour BID price
+20-Jan-2021 (12:57:54.487900)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:57:54.489290)---7 open positions completely updated
+20-Jan-2021 (12:57:54.490540)---Trading session is not Open - processing skept
+20-Jan-2021 (12:57:54.491635)---...............Worker finished....EST Time: 2021-01-20 04:57:50...................
+20-Jan-2021 (12:57:54.529317)---UI resumed.
+20-Jan-2021 (12:58:50.453601)---Starting Worker- UI Paused
+20-Jan-2021 (12:58:50.463991)----------Starting Worker...----EST Time: 2021-01-20 04:58:50--------------------
+20-Jan-2021 (12:58:50.464881)---Checking connection
+20-Jan-2021 (12:58:50.465532)---Connection lost-reconnecting
+20-Jan-2021 (12:58:50.466144)---Restarting connection to IBKR
+20-Jan-2021 (12:58:50.506301)---Waiting for connection...attempt:0
+20-Jan-2021 (12:58:51.506458)---Successfully connected to API
+20-Jan-2021 (12:58:51.507683)---Updating all open orders
+20-Jan-2021 (12:58:52.509482)---1 open orders found 
+20-Jan-2021 (12:58:52.510321)---Updating open Positions:
+20-Jan-2021 (12:58:53.516203)---Started tracking SQ position PnL
+20-Jan-2021 (12:58:53.517959)---Started tracking BEP position PnL
+20-Jan-2021 (12:58:53.519341)---Started tracking CRWD position PnL
+20-Jan-2021 (12:58:53.520122)---Started tracking MSFT position PnL
+20-Jan-2021 (12:58:53.524663)---Started tracking AAPL position PnL
+20-Jan-2021 (12:58:53.525459)---Started tracking AZN position PnL
+20-Jan-2021 (12:58:53.526089)---Started tracking PTON position PnL
+20-Jan-2021 (12:58:54.523277)---Waiting to receive Value for all positions 
+20-Jan-2021 (12:58:54.524668)---Requesting History for SQ position for last 1 hour BID price
+20-Jan-2021 (12:58:54.525736)---Requesting History for BEP position for last 1 hour BID price
+20-Jan-2021 (12:58:54.526489)---Requesting History for CRWD position for last 1 hour BID price
+20-Jan-2021 (12:58:54.527248)---Requesting History for MSFT position for last 1 hour BID price
+20-Jan-2021 (12:58:54.528020)---Requesting History for AAPL position for last 1 hour BID price
+20-Jan-2021 (12:58:54.528775)---Requesting History for AZN position for last 1 hour BID price
+20-Jan-2021 (12:58:54.529526)---Requesting History for PTON position for last 1 hour BID price
+20-Jan-2021 (12:58:55.528220)---Waiting to receive Hisory for all positions 
+20-Jan-2021 (12:58:55.529443)---7 open positions completely updated
+20-Jan-2021 (12:58:55.530716)---Trading session is not Open - processing skept
+20-Jan-2021 (12:58:55.531736)---...............Worker finished....EST Time: 2021-01-20 04:58:50...................
+20-Jan-2021 (12:58:55.584897)---UI resumed.
