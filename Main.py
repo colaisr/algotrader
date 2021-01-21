@@ -20,6 +20,7 @@ from Logic.IBKRWorker import IBKRWorker
 # The ask price refers to the lowest price a seller will accept for a security.
 # from Research.tipRanksScrapperRequestsHtmlThreaded import get_tiprank_ratings_to_Stocks
 # UI Imports
+from Research.tipRanksScrapperSelenium import open_tip_ranks_page
 from UI.MainWindow import Ui_MainWindow
 from UI.NewStockWindow import Ui_newStockDlg
 from UI.SettingsWindow import Ui_setWin
@@ -295,6 +296,7 @@ Executed the Worker in separate thread
             worker.signals.notification.connect(self.update_console)
             # Execute
             self.threadpool.start(worker)
+
     def connection_done(self):
         # add processing
         self.update_ui()
@@ -446,7 +448,9 @@ Updates Positions grid
                 values = open_positions[key]
                 if 'stocks' in values.keys():
                     if values['stocks'] != 0:
-                        widget.update_view(key, values)
+                        candidate=next((x for x in self.settings.CANDIDATES if x.ticker == key), None)
+
+                        widget.update_view(key, values, candidate.reason)
                         widget.show()
                         lastUpdatedWidget = i
                     else:
@@ -515,7 +519,7 @@ After threaded task finished
         # self.settingsWindow.changedSettings = False
         self.settingsWindow.existingSettings = copy.deepcopy(self.settings)
         self.settingsWindow.changedSettings = False
-        self.settingsWindow.ibkrClient=self.ibkrworker
+        self.settingsWindow.ibkrClient = self.ibkrworker
         if self.settingsWindow.exec_():
             self.settings = self.settingsWindow.existingSettings
             self.settings.write_config()
@@ -568,7 +572,7 @@ class PositionPanel(QWidget):
         self.graphWidget = pg.PlotWidget(axisItems={'bottom': date_axis})
         self.ui.gg.addWidget(self.graphWidget)
 
-    def update_view(self, stock, values):
+    def update_view(self, stock, values,description):
         # Data preparation
         try:
             stock = stock
@@ -615,6 +619,7 @@ class PositionPanel(QWidget):
 
             # UI set
             self.ui.lStock.setText(stock)
+            self.ui.lStock.setToolTip(description)
             self.ui.lVolume.setText(str(int(number_of_stocks)))
             self.ui.lBulckValue.setText(str(bulk_value))
             self.ui.lProfitP.setText(str(round(profit, 2)))
@@ -789,7 +794,8 @@ class SettingsWindow(QDialog, Ui_setWin):
 
     def add_candidate(self):
         self.dlg = StockWindow()
-        self.dlg.client=self.ibkrClient
+        self.dlg.client = self.ibkrClient
+        self.dlg.path_to_driver = self.existingSettings.PATHTOWEBDRIVER
         if self.dlg.exec_():
             ca = SettingsCandidate()
             ca.ticker = self.dlg.txtTicker.text().upper()
@@ -832,11 +838,12 @@ class SettingsWindow(QDialog, Ui_setWin):
                 self.dlg.client = self.ibkrClient
                 self.dlg.txtTicker.setText(item.ticker)
                 self.dlg.txtReason.setPlainText(item.reason)
+                self.dlg.path_to_driver = self.existingSettings.PATHTOWEBDRIVER
                 if self.dlg.exec_():
                     ca = SettingsCandidate()
                     ca.ticker = self.dlg.txtTicker.text().upper()
                     ca.reason = self.dlg.txtReason.toPlainText()
-                    self.existingSettings.CANDIDATES[index]=ca
+                    self.existingSettings.CANDIDATES[index] = ca
                     self.changedSettings = True
                     self.redraw_candidates_list()
                 else:
@@ -852,12 +859,8 @@ class StockWindow(QDialog, Ui_newStockDlg):
         self.btnValidate.clicked.connect(self.validate_ticker)
 
     def validate_ticker(self):
-        ticker=self.txtTicker.text()
-        try:
-            c=self.client.request_ticker_data(ticker)
-            r=2
-        except Exception as e:
-            p=3
+        ticker = self.txtTicker.text()
+        open_tip_ranks_page(ticker, self.path_to_driver)
 
     def addStock(self):
         ca = SettingsCandidate()

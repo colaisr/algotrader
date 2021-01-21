@@ -8,6 +8,11 @@ from selenium.webdriver.support import expected_conditions as EC
 
 TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL"]
 
+def open_tip_ranks_page(ticker,path):
+    driver = webdriver.Chrome(path)
+    url = "https://www.tipranks.com/stocks/" + ticker + "/stock-analysis"
+    driver.get(url)
+
 
 def get_tiprank_ratings_to_Stocks(stocks, path, existing_data, notification_callback=None):
     """

@@ -36,7 +36,7 @@ class Ui_newStockDlg(object):
 
         self.btnValidate = QPushButton(newStockDlg)
         self.btnValidate.setObjectName(u"btnValidate")
-        self.btnValidate.setEnabled(False)
+        self.btnValidate.setEnabled(True)
 
         self.horizontalLayout_2.addWidget(self.btnValidate)
 
@@ -79,7 +79,7 @@ class Ui_newStockDlg(object):
     def retranslateUi(self, newStockDlg):
         newStockDlg.setWindowTitle(QCoreApplication.translate("newStockDlg", u"Dialog", None))
         self.label_2.setText(QCoreApplication.translate("newStockDlg", u"Ticker", None))
-        self.btnValidate.setText(QCoreApplication.translate("newStockDlg", u"Validate", None))
+        self.btnValidate.setText(QCoreApplication.translate("newStockDlg", u"Review", None))
         self.label.setText(QCoreApplication.translate("newStockDlg", u"Reason", None))
     # retranslateUi
 
