@@ -6763,3 +6763,695 @@
 21-Jan-2021 (11:00:52.165042)---Trading session is not Open - processing skept
 21-Jan-2021 (11:00:52.166466)---...............Worker finished....EST Time: 2021-01-21 03:00:48...................
 21-Jan-2021 (11:00:52.199882)---UI resumed.
+22-Jan-2021 (22:25:36.300473)---UI paused- for restart
+22-Jan-2021 (22:25:36.301721)---Configuration changed - restarting everything
+22-Jan-2021 (22:25:36.353747)---Begin connect and prepare
+22-Jan-2021 (22:25:36.354049)---Restarting connection to IBKR
+22-Jan-2021 (22:25:36.354285)---Waiting for connection...attempt:0
+22-Jan-2021 (22:25:37.312868)---Waiting for connection...attempt:1
+22-Jan-2021 (22:25:38.316460)---Waiting for connection...attempt:2
+22-Jan-2021 (22:25:39.319383)---Waiting for connection...attempt:3
+22-Jan-2021 (22:27:49.326075)---UI paused- for restart
+22-Jan-2021 (22:27:49.327239)---Configuration changed - restarting everything
+22-Jan-2021 (22:27:49.377556)---Begin connect and prepare
+22-Jan-2021 (22:27:49.377867)---Restarting connection to IBKR
+22-Jan-2021 (22:27:49.378111)---Waiting for connection...attempt:0
+22-Jan-2021 (22:27:50.345569)---Waiting for connection...attempt:1
+25-Jan-2021 (12:14:21.844706)---UI paused- for restart
+25-Jan-2021 (12:14:21.845467)---Configuration changed - restarting everything
+25-Jan-2021 (12:14:21.884504)---Begin connect and prepare
+25-Jan-2021 (12:14:21.884816)---Restarting connection to IBKR
+25-Jan-2021 (12:14:21.896317)---Waiting for connection...attempt:0
+25-Jan-2021 (12:14:22.897841)---Successfully connected to API
+25-Jan-2021 (12:14:22.899328)---Requesting Daily PnL
+25-Jan-2021 (12:14:22.900150)---PnL not yet received
+25-Jan-2021 (12:14:22.900879)---Starting to track Excess liquidity
+25-Jan-2021 (12:14:22.902023)---Updating open Positions:
+25-Jan-2021 (12:14:23.902020)---Started tracking MSFT position PnL
+25-Jan-2021 (12:14:23.904103)---Started tracking AAPL position PnL
+25-Jan-2021 (12:14:23.905071)---Started tracking ADI position PnL
+25-Jan-2021 (12:14:23.905756)---Started tracking SQ position PnL
+25-Jan-2021 (12:14:23.912062)---Started tracking BEP position PnL
+25-Jan-2021 (12:14:23.913808)---Started tracking CRWD position PnL
+25-Jan-2021 (12:14:24.907813)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:14:25.913652)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:14:25.915785)---Requesting History for MSFT position for last 1 hour BID price
+25-Jan-2021 (12:14:25.916672)---Requesting History for AAPL position for last 1 hour BID price
+25-Jan-2021 (12:14:25.917374)---Requesting History for ADI position for last 1 hour BID price
+25-Jan-2021 (12:14:25.918073)---Requesting History for SQ position for last 1 hour BID price
+25-Jan-2021 (12:14:25.918743)---Requesting History for BEP position for last 1 hour BID price
+25-Jan-2021 (12:14:25.919398)---Requesting History for CRWD position for last 1 hour BID price
+25-Jan-2021 (12:14:26.918641)---Waiting to receive Hisory for all positions 
+25-Jan-2021 (12:14:26.919478)---6 open positions completely updated
+25-Jan-2021 (12:14:26.920175)---Updating all open orders
+25-Jan-2021 (12:14:27.923367)---0 open orders found 
+25-Jan-2021 (12:14:27.926220)---Starting to track BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA,SPCE,BABA,BIIB,TSLA Candidates
+25-Jan-2021 (12:14:27.929845)---starting to track: 1 of 37 BYND traking with Id:28822
+25-Jan-2021 (12:14:27.931930)---starting to track: 2 of 37 SEDG traking with Id:28823
+25-Jan-2021 (12:14:27.937795)---starting to track: 3 of 37 LTHM traking with Id:28824
+25-Jan-2021 (12:14:27.938479)---starting to track: 4 of 37 SQ traking with Id:28825
+25-Jan-2021 (12:14:27.938993)---starting to track: 5 of 37 TTWO traking with Id:28826
+25-Jan-2021 (12:14:27.939556)---starting to track: 6 of 37 OTRK traking with Id:28827
+25-Jan-2021 (12:14:27.940277)---starting to track: 7 of 37 HUM traking with Id:28828
+25-Jan-2021 (12:14:27.941093)---starting to track: 8 of 37 AAPL traking with Id:28829
+25-Jan-2021 (12:14:27.942196)---starting to track: 9 of 37 ZG traking with Id:28830
+25-Jan-2021 (12:14:27.943444)---starting to track: 10 of 37 MSFT traking with Id:28831
+25-Jan-2021 (12:14:27.944808)---starting to track: 11 of 37 NVDA traking with Id:28832
+25-Jan-2021 (12:14:27.945784)---starting to track: 12 of 37 BEP traking with Id:28833
+25-Jan-2021 (12:14:27.946567)---starting to track: 13 of 37 GOOGL traking with Id:28834
+25-Jan-2021 (12:14:27.947261)---starting to track: 14 of 37 ETSY traking with Id:28835
+25-Jan-2021 (12:14:27.947781)---starting to track: 15 of 37 IVAC traking with Id:28836
+25-Jan-2021 (12:14:27.948238)---starting to track: 16 of 37 PTON traking with Id:28837
+25-Jan-2021 (12:14:27.949113)---starting to track: 17 of 37 ADI traking with Id:28838
+25-Jan-2021 (12:14:27.949765)---starting to track: 18 of 37 CRM traking with Id:28839
+25-Jan-2021 (12:14:27.950327)---starting to track: 19 of 37 CHWY traking with Id:28840
+25-Jan-2021 (12:14:27.950949)---starting to track: 20 of 37 AZN traking with Id:28841
+25-Jan-2021 (12:14:27.951690)---starting to track: 21 of 37 NICE traking with Id:28842
+25-Jan-2021 (12:14:27.952195)---starting to track: 22 of 37 CSCO traking with Id:28843
+25-Jan-2021 (12:14:27.952935)---starting to track: 23 of 37 PANW traking with Id:28844
+25-Jan-2021 (12:14:27.953466)---starting to track: 24 of 37 NET traking with Id:28845
+25-Jan-2021 (12:14:27.953985)---starting to track: 25 of 37 CRWD traking with Id:28846
+25-Jan-2021 (12:14:27.954547)---starting to track: 26 of 37 CHKP traking with Id:28847
+25-Jan-2021 (12:14:27.955081)---starting to track: 27 of 37 CVLT traking with Id:28848
+25-Jan-2021 (12:14:27.955590)---starting to track: 28 of 37 RPD traking with Id:28849
+25-Jan-2021 (12:14:27.956085)---starting to track: 29 of 37 TENB traking with Id:28850
+25-Jan-2021 (12:14:27.956586)---starting to track: 30 of 37 ADBE traking with Id:28851
+25-Jan-2021 (12:14:27.957109)---starting to track: 31 of 37 SHOP traking with Id:28852
+25-Jan-2021 (12:14:27.957642)---starting to track: 32 of 37 NIO traking with Id:28853
+25-Jan-2021 (12:14:27.958157)---starting to track: 33 of 37 TSLA traking with Id:28854
+25-Jan-2021 (12:14:27.958645)---starting to track: 34 of 37 SPCE traking with Id:28855
+25-Jan-2021 (12:14:27.959167)---starting to track: 35 of 37 BABA traking with Id:28856
+25-Jan-2021 (12:14:27.959761)---starting to track: 36 of 37 BIIB traking with Id:28857
+25-Jan-2021 (12:14:27.960277)---starting to track: 37 of 37 TSLA traking with Id:28858
+25-Jan-2021 (12:14:28.942423)---Waiting for last requested candidate Close price 
+25-Jan-2021 (12:14:28.954146)---Getting Yahoo market data for BYND
+25-Jan-2021 (12:14:28.958493)---Downloading the data for: BYND
+25-Jan-2021 (12:14:29.313904)---Figuring average Drop and Change for: BYND
+25-Jan-2021 (12:14:29.327599)---Yahoo market data for BYNDreceived shows average 2.992751865405351 % drop
+25-Jan-2021 (12:14:29.329484)---Getting Yahoo market data for SEDG
+25-Jan-2021 (12:14:29.330853)---Downloading the data for: SEDG
+25-Jan-2021 (12:14:29.639719)---Figuring average Drop and Change for: SEDG
+25-Jan-2021 (12:14:29.640637)---Yahoo market data for SEDGreceived shows average 3.152393583095289 % drop
+25-Jan-2021 (12:14:29.641666)---Getting Yahoo market data for LTHM
+25-Jan-2021 (12:14:29.642039)---Downloading the data for: LTHM
+25-Jan-2021 (12:14:29.909650)---Figuring average Drop and Change for: LTHM
+25-Jan-2021 (12:14:29.916728)---Yahoo market data for LTHMreceived shows average 3.5109606406601555 % drop
+25-Jan-2021 (12:14:29.917211)---Getting Yahoo market data for SQ
+25-Jan-2021 (12:14:29.917591)---Downloading the data for: SQ
+25-Jan-2021 (12:14:30.184420)---Figuring average Drop and Change for: SQ
+25-Jan-2021 (12:14:30.194317)---Yahoo market data for SQreceived shows average 2.7234891067713294 % drop
+25-Jan-2021 (12:14:30.195297)---Getting Yahoo market data for TTWO
+25-Jan-2021 (12:14:30.196759)---Downloading the data for: TTWO
+25-Jan-2021 (12:14:30.511342)---Figuring average Drop and Change for: TTWO
+25-Jan-2021 (12:14:30.521122)---Yahoo market data for TTWOreceived shows average 1.6346856744183895 % drop
+25-Jan-2021 (12:14:30.521937)---Getting Yahoo market data for OTRK
+25-Jan-2021 (12:14:30.523329)---Downloading the data for: OTRK
+25-Jan-2021 (12:14:30.782185)---Figuring average Drop and Change for: OTRK
+25-Jan-2021 (12:14:30.789232)---Yahoo market data for OTRKreceived shows average 4.248273773232572 % drop
+25-Jan-2021 (12:14:30.789713)---Getting Yahoo market data for HUM
+25-Jan-2021 (12:14:30.790305)---Downloading the data for: HUM
+25-Jan-2021 (12:14:31.080019)---Figuring average Drop and Change for: HUM
+25-Jan-2021 (12:14:31.089569)---Yahoo market data for HUMreceived shows average 1.7639307866876812 % drop
+25-Jan-2021 (12:14:31.090951)---Getting Yahoo market data for AAPL
+25-Jan-2021 (12:14:31.091945)---Downloading the data for: AAPL
+25-Jan-2021 (12:14:31.559577)---Figuring average Drop and Change for: AAPL
+25-Jan-2021 (12:14:31.567179)---Yahoo market data for AAPLreceived shows average 1.4291285329943917 % drop
+25-Jan-2021 (12:14:31.567974)---Getting Yahoo market data for ZG
+25-Jan-2021 (12:14:31.569115)---Downloading the data for: ZG
+25-Jan-2021 (12:14:31.837604)---Figuring average Drop and Change for: ZG
+25-Jan-2021 (12:14:31.855259)---Yahoo market data for ZGreceived shows average 2.6552624615355356 % drop
+25-Jan-2021 (12:14:31.861063)---Getting Yahoo market data for MSFT
+25-Jan-2021 (12:14:31.862491)---Downloading the data for: MSFT
+25-Jan-2021 (12:14:32.157995)---Figuring average Drop and Change for: MSFT
+25-Jan-2021 (12:14:32.166796)---Yahoo market data for MSFTreceived shows average 1.3568064171697134 % drop
+25-Jan-2021 (12:14:32.167615)---Getting Yahoo market data for NVDA
+25-Jan-2021 (12:14:32.168506)---Downloading the data for: NVDA
+25-Jan-2021 (12:14:32.447744)---Figuring average Drop and Change for: NVDA
+25-Jan-2021 (12:14:32.459085)---Yahoo market data for NVDAreceived shows average 1.9993656928040655 % drop
+25-Jan-2021 (12:14:32.460014)---Getting Yahoo market data for BEP
+25-Jan-2021 (12:14:32.461461)---Downloading the data for: BEP
+25-Jan-2021 (12:14:32.831491)---Figuring average Drop and Change for: BEP
+25-Jan-2021 (12:14:32.839350)---Yahoo market data for BEPreceived shows average 1.7821271755999621 % drop
+25-Jan-2021 (12:14:32.839972)---Getting Yahoo market data for GOOGL
+25-Jan-2021 (12:14:32.841347)---Downloading the data for: GOOGL
+25-Jan-2021 (12:14:33.103148)---Figuring average Drop and Change for: GOOGL
+25-Jan-2021 (12:14:33.108095)---Yahoo market data for GOOGLreceived shows average 1.2853557714467907 % drop
+25-Jan-2021 (12:14:33.108583)---Getting Yahoo market data for ETSY
+25-Jan-2021 (12:14:33.109682)---Downloading the data for: ETSY
+25-Jan-2021 (12:14:33.333625)---Figuring average Drop and Change for: ETSY
+25-Jan-2021 (12:14:33.339766)---Yahoo market data for ETSYreceived shows average 2.6966231463356367 % drop
+25-Jan-2021 (12:14:33.340426)---Getting Yahoo market data for IVAC
+25-Jan-2021 (12:14:33.340871)---Downloading the data for: IVAC
+25-Jan-2021 (12:14:33.641245)---Figuring average Drop and Change for: IVAC
+25-Jan-2021 (12:14:33.641977)---Yahoo market data for IVACreceived shows average 2.827543544121972 % drop
+25-Jan-2021 (12:14:33.642960)---Getting Yahoo market data for PTON
+25-Jan-2021 (12:14:33.643602)---Downloading the data for: PTON
+25-Jan-2021 (12:14:33.894936)---Figuring average Drop and Change for: PTON
+25-Jan-2021 (12:14:33.895728)---Yahoo market data for PTONreceived shows average 3.112999938837693 % drop
+25-Jan-2021 (12:14:33.896376)---Getting Yahoo market data for ADI
+25-Jan-2021 (12:14:33.897419)---Downloading the data for: ADI
+25-Jan-2021 (12:14:34.176163)---Figuring average Drop and Change for: ADI
+25-Jan-2021 (12:14:34.185849)---Yahoo market data for ADIreceived shows average 1.5200654165971017 % drop
+25-Jan-2021 (12:14:34.187054)---Getting Yahoo market data for CRM
+25-Jan-2021 (12:14:34.187883)---Downloading the data for: CRM
+25-Jan-2021 (12:14:34.472277)---Figuring average Drop and Change for: CRM
+25-Jan-2021 (12:14:34.479034)---Yahoo market data for CRMreceived shows average 1.7688159243872421 % drop
+25-Jan-2021 (12:14:34.479599)---Getting Yahoo market data for CHWY
+25-Jan-2021 (12:14:34.480069)---Downloading the data for: CHWY
+25-Jan-2021 (12:14:34.804760)---Figuring average Drop and Change for: CHWY
+25-Jan-2021 (12:14:34.811704)---Yahoo market data for CHWYreceived shows average 2.8573228848586716 % drop
+25-Jan-2021 (12:14:34.812127)---Getting Yahoo market data for AZN
+25-Jan-2021 (12:14:34.812435)---Downloading the data for: AZN
+25-Jan-2021 (12:14:35.101615)---Figuring average Drop and Change for: AZN
+25-Jan-2021 (12:14:35.103115)---Yahoo market data for AZNreceived shows average 1.142749185384408 % drop
+25-Jan-2021 (12:14:35.103713)---Getting Yahoo market data for NICE
+25-Jan-2021 (12:14:35.104894)---Downloading the data for: NICE
+25-Jan-2021 (12:14:35.420145)---Figuring average Drop and Change for: NICE
+25-Jan-2021 (12:14:35.421375)---Yahoo market data for NICEreceived shows average 1.1750857884584132 % drop
+25-Jan-2021 (12:14:35.421803)---Getting Yahoo market data for CSCO
+25-Jan-2021 (12:14:35.422128)---Downloading the data for: CSCO
+25-Jan-2021 (12:14:35.743274)---Figuring average Drop and Change for: CSCO
+25-Jan-2021 (12:14:35.750958)---Yahoo market data for CSCOreceived shows average 1.2664031119558032 % drop
+25-Jan-2021 (12:14:35.751442)---Getting Yahoo market data for PANW
+25-Jan-2021 (12:14:35.751952)---Downloading the data for: PANW
+25-Jan-2021 (12:14:35.983850)---Figuring average Drop and Change for: PANW
+25-Jan-2021 (12:14:35.990839)---Yahoo market data for PANWreceived shows average 1.435126856596153 % drop
+25-Jan-2021 (12:14:35.991374)---Getting Yahoo market data for NET
+25-Jan-2021 (12:14:35.991988)---Downloading the data for: NET
+25-Jan-2021 (12:14:36.295119)---Figuring average Drop and Change for: NET
+25-Jan-2021 (12:14:36.302333)---Yahoo market data for NETreceived shows average 2.8336020256817074 % drop
+25-Jan-2021 (12:14:36.302956)---Getting Yahoo market data for CRWD
+25-Jan-2021 (12:14:36.304074)---Downloading the data for: CRWD
+25-Jan-2021 (12:14:36.571154)---Figuring average Drop and Change for: CRWD
+25-Jan-2021 (12:14:36.577538)---Yahoo market data for CRWDreceived shows average 2.7147725703761885 % drop
+25-Jan-2021 (12:14:36.578274)---Getting Yahoo market data for CHKP
+25-Jan-2021 (12:14:36.579101)---Downloading the data for: CHKP
+25-Jan-2021 (12:14:36.975097)---Figuring average Drop and Change for: CHKP
+25-Jan-2021 (12:14:36.975993)---Yahoo market data for CHKPreceived shows average 1.3279017239526465 % drop
+25-Jan-2021 (12:14:36.976749)---Getting Yahoo market data for CVLT
+25-Jan-2021 (12:14:36.977917)---Downloading the data for: CVLT
+25-Jan-2021 (12:14:37.248606)---Figuring average Drop and Change for: CVLT
+25-Jan-2021 (12:14:37.255547)---Yahoo market data for CVLTreceived shows average 1.8719637593147047 % drop
+25-Jan-2021 (12:14:37.256062)---Getting Yahoo market data for RPD
+25-Jan-2021 (12:14:37.257062)---Downloading the data for: RPD
+25-Jan-2021 (12:14:37.524028)---Figuring average Drop and Change for: RPD
+25-Jan-2021 (12:14:37.530012)---Yahoo market data for RPDreceived shows average 2.1905164633191045 % drop
+25-Jan-2021 (12:14:37.530561)---Getting Yahoo market data for TENB
+25-Jan-2021 (12:14:37.531055)---Downloading the data for: TENB
+25-Jan-2021 (12:14:37.829898)---Figuring average Drop and Change for: TENB
+25-Jan-2021 (12:14:37.836426)---Yahoo market data for TENBreceived shows average 2.3119909324025842 % drop
+25-Jan-2021 (12:14:37.837588)---Getting Yahoo market data for ADBE
+25-Jan-2021 (12:14:37.838016)---Downloading the data for: ADBE
+25-Jan-2021 (12:14:38.139323)---Figuring average Drop and Change for: ADBE
+25-Jan-2021 (12:14:38.146170)---Yahoo market data for ADBEreceived shows average 1.6817028841903707 % drop
+25-Jan-2021 (12:14:38.146646)---Getting Yahoo market data for SHOP
+25-Jan-2021 (12:14:38.147201)---Downloading the data for: SHOP
+25-Jan-2021 (12:14:38.380733)---Figuring average Drop and Change for: SHOP
+25-Jan-2021 (12:14:38.388858)---Yahoo market data for SHOPreceived shows average 2.689074591603483 % drop
+25-Jan-2021 (12:14:38.389334)---Getting Yahoo market data for NIO
+25-Jan-2021 (12:14:38.389715)---Downloading the data for: NIO
+25-Jan-2021 (12:14:38.673862)---Figuring average Drop and Change for: NIO
+25-Jan-2021 (12:14:38.680888)---Yahoo market data for NIOreceived shows average 4.10535507044537 % drop
+25-Jan-2021 (12:14:38.681393)---Getting Yahoo market data for TSLA
+25-Jan-2021 (12:14:38.681932)---Downloading the data for: TSLA
+25-Jan-2021 (12:14:39.046514)---Figuring average Drop and Change for: TSLA
+25-Jan-2021 (12:14:39.050399)---Yahoo market data for TSLAreceived shows average 2.981555386787272 % drop
+25-Jan-2021 (12:14:39.050891)---Getting Yahoo market data for SPCE
+25-Jan-2021 (12:14:39.051439)---Downloading the data for: SPCE
+25-Jan-2021 (12:14:39.338904)---Figuring average Drop and Change for: SPCE
+25-Jan-2021 (12:14:39.343161)---Yahoo market data for SPCEreceived shows average 4.455865193705286 % drop
+25-Jan-2021 (12:14:39.343682)---Getting Yahoo market data for BABA
+25-Jan-2021 (12:14:39.344521)---Downloading the data for: BABA
+25-Jan-2021 (12:14:39.616532)---Figuring average Drop and Change for: BABA
+25-Jan-2021 (12:14:39.623185)---Yahoo market data for BABAreceived shows average 1.4929255378460802 % drop
+25-Jan-2021 (12:14:39.623880)---Getting Yahoo market data for BIIB
+25-Jan-2021 (12:14:39.624957)---Downloading the data for: BIIB
+25-Jan-2021 (12:14:39.929299)---Figuring average Drop and Change for: BIIB
+25-Jan-2021 (12:14:39.935490)---Yahoo market data for BIIBreceived shows average 1.5178022639572752 % drop
+25-Jan-2021 (12:14:39.936114)---Getting Yahoo market data for TSLA
+25-Jan-2021 (12:14:39.936841)---Downloading the data for: TSLA
+25-Jan-2021 (12:14:40.171786)---Figuring average Drop and Change for: TSLA
+25-Jan-2021 (12:14:40.181042)---Yahoo market data for TSLAreceived shows average 2.981555386787272 % drop
+25-Jan-2021 (12:14:40.183358)---Getting ranks for :BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA,SPCE,BABA,BIIB,TSLA
+25-Jan-2021 (12:14:42.007326)---Getting TipRank Rating for : BYND
+25-Jan-2021 (12:14:46.138521)---Rating found on TipRanks : 2
+25-Jan-2021 (12:14:46.139262)---Getting TipRank Rating for : SEDG
+25-Jan-2021 (12:14:48.366448)---Rating found on TipRanks : 7
+25-Jan-2021 (12:14:48.367232)---Getting TipRank Rating for : LTHM
+25-Jan-2021 (12:14:50.336718)---Rating found on TipRanks : 8
+25-Jan-2021 (12:14:50.337418)---Getting TipRank Rating for : SQ
+25-Jan-2021 (12:14:52.204855)---Rating found on TipRanks : 10
+25-Jan-2021 (12:14:52.205390)---Getting TipRank Rating for : TTWO
+25-Jan-2021 (12:14:54.239088)---Rating found on TipRanks : 3
+25-Jan-2021 (12:14:54.239563)---Getting TipRank Rating for : OTRK
+25-Jan-2021 (12:14:56.339025)---Rating found on TipRanks : 3
+25-Jan-2021 (12:14:56.339540)---Getting TipRank Rating for : HUM
+25-Jan-2021 (12:14:58.198550)---Rating found on TipRanks : 2
+25-Jan-2021 (12:14:58.199082)---Getting TipRank Rating for : AAPL
+25-Jan-2021 (12:15:00.204447)---Rating found on TipRanks : 9
+25-Jan-2021 (12:15:00.205404)---Getting TipRank Rating for : ZG
+25-Jan-2021 (12:15:02.142915)---Rating found on TipRanks : 5
+25-Jan-2021 (12:15:02.143490)---Getting TipRank Rating for : MSFT
+25-Jan-2021 (12:15:04.162844)---Rating found on TipRanks : 10
+25-Jan-2021 (12:15:04.163357)---Getting TipRank Rating for : NVDA
+25-Jan-2021 (12:15:06.204658)---Rating found on TipRanks : 6
+25-Jan-2021 (12:15:06.205309)---Getting TipRank Rating for : BEP
+25-Jan-2021 (12:15:08.155418)---Rating found on TipRanks : 8
+25-Jan-2021 (12:15:08.155996)---Getting TipRank Rating for : GOOGL
+25-Jan-2021 (12:15:10.251890)---Rating found on TipRanks : 7
+25-Jan-2021 (12:15:10.252433)---Getting TipRank Rating for : ETSY
+25-Jan-2021 (12:15:12.146973)---Rating found on TipRanks : 9
+25-Jan-2021 (12:15:12.147931)---Getting TipRank Rating for : IVAC
+25-Jan-2021 (12:15:14.116748)---Rating found on TipRanks : 6
+25-Jan-2021 (12:15:14.117262)---Getting TipRank Rating for : PTON
+25-Jan-2021 (12:15:16.199580)---Rating found on TipRanks : 5
+25-Jan-2021 (12:15:16.200125)---Getting TipRank Rating for : ADI
+25-Jan-2021 (12:15:18.197397)---Rating found on TipRanks : 9
+25-Jan-2021 (12:15:18.198705)---Getting TipRank Rating for : CRM
+25-Jan-2021 (12:15:20.399300)---Rating found on TipRanks : 7
+25-Jan-2021 (12:15:20.399948)---Getting TipRank Rating for : CHWY
+25-Jan-2021 (12:15:22.331396)---Rating found on TipRanks : 3
+25-Jan-2021 (12:15:22.331859)---Getting TipRank Rating for : AZN
+25-Jan-2021 (12:15:24.279724)---Rating found on TipRanks : 6
+25-Jan-2021 (12:15:24.281147)---Getting TipRank Rating for : NICE
+25-Jan-2021 (12:15:26.100490)---Rating found on TipRanks : 6
+25-Jan-2021 (12:15:26.101297)---Getting TipRank Rating for : CSCO
+25-Jan-2021 (12:15:28.103548)---Rating found on TipRanks : 9
+25-Jan-2021 (12:15:28.104022)---Getting TipRank Rating for : PANW
+25-Jan-2021 (12:15:29.992336)---Rating found on TipRanks : 5
+25-Jan-2021 (12:15:29.992732)---Getting TipRank Rating for : NET
+25-Jan-2021 (12:15:32.017994)---Rating found on TipRanks : 8
+25-Jan-2021 (12:15:32.018450)---Getting TipRank Rating for : CRWD
+25-Jan-2021 (12:15:33.986481)---Rating found on TipRanks : 10
+25-Jan-2021 (12:15:33.986924)---Getting TipRank Rating for : CHKP
+25-Jan-2021 (12:15:35.918225)---Rating found on TipRanks : 6
+25-Jan-2021 (12:15:35.918820)---Getting TipRank Rating for : CVLT
+25-Jan-2021 (12:15:37.811954)---Rating found on TipRanks : 8
+25-Jan-2021 (12:15:37.812485)---Getting TipRank Rating for : RPD
+25-Jan-2021 (12:15:39.745393)---Rating found on TipRanks : 7
+25-Jan-2021 (12:15:39.745789)---Getting TipRank Rating for : TENB
+25-Jan-2021 (12:15:41.512750)---Rating found on TipRanks : 8
+25-Jan-2021 (12:15:41.513156)---Getting TipRank Rating for : ADBE
+25-Jan-2021 (12:15:43.866499)---Rating found on TipRanks : 6
+25-Jan-2021 (12:15:43.866960)---Getting TipRank Rating for : SHOP
+25-Jan-2021 (12:15:45.769458)---Rating found on TipRanks : 8
+25-Jan-2021 (12:15:45.769874)---Getting TipRank Rating for : NIO
+25-Jan-2021 (12:15:47.626083)---Rating found on TipRanks : 10
+25-Jan-2021 (12:15:47.626484)---Getting TipRank Rating for : TSLA
+25-Jan-2021 (12:15:49.519726)---Rating found on TipRanks : 8
+25-Jan-2021 (12:15:49.520328)---Getting TipRank Rating for : SPCE
+25-Jan-2021 (12:15:51.244742)---Rating found on TipRanks : 6
+25-Jan-2021 (12:15:51.245148)---Getting TipRank Rating for : BABA
+25-Jan-2021 (12:15:53.202996)---Rating found on TipRanks : 8
+25-Jan-2021 (12:15:53.203526)---Getting TipRank Rating for : BIIB
+25-Jan-2021 (12:15:55.097377)---Rating found on TipRanks : 5
+25-Jan-2021 (12:15:55.097832)---Getting TipRank Rating for : TSLA
+25-Jan-2021 (12:15:56.930638)---Rating found on TipRanks : 8
+25-Jan-2021 (12:15:57.087016)---37 Candidates evaluated and started to track
+25-Jan-2021 (12:15:57.087462)---Updating target prices for Candidates
+25-Jan-2021 (12:15:57.087888)---Updating target price for BYND
+25-Jan-2021 (12:15:57.088337)---Target price for BYND updated to 136.48919812537466 based on Close price
+25-Jan-2021 (12:15:57.088793)---Updating target price for SEDG
+25-Jan-2021 (12:15:57.089270)---Target price for SEDG updated to 310.9970337259644 based on Close price
+25-Jan-2021 (12:15:57.089801)---Updating target price for LTHM
+25-Jan-2021 (12:15:57.090539)---Target price for LTHM updated to 20.725845654386198 based on Close price
+25-Jan-2021 (12:15:57.091323)---Updating target price for SQ
+25-Jan-2021 (12:15:57.091718)---Target price for SQ updated to 216.80988747882805 based on Close price
+25-Jan-2021 (12:15:57.092473)---Updating target price for TTWO
+25-Jan-2021 (12:15:57.093168)---Target price for TTWO updated to 201.31445229873532 based on Close price
+25-Jan-2021 (12:15:57.094350)---Updating target price for OTRK
+25-Jan-2021 (12:15:57.099449)---Target price for OTRK updated to 68.7976152939324 based on Close price
+25-Jan-2021 (12:15:57.099922)---Updating target price for HUM
+25-Jan-2021 (12:15:57.100969)---Target price for HUM updated to 398.03290523849887 based on Close price
+25-Jan-2021 (12:15:57.103152)---Updating target price for AAPL
+25-Jan-2021 (12:15:57.103833)---Target price for AAPL updated to 137.08251094916469 based on Close price
+25-Jan-2021 (12:15:57.104279)---Updating target price for ZG
+25-Jan-2021 (12:15:57.104725)---Target price for ZG updated to 148.01267342723523 based on Close price
+25-Jan-2021 (12:15:57.105142)---Updating target price for MSFT
+25-Jan-2021 (12:15:57.105507)---Target price for MSFT updated to 222.88429590040502 based on Close price
+25-Jan-2021 (12:15:57.105845)---Updating target price for NVDA
+25-Jan-2021 (12:15:57.106184)---Target price for NVDA updated to 537.5334791749697 based on Close price
+25-Jan-2021 (12:15:57.106594)---Updating target price for BEP
+25-Jan-2021 (12:15:57.107103)---Target price for BEP updated to 48.48034202612386 based on Close price
+25-Jan-2021 (12:15:57.107729)---Updating target price for GOOGL
+25-Jan-2021 (12:15:57.108435)---Target price for GOOGL updated to 1868.2338708119066 based on Close price
+25-Jan-2021 (12:15:57.109045)---Updating target price for ETSY
+25-Jan-2021 (12:15:57.109556)---Target price for ETSY updated to 207.83028262174173 based on Close price
+25-Jan-2021 (12:15:57.110221)---Updating target price for IVAC
+25-Jan-2021 (12:15:57.110768)---Target price for IVAC updated to 6.802071951911462 based on Close price
+25-Jan-2021 (12:15:57.111165)---Updating target price for PTON
+25-Jan-2021 (12:15:57.111715)---Target price for PTON updated to 154.7769825977068 based on Close price
+25-Jan-2021 (12:15:57.112379)---Updating target price for ADI
+25-Jan-2021 (12:15:57.112892)---Target price for ADI updated to 153.21508222485824 based on Close price
+25-Jan-2021 (12:15:57.113265)---Updating target price for CRM
+25-Jan-2021 (12:15:57.113978)---Target price for CRM updated to 221.77654428751094 based on Close price
+25-Jan-2021 (12:15:57.114577)---Updating target price for CHWY
+25-Jan-2021 (12:15:57.117224)---Target price for CHWY updated to 102.07752511259051 based on Close price
+25-Jan-2021 (12:15:57.118791)---Updating target price for AZN
+25-Jan-2021 (12:15:57.119427)---Target price for AZN updated to 52.6414860587828 based on Close price
+25-Jan-2021 (12:15:57.120111)---Updating target price for NICE
+25-Jan-2021 (12:15:57.120652)---Target price for NICE updated to 266.1354939716815 based on Close price
+25-Jan-2021 (12:15:57.121161)---Updating target price for CSCO
+25-Jan-2021 (12:15:57.121725)---Target price for CSCO updated to 44.20303132677739 based on Close price
+25-Jan-2021 (12:15:57.122460)---Updating target price for PANW
+25-Jan-2021 (12:15:57.123033)---Target price for PANW updated to 359.3872404554791 based on Close price
+25-Jan-2021 (12:15:57.123470)---Updating target price for NET
+25-Jan-2021 (12:15:57.123908)---Target price for NET updated to 81.10479238916348 based on Close price
+25-Jan-2021 (12:15:57.124303)---Updating target price for CRWD
+25-Jan-2021 (12:15:57.124710)---Target price for CRWD updated to 217.45194035069517 based on Close price
+25-Jan-2021 (12:15:57.125266)---Updating target price for CHKP
+25-Jan-2021 (12:15:57.127677)---Target price for CHKP updated to 127.68169516920528 based on Close price
+25-Jan-2021 (12:15:57.128903)---Updating target price for CVLT
+25-Jan-2021 (12:15:57.129477)---Target price for CVLT updated to 58.71981688642608 based on Close price
+25-Jan-2021 (12:15:57.129959)---Updating target price for RPD
+25-Jan-2021 (12:15:57.130486)---Target price for RPD updated to 89.8380106284414 based on Close price
+25-Jan-2021 (12:15:57.130937)---Updating target price for TENB
+25-Jan-2021 (12:15:57.131437)---Target price for TENB updated to 52.42915446657953 based on Close price
+25-Jan-2021 (12:15:57.131950)---Updating target price for ADBE
+25-Jan-2021 (12:15:57.132381)---Target price for ADBE updated to 464.494962893931 based on Close price
+25-Jan-2021 (12:15:57.132793)---Updating target price for SHOP
+25-Jan-2021 (12:15:57.133242)---Target price for SHOP updated to 1164.5198443622812 based on Close price
+25-Jan-2021 (12:15:57.133707)---Updating target price for NIO
+25-Jan-2021 (12:15:57.134107)---Target price for NIO updated to 59.4067325338591 based on Close price
+25-Jan-2021 (12:15:57.134571)---Updating target price for TSLA
+25-Jan-2021 (12:15:57.135172)---Target price for TSLA updated to 821.3969594733043 based on Close price
+25-Jan-2021 (12:15:57.137614)---Updating target price for SPCE
+25-Jan-2021 (12:15:57.138865)---Target price for SPCE updated to 32.75252941159783 based on Close price
+25-Jan-2021 (12:15:57.139438)---Updating target price for BABA
+25-Jan-2021 (12:15:57.140097)---Target price for BABA updated to 254.75899597402247 based on Close price
+25-Jan-2021 (12:15:57.141783)---Updating target price for BIIB
+25-Jan-2021 (12:15:57.144495)---Target price for BIIB updated to 265.35043357999353 based on Close price
+25-Jan-2021 (12:15:57.146364)---Updating target price for TSLA
+25-Jan-2021 (12:15:57.147492)---Target price for TSLA updated to 821.3969594733043 based on Close price
+25-Jan-2021 (12:15:57.148508)---Connected to IBKR and READY
+25-Jan-2021 (12:15:57.243121)---UI resumed.
+25-Jan-2021 (12:15:57.243580)---Starting Worker- UI Paused
+25-Jan-2021 (12:15:57.301538)----------Starting Worker...----EST Time: 2021-01-25 04:15:57--------------------
+25-Jan-2021 (12:15:57.301993)---Checking connection
+25-Jan-2021 (12:15:57.302314)---Connection is fine- proceeding
+25-Jan-2021 (12:15:57.302634)---Updating all open orders
+25-Jan-2021 (12:15:58.250576)---0 open orders found 
+25-Jan-2021 (12:15:58.251888)---Updating open Positions:
+25-Jan-2021 (12:15:59.256353)---Started tracking MSFT position PnL
+25-Jan-2021 (12:15:59.258803)---Started tracking AAPL position PnL
+25-Jan-2021 (12:15:59.265879)---Started tracking ADI position PnL
+25-Jan-2021 (12:15:59.270965)---Started tracking SQ position PnL
+25-Jan-2021 (12:15:59.282119)---Started tracking BEP position PnL
+25-Jan-2021 (12:15:59.283802)---Started tracking CRWD position PnL
+25-Jan-2021 (12:16:00.264357)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:16:01.265536)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:16:01.268618)---Requesting History for MSFT position for last 1 hour BID price
+25-Jan-2021 (12:16:01.269878)---Requesting History for AAPL position for last 1 hour BID price
+25-Jan-2021 (12:16:01.271002)---Requesting History for ADI position for last 1 hour BID price
+25-Jan-2021 (12:16:01.285042)---Requesting History for SQ position for last 1 hour BID price
+25-Jan-2021 (12:16:01.286271)---Requesting History for BEP position for last 1 hour BID price
+25-Jan-2021 (12:16:01.286899)---Requesting History for CRWD position for last 1 hour BID price
+25-Jan-2021 (12:16:02.272704)---Waiting to receive Hisory for all positions 
+25-Jan-2021 (12:16:02.273804)---6 open positions completely updated
+25-Jan-2021 (12:16:02.274957)---Trading session is not Open - processing skept
+25-Jan-2021 (12:16:02.275972)---...............Worker finished....EST Time: 2021-01-25 04:15:57...................
+25-Jan-2021 (12:16:02.309253)---UI resumed.
+25-Jan-2021 (12:16:57.120114)---Starting Worker- UI Paused
+25-Jan-2021 (12:16:57.127425)----------Starting Worker...----EST Time: 2021-01-25 04:16:57--------------------
+25-Jan-2021 (12:16:57.128210)---Checking connection
+25-Jan-2021 (12:16:57.128783)---Connection is fine- proceeding
+25-Jan-2021 (12:16:57.129358)---Updating all open orders
+25-Jan-2021 (12:16:58.124176)---0 open orders found 
+25-Jan-2021 (12:16:58.125494)---Updating open Positions:
+25-Jan-2021 (12:16:59.130485)---Started tracking MSFT position PnL
+25-Jan-2021 (12:16:59.132920)---Started tracking AAPL position PnL
+25-Jan-2021 (12:16:59.135459)---Started tracking ADI position PnL
+25-Jan-2021 (12:16:59.141675)---Started tracking SQ position PnL
+25-Jan-2021 (12:16:59.143416)---Started tracking BEP position PnL
+25-Jan-2021 (12:16:59.145651)---Started tracking CRWD position PnL
+25-Jan-2021 (12:17:00.135789)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:17:00.138492)---Requesting History for MSFT position for last 1 hour BID price
+25-Jan-2021 (12:17:00.140817)---Requesting History for AAPL position for last 1 hour BID price
+25-Jan-2021 (12:17:00.145523)---Requesting History for ADI position for last 1 hour BID price
+25-Jan-2021 (12:17:00.146368)---Requesting History for SQ position for last 1 hour BID price
+25-Jan-2021 (12:17:00.147094)---Requesting History for BEP position for last 1 hour BID price
+25-Jan-2021 (12:17:00.147802)---Requesting History for CRWD position for last 1 hour BID price
+25-Jan-2021 (12:17:01.142561)---Waiting to receive Hisory for all positions 
+25-Jan-2021 (12:17:01.143833)---6 open positions completely updated
+25-Jan-2021 (12:17:01.144878)---Trading session is not Open - processing skept
+25-Jan-2021 (12:17:01.145624)---...............Worker finished....EST Time: 2021-01-25 04:16:57...................
+25-Jan-2021 (12:17:01.177216)---UI resumed.
+25-Jan-2021 (12:24:56.258038)---Starting Worker- UI Paused
+25-Jan-2021 (12:24:56.261941)----------Starting Worker...----EST Time: 2021-01-25 04:24:56--------------------
+25-Jan-2021 (12:24:56.262686)---Checking connection
+25-Jan-2021 (12:24:56.263378)---Connection is fine- proceeding
+25-Jan-2021 (12:24:56.263823)---Updating all open orders
+25-Jan-2021 (12:24:57.267648)---0 open orders found 
+25-Jan-2021 (12:24:57.269480)---Updating open Positions:
+25-Jan-2021 (12:24:58.274800)---Started tracking MSFT position PnL
+25-Jan-2021 (12:24:58.277724)---Started tracking AAPL position PnL
+25-Jan-2021 (12:24:58.279341)---Started tracking ADI position PnL
+25-Jan-2021 (12:24:58.281832)---Started tracking SQ position PnL
+25-Jan-2021 (12:24:58.284132)---Started tracking BEP position PnL
+25-Jan-2021 (12:24:58.285442)---Started tracking CRWD position PnL
+25-Jan-2021 (12:24:59.283003)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:24:59.285869)---Requesting History for MSFT position for last 1 hour BID price
+25-Jan-2021 (12:24:59.287162)---Requesting History for AAPL position for last 1 hour BID price
+25-Jan-2021 (12:24:59.288053)---Requesting History for ADI position for last 1 hour BID price
+25-Jan-2021 (12:24:59.288975)---Requesting History for SQ position for last 1 hour BID price
+25-Jan-2021 (12:24:59.289782)---Requesting History for BEP position for last 1 hour BID price
+25-Jan-2021 (12:24:59.290496)---Requesting History for CRWD position for last 1 hour BID price
+25-Jan-2021 (12:25:00.291598)---Waiting to receive Hisory for all positions 
+25-Jan-2021 (12:25:00.292212)---6 open positions completely updated
+25-Jan-2021 (12:25:00.292746)---Trading session is not Open - processing skept
+25-Jan-2021 (12:25:00.293246)---...............Worker finished....EST Time: 2021-01-25 04:24:56...................
+25-Jan-2021 (12:25:00.323931)---UI resumed.
+25-Jan-2021 (12:25:49.363747)---UI paused- for restart
+25-Jan-2021 (12:25:49.364207)---Configuration changed - restarting everything
+25-Jan-2021 (12:25:49.462564)---Begin connect and prepare
+25-Jan-2021 (12:25:49.463073)---Restarting connection to IBKR
+25-Jan-2021 (12:25:49.463486)---Waiting for connection...attempt:0
+25-Jan-2021 (12:25:50.388223)---Successfully connected to API
+25-Jan-2021 (12:25:50.389183)---Requesting Daily PnL
+25-Jan-2021 (12:25:50.390117)---PnL not yet received
+25-Jan-2021 (12:25:50.391897)---Starting to track Excess liquidity
+25-Jan-2021 (12:25:50.394008)---Updating open Positions:
+25-Jan-2021 (12:25:51.389974)---Started tracking MSFT position PnL
+25-Jan-2021 (12:25:51.391502)---Started tracking AAPL position PnL
+25-Jan-2021 (12:25:51.393676)---Started tracking ADI position PnL
+25-Jan-2021 (12:25:51.395821)---Started tracking SQ position PnL
+25-Jan-2021 (12:25:51.397511)---Started tracking BEP position PnL
+25-Jan-2021 (12:25:51.399145)---Started tracking CRWD position PnL
+25-Jan-2021 (12:25:52.397473)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:25:53.402461)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:25:54.404790)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:25:55.405422)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:25:56.409588)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:25:57.412782)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:25:58.416279)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:25:59.419258)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:00.423502)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:01.426274)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:02.431584)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:03.436908)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:04.442238)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:05.445669)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:06.449366)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:07.455170)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:08.460432)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:09.465751)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:10.466792)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:11.468512)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:12.471559)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:13.474151)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:14.479044)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:15.480738)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:16.485091)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:17.486842)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:18.490486)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:19.491706)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:20.495659)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:21.495720)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:22.501190)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:23.506489)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:24.510337)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:25.515700)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:26.520992)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:27.526295)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:28.529683)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:29.535005)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:30.536275)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:31.539932)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:32.546261)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:33.550826)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:34.556169)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:35.560301)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:36.565217)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:37.570451)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:38.571420)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:39.576576)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:40.578742)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:41.583180)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:42.584191)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:43.585371)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:44.587901)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:45.589928)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:46.589127)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:47.594838)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:48.600163)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:49.603954)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:50.604495)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:51.607611)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:52.607492)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:53.610707)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:54.615957)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:55.619775)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:56.621441)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:57.622910)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:58.624900)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:26:59.630209)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:00.635530)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:01.640839)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:02.641739)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:03.643033)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:04.648308)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:05.653540)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:06.656656)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:07.661909)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:08.667273)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:09.668685)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:10.673558)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:11.678808)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:12.680497)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:13.681695)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:14.686991)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:15.692314)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:16.697792)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:17.702835)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:18.706054)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:19.709006)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:20.714174)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:21.717306)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:22.720853)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:23.721235)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:24.721905)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:25.722400)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:26.723608)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:27.725315)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:28.727091)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:29.728031)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:30.728521)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:31.729159)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:32.734535)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:33.735642)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:34.740520)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:35.745339)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:36.745712)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:37.748709)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:38.749436)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:39.749777)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:40.752226)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:41.754595)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:42.755515)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:43.760182)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:44.762835)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:45.768129)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:46.768583)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:47.772729)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:48.778112)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:49.782430)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:50.788563)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:51.790359)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:52.795679)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:53.800990)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:54.806275)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:55.811509)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:56.812618)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:57.816961)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:58.822345)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:27:59.827632)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:00.828759)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:01.832421)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:02.837693)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:03.838104)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:04.843440)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:05.844827)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:06.850158)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:07.854223)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:08.859044)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:09.864314)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:10.869569)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:11.874756)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:12.878694)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:13.884025)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:14.884526)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:15.885125)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:16.890361)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:17.893032)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:18.896346)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:19.902367)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:20.904574)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:21.910114)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:22.912924)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:23.918257)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:24.919411)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:25.921102)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:26.921686)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:27.922979)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:28.925210)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:29.929624)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:30.930235)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:31.935605)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:32.939804)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:33.945034)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:34.950369)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:35.952410)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:36.957720)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:37.958898)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:38.963700)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:39.968240)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:40.970396)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:41.975753)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:42.981031)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:43.981700)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:44.986875)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:45.992178)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:46.994111)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:47.995706)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:48.996326)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:49.996983)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:51.002624)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:52.004166)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:53.009531)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:54.014816)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:55.017166)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:56.020005)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:57.020197)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:58.128907)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:28:59.036062)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:29:00.043190)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:29:01.052189)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:29:02.062431)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:29:03.072594)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:29:04.082637)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:29:05.091955)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:29:06.099648)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:29:07.108335)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:29:08.118163)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:29:09.128432)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:29:10.134715)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:29:11.141485)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:29:12.151294)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:29:13.154721)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:29:14.164920)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:29:15.167865)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:29:16.173758)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:29:17.182773)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:32:38.625320)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:32:39.635381)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:32:40.636221)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:32:41.639933)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:32:42.645351)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:32:43.650400)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:32:44.653369)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:32:45.655530)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:32:46.657061)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:32:47.658538)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:32:48.660260)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:32:49.661627)---Waiting to receive Value for all positions 
+25-Jan-2021 (12:32:50.661993)---Waiting to receive Value for all positions 
