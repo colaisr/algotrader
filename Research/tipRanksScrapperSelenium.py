@@ -51,7 +51,7 @@ def get_tiprank_ratings_to_Stocks(stocks, path, existing_data, notification_call
             xp = '//*[@id="app"]/div/div/main/div/div/article/div[2]/div/main/div[1]/div[2]/section[1]/div[1]/div[1]/div/svg/text/tspan'
             try:
                 # element=driver.find_element_by_tag_name('svg')
-                element = WebDriverWait(driver, 10).until(
+                element = WebDriverWait(driver, 15).until(
                     EC.visibility_of_element_located((By.TAG_NAME, 'svg'))
                 )
                 rating = element.text

@@ -449,8 +449,10 @@ Updates Positions grid
                 if 'stocks' in values.keys():
                     if values['stocks'] != 0:
                         candidate=next((x for x in self.settings.CANDIDATES if x.ticker == key), None)
-
-                        widget.update_view(key, values, candidate.reason)
+                        reason_of_candidate="Bought manually"
+                        if candidate is not None:
+                            reason_of_candidate=candidate.reason
+                        widget.update_view(key, values, reason_of_candidate)
                         widget.show()
                         lastUpdatedWidget = i
                     else:

@@ -7455,3 +7455,1235 @@
 25-Jan-2021 (12:32:48.660260)---Waiting to receive Value for all positions 
 25-Jan-2021 (12:32:49.661627)---Waiting to receive Value for all positions 
 25-Jan-2021 (12:32:50.661993)---Waiting to receive Value for all positions 
+25-Jan-2021 (20:21:51.230195)---UI paused- for restart
+25-Jan-2021 (20:21:51.231286)---Configuration changed - restarting everything
+25-Jan-2021 (20:21:51.270631)---Begin connect and prepare
+25-Jan-2021 (20:21:51.270934)---Restarting connection to IBKR
+25-Jan-2021 (20:21:51.271197)---Waiting for connection...attempt:0
+25-Jan-2021 (20:21:52.241729)---Waiting for connection...attempt:1
+26-Jan-2021 (01:08:15.327578)---UI paused- for restart
+26-Jan-2021 (01:08:15.327922)---Configuration changed - restarting everything
+26-Jan-2021 (01:08:15.374021)---Begin connect and prepare
+26-Jan-2021 (01:08:15.374320)---Restarting connection to IBKR
+26-Jan-2021 (01:08:15.391271)---Waiting for connection...attempt:0
+26-Jan-2021 (01:08:16.397715)---Successfully connected to API
+26-Jan-2021 (01:08:16.398685)---Requesting Daily PnL
+26-Jan-2021 (01:08:16.399509)---PnL not yet received
+26-Jan-2021 (01:08:16.400221)---Starting to track Excess liquidity
+26-Jan-2021 (01:08:16.401636)---Updating open Positions:
+26-Jan-2021 (01:08:17.399969)---Started tracking SQ position PnL
+26-Jan-2021 (01:08:17.401934)---Started tracking BEP position PnL
+26-Jan-2021 (01:08:17.403452)---Started tracking NIO position PnL
+26-Jan-2021 (01:08:17.410305)---Started tracking CRWD position PnL
+26-Jan-2021 (01:08:17.411605)---Started tracking MSFT position PnL
+26-Jan-2021 (01:08:17.413098)---Started tracking AAPL position PnL
+26-Jan-2021 (01:08:17.415182)---Started tracking ADI position PnL
+26-Jan-2021 (01:08:17.416551)---Started tracking ETSY position PnL
+26-Jan-2021 (01:08:18.405460)---Waiting to receive Value for all positions 
+26-Jan-2021 (01:08:19.407039)---Waiting to receive Value for all positions 
+26-Jan-2021 (01:08:20.408547)---Waiting to receive Value for all positions 
+26-Jan-2021 (01:08:20.411409)---Requesting History for SQ position for last 1 hour BID price
+26-Jan-2021 (01:08:20.412215)---Requesting History for BEP position for last 1 hour BID price
+26-Jan-2021 (01:08:20.412893)---Requesting History for NIO position for last 1 hour BID price
+26-Jan-2021 (01:08:20.413565)---Requesting History for CRWD position for last 1 hour BID price
+26-Jan-2021 (01:08:20.418669)---Requesting History for MSFT position for last 1 hour BID price
+26-Jan-2021 (01:08:20.419374)---Requesting History for AAPL position for last 1 hour BID price
+26-Jan-2021 (01:08:20.420151)---Requesting History for ADI position for last 1 hour BID price
+26-Jan-2021 (01:08:20.420780)---Requesting History for ETSY position for last 1 hour BID price
+26-Jan-2021 (01:08:21.413926)---Waiting to receive Hisory for all positions 
+26-Jan-2021 (01:08:21.415207)---8 open positions completely updated
+26-Jan-2021 (01:08:21.416210)---Updating all open orders
+26-Jan-2021 (01:08:22.421224)---0 open orders found 
+26-Jan-2021 (01:08:22.423739)---Starting to track BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA,SPCE,BABA,BIIB,TSLA,OKTA,GEVO,SPCX Candidates
+26-Jan-2021 (01:08:22.425616)---starting to track: 1 of 40 BYND traking with Id:28826
+26-Jan-2021 (01:08:22.428018)---starting to track: 2 of 40 SEDG traking with Id:28827
+26-Jan-2021 (01:08:22.429607)---starting to track: 3 of 40 LTHM traking with Id:28828
+26-Jan-2021 (01:08:22.435981)---starting to track: 4 of 40 SQ traking with Id:28829
+26-Jan-2021 (01:08:22.436853)---starting to track: 5 of 40 TTWO traking with Id:28830
+26-Jan-2021 (01:08:22.437427)---starting to track: 6 of 40 OTRK traking with Id:28831
+26-Jan-2021 (01:08:22.437990)---starting to track: 7 of 40 HUM traking with Id:28832
+26-Jan-2021 (01:08:22.438496)---starting to track: 8 of 40 AAPL traking with Id:28833
+26-Jan-2021 (01:08:22.438971)---starting to track: 9 of 40 ZG traking with Id:28834
+26-Jan-2021 (01:08:22.439464)---starting to track: 10 of 40 MSFT traking with Id:28835
+26-Jan-2021 (01:08:22.439934)---starting to track: 11 of 40 NVDA traking with Id:28836
+26-Jan-2021 (01:08:22.440400)---starting to track: 12 of 40 BEP traking with Id:28837
+26-Jan-2021 (01:08:22.440867)---starting to track: 13 of 40 GOOGL traking with Id:28838
+26-Jan-2021 (01:08:22.441358)---starting to track: 14 of 40 ETSY traking with Id:28839
+26-Jan-2021 (01:08:22.441938)---starting to track: 15 of 40 IVAC traking with Id:28840
+26-Jan-2021 (01:08:22.442544)---starting to track: 16 of 40 PTON traking with Id:28841
+26-Jan-2021 (01:08:22.443319)---starting to track: 17 of 40 ADI traking with Id:28842
+26-Jan-2021 (01:08:22.443983)---starting to track: 18 of 40 CRM traking with Id:28843
+26-Jan-2021 (01:08:22.444535)---starting to track: 19 of 40 CHWY traking with Id:28844
+26-Jan-2021 (01:08:22.445055)---starting to track: 20 of 40 AZN traking with Id:28845
+26-Jan-2021 (01:08:22.445803)---starting to track: 21 of 40 NICE traking with Id:28846
+26-Jan-2021 (01:08:22.446652)---starting to track: 22 of 40 CSCO traking with Id:28847
+26-Jan-2021 (01:08:22.447284)---starting to track: 23 of 40 PANW traking with Id:28848
+26-Jan-2021 (01:08:22.448026)---starting to track: 24 of 40 NET traking with Id:28849
+26-Jan-2021 (01:08:22.448801)---starting to track: 25 of 40 CRWD traking with Id:28850
+26-Jan-2021 (01:08:22.449425)---starting to track: 26 of 40 CHKP traking with Id:28851
+26-Jan-2021 (01:08:22.449995)---starting to track: 27 of 40 CVLT traking with Id:28852
+26-Jan-2021 (01:08:22.450608)---starting to track: 28 of 40 RPD traking with Id:28853
+26-Jan-2021 (01:08:22.451315)---starting to track: 29 of 40 TENB traking with Id:28854
+26-Jan-2021 (01:08:22.451844)---starting to track: 30 of 40 ADBE traking with Id:28855
+26-Jan-2021 (01:08:22.452483)---starting to track: 31 of 40 SHOP traking with Id:28856
+26-Jan-2021 (01:08:22.453063)---starting to track: 32 of 40 NIO traking with Id:28857
+26-Jan-2021 (01:08:22.453520)---starting to track: 33 of 40 TSLA traking with Id:28858
+26-Jan-2021 (01:08:22.454087)---starting to track: 34 of 40 SPCE traking with Id:28859
+26-Jan-2021 (01:08:22.454680)---starting to track: 35 of 40 BABA traking with Id:28860
+26-Jan-2021 (01:08:22.455391)---starting to track: 36 of 40 BIIB traking with Id:28861
+26-Jan-2021 (01:08:22.456252)---starting to track: 37 of 40 TSLA traking with Id:28862
+26-Jan-2021 (01:08:22.456935)---starting to track: 38 of 40 OKTA traking with Id:28863
+26-Jan-2021 (01:08:22.457695)---starting to track: 39 of 40 GEVO traking with Id:28864
+26-Jan-2021 (01:08:22.458372)---starting to track: 40 of 40 SPCX traking with Id:28865
+26-Jan-2021 (01:08:23.439226)---Waiting for last requested candidate Close price 
+26-Jan-2021 (01:08:23.449514)---Getting Yahoo market data for BYND
+26-Jan-2021 (01:08:23.457588)---Downloading the data for: BYND
+26-Jan-2021 (01:08:23.801209)---Figuring average Drop and Change for: BYND
+26-Jan-2021 (01:08:23.824676)---Yahoo market data for BYNDreceived shows average 2.9585399546031073 % drop
+26-Jan-2021 (01:08:23.825822)---Getting Yahoo market data for SEDG
+26-Jan-2021 (01:08:23.826602)---Downloading the data for: SEDG
+26-Jan-2021 (01:08:24.070413)---Figuring average Drop and Change for: SEDG
+26-Jan-2021 (01:08:24.072009)---Yahoo market data for SEDGreceived shows average 3.181289987711898 % drop
+26-Jan-2021 (01:08:24.072866)---Getting Yahoo market data for LTHM
+26-Jan-2021 (01:08:24.073872)---Downloading the data for: LTHM
+26-Jan-2021 (01:08:24.320549)---Figuring average Drop and Change for: LTHM
+26-Jan-2021 (01:08:24.321362)---Yahoo market data for LTHMreceived shows average 3.5251162857461527 % drop
+26-Jan-2021 (01:08:24.321987)---Getting Yahoo market data for SQ
+26-Jan-2021 (01:08:24.323011)---Downloading the data for: SQ
+26-Jan-2021 (01:08:24.593645)---Figuring average Drop and Change for: SQ
+26-Jan-2021 (01:08:24.594493)---Yahoo market data for SQreceived shows average 2.7502161035585853 % drop
+26-Jan-2021 (01:08:24.595107)---Getting Yahoo market data for TTWO
+26-Jan-2021 (01:08:24.595863)---Downloading the data for: TTWO
+26-Jan-2021 (01:08:24.829602)---Figuring average Drop and Change for: TTWO
+26-Jan-2021 (01:08:24.836793)---Yahoo market data for TTWOreceived shows average 1.6383216115949188 % drop
+26-Jan-2021 (01:08:24.837289)---Getting Yahoo market data for OTRK
+26-Jan-2021 (01:08:24.837852)---Downloading the data for: OTRK
+26-Jan-2021 (01:08:25.082896)---Figuring average Drop and Change for: OTRK
+26-Jan-2021 (01:08:25.090148)---Yahoo market data for OTRKreceived shows average 4.244327833969125 % drop
+26-Jan-2021 (01:08:25.090660)---Getting Yahoo market data for HUM
+26-Jan-2021 (01:08:25.091237)---Downloading the data for: HUM
+26-Jan-2021 (01:08:25.427487)---Figuring average Drop and Change for: HUM
+26-Jan-2021 (01:08:25.435612)---Yahoo market data for HUMreceived shows average 1.758337888021489 % drop
+26-Jan-2021 (01:08:25.436217)---Getting Yahoo market data for AAPL
+26-Jan-2021 (01:08:25.436982)---Downloading the data for: AAPL
+26-Jan-2021 (01:08:25.715902)---Figuring average Drop and Change for: AAPL
+26-Jan-2021 (01:08:25.725748)---Yahoo market data for AAPLreceived shows average 1.4466954091429836 % drop
+26-Jan-2021 (01:08:25.726651)---Getting Yahoo market data for ZG
+26-Jan-2021 (01:08:25.728009)---Downloading the data for: ZG
+26-Jan-2021 (01:08:25.988136)---Figuring average Drop and Change for: ZG
+26-Jan-2021 (01:08:25.989385)---Yahoo market data for ZGreceived shows average 2.674786839027917 % drop
+26-Jan-2021 (01:08:25.990841)---Getting Yahoo market data for MSFT
+26-Jan-2021 (01:08:25.991490)---Downloading the data for: MSFT
+26-Jan-2021 (01:08:26.261545)---Figuring average Drop and Change for: MSFT
+26-Jan-2021 (01:08:26.262741)---Yahoo market data for MSFTreceived shows average 1.3612313527456354 % drop
+26-Jan-2021 (01:08:26.263852)---Getting Yahoo market data for NVDA
+26-Jan-2021 (01:08:26.264768)---Downloading the data for: NVDA
+26-Jan-2021 (01:08:26.567796)---Figuring average Drop and Change for: NVDA
+26-Jan-2021 (01:08:26.569028)---Yahoo market data for NVDAreceived shows average 2.0031941386142 % drop
+26-Jan-2021 (01:08:26.570440)---Getting Yahoo market data for BEP
+26-Jan-2021 (01:08:26.571021)---Downloading the data for: BEP
+26-Jan-2021 (01:08:26.865081)---Figuring average Drop and Change for: BEP
+26-Jan-2021 (01:08:26.866320)---Yahoo market data for BEPreceived shows average 1.8050396380473461 % drop
+26-Jan-2021 (01:08:26.867436)---Getting Yahoo market data for GOOGL
+26-Jan-2021 (01:08:26.868355)---Downloading the data for: GOOGL
+26-Jan-2021 (01:08:27.124618)---Figuring average Drop and Change for: GOOGL
+26-Jan-2021 (01:08:27.134872)---Yahoo market data for GOOGLreceived shows average 1.2917646318009122 % drop
+26-Jan-2021 (01:08:27.136468)---Getting Yahoo market data for ETSY
+26-Jan-2021 (01:08:27.136954)---Downloading the data for: ETSY
+26-Jan-2021 (01:08:27.379899)---Figuring average Drop and Change for: ETSY
+26-Jan-2021 (01:08:27.389352)---Yahoo market data for ETSYreceived shows average 2.7148065631350446 % drop
+26-Jan-2021 (01:08:27.389876)---Getting Yahoo market data for IVAC
+26-Jan-2021 (01:08:27.390293)---Downloading the data for: IVAC
+26-Jan-2021 (01:08:27.641445)---Figuring average Drop and Change for: IVAC
+26-Jan-2021 (01:08:27.651049)---Yahoo market data for IVACreceived shows average 2.82646556251475 % drop
+26-Jan-2021 (01:08:27.651609)---Getting Yahoo market data for PTON
+26-Jan-2021 (01:08:27.652279)---Downloading the data for: PTON
+26-Jan-2021 (01:08:27.894573)---Figuring average Drop and Change for: PTON
+26-Jan-2021 (01:08:27.904459)---Yahoo market data for PTONreceived shows average 3.1099258323977255 % drop
+26-Jan-2021 (01:08:27.905293)---Getting Yahoo market data for ADI
+26-Jan-2021 (01:08:27.905953)---Downloading the data for: ADI
+26-Jan-2021 (01:08:28.216182)---Figuring average Drop and Change for: ADI
+26-Jan-2021 (01:08:28.225813)---Yahoo market data for ADIreceived shows average 1.5163960262012766 % drop
+26-Jan-2021 (01:08:28.227020)---Getting Yahoo market data for CRM
+26-Jan-2021 (01:08:28.227813)---Downloading the data for: CRM
+26-Jan-2021 (01:08:28.452912)---Figuring average Drop and Change for: CRM
+26-Jan-2021 (01:08:28.459886)---Yahoo market data for CRMreceived shows average 1.777857372812332 % drop
+26-Jan-2021 (01:08:28.460505)---Getting Yahoo market data for CHWY
+26-Jan-2021 (01:08:28.460874)---Downloading the data for: CHWY
+26-Jan-2021 (01:08:28.720501)---Figuring average Drop and Change for: CHWY
+26-Jan-2021 (01:08:28.729839)---Yahoo market data for CHWYreceived shows average 2.8625539624054106 % drop
+26-Jan-2021 (01:08:28.730418)---Getting Yahoo market data for AZN
+26-Jan-2021 (01:08:28.731104)---Downloading the data for: AZN
+26-Jan-2021 (01:08:29.077617)---Figuring average Drop and Change for: AZN
+26-Jan-2021 (01:08:29.078595)---Yahoo market data for AZNreceived shows average 1.1352436955453036 % drop
+26-Jan-2021 (01:08:29.079370)---Getting Yahoo market data for NICE
+26-Jan-2021 (01:08:29.080285)---Downloading the data for: NICE
+26-Jan-2021 (01:08:29.310899)---Figuring average Drop and Change for: NICE
+26-Jan-2021 (01:08:29.317696)---Yahoo market data for NICEreceived shows average 1.1726510411508624 % drop
+26-Jan-2021 (01:08:29.318100)---Getting Yahoo market data for CSCO
+26-Jan-2021 (01:08:29.318577)---Downloading the data for: CSCO
+26-Jan-2021 (01:08:29.563778)---Figuring average Drop and Change for: CSCO
+26-Jan-2021 (01:08:29.571101)---Yahoo market data for CSCOreceived shows average 1.2640755503624936 % drop
+26-Jan-2021 (01:08:29.571617)---Getting Yahoo market data for PANW
+26-Jan-2021 (01:08:29.572621)---Downloading the data for: PANW
+26-Jan-2021 (01:08:29.814992)---Figuring average Drop and Change for: PANW
+26-Jan-2021 (01:08:29.816380)---Yahoo market data for PANWreceived shows average 1.457850137145926 % drop
+26-Jan-2021 (01:08:29.816811)---Getting Yahoo market data for NET
+26-Jan-2021 (01:08:29.817263)---Downloading the data for: NET
+26-Jan-2021 (01:08:30.074953)---Figuring average Drop and Change for: NET
+26-Jan-2021 (01:08:30.083663)---Yahoo market data for NETreceived shows average 2.862977362836002 % drop
+26-Jan-2021 (01:08:30.084213)---Getting Yahoo market data for CRWD
+26-Jan-2021 (01:08:30.085332)---Downloading the data for: CRWD
+26-Jan-2021 (01:08:30.333792)---Figuring average Drop and Change for: CRWD
+26-Jan-2021 (01:08:30.340690)---Yahoo market data for CRWDreceived shows average 2.720285178017861 % drop
+26-Jan-2021 (01:08:30.341151)---Getting Yahoo market data for CHKP
+26-Jan-2021 (01:08:30.341590)---Downloading the data for: CHKP
+26-Jan-2021 (01:08:30.586171)---Figuring average Drop and Change for: CHKP
+26-Jan-2021 (01:08:30.593582)---Yahoo market data for CHKPreceived shows average 1.3340900573923145 % drop
+26-Jan-2021 (01:08:30.595086)---Getting Yahoo market data for CVLT
+26-Jan-2021 (01:08:30.595590)---Downloading the data for: CVLT
+26-Jan-2021 (01:08:30.822433)---Figuring average Drop and Change for: CVLT
+26-Jan-2021 (01:08:30.829436)---Yahoo market data for CVLTreceived shows average 1.8766572107929325 % drop
+26-Jan-2021 (01:08:30.830054)---Getting Yahoo market data for RPD
+26-Jan-2021 (01:08:30.830498)---Downloading the data for: RPD
+26-Jan-2021 (01:08:31.348127)---Figuring average Drop and Change for: RPD
+26-Jan-2021 (01:08:31.348969)---Yahoo market data for RPDreceived shows average 2.2115426864008696 % drop
+26-Jan-2021 (01:08:31.349624)---Getting Yahoo market data for TENB
+26-Jan-2021 (01:08:31.350701)---Downloading the data for: TENB
+26-Jan-2021 (01:08:31.605650)---Figuring average Drop and Change for: TENB
+26-Jan-2021 (01:08:31.607092)---Yahoo market data for TENBreceived shows average 2.3348533202315664 % drop
+26-Jan-2021 (01:08:31.608650)---Getting Yahoo market data for ADBE
+26-Jan-2021 (01:08:31.609178)---Downloading the data for: ADBE
+26-Jan-2021 (01:08:31.849024)---Figuring average Drop and Change for: ADBE
+26-Jan-2021 (01:08:31.855877)---Yahoo market data for ADBEreceived shows average 1.6880908031956976 % drop
+26-Jan-2021 (01:08:31.856360)---Getting Yahoo market data for SHOP
+26-Jan-2021 (01:08:31.856899)---Downloading the data for: SHOP
+26-Jan-2021 (01:08:32.106915)---Figuring average Drop and Change for: SHOP
+26-Jan-2021 (01:08:32.107887)---Yahoo market data for SHOPreceived shows average 2.69551268311094 % drop
+26-Jan-2021 (01:08:32.109153)---Getting Yahoo market data for NIO
+26-Jan-2021 (01:08:32.110057)---Downloading the data for: NIO
+26-Jan-2021 (01:08:32.353694)---Figuring average Drop and Change for: NIO
+26-Jan-2021 (01:08:32.360216)---Yahoo market data for NIOreceived shows average 4.0954954716395315 % drop
+26-Jan-2021 (01:08:32.361102)---Getting Yahoo market data for TSLA
+26-Jan-2021 (01:08:32.362173)---Downloading the data for: TSLA
+26-Jan-2021 (01:08:32.599845)---Figuring average Drop and Change for: TSLA
+26-Jan-2021 (01:08:32.609159)---Yahoo market data for TSLAreceived shows average 2.983429086540249 % drop
+26-Jan-2021 (01:08:32.610237)---Getting Yahoo market data for SPCE
+26-Jan-2021 (01:08:32.612027)---Downloading the data for: SPCE
+26-Jan-2021 (01:08:32.859800)---Figuring average Drop and Change for: SPCE
+26-Jan-2021 (01:08:32.870179)---Yahoo market data for SPCEreceived shows average 4.429787632097384 % drop
+26-Jan-2021 (01:08:32.871035)---Getting Yahoo market data for BABA
+26-Jan-2021 (01:08:32.872398)---Downloading the data for: BABA
+26-Jan-2021 (01:08:33.107574)---Figuring average Drop and Change for: BABA
+26-Jan-2021 (01:08:33.114345)---Yahoo market data for BABAreceived shows average 1.492409951087101 % drop
+26-Jan-2021 (01:08:33.114797)---Getting Yahoo market data for BIIB
+26-Jan-2021 (01:08:33.115317)---Downloading the data for: BIIB
+26-Jan-2021 (01:08:33.354510)---Figuring average Drop and Change for: BIIB
+26-Jan-2021 (01:08:33.363959)---Yahoo market data for BIIBreceived shows average 1.5066620218817668 % drop
+26-Jan-2021 (01:08:33.364601)---Getting Yahoo market data for TSLA
+26-Jan-2021 (01:08:33.365373)---Downloading the data for: TSLA
+26-Jan-2021 (01:08:33.607309)---Figuring average Drop and Change for: TSLA
+26-Jan-2021 (01:08:33.608955)---Yahoo market data for TSLAreceived shows average 2.983429086540249 % drop
+26-Jan-2021 (01:08:33.609576)---Getting Yahoo market data for OKTA
+26-Jan-2021 (01:08:33.610337)---Downloading the data for: OKTA
+26-Jan-2021 (01:08:33.870525)---Figuring average Drop and Change for: OKTA
+26-Jan-2021 (01:08:33.872138)---Yahoo market data for OKTAreceived shows average 2.2867919816680384 % drop
+26-Jan-2021 (01:08:33.872760)---Getting Yahoo market data for GEVO
+26-Jan-2021 (01:08:33.873478)---Downloading the data for: GEVO
+26-Jan-2021 (01:08:34.105518)---Figuring average Drop and Change for: GEVO
+26-Jan-2021 (01:08:34.112521)---Yahoo market data for GEVOreceived shows average 5.868123559818734 % drop
+26-Jan-2021 (01:08:34.113020)---Getting Yahoo market data for SPCX
+26-Jan-2021 (01:08:34.113565)---Downloading the data for: SPCX
+26-Jan-2021 (01:08:34.330400)---Figuring average Drop and Change for: SPCX
+26-Jan-2021 (01:08:34.337244)---Yahoo market data for SPCXreceived shows average 0.9208454744090131 % drop
+26-Jan-2021 (01:08:34.338214)---Getting ranks for :BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA,SPCE,BABA,BIIB,TSLA,OKTA,GEVO,SPCX
+26-Jan-2021 (01:08:36.012041)---Getting TipRank Rating for : BYND
+26-Jan-2021 (01:08:40.767306)---Rating found on TipRanks : 2
+26-Jan-2021 (01:08:40.767940)---Getting TipRank Rating for : SEDG
+26-Jan-2021 (01:08:43.530358)---Rating found on TipRanks : 7
+26-Jan-2021 (01:08:43.530933)---Getting TipRank Rating for : LTHM
+26-Jan-2021 (01:08:45.518169)---Rating found on TipRanks : 
+26-Jan-2021 (01:08:45.520232)---Getting TipRank Rating for : SQ
+26-Jan-2021 (01:08:47.219518)---Rating found on TipRanks : 
+26-Jan-2021 (01:08:47.220529)---Getting TipRank Rating for : TTWO
+26-Jan-2021 (01:08:49.791026)---Rating found on TipRanks : 
+26-Jan-2021 (01:08:49.791536)---Getting TipRank Rating for : OTRK
+26-Jan-2021 (01:08:52.893651)---Rating found on TipRanks : 3
+26-Jan-2021 (01:08:52.894606)---Getting TipRank Rating for : HUM
+26-Jan-2021 (01:08:56.434120)---Rating found on TipRanks : 2
+26-Jan-2021 (01:08:56.434526)---Getting TipRank Rating for : AAPL
+26-Jan-2021 (01:08:58.328311)---Rating found on TipRanks : 9
+26-Jan-2021 (01:08:58.328698)---Getting TipRank Rating for : ZG
+26-Jan-2021 (01:09:00.531277)---Rating found on TipRanks : 5
+26-Jan-2021 (01:09:00.532776)---Getting TipRank Rating for : MSFT
+26-Jan-2021 (01:09:02.739155)---Rating found on TipRanks : 10
+26-Jan-2021 (01:09:02.739559)---Getting TipRank Rating for : NVDA
+26-Jan-2021 (01:09:04.850795)---Rating found on TipRanks : 6
+26-Jan-2021 (01:09:04.852077)---Getting TipRank Rating for : BEP
+26-Jan-2021 (01:09:06.832102)---Rating found on TipRanks : 8
+26-Jan-2021 (01:09:06.832601)---Getting TipRank Rating for : GOOGL
+26-Jan-2021 (01:09:08.507457)---Rating found on TipRanks : 7
+26-Jan-2021 (01:09:08.507838)---Getting TipRank Rating for : ETSY
+26-Jan-2021 (01:09:49.572180)---Begin connect and prepare
+26-Jan-2021 (01:09:49.572564)---Restarting connection to IBKR
+26-Jan-2021 (01:09:49.575333)---Waiting for connection...attempt:0
+26-Jan-2021 (01:09:50.396310)---Successfully connected to API
+26-Jan-2021 (01:09:50.397698)---Requesting Daily PnL
+26-Jan-2021 (01:09:50.398369)---PnL not yet received
+26-Jan-2021 (01:09:50.398918)---Starting to track Excess liquidity
+26-Jan-2021 (01:09:50.399734)---Updating open Positions:
+26-Jan-2021 (01:09:51.403021)---Started tracking SQ position PnL
+26-Jan-2021 (01:09:51.406983)---Started tracking BEP position PnL
+26-Jan-2021 (01:09:51.409769)---Started tracking NIO position PnL
+26-Jan-2021 (01:09:51.412361)---Started tracking CRWD position PnL
+26-Jan-2021 (01:09:51.413726)---Started tracking MSFT position PnL
+26-Jan-2021 (01:09:51.414864)---Started tracking AAPL position PnL
+26-Jan-2021 (01:09:51.416678)---Started tracking ADI position PnL
+26-Jan-2021 (01:09:51.418126)---Started tracking ETSY position PnL
+26-Jan-2021 (01:09:52.411847)---Waiting to receive Value for all positions 
+26-Jan-2021 (01:09:53.416304)---Waiting to receive Value for all positions 
+26-Jan-2021 (01:09:53.420750)---Requesting History for SQ position for last 1 hour BID price
+26-Jan-2021 (01:09:53.429145)---Requesting History for BEP position for last 1 hour BID price
+26-Jan-2021 (01:09:53.431272)---Requesting History for NIO position for last 1 hour BID price
+26-Jan-2021 (01:09:53.432767)---Requesting History for CRWD position for last 1 hour BID price
+26-Jan-2021 (01:09:53.434588)---Requesting History for MSFT position for last 1 hour BID price
+26-Jan-2021 (01:09:53.436181)---Requesting History for AAPL position for last 1 hour BID price
+26-Jan-2021 (01:09:53.437865)---Requesting History for ADI position for last 1 hour BID price
+26-Jan-2021 (01:09:53.439457)---Requesting History for ETSY position for last 1 hour BID price
+26-Jan-2021 (01:10:09.735746)---Begin connect and prepare
+26-Jan-2021 (01:10:09.736120)---Restarting connection to IBKR
+26-Jan-2021 (01:10:09.741246)---Waiting for connection...attempt:0
+26-Jan-2021 (01:10:10.522812)---Successfully connected to API
+26-Jan-2021 (01:10:10.524360)---Requesting Daily PnL
+26-Jan-2021 (01:10:10.525180)---PnL not yet received
+26-Jan-2021 (01:10:10.526142)---Starting to track Excess liquidity
+26-Jan-2021 (01:10:10.529052)---Updating open Positions:
+26-Jan-2021 (01:10:11.526709)---Started tracking SQ position PnL
+26-Jan-2021 (01:10:11.529977)---Started tracking BEP position PnL
+26-Jan-2021 (01:10:11.532051)---Started tracking NIO position PnL
+26-Jan-2021 (01:10:11.538366)---Started tracking CRWD position PnL
+26-Jan-2021 (01:10:11.540566)---Started tracking MSFT position PnL
+26-Jan-2021 (01:10:11.541754)---Started tracking AAPL position PnL
+26-Jan-2021 (01:10:11.543388)---Started tracking ADI position PnL
+26-Jan-2021 (01:10:11.544956)---Started tracking ETSY position PnL
+26-Jan-2021 (01:10:12.539431)---Waiting to receive Value for all positions 
+26-Jan-2021 (01:10:13.541034)---Waiting to receive Value for all positions 
+26-Jan-2021 (01:10:13.543635)---Requesting History for SQ position for last 1 hour BID price
+26-Jan-2021 (01:10:13.544647)---Requesting History for BEP position for last 1 hour BID price
+26-Jan-2021 (01:10:13.545459)---Requesting History for NIO position for last 1 hour BID price
+26-Jan-2021 (01:10:13.546192)---Requesting History for CRWD position for last 1 hour BID price
+26-Jan-2021 (01:10:13.546854)---Requesting History for MSFT position for last 1 hour BID price
+26-Jan-2021 (01:10:13.547411)---Requesting History for AAPL position for last 1 hour BID price
+26-Jan-2021 (01:10:13.547965)---Requesting History for ADI position for last 1 hour BID price
+26-Jan-2021 (01:10:13.552781)---Requesting History for ETSY position for last 1 hour BID price
+26-Jan-2021 (01:10:14.548480)---Waiting to receive Hisory for all positions 
+26-Jan-2021 (01:10:14.549425)---8 open positions completely updated
+26-Jan-2021 (01:10:14.549880)---Updating all open orders
+26-Jan-2021 (01:10:15.554935)---0 open orders found 
+26-Jan-2021 (01:10:15.557911)---Starting to track BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA,SPCE,BABA,BIIB,TSLA,OKTA,GEVO,SPCX Candidates
+26-Jan-2021 (01:10:15.560365)---starting to track: 1 of 40 BYND traking with Id:28826
+26-Jan-2021 (01:10:15.562136)---starting to track: 2 of 40 SEDG traking with Id:28827
+26-Jan-2021 (01:10:15.563606)---starting to track: 3 of 40 LTHM traking with Id:28828
+26-Jan-2021 (01:10:15.579728)---starting to track: 4 of 40 SQ traking with Id:28829
+26-Jan-2021 (01:10:15.583539)---starting to track: 5 of 40 TTWO traking with Id:28830
+26-Jan-2021 (01:10:15.587482)---starting to track: 6 of 40 OTRK traking with Id:28831
+26-Jan-2021 (01:10:15.594799)---starting to track: 7 of 40 HUM traking with Id:28832
+26-Jan-2021 (01:10:15.601686)---starting to track: 8 of 40 AAPL traking with Id:28833
+26-Jan-2021 (01:10:15.607624)---starting to track: 9 of 40 ZG traking with Id:28834
+26-Jan-2021 (01:10:15.613714)---starting to track: 10 of 40 MSFT traking with Id:28835
+26-Jan-2021 (01:10:15.618982)---starting to track: 11 of 40 NVDA traking with Id:28836
+26-Jan-2021 (01:10:15.623741)---starting to track: 12 of 40 BEP traking with Id:28837
+26-Jan-2021 (01:10:15.627233)---starting to track: 13 of 40 GOOGL traking with Id:28838
+26-Jan-2021 (01:10:15.628645)---starting to track: 14 of 40 ETSY traking with Id:28839
+26-Jan-2021 (01:10:15.631141)---starting to track: 15 of 40 IVAC traking with Id:28840
+26-Jan-2021 (01:10:15.635852)---starting to track: 16 of 40 PTON traking with Id:28841
+26-Jan-2021 (01:10:15.639568)---starting to track: 17 of 40 ADI traking with Id:28842
+26-Jan-2021 (01:10:15.642045)---starting to track: 18 of 40 CRM traking with Id:28843
+26-Jan-2021 (01:10:15.643317)---starting to track: 19 of 40 CHWY traking with Id:28844
+26-Jan-2021 (01:10:15.645560)---starting to track: 20 of 40 AZN traking with Id:28845
+26-Jan-2021 (01:10:15.647741)---starting to track: 21 of 40 NICE traking with Id:28846
+26-Jan-2021 (01:10:15.653839)---starting to track: 22 of 40 CSCO traking with Id:28847
+26-Jan-2021 (01:10:15.658709)---starting to track: 23 of 40 PANW traking with Id:28848
+26-Jan-2021 (01:10:15.660312)---starting to track: 24 of 40 NET traking with Id:28849
+26-Jan-2021 (01:10:15.662026)---starting to track: 25 of 40 CRWD traking with Id:28850
+26-Jan-2021 (01:10:15.667435)---starting to track: 26 of 40 CHKP traking with Id:28851
+26-Jan-2021 (01:10:15.673488)---starting to track: 27 of 40 CVLT traking with Id:28852
+26-Jan-2021 (01:10:15.677617)---starting to track: 28 of 40 RPD traking with Id:28853
+26-Jan-2021 (01:10:15.680641)---starting to track: 29 of 40 TENB traking with Id:28854
+26-Jan-2021 (01:10:15.682505)---starting to track: 30 of 40 ADBE traking with Id:28855
+26-Jan-2021 (01:10:15.683861)---starting to track: 31 of 40 SHOP traking with Id:28856
+26-Jan-2021 (01:10:15.686965)---starting to track: 32 of 40 NIO traking with Id:28857
+26-Jan-2021 (01:10:15.690854)---starting to track: 33 of 40 TSLA traking with Id:28858
+26-Jan-2021 (01:10:15.694145)---starting to track: 34 of 40 SPCE traking with Id:28859
+26-Jan-2021 (01:10:15.696477)---starting to track: 35 of 40 BABA traking with Id:28860
+26-Jan-2021 (01:10:15.697871)---starting to track: 36 of 40 BIIB traking with Id:28861
+26-Jan-2021 (01:10:15.700411)---starting to track: 37 of 40 TSLA traking with Id:28862
+26-Jan-2021 (01:10:15.706250)---starting to track: 38 of 40 OKTA traking with Id:28863
+26-Jan-2021 (01:10:15.713259)---starting to track: 39 of 40 GEVO traking with Id:28864
+26-Jan-2021 (01:10:15.718677)---starting to track: 40 of 40 SPCX traking with Id:28865
+26-Jan-2021 (01:10:16.584956)---Waiting for last requested candidate Close price 
+26-Jan-2021 (01:10:16.598195)---Getting Yahoo market data for BYND
+26-Jan-2021 (01:10:16.598793)---Downloading the data for: BYND
+26-Jan-2021 (01:10:16.881253)---Figuring average Drop and Change for: BYND
+26-Jan-2021 (01:10:16.896390)---Yahoo market data for BYNDreceived shows average 2.9585399546031073 % drop
+26-Jan-2021 (01:10:16.897498)---Getting Yahoo market data for SEDG
+26-Jan-2021 (01:10:16.897910)---Downloading the data for: SEDG
+26-Jan-2021 (01:10:17.131967)---Figuring average Drop and Change for: SEDG
+26-Jan-2021 (01:10:17.138951)---Yahoo market data for SEDGreceived shows average 3.181289987711898 % drop
+26-Jan-2021 (01:10:17.139453)---Getting Yahoo market data for LTHM
+26-Jan-2021 (01:10:17.140039)---Downloading the data for: LTHM
+26-Jan-2021 (01:10:17.378516)---Figuring average Drop and Change for: LTHM
+26-Jan-2021 (01:10:17.388579)---Yahoo market data for LTHMreceived shows average 3.5251162857461527 % drop
+26-Jan-2021 (01:10:17.389437)---Getting Yahoo market data for SQ
+26-Jan-2021 (01:10:17.390802)---Downloading the data for: SQ
+26-Jan-2021 (01:10:17.630220)---Figuring average Drop and Change for: SQ
+26-Jan-2021 (01:10:17.637006)---Yahoo market data for SQreceived shows average 2.7502161035585853 % drop
+26-Jan-2021 (01:10:17.637455)---Getting Yahoo market data for TTWO
+26-Jan-2021 (01:10:17.637812)---Downloading the data for: TTWO
+26-Jan-2021 (01:10:17.899768)---Figuring average Drop and Change for: TTWO
+26-Jan-2021 (01:10:17.902309)---Yahoo market data for TTWOreceived shows average 1.6383216115949188 % drop
+26-Jan-2021 (01:10:17.903462)---Getting Yahoo market data for OTRK
+26-Jan-2021 (01:10:17.904338)---Downloading the data for: OTRK
+26-Jan-2021 (01:10:18.132777)---Figuring average Drop and Change for: OTRK
+26-Jan-2021 (01:10:18.139757)---Yahoo market data for OTRKreceived shows average 4.244327833969125 % drop
+26-Jan-2021 (01:10:18.140230)---Getting Yahoo market data for HUM
+26-Jan-2021 (01:10:18.140742)---Downloading the data for: HUM
+26-Jan-2021 (01:10:18.412753)---Figuring average Drop and Change for: HUM
+26-Jan-2021 (01:10:18.420214)---Yahoo market data for HUMreceived shows average 1.758337888021489 % drop
+26-Jan-2021 (01:10:18.420708)---Getting Yahoo market data for AAPL
+26-Jan-2021 (01:10:18.421277)---Downloading the data for: AAPL
+26-Jan-2021 (01:10:19.124057)---Figuring average Drop and Change for: AAPL
+26-Jan-2021 (01:10:19.125111)---Yahoo market data for AAPLreceived shows average 1.4466954091429836 % drop
+26-Jan-2021 (01:10:19.126001)---Getting Yahoo market data for ZG
+26-Jan-2021 (01:10:19.126404)---Downloading the data for: ZG
+26-Jan-2021 (01:10:19.352440)---Figuring average Drop and Change for: ZG
+26-Jan-2021 (01:10:19.361795)---Yahoo market data for ZGreceived shows average 2.674786839027917 % drop
+26-Jan-2021 (01:10:19.362681)---Getting Yahoo market data for MSFT
+26-Jan-2021 (01:10:19.363723)---Downloading the data for: MSFT
+26-Jan-2021 (01:10:19.594966)---Figuring average Drop and Change for: MSFT
+26-Jan-2021 (01:10:19.601450)---Yahoo market data for MSFTreceived shows average 1.3612313527456354 % drop
+26-Jan-2021 (01:10:19.602166)---Getting Yahoo market data for NVDA
+26-Jan-2021 (01:10:19.603032)---Downloading the data for: NVDA
+26-Jan-2021 (01:10:19.840840)---Figuring average Drop and Change for: NVDA
+26-Jan-2021 (01:10:19.842171)---Yahoo market data for NVDAreceived shows average 2.0031941386142 % drop
+26-Jan-2021 (01:10:19.842883)---Getting Yahoo market data for BEP
+26-Jan-2021 (01:10:19.843720)---Downloading the data for: BEP
+26-Jan-2021 (01:10:20.091223)---Figuring average Drop and Change for: BEP
+26-Jan-2021 (01:10:20.098088)---Yahoo market data for BEPreceived shows average 1.8050396380473461 % drop
+26-Jan-2021 (01:10:20.098845)---Getting Yahoo market data for GOOGL
+26-Jan-2021 (01:10:20.100095)---Downloading the data for: GOOGL
+26-Jan-2021 (01:10:20.349100)---Figuring average Drop and Change for: GOOGL
+26-Jan-2021 (01:10:20.359108)---Yahoo market data for GOOGLreceived shows average 1.2917646318009122 % drop
+26-Jan-2021 (01:10:20.360456)---Getting Yahoo market data for ETSY
+26-Jan-2021 (01:10:20.361497)---Downloading the data for: ETSY
+26-Jan-2021 (01:10:20.580266)---Figuring average Drop and Change for: ETSY
+26-Jan-2021 (01:10:20.587228)---Yahoo market data for ETSYreceived shows average 2.7148065631350446 % drop
+26-Jan-2021 (01:10:20.587685)---Getting Yahoo market data for IVAC
+26-Jan-2021 (01:10:20.588200)---Downloading the data for: IVAC
+26-Jan-2021 (01:10:20.824695)---Figuring average Drop and Change for: IVAC
+26-Jan-2021 (01:10:20.826827)---Yahoo market data for IVACreceived shows average 2.82646556251475 % drop
+26-Jan-2021 (01:10:20.827231)---Getting Yahoo market data for PTON
+26-Jan-2021 (01:10:20.827549)---Downloading the data for: PTON
+26-Jan-2021 (01:10:21.057428)---Figuring average Drop and Change for: PTON
+26-Jan-2021 (01:10:21.063870)---Yahoo market data for PTONreceived shows average 3.1099258323977255 % drop
+26-Jan-2021 (01:10:21.064443)---Getting Yahoo market data for ADI
+26-Jan-2021 (01:10:21.064774)---Downloading the data for: ADI
+26-Jan-2021 (01:10:21.336889)---Figuring average Drop and Change for: ADI
+26-Jan-2021 (01:10:21.346519)---Yahoo market data for ADIreceived shows average 1.5163960262012766 % drop
+26-Jan-2021 (01:10:21.347081)---Getting Yahoo market data for CRM
+26-Jan-2021 (01:10:21.347833)---Downloading the data for: CRM
+26-Jan-2021 (01:10:22.591648)---Figuring average Drop and Change for: CRM
+26-Jan-2021 (01:10:22.598714)---Yahoo market data for CRMreceived shows average 1.777857372812332 % drop
+26-Jan-2021 (01:10:22.599185)---Getting Yahoo market data for CHWY
+26-Jan-2021 (01:10:22.599524)---Downloading the data for: CHWY
+26-Jan-2021 (01:10:22.854573)---Figuring average Drop and Change for: CHWY
+26-Jan-2021 (01:10:22.856106)---Yahoo market data for CHWYreceived shows average 2.8625539624054106 % drop
+26-Jan-2021 (01:10:22.857360)---Getting Yahoo market data for AZN
+26-Jan-2021 (01:10:22.858188)---Downloading the data for: AZN
+26-Jan-2021 (01:10:23.479141)---Figuring average Drop and Change for: AZN
+26-Jan-2021 (01:10:23.482375)---Yahoo market data for AZNreceived shows average 1.1352436955453036 % drop
+26-Jan-2021 (01:10:23.483238)---Getting Yahoo market data for NICE
+26-Jan-2021 (01:10:23.483813)---Downloading the data for: NICE
+26-Jan-2021 (01:10:23.732987)---Figuring average Drop and Change for: NICE
+26-Jan-2021 (01:10:23.739734)---Yahoo market data for NICEreceived shows average 1.1726510411508624 % drop
+26-Jan-2021 (01:10:23.740151)---Getting Yahoo market data for CSCO
+26-Jan-2021 (01:10:23.740686)---Downloading the data for: CSCO
+26-Jan-2021 (01:10:23.999239)---Figuring average Drop and Change for: CSCO
+26-Jan-2021 (01:10:24.000241)---Yahoo market data for CSCOreceived shows average 1.2640755503624936 % drop
+26-Jan-2021 (01:10:24.001061)---Getting Yahoo market data for PANW
+26-Jan-2021 (01:10:24.002009)---Downloading the data for: PANW
+26-Jan-2021 (01:10:24.221420)---Figuring average Drop and Change for: PANW
+26-Jan-2021 (01:10:24.227980)---Yahoo market data for PANWreceived shows average 1.457850137145926 % drop
+26-Jan-2021 (01:10:24.228424)---Getting Yahoo market data for NET
+26-Jan-2021 (01:10:24.228960)---Downloading the data for: NET
+26-Jan-2021 (01:10:24.458199)---Figuring average Drop and Change for: NET
+26-Jan-2021 (01:10:24.465319)---Yahoo market data for NETreceived shows average 2.862977362836002 % drop
+26-Jan-2021 (01:10:24.466076)---Getting Yahoo market data for CRWD
+26-Jan-2021 (01:10:24.467331)---Downloading the data for: CRWD
+26-Jan-2021 (01:10:24.709807)---Figuring average Drop and Change for: CRWD
+26-Jan-2021 (01:10:24.716077)---Yahoo market data for CRWDreceived shows average 2.720285178017861 % drop
+26-Jan-2021 (01:10:24.716606)---Getting Yahoo market data for CHKP
+26-Jan-2021 (01:10:24.717663)---Downloading the data for: CHKP
+26-Jan-2021 (01:10:24.941268)---Figuring average Drop and Change for: CHKP
+26-Jan-2021 (01:10:24.948363)---Yahoo market data for CHKPreceived shows average 1.3340900573923145 % drop
+26-Jan-2021 (01:10:24.948919)---Getting Yahoo market data for CVLT
+26-Jan-2021 (01:10:24.952740)---Downloading the data for: CVLT
+26-Jan-2021 (01:10:25.188836)---Figuring average Drop and Change for: CVLT
+26-Jan-2021 (01:10:25.195748)---Yahoo market data for CVLTreceived shows average 1.8766572107929325 % drop
+26-Jan-2021 (01:10:25.196369)---Getting Yahoo market data for RPD
+26-Jan-2021 (01:10:25.196884)---Downloading the data for: RPD
+26-Jan-2021 (01:10:25.800234)---Figuring average Drop and Change for: RPD
+26-Jan-2021 (01:10:25.806654)---Yahoo market data for RPDreceived shows average 2.2115426864008696 % drop
+26-Jan-2021 (01:10:25.807180)---Getting Yahoo market data for TENB
+26-Jan-2021 (01:10:25.807686)---Downloading the data for: TENB
+26-Jan-2021 (01:10:26.417611)---Figuring average Drop and Change for: TENB
+26-Jan-2021 (01:10:26.425170)---Yahoo market data for TENBreceived shows average 2.3348533202315664 % drop
+26-Jan-2021 (01:10:26.425711)---Getting Yahoo market data for ADBE
+26-Jan-2021 (01:10:26.426119)---Downloading the data for: ADBE
+26-Jan-2021 (01:10:26.703333)---Figuring average Drop and Change for: ADBE
+26-Jan-2021 (01:10:26.712195)---Yahoo market data for ADBEreceived shows average 1.6880908031956976 % drop
+26-Jan-2021 (01:10:26.712992)---Getting Yahoo market data for SHOP
+26-Jan-2021 (01:10:26.714404)---Downloading the data for: SHOP
+26-Jan-2021 (01:10:26.945634)---Figuring average Drop and Change for: SHOP
+26-Jan-2021 (01:10:26.946629)---Yahoo market data for SHOPreceived shows average 2.69551268311094 % drop
+26-Jan-2021 (01:10:26.947462)---Getting Yahoo market data for NIO
+26-Jan-2021 (01:10:26.947830)---Downloading the data for: NIO
+26-Jan-2021 (01:10:27.178144)---Figuring average Drop and Change for: NIO
+26-Jan-2021 (01:10:27.184308)---Yahoo market data for NIOreceived shows average 4.0954954716395315 % drop
+26-Jan-2021 (01:10:27.184810)---Getting Yahoo market data for TSLA
+26-Jan-2021 (01:10:27.185410)---Downloading the data for: TSLA
+26-Jan-2021 (01:10:27.447191)---Figuring average Drop and Change for: TSLA
+26-Jan-2021 (01:10:27.448312)---Yahoo market data for TSLAreceived shows average 2.983429086540249 % drop
+26-Jan-2021 (01:10:27.449713)---Getting Yahoo market data for SPCE
+26-Jan-2021 (01:10:27.450236)---Downloading the data for: SPCE
+26-Jan-2021 (01:10:27.676521)---Figuring average Drop and Change for: SPCE
+26-Jan-2021 (01:10:27.683585)---Yahoo market data for SPCEreceived shows average 4.429787632097384 % drop
+26-Jan-2021 (01:10:27.684104)---Getting Yahoo market data for BABA
+26-Jan-2021 (01:10:27.684682)---Downloading the data for: BABA
+26-Jan-2021 (01:10:27.918649)---Figuring average Drop and Change for: BABA
+26-Jan-2021 (01:10:27.925354)---Yahoo market data for BABAreceived shows average 1.492409951087101 % drop
+26-Jan-2021 (01:10:27.925820)---Getting Yahoo market data for BIIB
+26-Jan-2021 (01:10:27.926359)---Downloading the data for: BIIB
+26-Jan-2021 (01:10:28.509018)---Figuring average Drop and Change for: BIIB
+26-Jan-2021 (01:10:28.518419)---Yahoo market data for BIIBreceived shows average 1.5066620218817668 % drop
+26-Jan-2021 (01:10:28.518991)---Getting Yahoo market data for TSLA
+26-Jan-2021 (01:10:28.519700)---Downloading the data for: TSLA
+26-Jan-2021 (01:10:28.752714)---Figuring average Drop and Change for: TSLA
+26-Jan-2021 (01:10:28.762170)---Yahoo market data for TSLAreceived shows average 2.983429086540249 % drop
+26-Jan-2021 (01:10:28.763011)---Getting Yahoo market data for OKTA
+26-Jan-2021 (01:10:28.764375)---Downloading the data for: OKTA
+26-Jan-2021 (01:10:29.019175)---Figuring average Drop and Change for: OKTA
+26-Jan-2021 (01:10:29.022041)---Yahoo market data for OKTAreceived shows average 2.2867919816680384 % drop
+26-Jan-2021 (01:10:29.022694)---Getting Yahoo market data for GEVO
+26-Jan-2021 (01:10:29.023206)---Downloading the data for: GEVO
+26-Jan-2021 (01:10:29.244582)---Figuring average Drop and Change for: GEVO
+26-Jan-2021 (01:10:29.251459)---Yahoo market data for GEVOreceived shows average 5.868123559818734 % drop
+26-Jan-2021 (01:10:29.251970)---Getting Yahoo market data for SPCX
+26-Jan-2021 (01:10:29.252559)---Downloading the data for: SPCX
+26-Jan-2021 (01:10:29.471135)---Figuring average Drop and Change for: SPCX
+26-Jan-2021 (01:10:29.471954)---Yahoo market data for SPCXreceived shows average 0.9208454744090131 % drop
+26-Jan-2021 (01:10:29.478430)---Getting ranks for :BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,TSLA,SPCE,BABA,BIIB,TSLA,OKTA,GEVO,SPCX
+26-Jan-2021 (01:10:31.076413)---Getting TipRank Rating for : BYND
+26-Jan-2021 (01:10:36.190681)---Rating found on TipRanks : 2
+26-Jan-2021 (01:10:36.192123)---Getting TipRank Rating for : SEDG
+26-Jan-2021 (01:10:39.162497)---Rating found on TipRanks : 
+26-Jan-2021 (01:10:39.163258)---Getting TipRank Rating for : LTHM
+26-Jan-2021 (01:10:40.997647)---Rating found on TipRanks : 8
+26-Jan-2021 (01:10:40.998629)---Getting TipRank Rating for : SQ
+26-Jan-2021 (01:10:43.164023)---Rating found on TipRanks : 10
+26-Jan-2021 (01:10:43.164998)---Getting TipRank Rating for : TTWO
+26-Jan-2021 (01:10:45.076842)---Rating found on TipRanks : 3
+26-Jan-2021 (01:10:45.077503)---Getting TipRank Rating for : OTRK
+26-Jan-2021 (01:10:47.025290)---Rating found on TipRanks : 3
+26-Jan-2021 (01:10:47.025910)---Getting TipRank Rating for : HUM
+26-Jan-2021 (01:10:49.092406)---Rating found on TipRanks : 2
+26-Jan-2021 (01:10:49.093182)---Getting TipRank Rating for : AAPL
+26-Jan-2021 (01:10:50.580175)---Rating found on TipRanks : 9
+26-Jan-2021 (01:10:50.580775)---Getting TipRank Rating for : ZG
+26-Jan-2021 (01:10:52.658712)---Rating found on TipRanks : 5
+26-Jan-2021 (01:10:52.659504)---Getting TipRank Rating for : MSFT
+26-Jan-2021 (01:10:54.563311)---Rating found on TipRanks : 10
+26-Jan-2021 (01:10:54.564523)---Getting TipRank Rating for : NVDA
+26-Jan-2021 (01:10:56.753477)---Rating found on TipRanks : 6
+26-Jan-2021 (01:10:56.753981)---Getting TipRank Rating for : BEP
+26-Jan-2021 (01:10:58.769992)---Rating found on TipRanks : 8
+26-Jan-2021 (01:10:58.770906)---Getting TipRank Rating for : GOOGL
+26-Jan-2021 (01:11:00.748257)---Rating found on TipRanks : 7
+26-Jan-2021 (01:11:00.749949)---Getting TipRank Rating for : ETSY
+26-Jan-2021 (01:11:02.591949)---Rating found on TipRanks : 9
+26-Jan-2021 (01:11:02.592402)---Getting TipRank Rating for : IVAC
+26-Jan-2021 (01:11:04.511709)---Rating found on TipRanks : 6
+26-Jan-2021 (01:11:04.512286)---Getting TipRank Rating for : PTON
+26-Jan-2021 (01:11:06.208375)---Rating found on TipRanks : 5
+26-Jan-2021 (01:11:06.208981)---Getting TipRank Rating for : ADI
+26-Jan-2021 (01:11:08.122792)---Rating found on TipRanks : 9
+26-Jan-2021 (01:11:08.123664)---Getting TipRank Rating for : CRM
+26-Jan-2021 (01:11:09.857457)---Rating found on TipRanks : 7
+26-Jan-2021 (01:11:09.857986)---Getting TipRank Rating for : CHWY
+26-Jan-2021 (01:11:11.775894)---Rating found on TipRanks : 3
+26-Jan-2021 (01:11:11.776370)---Getting TipRank Rating for : AZN
+26-Jan-2021 (01:11:13.663022)---Rating found on TipRanks : 6
+26-Jan-2021 (01:11:13.664684)---Getting TipRank Rating for : NICE
+26-Jan-2021 (01:11:15.642358)---Rating found on TipRanks : 6
+26-Jan-2021 (01:11:15.642877)---Getting TipRank Rating for : CSCO
+26-Jan-2021 (01:11:17.562943)---Rating found on TipRanks : 9
+26-Jan-2021 (01:11:17.563854)---Getting TipRank Rating for : PANW
+26-Jan-2021 (01:11:19.513011)---Rating found on TipRanks : 5
+26-Jan-2021 (01:11:19.513520)---Getting TipRank Rating for : NET
+26-Jan-2021 (01:11:21.494396)---Rating found on TipRanks : 8
+26-Jan-2021 (01:11:21.494911)---Getting TipRank Rating for : CRWD
+26-Jan-2021 (01:11:23.216543)---Rating found on TipRanks : 10
+26-Jan-2021 (01:11:23.217076)---Getting TipRank Rating for : CHKP
+26-Jan-2021 (01:11:25.525107)---Rating found on TipRanks : 6
+26-Jan-2021 (01:11:25.525570)---Getting TipRank Rating for : CVLT
+26-Jan-2021 (01:11:27.900550)---Rating found on TipRanks : 8
+26-Jan-2021 (01:11:27.901821)---Getting TipRank Rating for : RPD
+26-Jan-2021 (01:11:30.613447)---Rating found on TipRanks : 7
+26-Jan-2021 (01:11:30.613879)---Getting TipRank Rating for : TENB
+26-Jan-2021 (01:11:32.880003)---Rating found on TipRanks : 8
+26-Jan-2021 (01:11:32.880517)---Getting TipRank Rating for : ADBE
+26-Jan-2021 (01:11:34.570839)---Rating found on TipRanks : 6
+26-Jan-2021 (01:11:34.571437)---Getting TipRank Rating for : SHOP
+26-Jan-2021 (01:11:36.241911)---Rating found on TipRanks : 8
+26-Jan-2021 (01:11:36.242362)---Getting TipRank Rating for : NIO
+26-Jan-2021 (01:11:38.359251)---Rating found on TipRanks : 10
+26-Jan-2021 (01:11:38.359682)---Getting TipRank Rating for : TSLA
+26-Jan-2021 (01:11:40.278694)---Rating found on TipRanks : 8
+26-Jan-2021 (01:11:40.279156)---Getting TipRank Rating for : SPCE
+26-Jan-2021 (01:11:42.221846)---Rating found on TipRanks : 6
+26-Jan-2021 (01:11:42.222375)---Getting TipRank Rating for : BABA
+26-Jan-2021 (01:11:44.062901)---Rating found on TipRanks : 8
+26-Jan-2021 (01:11:44.064599)---Getting TipRank Rating for : BIIB
+26-Jan-2021 (01:11:45.942514)---Rating found on TipRanks : 5
+26-Jan-2021 (01:11:45.942952)---Getting TipRank Rating for : TSLA
+26-Jan-2021 (01:11:47.667142)---Rating found on TipRanks : 8
+26-Jan-2021 (01:11:47.667638)---Getting TipRank Rating for : OKTA
+26-Jan-2021 (01:11:49.811473)---Rating found on TipRanks : 5
+26-Jan-2021 (01:11:49.812117)---Getting TipRank Rating for : GEVO
+26-Jan-2021 (01:11:51.720565)---Rating found on TipRanks : 9
+26-Jan-2021 (01:11:51.721003)---Getting TipRank Rating for : SPCX
+26-Jan-2021 (01:12:08.044669)---Could not find  TipRank Rating for : SPCX
+26-Jan-2021 (01:12:08.246577)---Error in connection and preparation : 'SPCX'
+26-Jan-2021 (01:12:08.342976)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:08.343471)---UI resumed.
+26-Jan-2021 (01:12:08.343821)---Starting Worker- UI Paused
+26-Jan-2021 (01:12:08.383508)----------Starting Worker...----EST Time: 2021-01-25 17:12:08--------------------
+26-Jan-2021 (01:12:08.383921)---Checking connection
+26-Jan-2021 (01:12:08.384209)---Connection is fine- proceeding
+26-Jan-2021 (01:12:08.384493)---Updating all open orders
+26-Jan-2021 (01:12:09.347502)---0 open orders found 
+26-Jan-2021 (01:12:09.350149)---Updating open Positions:
+26-Jan-2021 (01:12:10.349845)---Started tracking SQ position PnL
+26-Jan-2021 (01:12:10.352205)---Started tracking BEP position PnL
+26-Jan-2021 (01:12:10.354399)---Started tracking NIO position PnL
+26-Jan-2021 (01:12:10.356485)---Started tracking CRWD position PnL
+26-Jan-2021 (01:12:10.358594)---Started tracking MSFT position PnL
+26-Jan-2021 (01:12:10.360358)---Started tracking AAPL position PnL
+26-Jan-2021 (01:12:10.368358)---Started tracking ADI position PnL
+26-Jan-2021 (01:12:10.371005)---Started tracking ETSY position PnL
+26-Jan-2021 (01:12:11.355313)---Waiting to receive Value for all positions 
+26-Jan-2021 (01:12:11.357345)---Requesting History for SQ position for last 1 hour BID price
+26-Jan-2021 (01:12:11.359692)---Requesting History for BEP position for last 1 hour BID price
+26-Jan-2021 (01:12:11.361337)---Requesting History for NIO position for last 1 hour BID price
+26-Jan-2021 (01:12:11.362315)---Requesting History for CRWD position for last 1 hour BID price
+26-Jan-2021 (01:12:11.367536)---Requesting History for MSFT position for last 1 hour BID price
+26-Jan-2021 (01:12:11.368513)---Requesting History for AAPL position for last 1 hour BID price
+26-Jan-2021 (01:12:11.369181)---Requesting History for ADI position for last 1 hour BID price
+26-Jan-2021 (01:12:11.369781)---Requesting History for ETSY position for last 1 hour BID price
+26-Jan-2021 (01:12:12.366342)---Waiting to receive Hisory for all positions 
+26-Jan-2021 (01:12:13.366815)---Waiting to receive Hisory for all positions 
+26-Jan-2021 (01:12:13.368343)---8 open positions completely updated
+26-Jan-2021 (01:12:13.370046)---Trading session is not Open - processing skept
+26-Jan-2021 (01:12:13.370950)---...............Worker finished....EST Time: 2021-01-25 17:12:08...................
+26-Jan-2021 (01:12:13.402462)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:13.402957)---UI resumed.
+26-Jan-2021 (01:12:14.488868)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:15.476714)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:16.473352)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:17.463745)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:18.462668)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:19.451824)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:20.457257)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:21.446189)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:22.448513)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:23.452147)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:24.457064)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:25.459361)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:26.453770)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:27.448534)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:28.443023)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:29.443125)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:30.455410)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:31.457384)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:32.454699)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:33.453216)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:34.455700)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:35.454942)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:36.454796)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:37.455798)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:38.455718)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:39.459969)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:40.454702)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:41.454540)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:42.456894)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:43.454977)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:44.493132)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:45.483778)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:46.468103)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:47.456556)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:48.450246)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:49.447524)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:50.455504)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:51.443235)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:52.452773)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:53.449320)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:54.455396)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:55.455044)---Error in updating Candidates: 'target_price'
+26-Jan-2021 (01:12:55.783111)---UI paused- for restart
+26-Jan-2021 (01:12:55.783530)---Configuration changed - restarting everything
+26-Jan-2021 (01:12:55.858440)---Begin connect and prepare
+26-Jan-2021 (01:12:55.858959)---Restarting connection to IBKR
+26-Jan-2021 (01:12:55.859343)---Waiting for connection...attempt:0
+26-Jan-2021 (01:12:56.818145)---Successfully connected to API
+26-Jan-2021 (01:12:56.819384)---Requesting Daily PnL
+26-Jan-2021 (01:12:56.820642)---PnL not yet received
+26-Jan-2021 (01:12:56.821511)---Starting to track Excess liquidity
+26-Jan-2021 (01:12:56.822862)---Updating open Positions:
+26-Jan-2021 (01:12:57.824743)---Started tracking SQ position PnL
+26-Jan-2021 (01:12:57.827863)---Started tracking BEP position PnL
+26-Jan-2021 (01:12:57.830611)---Started tracking NIO position PnL
+26-Jan-2021 (01:12:57.835017)---Started tracking CRWD position PnL
+26-Jan-2021 (01:12:57.836336)---Started tracking MSFT position PnL
+26-Jan-2021 (01:12:57.838334)---Started tracking AAPL position PnL
+26-Jan-2021 (01:12:57.840288)---Started tracking ADI position PnL
+26-Jan-2021 (01:12:57.841757)---Started tracking ETSY position PnL
+26-Jan-2021 (01:12:58.837797)---Waiting to receive Value for all positions 
+26-Jan-2021 (01:12:59.842505)---Waiting to receive Value for all positions 
+26-Jan-2021 (01:12:59.845490)---Requesting History for SQ position for last 1 hour BID price
+26-Jan-2021 (01:12:59.846532)---Requesting History for BEP position for last 1 hour BID price
+26-Jan-2021 (01:12:59.847401)---Requesting History for NIO position for last 1 hour BID price
+26-Jan-2021 (01:12:59.848260)---Requesting History for CRWD position for last 1 hour BID price
+26-Jan-2021 (01:12:59.852933)---Requesting History for MSFT position for last 1 hour BID price
+26-Jan-2021 (01:12:59.853706)---Requesting History for AAPL position for last 1 hour BID price
+26-Jan-2021 (01:12:59.854370)---Requesting History for ADI position for last 1 hour BID price
+26-Jan-2021 (01:12:59.855111)---Requesting History for ETSY position for last 1 hour BID price
+26-Jan-2021 (01:13:00.852325)---Waiting to receive Hisory for all positions 
+26-Jan-2021 (01:13:00.853827)---8 open positions completely updated
+26-Jan-2021 (01:13:00.855269)---Updating all open orders
+26-Jan-2021 (01:13:01.859302)---0 open orders found 
+26-Jan-2021 (01:13:01.862517)---Starting to track BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,SPCE,BABA,BIIB,TSLA,OKTA,GEVO Candidates
+26-Jan-2021 (01:13:01.865283)---starting to track: 1 of 38 BYND traking with Id:28826
+26-Jan-2021 (01:13:01.867036)---starting to track: 2 of 38 SEDG traking with Id:28827
+26-Jan-2021 (01:13:01.869319)---starting to track: 3 of 38 LTHM traking with Id:28828
+26-Jan-2021 (01:13:01.870734)---starting to track: 4 of 38 SQ traking with Id:28829
+26-Jan-2021 (01:13:01.879698)---starting to track: 5 of 38 TTWO traking with Id:28830
+26-Jan-2021 (01:13:01.881676)---starting to track: 6 of 38 OTRK traking with Id:28831
+26-Jan-2021 (01:13:01.888217)---starting to track: 7 of 38 HUM traking with Id:28832
+26-Jan-2021 (01:13:01.892039)---starting to track: 8 of 38 AAPL traking with Id:28833
+26-Jan-2021 (01:13:01.894316)---starting to track: 9 of 38 ZG traking with Id:28834
+26-Jan-2021 (01:13:01.896446)---starting to track: 10 of 38 MSFT traking with Id:28835
+26-Jan-2021 (01:13:01.900164)---starting to track: 11 of 38 NVDA traking with Id:28836
+26-Jan-2021 (01:13:01.903418)---starting to track: 12 of 38 BEP traking with Id:28837
+26-Jan-2021 (01:13:01.905877)---starting to track: 13 of 38 GOOGL traking with Id:28838
+26-Jan-2021 (01:13:01.909172)---starting to track: 14 of 38 ETSY traking with Id:28839
+26-Jan-2021 (01:13:01.911617)---starting to track: 15 of 38 IVAC traking with Id:28840
+26-Jan-2021 (01:13:01.913317)---starting to track: 16 of 38 PTON traking with Id:28841
+26-Jan-2021 (01:13:01.918381)---starting to track: 17 of 38 ADI traking with Id:28842
+26-Jan-2021 (01:13:01.919831)---starting to track: 18 of 38 CRM traking with Id:28843
+26-Jan-2021 (01:13:01.921111)---starting to track: 19 of 38 CHWY traking with Id:28844
+26-Jan-2021 (01:13:01.921879)---starting to track: 20 of 38 AZN traking with Id:28845
+26-Jan-2021 (01:13:01.922554)---starting to track: 21 of 38 NICE traking with Id:28846
+26-Jan-2021 (01:13:01.923431)---starting to track: 22 of 38 CSCO traking with Id:28847
+26-Jan-2021 (01:13:01.926015)---starting to track: 23 of 38 PANW traking with Id:28848
+26-Jan-2021 (01:13:01.928713)---starting to track: 24 of 38 NET traking with Id:28849
+26-Jan-2021 (01:13:01.930239)---starting to track: 25 of 38 CRWD traking with Id:28850
+26-Jan-2021 (01:13:01.931035)---starting to track: 26 of 38 CHKP traking with Id:28851
+26-Jan-2021 (01:13:01.931629)---starting to track: 27 of 38 CVLT traking with Id:28852
+26-Jan-2021 (01:13:01.932169)---starting to track: 28 of 38 RPD traking with Id:28853
+26-Jan-2021 (01:13:01.932666)---starting to track: 29 of 38 TENB traking with Id:28854
+26-Jan-2021 (01:13:01.933181)---starting to track: 30 of 38 ADBE traking with Id:28855
+26-Jan-2021 (01:13:01.933696)---starting to track: 31 of 38 SHOP traking with Id:28856
+26-Jan-2021 (01:13:01.934174)---starting to track: 32 of 38 NIO traking with Id:28857
+26-Jan-2021 (01:13:01.934716)---starting to track: 33 of 38 SPCE traking with Id:28858
+26-Jan-2021 (01:13:01.935300)---starting to track: 34 of 38 BABA traking with Id:28859
+26-Jan-2021 (01:13:01.935869)---starting to track: 35 of 38 BIIB traking with Id:28860
+26-Jan-2021 (01:13:01.936556)---starting to track: 36 of 38 TSLA traking with Id:28861
+26-Jan-2021 (01:13:01.939418)---starting to track: 37 of 38 OKTA traking with Id:28862
+26-Jan-2021 (01:13:01.942534)---starting to track: 38 of 38 GEVO traking with Id:28863
+26-Jan-2021 (01:13:02.919758)---Waiting for last requested candidate Close price 
+26-Jan-2021 (01:13:02.926546)---Getting Yahoo market data for BYND
+26-Jan-2021 (01:13:02.927058)---Downloading the data for: BYND
+26-Jan-2021 (01:13:03.145035)---Figuring average Drop and Change for: BYND
+26-Jan-2021 (01:13:03.151790)---Yahoo market data for BYNDreceived shows average 2.9585399546031073 % drop
+26-Jan-2021 (01:13:03.152248)---Getting Yahoo market data for SEDG
+26-Jan-2021 (01:13:03.152772)---Downloading the data for: SEDG
+26-Jan-2021 (01:13:03.414368)---Figuring average Drop and Change for: SEDG
+26-Jan-2021 (01:13:03.430838)---Yahoo market data for SEDGreceived shows average 3.181289987711898 % drop
+26-Jan-2021 (01:13:03.431681)---Getting Yahoo market data for LTHM
+26-Jan-2021 (01:13:03.432623)---Downloading the data for: LTHM
+26-Jan-2021 (01:13:03.660033)---Figuring average Drop and Change for: LTHM
+26-Jan-2021 (01:13:03.666913)---Yahoo market data for LTHMreceived shows average 3.5251162857461527 % drop
+26-Jan-2021 (01:13:03.667426)---Getting Yahoo market data for SQ
+26-Jan-2021 (01:13:03.667933)---Downloading the data for: SQ
+26-Jan-2021 (01:13:03.900846)---Figuring average Drop and Change for: SQ
+26-Jan-2021 (01:13:03.902042)---Yahoo market data for SQreceived shows average 2.7502161035585853 % drop
+26-Jan-2021 (01:13:03.902622)---Getting Yahoo market data for TTWO
+26-Jan-2021 (01:13:03.903021)---Downloading the data for: TTWO
+26-Jan-2021 (01:13:04.143660)---Figuring average Drop and Change for: TTWO
+26-Jan-2021 (01:13:04.144592)---Yahoo market data for TTWOreceived shows average 1.6383216115949188 % drop
+26-Jan-2021 (01:13:04.145309)---Getting Yahoo market data for OTRK
+26-Jan-2021 (01:13:04.146448)---Downloading the data for: OTRK
+26-Jan-2021 (01:13:04.378669)---Figuring average Drop and Change for: OTRK
+26-Jan-2021 (01:13:04.379510)---Yahoo market data for OTRKreceived shows average 4.244327833969125 % drop
+26-Jan-2021 (01:13:04.380145)---Getting Yahoo market data for HUM
+26-Jan-2021 (01:13:04.380906)---Downloading the data for: HUM
+26-Jan-2021 (01:13:04.641101)---Figuring average Drop and Change for: HUM
+26-Jan-2021 (01:13:04.642086)---Yahoo market data for HUMreceived shows average 1.758337888021489 % drop
+26-Jan-2021 (01:13:04.642975)---Getting Yahoo market data for AAPL
+26-Jan-2021 (01:13:04.643728)---Downloading the data for: AAPL
+26-Jan-2021 (01:13:04.961560)---Figuring average Drop and Change for: AAPL
+26-Jan-2021 (01:13:04.971431)---Yahoo market data for AAPLreceived shows average 1.4466954091429836 % drop
+26-Jan-2021 (01:13:04.972419)---Getting Yahoo market data for ZG
+26-Jan-2021 (01:13:04.973836)---Downloading the data for: ZG
+26-Jan-2021 (01:13:05.215691)---Figuring average Drop and Change for: ZG
+26-Jan-2021 (01:13:05.225886)---Yahoo market data for ZGreceived shows average 2.674786839027917 % drop
+26-Jan-2021 (01:13:05.226805)---Getting Yahoo market data for MSFT
+26-Jan-2021 (01:13:05.228250)---Downloading the data for: MSFT
+26-Jan-2021 (01:13:05.481459)---Figuring average Drop and Change for: MSFT
+26-Jan-2021 (01:13:05.491280)---Yahoo market data for MSFTreceived shows average 1.3612313527456354 % drop
+26-Jan-2021 (01:13:05.492515)---Getting Yahoo market data for NVDA
+26-Jan-2021 (01:13:05.493272)---Downloading the data for: NVDA
+26-Jan-2021 (01:13:05.742847)---Figuring average Drop and Change for: NVDA
+26-Jan-2021 (01:13:05.744336)---Yahoo market data for NVDAreceived shows average 2.0031941386142 % drop
+26-Jan-2021 (01:13:05.744848)---Getting Yahoo market data for BEP
+26-Jan-2021 (01:13:05.745950)---Downloading the data for: BEP
+26-Jan-2021 (01:13:06.023857)---Figuring average Drop and Change for: BEP
+26-Jan-2021 (01:13:06.025308)---Yahoo market data for BEPreceived shows average 1.8050396380473461 % drop
+26-Jan-2021 (01:13:06.026568)---Getting Yahoo market data for GOOGL
+26-Jan-2021 (01:13:06.027445)---Downloading the data for: GOOGL
+26-Jan-2021 (01:13:06.264124)---Figuring average Drop and Change for: GOOGL
+26-Jan-2021 (01:13:06.273680)---Yahoo market data for GOOGLreceived shows average 1.2917646318009122 % drop
+26-Jan-2021 (01:13:06.274311)---Getting Yahoo market data for ETSY
+26-Jan-2021 (01:13:06.275611)---Downloading the data for: ETSY
+26-Jan-2021 (01:13:06.500379)---Figuring average Drop and Change for: ETSY
+26-Jan-2021 (01:13:06.501150)---Yahoo market data for ETSYreceived shows average 2.7148065631350446 % drop
+26-Jan-2021 (01:13:06.501728)---Getting Yahoo market data for IVAC
+26-Jan-2021 (01:13:06.502717)---Downloading the data for: IVAC
+26-Jan-2021 (01:13:06.726620)---Figuring average Drop and Change for: IVAC
+26-Jan-2021 (01:13:06.733391)---Yahoo market data for IVACreceived shows average 2.82646556251475 % drop
+26-Jan-2021 (01:13:06.733871)---Getting Yahoo market data for PTON
+26-Jan-2021 (01:13:06.734382)---Downloading the data for: PTON
+26-Jan-2021 (01:13:06.969216)---Figuring average Drop and Change for: PTON
+26-Jan-2021 (01:13:06.970501)---Yahoo market data for PTONreceived shows average 3.1099258323977255 % drop
+26-Jan-2021 (01:13:06.970935)---Getting Yahoo market data for ADI
+26-Jan-2021 (01:13:06.971454)---Downloading the data for: ADI
+26-Jan-2021 (01:13:07.211271)---Figuring average Drop and Change for: ADI
+26-Jan-2021 (01:13:07.217638)---Yahoo market data for ADIreceived shows average 1.5163960262012766 % drop
+26-Jan-2021 (01:13:07.218127)---Getting Yahoo market data for CRM
+26-Jan-2021 (01:13:07.218455)---Downloading the data for: CRM
+26-Jan-2021 (01:13:07.425022)---Figuring average Drop and Change for: CRM
+26-Jan-2021 (01:13:07.431128)---Yahoo market data for CRMreceived shows average 1.777857372812332 % drop
+26-Jan-2021 (01:13:07.431711)---Getting Yahoo market data for CHWY
+26-Jan-2021 (01:13:07.432054)---Downloading the data for: CHWY
+26-Jan-2021 (01:13:07.656522)---Figuring average Drop and Change for: CHWY
+26-Jan-2021 (01:13:07.668027)---Yahoo market data for CHWYreceived shows average 2.8625539624054106 % drop
+26-Jan-2021 (01:13:07.668557)---Getting Yahoo market data for AZN
+26-Jan-2021 (01:13:07.669565)---Downloading the data for: AZN
+26-Jan-2021 (01:13:07.937030)---Figuring average Drop and Change for: AZN
+26-Jan-2021 (01:13:07.946790)---Yahoo market data for AZNreceived shows average 1.1352436955453036 % drop
+26-Jan-2021 (01:13:07.947373)---Getting Yahoo market data for NICE
+26-Jan-2021 (01:13:07.948505)---Downloading the data for: NICE
+26-Jan-2021 (01:13:08.196660)---Figuring average Drop and Change for: NICE
+26-Jan-2021 (01:13:08.206182)---Yahoo market data for NICEreceived shows average 1.1726510411508624 % drop
+26-Jan-2021 (01:13:08.206801)---Getting Yahoo market data for CSCO
+26-Jan-2021 (01:13:08.207486)---Downloading the data for: CSCO
+26-Jan-2021 (01:13:08.449828)---Figuring average Drop and Change for: CSCO
+26-Jan-2021 (01:13:08.450574)---Yahoo market data for CSCOreceived shows average 1.2640755503624936 % drop
+26-Jan-2021 (01:13:08.451202)---Getting Yahoo market data for PANW
+26-Jan-2021 (01:13:08.452075)---Downloading the data for: PANW
+26-Jan-2021 (01:13:08.692913)---Figuring average Drop and Change for: PANW
+26-Jan-2021 (01:13:08.698812)---Yahoo market data for PANWreceived shows average 1.457850137145926 % drop
+26-Jan-2021 (01:13:08.699386)---Getting Yahoo market data for NET
+26-Jan-2021 (01:13:08.700503)---Downloading the data for: NET
+26-Jan-2021 (01:13:08.936153)---Figuring average Drop and Change for: NET
+26-Jan-2021 (01:13:08.946357)---Yahoo market data for NETreceived shows average 2.862977362836002 % drop
+26-Jan-2021 (01:13:08.947229)---Getting Yahoo market data for CRWD
+26-Jan-2021 (01:13:08.948560)---Downloading the data for: CRWD
+26-Jan-2021 (01:13:09.167505)---Figuring average Drop and Change for: CRWD
+26-Jan-2021 (01:13:09.172950)---Yahoo market data for CRWDreceived shows average 2.720285178017861 % drop
+26-Jan-2021 (01:13:09.173421)---Getting Yahoo market data for CHKP
+26-Jan-2021 (01:13:09.173973)---Downloading the data for: CHKP
+26-Jan-2021 (01:13:09.729164)---Figuring average Drop and Change for: CHKP
+26-Jan-2021 (01:13:09.731056)---Yahoo market data for CHKPreceived shows average 1.3340900573923145 % drop
+26-Jan-2021 (01:13:09.731592)---Getting Yahoo market data for CVLT
+26-Jan-2021 (01:13:09.732204)---Downloading the data for: CVLT
+26-Jan-2021 (01:13:09.976098)---Figuring average Drop and Change for: CVLT
+26-Jan-2021 (01:13:09.985872)---Yahoo market data for CVLTreceived shows average 1.8766572107929325 % drop
+26-Jan-2021 (01:13:09.986714)---Getting Yahoo market data for RPD
+26-Jan-2021 (01:13:09.988059)---Downloading the data for: RPD
+26-Jan-2021 (01:13:10.214358)---Figuring average Drop and Change for: RPD
+26-Jan-2021 (01:13:10.221101)---Yahoo market data for RPDreceived shows average 2.2115426864008696 % drop
+26-Jan-2021 (01:13:10.221605)---Getting Yahoo market data for TENB
+26-Jan-2021 (01:13:10.222173)---Downloading the data for: TENB
+26-Jan-2021 (01:13:10.478754)---Figuring average Drop and Change for: TENB
+26-Jan-2021 (01:13:10.488996)---Yahoo market data for TENBreceived shows average 2.3348533202315664 % drop
+26-Jan-2021 (01:13:10.489626)---Getting Yahoo market data for ADBE
+26-Jan-2021 (01:13:10.490857)---Downloading the data for: ADBE
+26-Jan-2021 (01:13:10.749378)---Figuring average Drop and Change for: ADBE
+26-Jan-2021 (01:13:10.750301)---Yahoo market data for ADBEreceived shows average 1.6880908031956976 % drop
+26-Jan-2021 (01:13:10.751171)---Getting Yahoo market data for SHOP
+26-Jan-2021 (01:13:10.752500)---Downloading the data for: SHOP
+26-Jan-2021 (01:13:10.976448)---Figuring average Drop and Change for: SHOP
+26-Jan-2021 (01:13:10.977849)---Yahoo market data for SHOPreceived shows average 2.69551268311094 % drop
+26-Jan-2021 (01:13:10.978521)---Getting Yahoo market data for NIO
+26-Jan-2021 (01:13:10.979567)---Downloading the data for: NIO
+26-Jan-2021 (01:13:11.199992)---Figuring average Drop and Change for: NIO
+26-Jan-2021 (01:13:11.206885)---Yahoo market data for NIOreceived shows average 4.0954954716395315 % drop
+26-Jan-2021 (01:13:11.207375)---Getting Yahoo market data for SPCE
+26-Jan-2021 (01:13:11.207732)---Downloading the data for: SPCE
+26-Jan-2021 (01:13:11.434348)---Figuring average Drop and Change for: SPCE
+26-Jan-2021 (01:13:11.441389)---Yahoo market data for SPCEreceived shows average 4.429787632097384 % drop
+26-Jan-2021 (01:13:11.442097)---Getting Yahoo market data for BABA
+26-Jan-2021 (01:13:11.442577)---Downloading the data for: BABA
+26-Jan-2021 (01:13:11.668712)---Figuring average Drop and Change for: BABA
+26-Jan-2021 (01:13:11.675647)---Yahoo market data for BABAreceived shows average 1.492409951087101 % drop
+26-Jan-2021 (01:13:11.676175)---Getting Yahoo market data for BIIB
+26-Jan-2021 (01:13:11.676790)---Downloading the data for: BIIB
+26-Jan-2021 (01:13:11.897829)---Figuring average Drop and Change for: BIIB
+26-Jan-2021 (01:13:11.904738)---Yahoo market data for BIIBreceived shows average 1.5066620218817668 % drop
+26-Jan-2021 (01:13:11.905275)---Getting Yahoo market data for TSLA
+26-Jan-2021 (01:13:11.905657)---Downloading the data for: TSLA
+26-Jan-2021 (01:13:12.126880)---Figuring average Drop and Change for: TSLA
+26-Jan-2021 (01:13:12.135063)---Yahoo market data for TSLAreceived shows average 2.983429086540249 % drop
+26-Jan-2021 (01:13:12.135819)---Getting Yahoo market data for OKTA
+26-Jan-2021 (01:13:12.137037)---Downloading the data for: OKTA
+26-Jan-2021 (01:13:12.370396)---Figuring average Drop and Change for: OKTA
+26-Jan-2021 (01:13:12.371196)---Yahoo market data for OKTAreceived shows average 2.2867919816680384 % drop
+26-Jan-2021 (01:13:12.371797)---Getting Yahoo market data for GEVO
+26-Jan-2021 (01:13:12.372875)---Downloading the data for: GEVO
+26-Jan-2021 (01:13:12.600035)---Figuring average Drop and Change for: GEVO
+26-Jan-2021 (01:13:12.609572)---Yahoo market data for GEVOreceived shows average 5.868123559818734 % drop
+26-Jan-2021 (01:13:12.611423)---Getting ranks for :BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,SPCE,BABA,BIIB,TSLA,OKTA,GEVO
+26-Jan-2021 (01:13:14.237077)---Getting TipRank Rating for : BYND
+26-Jan-2021 (01:13:19.418694)---Rating found on TipRanks : 
+26-Jan-2021 (01:13:19.419204)---Getting TipRank Rating for : SEDG
+26-Jan-2021 (01:13:24.286498)---Rating found on TipRanks : 7
+26-Jan-2021 (01:13:24.287844)---Getting TipRank Rating for : LTHM
+26-Jan-2021 (18:31:55.042541)---Begin connect and prepare
+26-Jan-2021 (18:31:55.043613)---Restarting connection to IBKR
+26-Jan-2021 (18:31:55.043899)---Waiting for connection...attempt:0
+26-Jan-2021 (18:31:55.810748)---Waiting for connection...attempt:1
+26-Jan-2021 (18:31:56.811337)---Waiting for connection...attempt:2
+26-Jan-2021 (18:31:57.813461)---Waiting for connection...attempt:3
+26-Jan-2021 (18:31:58.817021)---Waiting for connection...attempt:4
+26-Jan-2021 (18:31:59.820686)---Waiting for connection...attempt:5
+26-Jan-2021 (18:32:00.821897)---Waiting for connection...attempt:6
+26-Jan-2021 (18:32:01.822996)---Waiting for connection...attempt:7
+26-Jan-2021 (18:32:02.824808)---Waiting for connection...attempt:8
+26-Jan-2021 (18:32:03.827942)---Waiting for connection...attempt:9
+26-Jan-2021 (18:32:04.828208)---Waiting for connection...attempt:10
+26-Jan-2021 (18:32:05.829525)---Restarting connection to IBKR
+26-Jan-2021 (18:32:06.486987)---Waiting for connection...attempt:0
+26-Jan-2021 (18:32:07.487167)---Waiting for connection...attempt:1
+26-Jan-2021 (18:32:08.487928)---Waiting for connection...attempt:2
+26-Jan-2021 (18:32:09.488099)---Waiting for connection...attempt:3
+26-Jan-2021 (18:32:10.490812)---Waiting for connection...attempt:4
+26-Jan-2021 (18:32:11.493466)---Waiting for connection...attempt:5
+26-Jan-2021 (18:32:21.857170)---Begin connect and prepare
+26-Jan-2021 (18:32:21.857553)---Restarting connection to IBKR
+26-Jan-2021 (18:32:21.858590)---Waiting for connection...attempt:0
+26-Jan-2021 (18:32:22.620206)---Successfully connected to API
+26-Jan-2021 (18:32:22.621292)---Requesting Daily PnL
+26-Jan-2021 (18:32:22.621834)---PnL not yet received
+26-Jan-2021 (18:32:22.622358)---Starting to track Excess liquidity
+26-Jan-2021 (18:32:22.622872)---Updating open Positions:
+26-Jan-2021 (18:32:23.628648)---Started tracking BEP position PnL
+26-Jan-2021 (18:32:23.637008)---Started tracking NIO position PnL
+26-Jan-2021 (18:32:23.642025)---Started tracking CRWD position PnL
+26-Jan-2021 (18:32:23.655095)---Started tracking MSFT position PnL
+26-Jan-2021 (18:32:23.656599)---Started tracking ADI position PnL
+26-Jan-2021 (18:32:23.657657)---Started tracking ETSY position PnL
+26-Jan-2021 (18:32:23.658473)---Started tracking SPCX position PnL
+26-Jan-2021 (18:32:24.648405)---Waiting to receive Value for all positions 
+26-Jan-2021 (18:32:25.650027)---Waiting to receive Value for all positions 
+26-Jan-2021 (18:32:25.654311)---Requesting History for BEP position for last 1 hour BID price
+26-Jan-2021 (18:32:25.655672)---Requesting History for NIO position for last 1 hour BID price
+26-Jan-2021 (18:32:25.659575)---Requesting History for CRWD position for last 1 hour BID price
+26-Jan-2021 (18:32:25.662870)---Requesting History for MSFT position for last 1 hour BID price
+26-Jan-2021 (18:32:25.664518)---Requesting History for ADI position for last 1 hour BID price
+26-Jan-2021 (18:32:25.665562)---Requesting History for ETSY position for last 1 hour BID price
+26-Jan-2021 (18:32:25.666437)---Requesting History for SPCX position for last 1 hour BID price
+26-Jan-2021 (18:32:26.658799)---Waiting to receive Hisory for all positions 
+26-Jan-2021 (18:32:26.662869)---7 open positions completely updated
+26-Jan-2021 (18:32:26.664981)---Updating all open orders
+26-Jan-2021 (18:32:27.665266)---0 open orders found 
+26-Jan-2021 (18:32:27.666960)---Starting to track BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,SPCE,BABA,BIIB,TSLA,OKTA,GEVO Candidates
+26-Jan-2021 (18:32:27.669061)---starting to track: 1 of 38 BYND traking with Id:31353
+26-Jan-2021 (18:32:27.682238)---starting to track: 2 of 38 SEDG traking with Id:31354
+26-Jan-2021 (18:32:27.683562)---starting to track: 3 of 38 LTHM traking with Id:31355
+26-Jan-2021 (18:32:27.685228)---starting to track: 4 of 38 SQ traking with Id:31356
+26-Jan-2021 (18:32:27.686767)---starting to track: 5 of 38 TTWO traking with Id:31357
+26-Jan-2021 (18:32:27.688656)---starting to track: 6 of 38 OTRK traking with Id:31358
+26-Jan-2021 (18:32:27.689962)---starting to track: 7 of 38 HUM traking with Id:31359
+26-Jan-2021 (18:32:27.694459)---starting to track: 8 of 38 AAPL traking with Id:31360
+26-Jan-2021 (18:32:27.698685)---starting to track: 9 of 38 ZG traking with Id:31361
+26-Jan-2021 (18:32:27.701269)---starting to track: 10 of 38 MSFT traking with Id:31362
+26-Jan-2021 (18:32:27.703305)---starting to track: 11 of 38 NVDA traking with Id:31363
+26-Jan-2021 (18:32:27.704702)---starting to track: 12 of 38 BEP traking with Id:31364
+26-Jan-2021 (18:32:27.708845)---starting to track: 13 of 38 GOOGL traking with Id:31365
+26-Jan-2021 (18:32:27.709724)---starting to track: 14 of 38 ETSY traking with Id:31366
+26-Jan-2021 (18:32:27.710467)---starting to track: 15 of 38 IVAC traking with Id:31367
+26-Jan-2021 (18:32:27.712940)---starting to track: 16 of 38 PTON traking with Id:31368
+26-Jan-2021 (18:32:27.716629)---starting to track: 17 of 38 ADI traking with Id:31369
+26-Jan-2021 (18:32:27.719209)---starting to track: 18 of 38 CRM traking with Id:31370
+26-Jan-2021 (18:32:27.721065)---starting to track: 19 of 38 CHWY traking with Id:31371
+26-Jan-2021 (18:32:27.722350)---starting to track: 20 of 38 AZN traking with Id:31372
+26-Jan-2021 (18:32:27.723814)---starting to track: 21 of 38 NICE traking with Id:31373
+26-Jan-2021 (18:32:27.726673)---starting to track: 22 of 38 CSCO traking with Id:31374
+26-Jan-2021 (18:32:27.733064)---starting to track: 23 of 38 PANW traking with Id:31375
+26-Jan-2021 (18:32:27.736202)---starting to track: 24 of 38 NET traking with Id:31376
+26-Jan-2021 (18:32:27.738448)---starting to track: 25 of 38 CRWD traking with Id:31377
+26-Jan-2021 (18:32:27.739945)---starting to track: 26 of 38 CHKP traking with Id:31378
+26-Jan-2021 (18:32:27.741099)---starting to track: 27 of 38 CVLT traking with Id:31379
+26-Jan-2021 (18:32:27.741888)---starting to track: 28 of 38 RPD traking with Id:31380
+26-Jan-2021 (18:32:27.742872)---starting to track: 29 of 38 TENB traking with Id:31381
+26-Jan-2021 (18:32:27.745791)---starting to track: 30 of 38 ADBE traking with Id:31382
+26-Jan-2021 (18:32:27.748716)---starting to track: 31 of 38 SHOP traking with Id:31383
+26-Jan-2021 (18:32:27.750678)---starting to track: 32 of 38 NIO traking with Id:31384
+26-Jan-2021 (18:32:27.752280)---starting to track: 33 of 38 SPCE traking with Id:31385
+26-Jan-2021 (18:32:27.753863)---starting to track: 34 of 38 BABA traking with Id:31386
+26-Jan-2021 (18:32:27.755411)---starting to track: 35 of 38 BIIB traking with Id:31387
+26-Jan-2021 (18:32:27.756323)---starting to track: 36 of 38 TSLA traking with Id:31388
+26-Jan-2021 (18:32:27.757046)---starting to track: 37 of 38 OKTA traking with Id:31389
+26-Jan-2021 (18:32:27.759674)---starting to track: 38 of 38 GEVO traking with Id:31390
+26-Jan-2021 (18:32:28.713184)---Waiting for last requested candidate Close price 
+26-Jan-2021 (18:32:28.730315)---Getting Yahoo market data for BYND
+26-Jan-2021 (18:32:28.731494)---Downloading the data for: BYND
+26-Jan-2021 (18:32:29.057258)---Figuring average Drop and Change for: BYND
+26-Jan-2021 (18:32:29.114080)---Yahoo market data for BYNDreceived shows average 2.9881774631433946 % drop
+26-Jan-2021 (18:32:29.148868)---Getting Yahoo market data for SEDG
+26-Jan-2021 (18:32:29.151147)---Downloading the data for: SEDG
+26-Jan-2021 (18:32:29.413068)---Figuring average Drop and Change for: SEDG
+26-Jan-2021 (18:32:29.429982)---Yahoo market data for SEDGreceived shows average 3.1823461156727473 % drop
+26-Jan-2021 (18:32:29.430669)---Getting Yahoo market data for LTHM
+26-Jan-2021 (18:32:29.431581)---Downloading the data for: LTHM
+26-Jan-2021 (18:32:29.680926)---Figuring average Drop and Change for: LTHM
+26-Jan-2021 (18:32:29.682312)---Yahoo market data for LTHMreceived shows average 3.527187497602006 % drop
+26-Jan-2021 (18:32:29.683942)---Getting Yahoo market data for SQ
+26-Jan-2021 (18:32:29.684322)---Downloading the data for: SQ
+26-Jan-2021 (18:32:29.933899)---Figuring average Drop and Change for: SQ
+26-Jan-2021 (18:32:29.949152)---Yahoo market data for SQreceived shows average 2.7466831245006365 % drop
+26-Jan-2021 (18:32:29.950061)---Getting Yahoo market data for TTWO
+26-Jan-2021 (18:32:29.951601)---Downloading the data for: TTWO
+26-Jan-2021 (18:32:30.186019)---Figuring average Drop and Change for: TTWO
+26-Jan-2021 (18:32:30.201253)---Yahoo market data for TTWOreceived shows average 1.6361194150404497 % drop
+26-Jan-2021 (18:32:30.202149)---Getting Yahoo market data for OTRK
+26-Jan-2021 (18:32:30.203793)---Downloading the data for: OTRK
+26-Jan-2021 (18:32:30.457909)---Figuring average Drop and Change for: OTRK
+26-Jan-2021 (18:32:30.459363)---Yahoo market data for OTRKreceived shows average 4.235023169107963 % drop
+26-Jan-2021 (18:32:30.461001)---Getting Yahoo market data for HUM
+26-Jan-2021 (18:32:30.461485)---Downloading the data for: HUM
+26-Jan-2021 (18:32:30.741826)---Figuring average Drop and Change for: HUM
+26-Jan-2021 (18:32:30.761182)---Yahoo market data for HUMreceived shows average 1.7555664067803478 % drop
+26-Jan-2021 (18:32:30.763931)---Getting Yahoo market data for AAPL
+26-Jan-2021 (18:32:30.764564)---Downloading the data for: AAPL
+26-Jan-2021 (18:32:31.151859)---Figuring average Drop and Change for: AAPL
+26-Jan-2021 (18:32:31.168570)---Yahoo market data for AAPLreceived shows average 1.4471153181018155 % drop
+26-Jan-2021 (18:32:31.170674)---Getting Yahoo market data for ZG
+26-Jan-2021 (18:32:31.171254)---Downloading the data for: ZG
+26-Jan-2021 (18:32:31.423490)---Figuring average Drop and Change for: ZG
+26-Jan-2021 (18:32:31.443393)---Yahoo market data for ZGreceived shows average 2.6734591100935305 % drop
+26-Jan-2021 (18:32:31.444594)---Getting Yahoo market data for MSFT
+26-Jan-2021 (18:32:31.446458)---Downloading the data for: MSFT
+26-Jan-2021 (18:32:31.731771)---Figuring average Drop and Change for: MSFT
+26-Jan-2021 (18:32:31.747811)---Yahoo market data for MSFTreceived shows average 1.358885395307327 % drop
+26-Jan-2021 (18:32:31.748632)---Getting Yahoo market data for NVDA
+26-Jan-2021 (18:32:31.749772)---Downloading the data for: NVDA
+26-Jan-2021 (18:32:32.044036)---Figuring average Drop and Change for: NVDA
+26-Jan-2021 (18:32:32.071856)---Yahoo market data for NVDAreceived shows average 1.9994327151670068 % drop
+26-Jan-2021 (18:32:32.083675)---Getting Yahoo market data for BEP
+26-Jan-2021 (18:32:32.091818)---Downloading the data for: BEP
+26-Jan-2021 (18:32:32.399358)---Figuring average Drop and Change for: BEP
+26-Jan-2021 (18:32:32.418108)---Yahoo market data for BEPreceived shows average 1.8024367644821437 % drop
+26-Jan-2021 (18:32:32.418814)---Getting Yahoo market data for GOOGL
+26-Jan-2021 (18:32:32.419684)---Downloading the data for: GOOGL
+26-Jan-2021 (18:32:32.653541)---Figuring average Drop and Change for: GOOGL
+26-Jan-2021 (18:32:32.669631)---Yahoo market data for GOOGLreceived shows average 1.2887252521252093 % drop
+26-Jan-2021 (18:32:32.671252)---Getting Yahoo market data for ETSY
+26-Jan-2021 (18:32:32.671680)---Downloading the data for: ETSY
+26-Jan-2021 (18:32:32.956847)---Figuring average Drop and Change for: ETSY
+26-Jan-2021 (18:32:32.976436)---Yahoo market data for ETSYreceived shows average 2.7329139508116587 % drop
+26-Jan-2021 (18:32:32.977632)---Getting Yahoo market data for IVAC
+26-Jan-2021 (18:32:32.979398)---Downloading the data for: IVAC
+26-Jan-2021 (18:32:33.241267)---Figuring average Drop and Change for: IVAC
+26-Jan-2021 (18:32:33.262645)---Yahoo market data for IVACreceived shows average 2.8240650581377733 % drop
+26-Jan-2021 (18:32:33.263446)---Getting Yahoo market data for PTON
+26-Jan-2021 (18:32:33.264527)---Downloading the data for: PTON
+26-Jan-2021 (18:32:33.532965)---Figuring average Drop and Change for: PTON
+26-Jan-2021 (18:32:33.580982)---Yahoo market data for PTONreceived shows average 3.105866857101659 % drop
+26-Jan-2021 (18:32:33.586510)---Getting Yahoo market data for ADI
+26-Jan-2021 (18:32:33.588541)---Downloading the data for: ADI
+26-Jan-2021 (18:32:33.949387)---Figuring average Drop and Change for: ADI
+26-Jan-2021 (18:32:34.001753)---Yahoo market data for ADIreceived shows average 1.515177879978734 % drop
+26-Jan-2021 (18:32:34.005401)---Getting Yahoo market data for CRM
+26-Jan-2021 (18:32:34.006064)---Downloading the data for: CRM
+26-Jan-2021 (18:32:34.264919)---Figuring average Drop and Change for: CRM
+26-Jan-2021 (18:32:34.265931)---Yahoo market data for CRMreceived shows average 1.7761743950503508 % drop
+26-Jan-2021 (18:32:34.268309)---Getting Yahoo market data for CHWY
+26-Jan-2021 (18:32:34.268735)---Downloading the data for: CHWY
+26-Jan-2021 (18:32:34.520517)---Figuring average Drop and Change for: CHWY
+26-Jan-2021 (18:32:34.540839)---Yahoo market data for CHWYreceived shows average 2.8547100742897773 % drop
+26-Jan-2021 (18:32:34.544838)---Getting Yahoo market data for AZN
+26-Jan-2021 (18:32:34.545383)---Downloading the data for: AZN
+26-Jan-2021 (18:32:34.874902)---Figuring average Drop and Change for: AZN
+26-Jan-2021 (18:32:34.895117)---Yahoo market data for AZNreceived shows average 1.1331740038574203 % drop
+26-Jan-2021 (18:32:34.896293)---Getting Yahoo market data for NICE
+26-Jan-2021 (18:32:34.898077)---Downloading the data for: NICE
+26-Jan-2021 (18:32:35.246556)---Figuring average Drop and Change for: NICE
+26-Jan-2021 (18:32:35.247453)---Yahoo market data for NICEreceived shows average 1.1748734482677647 % drop
+26-Jan-2021 (18:32:35.248425)---Getting Yahoo market data for CSCO
+26-Jan-2021 (18:32:35.250089)---Downloading the data for: CSCO
+26-Jan-2021 (18:32:35.481636)---Figuring average Drop and Change for: CSCO
+26-Jan-2021 (18:32:35.496129)---Yahoo market data for CSCOreceived shows average 1.2600918745329552 % drop
+26-Jan-2021 (18:32:35.496578)---Getting Yahoo market data for PANW
+26-Jan-2021 (18:32:35.497373)---Downloading the data for: PANW
+26-Jan-2021 (18:32:35.740816)---Figuring average Drop and Change for: PANW
+26-Jan-2021 (18:32:35.755796)---Yahoo market data for PANWreceived shows average 1.4615051689320422 % drop
+26-Jan-2021 (18:32:35.756406)---Getting Yahoo market data for NET
+26-Jan-2021 (18:32:35.758552)---Downloading the data for: NET
+26-Jan-2021 (18:32:36.078452)---Figuring average Drop and Change for: NET
+26-Jan-2021 (18:32:36.124210)---Yahoo market data for NETreceived shows average 2.8669216617410536 % drop
+26-Jan-2021 (18:32:36.124858)---Getting Yahoo market data for CRWD
+26-Jan-2021 (18:32:36.126867)---Downloading the data for: CRWD
+26-Jan-2021 (18:32:36.457660)---Figuring average Drop and Change for: CRWD
+26-Jan-2021 (18:32:36.475548)---Yahoo market data for CRWDreceived shows average 2.722275123966652 % drop
+26-Jan-2021 (18:32:36.476370)---Getting Yahoo market data for CHKP
+26-Jan-2021 (18:32:36.476913)---Downloading the data for: CHKP
+26-Jan-2021 (18:32:36.758786)---Figuring average Drop and Change for: CHKP
+26-Jan-2021 (18:32:36.760168)---Yahoo market data for CHKPreceived shows average 1.3355190203771425 % drop
+26-Jan-2021 (18:32:36.762274)---Getting Yahoo market data for CVLT
+26-Jan-2021 (18:32:36.763009)---Downloading the data for: CVLT
+26-Jan-2021 (18:32:36.996885)---Figuring average Drop and Change for: CVLT
+26-Jan-2021 (18:32:37.012129)---Yahoo market data for CVLTreceived shows average 1.8723628488214636 % drop
+26-Jan-2021 (18:32:37.012613)---Getting Yahoo market data for RPD
+26-Jan-2021 (18:32:37.013399)---Downloading the data for: RPD
+26-Jan-2021 (18:32:37.266174)---Figuring average Drop and Change for: RPD
+26-Jan-2021 (18:32:37.286893)---Yahoo market data for RPDreceived shows average 2.2097571587405476 % drop
+26-Jan-2021 (18:32:37.288298)---Getting Yahoo market data for TENB
+26-Jan-2021 (18:32:37.290710)---Downloading the data for: TENB
+26-Jan-2021 (18:32:37.539152)---Figuring average Drop and Change for: TENB
+26-Jan-2021 (18:32:37.558931)---Yahoo market data for TENBreceived shows average 2.349857691491799 % drop
+26-Jan-2021 (18:32:37.565732)---Getting Yahoo market data for ADBE
+26-Jan-2021 (18:32:37.577489)---Downloading the data for: ADBE
+26-Jan-2021 (18:32:37.921248)---Figuring average Drop and Change for: ADBE
+26-Jan-2021 (18:32:37.964004)---Yahoo market data for ADBEreceived shows average 1.686416232037792 % drop
+26-Jan-2021 (18:32:37.965884)---Getting Yahoo market data for SHOP
+26-Jan-2021 (18:32:37.966380)---Downloading the data for: SHOP
+26-Jan-2021 (18:32:38.222262)---Figuring average Drop and Change for: SHOP
+26-Jan-2021 (18:32:38.240445)---Yahoo market data for SHOPreceived shows average 2.6898181392492146 % drop
+26-Jan-2021 (18:32:38.241343)---Getting Yahoo market data for NIO
+26-Jan-2021 (18:32:38.242333)---Downloading the data for: NIO
+26-Jan-2021 (18:32:38.484138)---Figuring average Drop and Change for: NIO
+26-Jan-2021 (18:32:38.498735)---Yahoo market data for NIOreceived shows average 4.0860022195270265 % drop
+26-Jan-2021 (18:32:38.499318)---Getting Yahoo market data for SPCE
+26-Jan-2021 (18:32:38.499684)---Downloading the data for: SPCE
+26-Jan-2021 (18:32:38.787565)---Figuring average Drop and Change for: SPCE
+26-Jan-2021 (18:32:38.807802)---Yahoo market data for SPCEreceived shows average 4.420011144266918 % drop
+26-Jan-2021 (18:32:38.808537)---Getting Yahoo market data for BABA
+26-Jan-2021 (18:32:38.810337)---Downloading the data for: BABA
+26-Jan-2021 (18:32:39.042087)---Figuring average Drop and Change for: BABA
+26-Jan-2021 (18:32:39.061687)---Yahoo market data for BABAreceived shows average 1.4905265853633178 % drop
+26-Jan-2021 (18:32:39.063000)---Getting Yahoo market data for BIIB
+26-Jan-2021 (18:32:39.067512)---Downloading the data for: BIIB
+26-Jan-2021 (18:32:39.310841)---Figuring average Drop and Change for: BIIB
+26-Jan-2021 (18:32:39.353562)---Yahoo market data for BIIBreceived shows average 1.50337442227236 % drop
+26-Jan-2021 (18:32:39.356038)---Getting Yahoo market data for TSLA
+26-Jan-2021 (18:32:39.356558)---Downloading the data for: TSLA
+26-Jan-2021 (18:32:39.725772)---Figuring average Drop and Change for: TSLA
+26-Jan-2021 (18:32:39.740982)---Yahoo market data for TSLAreceived shows average 2.9804078202571698 % drop
+26-Jan-2021 (18:32:39.741637)---Getting Yahoo market data for OKTA
+26-Jan-2021 (18:32:39.742130)---Downloading the data for: OKTA
+26-Jan-2021 (18:32:40.000931)---Figuring average Drop and Change for: OKTA
+26-Jan-2021 (18:32:40.002173)---Yahoo market data for OKTAreceived shows average 2.284025911812627 % drop
+26-Jan-2021 (18:32:40.003763)---Getting Yahoo market data for GEVO
+26-Jan-2021 (18:32:40.004153)---Downloading the data for: GEVO
+26-Jan-2021 (18:32:40.246226)---Figuring average Drop and Change for: GEVO
+26-Jan-2021 (18:32:40.247286)---Yahoo market data for GEVOreceived shows average 5.869105201050815 % drop
+26-Jan-2021 (18:32:40.249697)---Getting ranks for :BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,SPCE,BABA,BIIB,TSLA,OKTA,GEVO
+26-Jan-2021 (18:32:42.173841)---Getting TipRank Rating for : BYND
+26-Jan-2021 (18:32:48.396899)---Rating found on TipRanks : 3
+26-Jan-2021 (18:32:48.398529)---Getting TipRank Rating for : SEDG
+26-Jan-2021 (18:32:53.281586)---Rating found on TipRanks : 
+26-Jan-2021 (18:32:53.282475)---Getting TipRank Rating for : LTHM
+26-Jan-2021 (18:33:07.133207)---Rating found on TipRanks : 7
+26-Jan-2021 (18:33:07.134638)---Getting TipRank Rating for : SQ
+26-Jan-2021 (18:33:14.776332)---Rating found on TipRanks : 10
+26-Jan-2021 (18:33:14.778137)---Getting TipRank Rating for : TTWO
+26-Jan-2021 (18:33:21.388793)---Rating found on TipRanks : 3
+26-Jan-2021 (18:33:21.389352)---Getting TipRank Rating for : OTRK
+26-Jan-2021 (18:33:23.135013)---Rating found on TipRanks : 
+26-Jan-2021 (18:33:23.135505)---Getting TipRank Rating for : HUM
+26-Jan-2021 (18:33:34.024467)---Rating found on TipRanks : 2
+26-Jan-2021 (18:33:34.026057)---Getting TipRank Rating for : AAPL
+26-Jan-2021 (18:33:36.482694)---Rating found on TipRanks : 
+26-Jan-2021 (18:33:36.483285)---Getting TipRank Rating for : ZG
+26-Jan-2021 (18:33:38.887267)---Rating found on TipRanks : 5
+26-Jan-2021 (18:33:38.888832)---Getting TipRank Rating for : MSFT
+26-Jan-2021 (18:33:42.358279)---Rating found on TipRanks : 10
+26-Jan-2021 (18:33:42.359396)---Getting TipRank Rating for : NVDA
+26-Jan-2021 (18:33:47.435774)---Rating found on TipRanks : 6
+26-Jan-2021 (18:33:47.436612)---Getting TipRank Rating for : BEP
+26-Jan-2021 (18:33:49.750080)---Rating found on TipRanks : 8
+26-Jan-2021 (18:33:49.750859)---Getting TipRank Rating for : GOOGL
+26-Jan-2021 (18:33:54.171538)---Rating found on TipRanks : 7
+26-Jan-2021 (18:33:54.172737)---Getting TipRank Rating for : ETSY
+26-Jan-2021 (18:33:56.230386)---Rating found on TipRanks : 9
+26-Jan-2021 (18:33:56.231156)---Getting TipRank Rating for : IVAC
+26-Jan-2021 (18:33:58.481001)---Rating found on TipRanks : 5
+26-Jan-2021 (18:33:58.482089)---Getting TipRank Rating for : PTON
+26-Jan-2021 (18:34:01.309329)---Rating found on TipRanks : 5
+26-Jan-2021 (18:34:01.309760)---Getting TipRank Rating for : ADI
+26-Jan-2021 (18:34:03.367365)---Rating found on TipRanks : 10
+26-Jan-2021 (18:34:03.370312)---Getting TipRank Rating for : CRM
+26-Jan-2021 (18:34:05.731278)---Rating found on TipRanks : 
+26-Jan-2021 (18:34:05.732997)---Getting TipRank Rating for : CHWY
+26-Jan-2021 (18:34:07.676127)---Rating found on TipRanks : 3
+26-Jan-2021 (18:34:07.676625)---Getting TipRank Rating for : AZN
+26-Jan-2021 (18:34:26.502150)---Rating found on TipRanks : 4
+26-Jan-2021 (18:34:26.503923)---Getting TipRank Rating for : NICE
+26-Jan-2021 (18:34:28.664286)---Rating found on TipRanks : 6
+26-Jan-2021 (18:34:28.664700)---Getting TipRank Rating for : CSCO
+26-Jan-2021 (18:34:44.877408)---Could not find  TipRank Rating for : CSCO
+26-Jan-2021 (18:34:44.879418)---Getting TipRank Rating for : PANW
+26-Jan-2021 (18:34:46.995677)---Rating found on TipRanks : 
+26-Jan-2021 (18:34:46.996322)---Getting TipRank Rating for : NET
+26-Jan-2021 (18:34:49.399162)---Rating found on TipRanks : 
+26-Jan-2021 (18:34:49.401436)---Getting TipRank Rating for : CRWD
+26-Jan-2021 (18:34:59.063125)---Rating found on TipRanks : 
+26-Jan-2021 (18:34:59.064109)---Getting TipRank Rating for : CHKP
+26-Jan-2021 (18:35:01.450393)---Rating found on TipRanks : 
+26-Jan-2021 (18:35:01.451597)---Getting TipRank Rating for : CVLT
+26-Jan-2021 (18:35:03.370915)---Rating found on TipRanks : 8
+26-Jan-2021 (18:35:03.371754)---Getting TipRank Rating for : RPD
+26-Jan-2021 (18:35:06.003448)---Rating found on TipRanks : 7
+26-Jan-2021 (18:35:06.003879)---Getting TipRank Rating for : TENB
+26-Jan-2021 (18:35:07.600707)---Rating found on TipRanks : 
+26-Jan-2021 (18:35:07.601182)---Getting TipRank Rating for : ADBE
+26-Jan-2021 (18:35:10.324250)---Rating found on TipRanks : 
+26-Jan-2021 (18:35:10.324681)---Getting TipRank Rating for : SHOP
+26-Jan-2021 (18:35:24.230063)---Rating found on TipRanks : 6
+26-Jan-2021 (18:35:24.230787)---Getting TipRank Rating for : NIO
+26-Jan-2021 (18:35:37.864380)---Rating found on TipRanks : 10
+26-Jan-2021 (18:35:37.864905)---Getting TipRank Rating for : SPCE
+26-Jan-2021 (18:35:42.997607)---Rating found on TipRanks : 7
+26-Jan-2021 (18:35:42.998222)---Getting TipRank Rating for : BABA
+26-Jan-2021 (18:35:45.273818)---Rating found on TipRanks : 
+26-Jan-2021 (18:35:45.275004)---Getting TipRank Rating for : BIIB
+26-Jan-2021 (18:35:48.552444)---Rating found on TipRanks : 5
+26-Jan-2021 (18:35:48.553363)---Getting TipRank Rating for : TSLA
+26-Jan-2021 (18:35:50.946904)---Rating found on TipRanks : 
+26-Jan-2021 (18:35:50.947935)---Getting TipRank Rating for : OKTA
+26-Jan-2021 (18:35:53.791423)---Rating found on TipRanks : 
+26-Jan-2021 (18:35:53.792397)---Getting TipRank Rating for : GEVO
+26-Jan-2021 (18:35:56.823575)---Rating found on TipRanks : 9
+26-Jan-2021 (18:35:57.009614)---Error in connection and preparation : 'CSCO'
