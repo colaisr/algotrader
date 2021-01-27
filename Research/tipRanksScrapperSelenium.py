@@ -39,7 +39,7 @@ def get_tiprank_ratings_to_Stocks(stocks, path, existing_data, notification_call
             date_tm_dt = datetime.datetime.strptime(date, '%Y-%m-%d')
             date_dt = date_tm_dt.date()
             today_dt = datetime.date.today()
-            if n['Stock'] == s.ticker and date_dt == today_dt:
+            if n['Stock'] == s.ticker and date_dt == today_dt and n['tipranksRank'] != "":
                 stocksRanks[s.ticker] = n['tipranksRank']
                 notification_callback.emit("Existing  rating from today found: " + stocksRanks[s.ticker])
                 found = True

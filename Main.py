@@ -421,6 +421,8 @@ Updates Candidates table
                 else:
                     self.tCandidates.setItem(line, 5, QTableWidgetItem(str(v['target_price'])))
                 self.tCandidates.setItem(line, 6, QTableWidgetItem(str(round(v['averagePriceDropP'], 2))))
+                if v['tipranksRank'] =='':
+                    v['tipranksRank'] =0
                 self.tCandidates.setItem(line, 7, QTableWidgetItem(str(v['tipranksRank'])))
                 if int(v['tipranksRank']) > 7:
                     self.tCandidates.item(line, 7).setBackground(QtGui.QColor(0, 255, 0))

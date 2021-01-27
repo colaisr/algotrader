@@ -1,24 +1,3 @@
-ERROR -1 2104 Market data farm connection is OK:cashfarm
 ERROR -1 2104 Market data farm connection is OK:usfarm
 ERROR -1 2106 HMDS data farm connection is OK:ushmds
 ERROR -1 2158 Sec-def data farm connection is OK:secdefil
-ERROR -1 2108 Market data farm connection is inactive but should be available upon demand.cashfarm
-ERROR -1 2108 Market data farm connection is inactive but should be available upon demand.cashfarm
-Traceback (most recent call last):
-  File "/Users/colakamornik/PycharmProjects/algotrader/Main.py", line 302, in connection_done
-    self.update_ui()
-  File "/Users/colakamornik/PycharmProjects/algotrader/Main.py", line 335, in update_ui
-    self.update_open_positions()
-  File "/Users/colakamornik/PycharmProjects/algotrader/Main.py", line 452, in update_open_positions
-    reason_of_candidate="Bought manually"
-  File "/Users/colakamornik/PycharmProjects/algotrader/Main.py", line 452, in update_open_positions
-    reason_of_candidate="Bought manually"
-  File "_pydevd_bundle/pydevd_cython_darwin_39_64.pyx", line 1589, in _pydevd_bundle.pydevd_cython_darwin_39_64.ThreadTracer.__call__
-  File "_pydevd_bundle/pydevd_cython_darwin_39_64.pyx", line 929, in _pydevd_bundle.pydevd_cython_darwin_39_64.PyDBFrame.trace_dispatch
-  File "_pydevd_bundle/pydevd_cython_darwin_39_64.pyx", line 920, in _pydevd_bundle.pydevd_cython_darwin_39_64.PyDBFrame.trace_dispatch
-  File "_pydevd_bundle/pydevd_cython_darwin_39_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_darwin_39_64.PyDBFrame.do_wait_suspend
-  File "/Applications/PyCharm CE.app/Contents/plugins/python-ce/helpers/pydev/pydevd.py", line 1141, in do_wait_suspend
-    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
-  File "/Applications/PyCharm CE.app/Contents/plugins/python-ce/helpers/pydev/pydevd.py", line 1156, in _do_wait_suspend
-    time.sleep(0.01)
-KeyboardInterrupt
