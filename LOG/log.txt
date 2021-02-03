@@ -10837,3 +10837,469 @@
 03-Feb-2021 (17:09:54.473120)---Restarting connection to IBKR
 03-Feb-2021 (17:09:54.473344)---Waiting for connection...attempt:0
 03-Feb-2021 (17:09:55.450162)---Waiting for connection...attempt:1
+03-Feb-2021 (20:50:14.418710)---UI paused- for restart
+03-Feb-2021 (20:50:14.419275)---Configuration changed - restarting everything
+03-Feb-2021 (20:50:14.456764)---Begin connect and prepare
+03-Feb-2021 (20:50:14.457093)---Restarting connection to IBKR
+03-Feb-2021 (20:50:14.480242)---Waiting for connection...attempt:0
+03-Feb-2021 (20:50:15.487117)---Successfully connected to API
+03-Feb-2021 (20:50:15.488312)---Requesting Daily PnL
+03-Feb-2021 (20:50:15.489007)---PnL not yet received
+03-Feb-2021 (20:50:15.490051)---Starting to track Excess liquidity
+03-Feb-2021 (20:50:15.490717)---Updating open Positions:
+03-Feb-2021 (20:50:16.495177)---Started tracking CVLT position PnL
+03-Feb-2021 (20:50:16.496700)---Started tracking SMTC position PnL
+03-Feb-2021 (20:50:16.498386)---Started tracking BEP position PnL
+03-Feb-2021 (20:50:16.499272)---Started tracking NIO position PnL
+03-Feb-2021 (20:50:16.499842)---Started tracking MSFT position PnL
+03-Feb-2021 (20:50:16.503603)---Started tracking BABA position PnL
+03-Feb-2021 (20:50:16.504014)---Started tracking RPD position PnL
+03-Feb-2021 (20:50:16.504261)---Started tracking AAPL position PnL
+03-Feb-2021 (20:50:16.504494)---Started tracking ADI position PnL
+03-Feb-2021 (20:50:16.504753)---Started tracking ETSY position PnL
+03-Feb-2021 (20:50:16.504979)---Started tracking SPCX position PnL
+03-Feb-2021 (20:50:17.506309)---Waiting to receive Value for all positions 
+03-Feb-2021 (20:50:18.508965)---Waiting to receive Value for all positions 
+03-Feb-2021 (20:50:19.515845)---Waiting to receive Value for all positions 
+03-Feb-2021 (20:50:19.518352)---Requesting History for CVLT position for last 1 hour BID price
+03-Feb-2021 (20:50:19.519840)---Requesting History for SMTC position for last 1 hour BID price
+03-Feb-2021 (20:50:19.521002)---Requesting History for BEP position for last 1 hour BID price
+03-Feb-2021 (20:50:19.527342)---Requesting History for NIO position for last 1 hour BID price
+03-Feb-2021 (20:50:19.528081)---Requesting History for MSFT position for last 1 hour BID price
+03-Feb-2021 (20:50:19.528614)---Requesting History for BABA position for last 1 hour BID price
+03-Feb-2021 (20:50:19.529119)---Requesting History for RPD position for last 1 hour BID price
+03-Feb-2021 (20:50:19.529653)---Requesting History for AAPL position for last 1 hour BID price
+03-Feb-2021 (20:50:19.530140)---Requesting History for ADI position for last 1 hour BID price
+03-Feb-2021 (20:50:19.530617)---Requesting History for ETSY position for last 1 hour BID price
+03-Feb-2021 (20:50:19.531099)---Requesting History for SPCX position for last 1 hour BID price
+03-Feb-2021 (20:50:20.526786)---Waiting to receive Hisory for all positions 
+03-Feb-2021 (20:50:20.527235)---11 open positions completely updated
+03-Feb-2021 (20:50:20.527487)---Updating all open orders
+03-Feb-2021 (20:50:21.533821)---0 open orders found 
+03-Feb-2021 (20:50:21.536489)---Starting to track BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,SPCE,BABA,BIIB,TSLA,OKTA,GEVO,SMTC,JD Candidates
+03-Feb-2021 (20:50:21.538203)---starting to track: 1 of 40 BYND traking with Id:51429
+03-Feb-2021 (20:50:21.539355)---starting to track: 2 of 40 SEDG traking with Id:51430
+03-Feb-2021 (20:50:21.540920)---starting to track: 3 of 40 LTHM traking with Id:51431
+03-Feb-2021 (20:50:21.544105)---starting to track: 4 of 40 SQ traking with Id:51432
+03-Feb-2021 (20:50:21.544415)---starting to track: 5 of 40 TTWO traking with Id:51433
+03-Feb-2021 (20:50:21.544636)---starting to track: 6 of 40 OTRK traking with Id:51434
+03-Feb-2021 (20:50:21.544868)---starting to track: 7 of 40 HUM traking with Id:51435
+03-Feb-2021 (20:50:21.545087)---starting to track: 8 of 40 AAPL traking with Id:51436
+03-Feb-2021 (20:50:21.545303)---starting to track: 9 of 40 ZG traking with Id:51437
+03-Feb-2021 (20:50:21.545532)---starting to track: 10 of 40 MSFT traking with Id:51438
+03-Feb-2021 (20:50:21.545748)---starting to track: 11 of 40 NVDA traking with Id:51439
+03-Feb-2021 (20:50:21.545956)---starting to track: 12 of 40 BEP traking with Id:51440
+03-Feb-2021 (20:50:21.546166)---starting to track: 13 of 40 GOOGL traking with Id:51441
+03-Feb-2021 (20:50:21.546366)---starting to track: 14 of 40 ETSY traking with Id:51442
+03-Feb-2021 (20:50:21.546577)---starting to track: 15 of 40 IVAC traking with Id:51443
+03-Feb-2021 (20:50:21.546779)---starting to track: 16 of 40 PTON traking with Id:51444
+03-Feb-2021 (20:50:21.546980)---starting to track: 17 of 40 ADI traking with Id:51445
+03-Feb-2021 (20:50:21.547178)---starting to track: 18 of 40 CRM traking with Id:51446
+03-Feb-2021 (20:50:21.547378)---starting to track: 19 of 40 CHWY traking with Id:51447
+03-Feb-2021 (20:50:21.547590)---starting to track: 20 of 40 AZN traking with Id:51448
+03-Feb-2021 (20:50:21.547796)---starting to track: 21 of 40 NICE traking with Id:51449
+03-Feb-2021 (20:50:21.547999)---starting to track: 22 of 40 CSCO traking with Id:51450
+03-Feb-2021 (20:50:21.548201)---starting to track: 23 of 40 PANW traking with Id:51451
+03-Feb-2021 (20:50:21.548406)---starting to track: 24 of 40 NET traking with Id:51452
+03-Feb-2021 (20:50:21.548611)---starting to track: 25 of 40 CRWD traking with Id:51453
+03-Feb-2021 (20:50:21.548817)---starting to track: 26 of 40 CHKP traking with Id:51454
+03-Feb-2021 (20:50:21.549028)---starting to track: 27 of 40 CVLT traking with Id:51455
+03-Feb-2021 (20:50:21.549235)---starting to track: 28 of 40 RPD traking with Id:51456
+03-Feb-2021 (20:50:21.549451)---starting to track: 29 of 40 TENB traking with Id:51457
+03-Feb-2021 (20:50:21.549663)---starting to track: 30 of 40 ADBE traking with Id:51458
+03-Feb-2021 (20:50:21.549874)---starting to track: 31 of 40 SHOP traking with Id:51459
+03-Feb-2021 (20:50:21.550091)---starting to track: 32 of 40 NIO traking with Id:51460
+03-Feb-2021 (20:50:21.550300)---starting to track: 33 of 40 SPCE traking with Id:51461
+03-Feb-2021 (20:50:21.550511)---starting to track: 34 of 40 BABA traking with Id:51462
+03-Feb-2021 (20:50:21.550712)---starting to track: 35 of 40 BIIB traking with Id:51463
+03-Feb-2021 (20:50:21.550921)---starting to track: 36 of 40 TSLA traking with Id:51464
+03-Feb-2021 (20:50:21.551133)---starting to track: 37 of 40 OKTA traking with Id:51465
+03-Feb-2021 (20:50:21.551344)---starting to track: 38 of 40 GEVO traking with Id:51466
+03-Feb-2021 (20:50:21.551548)---starting to track: 39 of 40 SMTC traking with Id:51467
+03-Feb-2021 (20:50:21.551753)---starting to track: 40 of 40 JD traking with Id:51468
+03-Feb-2021 (20:50:22.550210)---Waiting for last requested candidate Close price 
+03-Feb-2021 (20:50:22.573094)---Getting Yahoo market data for BYND
+03-Feb-2021 (20:50:22.574648)---Downloading the data for: BYND
+03-Feb-2021 (20:50:22.848709)---Figuring average Drop and Change for: BYND
+03-Feb-2021 (20:50:22.856712)---Yahoo market data for BYNDreceived shows average 2.9900010535336694 % drop
+03-Feb-2021 (20:50:22.857693)---Getting Yahoo market data for SEDG
+03-Feb-2021 (20:50:22.858068)---Downloading the data for: SEDG
+03-Feb-2021 (20:50:23.080264)---Figuring average Drop and Change for: SEDG
+03-Feb-2021 (20:50:23.087479)---Yahoo market data for SEDGreceived shows average 3.1994057805920684 % drop
+03-Feb-2021 (20:50:23.088654)---Getting Yahoo market data for LTHM
+03-Feb-2021 (20:50:23.089023)---Downloading the data for: LTHM
+03-Feb-2021 (20:50:23.305049)---Figuring average Drop and Change for: LTHM
+03-Feb-2021 (20:50:23.310760)---Yahoo market data for LTHMreceived shows average 3.597467051847557 % drop
+03-Feb-2021 (20:50:23.312253)---Getting Yahoo market data for SQ
+03-Feb-2021 (20:50:23.312720)---Downloading the data for: SQ
+03-Feb-2021 (20:50:23.522424)---Figuring average Drop and Change for: SQ
+03-Feb-2021 (20:50:23.529532)---Yahoo market data for SQreceived shows average 2.7796823426234787 % drop
+03-Feb-2021 (20:50:23.530088)---Getting Yahoo market data for TTWO
+03-Feb-2021 (20:50:23.531123)---Downloading the data for: TTWO
+03-Feb-2021 (20:50:23.739778)---Figuring average Drop and Change for: TTWO
+03-Feb-2021 (20:50:23.743950)---Yahoo market data for TTWOreceived shows average 1.650426794645734 % drop
+03-Feb-2021 (20:50:23.744219)---Getting Yahoo market data for OTRK
+03-Feb-2021 (20:50:23.744429)---Downloading the data for: OTRK
+03-Feb-2021 (20:50:23.957886)---Figuring average Drop and Change for: OTRK
+03-Feb-2021 (20:50:23.964444)---Yahoo market data for OTRKreceived shows average 4.36071773574591 % drop
+03-Feb-2021 (20:50:23.964828)---Getting Yahoo market data for HUM
+03-Feb-2021 (20:50:23.965253)---Downloading the data for: HUM
+03-Feb-2021 (20:50:24.238264)---Figuring average Drop and Change for: HUM
+03-Feb-2021 (20:50:24.243529)---Yahoo market data for HUMreceived shows average 1.7644481594206454 % drop
+03-Feb-2021 (20:50:24.243883)---Getting Yahoo market data for AAPL
+03-Feb-2021 (20:50:24.244166)---Downloading the data for: AAPL
+03-Feb-2021 (20:50:24.507808)---Figuring average Drop and Change for: AAPL
+03-Feb-2021 (20:50:24.515928)---Yahoo market data for AAPLreceived shows average 1.4632154167181601 % drop
+03-Feb-2021 (20:50:24.516838)---Getting Yahoo market data for ZG
+03-Feb-2021 (20:50:24.517760)---Downloading the data for: ZG
+03-Feb-2021 (20:50:24.740099)---Figuring average Drop and Change for: ZG
+03-Feb-2021 (20:50:24.744810)---Yahoo market data for ZGreceived shows average 2.707147957926896 % drop
+03-Feb-2021 (20:50:24.745274)---Getting Yahoo market data for MSFT
+03-Feb-2021 (20:50:24.745644)---Downloading the data for: MSFT
+03-Feb-2021 (20:50:24.987346)---Figuring average Drop and Change for: MSFT
+03-Feb-2021 (20:50:24.996025)---Yahoo market data for MSFTreceived shows average 1.3618625831537499 % drop
+03-Feb-2021 (20:50:24.996571)---Getting Yahoo market data for NVDA
+03-Feb-2021 (20:50:24.997479)---Downloading the data for: NVDA
+03-Feb-2021 (20:50:25.239262)---Figuring average Drop and Change for: NVDA
+03-Feb-2021 (20:50:25.248009)---Yahoo market data for NVDAreceived shows average 1.9846214596085976 % drop
+03-Feb-2021 (20:50:25.248659)---Getting Yahoo market data for BEP
+03-Feb-2021 (20:50:25.249114)---Downloading the data for: BEP
+03-Feb-2021 (20:50:25.468219)---Figuring average Drop and Change for: BEP
+03-Feb-2021 (20:50:25.472861)---Yahoo market data for BEPreceived shows average 1.8298753716872451 % drop
+03-Feb-2021 (20:50:25.473158)---Getting Yahoo market data for GOOGL
+03-Feb-2021 (20:50:25.473355)---Downloading the data for: GOOGL
+03-Feb-2021 (20:50:25.675234)---Figuring average Drop and Change for: GOOGL
+03-Feb-2021 (20:50:25.681362)---Yahoo market data for GOOGLreceived shows average 1.2964955430025347 % drop
+03-Feb-2021 (20:50:25.681676)---Getting Yahoo market data for ETSY
+03-Feb-2021 (20:50:25.681996)---Downloading the data for: ETSY
+03-Feb-2021 (20:50:25.883046)---Figuring average Drop and Change for: ETSY
+03-Feb-2021 (20:50:25.887573)---Yahoo market data for ETSYreceived shows average 2.7592355970455773 % drop
+03-Feb-2021 (20:50:25.887870)---Getting Yahoo market data for IVAC
+03-Feb-2021 (20:50:25.888055)---Downloading the data for: IVAC
+03-Feb-2021 (20:50:26.096686)---Figuring average Drop and Change for: IVAC
+03-Feb-2021 (20:50:26.103174)---Yahoo market data for IVACreceived shows average 2.7545736764628033 % drop
+03-Feb-2021 (20:50:26.103714)---Getting Yahoo market data for PTON
+03-Feb-2021 (20:50:26.104003)---Downloading the data for: PTON
+03-Feb-2021 (20:50:26.322144)---Figuring average Drop and Change for: PTON
+03-Feb-2021 (20:50:26.328384)---Yahoo market data for PTONreceived shows average 3.114993484537355 % drop
+03-Feb-2021 (20:50:26.328745)---Getting Yahoo market data for ADI
+03-Feb-2021 (20:50:26.329115)---Downloading the data for: ADI
+03-Feb-2021 (20:50:26.634372)---Figuring average Drop and Change for: ADI
+03-Feb-2021 (20:50:26.643020)---Yahoo market data for ADIreceived shows average 1.518006891508033 % drop
+03-Feb-2021 (20:50:26.643455)---Getting Yahoo market data for CRM
+03-Feb-2021 (20:50:26.643937)---Downloading the data for: CRM
+03-Feb-2021 (20:50:26.862434)---Figuring average Drop and Change for: CRM
+03-Feb-2021 (20:50:26.868187)---Yahoo market data for CRMreceived shows average 1.7656055342120183 % drop
+03-Feb-2021 (20:50:26.870187)---Getting Yahoo market data for CHWY
+03-Feb-2021 (20:50:26.870524)---Downloading the data for: CHWY
+03-Feb-2021 (20:50:27.096810)---Figuring average Drop and Change for: CHWY
+03-Feb-2021 (20:50:27.104969)---Yahoo market data for CHWYreceived shows average 2.878013365334623 % drop
+03-Feb-2021 (20:50:27.106304)---Getting Yahoo market data for AZN
+03-Feb-2021 (20:50:27.106614)---Downloading the data for: AZN
+03-Feb-2021 (20:50:27.355364)---Figuring average Drop and Change for: AZN
+03-Feb-2021 (20:50:27.361073)---Yahoo market data for AZNreceived shows average 1.1475463064512867 % drop
+03-Feb-2021 (20:50:27.361431)---Getting Yahoo market data for NICE
+03-Feb-2021 (20:50:27.361812)---Downloading the data for: NICE
+03-Feb-2021 (20:50:27.564111)---Figuring average Drop and Change for: NICE
+03-Feb-2021 (20:50:27.569149)---Yahoo market data for NICEreceived shows average 1.2098155181611676 % drop
+03-Feb-2021 (20:50:27.570008)---Getting Yahoo market data for CSCO
+03-Feb-2021 (20:50:27.570216)---Downloading the data for: CSCO
+03-Feb-2021 (20:50:27.827986)---Figuring average Drop and Change for: CSCO
+03-Feb-2021 (20:50:27.835762)---Yahoo market data for CSCOreceived shows average 1.2441082749458816 % drop
+03-Feb-2021 (20:50:27.836172)---Getting Yahoo market data for PANW
+03-Feb-2021 (20:50:27.836640)---Downloading the data for: PANW
+03-Feb-2021 (20:50:28.056282)---Figuring average Drop and Change for: PANW
+03-Feb-2021 (20:50:28.065064)---Yahoo market data for PANWreceived shows average 1.4808627479288983 % drop
+03-Feb-2021 (20:50:28.066121)---Getting Yahoo market data for NET
+03-Feb-2021 (20:50:28.066427)---Downloading the data for: NET
+03-Feb-2021 (20:50:28.296643)---Figuring average Drop and Change for: NET
+03-Feb-2021 (20:50:28.304940)---Yahoo market data for NETreceived shows average 2.89184409131856 % drop
+03-Feb-2021 (20:50:28.305407)---Getting Yahoo market data for CRWD
+03-Feb-2021 (20:50:28.305904)---Downloading the data for: CRWD
+03-Feb-2021 (20:50:28.521742)---Figuring average Drop and Change for: CRWD
+03-Feb-2021 (20:50:28.526655)---Yahoo market data for CRWDreceived shows average 2.7404748985420353 % drop
+03-Feb-2021 (20:50:28.526979)---Getting Yahoo market data for CHKP
+03-Feb-2021 (20:50:28.527597)---Downloading the data for: CHKP
+03-Feb-2021 (20:50:28.760594)---Figuring average Drop and Change for: CHKP
+03-Feb-2021 (20:50:28.768403)---Yahoo market data for CHKPreceived shows average 1.3473049479555643 % drop
+03-Feb-2021 (20:50:28.769491)---Getting Yahoo market data for CVLT
+03-Feb-2021 (20:50:28.769861)---Downloading the data for: CVLT
+03-Feb-2021 (20:50:28.994021)---Figuring average Drop and Change for: CVLT
+03-Feb-2021 (20:50:29.000588)---Yahoo market data for CVLTreceived shows average 1.8596929777165583 % drop
+03-Feb-2021 (20:50:29.002145)---Getting Yahoo market data for RPD
+03-Feb-2021 (20:50:29.002535)---Downloading the data for: RPD
+03-Feb-2021 (20:50:29.218340)---Figuring average Drop and Change for: RPD
+03-Feb-2021 (20:50:29.223882)---Yahoo market data for RPDreceived shows average 2.213445812877203 % drop
+03-Feb-2021 (20:50:29.224211)---Getting Yahoo market data for TENB
+03-Feb-2021 (20:50:29.224558)---Downloading the data for: TENB
+03-Feb-2021 (20:50:29.446886)---Figuring average Drop and Change for: TENB
+03-Feb-2021 (20:50:29.448983)---Yahoo market data for TENBreceived shows average 2.3856112864669177 % drop
+03-Feb-2021 (20:50:29.449393)---Getting Yahoo market data for ADBE
+03-Feb-2021 (20:50:29.449859)---Downloading the data for: ADBE
+03-Feb-2021 (20:50:29.683691)---Figuring average Drop and Change for: ADBE
+03-Feb-2021 (20:50:29.691849)---Yahoo market data for ADBEreceived shows average 1.6914134553674742 % drop
+03-Feb-2021 (20:50:29.692350)---Getting Yahoo market data for SHOP
+03-Feb-2021 (20:50:29.692870)---Downloading the data for: SHOP
+03-Feb-2021 (20:50:29.910003)---Figuring average Drop and Change for: SHOP
+03-Feb-2021 (20:50:29.915164)---Yahoo market data for SHOPreceived shows average 2.7185530532486486 % drop
+03-Feb-2021 (20:50:29.915704)---Getting Yahoo market data for NIO
+03-Feb-2021 (20:50:29.916691)---Downloading the data for: NIO
+03-Feb-2021 (20:50:30.139713)---Figuring average Drop and Change for: NIO
+03-Feb-2021 (20:50:30.147553)---Yahoo market data for NIOreceived shows average 4.051367402700424 % drop
+03-Feb-2021 (20:50:30.148057)---Getting Yahoo market data for SPCE
+03-Feb-2021 (20:50:30.148925)---Downloading the data for: SPCE
+03-Feb-2021 (20:50:30.382924)---Figuring average Drop and Change for: SPCE
+03-Feb-2021 (20:50:30.391213)---Yahoo market data for SPCEreceived shows average 4.552812452958912 % drop
+03-Feb-2021 (20:50:30.395053)---Getting Yahoo market data for BABA
+03-Feb-2021 (20:50:30.395485)---Downloading the data for: BABA
+03-Feb-2021 (20:50:30.623389)---Figuring average Drop and Change for: BABA
+03-Feb-2021 (20:50:30.631989)---Yahoo market data for BABAreceived shows average 1.5045587297567293 % drop
+03-Feb-2021 (20:50:30.632569)---Getting Yahoo market data for BIIB
+03-Feb-2021 (20:50:30.632951)---Downloading the data for: BIIB
+03-Feb-2021 (20:50:30.843893)---Figuring average Drop and Change for: BIIB
+03-Feb-2021 (20:50:30.851400)---Yahoo market data for BIIBreceived shows average 1.5194040847740737 % drop
+03-Feb-2021 (20:50:30.851892)---Getting Yahoo market data for TSLA
+03-Feb-2021 (20:50:30.852433)---Downloading the data for: TSLA
+03-Feb-2021 (20:50:31.077279)---Figuring average Drop and Change for: TSLA
+03-Feb-2021 (20:50:31.084219)---Yahoo market data for TSLAreceived shows average 2.9993141742106277 % drop
+03-Feb-2021 (20:50:31.084668)---Getting Yahoo market data for OKTA
+03-Feb-2021 (20:50:31.085160)---Downloading the data for: OKTA
+03-Feb-2021 (20:50:31.304659)---Figuring average Drop and Change for: OKTA
+03-Feb-2021 (20:50:31.312706)---Yahoo market data for OKTAreceived shows average 2.2795170847555024 % drop
+03-Feb-2021 (20:50:31.313816)---Getting Yahoo market data for GEVO
+03-Feb-2021 (20:50:31.314275)---Downloading the data for: GEVO
+03-Feb-2021 (20:50:31.553971)---Figuring average Drop and Change for: GEVO
+03-Feb-2021 (20:50:31.564192)---Yahoo market data for GEVOreceived shows average 5.981349841623546 % drop
+03-Feb-2021 (20:50:31.565083)---Getting Yahoo market data for SMTC
+03-Feb-2021 (20:50:31.565755)---Downloading the data for: SMTC
+03-Feb-2021 (20:50:31.792659)---Figuring average Drop and Change for: SMTC
+03-Feb-2021 (20:50:31.802665)---Yahoo market data for SMTCreceived shows average 2.046376538492558 % drop
+03-Feb-2021 (20:50:31.804009)---Getting Yahoo market data for JD
+03-Feb-2021 (20:50:31.804523)---Downloading the data for: JD
+03-Feb-2021 (20:50:32.050583)---Figuring average Drop and Change for: JD
+03-Feb-2021 (20:50:32.067105)---Yahoo market data for JDreceived shows average 1.98511129084815 % drop
+03-Feb-2021 (20:50:32.070461)---Getting ranks for :BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,AAPL,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,SPCE,BABA,BIIB,TSLA,OKTA,GEVO,SMTC,JD
+03-Feb-2021 (20:50:35.441109)---Getting TipRank Rating for : BYND
+03-Feb-2021 (20:50:42.779612)---Rating found on TipRanks : 5
+03-Feb-2021 (20:50:42.780057)---Getting TipRank Rating for : SEDG
+03-Feb-2021 (20:50:46.600554)---Rating found on TipRanks : 5
+03-Feb-2021 (20:50:46.601108)---Getting TipRank Rating for : LTHM
+03-Feb-2021 (20:50:48.773526)---Rating found on TipRanks : 7
+03-Feb-2021 (20:50:48.773948)---Getting TipRank Rating for : SQ
+03-Feb-2021 (20:50:50.933542)---Rating found on TipRanks : 10
+03-Feb-2021 (20:50:50.933935)---Getting TipRank Rating for : TTWO
+03-Feb-2021 (20:50:52.792594)---Rating found on TipRanks : 6
+03-Feb-2021 (20:50:52.792940)---Getting TipRank Rating for : OTRK
+03-Feb-2021 (20:50:54.741346)---Rating found on TipRanks : 4
+03-Feb-2021 (20:50:54.741696)---Getting TipRank Rating for : HUM
+03-Feb-2021 (20:50:57.144003)---Rating found on TipRanks : 5
+03-Feb-2021 (20:50:57.144388)---Getting TipRank Rating for : AAPL
+03-Feb-2021 (20:50:58.783646)---Rating found on TipRanks : 9
+03-Feb-2021 (20:50:58.784088)---Getting TipRank Rating for : ZG
+03-Feb-2021 (20:51:00.911524)---Rating found on TipRanks : 5
+03-Feb-2021 (20:51:00.911910)---Getting TipRank Rating for : MSFT
+03-Feb-2021 (20:51:02.939286)---Rating found on TipRanks : 9
+03-Feb-2021 (20:51:02.939918)---Getting TipRank Rating for : NVDA
+03-Feb-2021 (20:51:05.214206)---Rating found on TipRanks : 8
+03-Feb-2021 (20:51:05.214762)---Getting TipRank Rating for : BEP
+03-Feb-2021 (20:51:07.216678)---Rating found on TipRanks : 9
+03-Feb-2021 (20:51:07.217065)---Getting TipRank Rating for : GOOGL
+03-Feb-2021 (20:51:09.377346)---Rating found on TipRanks : 8
+03-Feb-2021 (20:51:09.377710)---Getting TipRank Rating for : ETSY
+03-Feb-2021 (20:51:11.390153)---Rating found on TipRanks : 7
+03-Feb-2021 (20:51:11.390533)---Getting TipRank Rating for : IVAC
+03-Feb-2021 (20:51:13.414106)---Rating found on TipRanks : 4
+03-Feb-2021 (20:51:13.414531)---Getting TipRank Rating for : PTON
+03-Feb-2021 (20:51:15.348885)---Rating found on TipRanks : 9
+03-Feb-2021 (20:51:15.349303)---Getting TipRank Rating for : ADI
+03-Feb-2021 (20:51:17.171983)---Rating found on TipRanks : 10
+03-Feb-2021 (20:51:17.172359)---Getting TipRank Rating for : CRM
+03-Feb-2021 (20:51:18.839390)---Rating found on TipRanks : 6
+03-Feb-2021 (20:51:18.839849)---Getting TipRank Rating for : CHWY
+03-Feb-2021 (20:51:20.983259)---Rating found on TipRanks : 2
+03-Feb-2021 (20:51:20.983888)---Getting TipRank Rating for : AZN
+03-Feb-2021 (20:51:22.998990)---Rating found on TipRanks : 2
+03-Feb-2021 (20:51:22.999398)---Getting TipRank Rating for : NICE
+03-Feb-2021 (20:51:25.057211)---Rating found on TipRanks : 8
+03-Feb-2021 (20:51:25.057656)---Getting TipRank Rating for : CSCO
+03-Feb-2021 (20:51:26.959083)---Rating found on TipRanks : 10
+03-Feb-2021 (20:51:26.959487)---Getting TipRank Rating for : PANW
+03-Feb-2021 (20:51:28.860269)---Rating found on TipRanks : 7
+03-Feb-2021 (20:51:28.860764)---Getting TipRank Rating for : NET
+03-Feb-2021 (20:51:31.614909)---Rating found on TipRanks : 7
+03-Feb-2021 (20:51:31.615406)---Getting TipRank Rating for : CRWD
+03-Feb-2021 (20:51:33.793192)---Rating found on TipRanks : 9
+03-Feb-2021 (20:51:33.793565)---Getting TipRank Rating for : CHKP
+03-Feb-2021 (20:51:35.788966)---Rating found on TipRanks : 4
+03-Feb-2021 (20:51:35.789350)---Getting TipRank Rating for : CVLT
+03-Feb-2021 (20:51:37.569990)---Rating found on TipRanks : 10
+03-Feb-2021 (20:51:37.570372)---Getting TipRank Rating for : RPD
+03-Feb-2021 (20:51:39.382301)---Rating found on TipRanks : 9
+03-Feb-2021 (20:51:39.382748)---Getting TipRank Rating for : TENB
+03-Feb-2021 (20:51:41.343190)---Rating found on TipRanks : 9
+03-Feb-2021 (20:51:41.343629)---Getting TipRank Rating for : ADBE
+03-Feb-2021 (20:51:43.035604)---Rating found on TipRanks : 8
+03-Feb-2021 (20:51:43.035973)---Getting TipRank Rating for : SHOP
+03-Feb-2021 (20:51:44.975940)---Rating found on TipRanks : 8
+03-Feb-2021 (20:51:44.976338)---Getting TipRank Rating for : NIO
+03-Feb-2021 (20:51:46.976651)---Rating found on TipRanks : 10
+03-Feb-2021 (20:51:46.977087)---Getting TipRank Rating for : SPCE
+03-Feb-2021 (20:51:48.781595)---Rating found on TipRanks : 7
+03-Feb-2021 (20:51:48.782045)---Getting TipRank Rating for : BABA
+03-Feb-2021 (20:51:50.492044)---Rating found on TipRanks : 7
+03-Feb-2021 (20:51:50.492429)---Getting TipRank Rating for : BIIB
+03-Feb-2021 (20:51:52.308873)---Rating found on TipRanks : 8
+03-Feb-2021 (20:51:52.309259)---Getting TipRank Rating for : TSLA
+03-Feb-2021 (20:51:54.157467)---Rating found on TipRanks : 8
+03-Feb-2021 (20:51:54.157865)---Getting TipRank Rating for : OKTA
+03-Feb-2021 (20:51:56.228069)---Rating found on TipRanks : 5
+03-Feb-2021 (20:51:56.228473)---Getting TipRank Rating for : GEVO
+03-Feb-2021 (20:51:58.108731)---Rating found on TipRanks : 8
+03-Feb-2021 (20:51:58.109119)---Getting TipRank Rating for : SMTC
+03-Feb-2021 (20:51:59.763643)---Rating found on TipRanks : 10
+03-Feb-2021 (20:51:59.764073)---Getting TipRank Rating for : JD
+03-Feb-2021 (20:52:01.458417)---Rating found on TipRanks : 8
+03-Feb-2021 (20:52:01.565582)---40 Candidates evaluated and started to track
+03-Feb-2021 (20:52:01.565860)---Updating target prices for Candidates
+03-Feb-2021 (20:52:01.566087)---Updating target price for BYND
+03-Feb-2021 (20:52:01.566319)---Target price for BYND updated to 160.1635082606159 based on Open price
+03-Feb-2021 (20:52:01.566540)---Updating target price for SEDG
+03-Feb-2021 (20:52:01.566759)---Target price for SEDG updated to 300.08184208016456 based on Open price
+03-Feb-2021 (20:52:01.566975)---Updating target price for LTHM
+03-Feb-2021 (20:52:01.567226)---Target price for LTHM updated to 18.624969365583052 based on Open price
+03-Feb-2021 (20:52:01.567459)---Updating target price for SQ
+03-Feb-2021 (20:52:01.567708)---Target price for SQ updated to 222.14842584710536 based on Open price
+03-Feb-2021 (20:52:01.568055)---Updating target price for TTWO
+03-Feb-2021 (20:52:01.568345)---Target price for TTWO updated to 204.1245391877128 based on Open price
+03-Feb-2021 (20:52:01.568667)---Updating target price for OTRK
+03-Feb-2021 (20:52:01.568959)---Target price for OTRK updated to 73.26925414264505 based on Open price
+03-Feb-2021 (20:52:01.569198)---Updating target price for HUM
+03-Feb-2021 (20:52:01.569477)---Target price for HUM updated to 367.0178452315885 based on Open price
+03-Feb-2021 (20:52:01.569741)---Updating target price for AAPL
+03-Feb-2021 (20:52:01.570025)---Target price for AAPL updated to 133.57646518109686 based on Open price
+03-Feb-2021 (20:52:01.570371)---Updating target price for ZG
+03-Feb-2021 (20:52:01.572377)---Target price for ZG updated to 150.70662781317125 based on Open price
+03-Feb-2021 (20:52:01.572632)---Updating target price for MSFT
+03-Feb-2021 (20:52:01.572856)---Target price for MSFT updated to 236.5342535255973 based on Open price
+03-Feb-2021 (20:52:01.573065)---Updating target price for NVDA
+03-Feb-2021 (20:52:01.573272)---Target price for NVDA updated to 535.1639668305371 based on Open price
+03-Feb-2021 (20:52:01.573482)---Updating target price for BEP
+03-Feb-2021 (20:52:01.573711)---Target price for BEP updated to 45.3545975782805 based on Open price
+03-Feb-2021 (20:52:01.573926)---Updating target price for GOOGL
+03-Feb-2021 (20:52:01.574144)---Target price for GOOGL updated to 2037.536442505799 based on Open price
+03-Feb-2021 (20:52:01.574376)---Updating target price for ETSY
+03-Feb-2021 (20:52:01.574587)---Target price for ETSY updated to 206.76303735000198 based on Open price
+03-Feb-2021 (20:52:01.574798)---Updating target price for IVAC
+03-Feb-2021 (20:52:01.575006)---Target price for IVAC updated to 6.739108044221127 based on Open price
+03-Feb-2021 (20:52:01.575222)---Updating target price for PTON
+03-Feb-2021 (20:52:01.575453)---Target price for PTON updated to 144.85277324126818 based on Open price
+03-Feb-2021 (20:52:01.575661)---Updating target price for ADI
+03-Feb-2021 (20:52:01.575882)---Target price for ADI updated to 149.6926295249078 based on Open price
+03-Feb-2021 (20:52:01.576093)---Updating target price for CRM
+03-Feb-2021 (20:52:01.576305)---Target price for CRM updated to 230.85082699460176 based on Open price
+03-Feb-2021 (20:52:01.576513)---Updating target price for CHWY
+03-Feb-2021 (20:52:01.576727)---Target price for CHWY updated to 99.93852424707067 based on Open price
+03-Feb-2021 (20:52:01.576954)---Updating target price for AZN
+03-Feb-2021 (20:52:01.577177)---Target price for AZN updated to 49.58439077268403 based on Open price
+03-Feb-2021 (20:52:01.577391)---Updating target price for NICE
+03-Feb-2021 (20:52:01.577608)---Target price for NICE updated to 266.3877324552784 based on Open price
+03-Feb-2021 (20:52:01.577822)---Updating target price for CSCO
+03-Feb-2021 (20:52:01.578044)---Target price for CSCO updated to 45.18082046421226 based on Open price
+03-Feb-2021 (20:52:01.578259)---Updating target price for PANW
+03-Feb-2021 (20:52:01.578493)---Target price for PANW updated to 382.25425253803587 based on Open price
+03-Feb-2021 (20:52:01.578715)---Updating target price for NET
+03-Feb-2021 (20:52:01.578922)---Target price for NET updated to 81.9398619557454 based on Open price
+03-Feb-2021 (20:52:01.579137)---Updating target price for CRWD
+03-Feb-2021 (20:52:01.579351)---Target price for CRWD updated to 216.88874097625126 based on Open price
+03-Feb-2021 (20:52:01.579573)---Updating target price for CHKP
+03-Feb-2021 (20:52:01.579742)---Target price for CHKP updated to 125.80191673036705 based on Open price
+03-Feb-2021 (20:52:01.579913)---Updating target price for CVLT
+03-Feb-2021 (20:52:01.580084)---Target price for CVLT updated to 62.53500363459901 based on Open price
+03-Feb-2021 (20:52:01.580269)---Updating target price for RPD
+03-Feb-2021 (20:52:01.580436)---Target price for RPD updated to 88.44793826225258 based on Open price
+03-Feb-2021 (20:52:01.580601)---Updating target price for TENB
+03-Feb-2021 (20:52:01.580768)---Target price for TENB updated to 47.128226870893776 based on Open price
+03-Feb-2021 (20:52:01.580936)---Updating target price for ADBE
+03-Feb-2021 (20:52:01.581106)---Target price for ADBE updated to 479.2150359704657 based on Open price
+03-Feb-2021 (20:52:01.581292)---Updating target price for SHOP
+03-Feb-2021 (20:52:01.581463)---Target price for SHOP updated to 1201.7663548566927 based on Open price
+03-Feb-2021 (20:52:01.581631)---Updating target price for NIO
+03-Feb-2021 (20:52:01.581801)---Target price for NIO updated to 53.63528562189046 based on Open price
+03-Feb-2021 (20:52:01.582134)---Updating target price for SPCE
+03-Feb-2021 (20:52:01.582341)---Target price for SPCE updated to 47.714049054765844 based on Open price
+03-Feb-2021 (20:52:01.582526)---Updating target price for BABA
+03-Feb-2021 (20:52:01.582709)---Target price for BABA updated to 260.90457438074736 based on Open price
+03-Feb-2021 (20:52:01.582892)---Updating target price for BIIB
+03-Feb-2021 (20:52:01.583088)---Target price for BIIB updated to 265.8877609115185 based on Open price
+03-Feb-2021 (20:52:01.583266)---Updating target price for TSLA
+03-Feb-2021 (20:52:01.583444)---Target price for TSLA updated to 851.3168190814579 based on Open price
+03-Feb-2021 (20:52:01.583638)---Updating target price for OKTA
+03-Feb-2021 (20:52:01.583820)---Target price for OKTA updated to 269.70853284607483 based on Open price
+03-Feb-2021 (20:52:01.583999)---Updating target price for GEVO
+03-Feb-2021 (20:52:01.584174)---Target price for GEVO updated to 10.34205151742141 based on Open price
+03-Feb-2021 (20:52:01.584354)---Updating target price for SMTC
+03-Feb-2021 (20:52:01.584560)---Target price for SMTC updated to 73.90600890170737 based on Open price
+03-Feb-2021 (20:52:01.584745)---Updating target price for JD
+03-Feb-2021 (20:52:01.584933)---Target price for JD updated to 94.64317653755703 based on Open price
+03-Feb-2021 (20:52:01.585117)---Connected to IBKR and READY
+03-Feb-2021 (20:52:01.686223)---UI resumed.
+03-Feb-2021 (20:52:01.686913)---Starting Worker- UI Paused
+03-Feb-2021 (20:52:01.740074)----------Starting Worker...----EST Time: 2021-02-03 12:52:01--------------------
+03-Feb-2021 (20:52:01.740416)---Checking connection
+03-Feb-2021 (20:52:01.740646)---Connection is fine- proceeding
+03-Feb-2021 (20:52:01.740835)---Updating all open orders
+03-Feb-2021 (20:52:02.689484)---0 open orders found 
+03-Feb-2021 (20:52:02.690228)---Updating open Positions:
+03-Feb-2021 (20:52:03.692118)---Started tracking CVLT position PnL
+03-Feb-2021 (20:52:03.693783)---Started tracking SMTC position PnL
+03-Feb-2021 (20:52:03.695219)---Started tracking BEP position PnL
+03-Feb-2021 (20:52:03.696315)---Started tracking NIO position PnL
+03-Feb-2021 (20:52:03.696760)---Started tracking MSFT position PnL
+03-Feb-2021 (20:52:03.699364)---Started tracking BABA position PnL
+03-Feb-2021 (20:52:03.699750)---Started tracking RPD position PnL
+03-Feb-2021 (20:52:03.700043)---Started tracking AAPL position PnL
+03-Feb-2021 (20:52:03.700321)---Started tracking ADI position PnL
+03-Feb-2021 (20:52:03.700634)---Started tracking ETSY position PnL
+03-Feb-2021 (20:52:03.700917)---Started tracking SPCX position PnL
+03-Feb-2021 (20:52:04.701567)---Waiting to receive Value for all positions 
+03-Feb-2021 (20:52:05.706813)---Waiting to receive Value for all positions 
+03-Feb-2021 (20:52:06.713287)---Waiting to receive Value for all positions 
+03-Feb-2021 (20:52:06.716075)---Requesting History for CVLT position for last 1 hour BID price
+03-Feb-2021 (20:52:06.723608)---Requesting History for SMTC position for last 1 hour BID price
+03-Feb-2021 (20:52:06.724559)---Requesting History for BEP position for last 1 hour BID price
+03-Feb-2021 (20:52:06.725255)---Requesting History for NIO position for last 1 hour BID price
+03-Feb-2021 (20:52:06.725914)---Requesting History for MSFT position for last 1 hour BID price
+03-Feb-2021 (20:52:06.726561)---Requesting History for BABA position for last 1 hour BID price
+03-Feb-2021 (20:52:06.727192)---Requesting History for RPD position for last 1 hour BID price
+03-Feb-2021 (20:52:06.727818)---Requesting History for AAPL position for last 1 hour BID price
+03-Feb-2021 (20:52:06.728450)---Requesting History for ADI position for last 1 hour BID price
+03-Feb-2021 (20:52:06.729076)---Requesting History for ETSY position for last 1 hour BID price
+03-Feb-2021 (20:52:06.729720)---Requesting History for SPCX position for last 1 hour BID price
+03-Feb-2021 (20:52:07.722086)---Waiting to receive Hisory for all positions 
+03-Feb-2021 (20:52:07.722900)---11 open positions completely updated
+03-Feb-2021 (20:52:07.724073)---SMA (including open positions cushion) is 866.7447541482323 it is less than 1000 - skipping buy
+03-Feb-2021 (20:52:07.725206)---Processing profits
+03-Feb-2021 (20:52:07.729977)---Processing CVLT
+03-Feb-2021 (20:52:07.730298)---The profit for CVLT is 1.5746333112767064 %
+03-Feb-2021 (20:52:07.730497)---Processing SMTC
+03-Feb-2021 (20:52:07.730688)---The profit for SMTC is -3.635101893833359 %
+03-Feb-2021 (20:52:07.730877)---Processing BEP
+03-Feb-2021 (20:52:07.731087)---The profit for BEP is -6.282542846356353 %
+03-Feb-2021 (20:52:07.731271)---Processing NIO
+03-Feb-2021 (20:52:07.731446)---The profit for NIO is -2.205634060638583 %
+03-Feb-2021 (20:52:07.731621)---Processing MSFT
+03-Feb-2021 (20:52:07.731795)---The profit for MSFT is 4.555906391373122 %
+03-Feb-2021 (20:52:07.731967)---Processing BABA
+03-Feb-2021 (20:52:07.732144)---The profit for BABA is 2.2365897476037833 %
+03-Feb-2021 (20:52:07.732342)---Processing RPD
+03-Feb-2021 (20:52:07.732517)---The profit for RPD is -1.9838952674061272 %
+03-Feb-2021 (20:52:07.732698)---Processing AAPL
+03-Feb-2021 (20:52:07.732884)---The profit for AAPL is -4.550079529054947 %
+03-Feb-2021 (20:52:07.733066)---Processing ADI
+03-Feb-2021 (20:52:07.733241)---The profit for ADI is -6.311147356351494 %
+03-Feb-2021 (20:52:07.733416)---Processing ETSY
+03-Feb-2021 (20:52:07.733598)---The profit for ETSY is 0.8940507928477648 %
+03-Feb-2021 (20:52:07.733783)---Processing SPCX
+03-Feb-2021 (20:52:07.733969)---The profit for SPCX is 3.0371085145229895 %
+03-Feb-2021 (20:52:07.734209)---...............Worker finished....EST Time: 2021-02-03 12:52:01...................
+03-Feb-2021 (20:52:07.772840)---UI resumed.
