@@ -10816,3 +10816,24 @@
 27-Jan-2021 (12:38:28.305985)---Trading session is not Open - processing skept
 27-Jan-2021 (12:38:28.307038)---...............Worker finished....EST Time: 2021-01-27 04:38:24...................
 27-Jan-2021 (12:38:28.341520)---UI resumed.
+29-Jan-2021 (11:55:20.975627)---UI paused- for restart
+29-Jan-2021 (11:55:20.977067)---Configuration changed - restarting everything
+29-Jan-2021 (11:55:21.031415)---Begin connect and prepare
+29-Jan-2021 (11:55:21.031938)---Restarting connection to IBKR
+29-Jan-2021 (11:55:21.032290)---Waiting for connection...attempt:0
+29-Jan-2021 (11:55:21.986475)---Waiting for connection...attempt:1
+29-Jan-2021 (11:55:22.987600)---Waiting for connection...attempt:2
+29-Jan-2021 (11:55:23.992404)---Waiting for connection...attempt:3
+29-Jan-2021 (11:55:24.997401)---Waiting for connection...attempt:4
+03-Feb-2021 (13:00:18.798694)---UI paused- for restart
+03-Feb-2021 (13:00:18.799811)---Configuration changed - restarting everything
+03-Feb-2021 (13:00:18.835599)---Begin connect and prepare
+03-Feb-2021 (13:00:18.835921)---Restarting connection to IBKR
+03-Feb-2021 (13:00:18.836155)---Waiting for connection...attempt:0
+03-Feb-2021 (13:00:19.811884)---Waiting for connection...attempt:1
+03-Feb-2021 (17:09:54.441080)---UI paused- for restart
+03-Feb-2021 (17:09:54.441406)---Configuration changed - restarting everything
+03-Feb-2021 (17:09:54.472820)---Begin connect and prepare
+03-Feb-2021 (17:09:54.473120)---Restarting connection to IBKR
+03-Feb-2021 (17:09:54.473344)---Waiting for connection...attempt:0
+03-Feb-2021 (17:09:55.450162)---Waiting for connection...attempt:1
