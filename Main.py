@@ -262,8 +262,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         }
         '''
         self.setStyleSheet(StyleSheet)
+        if self.settings.USESERVER:
+            self.report_login_to_server()
 
-    # noinspection PyUnresolvedReferences
+    def report_login_to_server(self):
+        r = requests.post(self.settings.SERVERURL+'/connections/logconnection',
+                          json={"user": self.settings.SERVERUSER})
+        status_code=r.status_code
+        if status_code==200:
+            self.update_console(r.text)
+
     def connect_to_ibkr(self):
         """
 Starts the connection to the IBKR terminal in separate thread
