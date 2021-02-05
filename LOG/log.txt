@@ -11303,3 +11303,47 @@
 03-Feb-2021 (20:52:07.733969)---The profit for SPCX is 3.0371085145229895 %
 03-Feb-2021 (20:52:07.734209)---...............Worker finished....EST Time: 2021-02-03 12:52:01...................
 03-Feb-2021 (20:52:07.772840)---UI resumed.
+05-Feb-2021 (01:44:52.981383)---Begin connect and prepare
+05-Feb-2021 (01:44:52.981750)---Restarting connection to IBKR
+05-Feb-2021 (01:44:52.983253)---Waiting for connection...attempt:0
+05-Feb-2021 (01:44:53.853399)---Waiting for connection...attempt:1
+05-Feb-2021 (01:44:54.858587)---Waiting for connection...attempt:2
+05-Feb-2021 (01:44:55.863688)---Waiting for connection...attempt:3
+05-Feb-2021 (11:35:09.968065)---UI paused- for restart
+05-Feb-2021 (11:35:09.968462)---Configuration changed - restarting everything
+05-Feb-2021 (11:35:09.993034)---Begin connect and prepare
+05-Feb-2021 (11:35:09.993316)---Restarting connection to IBKR
+05-Feb-2021 (11:35:09.993485)---Waiting for connection...attempt:0
+05-Feb-2021 (11:35:10.978828)---Waiting for connection...attempt:1
+05-Feb-2021 (11:35:11.981485)---Waiting for connection...attempt:2
+05-Feb-2021 (11:35:12.982584)---Waiting for connection...attempt:3
+05-Feb-2021 (11:36:04.186221)---UI paused- for restart
+05-Feb-2021 (11:36:04.186473)---Configuration changed - restarting everything
+05-Feb-2021 (11:36:04.211568)---Begin connect and prepare
+05-Feb-2021 (11:36:04.211823)---Restarting connection to IBKR
+05-Feb-2021 (11:36:04.211982)---Waiting for connection...attempt:0
+05-Feb-2021 (11:36:05.198974)---Waiting for connection...attempt:1
+05-Feb-2021 (11:36:06.204631)---Waiting for connection...attempt:2
+05-Feb-2021 (11:36:07.206632)---Waiting for connection...attempt:3
+05-Feb-2021 (11:36:08.212493)---Waiting for connection...attempt:4
+05-Feb-2021 (11:36:09.213515)---Waiting for connection...attempt:5
+05-Feb-2021 (11:36:10.218603)---Waiting for connection...attempt:6
+05-Feb-2021 (11:36:11.223803)---Waiting for connection...attempt:7
+05-Feb-2021 (11:38:13.252623)---UI paused- for restart
+05-Feb-2021 (11:38:13.253884)---Configuration changed - restarting everything
+05-Feb-2021 (11:38:13.277776)---Begin connect and prepare
+05-Feb-2021 (11:38:13.278024)---Restarting connection to IBKR
+05-Feb-2021 (11:38:13.278184)---Waiting for connection...attempt:0
+05-Feb-2021 (11:38:14.264690)---Waiting for connection...attempt:1
+05-Feb-2021 (11:38:15.269436)---Waiting for connection...attempt:2
+05-Feb-2021 (11:38:16.274516)---Waiting for connection...attempt:3
+05-Feb-2021 (11:38:17.279812)---Waiting for connection...attempt:4
+05-Feb-2021 (11:38:18.281091)---Waiting for connection...attempt:5
+05-Feb-2021 (11:38:19.283016)---Waiting for connection...attempt:6
+05-Feb-2021 (11:41:36.579195)---UI paused- for restart
+05-Feb-2021 (11:41:36.580599)---Configuration changed - restarting everything
+05-Feb-2021 (11:41:36.618812)---Begin connect and prepare
+05-Feb-2021 (11:41:36.619113)---Restarting connection to IBKR
+05-Feb-2021 (11:41:36.619303)---Waiting for connection...attempt:0
+05-Feb-2021 (11:41:37.597379)---Waiting for connection...attempt:1
+05-Feb-2021 (11:41:38.600677)---Waiting for connection...attempt:2

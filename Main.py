@@ -167,7 +167,15 @@ class TraderSettings():
             self.AUTOSTART = False
         else:
             self.AUTOSTART = True
-        i = 2
+
+        useserver = self.config['Server']['useserver']
+        if useserver == 'False':
+            self.USESERVER = False
+        else:
+            self.USESERVER = True
+
+        self.SERVERURL=self.config['Server']['serverurl']
+
 
     def write_config(self):
         self.config['Connection']['port'] = self.PORT
@@ -194,6 +202,9 @@ class TraderSettings():
         self.config['Connection']['techtoMin'] = str(self.TECHTOMIN)
         self.config['Soft']['uidebug'] = str(self.UIDEBUG)
         self.config['Soft']['autostart'] = str(self.AUTOSTART)
+        self.config['Server']['useserver']=str(self.USESERVER)
+        self.config['Server']['serverurl']=str(self.SERVERURL)
+
         with open('config.ini', 'w') as configfile:
             self.config.write(configfile)
 
@@ -704,6 +715,9 @@ class SettingsWindow(QDialog, Ui_setWin):
         self.existingSettings.TECHTOMIN = self.tmTechTo.time().minute()
         self.existingSettings.UIDEBUG = self.chbxUiDebug.isChecked()
         self.existingSettings.AUTOSTART = self.chbxAutostart.isChecked()
+        self.existingSettings.USESERVER = self.chbxUseServer.isChecked()
+        self.existingSettings.SERVERURL = self.txtServerUrl.text()
+
 
         self.changedSettings = True
         print("Setting was changed.")
@@ -753,8 +767,16 @@ class SettingsWindow(QDialog, Ui_setWin):
         self.btnRemoveC.clicked.connect(self.remove_candidate)
         self.btnAddC.clicked.connect(self.add_candidate)
 
+        self.chbxUseServer.setChecked(self.existingSettings.USESERVER)
+        self.chbxUseServer.stateChanged.connect(self.setting_change)
+
+        self.txtServerUrl.setText(self.existingSettings.SERVERURL)
+        self.txtServerUrl.textChanged.connect(self.setting_change)
+
         self.btnGet.clicked.connect(self.update_stocks_from_cloud)
         self.btnClear.clicked.connect(self.clear_candidates)
+
+
 
         self.accepted.connect(self.check_changed)
 

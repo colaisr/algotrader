@@ -18,12 +18,12 @@ class Ui_setWin(object):
         if not setWin.objectName():
             setWin.setObjectName(u"setWin")
         setWin.resize(784, 383)
-        self.gridLayout_2 = QGridLayout(setWin)
-        self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.gridLayout = QGridLayout(setWin)
+        self.gridLayout.setObjectName(u"gridLayout")
         self.verticalLayout_4 = QVBoxLayout()
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.gridLayout = QGridLayout()
-        self.gridLayout.setObjectName(u"gridLayout")
+        self.horizontalLayout_16 = QHBoxLayout()
+        self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
         self.verticalLayout_3 = QVBoxLayout()
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.horizontalLayout_10 = QHBoxLayout()
@@ -77,7 +77,7 @@ class Ui_setWin(object):
         self.verticalLayout_3.addWidget(self.splitter_2)
 
 
-        self.gridLayout.addLayout(self.verticalLayout_3, 0, 0, 1, 1)
+        self.horizontalLayout_16.addLayout(self.verticalLayout_3)
 
         self.station = QVBoxLayout()
         self.station.setObjectName(u"station")
@@ -250,10 +250,8 @@ class Ui_setWin(object):
         self.station.addItem(self.verticalSpacer_2)
 
 
-        self.gridLayout.addLayout(self.station, 0, 1, 1, 1)
+        self.horizontalLayout_16.addLayout(self.station)
 
-        self.algorithm = QVBoxLayout()
-        self.algorithm.setObjectName(u"algorithm")
         self.verticalLayout_2 = QVBoxLayout()
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.horizontalLayout_9 = QHBoxLayout()
@@ -354,18 +352,57 @@ class Ui_setWin(object):
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_5)
 
+        self.horizontalLayout_14 = QHBoxLayout()
+        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
+        self.horizontalSpacer_19 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.algorithm.addLayout(self.verticalLayout_2)
+        self.horizontalLayout_14.addItem(self.horizontalSpacer_19)
+
+        self.label_14 = QLabel(setWin)
+        self.label_14.setObjectName(u"label_14")
+
+        self.horizontalLayout_14.addWidget(self.label_14)
+
+        self.horizontalSpacer_20 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_14.addItem(self.horizontalSpacer_20)
+
+
+        self.verticalLayout_2.addLayout(self.horizontalLayout_14)
+
+        self.chbxUseServer = QCheckBox(setWin)
+        self.chbxUseServer.setObjectName(u"chbxUseServer")
+
+        self.verticalLayout_2.addWidget(self.chbxUseServer)
+
+        self.horizontalLayout_15 = QHBoxLayout()
+        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
+        self.label_15 = QLabel(setWin)
+        self.label_15.setObjectName(u"label_15")
+
+        self.horizontalLayout_15.addWidget(self.label_15)
+
+        self.horizontalSpacer_21 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_15.addItem(self.horizontalSpacer_21)
+
+        self.txtServerUrl = QLineEdit(setWin)
+        self.txtServerUrl.setObjectName(u"txtServerUrl")
+
+        self.horizontalLayout_15.addWidget(self.txtServerUrl)
+
+
+        self.verticalLayout_2.addLayout(self.horizontalLayout_15)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.algorithm.addItem(self.verticalSpacer)
+        self.verticalLayout_2.addItem(self.verticalSpacer)
 
 
-        self.gridLayout.addLayout(self.algorithm, 0, 2, 1, 1)
+        self.horizontalLayout_16.addLayout(self.verticalLayout_2)
 
 
-        self.verticalLayout_4.addLayout(self.gridLayout)
+        self.verticalLayout_4.addLayout(self.horizontalLayout_16)
 
         self.buttonBox = QDialogButtonBox(setWin)
         self.buttonBox.setObjectName(u"buttonBox")
@@ -375,7 +412,7 @@ class Ui_setWin(object):
         self.verticalLayout_4.addWidget(self.buttonBox)
 
 
-        self.gridLayout_2.addLayout(self.verticalLayout_4, 0, 0, 1, 1)
+        self.gridLayout.addLayout(self.verticalLayout_4, 0, 0, 1, 1)
 
 
         self.retranslateUi(setWin)
@@ -412,5 +449,8 @@ class Ui_setWin(object):
         self.label_6.setText(QCoreApplication.translate("setWin", u"Trail %", None))
         self.label_5.setText(QCoreApplication.translate("setWin", u"Stop Loss", None))
         self.label_7.setText(QCoreApplication.translate("setWin", u"Bulk size USD", None))
+        self.label_14.setText(QCoreApplication.translate("setWin", u"Server settings", None))
+        self.chbxUseServer.setText(QCoreApplication.translate("setWin", u"use Algotrader server", None))
+        self.label_15.setText(QCoreApplication.translate("setWin", u"URL", None))
     # retranslateUi
 
