@@ -175,6 +175,7 @@ class TraderSettings():
             self.USESERVER = True
 
         self.SERVERURL=self.config['Server']['serverurl']
+        self.SERVERUSER=self.config['Server']['serveruser']
 
 
     def write_config(self):
@@ -204,6 +205,7 @@ class TraderSettings():
         self.config['Soft']['autostart'] = str(self.AUTOSTART)
         self.config['Server']['useserver']=str(self.USESERVER)
         self.config['Server']['serverurl']=str(self.SERVERURL)
+        self.config['Server']['serveruser']=str(self.SERVERUSER)
 
         with open('config.ini', 'w') as configfile:
             self.config.write(configfile)
