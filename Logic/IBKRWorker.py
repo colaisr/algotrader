@@ -200,6 +200,8 @@ Processes the positions to identify Profit/Loss
                         orders = self.app.openOrders
                         if s in orders:
                             notification_callback.emit("Order for " + s + "already exist- skipping")
+                        elif int(p["stocks"])<0:
+                            notification_callback.emit("The "+s+" is SHORT position number of stocks is negative: "+p["stocks"])
                         else:
                             notification_callback.emit("Profit for: " + s + " is " + str(profit) +
                                                        "Creating a trailing Stop Order to take a Profit")

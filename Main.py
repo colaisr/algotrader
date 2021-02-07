@@ -579,13 +579,6 @@ Restarts everything after Save
 
 
 class PositionPanel(QWidget):
-    # def __init__(self, stock, values):
-    #     super(PositionPanel, self).__init__()
-    #     self.ui = Ui_position_canvas()
-    #     self.ui.setupUi(self)
-    #
-    #
-    #     self.update_view()
 
     def __init__(self):
         super(PositionPanel, self).__init__()
