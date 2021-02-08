@@ -15,6 +15,7 @@ from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QWidg
     QDialog
 from pytz import timezone
 
+from AlgotraderServerConnection import report_login_to_server
 from Logic.IBKRWorker import IBKRWorker
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
@@ -263,7 +264,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         '''
         self.setStyleSheet(StyleSheet)
         if self.settings.USESERVER:
-            self.report_login_to_server()
+            print("Reporting connection to the server...")
+            result=report_login_to_server(self.settings)
+            self.update_console(result)
 
     def report_login_to_server(self):
         r = requests.post(self.settings.SERVERURL+'/connections/logconnection',
