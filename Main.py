@@ -15,7 +15,7 @@ from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QWidg
     QDialog
 from pytz import timezone
 
-from AlgotraderServerConnection import report_login_to_server
+from AlgotraderServerConnection import report_positions_status_to_server, report_login_to_server
 from Logic.IBKRWorker import IBKRWorker
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
@@ -175,9 +175,8 @@ class TraderSettings():
         else:
             self.USESERVER = True
 
-        self.SERVERURL=self.config['Server']['serverurl']
-        self.SERVERUSER=self.config['Server']['serveruser']
-
+        self.SERVERURL = self.config['Server']['serverurl']
+        self.SERVERUSER = self.config['Server']['serveruser']
 
     def write_config(self):
         self.config['Connection']['port'] = self.PORT
@@ -204,9 +203,9 @@ class TraderSettings():
         self.config['Connection']['techtoMin'] = str(self.TECHTOMIN)
         self.config['Soft']['uidebug'] = str(self.UIDEBUG)
         self.config['Soft']['autostart'] = str(self.AUTOSTART)
-        self.config['Server']['useserver']=str(self.USESERVER)
-        self.config['Server']['serverurl']=str(self.SERVERURL)
-        self.config['Server']['serveruser']=str(self.SERVERUSER)
+        self.config['Server']['useserver'] = str(self.USESERVER)
+        self.config['Server']['serverurl'] = str(self.SERVERURL)
+        self.config['Server']['serveruser'] = str(self.SERVERUSER)
 
         with open('config.ini', 'w') as configfile:
             self.config.write(configfile)
@@ -265,14 +264,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setStyleSheet(StyleSheet)
         if self.settings.USESERVER:
             print("Reporting connection to the server...")
-            result=report_login_to_server(self.settings)
+            result = report_login_to_server(self.settings)
             self.update_console(result)
 
     def report_login_to_server(self):
-        r = requests.post(self.settings.SERVERURL+'/connections/logconnection',
+        r = requests.post(self.settings.SERVERURL + '/connections/logconnection',
                           json={"user": self.settings.SERVERUSER})
-        status_code=r.status_code
-        if status_code==200:
+        status_code = r.status_code
+        if status_code == 200:
             self.update_console(r.text)
 
     def connect_to_ibkr(self):
@@ -306,6 +305,33 @@ Executed the Worker in separate thread
         fromTime = QTime(int(self.settings.TECHFROMHOUR), int(self.settings.TECHFROMMIN))
         toTime = QTime(int(self.settings.TECHTOHOUR), int(self.settings.TECHTOMIN))
         sessionState = self.lblMarket.text()
+
+        if self.settings.USESERVER:
+            print("Reporting connection to the server...")
+
+            net_liquidation = self.ibkrworker.app.netLiquidation
+            if hasattr(self.ibkrworker.app, 'smaWithSafety'):
+                remaining_sma_with_safety=self.ibkrworker.app.smaWithSafety
+            else:
+                remaining_sma_with_safety=self.ibkrworker.app.sMa
+
+            remaining_trades = self.ibkrworker.app.tradesRemaining
+            all_positions_value = 0
+            open_positions = self.ibkrworker.app.openPositions
+            open_orders = self.ibkrworker.app.openOrders
+            dailyPnl = self.ibkrworker.app.dailyPnl
+
+            result = report_positions_status_to_server(self.settings,
+                                                       netLiquidation=net_liquidation,
+                                                       smaWithSafety=remaining_sma_with_safety,
+                                                       tradesRemaining=remaining_trades,
+                                                       all_positions_values=all_positions_value,
+                                                       openPositions=open_positions,
+                                                       openOrders=open_orders,
+                                                       dailyPnl=dailyPnl)
+
+            self.update_console(result)
+
         if fromTime < currentTime < toTime:
             print("Worker skept-Technical break : ", fromTime.toString("hh:mm"), " to ", toTime.toString("hh:mm"))
             self.update_console("Technical break untill " + toTime.toString("hh:mm"))
@@ -326,6 +352,7 @@ Executed the Worker in separate thread
         self.update_ui()
         if self.settings.AUTOSTART:
             self.chbxProcess.setChecked(True)
+
 
     def update_ui(self):
         """
@@ -365,6 +392,8 @@ Updates UI after connection/worker execution
         self.btnSettings.setEnabled(True)
 
         self.update_session_state()
+
+
 
         if not self.uiTimer.isActive():
             self.update_console("UI resumed.")
@@ -445,8 +474,8 @@ Updates Candidates table
                 else:
                     self.tCandidates.setItem(line, 5, QTableWidgetItem(str(v['target_price'])))
                 self.tCandidates.setItem(line, 6, QTableWidgetItem(str(round(v['averagePriceDropP'], 2))))
-                if v['tipranksRank'] =='':
-                    v['tipranksRank'] =0
+                if v['tipranksRank'] == '':
+                    v['tipranksRank'] = 0
                 self.tCandidates.setItem(line, 7, QTableWidgetItem(str(v['tipranksRank'])))
                 if int(v['tipranksRank']) > 7:
                     self.tCandidates.item(line, 7).setBackground(QtGui.QColor(0, 255, 0))
@@ -474,10 +503,10 @@ Updates Positions grid
                 values = open_positions[key]
                 if 'stocks' in values.keys():
                     if values['stocks'] != 0:
-                        candidate=next((x for x in self.settings.CANDIDATES if x.ticker == key), None)
-                        reason_of_candidate="Bought manually"
+                        candidate = next((x for x in self.settings.CANDIDATES if x.ticker == key), None)
+                        reason_of_candidate = "Bought manually"
                         if candidate is not None:
-                            reason_of_candidate=candidate.reason
+                            reason_of_candidate = candidate.reason
                         widget.update_view(key, values, reason_of_candidate)
                         widget.show()
                         lastUpdatedWidget = i
@@ -593,7 +622,7 @@ class PositionPanel(QWidget):
         self.graphWidget = pg.PlotWidget(axisItems={'bottom': date_axis})
         self.ui.gg.addWidget(self.graphWidget)
 
-    def update_view(self, stock, values,description):
+    def update_view(self, stock, values, description):
         # Data preparation
         try:
             stock = stock
@@ -724,7 +753,6 @@ class SettingsWindow(QDialog, Ui_setWin):
         self.existingSettings.USESERVER = self.chbxUseServer.isChecked()
         self.existingSettings.SERVERURL = self.txtServerUrl.text()
 
-
         self.changedSettings = True
         print("Setting was changed.")
 
@@ -781,8 +809,6 @@ class SettingsWindow(QDialog, Ui_setWin):
 
         self.btnGet.clicked.connect(self.update_stocks_from_cloud)
         self.btnClear.clicked.connect(self.clear_candidates)
-
-
 
         self.accepted.connect(self.check_changed)
 
