@@ -161,14 +161,16 @@ Starts tracking the Candidates and adds the statistics
             trackedStockN += 1
 
         have_empty = True
+        counter=0
         while have_empty:
             time.sleep(1)
-            notification_callback.emit("Waiting for last requested candidate Close price ")
+            notification_callback.emit("Waiting for last requested candidate Close price :"+str(counter))
             closings = [str(x['Close']) for x in self.app.candidatesLive.values()]
             if '-' in closings:
                 have_empty = True
             else:
                 have_empty = False
+            counter+=1
 
         # get last saves for candidates for reuse
         self.saved_candidates_data = get_last_saved_stats_for_candidates()
@@ -428,13 +430,18 @@ updating all openPositions, refreshed on each worker- to include changes from ne
 
         # validate all values received
         have_empty = True
+        counter=0
         while have_empty:
             time.sleep(1)
             have_empty = False
-            notification_callback.emit("Waiting to receive Value for all positions ")
+            notification_callback.emit("Waiting to receive Value for all positions "+str(counter))
             for c, v in self.app.openPositions.items():
                 if 'Value' not in v.keys():
                     have_empty = True
+                    print("The Value for "+c+" is still empty")
+                else:
+                    print("The Value for " + c + " is :"+str(v["Value"]))
+            counter+=1
 
         for s, p in self.app.openPositions.items():  # requesting history
             id = self.app.nextorderId

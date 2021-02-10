@@ -15,7 +15,8 @@ from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QWidg
     QDialog
 from pytz import timezone
 
-from AlgotraderServerConnection import report_positions_status_to_server, report_login_to_server
+from AlgotraderServerConnection import report_snapshot_to_server, report_login_to_server, \
+    report_market_data_to_server
 from Logic.IBKRWorker import IBKRWorker
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
@@ -221,7 +222,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.settings = settings
         self.ibkrworker = IBKRWorker(self.settings)
         self.threadpool = QThreadPool()
-        self.setWindowTitle("Algo Traider v 1.0")
+        self.setWindowTitle("Algo Traider v 2.0")
 
         sys.stderr = open('LOG/errorLog.txt', 'w')
 
@@ -321,7 +322,7 @@ Executed the Worker in separate thread
             open_orders = self.ibkrworker.app.openOrders
             dailyPnl = self.ibkrworker.app.dailyPnl
 
-            result = report_positions_status_to_server(self.settings,
+            result = report_snapshot_to_server(self.settings,
                                                        netLiquidation=net_liquidation,
                                                        smaWithSafety=remaining_sma_with_safety,
                                                        tradesRemaining=remaining_trades,
@@ -352,6 +353,12 @@ Executed the Worker in separate thread
         self.update_ui()
         if self.settings.AUTOSTART:
             self.chbxProcess.setChecked(True)
+
+        #report market data to server
+        if self.settings.USESERVER:
+            print("Reporting connection to the server...")
+            result = report_market_data_to_server(self.settings,self.ibkrworker.app.candidatesLive)
+            self.update_console(result)
 
 
     def update_ui(self):
