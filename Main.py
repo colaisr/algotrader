@@ -387,7 +387,8 @@ Updates UI after connection/worker execution
 
         total_positions_value = 0
         for p in self.ibkrworker.app.openPositions.values():
-            total_positions_value += p["Value"]
+            if hasattr(p, 'Value'):
+                total_positions_value += p["Value"]
         self.lPositionsTotalValue.setText(str(round(total_positions_value, 1)))
 
         self.update_open_positions()

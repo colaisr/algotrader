@@ -10,6 +10,9 @@ def json_serial(obj):
         return obj.isoformat()
     raise TypeError ("Type %s not serializable" % type(obj))
 
+def report_market_action():
+    i=3
+
 def report_login_to_server(settings):
     r = requests.post(settings.SERVERURL + '/connections/logconnection',
                       json={"user": settings.SERVERUSER})

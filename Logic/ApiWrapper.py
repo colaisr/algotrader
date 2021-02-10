@@ -74,8 +74,11 @@ class IBapi(EWrapper, EClient):
                     whyHeld, mktCapPrice):
         super().orderStatus(orderId, status, filled, remaining, avgFullPrice, permId, parentId, lastFillPrice, clientId,
                             whyHeld, mktCapPrice)
-        print('orderStatus - orderid:', orderId, 'status:', status, 'filled', filled, 'remaining', remaining,
-              'lastFillPrice', lastFillPrice)
+        sentence='!!!orderStatus - orderid:'+str(orderId)+'status:'+ status+ 'filled'+ str(filled) +'remaining'+ str(remaining)+'lastFillPrice'+ str(lastFillPrice)
+        self.log_decision("testingOrderStatus", sentence)
+        self.log_decision("testingMix", sentence)
+        # print('!!!orderStatus - orderid:', orderId, 'status:', status, 'filled', filled, 'remaining', remaining,
+        #       'lastFillPrice', lastFillPrice)
 
     def openOrder(self, orderId, contract, order, orderState):
         super().openOrder(orderId, contract, order, orderState)
@@ -90,13 +93,16 @@ class IBapi(EWrapper, EClient):
 
     def execDetails(self, reqId, contract, execution):
         super().execDetails(reqId, contract, execution)
-        print('execDetails Order Executed: ', reqId, contract.symbol, contract.secType, contract.currency,
-              execution.execId,
-              execution.orderId, execution.shares, execution.lastLiquidity)
+        sentence='???execDetails Order Executed: '+ str(reqId)+contract.symbol+ contract.secType+contract.currency+str(execution.execId)+str(execution.orderId)+str(execution.shares)+ str(execution.lastLiquidity)
+        self.log_decision("testingExecDetails",sentence)
+        self.log_decision("testingMix", sentence)
+        # print('???execDetails Order Executed: ', reqId, contract.symbol, contract.secType, contract.currency,
+        #       execution.execId,
+        #       execution.orderId, execution.shares, execution.lastLiquidity)
 
     def tickPrice(self, reqId, tickType, price, attrib):
         super().tickPrice(reqId, tickType, price, attrib)
-        print("Tick received")
+        # print("Tick received")
         if tickType == 1:
             self.candidatesLive[reqId]["Bid"] = price
         elif tickType == 2:
@@ -162,6 +168,12 @@ class IBapi(EWrapper, EClient):
 
     def contractDetailsEnd(self, reqId: int):
         super().contractDetailsEnd(reqId)
+
+    def log_decision(self, logFile, order):
+        with open(logFile, "a") as f:
+            currentDt = datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
+            order = currentDt + '---' + order
+            f.write(order)
 
 
 
