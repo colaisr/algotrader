@@ -263,23 +263,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         }
         '''
         self.setStyleSheet(StyleSheet)
-        if self.settings.USESERVER:
-            print("Reporting connection to the server...")
-            result = report_login_to_server(self.settings)
-            self.update_console(result)
-
-    def report_login_to_server(self):
-        r = requests.post(self.settings.SERVERURL + '/connections/logconnection',
-                          json={"user": self.settings.SERVERUSER})
-        status_code = r.status_code
-        if status_code == 200:
-            self.update_console(r.text)
 
     def connect_to_ibkr(self):
         """
 Starts the connection to the IBKR terminal in separate thread
         """
-
+        if self.settings.USESERVER:
+            self.update_console("Reporting connection to the server...")
+            print("Reporting connection to the server...")
+            result = report_login_to_server(self.settings)
+            self.update_console(result)
         connector = Worker(self.ibkrworker.connect_and_prepare)  # Any other args, kwargs are passed to the run function
         connector.signals.result.connect(self.connection_done)
         connector.signals.status.connect(self.update_status)
