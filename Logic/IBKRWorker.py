@@ -3,6 +3,7 @@ import threading
 from collections import defaultdict
 from datetime import datetime, timedelta
 
+from AlgotraderServerConnection import get_market_data_from_server
 from Logic.ApiWrapper import IBapi, createContract, createTrailingStopOrder, create_limit_buy_order, createMktSellOrder
 from pytz import timezone
 
@@ -15,15 +16,17 @@ class IBKRWorker():
     def __init__(self, settings):
         self.app = IBapi()
         self.settings = settings
+        self.app.setting=self.settings
 
-    def connect_and_prepare(self, status_callback, notification_callback):
+    def prepare_and_connect(self, status_callback, notification_callback):
         """
 Connecting to IBKR API and initiating the connection instance
         :return:
         """
         status_callback.emit("Connecting")
         try:
-            notification_callback.emit("Begin connect and prepare")
+            notification_callback.emit("Begin prepare and connect")
+            self.prepare_candidates_stats(notification_callback)
             self.connect_to_tws(notification_callback)
             self.request_current_PnL(notification_callback)
             self.start_tracking_excess_liquidity(notification_callback)
@@ -358,7 +361,6 @@ processes candidates for buying if enough SMA
         """
 Process Open positions and Candidates
         """
-
         try:
             est = timezone('US/Eastern')
             fmt = '%Y-%m-%d %H:%M:%S'
@@ -534,3 +536,10 @@ Creating a PnL request the result will be stored in generalStarus
         cd = self.app.contractDetailsList[id]
         i=5
         return cd
+
+    def prepare_candidates_stats(self, notification_callback):
+        stock_names = [o.ticker for o in self.settings.CANDIDATES]
+        # notification_callback.emit("Getting data from server for: " + ','.join(stock_names) )
+        # stocks_fromserver=get_market_data_from_server(self.settings,stock_names)
+        #
+        # self.candidates_data_from_server = get_last_saved_stats_for_candidates()

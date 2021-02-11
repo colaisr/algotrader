@@ -1,5 +1,6 @@
 import datetime
 
+from AlgotraderServerConnection import report_market_action
 from ibapi.common import MarketDataTypeEnum, HistogramDataList, BarData
 from twsapi.ibapi.contract import Contract, ContractDetails
 from twsapi.ibapi.order import Order
@@ -26,6 +27,7 @@ class IBapi(EWrapper, EClient):
         self.tradesRemaining=0
         self.netLiquidation=0
         self.contract_processing=False
+        self.setting=None
 
 
     # def error(self, reqId: int, errorCode: int, errorString: str):
@@ -74,9 +76,9 @@ class IBapi(EWrapper, EClient):
                     whyHeld, mktCapPrice):
         super().orderStatus(orderId, status, filled, remaining, avgFullPrice, permId, parentId, lastFillPrice, clientId,
                             whyHeld, mktCapPrice)
-        sentence='!!!orderStatus - orderid:'+str(orderId)+'status:'+ status+ 'filled'+ str(filled) +'remaining'+ str(remaining)+'lastFillPrice'+ str(lastFillPrice)
-        self.log_decision("testingOrderStatus", sentence)
-        self.log_decision("testingMix", sentence)
+        # sentence='!!!orderStatus - orderid:'+str(orderId)+'status:'+ status+ 'filled'+ str(filled) +'remaining'+ str(remaining)+'lastFillPrice'+ str(lastFillPrice)
+        # self.log_decision("testingOrderStatus", sentence)
+        # self.log_decision("testingMix", sentence)
         # print('!!!orderStatus - orderid:', orderId, 'status:', status, 'filled', filled, 'remaining', remaining,
         #       'lastFillPrice', lastFillPrice)
 
@@ -93,9 +95,16 @@ class IBapi(EWrapper, EClient):
 
     def execDetails(self, reqId, contract, execution):
         super().execDetails(reqId, contract, execution)
-        sentence='???execDetails Order Executed: '+ str(reqId)+contract.symbol+ contract.secType+contract.currency+str(execution.execId)+str(execution.orderId)+str(execution.shares)+ str(execution.lastLiquidity)
-        self.log_decision("testingExecDetails",sentence)
-        self.log_decision("testingMix", sentence)
+        #important
+        symbol=contract.symbol
+        shares=execution.shares
+        price=execution.price
+        time=execution.time
+        side=execution.side       #sell SLD   buy BOT
+        self.report_execution_to_Server(symbol,shares,price,side,time)
+        # sentence='???execDetails Order Executed: '+ " request id: "+str(reqId)+" contract.symbol:"+contract.symbol+ " contract.sectype:"+contract.secType+" contract currency:"+contract.currency+" execution.execId:"+str(execution.execId)+"execution.orderId:"+str(execution.orderId)+"execution shares:"+str(execution.shares)+ "execution.lastliquidity:"+str(execution.lastLiquidity)
+        # self.log_decision("testingExecDetails",sentence)
+        # self.log_decision("testingMix", sentence)
         # print('???execDetails Order Executed: ', reqId, contract.symbol, contract.secType, contract.currency,
         #       execution.execId,
         #       execution.orderId, execution.shares, execution.lastLiquidity)
@@ -171,13 +180,12 @@ class IBapi(EWrapper, EClient):
 
     def log_decision(self, logFile, order):
         with open(logFile, "a") as f:
-            currentDt = datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
-            order = currentDt + '---' + order
+            currentDt = datetime.datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
+            order = currentDt + '---' + order+"\n"
             f.write(order)
 
-
-
-
+    def report_execution_to_Server(self, symbol, shares, price, side, time):
+        report_market_action(self.setting,symbol, shares, price, side, time)
 
 
 def createContract(symbol: str):
