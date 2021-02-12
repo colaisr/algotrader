@@ -1,6 +1,7 @@
 import json
 from datetime import date, datetime
 
+
 import requests
 
 
@@ -35,6 +36,14 @@ def get_market_data_from_server(settings, candidates):
                            "tickers": c})
 
     status_code = r.status_code
+    if status_code == 200:
+        t=r.text
+        decoded_list=json.loads(t)
+        result=[]
+        [result.append(json.loads(v)) for v in decoded_list.values()]
+        for it in result:
+            it['updated']=datetime.fromisoformat(it['updated'])
+        return result
 
 
 def report_login_to_server(settings):

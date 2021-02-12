@@ -17,6 +17,7 @@ class IBKRWorker():
         self.app = IBapi()
         self.settings = settings
         self.app.setting=self.settings
+        self.stocks_data_from_server=[]
 
     def prepare_and_connect(self, status_callback, notification_callback):
         """
@@ -26,12 +27,13 @@ Connecting to IBKR API and initiating the connection instance
         status_callback.emit("Connecting")
         try:
             notification_callback.emit("Begin prepare and connect")
-            self.prepare_candidates_stats(notification_callback)
+            self.get_market_data_from_server(notification_callback)
             self.connect_to_tws(notification_callback)
             self.request_current_PnL(notification_callback)
             self.start_tracking_excess_liquidity(notification_callback)
             # start tracking open positions
             self.update_open_positions(notification_callback)
+
             # request open orders
             self.update_open_orders(notification_callback)
             # start tracking candidates
@@ -93,8 +95,33 @@ Creates the connection - starts listner for events
                 time.sleep(1)
                 retries=retries+1
 
-
     def add_yahoo_stats_to_live_candidates(self, notification_callback=None):
+        """
+gets a Yahoo statistics to all tracked candidates and adds it to them
+        """
+        for k, v in self.app.candidatesLive.items():
+            notification_callback.emit("Getting Yahoo market data for " + v['Stock'])
+            found = False
+            for dt in self.stocks_data_from_server:
+                if dt['ticker'] == v['Stock']:
+                    date = dt['updated']
+                    if date.date() == v['LastUpdate'].date():
+                        self.app.candidatesLive[k]["averagePriceDropP"] = dt['yahoo_avdropP']
+                        self.app.candidatesLive[k]["averagePriceSpreadP"] = dt['yahoo_avspreadP']
+                        found = True
+                        notification_callback.emit(
+                            "Yahoo market data for " + v['Stock'] + " was reused from server : " + str(
+                                dt['yahoo_avdropP']) + " % drop")
+                        break
+            if not found:
+                drop, change = get_yahoo_stats_for_candidate(v['Stock'], notification_callback)
+                self.app.candidatesLive[k]["averagePriceDropP"] = drop
+                self.app.candidatesLive[k]["averagePriceSpreadP"] = change
+                notification_callback.emit(
+                    "Yahoo market data for " + v['Stock'] + "received shows average " + str(drop) + " % drop")
+        i=3
+
+    def add_yahoo_stats_to_live_candidatesOld(self, notification_callback=None):
         """
 gets a Yahoo statistics to all tracked candidates and adds it to them
         """
@@ -125,13 +152,14 @@ getting and updating tiprank rank for live candidates
         """
         stock_names = [o.ticker for o in self.settings.CANDIDATES]
         notification_callback.emit("Getting ranks for :" + ','.join(stock_names))
-        ranks = get_tiprank_ratings_to_Stocks(self.settings.CANDIDATES, self.settings.PATHTOWEBDRIVER,self.saved_candidates_data,
+        ranks = get_tiprank_ratings_to_Stocks(self.settings.CANDIDATES, self.settings.PATHTOWEBDRIVER,self.stocks_data_from_server,
                                               notification_callback)
         # ranks = get_tiprank_ratings_to_Stocks(self.settings.TRANDINGSTOCKS)
 
         for k, v in self.app.candidatesLive.items():
             v["tipranksRank"] = ranks[v["Stock"]]
             # notification_callback.emit("Updated " + str(v["tipranksRank"]) + " rank for " + v["Stock"])
+
 
     def evaluate_and_track_candidates(self, notification_callback=None):
         """
@@ -176,7 +204,7 @@ Starts tracking the Candidates and adds the statistics
             counter+=1
 
         # get last saves for candidates for reuse
-        self.saved_candidates_data = get_last_saved_stats_for_candidates()
+        # self.saved_candidates_data = get_last_saved_stats_for_candidates()
 
         # updateYahooStatistics
         self.add_yahoo_stats_to_live_candidates(notification_callback)
@@ -537,9 +565,12 @@ Creating a PnL request the result will be stored in generalStarus
         i=5
         return cd
 
-    def prepare_candidates_stats(self, notification_callback):
+    def get_market_data_from_server(self, notification_callback):
         stock_names = [o.ticker for o in self.settings.CANDIDATES]
-        # notification_callback.emit("Getting data from server for: " + ','.join(stock_names) )
-        # stocks_fromserver=get_market_data_from_server(self.settings,stock_names)
+        notification_callback.emit("Getting data from server for: " + ','.join(stock_names) )
+        self.stocks_data_from_server=get_market_data_from_server(self.settings,stock_names)
+        notification_callback.emit("Data for "+str(len(self.stocks_data_from_server))+" items received from Server" )
+
+        i=2
         #
         # self.candidates_data_from_server = get_last_saved_stats_for_candidates()
