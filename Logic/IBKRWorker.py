@@ -3,6 +3,7 @@ import threading
 from collections import defaultdict
 from datetime import datetime, timedelta
 
+from AlgotraderServerConnection import get_market_data_from_server
 from Logic.ApiWrapper import IBapi, createContract, createTrailingStopOrder, create_limit_buy_order, createMktSellOrder
 from pytz import timezone
 
@@ -15,20 +16,24 @@ class IBKRWorker():
     def __init__(self, settings):
         self.app = IBapi()
         self.settings = settings
+        self.app.setting=self.settings
+        self.stocks_data_from_server=[]
 
-    def connect_and_prepare(self, status_callback, notification_callback):
+    def prepare_and_connect(self, status_callback, notification_callback):
         """
 Connecting to IBKR API and initiating the connection instance
         :return:
         """
         status_callback.emit("Connecting")
         try:
-            notification_callback.emit("Begin connect and prepare")
+            notification_callback.emit("Begin prepare and connect")
+            self.get_market_data_from_server(notification_callback)
             self.connect_to_tws(notification_callback)
             self.request_current_PnL(notification_callback)
             self.start_tracking_excess_liquidity(notification_callback)
             # start tracking open positions
             self.update_open_positions(notification_callback)
+
             # request open orders
             self.update_open_orders(notification_callback)
             # start tracking candidates
@@ -46,6 +51,33 @@ Connecting to IBKR API and initiating the connection instance
         """
 Creates the connection - starts listner for events
         """
+
+        self.app.nextorderId = None
+        while not isinstance(self.app.nextorderId, int):
+            retries=0
+            notification_callback.emit("Restarting connection to IBKR")
+            self.app.connect('127.0.0.1', int(self.settings.PORT), 123)
+
+            # Start the socket in a thread
+            api_thread = threading.Thread(target=self.run_loop, name='ibkrConnection', daemon=True)
+            api_thread.start()
+            # Check if the API is connected via orderid
+
+            while True:
+                if isinstance(self.app.nextorderId, int):
+                    notification_callback.emit('Successfully connected to API')
+                    break
+                else:
+                    notification_callback.emit('Waiting for connection...attempt:' + str(retries))
+                    time.sleep(1)
+                    retries = retries + 1
+                    if retries>10:
+                        break
+
+    def connect_to_tws_backup(self, notification_callback):
+        """
+Creates the connection - starts listner for events
+        """
         notification_callback.emit("Starting connection to IBKR")
         self.app.connect('127.0.0.1', int(self.settings.PORT), 123)
         self.app.nextorderId = None
@@ -53,18 +85,43 @@ Creates the connection - starts listner for events
         api_thread = threading.Thread(target=self.run_loop, name='ibkrConnection', daemon=True)
         api_thread.start()
         # Check if the API is connected via orderid
+        retries=0
         while True:
             if isinstance(self.app.nextorderId, int):
                 notification_callback.emit('Successfully connected to API')
                 break
             else:
-                notification_callback.emit('Waiting for connection...')
+                notification_callback.emit('Waiting for connection...attempt:'+str(retries))
                 time.sleep(1)
-        # General Account info:
-        # self.request_current_PnL()
-        # start tracking liquidity
+                retries=retries+1
 
     def add_yahoo_stats_to_live_candidates(self, notification_callback=None):
+        """
+gets a Yahoo statistics to all tracked candidates and adds it to them
+        """
+        for k, v in self.app.candidatesLive.items():
+            notification_callback.emit("Getting Yahoo market data for " + v['Stock'])
+            found = False
+            for dt in self.stocks_data_from_server:
+                if dt['ticker'] == v['Stock']:
+                    date = dt['updated']
+                    if date.date() == v['LastUpdate'].date():
+                        self.app.candidatesLive[k]["averagePriceDropP"] = dt['yahoo_avdropP']
+                        self.app.candidatesLive[k]["averagePriceSpreadP"] = dt['yahoo_avspreadP']
+                        found = True
+                        notification_callback.emit(
+                            "Yahoo market data for " + v['Stock'] + " was reused from server : " + str(
+                                dt['yahoo_avdropP']) + " % drop")
+                        break
+            if not found:
+                drop, change = get_yahoo_stats_for_candidate(v['Stock'], notification_callback)
+                self.app.candidatesLive[k]["averagePriceDropP"] = drop
+                self.app.candidatesLive[k]["averagePriceSpreadP"] = change
+                notification_callback.emit(
+                    "Yahoo market data for " + v['Stock'] + "received shows average " + str(drop) + " % drop")
+        i=3
+
+    def add_yahoo_stats_to_live_candidatesOld(self, notification_callback=None):
         """
 gets a Yahoo statistics to all tracked candidates and adds it to them
         """
@@ -95,13 +152,14 @@ getting and updating tiprank rank for live candidates
         """
         stock_names = [o.ticker for o in self.settings.CANDIDATES]
         notification_callback.emit("Getting ranks for :" + ','.join(stock_names))
-        ranks = get_tiprank_ratings_to_Stocks(self.settings.CANDIDATES, self.settings.PATHTOWEBDRIVER,self.saved_candidates_data,
+        ranks = get_tiprank_ratings_to_Stocks(self.settings.CANDIDATES, self.settings.PATHTOWEBDRIVER,self.stocks_data_from_server,
                                               notification_callback)
         # ranks = get_tiprank_ratings_to_Stocks(self.settings.TRANDINGSTOCKS)
 
         for k, v in self.app.candidatesLive.items():
             v["tipranksRank"] = ranks[v["Stock"]]
             # notification_callback.emit("Updated " + str(v["tipranksRank"]) + " rank for " + v["Stock"])
+
 
     def evaluate_and_track_candidates(self, notification_callback=None):
         """
@@ -134,17 +192,19 @@ Starts tracking the Candidates and adds the statistics
             trackedStockN += 1
 
         have_empty = True
+        counter=0
         while have_empty:
             time.sleep(1)
-            notification_callback.emit("Waiting for last requested candidate Close price ")
+            notification_callback.emit("Waiting for last requested candidate Close price :"+str(counter))
             closings = [str(x['Close']) for x in self.app.candidatesLive.values()]
             if '-' in closings:
                 have_empty = True
             else:
                 have_empty = False
+            counter+=1
 
         # get last saves for candidates for reuse
-        self.saved_candidates_data = get_last_saved_stats_for_candidates()
+        # self.saved_candidates_data = get_last_saved_stats_for_candidates()
 
         # updateYahooStatistics
         self.add_yahoo_stats_to_live_candidates(notification_callback)
@@ -173,6 +233,8 @@ Processes the positions to identify Profit/Loss
                         orders = self.app.openOrders
                         if s in orders:
                             notification_callback.emit("Order for " + s + "already exist- skipping")
+                        elif int(p["stocks"])<0:
+                            notification_callback.emit("The "+s+" is SHORT position number of stocks is negative: "+p["stocks"])
                         else:
                             notification_callback.emit("Profit for: " + s + " is " + str(profit) +
                                                        "Creating a trailing Stop Order to take a Profit")
@@ -327,7 +389,6 @@ processes candidates for buying if enough SMA
         """
 Process Open positions and Candidates
         """
-
         try:
             est = timezone('US/Eastern')
             fmt = '%Y-%m-%d %H:%M:%S'
@@ -399,13 +460,18 @@ updating all openPositions, refreshed on each worker- to include changes from ne
 
         # validate all values received
         have_empty = True
+        counter=0
         while have_empty:
             time.sleep(1)
             have_empty = False
-            notification_callback.emit("Waiting to receive Value for all positions ")
+            notification_callback.emit("Waiting to receive Value for all positions "+str(counter))
             for c, v in self.app.openPositions.items():
                 if 'Value' not in v.keys():
                     have_empty = True
+                    print("The Value for "+c+" is still empty")
+                else:
+                    print("The Value for " + c + " is :"+str(v["Value"]))
+            counter+=1
 
         for s, p in self.app.openPositions.items():  # requesting history
             id = self.app.nextorderId
@@ -484,3 +550,27 @@ Creating a PnL request the result will be stored in generalStarus
                 requiredcushionForPosition += profit
                 requiredCushion += requiredcushionForPosition
         return requiredCushion
+
+    def request_ticker_data(self, ticker: str):
+        #todo implement ticker data functionality
+
+        contract = createContract(ticker)
+        id = self.app.nextorderId
+        self.app.contract_processing = True
+        self.app.reqContractDetails(self.app.nextorderId, contract)
+        self.app.nextorderId = self.app.nextorderId + 1
+        while self.app.contract_processing:
+            time.sleep(0.1)
+        cd = self.app.contractDetailsList[id]
+        i=5
+        return cd
+
+    def get_market_data_from_server(self, notification_callback):
+        stock_names = [o.ticker for o in self.settings.CANDIDATES]
+        notification_callback.emit("Getting data from server for: " + ','.join(stock_names) )
+        self.stocks_data_from_server=get_market_data_from_server(self.settings,stock_names)
+        notification_callback.emit("Data for "+str(len(self.stocks_data_from_server))+" items received from Server" )
+
+        i=2
+        #
+        # self.candidates_data_from_server = get_last_saved_stats_for_candidates()

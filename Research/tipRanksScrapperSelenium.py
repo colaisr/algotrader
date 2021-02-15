@@ -8,6 +8,11 @@ from selenium.webdriver.support import expected_conditions as EC
 
 TRANDINGSTOCKS = ["AAPL", "FB", "ZG", "MSFT", "NVDA", "TSLA", "BEP", "GOOGL"]
 
+def open_tip_ranks_page(ticker,path):
+    driver = webdriver.Chrome(path)
+    url = "https://www.tipranks.com/stocks/" + ticker + "/stock-analysis"
+    driver.get(url)
+
 
 def get_tiprank_ratings_to_Stocks(stocks, path, existing_data, notification_callback=None):
     """
@@ -29,14 +34,12 @@ def get_tiprank_ratings_to_Stocks(stocks, path, existing_data, notification_call
     for s in stocks:
         notification_callback.emit("Getting TipRank Rating for : " + s.ticker)
         found = False
-        for m, n in existing_data.items():
-            date = n['LastUpdate']
-            date_tm_dt = datetime.datetime.strptime(date, '%Y-%m-%d')
-            date_dt = date_tm_dt.date()
+        for dm in existing_data:
+            date = dm['updated'].date()
             today_dt = datetime.date.today()
-            if n['Stock'] == s.ticker and date_dt == today_dt:
-                stocksRanks[s.ticker] = n['tipranksRank']
-                notification_callback.emit("Existing  rating from today found: " + stocksRanks[s.ticker])
+            if dm['ticker'] == s.ticker and date == today_dt and dm['tipranks'] != 0:
+                stocksRanks[s.ticker] = dm['tipranks']
+                notification_callback.emit("Existing  rating from today found: " + str(stocksRanks[s.ticker]))
                 found = True
                 break
         if not found:
@@ -46,13 +49,14 @@ def get_tiprank_ratings_to_Stocks(stocks, path, existing_data, notification_call
             xp = '//*[@id="app"]/div/div/main/div/div/article/div[2]/div/main/div[1]/div[2]/section[1]/div[1]/div[1]/div/svg/text/tspan'
             try:
                 # element=driver.find_element_by_tag_name('svg')
-                element = WebDriverWait(driver, 10).until(
+                element = WebDriverWait(driver, 15).until(
                     EC.visibility_of_element_located((By.TAG_NAME, 'svg'))
                 )
                 rating = element.text
-                stocksRanks[s.ticker] = rating
+                stocksRanks[s.ticker] = int(rating)
                 notification_callback.emit("Rating found on TipRanks : " + rating)
             except Exception as e:
+                stocksRanks[s.ticker] = 0
                 notification_callback.emit("Could not find  TipRank Rating for : " + s.ticker)
                 continue
 

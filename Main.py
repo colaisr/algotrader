@@ -15,14 +15,17 @@ from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QWidg
     QDialog
 from pytz import timezone
 
+from AlgotraderServerConnection import report_snapshot_to_server, report_login_to_server, \
+    report_market_data_to_server
 from Logic.IBKRWorker import IBKRWorker
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
 # from Research.tipRanksScrapperRequestsHtmlThreaded import get_tiprank_ratings_to_Stocks
 # UI Imports
+from Research.tipRanksScrapperSelenium import open_tip_ranks_page
 from UI.MainWindow import Ui_MainWindow
 from UI.NewStockWindow import Ui_newStockDlg
-from UI.SettingsWindow import Ui_fmSettings
+from UI.SettingsWindow import Ui_setWin
 from UI.pos import Ui_position_canvas
 
 LOGFILE = "LOG/log.txt"
@@ -69,7 +72,6 @@ class WorkerSignals(QObject):
     progress = Signal(int)  # to use for progress if needed
 
 
-# noinspection PyUnresolvedReferences
 class Worker(QRunnable):
     """
     Worker thread
@@ -156,7 +158,26 @@ class TraderSettings():
         self.TECHTOHOUR = self.config['Connection']['techtoHour']
         self.TECHTOMIN = self.config['Connection']['techtoMin']
 
-        self.UIDEBUG=self.config['Soft']['uidebug']
+        ui_debug = self.config['Soft']['uidebug']
+        if ui_debug == 'False':
+            self.UIDEBUG = False
+        else:
+            self.UIDEBUG = True
+
+        autostart = self.config['Soft']['autostart']
+        if autostart == 'False':
+            self.AUTOSTART = False
+        else:
+            self.AUTOSTART = True
+
+        useserver = self.config['Server']['useserver']
+        if useserver == 'False':
+            self.USESERVER = False
+        else:
+            self.USESERVER = True
+
+        self.SERVERURL = self.config['Server']['serverurl']
+        self.SERVERUSER = self.config['Server']['serveruser']
 
     def write_config(self):
         self.config['Connection']['port'] = self.PORT
@@ -181,6 +202,11 @@ class TraderSettings():
         self.config['Connection']['techfromMin'] = str(self.TECHFROMMIN)
         self.config['Connection']['techtoHour'] = str(self.TECHTOHOUR)
         self.config['Connection']['techtoMin'] = str(self.TECHTOMIN)
+        self.config['Soft']['uidebug'] = str(self.UIDEBUG)
+        self.config['Soft']['autostart'] = str(self.AUTOSTART)
+        self.config['Server']['useserver'] = str(self.USESERVER)
+        self.config['Server']['serverurl'] = str(self.SERVERURL)
+        self.config['Server']['serveruser'] = str(self.SERVERUSER)
 
         with open('config.ini', 'w') as configfile:
             self.config.write(configfile)
@@ -191,11 +217,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # mandatory
         QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
+        self.settingsWindow = SettingsWindow()
         self.setupUi(self)
         self.settings = settings
         self.ibkrworker = IBKRWorker(self.settings)
         self.threadpool = QThreadPool()
-        self.setWindowTitle("Algo Traider v 1.0")
+        self.setWindowTitle("Algo Traider v 2.0")
 
         sys.stderr = open('LOG/errorLog.txt', 'w')
 
@@ -220,12 +247,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.statusbar.showMessage("Ready")
         self.update_session_state()
 
-        self.connect_to_ibkr()
+        # self.connect_to_ibkr()
 
-        # if not bool(self.settings.UIDEBUG):
-        #     self.connect_to_ibkr()
-        # else:
-        #     self.btnSettings.setEnabled(True)
+        if not self.settings.UIDEBUG:
+            self.connect_to_ibkr()
+        else:
+            self.btnSettings.setEnabled(True)
+
         StyleSheet = '''
         #lcdPNLgreen {
             border: 3px solid green;
@@ -236,14 +264,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         '''
         self.setStyleSheet(StyleSheet)
 
-    # noinspection PyUnresolvedReferences
     def connect_to_ibkr(self):
         """
 Starts the connection to the IBKR terminal in separate thread
         """
-
-        connector = Worker(self.ibkrworker.connect_and_prepare)  # Any other args, kwargs are passed to the run function
-        connector.signals.result.connect(self.update_ui)
+        if self.settings.USESERVER:
+            self.update_console("Reporting connection to the server...")
+            print("Reporting connection to the server...")
+            result = report_login_to_server(self.settings)
+            self.update_console(result)
+        connector = Worker(self.ibkrworker.prepare_and_connect)  # Any other args, kwargs are passed to the run function
+        connector.signals.result.connect(self.connection_done)
         connector.signals.status.connect(self.update_status)
         connector.signals.notification.connect(self.update_console)
         # Execute
@@ -268,7 +299,34 @@ Executed the Worker in separate thread
         fromTime = QTime(int(self.settings.TECHFROMHOUR), int(self.settings.TECHFROMMIN))
         toTime = QTime(int(self.settings.TECHTOHOUR), int(self.settings.TECHTOMIN))
         sessionState = self.lblMarket.text()
-        if currentTime > fromTime and currentTime < toTime:
+
+        if self.settings.USESERVER:
+            print("Reporting connection to the server...")
+
+            net_liquidation = self.ibkrworker.app.netLiquidation
+            if hasattr(self.ibkrworker.app, 'smaWithSafety'):
+                remaining_sma_with_safety=self.ibkrworker.app.smaWithSafety
+            else:
+                remaining_sma_with_safety=self.ibkrworker.app.sMa
+
+            remaining_trades = self.ibkrworker.app.tradesRemaining
+            all_positions_value = 0
+            open_positions = self.ibkrworker.app.openPositions
+            open_orders = self.ibkrworker.app.openOrders
+            dailyPnl = self.ibkrworker.app.dailyPnl
+
+            result = report_snapshot_to_server(self.settings,
+                                                       netLiquidation=net_liquidation,
+                                                       smaWithSafety=remaining_sma_with_safety,
+                                                       tradesRemaining=remaining_trades,
+                                                       all_positions_values=all_positions_value,
+                                                       openPositions=open_positions,
+                                                       openOrders=open_orders,
+                                                       dailyPnl=dailyPnl)
+
+            self.update_console(result)
+
+        if fromTime < currentTime < toTime:
             print("Worker skept-Technical break : ", fromTime.toString("hh:mm"), " to ", toTime.toString("hh:mm"))
             self.update_console("Technical break untill " + toTime.toString("hh:mm"))
 
@@ -283,6 +341,19 @@ Executed the Worker in separate thread
             # Execute
             self.threadpool.start(worker)
 
+    def connection_done(self):
+        # add processing
+        self.update_ui()
+        if self.settings.AUTOSTART:
+            self.chbxProcess.setChecked(True)
+
+        #report market data to server
+        if self.settings.USESERVER:
+            print("Reporting connection to the server...")
+            result = report_market_data_to_server(self.settings,self.ibkrworker.app.candidatesLive)
+            self.update_console(result)
+
+
     def update_ui(self):
         """
 Updates UI after connection/worker execution
@@ -292,9 +363,9 @@ Updates UI after connection/worker execution
         # self.lExcessLiquidity.setText(str(self.ibkrworker.app.excessLiquidity))
         # self.lSma.setText(str(self.ibkrworker.app.sMa))
         if hasattr(self.ibkrworker.app, 'smaWithSafety'):
-            self.lSma.setText(str(round(self.ibkrworker.app.smaWithSafety,1)))
+            self.lSma.setText(str(round(self.ibkrworker.app.smaWithSafety, 1)))
         else:
-            self.lSma.setText(str(round(self.ibkrworker.app.sMa,1)))
+            self.lSma.setText(str(round(self.ibkrworker.app.sMa, 1)))
         self.lMarketValue.setText(str(self.ibkrworker.app.netLiquidation))
         self.lblAvailTrades.setText(str(self.ibkrworker.app.tradesRemaining))
         self.lcdPNL.display(self.ibkrworker.app.dailyPnl)
@@ -309,7 +380,8 @@ Updates UI after connection/worker execution
 
         total_positions_value = 0
         for p in self.ibkrworker.app.openPositions.values():
-            total_positions_value += p["Value"]
+            if hasattr(p, 'Value'):
+                total_positions_value += p["Value"]
         self.lPositionsTotalValue.setText(str(round(total_positions_value, 1)))
 
         self.update_open_positions()
@@ -321,6 +393,8 @@ Updates UI after connection/worker execution
         self.btnSettings.setEnabled(True)
 
         self.update_session_state()
+
+
 
         if not self.uiTimer.isActive():
             self.update_console("UI resumed.")
@@ -401,6 +475,8 @@ Updates Candidates table
                 else:
                     self.tCandidates.setItem(line, 5, QTableWidgetItem(str(v['target_price'])))
                 self.tCandidates.setItem(line, 6, QTableWidgetItem(str(round(v['averagePriceDropP'], 2))))
+                if v['tipranksRank'] == '':
+                    v['tipranksRank'] = 0
                 self.tCandidates.setItem(line, 7, QTableWidgetItem(str(v['tipranksRank'])))
                 if int(v['tipranksRank']) > 7:
                     self.tCandidates.item(line, 7).setBackground(QtGui.QColor(0, 255, 0))
@@ -428,7 +504,11 @@ Updates Positions grid
                 values = open_positions[key]
                 if 'stocks' in values.keys():
                     if values['stocks'] != 0:
-                        widget.update_view(key, values)
+                        candidate = next((x for x in self.settings.CANDIDATES if x.ticker == key), None)
+                        reason_of_candidate = "Bought manually"
+                        if candidate is not None:
+                            reason_of_candidate = candidate.reason
+                        widget.update_view(key, values, reason_of_candidate)
                         widget.show()
                         lastUpdatedWidget = i
                     else:
@@ -491,10 +571,20 @@ After threaded task finished
 
     def show_settings(self):
 
-        self.settingsWindow = SettingsWindow(self.settings)
-        self.settingsWindow.show()  # Показываем окно
-        # maybe not needed
+        # self.settingsWindow = SettingsWindowO(self.settings)
+        # self.settingsWindow.show()  # Показываем окно
+        # # maybe not needed
+        # self.settingsWindow.changedSettings = False
+        self.settingsWindow.existingSettings = copy.deepcopy(self.settings)
         self.settingsWindow.changedSettings = False
+        self.settingsWindow.ibkrClient = self.ibkrworker
+        if self.settingsWindow.exec_():
+            self.settings = self.settingsWindow.existingSettings
+            self.settings.write_config()
+            self.restart_all()
+        else:
+            print("Settings window Canceled")
+        self.settingsWindow = SettingsWindow()
 
     def restart_all(self):
         """
@@ -522,13 +612,6 @@ Restarts everything after Save
 
 
 class PositionPanel(QWidget):
-    # def __init__(self, stock, values):
-    #     super(PositionPanel, self).__init__()
-    #     self.ui = Ui_position_canvas()
-    #     self.ui.setupUi(self)
-    #
-    #
-    #     self.update_view()
 
     def __init__(self):
         super(PositionPanel, self).__init__()
@@ -540,7 +623,7 @@ class PositionPanel(QWidget):
         self.graphWidget = pg.PlotWidget(axisItems={'bottom': date_axis})
         self.ui.gg.addWidget(self.graphWidget)
 
-    def update_view(self, stock, values):
+    def update_view(self, stock, values, description):
         # Data preparation
         try:
             stock = stock
@@ -587,6 +670,7 @@ class PositionPanel(QWidget):
 
             # UI set
             self.ui.lStock.setText(stock)
+            self.ui.lStock.setToolTip(description)
             self.ui.lVolume.setText(str(int(number_of_stocks)))
             self.ui.lBulckValue.setText(str(bulk_value))
             self.ui.lProfitP.setText(str(round(profit, 2)))
@@ -643,29 +727,32 @@ class PositionPanel(QWidget):
                 self.update_console("Error in updating position : " + str(e))
 
 
-class SettingsWindow(QMainWindow, Ui_fmSettings):
-    def __init__(self, inSettings):
+class SettingsWindow(QDialog, Ui_setWin):
+
+    def __init__(self):
         super().__init__()
         self.dlg = StockWindow()
         self.setupUi(self)
         # code
-        self.settings = inSettings
-        self.settingsBackup = copy.deepcopy(self.settings)
         self.changedSettings = False
 
     def setting_change(self):
-        self.settings.PROFIT = self.spProfit.value()
-        self.settings.TRAIL = self.spTrail.value()
-        self.settings.LOSS = self.spLoss.value()
-        self.settings.BULCKAMOUNT = self.spBulck.value()
-        self.settings.ACCOUNT = self.txtAccount.text()
-        self.settings.PORT = self.txtPort.text()
-        self.settings.INTERVALUI = self.spIntervalUi.value()
-        self.settings.INTERVALWORKER = self.spIntervalWorker.value()
-        self.settings.TECHFROMHOUR = self.tmTechFrom.time().hour()
-        self.settings.TECHFROMMIN = self.tmTechFrom.time().minute()
-        self.settings.TECHTOHOUR = self.tmTechTo.time().hour()
-        self.settings.TECHTOMIN = self.tmTechTo.time().minute()
+        self.existingSettings.PROFIT = self.spProfit.value()
+        self.existingSettings.TRAIL = self.spTrail.value()
+        self.existingSettings.LOSS = self.spLoss.value()
+        self.existingSettings.BULCKAMOUNT = self.spBulck.value()
+        self.existingSettings.ACCOUNT = self.txtAccount.text()
+        self.existingSettings.PORT = self.txtPort.text()
+        self.existingSettings.INTERVALUI = self.spIntervalUi.value()
+        self.existingSettings.INTERVALWORKER = self.spIntervalWorker.value()
+        self.existingSettings.TECHFROMHOUR = self.tmTechFrom.time().hour()
+        self.existingSettings.TECHFROMMIN = self.tmTechFrom.time().minute()
+        self.existingSettings.TECHTOHOUR = self.tmTechTo.time().hour()
+        self.existingSettings.TECHTOMIN = self.tmTechTo.time().minute()
+        self.existingSettings.UIDEBUG = self.chbxUiDebug.isChecked()
+        self.existingSettings.AUTOSTART = self.chbxAutostart.isChecked()
+        self.existingSettings.USESERVER = self.chbxUseServer.isChecked()
+        self.existingSettings.SERVERURL = self.txtServerUrl.text()
 
         self.changedSettings = True
         print("Setting was changed.")
@@ -674,47 +761,71 @@ class SettingsWindow(QMainWindow, Ui_fmSettings):
         self.btnRemoveC.setEnabled(False)
         self.redraw_candidates_list()
         self.lstCandidates.itemClicked.connect(self.candidate_selected)
+        self.lstCandidates.itemDoubleClicked.connect(self.candidate_double_clicked)
 
-        self.spProfit.setValue(int(self.settings.PROFIT))
+        self.spProfit.setValue(int(self.existingSettings.PROFIT))
         self.spProfit.valueChanged.connect(self.setting_change)
 
-        self.spTrail.setValue(int(self.settings.TRAIL))
+        self.spTrail.setValue(int(self.existingSettings.TRAIL))
         self.spTrail.valueChanged.connect(self.setting_change)
 
-        self.spLoss.setValue(int(self.settings.LOSS))
+        self.spLoss.setValue(int(self.existingSettings.LOSS))
         self.spLoss.valueChanged.connect(self.setting_change)
 
-        self.spBulck.setValue(int(self.settings.BULCKAMOUNT))
+        self.spBulck.setValue(int(self.existingSettings.BULCKAMOUNT))
         self.spBulck.valueChanged.connect(self.setting_change)
 
-        self.txtAccount.setText(self.settings.ACCOUNT)
+        self.txtAccount.setText(self.existingSettings.ACCOUNT)
         self.txtAccount.textChanged.connect(self.setting_change)
 
-        self.txtPort.setText(self.settings.PORT)
+        self.txtPort.setText(self.existingSettings.PORT)
         self.txtPort.textChanged.connect(self.setting_change)
 
-        self.spIntervalWorker.setValue(int(self.settings.INTERVALWORKER))
+        self.spIntervalWorker.setValue(int(self.existingSettings.INTERVALWORKER))
         self.spIntervalWorker.valueChanged.connect(self.setting_change)
 
-        self.spIntervalUi.setValue(int(self.settings.INTERVALUI))
+        self.spIntervalUi.setValue(int(self.existingSettings.INTERVALUI))
         self.spIntervalUi.valueChanged.connect(self.setting_change)
 
-        self.tmTechFrom.setTime(QTime(int(self.settings.TECHFROMHOUR), int(self.settings.TECHFROMMIN)))
+        self.tmTechFrom.setTime(QTime(int(self.existingSettings.TECHFROMHOUR), int(self.existingSettings.TECHFROMMIN)))
         self.tmTechFrom.timeChanged.connect(self.setting_change)
 
-        self.tmTechTo.setTime(QTime(int(self.settings.TECHTOHOUR), int(self.settings.TECHTOMIN)))
+        self.tmTechTo.setTime(QTime(int(self.existingSettings.TECHTOHOUR), int(self.existingSettings.TECHTOMIN)))
         self.tmTechTo.timeChanged.connect(self.setting_change)
+
+        self.chbxUiDebug.setChecked(self.existingSettings.UIDEBUG)
+        self.chbxUiDebug.stateChanged.connect(self.setting_change)
+
+        self.chbxAutostart.setChecked(self.existingSettings.AUTOSTART)
+        self.chbxAutostart.stateChanged.connect(self.setting_change)
 
         self.btnRemoveC.clicked.connect(self.remove_candidate)
         self.btnAddC.clicked.connect(self.add_candidate)
 
+        self.chbxUseServer.setChecked(self.existingSettings.USESERVER)
+        self.chbxUseServer.stateChanged.connect(self.setting_change)
+
+        self.txtServerUrl.setText(self.existingSettings.SERVERURL)
+        self.txtServerUrl.textChanged.connect(self.setting_change)
+
         self.btnGet.clicked.connect(self.update_stocks_from_cloud)
         self.btnClear.clicked.connect(self.clear_candidates)
+
+        self.accepted.connect(self.check_changed)
+
+    def check_changed(self):
+        if self.changedSettings:
+            reply = QMessageBox.question(self, 'Settings Changed',
+                                         'Accepting will cause the restart,Sure?',
+                                         QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+
+            if reply == QMessageBox.No:
+                self.reject()
 
     def redraw_candidates_list(self):
         self.lstCandidates.clear()
 
-        for candidate in settings.CANDIDATES:
+        for candidate in self.existingSettings.CANDIDATES:
             ticker = candidate.ticker
             reason = candidate.reason
             o = 3
@@ -733,20 +844,22 @@ class SettingsWindow(QMainWindow, Ui_fmSettings):
 
     def remove_candidate(self):
         stock_to_remove = self.lstCandidates.selectedItems()[0].text()
-        for x in self.settings.CANDIDATES:
+        for x in self.existingSettings.CANDIDATES:
             if x.ticker == stock_to_remove:
-                self.settings.CANDIDATES.remove(x)
+                self.existingSettings.CANDIDATES.remove(x)
                 break
         self.changedSettings = True
         self.redraw_candidates_list()
 
     def add_candidate(self):
         self.dlg = StockWindow()
+        self.dlg.client = self.ibkrClient
+        self.dlg.path_to_driver = self.existingSettings.PATHTOWEBDRIVER
         if self.dlg.exec_():
             ca = SettingsCandidate()
             ca.ticker = self.dlg.txtTicker.text().upper()
             ca.reason = self.dlg.txtReason.toPlainText()
-            self.settings.CANDIDATES.append(ca)
+            self.existingSettings.CANDIDATES.append(ca)
             self.changedSettings = True
             self.redraw_candidates_list()
         else:
@@ -754,20 +867,6 @@ class SettingsWindow(QMainWindow, Ui_fmSettings):
 
     def candidate_selected(self):
         self.btnRemoveC.setEnabled(True)
-
-    def closeEvent(self, event):
-        if self.changedSettings:
-            reply = QMessageBox.question(self, 'Settings Changed',
-                                         'Accepting requires manual restart-automatic-to be delivered-save changes?',
-                                         QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-
-            if reply == QMessageBox.Yes:
-                event.accept()
-                self.settings.write_config()
-                print("Settings were changed.Saved to file")
-                window.restart_all()
-            else:
-                self.settings = copy.deepcopy(self.settingsBackup)
 
     def update_stocks_from_cloud(self):
         received_stocks = []
@@ -786,8 +885,29 @@ class SettingsWindow(QMainWindow, Ui_fmSettings):
             print('Failed to get the stocks from cloud')
 
     def clear_candidates(self):
-        self.lstCandidates.clear()
-        self.setting_change()
+        self.existingSettings.CANDIDATES = []
+        self.changedSettings = True
+        self.redraw_candidates_list()
+
+    def candidate_double_clicked(self):
+        stock_to_edit = self.lstCandidates.selectedItems()[0].text()
+        for index, item in enumerate(self.existingSettings.CANDIDATES):
+            if item.ticker == stock_to_edit:
+                self.dlg = StockWindow()
+                self.dlg.client = self.ibkrClient
+                self.dlg.txtTicker.setText(item.ticker)
+                self.dlg.txtReason.setPlainText(item.reason)
+                self.dlg.path_to_driver = self.existingSettings.PATHTOWEBDRIVER
+                if self.dlg.exec_():
+                    ca = SettingsCandidate()
+                    ca.ticker = self.dlg.txtTicker.text().upper()
+                    ca.reason = self.dlg.txtReason.toPlainText()
+                    self.existingSettings.CANDIDATES[index] = ca
+                    self.changedSettings = True
+                    self.redraw_candidates_list()
+                else:
+                    print("Modify Canceled")
+                break
 
 
 class StockWindow(QDialog, Ui_newStockDlg):
@@ -795,6 +915,11 @@ class StockWindow(QDialog, Ui_newStockDlg):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.btnValidate.clicked.connect(self.validate_ticker)
+
+    def validate_ticker(self):
+        ticker = self.txtTicker.text()
+        open_tip_ranks_page(ticker, self.path_to_driver)
 
     def addStock(self):
         ca = SettingsCandidate()
@@ -807,7 +932,7 @@ def main():
     app = QApplication(sys.argv)
     global settings
     settings = TraderSettings()
-    settings.write_config()
+    # settings.write_config()
     global window
     window = MainWindow(settings)
     window.show()

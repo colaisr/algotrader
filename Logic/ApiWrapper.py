@@ -1,5 +1,6 @@
 import datetime
 
+from AlgotraderServerConnection import report_market_action
 from ibapi.common import MarketDataTypeEnum, HistogramDataList, BarData
 from twsapi.ibapi.contract import Contract, ContractDetails
 from twsapi.ibapi.order import Order
@@ -25,6 +26,8 @@ class IBapi(EWrapper, EClient):
         self.sMa=0
         self.tradesRemaining=0
         self.netLiquidation=0
+        self.contract_processing=False
+        self.setting=None
 
 
     # def error(self, reqId: int, errorCode: int, errorString: str):
@@ -73,8 +76,11 @@ class IBapi(EWrapper, EClient):
                     whyHeld, mktCapPrice):
         super().orderStatus(orderId, status, filled, remaining, avgFullPrice, permId, parentId, lastFillPrice, clientId,
                             whyHeld, mktCapPrice)
-        print('orderStatus - orderid:', orderId, 'status:', status, 'filled', filled, 'remaining', remaining,
-              'lastFillPrice', lastFillPrice)
+        # sentence='!!!orderStatus - orderid:'+str(orderId)+'status:'+ status+ 'filled'+ str(filled) +'remaining'+ str(remaining)+'lastFillPrice'+ str(lastFillPrice)
+        # self.log_decision("testingOrderStatus", sentence)
+        # self.log_decision("testingMix", sentence)
+        # print('!!!orderStatus - orderid:', orderId, 'status:', status, 'filled', filled, 'remaining', remaining,
+        #       'lastFillPrice', lastFillPrice)
 
     def openOrder(self, orderId, contract, order, orderState):
         super().openOrder(orderId, contract, order, orderState)
@@ -89,13 +95,23 @@ class IBapi(EWrapper, EClient):
 
     def execDetails(self, reqId, contract, execution):
         super().execDetails(reqId, contract, execution)
-        print('execDetails Order Executed: ', reqId, contract.symbol, contract.secType, contract.currency,
-              execution.execId,
-              execution.orderId, execution.shares, execution.lastLiquidity)
+        #important
+        symbol=contract.symbol
+        shares=execution.shares
+        price=execution.price
+        time=execution.time
+        side=execution.side       #sell SLD   buy BOT
+        self.report_execution_to_Server(symbol,shares,price,side,time)
+        # sentence='???execDetails Order Executed: '+ " request id: "+str(reqId)+" contract.symbol:"+contract.symbol+ " contract.sectype:"+contract.secType+" contract currency:"+contract.currency+" execution.execId:"+str(execution.execId)+"execution.orderId:"+str(execution.orderId)+"execution shares:"+str(execution.shares)+ "execution.lastliquidity:"+str(execution.lastLiquidity)
+        # self.log_decision("testingExecDetails",sentence)
+        # self.log_decision("testingMix", sentence)
+        # print('???execDetails Order Executed: ', reqId, contract.symbol, contract.secType, contract.currency,
+        #       execution.execId,
+        #       execution.orderId, execution.shares, execution.lastLiquidity)
 
     def tickPrice(self, reqId, tickType, price, attrib):
         super().tickPrice(reqId, tickType, price, attrib)
-        print("Tick received")
+        # print("Tick received")
         if tickType == 1:
             self.candidatesLive[reqId]["Bid"] = price
         elif tickType == 2:
@@ -153,6 +169,23 @@ class IBapi(EWrapper, EClient):
               "High:", bar.high, "Low:", bar.low, "Close:", bar.close, "Volume:", bar.volume,
               "Count:", bar.barCount, "WAP:", bar.average)
 
+    def contractDetails(self, reqId: int, contractDetails: ContractDetails):
+        super().contractDetails(reqId, contractDetails)
+        self.contractDetailsList[reqId]= contractDetails
+        self.contract_processing = False
+        r=7
+
+    def contractDetailsEnd(self, reqId: int):
+        super().contractDetailsEnd(reqId)
+
+    def log_decision(self, logFile, order):
+        with open(logFile, "a") as f:
+            currentDt = datetime.datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
+            order = currentDt + '---' + order+"\n"
+            f.write(order)
+
+    def report_execution_to_Server(self, symbol, shares, price, side, time):
+        report_market_action(self.setting,symbol, shares, price, side, time)
 
 
 def createContract(symbol: str):
