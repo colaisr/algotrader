@@ -454,6 +454,7 @@ updating all openPositions, refreshed on each worker- to include changes from ne
 
         self.app.finishedPostitionsGeneral = False  # flag to ensure all positions received
         self.app.reqPositions()  # requesting open positions
+        time.sleep(0.5)
         counter = 0
         while (self.app.finishedPostitionsGeneral != True):
             print("waiting to get all general positions info: "+str(counter))
@@ -468,7 +469,7 @@ updating all openPositions, refreshed on each worker- to include changes from ne
                 notification_callback.emit("Started tracking " + s + " position PnL")
                 self.app.nextorderId += 1
 
-        # time.sleep(3)
+        time.sleep(0.5)
         counter = 0
         while (len(self.app.temp_positions)>len(self.app.openPositions)):
             print("Waiting to get all values for all open positions"+str(counter))
