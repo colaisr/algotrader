@@ -245,7 +245,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btnSettings.pressed.connect(self.show_settings)
 
         self.statusbar.showMessage("Ready")
-        self.update_session_state()
+        # self.update_session_state()
 
         # self.connect_to_ibkr()
 
@@ -295,6 +295,7 @@ Starts the Timer with interval from Config file
         """
 Executed the Worker in separate thread
         """
+        self.update_session_state()
         currentTime = QTime().currentTime()
         fromTime = QTime(int(self.settings.TECHFROMHOUR), int(self.settings.TECHFROMMIN))
         toTime = QTime(int(self.settings.TECHTOHOUR), int(self.settings.TECHTOMIN))
@@ -410,18 +411,23 @@ Updates UI after connection/worker execution
         dEnd = QTime(20, 00)
         tStart = QTime(9, 30)
         tEnd = QTime(16, 0)
-        if self.est_current_time > dStart and self.est_current_time <= tStart:
-            self.ibkrworker.trading_session_state = "Pre Market"
-            self.lblMarket.setText("Pre Market")
-        elif self.est_current_time > tStart and self.est_current_time <= tEnd:
-            self.ibkrworker.trading_session_state = "Open"
-            self.lblMarket.setText("Open")
-        elif self.est_current_time > tEnd and self.est_current_time <= dEnd:
-            self.ibkrworker.trading_session_state = "After Market"
-            self.lblMarket.setText("After Market")
+        self.ibkrworker.check_if_holiday()
+        if not self.ibkrworker.trading_session_holiday:
+            if self.est_current_time > dStart and self.est_current_time <= tStart:
+                self.ibkrworker.trading_session_state = "Pre Market"
+                self.lblMarket.setText("Pre Market")
+            elif self.est_current_time > tStart and self.est_current_time <= tEnd:
+                self.ibkrworker.trading_session_state = "Open"
+                self.lblMarket.setText("Open")
+            elif self.est_current_time > tEnd and self.est_current_time <= dEnd:
+                self.ibkrworker.trading_session_state = "After Market"
+                self.lblMarket.setText("After Market")
+            else:
+                self.ibkrworker.trading_session_state = "Closed"
+                self.lblMarket.setText("Closed")
         else:
-            self.ibkrworker.trading_session_state = "Closed"
-            self.lblMarket.setText("Closed")
+            self.ibkrworker.trading_session_state = "Holiday"
+            self.lblMarket.setText("Holiday")
 
     def progress_fn(self, n):
         msgBox = QMessageBox()

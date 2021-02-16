@@ -1,5 +1,4 @@
 import datetime
-
 from AlgotraderServerConnection import report_market_action
 from ibapi.common import MarketDataTypeEnum, HistogramDataList, BarData
 from twsapi.ibapi.contract import Contract, ContractDetails
@@ -14,6 +13,7 @@ class IBapi(EWrapper, EClient):
         EClient.__init__(self, self)
         self.openPositions = {}
         self.openPositionsLiveDataRequests = {}
+        self.temp_positions={}
         self.openOrders = {}
         self.candidatesLive = {}
         self.openPositionsHistolicalData={}
@@ -28,6 +28,8 @@ class IBapi(EWrapper, EClient):
         self.netLiquidation=0
         self.contract_processing=False
         self.setting=None
+        self.trading_session=''
+        self.trading_hours_received=False
 
 
     # def error(self, reqId: int, errorCode: int, errorString: str):
@@ -49,9 +51,16 @@ class IBapi(EWrapper, EClient):
     def pnlSingle(self, reqId: int, pos: int, dailyPnL: float, unrealizedPnL: float, realizedPnL: float, value: float):
         super().pnlSingle(reqId, pos, dailyPnL, unrealizedPnL, realizedPnL, value)
 
+
         if reqId in self.openPositionsLiveDataRequests.keys():
             print("position key is in requests- updating")
             s = self.openPositionsLiveDataRequests[reqId]
+            t=self.temp_positions[s]
+            self.openPositions[s]={}
+            self.openPositions[s]["stocks"] = 8
+            self.openPositions[s]["cost"] = t['cost']
+            self.openPositions[s]["conId"] = t['conId']
+            self.openPositions[s]["HistoricalData"] = []
             self.openPositions[s]["DailyPnL"] = dailyPnL
             self.openPositions[s]["UnrealizedPnL"] = unrealizedPnL
             self.openPositions[s]["RealizedPnL"] = realizedPnL
@@ -61,10 +70,15 @@ class IBapi(EWrapper, EClient):
         else:
             print(str(reqId)+" detailed position not found cancelling the requests")
             self.cancelPnLSingle(reqId);  # cancel subscription after getting
+        self.have_empty_values_in_positions = False
+        for c, v in self.openPositions.items():
+            if 'Value' not in v.keys():
+                self.have_empty_values_in_positions = True
 
     def position(self, account: str, contract: Contract, position: float, avgCost: float):
         super().position(account, contract, position, avgCost)
-        self.openPositions[contract.symbol] = {"stocks": position, "cost": avgCost, "conId": contract.conId,"HistoricalData":[]}
+        self.temp_positions[contract.symbol] = {"stocks": position, "cost": avgCost, "conId": contract.conId,"HistoricalData":[]}
+        # self.openPositions[contract.symbol] = {"stocks": position, "cost": avgCost, "conId": contract.conId,"HistoricalData":[]}
         print("Position general data received.", "Account:", account, "Symbol:", contract.symbol, "SecType:",contract.secType, "Currency:", contract.currency,contract.secType, "Currency:", contract.currency,"Position:", position, "Avg cost:", avgCost)
 
     def positionEnd(self):
@@ -171,9 +185,10 @@ class IBapi(EWrapper, EClient):
 
     def contractDetails(self, reqId: int, contractDetails: ContractDetails):
         super().contractDetails(reqId, contractDetails)
-        self.contractDetailsList[reqId]= contractDetails
-        self.contract_processing = False
-        r=7
+        # self.contractDetailsList[reqId]= contractDetails
+        # self.contract_processing = False
+        self.trading_session=contractDetails.tradingHours
+        self.trading_hours_received=True
 
     def contractDetailsEnd(self, reqId: int):
         super().contractDetailsEnd(reqId)
