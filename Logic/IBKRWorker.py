@@ -461,20 +461,22 @@ updating all openPositions, refreshed on each worker- to include changes from ne
             time.sleep(1)
             counter += 1
         for s, p in self.app.temp_positions.items():  # start tracking one by one
-            if s not in self.app.openPositionsLiveDataRequests.values():
+            while s not in self.app.openPositions.keys():
                 id = self.app.nextorderId
                 # self.app.openPositions[s]["tracking_id"] = id
                 self.app.openPositionsLiveDataRequests[id] = s
                 self.app.reqPnLSingle(id, self.settings.ACCOUNT, "", p["conId"])
                 notification_callback.emit("Started tracking " + s + " position PnL")
                 self.app.nextorderId += 1
+                time.sleep(0.1)
 
-        time.sleep(0.5)
-        counter = 0
-        while (len(self.app.temp_positions)>len(self.app.openPositions)):
-            print("Waiting to get all values for all open positions"+str(counter))
-            time.sleep(1)
-            counter += 1
+        # counter = 0
+        # while (len(self.app.temp_positions)>len(self.app.openPositions)):
+        #     print("Waiting to get all values for all open positions"+str(counter))
+        #     time.sleep(1)
+        #     counter += 1
+
+
        # validate all values received
        #  have_empty = True
        #  counter=0
@@ -498,7 +500,7 @@ updating all openPositions, refreshed on each worker- to include changes from ne
        #                  print("The Value for " + c + " is :"+str(v["Value"]))
        #          counter+=1
 
-        for s, p in self.app.openPositions.items():  # requesting history
+        for s, p in self.app.temp_positions.items():  # requesting history
             id = self.app.nextorderId
             queryTime = datetime.today().strftime("%Y%m%d %H:%M:%S")
             contract = createContract(s)
@@ -507,17 +509,22 @@ updating all openPositions, refreshed on each worker- to include changes from ne
             self.app.reqHistoricalData(id, contract, "", "1 D", "1 hour", "BID", 0, 1, False, [])
             self.app.openPositionsLiveHistoryRequests[id] = s
             self.app.nextorderId += 1
+            time.sleep(0.1)
 
         # validate all positions have history
-        have_empty = True
-        while have_empty:
+        # have_empty = True
+        # while have_empty:
+        #     time.sleep(1)
+        #     have_empty = False
+        #     notification_callback.emit("Waiting to receive Hisory for all positions ")
+        #     for c, v in self.app.openPositions.items():
+        #         if len(v["HistoricalData"]) == 0:
+        #             have_empty = True
+        counter = 0
+        while (len(self.app.openPositionsLiveHistoryRequests)>0):
+            print("Waiting to get all history requests "+str(counter))
             time.sleep(1)
-            have_empty = False
-            notification_callback.emit("Waiting to receive Hisory for all positions ")
-            for c, v in self.app.openPositions.items():
-                if len(v["HistoricalData"]) == 0:
-                    have_empty = True
-
+            counter += 1
         notification_callback.emit(str(len(self.app.openPositions)) + " open positions completely updated")
 
     def update_open_orders(self, notification_callback=None):

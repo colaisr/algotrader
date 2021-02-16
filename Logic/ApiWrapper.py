@@ -174,6 +174,7 @@ class IBapi(EWrapper, EClient):
 
     def historicalDataEnd(self, reqId: int, start: str, end: str):
         super().historicalDataEnd(reqId, start, end)
+        del self.openPositionsLiveHistoryRequests[reqId]
         print("HistoricalDataEnd ", reqId, "from", start, "to", end)
 
     def historicalDataUpdate(self, reqId: int, bar: BarData):
