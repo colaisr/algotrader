@@ -57,7 +57,7 @@ class IBapi(EWrapper, EClient):
             s = self.openPositionsLiveDataRequests[reqId]
             t=self.temp_positions[s]
             self.openPositions[s]={}
-            self.openPositions[s]["stocks"] = 8
+            self.openPositions[s]["stocks"] = pos
             self.openPositions[s]["cost"] = t['cost']
             self.openPositions[s]["conId"] = t['conId']
             self.openPositions[s]["HistoricalData"] = []
