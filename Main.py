@@ -178,6 +178,7 @@ class TraderSettings():
 
         self.SERVERURL = self.config['Server']['serverurl']
         self.SERVERUSER = self.config['Server']['serveruser']
+        self.INTERVALSERVER = self.config['Server']['intervalserver']
 
     def write_config(self):
         self.config['Connection']['port'] = self.PORT
@@ -207,6 +208,7 @@ class TraderSettings():
         self.config['Server']['useserver'] = str(self.USESERVER)
         self.config['Server']['serverurl'] = str(self.SERVERURL)
         self.config['Server']['serveruser'] = str(self.SERVERUSER)
+        self.config['Server']['INTERVALSERVER'] = str(self.INTERVALSERVER)
 
         with open('config.ini', 'w') as configfile:
             self.config.write(configfile)
@@ -239,6 +241,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.workerTimer = QTimer()
         self.workerTimer.timeout.connect(self.run_worker)
+
+        self.server_timer = QTimer()
+        self.server_timer.timeout.connect(self.report_to_server)
+        self.server_timer.start(int(self.settings.INTERVALSERVER) * 1000)
 
         # connecting a buttons
         self.chbxProcess.stateChanged.connect(self.process_checked)
@@ -273,7 +279,7 @@ Starts the connection to the IBKR terminal in separate thread
             print("Reporting connection to the server...")
             result = report_login_to_server(self.settings)
             self.update_console(result)
-        connector = Worker(self.ibkrworker.prepare_and_connect)  # Any other args, kwargs are passed to the run function
+        connector = Worker(self.ibkrworker.prepare_and_connect)
         connector.signals.result.connect(self.connection_done)
         connector.signals.status.connect(self.update_status)
         connector.signals.notification.connect(self.update_console)
@@ -301,32 +307,6 @@ Executed the Worker in separate thread
         toTime = QTime(int(self.settings.TECHTOHOUR), int(self.settings.TECHTOMIN))
         sessionState = self.lblMarket.text()
 
-        if self.settings.USESERVER:
-            print("Reporting connection to the server...")
-
-            net_liquidation = self.ibkrworker.app.netLiquidation
-            if hasattr(self.ibkrworker.app, 'smaWithSafety'):
-                remaining_sma_with_safety=self.ibkrworker.app.smaWithSafety
-            else:
-                remaining_sma_with_safety=self.ibkrworker.app.sMa
-
-            remaining_trades = self.ibkrworker.app.tradesRemaining
-            all_positions_value = 0
-            open_positions = self.ibkrworker.app.openPositions
-            open_orders = self.ibkrworker.app.openOrders
-            dailyPnl = self.ibkrworker.app.dailyPnl
-
-            result = report_snapshot_to_server(self.settings,
-                                                       netLiquidation=net_liquidation,
-                                                       smaWithSafety=remaining_sma_with_safety,
-                                                       tradesRemaining=remaining_trades,
-                                                       all_positions_values=all_positions_value,
-                                                       openPositions=open_positions,
-                                                       openOrders=open_orders,
-                                                       dailyPnl=dailyPnl)
-
-            self.update_console(result)
-
         if fromTime < currentTime < toTime:
             print("Worker skept-Technical break : ", fromTime.toString("hh:mm"), " to ", toTime.toString("hh:mm"))
             self.update_console("Technical break untill " + toTime.toString("hh:mm"))
@@ -348,12 +328,41 @@ Executed the Worker in separate thread
         if self.settings.AUTOSTART:
             self.chbxProcess.setChecked(True)
 
-        #report market data to server
+        # report market data to server
         if self.settings.USESERVER:
-            print("Reporting connection to the server...")
-            result = report_market_data_to_server(self.settings,self.ibkrworker.app.candidatesLive)
+            print("Reporting market data to the server...")
+            result = report_market_data_to_server(self.settings, self.ibkrworker.app.candidatesLive)
             self.update_console(result)
 
+    def report_to_server(self):
+        """
+       reports to the server
+        """
+
+        if self.settings.USESERVER:
+            net_liquidation = self.ibkrworker.app.netLiquidation
+            if hasattr(self.ibkrworker.app, 'smaWithSafety'):
+                remaining_sma_with_safety = self.ibkrworker.app.smaWithSafety
+            else:
+                remaining_sma_with_safety = self.ibkrworker.app.sMa
+
+            remaining_trades = self.ibkrworker.app.tradesRemaining
+            all_positions_value = 0
+            open_positions = self.ibkrworker.app.openPositions
+            open_orders = self.ibkrworker.app.openOrders
+            dailyPnl = self.ibkrworker.app.dailyPnl
+            data_for_report = [self.settings, net_liquidation, remaining_sma_with_safety, remaining_trades,
+                               all_positions_value, open_positions, open_orders, dailyPnl]
+
+            worker = Worker(
+                report_snapshot_to_server, self.settings, data_for_report)
+
+            worker.signals.result.connect(self.process_server_response)
+            # Execute
+            self.threadpool.start(worker)
+
+    def process_server_response(self, r):
+        self.update_console(r)
 
     def update_ui(self):
         """
@@ -394,8 +403,6 @@ Updates UI after connection/worker execution
         self.btnSettings.setEnabled(True)
 
         self.update_session_state()
-
-
 
         if not self.uiTimer.isActive():
             self.update_console("UI resumed.")
