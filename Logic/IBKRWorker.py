@@ -420,6 +420,7 @@ Process Open positions and Candidates
                     # process
                     self.process_candidates(notification_callback)
                     self.process_positions(notification_callback)
+                    self.last_worker_execution_time = datetime.now()
                 else:
                     # remainingFunds = self.app.sMa
                     # existing_positions = self.app.openPositions
@@ -432,7 +433,6 @@ Process Open positions and Candidates
             notification_callback.emit(
                 "...............Worker finished....EST Time: " + est_time + "...................")
             status_callback.emit("Connected")
-            self.last_worker_execution_time=datetime.now()
         except Exception as e:
             if hasattr(e, 'message'):
                 notification_callback.emit("Error in processing Worker : " + str(e.message))
