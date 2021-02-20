@@ -219,6 +219,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # mandatory
         QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
+        self.trading_session_state="TBD"
+        self.est = timezone('US/Eastern')
         self.settingsWindow = SettingsWindow()
         self.setupUi(self)
         self.settings = settings
@@ -351,8 +353,18 @@ Executed the Worker in separate thread
             open_positions = self.ibkrworker.app.openPositions
             open_orders = self.ibkrworker.app.openOrders
             dailyPnl = self.ibkrworker.app.dailyPnl
-            data_for_report = [self.settings, net_liquidation, remaining_sma_with_safety, remaining_trades,
-                               all_positions_value, open_positions, open_orders, dailyPnl]
+            tradinng_session_state=self.trading_session_state
+            data_for_report = [self.settings,
+                               net_liquidation,
+                               remaining_sma_with_safety,
+                               remaining_trades,
+                               all_positions_value,
+                               open_positions,
+                               open_orders,
+                               dailyPnl,
+                               self.ibkrworker.last_worker_execution_time,
+                               datetime.now(self.est),
+                               self.trading_session_state]
 
             worker = Worker(
                 report_snapshot_to_server, self.settings, data_for_report)
@@ -409,9 +421,8 @@ Updates UI after connection/worker execution
         self.uiTimer.start(int(self.settings.INTERVALUI) * 1000)  # reset the ui timer
 
     def update_session_state(self):
-        est = timezone('US/Eastern')
         fmt = '%Y-%m-%d %H:%M:%S'
-        self.est_dateTime = datetime.now(est)
+        self.est_dateTime = datetime.now(self.est)
         self.est_current_time = QTime(self.est_dateTime.hour, self.est_dateTime.minute, self.est_dateTime.second)
         self.lblTime.setText(self.est_current_time.toString())
         dStart = QTime(4, 00)
@@ -435,6 +446,7 @@ Updates UI after connection/worker execution
         else:
             self.ibkrworker.trading_session_state = "Holiday"
             self.lblMarket.setText("Holiday")
+        self.trading_session_state = self.ibkrworker.trading_session_state
 
     def progress_fn(self, n):
         msgBox = QMessageBox()

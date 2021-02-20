@@ -86,6 +86,9 @@ def report_snapshot_to_server(*args, **kwargs):
     open_positions = json.dumps(arguments[5], default=lambda o: '<not serializable>')
     open_orders = json.dumps(arguments[6], default=lambda o: '<not serializable>')
     dailyPnl = arguments[7]
+    last_worker_run=arguments[8]
+    market_time=arguments[9]
+    market_state=arguments[10]
     r = requests.post(arguments[0].SERVERURL + '/connections/postreport',
                       json={"user": arguments[0].SERVERUSER,
                             "net_liquidation": net_liquidation,
@@ -94,7 +97,10 @@ def report_snapshot_to_server(*args, **kwargs):
                             "all_positions_value": all_positions_value,
                             "open_positions": open_positions,
                             "open_orders": open_orders,
-                            "dailyPnl": dailyPnl})
+                            "last_worker_run": last_worker_run.isoformat(),
+                            "dailyPnl": dailyPnl,
+                            "market_time": market_time.isoformat(),
+                            "market_state": market_state})
     status_code = r.status_code
     if status_code == 200:
         return r.text

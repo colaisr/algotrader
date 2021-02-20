@@ -20,6 +20,7 @@ class IBKRWorker():
         self.app.setting = self.settings
         self.stocks_data_from_server = []
         self.data_lock = Lock()
+        self.last_worker_execution_time=None
 
     def prepare_and_connect(self, status_callback, notification_callback):
         """
@@ -431,6 +432,7 @@ Process Open positions and Candidates
             notification_callback.emit(
                 "...............Worker finished....EST Time: " + est_time + "...................")
             status_callback.emit("Connected")
+            self.last_worker_execution_time=datetime.now()
         except Exception as e:
             if hasattr(e, 'message'):
                 notification_callback.emit("Error in processing Worker : " + str(e.message))
