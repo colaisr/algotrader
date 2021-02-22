@@ -98,7 +98,13 @@ class IBapi(EWrapper, EClient):
 
     def openOrder(self, orderId, contract, order, orderState):
         super().openOrder(orderId, contract, order, orderState)
-        self.openOrders[contract.symbol] = {"Action": order.action, "Type": order.orderType,"OrderId":orderId}
+        self.openOrders[contract.symbol] = {"Action": order.action,
+                                            "Type": order.orderType,
+                                            "adjustedStopPrice": order.adjustedStopPrice,
+                                            "adjustedStopLimitPrice": order.adjustedStopLimitPrice,
+                                            "adjustedTrailingAmount": order.adjustedTrailingAmount,
+                                            "percentOffset": order.percentOffset,
+                                            "OrderId":orderId}
         print('openOrder id:', orderId, contract.symbol, contract.secType, '@', contract.exchange, ':', order.action,
               order.orderType, order.totalQuantity, orderState.status)
 
