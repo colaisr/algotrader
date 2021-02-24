@@ -55,6 +55,7 @@ def report_login_to_server(settings):
 
 
 def report_snapshot_to_server(*args, **kwargs):
+    report_time=datetime.now().isoformat()
     arguments=args[1]
     net_liquidation = arguments[1]
     remaining_sma_with_safety = arguments[2]
@@ -71,6 +72,7 @@ def report_snapshot_to_server(*args, **kwargs):
     r = requests.post(arguments[0].SERVERURL + '/connections/postreport',
                       json={"user": arguments[0].SERVERUSER,
                             "net_liquidation": net_liquidation,
+                            "report_time":report_time,
                             "remaining_sma_with_safety": remaining_sma_with_safety,
                             "remaining_trades": remaining_trades,
                             "all_positions_value": all_positions_value,
