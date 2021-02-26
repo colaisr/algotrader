@@ -663,35 +663,35 @@ class PositionPanel(QWidget):
                 profit = values['UnrealizedPnL'] / values['Value'] * 100
             if 'LastUpdate' in values.keys():
                 last_updatestr = (values['LastUpdate'])
-            if 'HistoricalData' in values.keys():
-                print("Updating Graph for " + stock + " using " + str(len(values['HistoricalData'])) + " points")
-                if len(values['HistoricalData']) > 0:
-                    hist_data = values['HistoricalData']
-                    dates = []
-                    counter = []
-                    values = []
-                    i = 0
-                    for item in hist_data:
-                        d = item.date
-                        date = datetime.strptime(item.date, '%Y%m%d %H:%M:%S')
-                        dates.append(date)
-                        values.append(item.close)
-                        counter.append(i)
-                        i += 1
-
-                    # graph
-
-                    penStock = pg.mkPen(color=(0, 0, 0))
-                    penProfit = pg.mkPen(color=(0, 255, 0))
-                    penLoss = pg.mkPen(color=(255, 0, 0))
-
-                    self.graphWidget.clear()
-                    # self.graphWidget.plot( y=values, pen=penProfit)
-                    xline = [x.timestamp() for x in dates]
-                    self.graphWidget.plot(x=xline, y=values, pen=penStock, title="1 Last Hour ")
-                    self.graphWidget.setBackground('w')
-                    self.graphWidget.setTitle(values[-1], color="#d1d1e0", size="16pt")
-                    # self.graphWidget.hideAxis('bottom')
+            # if 'HistoricalData' in values.keys():
+            #     print("Updating Graph for " + stock + " using " + str(len(values['HistoricalData'])) + " points")
+            #     if len(values['HistoricalData']) > 0:
+            #         hist_data = values['HistoricalData']
+            #         dates = []
+            #         counter = []
+            #         values = []
+            #         i = 0
+            #         for item in hist_data:
+            #             d = item.date
+            #             date = datetime.strptime(item.date, '%Y%m%d %H:%M:%S')
+            #             dates.append(date)
+            #             values.append(item.close)
+            #             counter.append(i)
+            #             i += 1
+            #
+            #         # graph
+            #
+            #         penStock = pg.mkPen(color=(0, 0, 0))
+            #         penProfit = pg.mkPen(color=(0, 255, 0))
+            #         penLoss = pg.mkPen(color=(255, 0, 0))
+            #
+            #         self.graphWidget.clear()
+            #         # self.graphWidget.plot( y=values, pen=penProfit)
+            #         xline = [x.timestamp() for x in dates]
+            #         self.graphWidget.plot(x=xline, y=values, pen=penStock, title="1 Last Hour ")
+            #         self.graphWidget.setBackground('w')
+            #         self.graphWidget.setTitle(values[-1], color="#d1d1e0", size="16pt")
+            #         # self.graphWidget.hideAxis('bottom')
 
             # UI set
             self.ui.lStock.setText(stock)

@@ -502,31 +502,31 @@ updating all openPositions, refreshed on each worker- to include changes from ne
        #                  print("The Value for " + c + " is :"+str(v["Value"]))
        #          counter+=1
 
-        for s, p in self.app.temp_positions.items():  # requesting history
-            id = self.app.nextorderId
-            queryTime = datetime.today().strftime("%Y%m%d %H:%M:%S")
-            contract = createContract(s)
-            notification_callback.emit("Requesting History for " + s + " position for last 1 hour BID price")
-            # self.app.reqHistoricalData(id, contract, "", "3600 S", "1 min", "BID", 0, 1, False, [])
-            self.app.reqHistoricalData(id, contract, "", "1 D", "1 hour", "BID", 0, 1, False, [])
-            self.app.openPositionsLiveHistoryRequests[id] = s
-            self.app.nextorderId += 1
-            time.sleep(0.1)
-
-        # validate all positions have history
-        # have_empty = True
-        # while have_empty:
+        # for s, p in self.app.temp_positions.items():  # requesting history
+        #     id = self.app.nextorderId
+        #     queryTime = datetime.today().strftime("%Y%m%d %H:%M:%S")
+        #     contract = createContract(s)
+        #     notification_callback.emit("Requesting History for " + s + " position for last 1 hour BID price")
+        #     # self.app.reqHistoricalData(id, contract, "", "3600 S", "1 min", "BID", 0, 1, False, [])
+        #     self.app.reqHistoricalData(id, contract, "", "1 D", "1 hour", "BID", 0, 1, False, [])
+        #     self.app.openPositionsLiveHistoryRequests[id] = s
+        #     self.app.nextorderId += 1
+        #     time.sleep(0.1)
+        #
+        # # validate all positions have history
+        # # have_empty = True
+        # # while have_empty:
+        # #     time.sleep(1)
+        # #     have_empty = False
+        # #     notification_callback.emit("Waiting to receive Hisory for all positions ")
+        # #     for c, v in self.app.openPositions.items():
+        # #         if len(v["HistoricalData"]) == 0:
+        # #             have_empty = True
+        # counter = 0
+        # while (len(self.app.openPositionsLiveHistoryRequests)>0):
+        #     print("Waiting to get all history requests "+str(counter))
         #     time.sleep(1)
-        #     have_empty = False
-        #     notification_callback.emit("Waiting to receive Hisory for all positions ")
-        #     for c, v in self.app.openPositions.items():
-        #         if len(v["HistoricalData"]) == 0:
-        #             have_empty = True
-        counter = 0
-        while (len(self.app.openPositionsLiveHistoryRequests)>0):
-            print("Waiting to get all history requests "+str(counter))
-            time.sleep(1)
-            counter += 1
+        #     counter += 1
         notification_callback.emit(str(len(self.app.openPositions)) + " open positions completely updated")
 
     def update_open_orders(self, notification_callback=None):
