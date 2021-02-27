@@ -16,7 +16,7 @@ from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QWidg
 from pytz import timezone
 
 from AlgotraderServerConnection import report_snapshot_to_server, report_login_to_server, \
-    report_market_data_to_server
+    report_market_data_to_server, get_user_settings_from_server
 from Logic.IBKRWorker import IBKRWorker
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
@@ -957,6 +957,7 @@ def main():
     app = QApplication(sys.argv)
     global settings
     settings = TraderSettings()
+    retrieved=get_user_settings_from_server(settings)
     # settings.write_config()
     global window
     window = MainWindow(settings)

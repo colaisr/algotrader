@@ -1,7 +1,6 @@
 import json
 from datetime import date, datetime
 
-
 import requests
 
 
@@ -37,13 +36,26 @@ def get_market_data_from_server(settings, candidates):
 
     status_code = r.status_code
     if status_code == 200:
-        t=r.text
-        decoded_list=json.loads(t)
-        result=[]
+        t = r.text
+        decoded_list = json.loads(t)
+        result = []
         [result.append(json.loads(v)) for v in decoded_list.values()]
         for it in result:
-            it['updated']=datetime.fromisoformat(it['updated'])
+            it['updated'] = datetime.fromisoformat(it['updated'])
         return result
+
+
+def get_user_settings_from_server(settings):
+    r = requests.get(settings.SERVERURL + '/algotradersettings/retrieveusersettings',
+                     json={"user": settings.SERVERUSER})
+
+    status_code = r.status_code
+    if status_code == 200:
+        t = r.text
+        temp = json.loads(t)
+        settings_dictionary = json.loads(temp)
+
+        return settings_dictionary
 
 
 def report_login_to_server(settings):
@@ -55,8 +67,8 @@ def report_login_to_server(settings):
 
 
 def report_snapshot_to_server(*args, **kwargs):
-    report_time=datetime.now().isoformat()
-    arguments=args[1]
+    report_time = datetime.now().isoformat()
+    arguments = args[1]
     net_liquidation = arguments[1]
     remaining_sma_with_safety = arguments[2]
     remaining_trades = arguments[3]
@@ -64,15 +76,15 @@ def report_snapshot_to_server(*args, **kwargs):
     open_positions = json.dumps(arguments[5], default=lambda o: '<not serializable>')
     open_orders = json.dumps(arguments[6], default=lambda o: '<not serializable>')
     dailyPnl = arguments[7]
-    last_worker_run=arguments[8]
+    last_worker_run = arguments[8]
     if last_worker_run is None:
-        last_worker_run=date(1900,1,1)
-    market_time=arguments[9]
-    market_state=arguments[10]
+        last_worker_run = date(1900, 1, 1)
+    market_time = arguments[9]
+    market_state = arguments[10]
     r = requests.post(arguments[0].SERVERURL + '/connections/postreport',
                       json={"user": arguments[0].SERVERUSER,
                             "net_liquidation": net_liquidation,
-                            "report_time":report_time,
+                            "report_time": report_time,
                             "remaining_sma_with_safety": remaining_sma_with_safety,
                             "remaining_trades": remaining_trades,
                             "all_positions_value": all_positions_value,
@@ -86,6 +98,7 @@ def report_snapshot_to_server(*args, **kwargs):
     if status_code == 200:
         return r.text
     return "great succedd"
+
 
 def report_market_data_to_server(settings, candid_data):
     d = json.dumps(candid_data, default=lambda o: '<not serializable>')
