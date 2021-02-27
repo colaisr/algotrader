@@ -121,26 +121,29 @@ class Worker(QRunnable):
 class TraderSettings():
     def __init__(self):
         self.config = configparser.ConfigParser()
-        self.read_config()
-
-    def read_config(self):
         self.config.read('config.ini')
-        self.PORT = self.config['Connection']['port']
-        self.ACCOUNT = self.config['Account']['acc']
-        self.INTERVALUI = self.config['Connection']['INTERVALUI']
-        self.INTERVALWORKER = self.config['Connection']['INTERVALWORKER']
+        self.FILESERVERURL = self.config['Server']['serverurl']
+        self.FILESERVERUSER = self.config['Server']['serveruser']
+        retrieved = get_user_settings_from_server(self.FILESERVERURL, self.FILESERVERUSER)
+
+        self.read_config(retrieved)
+
+    def read_config(self,retrieved):
+        self.PORT = retrieved['connection_port']
+        self.ACCOUNT = retrieved['connection_account_name']
+        self.INTERVALUI = retrieved['station_interval_ui_sec']
+        self.INTERVALWORKER = retrieved['station_interval_worker_sec']
         if platform == "linux" or platform == "linux2":
-            self.PATHTOWEBDRIVER = self.config['Connection']['linuxpathtowebdriver']
+            self.PATHTOWEBDRIVER = retrieved['station_linux_path_to_webdriver']
         elif platform == "darwin":  # mac os
-            self.PATHTOWEBDRIVER = self.config['Connection']['macPathToWebdriver']
+            self.PATHTOWEBDRIVER = retrieved['station_mac_path_to_webdriver']
         elif platform == "win32":
-            self.PATHTOWEBDRIVER = self.config['Connection']['winPathToWebdriver']
+            self.PATHTOWEBDRIVER = retrieved['station_win_path_to_webdriver']
         # alg
-        self.PROFIT = self.config['Algo']['gainP']
-        self.LOSS = self.config['Algo']['lossP']
-        self.TRAIL = self.config['Algo']['trailstepP']
-        self.BULCKAMOUNT = self.config['Algo']['bulkAmountUSD']
-        self.TRANDINGSTOCKS = ast.literal_eval(self.config['Algo']['TrandingStocks'])
+        self.PROFIT = retrieved['algo_take_profit']
+        self.LOSS = retrieved['algo_max_loss']
+        self.TRAIL = retrieved['algo_trailing_percent']
+        self.BULCKAMOUNT = retrieved['algo_bulk_amount_usd']
 
         self.CANDIDATES = []
         candidates_string = self.config['Algo']['candidates']
@@ -153,32 +156,16 @@ class TraderSettings():
             ca.reason = reason
             self.CANDIDATES.append(ca)
 
-        self.TECHFROMHOUR = self.config['Connection']['techfromHour']
-        self.TECHFROMMIN = self.config['Connection']['techfromMin']
-        self.TECHTOHOUR = self.config['Connection']['techtoHour']
-        self.TECHTOMIN = self.config['Connection']['techtoMin']
-
-        ui_debug = self.config['Soft']['uidebug']
-        if ui_debug == 'False':
-            self.UIDEBUG = False
-        else:
-            self.UIDEBUG = True
-
-        autostart = self.config['Soft']['autostart']
-        if autostart == 'False':
-            self.AUTOSTART = False
-        else:
-            self.AUTOSTART = True
-
-        useserver = self.config['Server']['useserver']
-        if useserver == 'False':
-            self.USESERVER = False
-        else:
-            self.USESERVER = True
-
-        self.SERVERURL = self.config['Server']['serverurl']
-        self.SERVERUSER = self.config['Server']['serveruser']
-        self.INTERVALSERVER = self.config['Server']['intervalserver']
+        self.TECHFROMHOUR = retrieved['connection_break_from_hour']
+        self.TECHFROMMIN = retrieved['connection_break_from_min']
+        self.TECHTOHOUR = retrieved['connection_break_to_hour']
+        self.TECHTOMIN = retrieved['connection_break_to_min']
+        self.UIDEBUG = retrieved['station_debug_ui']
+        self.AUTOSTART = retrieved['station_autostart_worker']
+        self.USESERVER = True
+        self.SERVERURL = self.FILESERVERURL
+        self.SERVERUSER = self.FILESERVERUSER
+        self.INTERVALSERVER = retrieved['server_report_interval_sec']
 
     def write_config(self):
         self.config['Connection']['port'] = self.PORT
@@ -957,8 +944,6 @@ def main():
     app = QApplication(sys.argv)
     global settings
     settings = TraderSettings()
-    retrieved=get_user_settings_from_server(settings)
-    # settings.write_config()
     global window
     window = MainWindow(settings)
     window.show()

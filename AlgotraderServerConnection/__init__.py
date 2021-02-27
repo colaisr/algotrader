@@ -45,9 +45,9 @@ def get_market_data_from_server(settings, candidates):
         return result
 
 
-def get_user_settings_from_server(settings):
-    r = requests.get(settings.SERVERURL + '/algotradersettings/retrieveusersettings',
-                     json={"user": settings.SERVERUSER})
+def get_user_settings_from_server(server,user):
+    r = requests.get(server + '/algotradersettings/retrieveusersettings',
+                     json={"user": user})
 
     status_code = r.status_code
     if status_code == 200:
