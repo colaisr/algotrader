@@ -16,7 +16,7 @@ from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QWidg
 from pytz import timezone
 
 from AlgotraderServerConnection import report_snapshot_to_server, report_login_to_server, \
-    report_market_data_to_server, get_user_settings_from_server
+    report_market_data_to_server, get_user_settings_from_server, get_user_candidates_from_server
 from Logic.IBKRWorker import IBKRWorker
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
@@ -144,18 +144,6 @@ class TraderSettings():
         self.LOSS = retrieved['algo_max_loss']
         self.TRAIL = retrieved['algo_trailing_percent']
         self.BULCKAMOUNT = retrieved['algo_bulk_amount_usd']
-
-        self.CANDIDATES = []
-        candidates_string = self.config['Algo']['candidates']
-        jdata = json.loads(candidates_string)
-        for c in jdata:
-            ticker = c['ticker']
-            reason = c['reason']
-            ca = SettingsCandidate()
-            ca.ticker = ticker
-            ca.reason = reason
-            self.CANDIDATES.append(ca)
-
         self.TECHFROMHOUR = retrieved['connection_break_from_hour']
         self.TECHFROMMIN = retrieved['connection_break_from_min']
         self.TECHTOHOUR = retrieved['connection_break_to_hour']
@@ -166,6 +154,17 @@ class TraderSettings():
         self.SERVERURL = self.FILESERVERURL
         self.SERVERUSER = self.FILESERVERUSER
         self.INTERVALSERVER = retrieved['server_report_interval_sec']
+        self.USESYSTEMCANDIDATES=retrieved['server_use_system_candidates']
+        self.CANDIDATES = []
+        dictionaries=get_user_candidates_from_server(self.SERVERURL,self.SERVERUSER,self.USESYSTEMCANDIDATES)
+        for c in dictionaries:
+            ticker = c['ticker']
+            reason = c['description']
+            ca = SettingsCandidate()
+            ca.ticker = ticker
+            ca.reason = reason
+            self.CANDIDATES.append(ca)
+
 
     def write_config(self):
         self.config['Connection']['port'] = self.PORT

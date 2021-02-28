@@ -109,3 +109,19 @@ def report_market_data_to_server(settings, candid_data):
     status_code = r.status_code
     if status_code == 200:
         return r.text
+
+def get_user_candidates_from_server(url,user,use_system_candidates):
+
+    r = requests.get(url + '/userview/retrieveusercandidates',
+                     json={"user": user,
+                           "use_system_candidates": use_system_candidates})
+
+    status_code = r.status_code
+    if status_code == 200:
+        t = r.text
+        decoded_list = json.loads(t)
+        # result = []
+        # [result.append(json.loads(v)) for v in decoded_list.values()]
+        # for it in result:
+        #     it['updated'] = datetime.fromisoformat(it['updated'])
+        return decoded_list
