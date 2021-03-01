@@ -254,7 +254,7 @@ Processes the positions to identify Profit/Loss
                                 notification_callback.emit("Created a Trailing Stop order for " + s + " at level of " +
                                                            str(self.settings.TRAIL) + "%")
                                 self.log_decision("LOG/profits.txt",
-                                                  "Created a Trailing Stop order for " + s + " at level of " + self.settings.TRAIL + "%")
+                                                  "Created a Trailing Stop order for " + s + " at level of " + self.settings.TRAIL + "%"+" The profit was:"+str(profit))
                             else:
                                 notification_callback.emit(
                                     "NO TRADES remain -Skept creation of Trailing Stop order for " + s + " at level of " +
@@ -274,7 +274,7 @@ Processes the positions to identify Profit/Loss
                                 self.app.placeOrder(self.app.nextorderId, contract, order)
                                 self.app.nextorderId = self.app.nextorderId + 1
                                 notification_callback.emit("Created a Market Sell order for " + s)
-                                self.log_decision("LOG/loses.txt", "Created a Market Sell order for " + s)
+                                self.log_decision("LOG/loses.txt", "Created a Market Sell order for " + s+" The profit was:"+str(profit))
                             else:
                                 notification_callback.emit(
                                     "NO TRADES remain -Skept:Created a Market Sell (Stoploss) order for " + s)

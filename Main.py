@@ -3,6 +3,7 @@ import configparser
 import copy
 import json
 import sys
+import os
 import traceback
 from datetime import datetime, time
 from sys import platform
@@ -33,6 +34,15 @@ LOGFILE = "LOG/log.txt"
 global window
 global settings
 
+
+def restart():
+    import sys
+    print("argv was", sys.argv)
+    print("sys.executable was", sys.executable)
+    print("restart now")
+
+    import os
+    os.execv(sys.executable, ['python'] + sys.argv)
 
 class SettingsCandidate:
     def __init__(self):
@@ -289,6 +299,9 @@ Starts the Timer with interval from Config file
         """
 Executed the Worker in separate thread
         """
+
+        # exec(open('restarter.py').read())
+        # sys.exit()
         self.update_session_state()
         currentTime = QTime().currentTime()
         fromTime = QTime(int(self.settings.TECHFROMHOUR), int(self.settings.TECHFROMMIN))
@@ -360,6 +373,9 @@ Executed the Worker in separate thread
             self.threadpool.start(worker)
 
     def process_server_response(self, r):
+        #trying to restart
+        if '$restart$' in r:
+            restart()
         self.update_console(r)
 
     def update_ui(self):
