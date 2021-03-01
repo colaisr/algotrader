@@ -568,7 +568,7 @@ Creating a PnL request the result will be stored in generalStarus
     def log_decision(self, logFile, order):
         with open(logFile, "a") as f:
             currentDt = datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
-            order = currentDt + '---' + order
+            order = '\n'+currentDt + '---' + order
             f.write(order)
 
     def get_required_cushion_for_open_positions(self):
