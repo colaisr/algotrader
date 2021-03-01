@@ -97,7 +97,7 @@ def report_snapshot_to_server(*args, **kwargs):
     status_code = r.status_code
     if status_code == 200:
         return r.text
-    return "bad repponse from server"
+    return "bad response from server"
 
 
 def report_market_data_to_server(settings, candid_data):
