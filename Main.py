@@ -629,10 +629,10 @@ class PositionPanel(QWidget):
         self.ui = Ui_position_canvas()
         self.ui.setupUi(self)
 
-        # to be able to address it  on refresh
-        date_axis = TimeAxisItem(orientation='bottom')
-        self.graphWidget = pg.PlotWidget(axisItems={'bottom': date_axis})
-        self.ui.gg.addWidget(self.graphWidget)
+        # # to be able to address it  on refresh
+        # date_axis = TimeAxisItem(orientation='bottom')
+        # self.graphWidget = pg.PlotWidget(axisItems={'bottom': date_axis})
+        # self.ui.gg.addWidget(self.graphWidget)
 
     def update_view(self, stock, values, description):
         # Data preparation
