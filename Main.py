@@ -168,6 +168,7 @@ class TraderSettings():
         self.SERVERUSER = self.FILESERVERUSER
         self.INTERVALSERVER = retrieved['server_report_interval_sec']
         self.USESYSTEMCANDIDATES = retrieved['server_use_system_candidates']
+        self.ALLOWBUY=retrieved['algo_allow_buy']
         self.CANDIDATES = []
         dictionaries = get_user_candidates_from_server(self.SERVERURL, self.SERVERUSER, self.USESYSTEMCANDIDATES)
         for c in dictionaries:
