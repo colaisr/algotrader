@@ -237,22 +237,25 @@ Creates order to buy a stock at specific price
         :param price: price to buy at limit
         :param s: Stocks to buy
         """
-        contract = createContract(s)
-        stocksToBuy = int(int(self.settings.BULCKAMOUNT) / price)
-        if stocksToBuy > 0:  # very important - check for available trades everywhere!!!
+        if self.settings.ALLOWBUY==True:
+            contract = createContract(s)
+            stocksToBuy = int(int(self.settings.BULCKAMOUNT) / price)
+            if stocksToBuy > 0:  # very important - check for available trades everywhere!!!
 
-            order = create_limit_buy_order(stocksToBuy, price)
-            self.app.placeOrder(self.app.nextorderId, contract, order)
+                order = create_limit_buy_order(stocksToBuy, price)
+                self.app.placeOrder(self.app.nextorderId, contract, order)
 
-            self.app.nextorderId = self.app.nextorderId + 1
-            notification_callback.emit(
-                "Issued the BUY order at " + str(price) + "for " + str(stocksToBuy) + " Stocks of " + s)
-            self.log_decision("LOG/buys.txt",
-                              "Issued the BUY order at " + str(price) + "for " + str(stocksToBuy) + " Stocks of " + s)
+                self.app.nextorderId = self.app.nextorderId + 1
+                notification_callback.emit(
+                    "Issued the BUY order at " + str(price) + "for " + str(stocksToBuy) + " Stocks of " + s)
+                self.log_decision("LOG/buys.txt",
+                                  "Issued the BUY order at " + str(price) + "for " + str(stocksToBuy) + " Stocks of " + s)
 
 
+            else:
+                notification_callback.emit("The single stock is too expensive - skipping")
         else:
-            notification_callback.emit("The single stock is too expensive - skipping")
+            notification_callback.emit("Buying is not allowed in Settings - skipping the buying order")
 
     def process_candidates(self, notification_callback=None):
         """
