@@ -266,6 +266,10 @@ processes candidates for buying if enough SMA
         remainingFunds = float(self.app.sMa)
         real_remaining_funds = remainingFunds - requiredCushionForOpenPositions
         self.app.smaWithSafety = real_remaining_funds
+        if self.settings.USEMARGIN==False:
+            real_remaining_funds=self.app.excessLiquidity
+            notification_callback.emit("Using own cash only "+"("+str(real_remaining_funds)+"), margin dismissed in settings")
+
         if real_remaining_funds < 1000:
             notification_callback.emit("SMA (including open positions cushion) is " + str(
                 real_remaining_funds) + " it is less than 1000 - skipping buy")
@@ -370,61 +374,6 @@ updating all openPositions, refreshed on each worker- to include changes from ne
                 self.app.nextorderId += 1
                 time.sleep(0.1)
 
-        # counter = 0
-        # while (len(self.app.temp_positions)>len(self.app.openPositions)):
-        #     print("Waiting to get all values for all open positions"+str(counter))
-        #     time.sleep(1)
-        #     counter += 1
-
-
-       # validate all values received
-       #  have_empty = True
-       #  counter=0
-       #  while have_empty:
-       #      time.sleep(1)
-       #      have_empty = False
-       #      notification_callback.emit("Waiting to receive Value for all positions "+str(counter))
-       #      notification_callback.emit("-------------------------------------------------")
-       #      with self.data_lock:
-       #          for c, v in self.app.openPositions.items():
-       #              if 'Value' not in v.keys():
-       #                  have_empty = True
-       #                  notification_callback.emit("The value for  "+c+" is still missing requesting")
-       #                  # id = self.app.nextorderId
-       #                  # self.app.openPositions[c]["tracking_id"] = id
-       #                  # self.app.openPositionsLiveDataRequests[id] = c
-       #                  # self.app.reqPnLSingle(id, self.settings.ACCOUNT, "", v["conId"])
-       #                  # notification_callback.emit("Started tracking " + c + " position PnL")
-       #                  # self.app.nextorderId += 1
-       #              else:
-       #                  print("The Value for " + c + " is :"+str(v["Value"]))
-       #          counter+=1
-
-        # for s, p in self.app.temp_positions.items():  # requesting history
-        #     id = self.app.nextorderId
-        #     queryTime = datetime.today().strftime("%Y%m%d %H:%M:%S")
-        #     contract = createContract(s)
-        #     notification_callback.emit("Requesting History for " + s + " position for last 1 hour BID price")
-        #     # self.app.reqHistoricalData(id, contract, "", "3600 S", "1 min", "BID", 0, 1, False, [])
-        #     self.app.reqHistoricalData(id, contract, "", "1 D", "1 hour", "BID", 0, 1, False, [])
-        #     self.app.openPositionsLiveHistoryRequests[id] = s
-        #     self.app.nextorderId += 1
-        #     time.sleep(0.1)
-        #
-        # # validate all positions have history
-        # # have_empty = True
-        # # while have_empty:
-        # #     time.sleep(1)
-        # #     have_empty = False
-        # #     notification_callback.emit("Waiting to receive Hisory for all positions ")
-        # #     for c, v in self.app.openPositions.items():
-        # #         if len(v["HistoricalData"]) == 0:
-        # #             have_empty = True
-        # counter = 0
-        # while (len(self.app.openPositionsLiveHistoryRequests)>0):
-        #     print("Waiting to get all history requests "+str(counter))
-        #     time.sleep(1)
-        #     counter += 1
         notification_callback.emit(str(len(self.app.openPositions)) + " open positions completely updated")
 
     def update_open_orders(self, notification_callback=None):

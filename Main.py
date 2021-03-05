@@ -164,6 +164,7 @@ class TraderSettings():
         self.UIDEBUG = retrieved['station_debug_ui']
         self.AUTOSTART = retrieved['station_autostart_worker']
         self.USESERVER = True
+        self.USEMARGIN=retrieved['algo_allow_margin']
         self.SERVERURL = self.FILESERVERURL
         self.SERVERUSER = self.FILESERVERUSER
         self.INTERVALSERVER = retrieved['server_report_interval_sec']
@@ -267,7 +268,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def update_candidates_info(self, status_callback, notification_callback):
         today_dt = date.today()
         for c in self.ibkrworker.stocks_data_from_server:
-            updated_dt = c['updated'].date()
+            updated_dt = c['tiprank_updated'].date()
             if today_dt != updated_dt:
                 # yahoo
                 notification_callback.emit('Update for ' + c['ticker'] + ' needed:')
@@ -282,7 +283,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 rank = get_tiprank_rating_for_ticker(c['ticker'], self.settings.PATHTOWEBDRIVER)
                 notification_callback.emit('Got rank of :' + str(rank))
                 c['tipranks'] = rank
-                c['updated']=today_dt
+                c['tiprank_updated']=today_dt
             else:
                 notification_callback.emit('Data for ' + c['ticker'] + ' is up to the date,no update needed')
         report_market_data_to_server(self.settings,self.ibkrworker.stocks_data_from_server)
@@ -359,11 +360,11 @@ Executed the Worker in separate thread
         if self.settings.AUTOSTART:
             self.chbxProcess.setChecked(True)
 
-        # report market data to server
-        if self.settings.USESERVER:
-            print("Reporting market data to the server...")
-            result = report_market_data_to_server(self.settings, self.ibkrworker.app.candidatesLive)
-            self.update_console(result)
+        # # report market data to server
+        # if self.settings.USESERVER:
+        #     print("Reporting market data to the server...")
+        #     result = report_market_data_to_server(self.settings, self.ibkrworker.app.candidatesLive)
+        #     self.update_console(result)
 
     def report_to_server(self):
         """
@@ -376,7 +377,7 @@ Executed the Worker in separate thread
                 remaining_sma_with_safety = self.ibkrworker.app.smaWithSafety
             else:
                 remaining_sma_with_safety = self.ibkrworker.app.sMa
-
+            excess_liquidity=self.ibkrworker.app.excessLiquidity
             remaining_trades = self.ibkrworker.app.tradesRemaining
             all_positions_value = 0
             open_positions = self.ibkrworker.app.openPositions
@@ -393,7 +394,8 @@ Executed the Worker in separate thread
                                dailyPnl,
                                self.ibkrworker.last_worker_execution_time,
                                datetime.now(self.est),
-                               self.trading_session_state]
+                               self.trading_session_state,
+                               excess_liquidity]
 
             worker = Worker(
                 report_snapshot_to_server, self.settings, data_for_report)

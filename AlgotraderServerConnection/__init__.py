@@ -41,7 +41,8 @@ def get_market_data_from_server(settings, candidates):
         result = []
         [result.append(json.loads(v)) for v in decoded_list.values()]
         for it in result:
-            it['updated'] = datetime.fromisoformat(it['updated'])
+            it['tiprank_updated'] = datetime.fromisoformat(it['tiprank_updated'])
+            it['fmp_updated'] = datetime.fromisoformat(it['fmp_updated'])
         return result
 
 
@@ -81,6 +82,7 @@ def report_snapshot_to_server(*args, **kwargs):
         last_worker_run = date(1900, 1, 1)
     market_time = arguments[9]
     market_state = arguments[10]
+    excess_liqudity = arguments[11]
     r = requests.post(arguments[0].SERVERURL + '/connections/postreport',
                       json={"user": arguments[0].SERVERUSER,
                             "net_liquidation": net_liquidation,
@@ -93,7 +95,8 @@ def report_snapshot_to_server(*args, **kwargs):
                             "last_worker_run": last_worker_run.isoformat(),
                             "dailyPnl": dailyPnl,
                             "market_time": market_time.isoformat(),
-                            "market_state": market_state})
+                            "market_state": market_state,
+                            "excess_liquidity":excess_liqudity})
     status_code = r.status_code
     if status_code == 200:
         return r.text
@@ -120,8 +123,4 @@ def get_user_candidates_from_server(url,user,use_system_candidates):
     if status_code == 200:
         t = r.text
         decoded_list = json.loads(t)
-        # result = []
-        # [result.append(json.loads(v)) for v in decoded_list.values()]
-        # for it in result:
-        #     it['updated'] = datetime.fromisoformat(it['updated'])
         return decoded_list
