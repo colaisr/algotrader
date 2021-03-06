@@ -185,6 +185,7 @@ Evaluates stock for buying
         :param s:
         """
         notification_callback.emit("Evaluating " + s + "for a Buy")
+        result='evaluating'
         # finding stock in Candidates
         for c in self.app.candidatesLive.values():
             if c["Stock"] == s:
@@ -196,14 +197,18 @@ Evaluates stock for buying
 
         if ask_price == -1:  # market is closed
             notification_callback.emit('The market is closed skipping...')
+            result='skept'
         elif ask_price < target_price and float(tipRank) > 8:
             self.buy_the_stock(ask_price, s, notification_callback)
+            result='bought'
+
         else:
             notification_callback.emit(
                 "The price of :" + str(ask_price) + "was not in range of :" + str(average_daily_dropP) + " % " +
                 " Or the Rating of " + str(tipRank) + " was not good enough")
+            result='skept'
 
-        pass
+        return result
 
     def update_target_price_for_tracked_stocks(self, notification_callback=None):
         """
@@ -266,8 +271,11 @@ processes candidates for buying if enough SMA
         remainingFunds = float(self.app.sMa)
         real_remaining_funds = remainingFunds - requiredCushionForOpenPositions
         self.app.smaWithSafety = real_remaining_funds
-        if self.settings.USEMARGIN==False:
-            real_remaining_funds=self.app.excessLiquidity
+        if self.settings.USEMARGIN==False:     #if margin not allowed use net liquidation as maximum
+            positions_summary=0
+            for k,p in self.app.openPositions.values():
+                positions_summary+=p["Value"]
+            real_remaining_funds=float(self.app.netLiquidation)-float(positions_summary)-float(self.settings.BULCKAMOUNT)
             notification_callback.emit("Using own cash only "+"("+str(real_remaining_funds)+"), margin dismissed in settings")
 
         if real_remaining_funds < 1000:
@@ -290,7 +298,9 @@ processes candidates for buying if enough SMA
                         notification_callback.emit("Skipping " + c['Stock'] + " as it is in open orders.")
                         continue
                     else:
-                        self.evaluate_stock_for_buy(c['Stock'], notification_callback)
+                        result=self.evaluate_stock_for_buy(c['Stock'], notification_callback)
+                        if result=='bought':
+                            break                    #to avoid buying more than one in a worker run
                 else:
                     notification_callback.emit("Skipping " + c['Stock'] + " no available trades.")
 
