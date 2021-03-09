@@ -44,7 +44,8 @@ def restart():
     print("restart now")
 
     import os
-    os.execv(sys.executable, ['python'] + sys.argv)
+    # os.execv(sys.executable, ['python'] + sys.argv)
+    os.execv("Play.bat")
 
 
 class SettingsCandidate:
