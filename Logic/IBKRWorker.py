@@ -148,7 +148,7 @@ Processes the positions to identify Profit/Loss
                             notification_callback.emit("Created a Trailing Stop order for " + s + " at level of " +
                                                        str(self.settings.TRAIL) + "%")
                             self.log_decision("LOG/profits.txt",
-                                              "Created a Trailing Stop order for " + s + " at level of " + self.settings.TRAIL + "%"+" The profit was:"+str(profit))
+                                              "Created a Trailing Stop order for " + s + " at level of " + str(self.settings.TRAIL) + "%"+" The profit was:"+str(profit))
                     elif profit < float(self.settings.LOSS):
                         orders = self.app.openOrders
                         if s in orders:
@@ -262,7 +262,7 @@ processes candidates for buying if enough SMA
         self.app.smaWithSafety = real_remaining_funds
         if self.settings.USEMARGIN==False:     #if margin not allowed use net liquidation as maximum
             positions_summary=0
-            for k,p in self.app.openPositions.values():
+            for k,p in self.app.openPositions.items():
                 positions_summary+=p["Value"]
             real_remaining_funds=float(self.app.netLiquidation)-float(positions_summary)-float(self.settings.BULCKAMOUNT)
             notification_callback.emit("Using own cash only "+"("+str(real_remaining_funds)+"), margin dismissed in settings")
