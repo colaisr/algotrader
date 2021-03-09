@@ -47,7 +47,10 @@ FUNCTION startLoginTws()
 	WScript.Sleep 30000
 
 	WshShell.SendKeys "colak1982"
+	WScript.Sleep 1000
 	WshShell.SendKeys "{TAB}"
+	WScript.Sleep 1000
 	WshShell.SendKeys "klk5489103"
+	WScript.Sleep 1000
 	WshShell.SendKeys "{ENTER}"
 END FUNCTION
