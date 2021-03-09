@@ -44,7 +44,7 @@ FUNCTION startLoginTws()
 	WshShell.AppActivate "Login"
 
 ' Wait for 5 seconds
-	WScript.Sleep 30000
+	WScript.Sleep 60000
 
 	WshShell.SendKeys "colak1982"
 	WScript.Sleep 1000
