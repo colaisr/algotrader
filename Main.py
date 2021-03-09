@@ -2,6 +2,7 @@ import ast
 import configparser
 import copy
 import json
+import subprocess
 import sys
 import os
 import traceback
@@ -44,8 +45,9 @@ def restart():
     print("restart now")
 
     import os
-    # os.execv(sys.executable, ['python'] + sys.argv)
-    os.execv("twsRestartWin.vbs",[' '])
+    subprocess.call('restartTws.bat')
+    os.execv(sys.executable, ['python'] + sys.argv)
+
 
 
 class SettingsCandidate:
