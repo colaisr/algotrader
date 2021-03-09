@@ -2,5 +2,5 @@ git reset --hard
 git clean -f
 git pull
 
-twsRestartWin.vbs
+twsRestartScript.vbs
 python Main.py
