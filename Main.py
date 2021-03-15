@@ -26,7 +26,7 @@ from Logic.IBKRWorker import IBKRWorker
 # from Research.tipRanksScrapperRequestsHtmlThreaded import get_tiprank_ratings_to_Stocks
 # UI Imports
 from Research.UpdateCandidates import get_yahoo_stats_for_candidate
-from Research.tipRanksScrapperSelenium import open_tip_ranks_page, get_tiprank_rating_for_ticker
+from Research.tip_ranks_data import get_tr_rating_for_ticker
 from UI.MainWindow import Ui_MainWindow
 from UI.NewStockWindow import Ui_newStockDlg
 from UI.SettingsWindow import Ui_setWin
@@ -283,7 +283,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     'Got ' + str(drop) + ' average daily drop and ' + str(change) + ' average daily change.')
                 # tipranks
                 notification_callback.emit('Checking for Tiprank...')
-                rank = get_tiprank_rating_for_ticker(c['ticker'], self.settings.PATHTOWEBDRIVER)
+                rank = get_tr_rating_for_ticker(c['ticker'])
                 notification_callback.emit('Got rank of :' + str(rank))
                 c['tipranks'] = rank
                 c['tiprank_updated']=today_dt
@@ -977,11 +977,7 @@ class StockWindow(QDialog, Ui_newStockDlg):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.btnValidate.clicked.connect(self.validate_ticker)
 
-    def validate_ticker(self):
-        ticker = self.txtTicker.text()
-        open_tip_ranks_page(ticker, self.path_to_driver)
 
     def addStock(self):
         ca = SettingsCandidate()
