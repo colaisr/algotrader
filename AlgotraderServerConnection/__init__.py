@@ -115,7 +115,7 @@ def report_market_data_to_server(settings, candid_data):
 
 def get_user_candidates_from_server(url,user,use_system_candidates):
 
-    r = requests.get(url + '/userview/retrieveusercandidates',
+    r = requests.get(url + '/candidates/retrieveusercandidates',
                      json={"user": user,
                            "use_system_candidates": use_system_candidates})
 
