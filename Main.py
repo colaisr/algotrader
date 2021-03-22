@@ -232,8 +232,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         sys.stderr = open('LOG/errorLog.txt', 'w')
 
-        self.create_open_positions_grid()
-
         # setting all timers
 
         self.uiTimer = QTimer()
@@ -555,55 +553,44 @@ Updates Candidates table
 Updates Positions grid
         """
         open_positions = self.ibkrworker.app.openPositions
-        allKeys = [*open_positions]
-        lastUpdatedWidget = 0
+
         try:
-            for i in range(len(open_positions)):  # Update positions Panels
-
-                widget = self.gp.itemAt(i).widget()
-                key = allKeys[i]
-                values = open_positions[key]
-                if 'stocks' in values.keys():
-                    if values['stocks'] != 0:
-                        candidate = next((x for x in self.settings.CANDIDATES if x.ticker == key), None)
-                        reason_of_candidate = "Bought manually"
-                        if candidate is not None:
-                            reason_of_candidate = candidate.reason
-                        widget.update_view(key, values, reason_of_candidate)
-                        widget.show()
-                        lastUpdatedWidget = i
-                    else:
-                        widgetToRemove = self.gp.itemAt(i).widget()
-                        widgetToRemove.hide()
+            line = 0
+            self.tPositions.setRowCount(len(open_positions))
+            for k, v in open_positions.items():
+                self.tPositions.setItem(line, 0, QTableWidgetItem(k))
+                self.tPositions.setItem(line, 1, QTableWidgetItem(str(round(v['DailyPnL'], 2))))
+                if v['DailyPnL'] >0:
+                    self.tPositions.item(line, 1).setBackground(QtGui.QColor(194, 240, 194))
                 else:
-                    print("value not yet received")
+                    self.tPositions.item(line, 1).setBackground(QtGui.QColor(255, 173, 153))
+                self.tPositions.setItem(line, 2, QTableWidgetItem(str(round(v['UnrealizedPnL'], 2))))
+                if v['UnrealizedPnL'] >0:
+                    self.tPositions.item(line, 2).setBackground(QtGui.QColor(40, 164, 40))
+                else:
+                    self.tPositions.item(line, 2).setBackground(QtGui.QColor(255, 51, 0))
+                self.tPositions.setItem(line, 3, QTableWidgetItem(str(round(v['Value'], 2))))
+                self.tPositions.setItem(line, 4, QTableWidgetItem(str(v['stocks'])))
+                self.tPositions.setItem(line, 5, QTableWidgetItem(str(v['LastUpdate'])))
+                # if v['Ask'] < v['target_price'] and v['Ask'] != -1:
+                #     self.tCandidates.item(line, 4).setBackground(QtGui.QColor(0, 255, 0))
+                # if v['target_price'] is float:
+                #     self.tCandidates.setItem(line, 5, QTableWidgetItem(str(round(v['target_price'], 2))))
+                # else:
+                #     self.tCandidates.setItem(line, 5, QTableWidgetItem(str(v['target_price'])))
+                # self.tCandidates.setItem(line, 6, QTableWidgetItem(str(round(v['averagePriceDropP'], 2))))
+                # if v['tipranksRank'] == '':
+                #     v['tipranksRank'] = 0
+                # self.tCandidates.setItem(line, 7, QTableWidgetItem(str(v['tipranksRank'])))
+                # if int(v['tipranksRank']) > 7:
+                #     self.tCandidates.item(line, 7).setBackground(QtGui.QColor(0, 255, 0))
 
-            for i in range(self.gp.count()):  # Hide the rest of the panels
-                if i > lastUpdatedWidget:
-                    widgetToRemove = self.gp.itemAt(i).widget()
-                    widgetToRemove.hide()
+                line += 1
         except Exception as e:
             if hasattr(e, 'message'):
                 self.update_console("Error in refreshing Positions: " + str(e.message))
             else:
                 self.update_console("Error in refreshing Positions: " + str(e))
-
-    def create_open_positions_grid(self):
-        """
-Creates Open positions grid with 99 Positions widgets
-        """
-
-        counter = 0
-        col = 0
-        row = 0
-
-        for i in range(0, 99):
-            if counter % 3 == 0:
-                col = 0
-                row += 1
-            self.gp.addWidget(PositionPanel(), row, col)
-            counter += 1
-            col += 1
 
     def update_open_orders(self):
         """
@@ -670,122 +657,6 @@ Restarts everything after Save
         self.connect_to_ibkr()
 
         i = 4
-
-
-class PositionPanel(QWidget):
-
-    def __init__(self):
-        super(PositionPanel, self).__init__()
-        self.ui = Ui_position_canvas()
-        self.ui.setupUi(self)
-
-        # # to be able to address it  on refresh
-        # date_axis = TimeAxisItem(orientation='bottom')
-        # self.graphWidget = pg.PlotWidget(axisItems={'bottom': date_axis})
-        # self.ui.gg.addWidget(self.graphWidget)
-
-    def update_view(self, stock, values, description):
-        # Data preparation
-        try:
-            stock = stock
-            number_of_stocks = values['stocks']
-            bulk_value = 0
-            profit = 0
-            bid_price = str(round(values['cost'], 2))
-            if 'Value' in values.keys():
-                bulk_value = str(round(values['Value'], 2))
-            if 'UnrealizedPnL' in values.keys():
-                unrealized_pnl = str(round(values['UnrealizedPnL'], 2))
-                profit = values['UnrealizedPnL'] / values['Value'] * 100
-            if 'LastUpdate' in values.keys():
-                last_updatestr = (values['LastUpdate'])
-            # if 'HistoricalData' in values.keys():
-            #     print("Updating Graph for " + stock + " using " + str(len(values['HistoricalData'])) + " points")
-            #     if len(values['HistoricalData']) > 0:
-            #         hist_data = values['HistoricalData']
-            #         dates = []
-            #         counter = []
-            #         values = []
-            #         i = 0
-            #         for item in hist_data:
-            #             d = item.date
-            #             date = datetime.strptime(item.date, '%Y%m%d %H:%M:%S')
-            #             dates.append(date)
-            #             values.append(item.close)
-            #             counter.append(i)
-            #             i += 1
-            #
-            #         # graph
-            #
-            #         penStock = pg.mkPen(color=(0, 0, 0))
-            #         penProfit = pg.mkPen(color=(0, 255, 0))
-            #         penLoss = pg.mkPen(color=(255, 0, 0))
-            #
-            #         self.graphWidget.clear()
-            #         # self.graphWidget.plot( y=values, pen=penProfit)
-            #         xline = [x.timestamp() for x in dates]
-            #         self.graphWidget.plot(x=xline, y=values, pen=penStock, title="1 Last Hour ")
-            #         self.graphWidget.setBackground('w')
-            #         self.graphWidget.setTitle(values[-1], color="#d1d1e0", size="16pt")
-            #         # self.graphWidget.hideAxis('bottom')
-
-            # UI set
-            self.ui.lStock.setText(stock)
-            self.ui.lStock.setToolTip(description)
-            self.ui.lVolume.setText(str(int(number_of_stocks)))
-            self.ui.lBulckValue.setText(str(bulk_value))
-            self.ui.lProfitP.setText(str(round(profit, 2)))
-
-            # setting progressBar and percent label
-            self.ui.prgProfit.setTextVisible(False)
-            if profit > 0:
-                self.ui.prgProfit.setMinimum(0)
-                if profit >= int(settings.PROFIT):
-                    self.ui.prgProfit.setMaximum(profit * 10)
-                else:
-                    self.ui.prgProfit.setMaximum(int(settings.PROFIT) * 10)
-                self.ui.prgProfit.setValue(int(profit * 10))
-                self.ui.prgProfit.setStyleSheet("QProgressBar"
-                                                "{"
-                                                "border: 2px solid green;"
-                                                "}"
-                                                "QProgressBar::chunk"
-                                                "{"
-                                                "background-color: green;"
-                                                "}"
-                                                )
-
-                palette = self.ui.lProfitP.palette()
-                palette.setColor(palette.WindowText, QtGui.QColor(51, 153, 51))
-                self.ui.lProfitP.setPalette(palette)
-                self.ui.lp.setPalette(palette)
-
-            else:
-                self.ui.prgProfit.setMinimum(0)
-                if profit <= int(settings.LOSS):
-                    self.ui.prgProfit.setMaximum(profit * -10)
-                else:
-                    self.ui.prgProfit.setMaximum(int(settings.LOSS) * -10)
-                self.ui.prgProfit.setValue(int(profit * -10))
-                self.ui.prgProfit.setStyleSheet("QProgressBar"
-                                                "{"
-                                                "border: 2px solid red;"
-                                                "}"
-                                                "QProgressBar::chunk"
-                                                "{"
-                                                "background-color: #F44336;"
-                                                "}"
-                                                )
-
-                palette = self.ui.lProfitP.palette()
-                palette.setColor(palette.WindowText, QtGui.QColor(255, 0, 0))
-                self.ui.lProfitP.setPalette(palette)
-                self.ui.lp.setPalette(palette)
-        except Exception as e:
-            if hasattr(e, 'message'):
-                self.update_console("Error in updating position: " + str(e.message))
-            else:
-                self.update_console("Error in updating position : " + str(e))
 
 
 class SettingsWindow(QDialog, Ui_setWin):
