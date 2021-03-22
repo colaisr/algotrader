@@ -49,7 +49,6 @@ def restart():
     os.execv(sys.executable, ['python'] + sys.argv)
 
 
-
 class SettingsCandidate:
     def __init__(self):
         self.ticker = ''
@@ -167,12 +166,12 @@ class TraderSettings():
         self.UIDEBUG = retrieved['station_debug_ui']
         self.AUTOSTART = retrieved['station_autostart_worker']
         self.USESERVER = True
-        self.USEMARGIN=retrieved['algo_allow_margin']
+        self.USEMARGIN = retrieved['algo_allow_margin']
         self.SERVERURL = self.FILESERVERURL
         self.SERVERUSER = self.FILESERVERUSER
         self.INTERVALSERVER = retrieved['server_report_interval_sec']
         self.USESYSTEMCANDIDATES = retrieved['server_use_system_candidates']
-        self.ALLOWBUY=retrieved['algo_allow_buy']
+        self.ALLOWBUY = retrieved['algo_allow_buy']
         self.CANDIDATES = []
         dictionaries = get_user_candidates_from_server(self.SERVERURL, self.SERVERUSER, self.USESYSTEMCANDIDATES)
         for c in dictionaries:
@@ -235,7 +234,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.create_open_positions_grid()
 
-        # setting a timer for Worker
+        # setting all timers
 
         self.uiTimer = QTimer()
         self.uiTimer.timeout.connect(self.update_ui)
@@ -256,7 +255,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         stock_names = [o.ticker for o in self.settings.CANDIDATES]
         self.ibkrworker.stocks_data_from_server = get_market_data_from_server(self.settings, stock_names)
         self.update_console("Market data for " + str(len(stock_names)) + " Candidates received from Server")
-        self.start_updating_candidates_and_connect()
+        self.connect_to_ibkr()
 
         StyleSheet = '''
         #lcdPNLgreen {
@@ -267,6 +266,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         }
         '''
         self.setStyleSheet(StyleSheet)
+
+    def start_updating_candidates_and_connect(self):
+
+        cand = Worker(self.update_candidates_info)
+        cand.signals.result.connect(self.connect_to_ibkr)
+        # connector.signals.status.connect(self.update_status)
+        cand.signals.notification.connect(self.update_console)
+        # Execute
+        self.threadpool.start(cand)
 
     def update_candidates_info(self, status_callback, notification_callback):
         today_dt = date.today()
@@ -286,21 +294,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 rank = get_tr_rating_for_ticker(c['ticker'])
                 notification_callback.emit('Got rank of :' + str(rank))
                 c['tipranks'] = rank
-                c['tiprank_updated']=today_dt
+                c['tiprank_updated'] = today_dt
             else:
                 notification_callback.emit('Data for ' + c['ticker'] + ' is up to the date,no update needed')
-        report_market_data_to_server(self.settings,self.ibkrworker.stocks_data_from_server)
+        report_market_data_to_server(self.settings, self.ibkrworker.stocks_data_from_server)
 
         return 'done'
-
-    def start_updating_candidates_and_connect(self):
-
-        cand = Worker(self.update_candidates_info)
-        cand.signals.result.connect(self.connect_to_ibkr)
-        # connector.signals.status.connect(self.update_status)
-        cand.signals.notification.connect(self.update_console)
-        # Execute
-        self.threadpool.start(cand)
 
     def connect_to_ibkr(self):
         """
@@ -380,7 +379,7 @@ Executed the Worker in separate thread
                 remaining_sma_with_safety = self.ibkrworker.app.smaWithSafety
             else:
                 remaining_sma_with_safety = self.ibkrworker.app.sMa
-            excess_liquidity=self.ibkrworker.app.excessLiquidity
+            excess_liquidity = self.ibkrworker.app.excessLiquidity
             remaining_trades = self.ibkrworker.app.tradesRemaining
             all_positions_value = 0
             open_positions = self.ibkrworker.app.openPositions
@@ -977,7 +976,6 @@ class StockWindow(QDialog, Ui_newStockDlg):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-
 
     def addStock(self):
         ca = SettingsCandidate()
