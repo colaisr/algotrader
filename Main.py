@@ -572,19 +572,6 @@ Updates Positions grid
                 self.tPositions.setItem(line, 3, QTableWidgetItem(str(round(v['Value'], 2))))
                 self.tPositions.setItem(line, 4, QTableWidgetItem(str(v['stocks'])))
                 self.tPositions.setItem(line, 5, QTableWidgetItem(str(v['LastUpdate'])))
-                # if v['Ask'] < v['target_price'] and v['Ask'] != -1:
-                #     self.tCandidates.item(line, 4).setBackground(QtGui.QColor(0, 255, 0))
-                # if v['target_price'] is float:
-                #     self.tCandidates.setItem(line, 5, QTableWidgetItem(str(round(v['target_price'], 2))))
-                # else:
-                #     self.tCandidates.setItem(line, 5, QTableWidgetItem(str(v['target_price'])))
-                # self.tCandidates.setItem(line, 6, QTableWidgetItem(str(round(v['averagePriceDropP'], 2))))
-                # if v['tipranksRank'] == '':
-                #     v['tipranksRank'] = 0
-                # self.tCandidates.setItem(line, 7, QTableWidgetItem(str(v['tipranksRank'])))
-                # if int(v['tipranksRank']) > 7:
-                #     self.tCandidates.item(line, 7).setBackground(QtGui.QColor(0, 255, 0))
-
                 line += 1
         except Exception as e:
             if hasattr(e, 'message'):
@@ -610,12 +597,6 @@ Updates Positions table
                 self.update_console("Error in Updating open Orders : " + str(e.message))
             else:
                 self.update_console("Error in Updating open Orders : " + str(e))
-
-    def thread_complete(self):
-        """
-After threaded task finished
-        """
-        print("TREAD COMPLETE (good or bad)!")
 
     def show_settings(self):
 
