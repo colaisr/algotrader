@@ -382,6 +382,7 @@ Executed the Worker in separate thread
             all_positions_value = 0
             open_positions = self.ibkrworker.app.openPositions
             open_orders = self.ibkrworker.app.openOrders
+            candidates_live=self.ibkrworker.app.candidatesLive
             dailyPnl = self.ibkrworker.app.dailyPnl
             tradinng_session_state = self.trading_session_state
             data_for_report = [self.settings,
@@ -391,6 +392,7 @@ Executed the Worker in separate thread
                                all_positions_value,
                                open_positions,
                                open_orders,
+                               candidates_live,
                                dailyPnl,
                                self.ibkrworker.last_worker_execution_time,
                                datetime.now(self.est),
