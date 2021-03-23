@@ -1,9 +1,0 @@
-PySide2~=5.15.1
-ibapi~=9.76.1
-pytz~=2020.4
-setuptools~=50.3.2
-requests~=2.25.0
-pyqtgraph~=0.11.0
-matplotlib~=3.3.3
-yfinance~=0.1.55
-selenium~=3.141.0
