@@ -1,0 +1,7 @@
+pyside2-uic pos.ui -o pos.py
+
+pyside2-uic MainWindow.ui -o MainWindow.py
+
+pyside2-uic SettingsWindow.ui -o SettingsWindow.py
+
+pyside2-uic NewStockWindow.ui -o NewStockWindow.py
