@@ -2,4 +2,3 @@ on linux - requirements make problems with pyqt - use :
 
 sudo pip3 install --upgrade pip && sudo pip3 install PyQt5
 ------------
-comment
