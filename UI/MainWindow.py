@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1440, 900)
+        MainWindow.resize(1440, 762)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setMinimumSize(QSize(600, 400))
@@ -26,21 +26,21 @@ class Ui_MainWindow(object):
         self.splitter = QSplitter(self.centralwidget)
         self.splitter.setObjectName(u"splitter")
         self.splitter.setOrientation(Qt.Vertical)
-        self.widget = QWidget(self.splitter)
-        self.widget.setObjectName(u"widget")
-        self.general = QHBoxLayout(self.widget)
+        self.layoutWidget = QWidget(self.splitter)
+        self.layoutWidget.setObjectName(u"layoutWidget")
+        self.general = QHBoxLayout(self.layoutWidget)
         self.general.setObjectName(u"general")
         self.general.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_7 = QVBoxLayout()
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.label = QLabel(self.widget)
+        self.label = QLabel(self.layoutWidget)
         self.label.setObjectName(u"label")
 
         self.horizontalLayout.addWidget(self.label)
 
-        self.lAcc = QLabel(self.widget)
+        self.lAcc = QLabel(self.layoutWidget)
         self.lAcc.setObjectName(u"lAcc")
 
         self.horizontalLayout.addWidget(self.lAcc)
@@ -50,12 +50,12 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_6 = QHBoxLayout()
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
-        self.label_8 = QLabel(self.widget)
+        self.label_8 = QLabel(self.layoutWidget)
         self.label_8.setObjectName(u"label_8")
 
         self.horizontalLayout_6.addWidget(self.label_8)
 
-        self.lMarketValue = QLabel(self.widget)
+        self.lMarketValue = QLabel(self.layoutWidget)
         self.lMarketValue.setObjectName(u"lMarketValue")
 
         self.horizontalLayout_6.addWidget(self.lMarketValue)
@@ -68,12 +68,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_9 = QVBoxLayout()
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
-        self.label_7 = QLabel(self.widget)
+        self.label_7 = QLabel(self.layoutWidget)
         self.label_7.setObjectName(u"label_7")
 
         self.verticalLayout_9.addWidget(self.label_7)
 
-        self.lSma = QLabel(self.widget)
+        self.lSma = QLabel(self.layoutWidget)
         self.lSma.setObjectName(u"lSma")
 
         self.verticalLayout_9.addWidget(self.lSma)
@@ -83,12 +83,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_10 = QVBoxLayout()
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
-        self.label_9 = QLabel(self.widget)
+        self.label_9 = QLabel(self.layoutWidget)
         self.label_9.setObjectName(u"label_9")
 
         self.verticalLayout_10.addWidget(self.label_9)
 
-        self.lPositionsTotalValue = QLabel(self.widget)
+        self.lPositionsTotalValue = QLabel(self.layoutWidget)
         self.lPositionsTotalValue.setObjectName(u"lPositionsTotalValue")
 
         self.verticalLayout_10.addWidget(self.lPositionsTotalValue)
@@ -96,17 +96,11 @@ class Ui_MainWindow(object):
 
         self.general.addLayout(self.verticalLayout_10)
 
-        self.btnSettings = QPushButton(self.widget)
-        self.btnSettings.setObjectName(u"btnSettings")
-        self.btnSettings.setEnabled(False)
-
-        self.general.addWidget(self.btnSettings)
-
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.general.addItem(self.horizontalSpacer_2)
 
-        self.lcdPNL = QLCDNumber(self.widget)
+        self.lcdPNL = QLCDNumber(self.layoutWidget)
         self.lcdPNL.setObjectName(u"lcdPNL")
         self.lcdPNL.setFrameShape(QFrame.Box)
         self.lcdPNL.setFrameShadow(QFrame.Plain)
@@ -123,12 +117,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.label_4 = QLabel(self.widget)
+        self.label_4 = QLabel(self.layoutWidget)
         self.label_4.setObjectName(u"label_4")
 
         self.verticalLayout.addWidget(self.label_4)
 
-        self.label_5 = QLabel(self.widget)
+        self.label_5 = QLabel(self.layoutWidget)
         self.label_5.setObjectName(u"label_5")
 
         self.verticalLayout.addWidget(self.label_5)
@@ -138,12 +132,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2 = QVBoxLayout()
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.lblTime = QLabel(self.widget)
+        self.lblTime = QLabel(self.layoutWidget)
         self.lblTime.setObjectName(u"lblTime")
 
         self.verticalLayout_2.addWidget(self.lblTime)
 
-        self.lblMarket = QLabel(self.widget)
+        self.lblMarket = QLabel(self.layoutWidget)
         self.lblMarket.setObjectName(u"lblMarket")
 
         self.verticalLayout_2.addWidget(self.lblMarket)
@@ -156,20 +150,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3 = QVBoxLayout()
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.chbxProcess = QCheckBox(self.widget)
-        self.chbxProcess.setObjectName(u"chbxProcess")
-        self.chbxProcess.setEnabled(False)
-
-        self.verticalLayout_3.addWidget(self.chbxProcess)
-
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.label_3 = QLabel(self.widget)
+        self.label_3 = QLabel(self.layoutWidget)
         self.label_3.setObjectName(u"label_3")
 
         self.horizontalLayout_2.addWidget(self.label_3)
 
-        self.lblAvailTrades = QLabel(self.widget)
+        self.lblAvailTrades = QLabel(self.layoutWidget)
         self.lblAvailTrades.setObjectName(u"lblAvailTrades")
 
         self.horizontalLayout_2.addWidget(self.lblAvailTrades)
@@ -180,7 +168,7 @@ class Ui_MainWindow(object):
 
         self.general.addLayout(self.verticalLayout_3)
 
-        self.splitter.addWidget(self.widget)
+        self.splitter.addWidget(self.layoutWidget)
         self.layoutWidget2_2 = QWidget(self.splitter)
         self.layoutWidget2_2.setObjectName(u"layoutWidget2_2")
         self.Positions = QVBoxLayout(self.layoutWidget2_2)
@@ -316,7 +304,6 @@ class Ui_MainWindow(object):
         self.lSma.setText(QCoreApplication.translate("MainWindow", u"000000", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"All Positions", None))
         self.lPositionsTotalValue.setText(QCoreApplication.translate("MainWindow", u"000000", None))
-        self.btnSettings.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"EST time :", None))
 #if QT_CONFIG(tooltip)
         self.label_5.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Available hours: 04:00-20:00 EST</p><p>Actual trade:      09:30-16:00 EST</p></body></html>", None))
@@ -324,7 +311,6 @@ class Ui_MainWindow(object):
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"US Market:", None))
         self.lblTime.setText(QCoreApplication.translate("MainWindow", u"tbd", None))
         self.lblMarket.setText(QCoreApplication.translate("MainWindow", u"tbd", None))
-        self.chbxProcess.setText(QCoreApplication.translate("MainWindow", u"Process Positions and Candidates", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Trades available: ", None))
         self.lblAvailTrades.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.lblPositions.setText(QCoreApplication.translate("MainWindow", u"Candidates", None))
