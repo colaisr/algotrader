@@ -1,36 +1,24 @@
-import ast
 import configparser
-import copy
 import json
 import subprocess
 import sys
-import os
 import traceback
-from datetime import datetime, time, date
+from datetime import datetime
 from sys import platform
 
-import pyqtgraph as pg
-import requests
 from PySide2 import QtGui
-from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer, QTime, Qt
-from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QWidget, QMessageBox, QListWidgetItem, \
-    QDialog
+from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer, QTime
+from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QMessageBox
 from pytz import timezone
 
 from AlgotraderServerConnection import report_snapshot_to_server, report_login_to_server, \
-    report_market_data_to_server, get_user_settings_from_server, get_user_candidates_from_server, \
+     get_user_settings_from_server, get_user_candidates_from_server, \
     get_market_data_from_server
 from Logic.IBKRWorker import IBKRWorker
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
-# from Research.tipRanksScrapperRequestsHtmlThreaded import get_tiprank_ratings_to_Stocks
 # UI Imports
-from Research.UpdateCandidates import get_yahoo_stats_for_candidate
-from Research.tip_ranks_data import get_tr_rating_for_ticker
 from UI.MainWindow import Ui_MainWindow
-from UI.NewStockWindow import Ui_newStockDlg
-from UI.SettingsWindow import Ui_setWin
-from UI.pos import Ui_position_canvas
 
 LOGFILE = "LOG/log.txt"
 
@@ -53,11 +41,6 @@ class SettingsCandidate:
     def __init__(self):
         self.ticker = ''
         self.reason = ''
-
-
-class TimeAxisItem(pg.AxisItem):
-    def tickStrings(self, values, scale, spacing):
-        return [datetime.fromtimestamp(value).strftime("%H:%M") for value in values]
 
 
 class WorkerSignals(QObject):
@@ -223,7 +206,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         Ui_MainWindow.__init__(self)
         self.trading_session_state = "TBD"
         self.est = timezone('US/Eastern')
-        self.settingsWindow = SettingsWindow()
         self.setupUi(self)
         self.settings = settings
         self.ibkrworker = IBKRWorker(self.settings)
@@ -246,7 +228,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # connecting a buttons
         self.chbxProcess.stateChanged.connect(self.process_checked)
-        self.btnSettings.pressed.connect(self.show_settings)
 
         self.statusbar.showMessage("Ready")
 
@@ -265,39 +246,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         '''
         self.setStyleSheet(StyleSheet)
 
-    def start_updating_candidates_and_connect(self):
-
-        cand = Worker(self.update_candidates_info)
-        cand.signals.result.connect(self.connect_to_ibkr)
-        # connector.signals.status.connect(self.update_status)
-        cand.signals.notification.connect(self.update_console)
-        # Execute
-        self.threadpool.start(cand)
-
-    def update_candidates_info(self, status_callback, notification_callback):
-        today_dt = date.today()
-        for c in self.ibkrworker.stocks_data_from_server:
-            updated_dt = c['tiprank_updated'].date()
-            if today_dt != updated_dt:
-                # yahoo
-                notification_callback.emit('Update for ' + c['ticker'] + ' needed:')
-                notification_callback.emit('Checking for Yahoo statisticks...')
-                drop, change = get_yahoo_stats_for_candidate(c['ticker'], notification_callback)
-                c['yahoo_avdropP'] = drop
-                c['yahoo_avspreadP'] = change
-                notification_callback.emit(
-                    'Got ' + str(drop) + ' average daily drop and ' + str(change) + ' average daily change.')
-                # tipranks
-                notification_callback.emit('Checking for Tiprank...')
-                rank = get_tr_rating_for_ticker(c['ticker'])
-                notification_callback.emit('Got rank of :' + str(rank))
-                c['tipranks'] = rank
-                c['tiprank_updated'] = today_dt
-            else:
-                notification_callback.emit('Data for ' + c['ticker'] + ' is up to the date,no update needed')
-        report_market_data_to_server(self.settings, self.ibkrworker.stocks_data_from_server)
-
-        return 'done'
 
     def connect_to_ibkr(self):
         """
@@ -599,243 +547,6 @@ Updates Positions table
                 self.update_console("Error in Updating open Orders : " + str(e.message))
             else:
                 self.update_console("Error in Updating open Orders : " + str(e))
-
-    def show_settings(self):
-
-        # self.settingsWindow = SettingsWindowO(self.settings)
-        # self.settingsWindow.show()  # Показываем окно
-        # # maybe not needed
-        # self.settingsWindow.changedSettings = False
-        self.settingsWindow.existingSettings = copy.deepcopy(self.settings)
-        self.settingsWindow.changedSettings = False
-        self.settingsWindow.ibkrClient = self.ibkrworker
-        if self.settingsWindow.exec_():
-            self.settings = self.settingsWindow.existingSettings
-            self.settings.write_config()
-            self.restart_all()
-        else:
-            print("Settings window Canceled")
-        self.settingsWindow = SettingsWindow()
-
-    def restart_all(self):
-        """
-Restarts everything after Save
-        """
-        self.threadpool.waitForDone()
-        self.update_console("UI paused- for restart")
-        self.uiTimer.stop()
-
-        self.workerTimer.stop()
-        self.update_console("Configuration changed - restarting everything")
-        self.chbxProcess.setEnabled(False)
-        self.chbxProcess.setChecked(False)
-        self.btnSettings.setEnabled(False)
-        self.ibkrworker.app.disconnect()
-        while self.ibkrworker.app.isConnected():
-            print("waiting for disconnect")
-            time.sleep(1)
-
-        self.ibkrworker = None
-        self.ibkrworker = IBKRWorker(self.settings)
-        self.connect_to_ibkr()
-
-        i = 4
-
-
-class SettingsWindow(QDialog, Ui_setWin):
-
-    def __init__(self):
-        super().__init__()
-        self.dlg = StockWindow()
-        self.setupUi(self)
-        # code
-        self.changedSettings = False
-
-    def setting_change(self):
-        self.existingSettings.PROFIT = self.spProfit.value()
-        self.existingSettings.TRAIL = self.spTrail.value()
-        self.existingSettings.LOSS = self.spLoss.value()
-        self.existingSettings.BULCKAMOUNT = self.spBulck.value()
-        self.existingSettings.ACCOUNT = self.txtAccount.text()
-        self.existingSettings.PORT = self.txtPort.text()
-        self.existingSettings.INTERVALUI = self.spIntervalUi.value()
-        self.existingSettings.INTERVALWORKER = self.spIntervalWorker.value()
-        self.existingSettings.TECHFROMHOUR = self.tmTechFrom.time().hour()
-        self.existingSettings.TECHFROMMIN = self.tmTechFrom.time().minute()
-        self.existingSettings.TECHTOHOUR = self.tmTechTo.time().hour()
-        self.existingSettings.TECHTOMIN = self.tmTechTo.time().minute()
-        self.existingSettings.UIDEBUG = self.chbxUiDebug.isChecked()
-        self.existingSettings.AUTOSTART = self.chbxAutostart.isChecked()
-        self.existingSettings.USESERVER = self.chbxUseServer.isChecked()
-        self.existingSettings.SERVERURL = self.txtServerUrl.text()
-
-        self.changedSettings = True
-        print("Setting was changed.")
-
-    def showEvent(self, event):
-        self.btnRemoveC.setEnabled(False)
-        self.redraw_candidates_list()
-        self.lstCandidates.itemClicked.connect(self.candidate_selected)
-        self.lstCandidates.itemDoubleClicked.connect(self.candidate_double_clicked)
-
-        self.spProfit.setValue(int(self.existingSettings.PROFIT))
-        self.spProfit.valueChanged.connect(self.setting_change)
-
-        self.spTrail.setValue(int(self.existingSettings.TRAIL))
-        self.spTrail.valueChanged.connect(self.setting_change)
-
-        self.spLoss.setValue(int(self.existingSettings.LOSS))
-        self.spLoss.valueChanged.connect(self.setting_change)
-
-        self.spBulck.setValue(int(self.existingSettings.BULCKAMOUNT))
-        self.spBulck.valueChanged.connect(self.setting_change)
-
-        self.txtAccount.setText(self.existingSettings.ACCOUNT)
-        self.txtAccount.textChanged.connect(self.setting_change)
-
-        self.txtPort.setText(self.existingSettings.PORT)
-        self.txtPort.textChanged.connect(self.setting_change)
-
-        self.spIntervalWorker.setValue(int(self.existingSettings.INTERVALWORKER))
-        self.spIntervalWorker.valueChanged.connect(self.setting_change)
-
-        self.spIntervalUi.setValue(int(self.existingSettings.INTERVALUI))
-        self.spIntervalUi.valueChanged.connect(self.setting_change)
-
-        self.tmTechFrom.setTime(QTime(int(self.existingSettings.TECHFROMHOUR), int(self.existingSettings.TECHFROMMIN)))
-        self.tmTechFrom.timeChanged.connect(self.setting_change)
-
-        self.tmTechTo.setTime(QTime(int(self.existingSettings.TECHTOHOUR), int(self.existingSettings.TECHTOMIN)))
-        self.tmTechTo.timeChanged.connect(self.setting_change)
-
-        self.chbxUiDebug.setChecked(self.existingSettings.UIDEBUG)
-        self.chbxUiDebug.stateChanged.connect(self.setting_change)
-
-        self.chbxAutostart.setChecked(self.existingSettings.AUTOSTART)
-        self.chbxAutostart.stateChanged.connect(self.setting_change)
-
-        self.btnRemoveC.clicked.connect(self.remove_candidate)
-        self.btnAddC.clicked.connect(self.add_candidate)
-
-        self.chbxUseServer.setChecked(self.existingSettings.USESERVER)
-        self.chbxUseServer.stateChanged.connect(self.setting_change)
-
-        self.txtServerUrl.setText(self.existingSettings.SERVERURL)
-        self.txtServerUrl.textChanged.connect(self.setting_change)
-
-        self.btnGet.clicked.connect(self.update_stocks_from_cloud)
-        self.btnClear.clicked.connect(self.clear_candidates)
-
-        self.accepted.connect(self.check_changed)
-
-    def check_changed(self):
-        if self.changedSettings:
-            reply = QMessageBox.question(self, 'Settings Changed',
-                                         'Accepting will cause the restart,Sure?',
-                                         QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-
-            if reply == QMessageBox.No:
-                self.reject()
-
-    def redraw_candidates_list(self):
-        self.lstCandidates.clear()
-
-        for candidate in self.existingSettings.CANDIDATES:
-            ticker = candidate.ticker
-            reason = candidate.reason
-            o = 3
-            item_to_add = QListWidgetItem()
-            item_to_add.setText(ticker)
-            item_to_add.setToolTip(reason)
-            self.lstCandidates.addItem(item_to_add)
-        self.btnRemoveC.setEnabled(False)
-        self.set_clear_button_state()
-
-    def set_clear_button_state(self):
-        if self.lstCandidates.count() > 0:
-            self.btnClear.setEnabled(True)
-        else:
-            self.btnClear.setEnabled(False)
-
-    def remove_candidate(self):
-        stock_to_remove = self.lstCandidates.selectedItems()[0].text()
-        for x in self.existingSettings.CANDIDATES:
-            if x.ticker == stock_to_remove:
-                self.existingSettings.CANDIDATES.remove(x)
-                break
-        self.changedSettings = True
-        self.redraw_candidates_list()
-
-    def add_candidate(self):
-        self.dlg = StockWindow()
-        self.dlg.client = self.ibkrClient
-        self.dlg.path_to_driver = self.existingSettings.PATHTOWEBDRIVER
-        if self.dlg.exec_():
-            ca = SettingsCandidate()
-            ca.ticker = self.dlg.txtTicker.text().upper()
-            ca.reason = self.dlg.txtReason.toPlainText()
-            self.existingSettings.CANDIDATES.append(ca)
-            self.changedSettings = True
-            self.redraw_candidates_list()
-        else:
-            print("Adding Canceled")
-
-    def candidate_selected(self):
-        self.btnRemoveC.setEnabled(True)
-
-    def update_stocks_from_cloud(self):
-        received_stocks = []
-        try:
-            x = requests.get('https://147u4tq4w4.execute-api.eu-west-3.amazonaws.com/default/ptest')
-            received_stocks = json.loads(x.text)
-            self.settings.CANDIDATES = received_stocks
-            for s in received_stocks:
-                self.lstCandidates.addItem(s['ticker'])
-                i = self.lstCandidates.findItems(s['ticker'], Qt.MatchExactly)
-                i[0].setToolTip(s['reason'])
-            self.set_clear_button_state()
-            self.setting_change()
-
-        except:
-            print('Failed to get the stocks from cloud')
-
-    def clear_candidates(self):
-        self.existingSettings.CANDIDATES = []
-        self.changedSettings = True
-        self.redraw_candidates_list()
-
-    def candidate_double_clicked(self):
-        stock_to_edit = self.lstCandidates.selectedItems()[0].text()
-        for index, item in enumerate(self.existingSettings.CANDIDATES):
-            if item.ticker == stock_to_edit:
-                self.dlg = StockWindow()
-                self.dlg.client = self.ibkrClient
-                self.dlg.txtTicker.setText(item.ticker)
-                self.dlg.txtReason.setPlainText(item.reason)
-                self.dlg.path_to_driver = self.existingSettings.PATHTOWEBDRIVER
-                if self.dlg.exec_():
-                    ca = SettingsCandidate()
-                    ca.ticker = self.dlg.txtTicker.text().upper()
-                    ca.reason = self.dlg.txtReason.toPlainText()
-                    self.existingSettings.CANDIDATES[index] = ca
-                    self.changedSettings = True
-                    self.redraw_candidates_list()
-                else:
-                    print("Modify Canceled")
-                break
-
-
-class StockWindow(QDialog, Ui_newStockDlg):
-
-    def __init__(self):
-        super().__init__()
-        self.setupUi(self)
-
-    def addStock(self):
-        ca = SettingsCandidate()
-        ca.ticker = self.txtTicker
-        ca.reason = self.txtReason
-        self.settings.CANDIDATES.append(ca)
 
 
 def main():

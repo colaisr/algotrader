@@ -1,6 +1,6 @@
 import time
 import threading
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from Logic.ApiWrapper import IBapi, createContract, createTrailingStopOrder, create_limit_buy_order, createMktSellOrder
 from pytz import timezone
@@ -8,6 +8,7 @@ from pytz import timezone
 
 class IBKRWorker():
     def __init__(self, settings):
+        self.trading_session_state=None
         self.app = IBapi()
         self.settings = settings
         self.app.setting = self.settings
@@ -22,12 +23,9 @@ Connecting to IBKR API and initiating the connection instance
         status_callback.emit("Connecting")
         try:
             notification_callback.emit("Begin prepare and connect")
-            # self.get_market_data_from_server(notification_callback)
             self.connect_to_tws(notification_callback)
-            # self.check_if_holiday(notification_callback)
             self.request_current_PnL(notification_callback)
             self.start_tracking_excess_liquidity(notification_callback)
-            # start tracking open positions
             self.update_open_positions(notification_callback)
 
             # request open orders
@@ -147,8 +145,6 @@ Processes the positions to identify Profit/Loss
                             self.app.nextorderId = self.app.nextorderId + 1
                             notification_callback.emit("Created a Trailing Stop order for " + s + " at level of " +
                                                        str(self.settings.TRAIL) + "%")
-                            self.log_decision("LOG/profits.txt",
-                                              "Created a Trailing Stop order for " + s + " at level of " + str(self.settings.TRAIL) + "%"+" The profit was:"+str(profit))
                     elif profit < float(self.settings.LOSS):
                         orders = self.app.openOrders
                         if s in orders:
@@ -161,7 +157,6 @@ Processes the positions to identify Profit/Loss
                             self.app.placeOrder(self.app.nextorderId, contract, order)
                             self.app.nextorderId = self.app.nextorderId + 1
                             notification_callback.emit("Created a Market Sell order for " + s)
-                            self.log_decision("LOG/loses.txt", "Created a Market Sell order for " + s+" The profit was:"+str(profit))
 
                 else:
                     notification_callback.emit("Position " + s + " skept its Value is 0")
@@ -173,6 +168,10 @@ Processes the positions to identify Profit/Loss
 Evaluates stock for buying
         :param s:
         """
+        ask_price=None
+        target_price=None
+        tipRank=None
+        average_daily_dropP=None
         notification_callback.emit("Evaluating " + s + "for a Buy")
         result='evaluating'
         # finding stock in Candidates
@@ -242,9 +241,6 @@ Creates order to buy a stock at specific price
                 self.app.nextorderId = self.app.nextorderId + 1
                 notification_callback.emit(
                     "Issued the BUY order at " + str(price) + "for " + str(stocksToBuy) + " Stocks of " + s)
-                self.log_decision("LOG/buys.txt",
-                                  "Issued the BUY order at " + str(price) + "for " + str(stocksToBuy) + " Stocks of " + s)
-
 
             else:
                 notification_callback.emit("The single stock is too expensive - skipping")
@@ -300,7 +296,6 @@ Process Open positions and Candidates
         try:
             est = timezone('US/Eastern')
             fmt = '%Y-%m-%d %H:%M:%S'
-            local_time = datetime.now().strftime(fmt)
             est_time = datetime.now(est).strftime(fmt)
             notification_callback.emit("-------Starting Worker...----EST Time: " + est_time + "--------------------")
 
@@ -322,8 +317,6 @@ Process Open positions and Candidates
                 self.process_positions(notification_callback)
                 self.last_worker_execution_time = datetime.now()
             else:
-                # remainingFunds = self.app.sMa
-                # existing_positions = self.app.openPositions
                 notification_callback.emit("Trading session is not Open - processing skept")
 
             notification_callback.emit(
@@ -344,8 +337,6 @@ updating all openPositions, refreshed on each worker- to include changes from ne
         """
         # update positions from IBKR
         notification_callback.emit("Updating open Positions:")
-        print("Request all positions general info")
-
         self.app.openPositionsLiveDataRequests = {}  # reset requests dictionary as positions could be changed...
         self.app.openPositions = {}  # reset open positions
         self.app.temp_positions = {}
@@ -355,7 +346,6 @@ updating all openPositions, refreshed on each worker- to include changes from ne
         time.sleep(0.5)
         counter = 0
         while (self.app.finishedPostitionsGeneral != True):
-            print("waiting to get all general positions info: "+str(counter))
             time.sleep(1)
             counter += 1
         for s, p in self.app.temp_positions.items():  # start tracking one by one
@@ -379,7 +369,6 @@ Requests all open orders
         self.app.finishedReceivingOrders = False
         self.app.reqAllOpenOrders()
         # while(self.app.finishedReceivingOrders!=True):
-        print("waiting to get all orders info")
         time.sleep(1)
 
         notification_callback.emit(str(len(self.app.openOrders)) + " open orders found ")
@@ -405,12 +394,6 @@ Creating a PnL request the result will be stored in generalStarus
         # time.sleep(0.5)
         self.app.nextorderId = self.app.nextorderId + 1
         notification_callback.emit(self.app.generalStatus)
-
-    def log_decision(self, logFile, order):
-        with open(logFile, "a") as f:
-            currentDt = datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
-            order = '\n'+currentDt + '---' + order
-            f.write(order)
 
     def get_required_cushion_for_open_positions(self):
         requiredCushion = 0
@@ -444,10 +427,9 @@ Creating a PnL request the result will be stored in generalStarus
         id = self.app.nextorderId
 
         first = next(iter(self.settings.CANDIDATES))
-        c = createContract(first.ticker)
+        c = createContract('AAPL')# checked always with AAPL - can be no candidates
         self.app.reqContractDetails(id, c)
         while (self.app.trading_hours_received != True):
-            print("waiting to get trading session status info")
             time.sleep(1)
         session_info_to_parse = self.app.trading_session
         today_string = session_info_to_parse.split(";")[0]
