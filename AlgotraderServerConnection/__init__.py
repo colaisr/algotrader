@@ -115,11 +115,10 @@ def report_market_data_to_server(settings, candid_data):
     if status_code == 200:
         return r.text
 
-def get_user_candidates_from_server(url,user,use_system_candidates):
+def get_user_candidates_from_server(url,user):
 
     r = requests.get(url + '/candidates/retrieveusercandidates',
-                     json={"user": user,
-                           "use_system_candidates": use_system_candidates})
+                     json={"user": user})
 
     status_code = r.status_code
     if status_code == 200:

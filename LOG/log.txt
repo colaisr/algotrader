@@ -1664,3 +1664,496 @@
 26-Mar-2021 (13:07:00.238656)---Trading session is not Open - processing skept
 26-Mar-2021 (13:07:00.240237)---...............Worker finished....EST Time: 2021-03-26 06:06:58...................
 26-Mar-2021 (13:07:00.247769)---UI resumed.
+26-Mar-2021 (13:07:17.408089)---Report snapshot for cola.isr@gmail.com stored at server.
+26-Mar-2021 (13:12:22.119451)---Starting Worker- UI Paused
+26-Mar-2021 (13:12:22.124740)----------Starting Worker...----EST Time: 2021-03-26 06:12:22--------------------
+26-Mar-2021 (13:12:22.126698)---Checking connection
+26-Mar-2021 (13:12:22.128112)---Connection is fine- proceeding
+26-Mar-2021 (13:12:22.129491)---Updating all open orders
+26-Mar-2021 (13:14:42.777395)---0 open orders found 
+26-Mar-2021 (13:14:42.799042)---Updating open Positions:
+26-Mar-2021 (13:14:43.280066)---Started tracking SMTC position PnL
+26-Mar-2021 (13:14:43.381676)---Started tracking SMTC position PnL
+26-Mar-2021 (13:14:43.491756)---Started tracking SMTC position PnL
+26-Mar-2021 (13:14:43.593149)---Started tracking SMTC position PnL
+26-Mar-2021 (13:14:43.698804)---Started tracking SMTC position PnL
+26-Mar-2021 (13:14:43.802493)---Started tracking SMTC position PnL
+26-Mar-2021 (13:14:43.904497)---Started tracking TTWO position PnL
+26-Mar-2021 (13:14:44.012996)---Started tracking PTON position PnL
+26-Mar-2021 (13:14:44.119127)---Started tracking PTON position PnL
+26-Mar-2021 (13:14:44.220416)---Started tracking BYND position PnL
+26-Mar-2021 (13:14:44.325920)---4 open positions completely updated
+26-Mar-2021 (13:14:44.327429)---Trading session is not Open - processing skept
+26-Mar-2021 (13:14:44.328689)---...............Worker finished....EST Time: 2021-03-26 06:12:22...................
+26-Mar-2021 (13:14:44.334297)---UI resumed.
+26-Mar-2021 (13:41:34.268057)---Starting Worker- UI Paused
+26-Mar-2021 (13:41:34.272381)----------Starting Worker...----EST Time: 2021-03-26 06:41:34--------------------
+26-Mar-2021 (13:41:34.273932)---Checking connection
+26-Mar-2021 (13:41:34.274999)---Connection is fine- proceeding
+26-Mar-2021 (13:41:34.276239)---Updating all open orders
+26-Mar-2021 (13:41:35.275266)---0 open orders found 
+26-Mar-2021 (13:41:35.277000)---Updating open Positions:
+26-Mar-2021 (14:10:44.329753)---Starting Worker- UI Paused
+26-Mar-2021 (14:10:44.335715)----------Starting Worker...----EST Time: 2021-03-26 07:10:44--------------------
+26-Mar-2021 (14:10:44.338193)---Checking connection
+26-Mar-2021 (14:10:44.340408)---Connection is fine- proceeding
+26-Mar-2021 (14:10:44.341703)---Updating all open orders
+26-Mar-2021 (14:10:45.339614)---0 open orders found 
+26-Mar-2021 (14:10:45.341139)---Updating open Positions:
+26-Mar-2021 (14:33:39.267479)---Starting Worker- UI Paused
+26-Mar-2021 (14:33:39.271358)----------Starting Worker...----EST Time: 2021-03-26 07:33:39--------------------
+26-Mar-2021 (14:33:39.272946)---Checking connection
+26-Mar-2021 (14:33:39.274286)---Connection is fine- proceeding
+26-Mar-2021 (14:33:39.275593)---Updating all open orders
+26-Mar-2021 (14:33:40.272300)---0 open orders found 
+26-Mar-2021 (14:33:40.274473)---Updating open Positions:
+26-Mar-2021 (15:13:32.985521)---Starting Worker- UI Paused
+26-Mar-2021 (15:13:32.991213)----------Starting Worker...----EST Time: 2021-03-26 08:13:32--------------------
+26-Mar-2021 (15:13:32.992115)---Checking connection
+26-Mar-2021 (15:13:32.992778)---Connection is fine- proceeding
+26-Mar-2021 (15:13:32.993403)---Updating all open orders
+26-Mar-2021 (15:13:33.992128)---0 open orders found 
+26-Mar-2021 (15:13:33.992837)---Updating open Positions:
+26-Mar-2021 (15:19:41.879144)---Market data for 43 Candidates received from Server
+26-Mar-2021 (15:19:41.880136)---Reporting connection to the server...
+26-Mar-2021 (15:19:42.191903)---Application launch for cola.isr@gmail.com is logged.
+26-Mar-2021 (15:19:42.256108)---Begin prepare and connect
+26-Mar-2021 (15:19:42.256438)---Restarting connection to IBKR
+26-Mar-2021 (15:19:42.312735)---Waiting for connection...attempt:0
+26-Mar-2021 (15:19:43.318206)---Successfully connected to API
+26-Mar-2021 (15:19:43.319964)---Requesting Daily PnL
+26-Mar-2021 (15:19:43.320675)---PnL not yet received
+26-Mar-2021 (15:19:43.321293)---Starting to track Excess liquidity
+26-Mar-2021 (15:19:43.322259)---Updating open Positions:
+26-Mar-2021 (15:19:43.823332)---Started tracking SMTC position PnL
+26-Mar-2021 (15:19:43.926023)---Started tracking SMTC position PnL
+26-Mar-2021 (15:19:44.032124)---Started tracking SMTC position PnL
+26-Mar-2021 (15:19:44.137405)---Started tracking TTWO position PnL
+26-Mar-2021 (15:19:44.239248)---Started tracking TTWO position PnL
+26-Mar-2021 (15:19:44.340751)---Started tracking PTON position PnL
+26-Mar-2021 (15:19:44.443968)---Started tracking PTON position PnL
+26-Mar-2021 (15:19:44.549725)---Started tracking BYND position PnL
+26-Mar-2021 (15:19:44.655222)---Started tracking BYND position PnL
+26-Mar-2021 (15:19:44.757776)---Started tracking BYND position PnL
+26-Mar-2021 (15:19:44.859770)---Started tracking BYND position PnL
+26-Mar-2021 (15:19:44.964779)---4 open positions completely updated
+26-Mar-2021 (15:19:44.965438)---Updating all open orders
+26-Mar-2021 (15:19:45.969835)---0 open orders found 
+26-Mar-2021 (15:19:46.976398)---Starting to track BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,SPCE,BABA,BIIB,TSLA,OKTA,GEVO,SMTC,JD,FTNT,U,TDOC,AAPL Candidates
+26-Mar-2021 (15:19:46.979077)---starting to track: 1 of 43 BYND traking with Id:191916
+26-Mar-2021 (15:19:46.981364)---starting to track: 2 of 43 SEDG traking with Id:191917
+26-Mar-2021 (15:19:46.989560)---starting to track: 3 of 43 LTHM traking with Id:191918
+26-Mar-2021 (15:19:46.990363)---starting to track: 4 of 43 SQ traking with Id:191919
+26-Mar-2021 (15:19:46.991048)---starting to track: 5 of 43 TTWO traking with Id:191920
+26-Mar-2021 (15:19:46.991647)---starting to track: 6 of 43 OTRK traking with Id:191921
+26-Mar-2021 (15:19:46.992220)---starting to track: 7 of 43 HUM traking with Id:191922
+26-Mar-2021 (15:19:46.992706)---starting to track: 8 of 43 ZG traking with Id:191923
+26-Mar-2021 (15:19:46.993230)---starting to track: 9 of 43 MSFT traking with Id:191924
+26-Mar-2021 (15:19:46.993732)---starting to track: 10 of 43 NVDA traking with Id:191925
+26-Mar-2021 (15:19:46.994206)---starting to track: 11 of 43 BEP traking with Id:191926
+26-Mar-2021 (15:19:46.994687)---starting to track: 12 of 43 GOOGL traking with Id:191927
+26-Mar-2021 (15:19:46.995165)---starting to track: 13 of 43 ETSY traking with Id:191928
+26-Mar-2021 (15:19:46.995644)---starting to track: 14 of 43 IVAC traking with Id:191929
+26-Mar-2021 (15:19:46.996112)---starting to track: 15 of 43 PTON traking with Id:191930
+26-Mar-2021 (15:19:46.996576)---starting to track: 16 of 43 ADI traking with Id:191931
+26-Mar-2021 (15:19:46.997034)---starting to track: 17 of 43 CRM traking with Id:191932
+26-Mar-2021 (15:19:46.997494)---starting to track: 18 of 43 CHWY traking with Id:191933
+26-Mar-2021 (15:19:46.997959)---starting to track: 19 of 43 AZN traking with Id:191934
+26-Mar-2021 (15:19:46.998413)---starting to track: 20 of 43 NICE traking with Id:191935
+26-Mar-2021 (15:19:46.998879)---starting to track: 21 of 43 CSCO traking with Id:191936
+26-Mar-2021 (15:19:46.999344)---starting to track: 22 of 43 PANW traking with Id:191937
+26-Mar-2021 (15:19:46.999799)---starting to track: 23 of 43 NET traking with Id:191938
+26-Mar-2021 (15:19:47.000255)---starting to track: 24 of 43 CRWD traking with Id:191939
+26-Mar-2021 (15:19:47.000718)---starting to track: 25 of 43 CHKP traking with Id:191940
+26-Mar-2021 (15:19:47.001179)---starting to track: 26 of 43 CVLT traking with Id:191941
+26-Mar-2021 (15:19:47.001636)---starting to track: 27 of 43 RPD traking with Id:191942
+26-Mar-2021 (15:19:47.002096)---starting to track: 28 of 43 TENB traking with Id:191943
+26-Mar-2021 (15:19:47.002531)---starting to track: 29 of 43 ADBE traking with Id:191944
+26-Mar-2021 (15:19:47.002933)---starting to track: 30 of 43 SHOP traking with Id:191945
+26-Mar-2021 (15:19:47.003330)---starting to track: 31 of 43 NIO traking with Id:191946
+26-Mar-2021 (15:19:47.003726)---starting to track: 32 of 43 SPCE traking with Id:191947
+26-Mar-2021 (15:19:47.004122)---starting to track: 33 of 43 BABA traking with Id:191948
+26-Mar-2021 (15:19:47.004523)---starting to track: 34 of 43 BIIB traking with Id:191949
+26-Mar-2021 (15:19:47.004938)---starting to track: 35 of 43 TSLA traking with Id:191950
+26-Mar-2021 (15:19:47.005348)---starting to track: 36 of 43 OKTA traking with Id:191951
+26-Mar-2021 (15:19:47.005750)---starting to track: 37 of 43 GEVO traking with Id:191952
+26-Mar-2021 (15:19:47.006165)---starting to track: 38 of 43 SMTC traking with Id:191953
+26-Mar-2021 (15:19:47.006573)---starting to track: 39 of 43 JD traking with Id:191954
+26-Mar-2021 (15:19:47.006976)---starting to track: 40 of 43 FTNT traking with Id:191955
+26-Mar-2021 (15:19:47.007375)---starting to track: 41 of 43 U traking with Id:191956
+26-Mar-2021 (15:19:47.007777)---starting to track: 42 of 43 TDOC traking with Id:191957
+26-Mar-2021 (15:19:47.008189)---starting to track: 43 of 43 AAPL traking with Id:191958
+26-Mar-2021 (15:19:47.992376)---Waiting for last requested candidate Close price :0
+26-Mar-2021 (15:19:48.996243)---Waiting for last requested candidate Close price :1
+26-Mar-2021 (15:19:50.002784)---Waiting for last requested candidate Close price :2
+26-Mar-2021 (15:19:51.008410)---Waiting for last requested candidate Close price :3
+26-Mar-2021 (15:19:52.010512)---Waiting for last requested candidate Close price :4
+26-Mar-2021 (15:19:53.013475)---Waiting for last requested candidate Close price :5
+26-Mar-2021 (15:19:53.015143)---Yahoo data and Tipranks for BYND was added
+26-Mar-2021 (15:19:53.016626)---Yahoo data and Tipranks for SEDG was added
+26-Mar-2021 (15:19:53.017404)---Yahoo data and Tipranks for LTHM was added
+26-Mar-2021 (15:19:53.019402)---Yahoo data and Tipranks for SQ was added
+26-Mar-2021 (15:19:53.021108)---Yahoo data and Tipranks for TTWO was added
+26-Mar-2021 (15:19:53.022063)---Yahoo data and Tipranks for OTRK was added
+26-Mar-2021 (15:19:53.022854)---Yahoo data and Tipranks for HUM was added
+26-Mar-2021 (15:19:53.023601)---Yahoo data and Tipranks for ZG was added
+26-Mar-2021 (15:19:53.024509)---Yahoo data and Tipranks for MSFT was added
+26-Mar-2021 (15:19:53.025301)---Yahoo data and Tipranks for NVDA was added
+26-Mar-2021 (15:19:53.026045)---Yahoo data and Tipranks for BEP was added
+26-Mar-2021 (15:19:53.026847)---Yahoo data and Tipranks for GOOGL was added
+26-Mar-2021 (15:19:53.031066)---Yahoo data and Tipranks for ETSY was added
+26-Mar-2021 (15:19:53.031681)---Yahoo data and Tipranks for IVAC was added
+26-Mar-2021 (15:19:53.032200)---Yahoo data and Tipranks for PTON was added
+26-Mar-2021 (15:19:53.032681)---Yahoo data and Tipranks for ADI was added
+26-Mar-2021 (15:19:53.033138)---Yahoo data and Tipranks for CRM was added
+26-Mar-2021 (15:19:53.033637)---Yahoo data and Tipranks for CHWY was added
+26-Mar-2021 (15:19:53.034124)---Yahoo data and Tipranks for AZN was added
+26-Mar-2021 (15:19:53.034613)---Yahoo data and Tipranks for NICE was added
+26-Mar-2021 (15:19:53.035123)---Yahoo data and Tipranks for CSCO was added
+26-Mar-2021 (15:19:53.035640)---Yahoo data and Tipranks for PANW was added
+26-Mar-2021 (15:19:53.036147)---Yahoo data and Tipranks for NET was added
+26-Mar-2021 (15:19:53.036637)---Yahoo data and Tipranks for CRWD was added
+26-Mar-2021 (15:19:53.037135)---Yahoo data and Tipranks for CHKP was added
+26-Mar-2021 (15:19:53.037615)---Yahoo data and Tipranks for CVLT was added
+26-Mar-2021 (15:19:53.038090)---Yahoo data and Tipranks for RPD was added
+26-Mar-2021 (15:19:53.038570)---Yahoo data and Tipranks for TENB was added
+26-Mar-2021 (15:19:53.039027)---Yahoo data and Tipranks for ADBE was added
+26-Mar-2021 (15:19:53.039484)---Yahoo data and Tipranks for SHOP was added
+26-Mar-2021 (15:19:53.039941)---Yahoo data and Tipranks for NIO was added
+26-Mar-2021 (15:19:53.040398)---Yahoo data and Tipranks for SPCE was added
+26-Mar-2021 (15:19:53.040865)---Yahoo data and Tipranks for BABA was added
+26-Mar-2021 (15:19:53.041323)---Yahoo data and Tipranks for BIIB was added
+26-Mar-2021 (15:19:53.041789)---Yahoo data and Tipranks for TSLA was added
+26-Mar-2021 (15:19:53.042230)---Yahoo data and Tipranks for OKTA was added
+26-Mar-2021 (15:19:53.042631)---Yahoo data and Tipranks for GEVO was added
+26-Mar-2021 (15:19:53.043117)---Yahoo data and Tipranks for SMTC was added
+26-Mar-2021 (15:19:53.043519)---Yahoo data and Tipranks for JD was added
+26-Mar-2021 (15:19:53.043917)---Yahoo data and Tipranks for FTNT was added
+26-Mar-2021 (15:19:53.044334)---Yahoo data and Tipranks for U was added
+26-Mar-2021 (15:19:53.044742)---Yahoo data and Tipranks for TDOC was added
+26-Mar-2021 (15:19:53.045146)---Yahoo data and Tipranks for AAPL was added
+26-Mar-2021 (15:19:53.045617)---43 Candidates evaluated and started to track
+26-Mar-2021 (15:19:53.046025)---Updating target prices for Candidates
+26-Mar-2021 (15:19:53.046421)---Updating target price for BYND
+26-Mar-2021 (15:19:53.046892)---Target price for BYND updated to 125.99381261259771 based on Close price
+26-Mar-2021 (15:19:53.047336)---Updating target price for SEDG
+26-Mar-2021 (15:19:53.047787)---Target price for SEDG updated to 261.8913835597271 based on Close price
+26-Mar-2021 (15:19:53.048242)---Updating target price for LTHM
+26-Mar-2021 (15:19:53.048607)---Target price for LTHM updated to 16.191916689219088 based on Close price
+26-Mar-2021 (15:19:53.048968)---Updating target price for SQ
+26-Mar-2021 (15:19:53.049336)---Target price for SQ updated to 202.97219465298815 based on Close price
+26-Mar-2021 (15:19:53.049738)---Updating target price for TTWO
+26-Mar-2021 (15:19:53.050123)---Target price for TTWO updated to 167.0460123422605 based on Close price
+26-Mar-2021 (15:19:53.050500)---Updating target price for OTRK
+26-Mar-2021 (15:19:53.050875)---Target price for OTRK updated to 30.444367824086203 based on Close price
+26-Mar-2021 (15:19:53.051259)---Updating target price for HUM
+26-Mar-2021 (15:19:53.051623)---Target price for HUM updated to 410.49627100689065 based on Close price
+26-Mar-2021 (15:19:53.051936)---Updating target price for ZG
+26-Mar-2021 (15:19:53.052239)---Target price for ZG updated to 127.83997168669359 based on Close price
+26-Mar-2021 (15:19:53.052553)---Updating target price for MSFT
+26-Mar-2021 (15:19:53.052866)---Target price for MSFT updated to 229.6383751060588 based on Close price
+26-Mar-2021 (15:19:53.053176)---Updating target price for NVDA
+26-Mar-2021 (15:19:53.053496)---Target price for NVDA updated to 491.83941740529707 based on Close price
+26-Mar-2021 (15:19:53.053810)---Updating target price for BEP
+26-Mar-2021 (15:19:53.054119)---Target price for BEP updated to 40.48998491995301 based on Close price
+26-Mar-2021 (15:19:53.054431)---Updating target price for GOOGL
+26-Mar-2021 (15:19:53.054746)---Target price for GOOGL updated to 2008.9046399320296 based on Close price
+26-Mar-2021 (15:19:53.055068)---Updating target price for ETSY
+26-Mar-2021 (15:19:53.055387)---Target price for ETSY updated to 190.7885567146328 based on Close price
+26-Mar-2021 (15:19:53.055701)---Updating target price for IVAC
+26-Mar-2021 (15:19:53.056017)---Target price for IVAC updated to 5.4359176732443 based on Close price
+26-Mar-2021 (15:19:53.056331)---Updating target price for PTON
+26-Mar-2021 (15:19:53.056655)---Target price for PTON updated to 100.05941548581141 based on Close price
+26-Mar-2021 (15:19:53.056978)---Updating target price for ADI
+26-Mar-2021 (15:19:53.057307)---Target price for ADI updated to 147.88418266706245 based on Close price
+26-Mar-2021 (15:19:53.057633)---Updating target price for CRM
+26-Mar-2021 (15:19:53.057973)---Target price for CRM updated to 202.1437060242555 based on Close price
+26-Mar-2021 (15:19:53.058294)---Updating target price for CHWY
+26-Mar-2021 (15:19:53.058622)---Target price for CHWY updated to 76.72845140135585 based on Close price
+26-Mar-2021 (15:19:53.058955)---Updating target price for AZN
+26-Mar-2021 (15:19:53.059282)---Target price for AZN updated to 49.17364910300002 based on Close price
+26-Mar-2021 (15:19:53.059618)---Updating target price for NICE
+26-Mar-2021 (15:19:53.059974)---Target price for NICE updated to 216.48235158325818 based on Close price
+26-Mar-2021 (15:19:53.060343)---Updating target price for CSCO
+26-Mar-2021 (15:19:53.060674)---Target price for CSCO updated to 49.99978681430494 based on Close price
+26-Mar-2021 (15:19:53.061014)---Updating target price for PANW
+26-Mar-2021 (15:19:53.061343)---Target price for PANW updated to 318.8081113064481 based on Close price
+26-Mar-2021 (15:19:53.061656)---Updating target price for NET
+26-Mar-2021 (15:19:53.061960)---Target price for NET updated to 64.70879745059284 based on Close price
+26-Mar-2021 (15:19:53.062273)---Updating target price for CRWD
+26-Mar-2021 (15:19:53.062571)---Target price for CRWD updated to 174.29649308414284 based on Close price
+26-Mar-2021 (15:19:53.062876)---Updating target price for CHKP
+26-Mar-2021 (15:19:53.063212)---Target price for CHKP updated to 111.87047074390928 based on Close price
+26-Mar-2021 (15:19:53.063511)---Updating target price for CVLT
+26-Mar-2021 (15:19:53.063861)---Target price for CVLT updated to 62.50853754027719 based on Close price
+26-Mar-2021 (15:19:53.064167)---Updating target price for RPD
+26-Mar-2021 (15:19:53.064476)---Target price for RPD updated to 72.30961571445542 based on Close price
+26-Mar-2021 (15:19:53.064783)---Updating target price for TENB
+26-Mar-2021 (15:19:53.065080)---Target price for TENB updated to 36.68852379342089 based on Close price
+26-Mar-2021 (15:19:53.065380)---Updating target price for ADBE
+26-Mar-2021 (15:19:53.065677)---Target price for ADBE updated to 444.08961787786006 based on Close price
+26-Mar-2021 (15:19:53.066002)---Updating target price for SHOP
+26-Mar-2021 (15:19:53.066301)---Target price for SHOP updated to 1033.0947544360304 based on Close price
+26-Mar-2021 (15:19:53.066604)---Updating target price for NIO
+26-Mar-2021 (15:19:53.066899)---Target price for NIO updated to 36.397214821330856 based on Close price
+26-Mar-2021 (15:19:53.067214)---Updating target price for SPCE
+26-Mar-2021 (15:19:53.067525)---Target price for SPCE updated to 28.334845342601664 based on Close price
+26-Mar-2021 (15:19:53.067835)---Updating target price for BABA
+26-Mar-2021 (15:19:53.068139)---Target price for BABA updated to 219.43176140416506 based on Close price
+26-Mar-2021 (15:19:53.068471)---Updating target price for BIIB
+26-Mar-2021 (15:19:53.068771)---Target price for BIIB updated to 270.0707131171333 based on Close price
+26-Mar-2021 (15:19:53.069073)---Updating target price for TSLA
+26-Mar-2021 (15:19:53.069376)---Target price for TSLA updated to 621.9189761702615 based on Close price
+26-Mar-2021 (15:19:53.069692)---Updating target price for OKTA
+26-Mar-2021 (15:19:53.070008)---Target price for OKTA updated to 212.7035339518734 based on Close price
+26-Mar-2021 (15:19:53.070322)---Updating target price for GEVO
+26-Mar-2021 (15:19:53.070632)---Target price for GEVO updated to 8.097494329360448 based on Close price
+26-Mar-2021 (15:19:53.070969)---Updating target price for SMTC
+26-Mar-2021 (15:19:53.071285)---Target price for SMTC updated to 63.93756209592031 based on Close price
+26-Mar-2021 (15:19:53.071567)---Updating target price for JD
+26-Mar-2021 (15:19:53.071846)---Target price for JD updated to 77.1774026658107 based on Close price
+26-Mar-2021 (15:19:53.072122)---Updating target price for FTNT
+26-Mar-2021 (15:19:53.072413)---Target price for FTNT updated to 168.11087895200583 based on Close price
+26-Mar-2021 (15:19:53.072717)---Updating target price for U
+26-Mar-2021 (15:19:53.072986)---Target price for U updated to 87.64924077265957 based on Close price
+26-Mar-2021 (15:19:53.073258)---Updating target price for TDOC
+26-Mar-2021 (15:19:53.073533)---Target price for TDOC updated to 171.14290400437105 based on Close price
+26-Mar-2021 (15:19:53.073809)---Updating target price for AAPL
+26-Mar-2021 (15:19:53.074091)---Target price for AAPL updated to 118.89056092516017 based on Close price
+26-Mar-2021 (15:19:53.074398)---Connected to IBKR and READY
+26-Mar-2021 (15:19:54.080676)---UI resumed.
+26-Mar-2021 (15:19:54.082103)---Starting Worker- UI Paused
+26-Mar-2021 (15:19:54.094082)----------Starting Worker...----EST Time: 2021-03-26 08:19:54--------------------
+26-Mar-2021 (15:19:54.094977)---Checking connection
+26-Mar-2021 (15:19:54.095536)---Connection is fine- proceeding
+26-Mar-2021 (15:19:54.096093)---Updating all open orders
+26-Mar-2021 (15:19:55.085702)---0 open orders found 
+26-Mar-2021 (15:19:55.086892)---Updating open Positions:
+26-Mar-2021 (15:19:55.591589)---Started tracking SMTC position PnL
+26-Mar-2021 (15:19:55.692935)---Started tracking SMTC position PnL
+26-Mar-2021 (15:19:55.795896)---Started tracking SMTC position PnL
+26-Mar-2021 (15:19:55.898593)---Started tracking TTWO position PnL
+26-Mar-2021 (15:19:56.003976)---Started tracking TTWO position PnL
+26-Mar-2021 (15:19:56.108452)---Started tracking PTON position PnL
+26-Mar-2021 (15:19:56.211219)---Started tracking PTON position PnL
+26-Mar-2021 (15:19:56.314508)---Started tracking BYND position PnL
+26-Mar-2021 (15:19:56.420304)---Started tracking BYND position PnL
+26-Mar-2021 (15:19:56.524553)---4 open positions completely updated
+26-Mar-2021 (15:19:56.525403)---Trading session is not Open - processing skept
+26-Mar-2021 (15:19:56.526176)---...............Worker finished....EST Time: 2021-03-26 08:19:54...................
+26-Mar-2021 (15:19:56.532730)---UI resumed.
+26-Mar-2021 (15:35:28.779127)---Market data for 43 Candidates received from Server
+26-Mar-2021 (15:35:28.779762)---Reporting connection to the server...
+26-Mar-2021 (15:35:29.310571)---Application launch for cola.isr@gmail.com is logged.
+26-Mar-2021 (15:35:29.354193)---Begin prepare and connect
+26-Mar-2021 (15:35:29.354427)---Restarting connection to IBKR
+26-Mar-2021 (15:35:29.403631)---Waiting for connection...attempt:0
+26-Mar-2021 (15:35:30.391184)---Successfully connected to API
+26-Mar-2021 (15:35:30.392761)---Requesting Daily PnL
+26-Mar-2021 (15:35:30.393390)---PnL not yet received
+26-Mar-2021 (15:35:30.393927)---Starting to track Excess liquidity
+26-Mar-2021 (15:35:30.399680)---Updating open Positions:
+26-Mar-2021 (15:35:30.898557)---Started tracking SMTC position PnL
+26-Mar-2021 (15:35:31.004342)---Started tracking SMTC position PnL
+26-Mar-2021 (15:35:31.109213)---Started tracking TTWO position PnL
+26-Mar-2021 (15:35:31.210383)---Started tracking TTWO position PnL
+26-Mar-2021 (15:35:31.314518)---Started tracking PTON position PnL
+26-Mar-2021 (15:35:31.420231)---Started tracking BYND position PnL
+26-Mar-2021 (15:35:31.522902)---Started tracking BYND position PnL
+26-Mar-2021 (15:35:31.627456)---4 open positions completely updated
+26-Mar-2021 (15:35:31.629154)---Updating all open orders
+26-Mar-2021 (15:35:32.632918)---0 open orders found 
+26-Mar-2021 (15:35:33.638696)---Starting to track BYND,SEDG,LTHM,SQ,TTWO,OTRK,HUM,ZG,MSFT,NVDA,BEP,GOOGL,ETSY,IVAC,PTON,ADI,CRM,CHWY,AZN,NICE,CSCO,PANW,NET,CRWD,CHKP,CVLT,RPD,TENB,ADBE,SHOP,NIO,SPCE,BABA,BIIB,TSLA,OKTA,GEVO,SMTC,JD,FTNT,U,TDOC,AAPL Candidates
+26-Mar-2021 (15:35:33.640973)---starting to track: 1 of 43 BYND traking with Id:191912
+26-Mar-2021 (15:35:33.642047)---starting to track: 2 of 43 SEDG traking with Id:191913
+26-Mar-2021 (15:35:33.646604)---starting to track: 3 of 43 LTHM traking with Id:191914
+26-Mar-2021 (15:35:33.646928)---starting to track: 4 of 43 SQ traking with Id:191915
+26-Mar-2021 (15:35:33.647165)---starting to track: 5 of 43 TTWO traking with Id:191916
+26-Mar-2021 (15:35:33.647379)---starting to track: 6 of 43 OTRK traking with Id:191917
+26-Mar-2021 (15:35:33.647587)---starting to track: 7 of 43 HUM traking with Id:191918
+26-Mar-2021 (15:35:33.647779)---starting to track: 8 of 43 ZG traking with Id:191919
+26-Mar-2021 (15:35:33.647973)---starting to track: 9 of 43 MSFT traking with Id:191920
+26-Mar-2021 (15:35:33.648170)---starting to track: 10 of 43 NVDA traking with Id:191921
+26-Mar-2021 (15:35:33.648364)---starting to track: 11 of 43 BEP traking with Id:191922
+26-Mar-2021 (15:35:33.648558)---starting to track: 12 of 43 GOOGL traking with Id:191923
+26-Mar-2021 (15:35:33.648751)---starting to track: 13 of 43 ETSY traking with Id:191924
+26-Mar-2021 (15:35:33.648944)---starting to track: 14 of 43 IVAC traking with Id:191925
+26-Mar-2021 (15:35:33.649134)---starting to track: 15 of 43 PTON traking with Id:191926
+26-Mar-2021 (15:35:33.649326)---starting to track: 16 of 43 ADI traking with Id:191927
+26-Mar-2021 (15:35:33.649530)---starting to track: 17 of 43 CRM traking with Id:191928
+26-Mar-2021 (15:35:33.649727)---starting to track: 18 of 43 CHWY traking with Id:191929
+26-Mar-2021 (15:35:33.649921)---starting to track: 19 of 43 AZN traking with Id:191930
+26-Mar-2021 (15:35:33.650113)---starting to track: 20 of 43 NICE traking with Id:191931
+26-Mar-2021 (15:35:33.650305)---starting to track: 21 of 43 CSCO traking with Id:191932
+26-Mar-2021 (15:35:33.650499)---starting to track: 22 of 43 PANW traking with Id:191933
+26-Mar-2021 (15:35:33.650693)---starting to track: 23 of 43 NET traking with Id:191934
+26-Mar-2021 (15:35:33.650885)---starting to track: 24 of 43 CRWD traking with Id:191935
+26-Mar-2021 (15:35:33.651080)---starting to track: 25 of 43 CHKP traking with Id:191936
+26-Mar-2021 (15:35:33.651276)---starting to track: 26 of 43 CVLT traking with Id:191937
+26-Mar-2021 (15:35:33.651470)---starting to track: 27 of 43 RPD traking with Id:191938
+26-Mar-2021 (15:35:33.651672)---starting to track: 28 of 43 TENB traking with Id:191939
+26-Mar-2021 (15:35:33.651889)---starting to track: 29 of 43 ADBE traking with Id:191940
+26-Mar-2021 (15:35:33.652103)---starting to track: 30 of 43 SHOP traking with Id:191941
+26-Mar-2021 (15:35:33.652301)---starting to track: 31 of 43 NIO traking with Id:191942
+26-Mar-2021 (15:35:33.652493)---starting to track: 32 of 43 SPCE traking with Id:191943
+26-Mar-2021 (15:35:33.652688)---starting to track: 33 of 43 BABA traking with Id:191944
+26-Mar-2021 (15:35:33.652883)---starting to track: 34 of 43 BIIB traking with Id:191945
+26-Mar-2021 (15:35:33.653082)---starting to track: 35 of 43 TSLA traking with Id:191946
+26-Mar-2021 (15:35:33.653282)---starting to track: 36 of 43 OKTA traking with Id:191947
+26-Mar-2021 (15:35:33.653476)---starting to track: 37 of 43 GEVO traking with Id:191948
+26-Mar-2021 (15:35:33.653672)---starting to track: 38 of 43 SMTC traking with Id:191949
+26-Mar-2021 (15:35:33.653867)---starting to track: 39 of 43 JD traking with Id:191950
+26-Mar-2021 (15:35:33.654063)---starting to track: 40 of 43 FTNT traking with Id:191951
+26-Mar-2021 (15:35:33.654258)---starting to track: 41 of 43 U traking with Id:191952
+26-Mar-2021 (15:35:33.654456)---starting to track: 42 of 43 TDOC traking with Id:191953
+26-Mar-2021 (15:35:33.654659)---starting to track: 43 of 43 AAPL traking with Id:191954
+26-Mar-2021 (15:35:34.653653)---Waiting for last requested candidate Close price :0
+26-Mar-2021 (15:35:34.655048)---Yahoo data and Tipranks for BYND was added
+26-Mar-2021 (15:35:34.655922)---Yahoo data and Tipranks for SEDG was added
+26-Mar-2021 (15:35:34.656624)---Yahoo data and Tipranks for LTHM was added
+26-Mar-2021 (15:35:34.657211)---Yahoo data and Tipranks for SQ was added
+26-Mar-2021 (15:35:34.657907)---Yahoo data and Tipranks for TTWO was added
+26-Mar-2021 (15:35:34.658483)---Yahoo data and Tipranks for OTRK was added
+26-Mar-2021 (15:35:34.659233)---Yahoo data and Tipranks for HUM was added
+26-Mar-2021 (15:35:34.659633)---Yahoo data and Tipranks for ZG was added
+26-Mar-2021 (15:35:34.659999)---Yahoo data and Tipranks for MSFT was added
+26-Mar-2021 (15:35:34.660234)---Yahoo data and Tipranks for NVDA was added
+26-Mar-2021 (15:35:34.660453)---Yahoo data and Tipranks for BEP was added
+26-Mar-2021 (15:35:34.660718)---Yahoo data and Tipranks for GOOGL was added
+26-Mar-2021 (15:35:34.661059)---Yahoo data and Tipranks for ETSY was added
+26-Mar-2021 (15:35:34.661411)---Yahoo data and Tipranks for IVAC was added
+26-Mar-2021 (15:35:34.661704)---Yahoo data and Tipranks for PTON was added
+26-Mar-2021 (15:35:34.661987)---Yahoo data and Tipranks for ADI was added
+26-Mar-2021 (15:35:34.662227)---Yahoo data and Tipranks for CRM was added
+26-Mar-2021 (15:35:34.662442)---Yahoo data and Tipranks for CHWY was added
+26-Mar-2021 (15:35:34.662641)---Yahoo data and Tipranks for AZN was added
+26-Mar-2021 (15:35:34.662840)---Yahoo data and Tipranks for NICE was added
+26-Mar-2021 (15:35:34.663035)---Yahoo data and Tipranks for CSCO was added
+26-Mar-2021 (15:35:34.663232)---Yahoo data and Tipranks for PANW was added
+26-Mar-2021 (15:35:34.663425)---Yahoo data and Tipranks for NET was added
+26-Mar-2021 (15:35:34.663629)---Yahoo data and Tipranks for CRWD was added
+26-Mar-2021 (15:35:34.663829)---Yahoo data and Tipranks for CHKP was added
+26-Mar-2021 (15:35:34.664027)---Yahoo data and Tipranks for CVLT was added
+26-Mar-2021 (15:35:34.664224)---Yahoo data and Tipranks for RPD was added
+26-Mar-2021 (15:35:34.664421)---Yahoo data and Tipranks for TENB was added
+26-Mar-2021 (15:35:34.664614)---Yahoo data and Tipranks for ADBE was added
+26-Mar-2021 (15:35:34.666597)---Yahoo data and Tipranks for SHOP was added
+26-Mar-2021 (15:35:34.666827)---Yahoo data and Tipranks for NIO was added
+26-Mar-2021 (15:35:34.667041)---Yahoo data and Tipranks for SPCE was added
+26-Mar-2021 (15:35:34.667245)---Yahoo data and Tipranks for BABA was added
+26-Mar-2021 (15:35:34.667445)---Yahoo data and Tipranks for BIIB was added
+26-Mar-2021 (15:35:34.667643)---Yahoo data and Tipranks for TSLA was added
+26-Mar-2021 (15:35:34.667857)---Yahoo data and Tipranks for OKTA was added
+26-Mar-2021 (15:35:34.668079)---Yahoo data and Tipranks for GEVO was added
+26-Mar-2021 (15:35:34.668274)---Yahoo data and Tipranks for SMTC was added
+26-Mar-2021 (15:35:34.668484)---Yahoo data and Tipranks for JD was added
+26-Mar-2021 (15:35:34.668675)---Yahoo data and Tipranks for FTNT was added
+26-Mar-2021 (15:35:34.668873)---Yahoo data and Tipranks for U was added
+26-Mar-2021 (15:35:34.669068)---Yahoo data and Tipranks for TDOC was added
+26-Mar-2021 (15:35:34.669279)---Yahoo data and Tipranks for AAPL was added
+26-Mar-2021 (15:35:34.669491)---43 Candidates evaluated and started to track
+26-Mar-2021 (15:35:34.669690)---Updating target prices for Candidates
+26-Mar-2021 (15:35:34.669878)---Updating target price for BYND
+26-Mar-2021 (15:35:34.670100)---Target price for BYND updated to 125.99381261259771 based on Close price
+26-Mar-2021 (15:35:34.670338)---Updating target price for SEDG
+26-Mar-2021 (15:35:34.670553)---Target price for SEDG updated to 261.8913835597271 based on Close price
+26-Mar-2021 (15:35:34.670769)---Updating target price for LTHM
+26-Mar-2021 (15:35:34.670987)---Target price for LTHM updated to 16.191916689219088 based on Close price
+26-Mar-2021 (15:35:34.671199)---Updating target price for SQ
+26-Mar-2021 (15:35:34.671423)---Target price for SQ updated to 202.97219465298815 based on Close price
+26-Mar-2021 (15:35:34.671640)---Updating target price for TTWO
+26-Mar-2021 (15:35:34.671871)---Target price for TTWO updated to 167.0460123422605 based on Close price
+26-Mar-2021 (15:35:34.672084)---Updating target price for OTRK
+26-Mar-2021 (15:35:34.672305)---Target price for OTRK updated to 30.444367824086203 based on Close price
+26-Mar-2021 (15:35:34.672519)---Updating target price for HUM
+26-Mar-2021 (15:35:34.672731)---Target price for HUM updated to 410.49627100689065 based on Close price
+26-Mar-2021 (15:35:34.672905)---Updating target price for ZG
+26-Mar-2021 (15:35:34.673079)---Target price for ZG updated to 127.83997168669359 based on Close price
+26-Mar-2021 (15:35:34.673253)---Updating target price for MSFT
+26-Mar-2021 (15:35:34.673430)---Target price for MSFT updated to 229.6383751060588 based on Close price
+26-Mar-2021 (15:35:34.673603)---Updating target price for NVDA
+26-Mar-2021 (15:35:34.673777)---Target price for NVDA updated to 491.83941740529707 based on Close price
+26-Mar-2021 (15:35:34.673954)---Updating target price for BEP
+26-Mar-2021 (15:35:34.674136)---Target price for BEP updated to 40.48998491995301 based on Close price
+26-Mar-2021 (15:35:34.674314)---Updating target price for GOOGL
+26-Mar-2021 (15:35:34.674493)---Target price for GOOGL updated to 2008.9046399320296 based on Close price
+26-Mar-2021 (15:35:34.674687)---Updating target price for ETSY
+26-Mar-2021 (15:35:34.674863)---Target price for ETSY updated to 190.7885567146328 based on Close price
+26-Mar-2021 (15:35:34.675042)---Updating target price for IVAC
+26-Mar-2021 (15:35:34.675221)---Target price for IVAC updated to 5.4359176732443 based on Close price
+26-Mar-2021 (15:35:34.675400)---Updating target price for PTON
+26-Mar-2021 (15:35:34.675584)---Target price for PTON updated to 100.05941548581141 based on Close price
+26-Mar-2021 (15:35:34.675765)---Updating target price for ADI
+26-Mar-2021 (15:35:34.675942)---Target price for ADI updated to 147.88418266706245 based on Close price
+26-Mar-2021 (15:35:34.676121)---Updating target price for CRM
+26-Mar-2021 (15:35:34.676302)---Target price for CRM updated to 202.1437060242555 based on Close price
+26-Mar-2021 (15:35:34.676482)---Updating target price for CHWY
+26-Mar-2021 (15:35:34.676662)---Target price for CHWY updated to 76.72845140135585 based on Close price
+26-Mar-2021 (15:35:34.676843)---Updating target price for AZN
+26-Mar-2021 (15:35:34.677022)---Target price for AZN updated to 49.17364910300002 based on Close price
+26-Mar-2021 (15:35:34.677212)---Updating target price for NICE
+26-Mar-2021 (15:35:34.677395)---Target price for NICE updated to 216.48235158325818 based on Close price
+26-Mar-2021 (15:35:34.677579)---Updating target price for CSCO
+26-Mar-2021 (15:35:34.677807)---Target price for CSCO updated to 49.99978681430494 based on Close price
+26-Mar-2021 (15:35:34.677992)---Updating target price for PANW
+26-Mar-2021 (15:35:34.678174)---Target price for PANW updated to 318.8081113064481 based on Close price
+26-Mar-2021 (15:35:34.678355)---Updating target price for NET
+26-Mar-2021 (15:35:34.678541)---Target price for NET updated to 64.70879745059284 based on Close price
+26-Mar-2021 (15:35:34.678724)---Updating target price for CRWD
+26-Mar-2021 (15:35:34.678914)---Target price for CRWD updated to 174.29649308414284 based on Close price
+26-Mar-2021 (15:35:34.679124)---Updating target price for CHKP
+26-Mar-2021 (15:35:34.679310)---Target price for CHKP updated to 111.87047074390928 based on Close price
+26-Mar-2021 (15:35:34.679497)---Updating target price for CVLT
+26-Mar-2021 (15:35:34.679685)---Target price for CVLT updated to 62.50853754027719 based on Close price
+26-Mar-2021 (15:35:34.679870)---Updating target price for RPD
+26-Mar-2021 (15:35:34.680051)---Target price for RPD updated to 72.30961571445542 based on Close price
+26-Mar-2021 (15:35:34.680237)---Updating target price for TENB
+26-Mar-2021 (15:35:34.680427)---Target price for TENB updated to 36.68852379342089 based on Close price
+26-Mar-2021 (15:35:34.680613)---Updating target price for ADBE
+26-Mar-2021 (15:35:34.680803)---Target price for ADBE updated to 444.08961787786006 based on Close price
+26-Mar-2021 (15:35:34.680992)---Updating target price for SHOP
+26-Mar-2021 (15:35:34.681208)---Target price for SHOP updated to 1033.0947544360304 based on Close price
+26-Mar-2021 (15:35:34.681398)---Updating target price for NIO
+26-Mar-2021 (15:35:34.681585)---Target price for NIO updated to 36.397214821330856 based on Close price
+26-Mar-2021 (15:35:34.681777)---Updating target price for SPCE
+26-Mar-2021 (15:35:34.681967)---Target price for SPCE updated to 28.334845342601664 based on Close price
+26-Mar-2021 (15:35:34.682156)---Updating target price for BABA
+26-Mar-2021 (15:35:34.682358)---Target price for BABA updated to 219.43176140416506 based on Close price
+26-Mar-2021 (15:35:34.682546)---Updating target price for BIIB
+26-Mar-2021 (15:35:34.682735)---Target price for BIIB updated to 270.0707131171333 based on Close price
+26-Mar-2021 (15:35:34.682928)---Updating target price for TSLA
+26-Mar-2021 (15:35:34.683116)---Target price for TSLA updated to 621.9189761702615 based on Close price
+26-Mar-2021 (15:35:34.683308)---Updating target price for OKTA
+26-Mar-2021 (15:35:34.683499)---Target price for OKTA updated to 212.7035339518734 based on Close price
+26-Mar-2021 (15:35:34.683694)---Updating target price for GEVO
+26-Mar-2021 (15:35:34.683887)---Target price for GEVO updated to 8.097494329360448 based on Close price
+26-Mar-2021 (15:35:34.684080)---Updating target price for SMTC
+26-Mar-2021 (15:35:34.684291)---Target price for SMTC updated to 63.93756209592031 based on Close price
+26-Mar-2021 (15:35:34.684483)---Updating target price for JD
+26-Mar-2021 (15:35:34.684675)---Target price for JD updated to 77.1774026658107 based on Close price
+26-Mar-2021 (15:35:34.684867)---Updating target price for FTNT
+26-Mar-2021 (15:35:34.685061)---Target price for FTNT updated to 168.11087895200583 based on Close price
+26-Mar-2021 (15:35:34.685256)---Updating target price for U
+26-Mar-2021 (15:35:34.685445)---Target price for U updated to 87.64924077265957 based on Close price
+26-Mar-2021 (15:35:34.685660)---Updating target price for TDOC
+26-Mar-2021 (15:35:34.685867)---Target price for TDOC updated to 171.14290400437105 based on Close price
+26-Mar-2021 (15:35:34.686063)---Updating target price for AAPL
+26-Mar-2021 (15:35:34.686277)---Target price for AAPL updated to 118.89056092516017 based on Close price
+26-Mar-2021 (15:35:34.686482)---Connected to IBKR and READY
+26-Mar-2021 (15:35:35.693193)---UI resumed.
+26-Mar-2021 (15:35:35.694816)---Starting Worker- UI Paused
+26-Mar-2021 (15:35:35.701815)----------Starting Worker...----EST Time: 2021-03-26 08:35:35--------------------
+26-Mar-2021 (15:35:35.702111)---Checking connection
+26-Mar-2021 (15:35:35.702301)---Connection is fine- proceeding
+26-Mar-2021 (15:35:35.702482)---Updating all open orders
+26-Mar-2021 (15:35:36.700401)---0 open orders found 
+26-Mar-2021 (15:35:36.701416)---Updating open Positions:
+26-Mar-2021 (15:35:37.202807)---Started tracking SMTC position PnL
+26-Mar-2021 (15:35:37.304277)---Started tracking SMTC position PnL
+26-Mar-2021 (15:35:37.409150)---Started tracking TTWO position PnL
+26-Mar-2021 (15:35:37.509647)---Started tracking PTON position PnL
+26-Mar-2021 (15:35:37.611581)---Started tracking BYND position PnL
+26-Mar-2021 (15:35:37.713055)---4 open positions completely updated
+26-Mar-2021 (15:35:37.714006)---Trading session is not Open - processing skept
+26-Mar-2021 (15:35:37.714717)---...............Worker finished....EST Time: 2021-03-26 08:35:35...................
+26-Mar-2021 (15:35:37.721639)---UI resumed.

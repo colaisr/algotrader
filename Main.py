@@ -131,28 +131,18 @@ class TraderSettings():
         self.ACCOUNT = retrieved['connection_account_name']
         self.INTERVALUI = retrieved['station_interval_ui_sec']
         self.INTERVALWORKER = retrieved['station_interval_worker_sec']
-        if platform == "linux" or platform == "linux2":
-            self.PATHTOWEBDRIVER = retrieved['station_linux_path_to_webdriver']
-        elif platform == "darwin":  # mac os
-            self.PATHTOWEBDRIVER = retrieved['station_mac_path_to_webdriver']
-        elif platform == "win32":
-            self.PATHTOWEBDRIVER = retrieved['station_win_path_to_webdriver']
         # alg
         self.PROFIT = retrieved['algo_take_profit']
         self.LOSS = retrieved['algo_max_loss']
         self.TRAIL = retrieved['algo_trailing_percent']
         self.BULCKAMOUNT = retrieved['algo_bulk_amount_usd']
-
-        self.UIDEBUG = retrieved['station_debug_ui']
-        self.USESERVER = True
         self.USEMARGIN = retrieved['algo_allow_margin']
         self.SERVERURL = self.FILESERVERURL
         self.SERVERUSER = self.FILESERVERUSER
         self.INTERVALSERVER = retrieved['server_report_interval_sec']
-        self.USESYSTEMCANDIDATES = retrieved['server_use_system_candidates']
         self.ALLOWBUY = retrieved['algo_allow_buy']
         self.CANDIDATES = []
-        dictionaries = get_user_candidates_from_server(self.SERVERURL, self.SERVERUSER, self.USESYSTEMCANDIDATES)
+        dictionaries = get_user_candidates_from_server(self.SERVERURL, self.SERVERUSER)
         for c in dictionaries:
             ticker = c['ticker']
             reason = c['description']
@@ -269,40 +259,39 @@ Executed the Worker in separate thread
        reports to the server
         """
 
-        if self.settings.USESERVER:
-            net_liquidation = self.ibkrworker.app.netLiquidation
-            if hasattr(self.ibkrworker.app, 'smaWithSafety'):
-                remaining_sma_with_safety = self.ibkrworker.app.smaWithSafety
-            else:
-                remaining_sma_with_safety = self.ibkrworker.app.sMa
-            excess_liquidity = self.ibkrworker.app.excessLiquidity
-            remaining_trades = self.ibkrworker.app.tradesRemaining
-            all_positions_value = 0
-            open_positions = self.ibkrworker.app.openPositions
-            open_orders = self.ibkrworker.app.openOrders
-            candidates_live=self.ibkrworker.app.candidatesLive
-            dailyPnl = self.ibkrworker.app.dailyPnl
-            tradinng_session_state = self.trading_session_state
-            data_for_report = [self.settings,
-                               net_liquidation,
-                               remaining_sma_with_safety,
-                               remaining_trades,
-                               all_positions_value,
-                               open_positions,
-                               open_orders,
-                               candidates_live,
-                               dailyPnl,
-                               self.ibkrworker.last_worker_execution_time,
-                               datetime.now(self.est),
-                               self.trading_session_state,
-                               excess_liquidity]
+        net_liquidation = self.ibkrworker.app.netLiquidation
+        if hasattr(self.ibkrworker.app, 'smaWithSafety'):
+            remaining_sma_with_safety = self.ibkrworker.app.smaWithSafety
+        else:
+            remaining_sma_with_safety = self.ibkrworker.app.sMa
+        excess_liquidity = self.ibkrworker.app.excessLiquidity
+        remaining_trades = self.ibkrworker.app.tradesRemaining
+        all_positions_value = 0
+        open_positions = self.ibkrworker.app.openPositions
+        open_orders = self.ibkrworker.app.openOrders
+        candidates_live=self.ibkrworker.app.candidatesLive
+        dailyPnl = self.ibkrworker.app.dailyPnl
+        tradinng_session_state = self.trading_session_state
+        data_for_report = [self.settings,
+                           net_liquidation,
+                           remaining_sma_with_safety,
+                           remaining_trades,
+                           all_positions_value,
+                           open_positions,
+                           open_orders,
+                           candidates_live,
+                           dailyPnl,
+                           self.ibkrworker.last_worker_execution_time,
+                           datetime.now(self.est),
+                           self.trading_session_state,
+                           excess_liquidity]
 
-            worker = Worker(
-                report_snapshot_to_server, self.settings, data_for_report)
+        worker = Worker(
+            report_snapshot_to_server, self.settings, data_for_report)
 
-            worker.signals.result.connect(self.process_server_response)
-            # Execute
-            self.threadpool.start(worker)
+        worker.signals.result.connect(self.process_server_response)
+        # Execute
+        self.threadpool.start(worker)
 
     def process_server_response(self, r):
         # trying to restart
