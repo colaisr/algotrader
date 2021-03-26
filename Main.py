@@ -142,12 +142,8 @@ class TraderSettings():
         self.LOSS = retrieved['algo_max_loss']
         self.TRAIL = retrieved['algo_trailing_percent']
         self.BULCKAMOUNT = retrieved['algo_bulk_amount_usd']
-        self.TECHFROMHOUR = retrieved['connection_break_from_hour']
-        self.TECHFROMMIN = retrieved['connection_break_from_min']
-        self.TECHTOHOUR = retrieved['connection_break_to_hour']
-        self.TECHTOMIN = retrieved['connection_break_to_min']
+
         self.UIDEBUG = retrieved['station_debug_ui']
-        self.AUTOSTART = retrieved['station_autostart_worker']
         self.USESERVER = True
         self.USEMARGIN = retrieved['algo_allow_margin']
         self.SERVERURL = self.FILESERVERURL
@@ -164,39 +160,6 @@ class TraderSettings():
             ca.ticker = ticker
             ca.reason = reason
             self.CANDIDATES.append(ca)
-
-    def write_config(self):
-        self.config['Connection']['port'] = self.PORT
-        self.config['Account']['acc'] = self.ACCOUNT
-        self.config['Connection']['INTERVALUI'] = str(self.INTERVALUI)
-        self.config['Connection']['INTERVALWORKER'] = str(self.INTERVALWORKER)
-        if platform == "linux" or platform == "linux2":
-            self.config['Connection']['linuxpathtowebdriver'] = self.PATHTOWEBDRIVER
-        elif platform == "darwin":  # mac os
-            self.config['Connection']['macPathToWebdriver'] = self.PATHTOWEBDRIVER
-        elif platform == "win32":
-            self.config['Connection']['winPathToWebdriver'] = self.PATHTOWEBDRIVER
-        # alg
-        self.config['Algo']['gainP'] = str(self.PROFIT)
-        self.config['Algo']['lossP'] = str(self.LOSS)
-        self.config['Algo']['trailstepP'] = str(self.TRAIL)
-        self.config['Algo']['bulkAmountUSD'] = str(self.BULCKAMOUNT)
-        self.config['Algo']['TrandingStocks'] = str(self.TRANDINGSTOCKS)
-        json_string = json.dumps([ob.__dict__ for ob in self.CANDIDATES])
-        self.config['Algo']['Candidates'] = json_string
-        self.config['Connection']['techfromHour'] = str(self.TECHFROMHOUR)
-        self.config['Connection']['techfromMin'] = str(self.TECHFROMMIN)
-        self.config['Connection']['techtoHour'] = str(self.TECHTOHOUR)
-        self.config['Connection']['techtoMin'] = str(self.TECHTOMIN)
-        self.config['Soft']['uidebug'] = str(self.UIDEBUG)
-        self.config['Soft']['autostart'] = str(self.AUTOSTART)
-        self.config['Server']['useserver'] = str(self.USESERVER)
-        self.config['Server']['serverurl'] = str(self.SERVERURL)
-        self.config['Server']['serveruser'] = str(self.SERVERUSER)
-        self.config['Server']['INTERVALSERVER'] = str(self.INTERVALSERVER)
-
-        with open('config.ini', 'w') as configfile:
-            self.config.write(configfile)
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -225,9 +188,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.server_timer = QTimer()
         self.server_timer.timeout.connect(self.report_to_server)
         self.server_timer.start(int(self.settings.INTERVALSERVER) * 1000)
-
-        # connecting a buttons
-        self.chbxProcess.stateChanged.connect(self.process_checked)
 
         self.statusbar.showMessage("Ready")
 
@@ -263,15 +223,15 @@ Starts the connection to the IBKR terminal in separate thread
         # Execute
         self.threadpool.start(connector)
 
-    def process_checked(self):
-        """
-Starts the Timer with interval from Config file
-        """
-        if self.chbxProcess.isChecked():
-            self.run_worker()
-            self.workerTimer.start(int(self.settings.INTERVALWORKER) * 1000)
-        else:
-            self.workerTimer.stop()
+#     def process_checked(self):
+#         """
+# Starts the Timer with interval from Config file
+#         """
+#         if self.chbxProcess.isChecked():
+#             self.run_worker()
+#             self.workerTimer.start(int(self.settings.INTERVALWORKER) * 1000)
+#         else:
+#             self.workerTimer.stop()
 
     # noinspection PyUnresolvedReferences
     def run_worker(self):
@@ -282,31 +242,21 @@ Executed the Worker in separate thread
         # exec(open('restarter.py').read())
         # sys.exit()
         self.update_session_state()
-        currentTime = QTime().currentTime()
-        fromTime = QTime(int(self.settings.TECHFROMHOUR), int(self.settings.TECHFROMMIN))
-        toTime = QTime(int(self.settings.TECHTOHOUR), int(self.settings.TECHTOMIN))
-        sessionState = self.lblMarket.text()
-
-        if fromTime < currentTime < toTime:
-            print("Worker skept-Technical break : ", fromTime.toString("hh:mm"), " to ", toTime.toString("hh:mm"))
-            self.update_console("Technical break untill " + toTime.toString("hh:mm"))
-
-        else:
-            self.update_console("Starting Worker- UI Paused")
-            self.uiTimer.stop()  # to not cause an errors when lists will be resetted
-            worker = Worker(
-                self.ibkrworker.process_positions_candidates)  # Any other args, kwargs are passed to the run function
-            worker.signals.result.connect(self.update_ui)
-            worker.signals.status.connect(self.update_status)
-            worker.signals.notification.connect(self.update_console)
-            # Execute
-            self.threadpool.start(worker)
+        self.update_console("Starting Worker- UI Paused")
+        self.uiTimer.stop()  # to not cause an errors when lists will be resetted
+        worker = Worker(
+            self.ibkrworker.process_positions_candidates)  # Any other args, kwargs are passed to the run function
+        worker.signals.result.connect(self.update_ui)
+        worker.signals.status.connect(self.update_status)
+        worker.signals.notification.connect(self.update_console)
+        # Execute
+        self.threadpool.start(worker)
 
     def connection_done(self):
         # add processing
         self.update_ui()
-        if self.settings.AUTOSTART:
-            self.chbxProcess.setChecked(True)
+        self.run_worker()
+        self.workerTimer.start(int(self.settings.INTERVALWORKER) * 1000)
 
         # # report market data to server
         # if self.settings.USESERVER:
@@ -394,10 +344,6 @@ Updates UI after connection/worker execution
         self.update_live_candidates()
         self.update_open_orders()
 
-        # everything disabled for safety - is now enabled
-        self.chbxProcess.setEnabled(True)
-        self.btnSettings.setEnabled(True)
-
         self.update_session_state()
 
         if not self.uiTimer.isActive():
@@ -431,11 +377,6 @@ Updates UI after connection/worker execution
             self.ibkrworker.trading_session_state = "Holiday"
             self.lblMarket.setText("Holiday")
         self.trading_session_state = self.ibkrworker.trading_session_state
-
-    def progress_fn(self, n):
-        msgBox = QMessageBox()
-        msgBox.setText(str(n))
-        retval = msgBox.exec_()
 
     def update_status(self, s):
         """
