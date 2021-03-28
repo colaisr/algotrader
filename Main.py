@@ -5,6 +5,7 @@ import sys
 import traceback
 from datetime import datetime
 from sys import platform
+# checking branch
 
 from PySide2 import QtGui
 from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer, QTime
