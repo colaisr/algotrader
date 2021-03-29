@@ -164,7 +164,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.settings = settings
         self.ibkrworker = IBKRWorker(self.settings)
         self.threadpool = QThreadPool()
-        self.setWindowTitle("Algo Traider v 2.0")
+        self.setWindowTitle("Algo Traider v 3.0")
 
         sys.stderr = open('LOG/errorLog.txt', 'w')
 
