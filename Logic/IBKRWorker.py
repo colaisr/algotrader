@@ -260,7 +260,7 @@ processes candidates for buying if enough SMA
             positions_summary=0
             for k,p in self.app.openPositions.items():
                 positions_summary+=p["Value"]
-            real_remaining_funds=float(self.app.netLiquidation)-float(positions_summary)-float(self.settings.BULCKAMOUNT)
+            real_remaining_funds=float(self.app.netLiquidation)-float(positions_summary)
             notification_callback.emit("Using own cash only "+"("+str(real_remaining_funds)+"), margin dismissed in settings")
 
         if real_remaining_funds < 1000:
