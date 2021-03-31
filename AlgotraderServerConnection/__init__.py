@@ -40,9 +40,9 @@ def get_market_data_from_server(settings, candidates):
         decoded_list = json.loads(t)
         result = []
         [result.append(json.loads(v)) for v in decoded_list.values()]
-        for it in result:
-            it['tiprank_updated'] = datetime.fromisoformat(it['tiprank_updated'])
-            it['fmp_updated'] = datetime.fromisoformat(it['fmp_updated'])
+        # for it in result:
+        #     it['tiprank_updated'] = datetime.fromisoformat(it['tiprank_updated'])
+        #     it['fmp_updated'] = datetime.fromisoformat(it['fmp_updated'])
         return result
 
 
