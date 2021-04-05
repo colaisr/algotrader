@@ -12,9 +12,9 @@ from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer
 from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QMessageBox
 from pytz import timezone
 
-from AlgotraderServerConnection import report_snapshot_to_server, report_login_to_server, \
-     get_user_settings_from_server, get_user_candidates_from_server, \
-    get_market_data_from_server
+from AlgotraderServerConnection import report_snapshot_to_server, \
+    get_user_settings_from_server, get_user_candidates_from_server, \
+    get_market_data_from_server, get_command_from_server
 from Logic.IBKRWorker import IBKRWorker
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
@@ -22,20 +22,26 @@ from Logic.IBKRWorker import IBKRWorker
 from UI.MainWindow import Ui_MainWindow
 
 LOGFILE = "LOG/log.txt"
-
-global window
-global settings
+ERRORLOG='LOG/errorLog.txt'
 
 
-def restart():
-    import sys
-    print("argv was", sys.argv)
-    print("sys.executable was", sys.executable)
-    print("restart now")
+def restart_tws_and_trader():
+    import platform
+    if platform.system()=='Windows':
+        import sys
+        print("argv was", sys.argv)
+        print("sys.executable was", sys.executable)
+        print("restart now")
 
-    import os
-    subprocess.call('restartTws.bat')
-    os.execv(sys.executable, ['python'] + sys.argv)
+        import os
+        subprocess.call('restartTws.bat')
+        os.execv(sys.executable, ['python'] + sys.argv)
+    elif platform.system()=='Linux':
+        #not implemented
+        pass
+    elif platform.system()=='Darwin':
+        #not implemented
+        pass
 
 
 class SettingsCandidate:
@@ -142,51 +148,30 @@ class TraderSettings():
         self.SERVERUSER = self.FILESERVERUSER
         self.INTERVALSERVER = retrieved['server_report_interval_sec']
         self.ALLOWBUY = retrieved['algo_allow_buy']
-        self.CANDIDATES = []
-        dictionaries = get_user_candidates_from_server(self.SERVERURL, self.SERVERUSER)
-        for c in dictionaries:
-            ticker = c['ticker']
-            reason = c['description']
-            ca = SettingsCandidate()
-            ca.ticker = ticker
-            ca.reason = reason
-            self.CANDIDATES.append(ca)
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
-    def __init__(self, settings):
+    def __init__(self):
         # mandatory
         QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.trading_session_state = "TBD"
-        self.est = timezone('US/Eastern')
+        self.trading_time_zone = timezone('US/Eastern')
         self.setupUi(self)
-        self.settings = settings
-        self.ibkrworker = IBKRWorker(self.settings)
-        self.threadpool = QThreadPool()
-        self.setWindowTitle("Algo Traider v 3.0")
+        self.setWindowTitle("Algo Traider v 4.0")
 
-        sys.stderr = open('LOG/errorLog.txt', 'w')
-
-        # setting all timers
-
+        self.settings = None
         self.uiTimer = QTimer()
-        self.uiTimer.timeout.connect(self.update_ui)
-
         self.workerTimer = QTimer()
-        self.workerTimer.timeout.connect(self.run_worker)
-
         self.server_timer = QTimer()
-        self.server_timer.timeout.connect(self.report_to_server)
-        self.server_timer.start(int(self.settings.INTERVALSERVER) * 1000)
+        self.stocks_data_from_server =None
 
-        self.statusbar.showMessage("Ready")
-
-        stock_names = [o.ticker for o in self.settings.CANDIDATES]
-        self.ibkrworker.stocks_data_from_server = get_market_data_from_server(self.settings, stock_names)
-        self.update_console("Market data for " + str(len(stock_names)) + " Candidates received from Server")
-        self.connect_to_ibkr()
-
+    def showEvent(self, event):
+        super().showEvent(event)
+        sys.stderr = open(ERRORLOG, 'w')
+        self.update_console('Connecting to server - to get settings.')
+        self.settings=TraderSettings()
+        self.update_console('Settings received.')
         StyleSheet = '''
         #lcdPNLgreen {
             border: 3px solid green;
@@ -197,16 +182,61 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         '''
         self.setStyleSheet(StyleSheet)
 
+        self.threadpool = QThreadPool()
+        # setting all timers
+
+        # self.uiTimer.timeout.connect(self.update_ui)
+        # self.workerTimer.timeout.connect(self.run_worker)
+        #
+        self.get_command_from_server()
+        self.server_timer.timeout.connect(self.get_command_from_server)
+        self.server_timer.start(int(self.settings.INTERVALSERVER) * 1000)
+        #
+        # self.statusbar.showMessage("Ready")
+        #
+        # stock_names = [o.ticker for o in self.settings.CANDIDATES]
+        # self.stocks_data_from_server = get_market_data_from_server(self.settings, stock_names)
+        # self.ibkrworker.stocks_data_from_server = get_market_data_from_server(self.settings, stock_names)
+        # self.update_console("Market data for " + str(len(stock_names)) + " Candidates received from Server")
+        # self.ibkrworker = IBKRWorker(self.settings)
+        #
+        # self.connect_to_ibkr()
+
+    def get_command_from_server(self):
+        self.update_console('Getting server command')
+        worker = Worker(get_command_from_server, self.settings)
+        worker.signals.result.connect(self.process_server_command_response)
+        self.threadpool.start(worker)
+
+    def connect_and_proceed(self):
+        self.process_ibkr_cycle()
+
+    def process_ibkr_cycle(self):
+        self.ibkrworker = IBKRWorker(self.settings)
+        self.ibkrworker.stocks_data_from_server = self.stocks_data_from_server
+        connector = Worker(self.ibkrworker.run_full_cycle)
+        connector.signals.result.connect(self.ibkr_cycle_finished)
+        connector.signals.status.connect(self.update_status)
+        connector.signals.notification.connect(self.update_console)
+        # Execute
+        self.threadpool.start(connector)
+
+    def ibkr_cycle_finished(self,r):
+
+        if r:
+            self.update_ui()
+            self.report_to_server()
+        else:
+            pass
+
+
 
     def connect_to_ibkr(self):
-        """
-Starts the connection to the IBKR terminal in separate thread
-        """
 
-        self.update_console("Reporting connection to the server...")
-        print("Reporting connection to the server...")
-        result = report_login_to_server(self.settings)
-        self.update_console(result)
+        # result = report_login_to_server(self.settings)
+        # self.update_console(result)
+        self.ibkrworker=IBKRWorker(self.settings)
+        self.ibkrworker.stocks_data_from_server=self.stocks_data_from_server
         connector = Worker(self.ibkrworker.prepare_and_connect)
         connector.signals.result.connect(self.connection_done)
         connector.signals.status.connect(self.update_status)
@@ -233,8 +263,8 @@ Executed the Worker in separate thread
         # exec(open('restarter.py').read())
         # sys.exit()
         self.update_session_state()
-        self.update_console("Starting Worker- UI Paused")
-        self.uiTimer.stop()  # to not cause an errors when lists will be resetted
+        # self.update_console("Starting Worker- UI Paused")
+        # self.uiTimer.stop()  # to not cause an errors when lists will be resetted
         worker = Worker(
             self.ibkrworker.process_positions_candidates)  # Any other args, kwargs are passed to the run function
         worker.signals.result.connect(self.update_ui)
@@ -247,7 +277,7 @@ Executed the Worker in separate thread
         # add processing
         self.update_ui()
         self.run_worker()
-        self.workerTimer.start(int(self.settings.INTERVALWORKER) * 1000)
+        # self.workerTimer.start(int(self.settings.INTERVALWORKER) * 1000)
 
         # # report market data to server
         # if self.settings.USESERVER:
@@ -256,10 +286,6 @@ Executed the Worker in separate thread
         #     self.update_console(result)
 
     def report_to_server(self):
-        """
-       reports to the server
-        """
-
         net_liquidation = self.ibkrworker.app.netLiquidation
         if hasattr(self.ibkrworker.app, 'smaWithSafety'):
             remaining_sma_with_safety = self.ibkrworker.app.smaWithSafety
@@ -273,6 +299,7 @@ Executed the Worker in separate thread
         candidates_live=self.ibkrworker.app.candidatesLive
         dailyPnl = self.ibkrworker.app.dailyPnl
         tradinng_session_state = self.trading_session_state
+        worker_last_execution = self.ibkrworker.last_worker_execution_time
         data_for_report = [self.settings,
                            net_liquidation,
                            remaining_sma_with_safety,
@@ -282,22 +309,37 @@ Executed the Worker in separate thread
                            open_orders,
                            candidates_live,
                            dailyPnl,
-                           self.ibkrworker.last_worker_execution_time,
-                           datetime.now(self.est),
+                           worker_last_execution,
+                           datetime.now(self.trading_time_zone),
                            self.trading_session_state,
                            excess_liquidity]
 
         worker = Worker(
             report_snapshot_to_server, self.settings, data_for_report)
 
-        worker.signals.result.connect(self.process_server_response)
+        worker.signals.result.connect(self.process_server_report_response)
         # Execute
         self.threadpool.start(worker)
 
-    def process_server_response(self, r):
-        # trying to restart
-        if '$restart$' in r:
-            restart()
+    def process_server_command_response(self, r):
+        self.update_console('processing command')
+        response=json.loads(r)
+        self.stocks_data_from_server=response['candidates']
+        # temporary continue to store in settings for worker
+
+        # for c in self.stocks_data_from_server:
+        #     ticker = c['ticker']
+        #     ca = SettingsCandidate()
+        #     ca.ticker = ticker
+        #     self.settings.CANDIDATES.append(ca)
+        command=response['command']
+        if command=='restart_worker':
+            self.update_console('Restart command received- doing restart for Algotrader and TWS')
+            restart_tws_and_trader()
+        else:
+            self.connect_and_proceed()
+
+    def process_server_report_response(self, r):
         self.update_console(r)
 
     def update_ui(self):
@@ -342,7 +384,7 @@ Updates UI after connection/worker execution
 
     def update_session_state(self):
         fmt = '%Y-%m-%d %H:%M:%S'
-        self.est_dateTime = datetime.now(self.est)
+        self.est_dateTime = datetime.now(self.trading_time_zone)
         self.est_current_time = QTime(self.est_dateTime.hour, self.est_dateTime.minute, self.est_dateTime.second)
         self.lblTime.setText(self.est_current_time.toString())
         dStart = QTime(4, 00)
@@ -482,10 +524,7 @@ Updates Positions table
 
 def main():
     app = QApplication(sys.argv)
-    global settings
-    settings = TraderSettings()
-    global window
-    window = MainWindow(settings)
+    window = MainWindow()
     window.show()
     sys.exit(app.exec_())
 

@@ -15,7 +15,27 @@ class IBKRWorker():
         self.stocks_data_from_server = []
         self.last_worker_execution_time=None
 
-    def prepare_and_connect(self, status_callback, notification_callback):
+    def run_full_cycle(self, status_callback, notification_callback):
+        try:
+            connected=self.connect_to_tws(notification_callback)
+            if connected:
+                self.prepare_and_track( status_callback, notification_callback)
+                self.check_if_holiday()
+                self.process_positions_candidates( status_callback, notification_callback)
+                return True
+            else:
+                notification_callback.emit("Could not connect to TWS ....processing skept..")
+                return False
+        except Exception as e:
+            self.app.disconnect()
+            self.app.reset()
+            if hasattr(e, 'message'):
+                notification_callback.emit("Error in IBKR processing : " + str(e.message))
+            else:
+                notification_callback.emit("Error in IBKR processing : " + str(e))
+
+
+    def prepare_and_track(self, status_callback, notification_callback):
         """
 Connecting to IBKR API and initiating the connection instance
         :return:
@@ -23,7 +43,6 @@ Connecting to IBKR API and initiating the connection instance
         status_callback.emit("Connecting")
         try:
             notification_callback.emit("Begin prepare and connect")
-            self.connect_to_tws(notification_callback)
             self.request_current_PnL(notification_callback)
             self.start_tracking_excess_liquidity(notification_callback)
             self.update_open_positions(notification_callback)
@@ -35,6 +54,7 @@ Connecting to IBKR API and initiating the connection instance
             self.update_target_price_for_tracked_stocks(notification_callback)
             notification_callback.emit("Connected to IBKR and READY")
             status_callback.emit("Connected and ready")
+
         except Exception as e:
             if hasattr(e, 'message'):
                 notification_callback.emit("Error in connection and preparation : " + str(e.message))
@@ -47,45 +67,54 @@ Creates the connection - starts listner for events
         """
 
         self.app.nextorderId = None
-        while not isinstance(self.app.nextorderId, int):
-            retries = 0
-            notification_callback.emit("Restarting connection to IBKR")
-            self.app.connect('127.0.0.1', int(self.settings.PORT), 123)
+        # while not isinstance(self.app.nextorderId, int):
+        retries = 0
+        notification_callback.emit("Restarting connection to IBKR")
+        self.app.disconnect()
+        self.app.reset()
+        self.app.connect('127.0.0.1', int(self.settings.PORT), 123)
 
-            # Start the socket in a thread
-            api_thread = threading.Thread(target=self.run_loop, name='ibkrConnection', daemon=True)
-            api_thread.start()
-            # Check if the API is connected via orderid
+        # Start the socket in a thread
+        api_thread = threading.Thread(target=self.run_loop, name='ibkrConnection', daemon=True)
+        api_thread.start()
 
-            while True:
-                if isinstance(self.app.nextorderId, int):
-                    notification_callback.emit('Successfully connected to API')
+        # Check if the API is connected via orderid
+
+        while True:
+            if isinstance(self.app.nextorderId, int):
+                notification_callback.emit('Successfully connected to API')
+                connected=True
+                break
+            else:
+                notification_callback.emit('Waiting for connection...attempt:' + str(retries))
+                time.sleep(1)
+                retries = retries + 1
+                if retries > 10:
+                    connected = False
                     break
-                else:
-                    notification_callback.emit('Waiting for connection...attempt:' + str(retries))
-                    time.sleep(1)
-                    retries = retries + 1
-                    if retries > 10:
-                        break
+        if not connected:
+            self.app.disconnect()
+            self.app.reset()
+        return connected
 
     def evaluate_and_track_candidates(self, notification_callback=None):
         """
 Starts tracking the Candidates and adds the statistics
         """
         time.sleep(1)
-        stock_names = [o.ticker for o in self.settings.CANDIDATES]
+        stock_names = [o['ticker'] for o in self.stocks_data_from_server]
         notification_callback.emit("Starting to track " + ','.join(stock_names) + " Candidates")
         # starting querry
         trackedStockN = 1
-        for s in self.settings.CANDIDATES:
+        for s in stock_names:
             id = self.app.nextorderId
             notification_callback.emit(
                 "starting to track: " + str(trackedStockN) + " of " + str(
-                    len(self.settings.CANDIDATES)) + " " + s.ticker +
+                    len(stock_names)) + " " + s +
                 " traking with Id:" +
                 str(id))
-            c = createContract(s.ticker)
-            self.app.candidatesLive[id] = {"Stock": s.ticker,
+            c = createContract(s)
+            self.app.candidatesLive[id] = {"Stock": s,
                                            "Close": "-",
                                            "Open": "-",
                                            "Bid": "-",
@@ -299,17 +328,9 @@ Process Open positions and Candidates
             est_time = datetime.now(est).strftime(fmt)
             notification_callback.emit("-------Starting Worker...----EST Time: " + est_time + "--------------------")
 
-            notification_callback.emit("Checking connection")
-            conState = self.app.isConnected()
-            if conState:
-                notification_callback.emit("Connection is fine- proceeding")
-            else:
-                notification_callback.emit("Connection lost-reconnecting")
-                self.connect_to_tws(notification_callback)
-
-            # collect and update
-            self.update_open_orders(notification_callback)
-            self.update_open_positions(notification_callback)
+            # collect and update- deprecated since loaded once - on connect
+            # self.update_open_orders(notification_callback)
+            # self.update_open_positions(notification_callback)
             status_callback.emit("Processing Positions-Candidates ")
             if self.trading_session_state == "Open":
                 # process
@@ -321,6 +342,8 @@ Process Open positions and Candidates
 
             notification_callback.emit(
                 "...............Worker finished....EST Time: " + est_time + "...................")
+            self.app.disconnect()
+            self.app.reset()
             status_callback.emit("Connected")
         except Exception as e:
             if hasattr(e, 'message'):
@@ -425,8 +448,6 @@ Creating a PnL request the result will be stored in generalStarus
 
     def check_if_holiday(self):
         id = self.app.nextorderId
-
-        first = next(iter(self.settings.CANDIDATES))
         c = createContract('AAPL')# checked always with AAPL - can be no candidates
         self.app.reqContractDetails(id, c)
         while (self.app.trading_hours_received != True):

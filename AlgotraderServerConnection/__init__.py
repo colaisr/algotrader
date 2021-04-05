@@ -59,9 +59,10 @@ def get_user_settings_from_server(server,user):
         return settings_dictionary
 
 
-def report_login_to_server(settings):
-    r = requests.post(settings.SERVERURL + '/connections/logconnection',
-                      json={"user": settings.SERVERUSER})
+def get_command_from_server(*args, **kwargs):
+    seting=args[0]
+    r = requests.post(seting.SERVERURL + '/connections/getcommand',
+                      json={"user": seting.SERVERUSER})
     status_code = r.status_code
     if status_code == 200:
         return r.text
@@ -105,15 +106,16 @@ def report_snapshot_to_server(*args, **kwargs):
     return "bad response from server"
 
 
-def report_market_data_to_server(settings, candid_data):
-    d = json.dumps(candid_data, default=lambda o: '<not serializable>')
-    r = requests.post(settings.SERVERURL + '/marketdata/updatemarketdata',
-                      json={"user": settings.SERVERUSER,
-                            "tickers": json.dumps(candid_data, default=json_serial)})
 
-    status_code = r.status_code
-    if status_code == 200:
-        return r.text
+# def report_market_data_to_server(settings, candid_data):
+#     d = json.dumps(candid_data, default=lambda o: '<not serializable>')
+#     r = requests.post(settings.SERVERURL + '/marketdata/updatemarketdata',
+#                       json={"user": settings.SERVERUSER,
+#                             "tickers": json.dumps(candid_data, default=json_serial)})
+#
+#     status_code = r.status_code
+#     if status_code == 200:
+#         return r.text
 
 def get_user_candidates_from_server(url,user):
 
