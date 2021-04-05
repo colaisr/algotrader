@@ -469,6 +469,7 @@ Creating a PnL request the result will be stored in generalStarus
                     self.app.candidatesLive[k]["averagePriceDropP"] = dt['yahoo_avdropP']
                     self.app.candidatesLive[k]["averagePriceSpreadP"] = dt['yahoo_avspreadP']
                     self.app.candidatesLive[k]['tipranksRank'] = dt['tipranks']
+                    self.app.candidatesLive[k]['fmp_rating'] = dt['fmp_rating']
                     notification_callback.emit(
                         "Yahoo data and Tipranks for " + v['Stock'] + " was added")
                     break

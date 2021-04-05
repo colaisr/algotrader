@@ -211,8 +211,8 @@ class Ui_MainWindow(object):
         self.candidates.addWidget(self.lblCandidates)
 
         self.tCandidates = QTableWidget(self.layoutWidget2)
-        if (self.tCandidates.columnCount() < 9):
-            self.tCandidates.setColumnCount(9)
+        if (self.tCandidates.columnCount() < 10):
+            self.tCandidates.setColumnCount(10)
         __qtablewidgetitem6 = QTableWidgetItem()
         self.tCandidates.setHorizontalHeaderItem(0, __qtablewidgetitem6)
         __qtablewidgetitem7 = QTableWidgetItem()
@@ -231,6 +231,8 @@ class Ui_MainWindow(object):
         self.tCandidates.setHorizontalHeaderItem(7, __qtablewidgetitem13)
         __qtablewidgetitem14 = QTableWidgetItem()
         self.tCandidates.setHorizontalHeaderItem(8, __qtablewidgetitem14)
+        __qtablewidgetitem15 = QTableWidgetItem()
+        self.tCandidates.setHorizontalHeaderItem(9, __qtablewidgetitem15)
         self.tCandidates.setObjectName(u"tCandidates")
         self.tCandidates.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
 
@@ -250,12 +252,12 @@ class Ui_MainWindow(object):
         self.tOrders = QTableWidget(self.layoutWidget3)
         if (self.tOrders.columnCount() < 3):
             self.tOrders.setColumnCount(3)
-        __qtablewidgetitem15 = QTableWidgetItem()
-        self.tOrders.setHorizontalHeaderItem(0, __qtablewidgetitem15)
         __qtablewidgetitem16 = QTableWidgetItem()
-        self.tOrders.setHorizontalHeaderItem(1, __qtablewidgetitem16)
+        self.tOrders.setHorizontalHeaderItem(0, __qtablewidgetitem16)
         __qtablewidgetitem17 = QTableWidgetItem()
-        self.tOrders.setHorizontalHeaderItem(2, __qtablewidgetitem17)
+        self.tOrders.setHorizontalHeaderItem(1, __qtablewidgetitem17)
+        __qtablewidgetitem18 = QTableWidgetItem()
+        self.tOrders.setHorizontalHeaderItem(2, __qtablewidgetitem18)
         self.tOrders.setObjectName(u"tOrders")
 
         self.Orders.addWidget(self.tOrders)
@@ -344,14 +346,16 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem13 = self.tCandidates.horizontalHeaderItem(7)
         ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Rank", None));
         ___qtablewidgetitem14 = self.tCandidates.horizontalHeaderItem(8)
-        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Last Update", None));
+        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"FMP Rating", None));
+        ___qtablewidgetitem15 = self.tCandidates.horizontalHeaderItem(9)
+        ___qtablewidgetitem15.setText(QCoreApplication.translate("MainWindow", u"Last Update", None));
         self.lblOrders.setText(QCoreApplication.translate("MainWindow", u"Orders", None))
-        ___qtablewidgetitem15 = self.tOrders.horizontalHeaderItem(0)
-        ___qtablewidgetitem15.setText(QCoreApplication.translate("MainWindow", u"Stock", None));
-        ___qtablewidgetitem16 = self.tOrders.horizontalHeaderItem(1)
-        ___qtablewidgetitem16.setText(QCoreApplication.translate("MainWindow", u"Action", None));
-        ___qtablewidgetitem17 = self.tOrders.horizontalHeaderItem(2)
-        ___qtablewidgetitem17.setText(QCoreApplication.translate("MainWindow", u"Type", None));
+        ___qtablewidgetitem16 = self.tOrders.horizontalHeaderItem(0)
+        ___qtablewidgetitem16.setText(QCoreApplication.translate("MainWindow", u"Stock", None));
+        ___qtablewidgetitem17 = self.tOrders.horizontalHeaderItem(1)
+        ___qtablewidgetitem17.setText(QCoreApplication.translate("MainWindow", u"Action", None));
+        ___qtablewidgetitem18 = self.tOrders.horizontalHeaderItem(2)
+        ___qtablewidgetitem18.setText(QCoreApplication.translate("MainWindow", u"Type", None));
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Console", None))
     # retranslateUi
 

@@ -158,7 +158,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.trading_session_state = "TBD"
         self.trading_time_zone = timezone('US/Eastern')
         self.setupUi(self)
-        self.setWindowTitle("Algo Traider v 4.1")
+        self.setWindowTitle("Algo Traider v 4.15")
 
         self.settings = None
         self.uiTimer = QTimer()
@@ -462,7 +462,8 @@ Updates Candidates table
                 self.tCandidates.setItem(line, 7, QTableWidgetItem(str(v['tipranksRank'])))
                 if int(v['tipranksRank']) > 7:
                     self.tCandidates.item(line, 7).setBackground(QtGui.QColor(0, 255, 0))
-                self.tCandidates.setItem(line, 8, QTableWidgetItem(str(v['LastUpdate'])))
+                self.tCandidates.setItem(line, 8, QTableWidgetItem(str(v['fmp_rating'])))
+                self.tCandidates.setItem(line, 9, QTableWidgetItem(str(v['LastUpdate'])))
 
                 line += 1
         except Exception as e:
