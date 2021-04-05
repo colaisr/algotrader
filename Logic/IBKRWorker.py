@@ -1,6 +1,6 @@
 import time
 import threading
-from datetime import datetime
+import datetime
 
 from Logic.ApiWrapper import IBapi, createContract, createTrailingStopOrder, create_limit_buy_order, createMktSellOrder
 from pytz import timezone
@@ -325,7 +325,7 @@ Process Open positions and Candidates
         try:
             est = timezone('US/Eastern')
             fmt = '%Y-%m-%d %H:%M:%S'
-            est_time = datetime.now(est).strftime(fmt)
+            est_time = datetime.datetime.now(est).strftime(fmt)
             notification_callback.emit("-------Starting Worker...----EST Time: " + est_time + "--------------------")
 
             # collect and update- deprecated since loaded once - on connect
@@ -336,7 +336,7 @@ Process Open positions and Candidates
                 # process
                 self.process_candidates(notification_callback)
                 self.process_positions(notification_callback)
-                self.last_worker_execution_time = datetime.now()
+                self.last_worker_execution_time = datetime.datetime.now()
             else:
                 notification_callback.emit("Trading session is not Open - processing skept")
 
@@ -458,6 +458,7 @@ Creating a PnL request the result will be stored in generalStarus
             self.trading_session_holiday = True
         else:
             self.trading_session_holiday = False
+            self.check_session_state()
 
         self.app.nextorderId += 1
 
@@ -471,3 +472,27 @@ Creating a PnL request the result will be stored in generalStarus
                     notification_callback.emit(
                         "Yahoo data and Tipranks for " + v['Stock'] + " was added")
                     break
+
+    def check_session_state(self):
+        tz = timezone('US/Eastern')
+        current_est_time=datetime.datetime.now(tz).time()
+        dstart = datetime.time(4, 0, 0)
+        dend=datetime.time(20, 0, 0)
+        tstart=datetime.time(9, 30, 0)
+        tend=datetime.time(16, 0, 0)
+        if time_in_range(dstart,tstart,current_est_time):
+            self.trading_session_state = "Pre Market"
+        elif time_in_range(tstart,tend,current_est_time):
+            self.trading_session_state = "Open"
+        elif time_in_range(tend,dend,current_est_time):
+            self.trading_session_state = "After Market"
+        else:
+            self.trading_session_state = "Closed"
+
+
+def time_in_range(start, end, x):
+    """Return true if x is in the range [start, end]"""
+    if start <= end:
+        return start <= x <= end
+    else:
+        return start <= x or x <= end
