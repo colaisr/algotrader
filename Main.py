@@ -158,7 +158,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.trading_session_state = "TBD"
         self.trading_time_zone = timezone('US/Eastern')
         self.setupUi(self)
-        self.setWindowTitle("Algo Traider v 4.15")
+        self.setWindowTitle("Algo Traider v 4.16")
 
         self.settings = None
         self.uiTimer = QTimer()
@@ -244,17 +244,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Execute
         self.threadpool.start(connector)
 
-#     def process_checked(self):
-#         """
-# Starts the Timer with interval from Config file
-#         """
-#         if self.chbxProcess.isChecked():
-#             self.run_worker()
-#             self.workerTimer.start(int(self.settings.INTERVALWORKER) * 1000)
-#         else:
-#             self.workerTimer.stop()
-
-    # noinspection PyUnresolvedReferences
     def run_worker(self):
         """
 Executed the Worker in separate thread
@@ -322,17 +311,10 @@ Executed the Worker in separate thread
         self.threadpool.start(worker)
 
     def process_server_command_response(self, r):
-        self.update_console('processing command')
         response=json.loads(r)
         self.stocks_data_from_server=response['candidates']
-        # temporary continue to store in settings for worker
-
-        # for c in self.stocks_data_from_server:
-        #     ticker = c['ticker']
-        #     ca = SettingsCandidate()
-        #     ca.ticker = ticker
-        #     self.settings.CANDIDATES.append(ca)
         command=response['command']
+        self.update_console('processing command : '+command)
         if command=='restart_worker':
             self.update_console('Restart command received- doing restart for Algotrader and TWS')
             restart_tws_and_trader()
