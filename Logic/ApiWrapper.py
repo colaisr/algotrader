@@ -30,6 +30,7 @@ class IBapi(EWrapper, EClient):
         self.setting=None
         self.trading_session=''
         self.trading_hours_received=False
+        self.executions_received=False
 
 
     def nextValidId(self, orderId: int):
@@ -102,6 +103,10 @@ class IBapi(EWrapper, EClient):
         side=execution.side       #sell SLD   buy BOT
         self.report_execution_to_Server(symbol,shares,price,side,time)
 
+    def execDetailsEnd(self, reqId: int):
+        super().execDetailsEnd(reqId)
+        self.executions_received=True
+
     def tickPrice(self, reqId, tickType, price, attrib):
         super().tickPrice(reqId, tickType, price, attrib)
         # print("Tick received")
@@ -130,7 +135,6 @@ class IBapi(EWrapper, EClient):
     def accountSummary(self, reqId: int, account: str, tag: str, value: str,
                        currency: str):
         super().accountSummary(reqId, account, tag, value, currency)
-        print("Account summary received")
         if tag=='DayTradesRemaining':
             self.tradesRemaining=int(value)
         elif tag=='ExcessLiquidity':
@@ -139,8 +143,6 @@ class IBapi(EWrapper, EClient):
             self.sMa=float(value)
         elif tag=="NetLiquidation":
             self.netLiquidation=float(value)
-
-        print("AccountSummary. ReqId:", reqId, "Account:", account,"Tag: ", tag, "Value:", value, "Currency:", currency)
 
     def historicalData(self, reqId: int, bar: BarData):
         if reqId in self.openPositionsLiveHistoryRequests.keys():

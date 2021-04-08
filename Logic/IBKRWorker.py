@@ -5,6 +5,8 @@ import datetime
 from Logic.ApiWrapper import IBapi, createContract, createTrailingStopOrder, create_limit_buy_order, createMktSellOrder
 from pytz import timezone
 
+from twsapi.ibapi.execution import ExecutionFilter
+
 
 class IBKRWorker():
     def __init__(self, settings):
@@ -45,6 +47,7 @@ Connecting to IBKR API and initiating the connection instance
             notification_callback.emit("Begin prepare and connect")
             self.request_current_PnL(notification_callback)
             self.start_tracking_excess_liquidity(notification_callback)
+            self.check_todays_executions()
             self.update_open_positions(notification_callback)
 
             # request open orders
@@ -489,6 +492,15 @@ Creating a PnL request the result will be stored in generalStarus
             self.trading_session_state = "After Market"
         else:
             self.trading_session_state = "Closed"
+
+    def check_todays_executions(self):
+        self.app.executions_received=False
+        id = self.app.nextorderId
+        self.app.reqExecutions(id, ExecutionFilter())
+        while (self.app.executions_received != True):
+            time.sleep(1)
+
+        self.app.nextorderId += 1
 
 
 def time_in_range(start, end, x):
