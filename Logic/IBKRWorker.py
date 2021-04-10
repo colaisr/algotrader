@@ -53,7 +53,9 @@ Connecting to IBKR API and initiating the connection instance
             # request open orders
             self.update_open_orders(notification_callback)
             # start tracking candidates
-            self.evaluate_and_track_candidates(notification_callback)
+            succeed=self.evaluate_and_track_candidates(notification_callback)
+            if not succeed:
+                raise Exception('Problem retrieving market data from TWS more than 60 sec')
             self.update_target_price_for_tracked_stocks(notification_callback)
             notification_callback.emit("Connected to IBKR and READY")
             status_callback.emit("Connected and ready")
@@ -142,11 +144,15 @@ Starts tracking the Candidates and adds the statistics
             else:
                 have_empty = False
             counter += 1
+            if counter>60:
+                return False
+
 
 
         self.add_market_data_to_live_candidates(notification_callback)
 
         notification_callback.emit(str(len(self.app.candidatesLive)) + " Candidates evaluated and started to track")
+        return True
 
     def process_positions(self, notification_callback=None):
         """

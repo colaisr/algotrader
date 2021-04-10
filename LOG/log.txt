@@ -1,0 +1,1593 @@
+
+08-Apr-2021 (18:54:21.499007)---Connecting to server - to get settings.
+08-Apr-2021 (18:54:22.744752)---Settings received.
+08-Apr-2021 (18:54:22.758077)---Getting server command
+08-Apr-2021 (18:54:26.988501)---processing command : run_worker
+08-Apr-2021 (18:54:26.996156)---Restarting connection to IBKR
+08-Apr-2021 (18:54:27.053242)---Waiting for connection...attempt:0
+08-Apr-2021 (18:54:28.056093)---Successfully connected to API
+08-Apr-2021 (18:54:28.057776)---Begin prepare and connect
+08-Apr-2021 (18:54:28.058426)---Requesting Daily PnL
+08-Apr-2021 (18:54:28.058877)---PnL not yet received
+08-Apr-2021 (18:54:28.059340)---Starting to track Excess liquidity
+08-Apr-2021 (18:54:35.082053)---Updating open Positions:
+08-Apr-2021 (18:54:35.588078)---Started tracking CCI position PnL
+08-Apr-2021 (18:54:35.691422)---Started tracking CP position PnL
+08-Apr-2021 (18:54:35.795485)---Started tracking CP position PnL
+08-Apr-2021 (18:54:35.895484)---Started tracking SRT position PnL
+08-Apr-2021 (18:54:36.001559)---Started tracking ASML position PnL
+08-Apr-2021 (18:54:36.107268)---Started tracking AWK position PnL
+08-Apr-2021 (18:54:36.209648)---Started tracking AWK position PnL
+08-Apr-2021 (18:54:36.311024)---5 open positions completely updated
+08-Apr-2021 (18:54:36.311750)---Updating all open orders
+08-Apr-2021 (18:54:37.313280)---0 open orders found 
+08-Apr-2021 (18:54:38.314399)---Starting to track SQ,MSFT,ETSY,JD,FTNT,AAPL,SPGI,BX,SLF,BAH,RCM,ASML,CP,GWW,LW,CCK,NFLX,UPS,TGT,CCI,D,WBA,IDXX,AWK,HWM,VIRT Candidates
+08-Apr-2021 (18:54:38.315591)---starting to track: 1 of 26 SQ traking with Id:203583
+08-Apr-2021 (18:54:38.315854)---starting to track: 2 of 26 MSFT traking with Id:203584
+08-Apr-2021 (18:54:38.316059)---starting to track: 3 of 26 ETSY traking with Id:203585
+08-Apr-2021 (18:54:38.316270)---starting to track: 4 of 26 JD traking with Id:203586
+08-Apr-2021 (18:54:38.316473)---starting to track: 5 of 26 FTNT traking with Id:203587
+08-Apr-2021 (18:54:38.316678)---starting to track: 6 of 26 AAPL traking with Id:203588
+08-Apr-2021 (18:54:38.316883)---starting to track: 7 of 26 SPGI traking with Id:203589
+08-Apr-2021 (18:54:38.317077)---starting to track: 8 of 26 BX traking with Id:203590
+08-Apr-2021 (18:54:38.317282)---starting to track: 9 of 26 SLF traking with Id:203591
+08-Apr-2021 (18:54:38.317487)---starting to track: 10 of 26 BAH traking with Id:203592
+08-Apr-2021 (18:54:38.317681)---starting to track: 11 of 26 RCM traking with Id:203593
+08-Apr-2021 (18:54:38.317873)---starting to track: 12 of 26 ASML traking with Id:203594
+08-Apr-2021 (18:54:38.318065)---starting to track: 13 of 26 CP traking with Id:203595
+08-Apr-2021 (18:54:38.318256)---starting to track: 14 of 26 GWW traking with Id:203596
+08-Apr-2021 (18:54:38.318448)---starting to track: 15 of 26 LW traking with Id:203597
+08-Apr-2021 (18:54:38.318638)---starting to track: 16 of 26 CCK traking with Id:203598
+08-Apr-2021 (18:54:38.318831)---starting to track: 17 of 26 NFLX traking with Id:203599
+08-Apr-2021 (18:54:38.319026)---starting to track: 18 of 26 UPS traking with Id:203600
+08-Apr-2021 (18:54:38.319218)---starting to track: 19 of 26 TGT traking with Id:203601
+08-Apr-2021 (18:54:38.319408)---starting to track: 20 of 26 CCI traking with Id:203602
+08-Apr-2021 (18:54:38.319598)---starting to track: 21 of 26 D traking with Id:203603
+08-Apr-2021 (18:54:38.319792)---starting to track: 22 of 26 WBA traking with Id:203604
+08-Apr-2021 (18:54:38.319986)---starting to track: 23 of 26 IDXX traking with Id:203605
+08-Apr-2021 (18:54:38.320179)---starting to track: 24 of 26 AWK traking with Id:203606
+08-Apr-2021 (18:54:38.320372)---starting to track: 25 of 26 HWM traking with Id:203607
+08-Apr-2021 (18:54:38.320564)---starting to track: 26 of 26 VIRT traking with Id:203608
+08-Apr-2021 (18:54:39.322408)---Waiting for last requested candidate Close price :0
+08-Apr-2021 (18:54:39.323685)---Yahoo data and Tipranks for SQ was added
+08-Apr-2021 (18:54:39.325023)---Yahoo data and Tipranks for MSFT was added
+08-Apr-2021 (18:54:39.326723)---Yahoo data and Tipranks for ETSY was added
+08-Apr-2021 (18:54:39.327371)---Yahoo data and Tipranks for JD was added
+08-Apr-2021 (18:54:39.328063)---Yahoo data and Tipranks for FTNT was added
+08-Apr-2021 (18:54:39.328633)---Yahoo data and Tipranks for AAPL was added
+08-Apr-2021 (18:54:39.329254)---Yahoo data and Tipranks for SPGI was added
+08-Apr-2021 (18:54:39.329997)---Yahoo data and Tipranks for BX was added
+08-Apr-2021 (18:54:39.330497)---Yahoo data and Tipranks for SLF was added
+08-Apr-2021 (18:54:39.330929)---Yahoo data and Tipranks for BAH was added
+08-Apr-2021 (18:54:39.331148)---Yahoo data and Tipranks for RCM was added
+08-Apr-2021 (18:54:39.331347)---Yahoo data and Tipranks for ASML was added
+08-Apr-2021 (18:54:39.331560)---Yahoo data and Tipranks for CP was added
+08-Apr-2021 (18:54:39.331752)---Yahoo data and Tipranks for GWW was added
+08-Apr-2021 (18:54:39.331948)---Yahoo data and Tipranks for LW was added
+08-Apr-2021 (18:54:39.332187)---Yahoo data and Tipranks for CCK was added
+08-Apr-2021 (18:54:39.332389)---Yahoo data and Tipranks for NFLX was added
+08-Apr-2021 (18:54:39.332583)---Yahoo data and Tipranks for UPS was added
+08-Apr-2021 (18:54:39.332777)---Yahoo data and Tipranks for TGT was added
+08-Apr-2021 (18:54:39.332972)---Yahoo data and Tipranks for CCI was added
+08-Apr-2021 (18:54:39.333157)---Yahoo data and Tipranks for D was added
+08-Apr-2021 (18:54:39.333349)---Yahoo data and Tipranks for WBA was added
+08-Apr-2021 (18:54:39.333541)---Yahoo data and Tipranks for IDXX was added
+08-Apr-2021 (18:54:39.333730)---Yahoo data and Tipranks for AWK was added
+08-Apr-2021 (18:54:39.333916)---Yahoo data and Tipranks for HWM was added
+08-Apr-2021 (18:54:39.334103)---Yahoo data and Tipranks for VIRT was added
+08-Apr-2021 (18:54:39.334307)---26 Candidates evaluated and started to track
+08-Apr-2021 (18:54:39.334512)---Updating target prices for Candidates
+08-Apr-2021 (18:54:39.336440)---Updating target price for SQ
+08-Apr-2021 (18:54:39.336702)---Target price for SQ updated to 242.7729420631113 based on Open price
+08-Apr-2021 (18:54:39.336924)---Updating target price for MSFT
+08-Apr-2021 (18:54:39.337146)---Target price for MSFT updated to 249.86694004437075 based on Open price
+08-Apr-2021 (18:54:39.337366)---Updating target price for ETSY
+08-Apr-2021 (18:54:39.337577)---Target price for ETSY updated to 200.361400733111 based on Open price
+08-Apr-2021 (18:54:39.337799)---Updating target price for JD
+08-Apr-2021 (18:54:39.338012)---Target price for JD updated to 81.0790797808288 based on Open price
+08-Apr-2021 (18:54:39.338225)---Updating target price for FTNT
+08-Apr-2021 (18:54:39.338438)---Target price for FTNT updated to 191.88966315255135 based on Open price
+08-Apr-2021 (18:54:39.338670)---Updating target price for AAPL
+08-Apr-2021 (18:54:39.338878)---Target price for AAPL updated to 127.22648946229245 based on Open price
+08-Apr-2021 (18:54:39.339089)---Updating target price for SPGI
+08-Apr-2021 (18:54:39.339312)---Target price for SPGI updated to 360.1114376680771 based on Open price
+08-Apr-2021 (18:54:39.339527)---Updating target price for BX
+08-Apr-2021 (18:54:39.339739)---Target price for BX updated to 74.64900683051474 based on Open price
+08-Apr-2021 (18:54:39.339948)---Updating target price for SLF
+08-Apr-2021 (18:54:39.340157)---Target price for SLF updated to 50.57338138790797 based on Open price
+08-Apr-2021 (18:54:39.340364)---Updating target price for BAH
+08-Apr-2021 (18:54:39.340575)---Target price for BAH updated to 81.60549959861747 based on Open price
+08-Apr-2021 (18:54:39.340784)---Updating target price for RCM
+08-Apr-2021 (18:54:39.340997)---Target price for RCM updated to 24.23399778941115 based on Open price
+08-Apr-2021 (18:54:39.341242)---Updating target price for ASML
+08-Apr-2021 (18:54:39.341457)---Target price for ASML updated to 628.683309440155 based on Open price
+08-Apr-2021 (18:54:39.341667)---Updating target price for CP
+08-Apr-2021 (18:54:39.341881)---Target price for CP updated to 374.0082461709251 based on Open price
+08-Apr-2021 (18:54:39.342094)---Updating target price for GWW
+08-Apr-2021 (18:54:39.342326)---Target price for GWW updated to 393.28255529083555 based on Open price
+08-Apr-2021 (18:54:39.342573)---Updating target price for LW
+08-Apr-2021 (18:54:39.342864)---Target price for LW updated to 74.60731067908493 based on Open price
+08-Apr-2021 (18:54:39.343098)---Updating target price for CCK
+08-Apr-2021 (18:54:39.343319)---Target price for CCK updated to 99.60264448570695 based on Open price
+08-Apr-2021 (18:54:39.343538)---Updating target price for NFLX
+08-Apr-2021 (18:54:39.343784)---Target price for NFLX updated to 542.6127969456251 based on Open price
+08-Apr-2021 (18:54:39.344003)---Updating target price for UPS
+08-Apr-2021 (18:54:39.344225)---Target price for UPS updated to 170.49341233377163 based on Open price
+08-Apr-2021 (18:54:39.344441)---Updating target price for TGT
+08-Apr-2021 (18:54:39.344676)---Target price for TGT updated to 202.00395458719524 based on Open price
+08-Apr-2021 (18:54:39.344900)---Updating target price for CCI
+08-Apr-2021 (18:54:39.345119)---Target price for CCI updated to 175.06430545675624 based on Open price
+08-Apr-2021 (18:54:39.345334)---Updating target price for D
+08-Apr-2021 (18:54:39.345549)---Target price for D updated to 75.84081167221588 based on Open price
+08-Apr-2021 (18:54:39.345778)---Updating target price for WBA
+08-Apr-2021 (18:54:39.345999)---Target price for WBA updated to 54.396861094719576 based on Open price
+08-Apr-2021 (18:54:39.346222)---Updating target price for IDXX
+08-Apr-2021 (18:54:39.346451)---Target price for IDXX updated to 487.62312303412807 based on Open price
+08-Apr-2021 (18:54:39.346676)---Updating target price for AWK
+08-Apr-2021 (18:54:39.346898)---Target price for AWK updated to 151.7597282229924 based on Open price
+08-Apr-2021 (18:54:39.347120)---Updating target price for HWM
+08-Apr-2021 (18:54:39.347294)---Target price for HWM updated to 30.93928183224171 based on Open price
+08-Apr-2021 (18:54:39.347471)---Updating target price for VIRT
+08-Apr-2021 (18:54:39.347648)---Target price for VIRT updated to 31.38379130085111 based on Open price
+08-Apr-2021 (18:54:39.347821)---Connected to IBKR and READY
+08-Apr-2021 (18:54:40.339928)----------Starting Worker...----EST Time: 2021-04-08 11:54:40--------------------
+08-Apr-2021 (18:54:40.341253)---Using own cash only (1274.1650335121158), margin dismissed in settings
+08-Apr-2021 (18:54:40.342296)---SMA (including open positions cushion) is :1274.1650335121158 searching candidates
+08-Apr-2021 (18:54:40.342982)---Updating target prices for Candidates
+08-Apr-2021 (18:54:40.343551)---Updating target price for SQ
+08-Apr-2021 (18:54:40.344137)---Target price for SQ updated to 242.7729420631113 based on Open price
+08-Apr-2021 (18:54:40.344807)---Updating target price for MSFT
+08-Apr-2021 (18:54:40.345520)---Target price for MSFT updated to 249.86694004437075 based on Open price
+08-Apr-2021 (18:54:40.345876)---Updating target price for ETSY
+08-Apr-2021 (18:54:40.346176)---Target price for ETSY updated to 200.361400733111 based on Open price
+08-Apr-2021 (18:54:40.346805)---Updating target price for JD
+08-Apr-2021 (18:54:40.347116)---Target price for JD updated to 81.0790797808288 based on Open price
+08-Apr-2021 (18:54:40.347374)---Updating target price for FTNT
+08-Apr-2021 (18:54:40.347701)---Target price for FTNT updated to 191.88966315255135 based on Open price
+08-Apr-2021 (18:54:40.347938)---Updating target price for AAPL
+08-Apr-2021 (18:54:40.348148)---Target price for AAPL updated to 127.22648946229245 based on Open price
+08-Apr-2021 (18:54:40.348345)---Updating target price for SPGI
+08-Apr-2021 (18:54:40.348543)---Target price for SPGI updated to 360.1114376680771 based on Open price
+08-Apr-2021 (18:54:40.348744)---Updating target price for BX
+08-Apr-2021 (18:54:40.348943)---Target price for BX updated to 74.64900683051474 based on Open price
+08-Apr-2021 (18:54:40.349137)---Updating target price for SLF
+08-Apr-2021 (18:54:40.349329)---Target price for SLF updated to 50.57338138790797 based on Open price
+08-Apr-2021 (18:54:40.349518)---Updating target price for BAH
+08-Apr-2021 (18:54:40.352033)---Target price for BAH updated to 81.60549959861747 based on Open price
+08-Apr-2021 (18:54:40.352366)---Updating target price for RCM
+08-Apr-2021 (18:54:40.352573)---Target price for RCM updated to 24.23399778941115 based on Open price
+08-Apr-2021 (18:54:40.352770)---Updating target price for ASML
+08-Apr-2021 (18:54:40.352968)---Target price for ASML updated to 628.683309440155 based on Open price
+08-Apr-2021 (18:54:40.353196)---Updating target price for CP
+08-Apr-2021 (18:54:40.353437)---Target price for CP updated to 374.0082461709251 based on Open price
+08-Apr-2021 (18:54:40.353629)---Updating target price for GWW
+08-Apr-2021 (18:54:40.353826)---Target price for GWW updated to 393.28255529083555 based on Open price
+08-Apr-2021 (18:54:40.354017)---Updating target price for LW
+08-Apr-2021 (18:54:40.354205)---Target price for LW updated to 74.60731067908493 based on Open price
+08-Apr-2021 (18:54:40.354413)---Updating target price for CCK
+08-Apr-2021 (18:54:40.354604)---Target price for CCK updated to 99.60264448570695 based on Open price
+08-Apr-2021 (18:54:40.354794)---Updating target price for NFLX
+08-Apr-2021 (18:54:40.354987)---Target price for NFLX updated to 542.6127969456251 based on Open price
+08-Apr-2021 (18:54:40.355176)---Updating target price for UPS
+08-Apr-2021 (18:54:40.355365)---Target price for UPS updated to 170.49341233377163 based on Open price
+08-Apr-2021 (18:54:40.355560)---Updating target price for TGT
+08-Apr-2021 (18:54:40.355751)---Target price for TGT updated to 202.00395458719524 based on Open price
+08-Apr-2021 (18:54:40.355945)---Updating target price for CCI
+08-Apr-2021 (18:54:40.356139)---Target price for CCI updated to 175.06430545675624 based on Open price
+08-Apr-2021 (18:54:40.356329)---Updating target price for D
+08-Apr-2021 (18:54:40.356517)---Target price for D updated to 75.84081167221588 based on Open price
+08-Apr-2021 (18:54:40.356707)---Updating target price for WBA
+08-Apr-2021 (18:54:40.356900)---Target price for WBA updated to 54.396861094719576 based on Open price
+08-Apr-2021 (18:54:40.357092)---Updating target price for IDXX
+08-Apr-2021 (18:54:40.357287)---Target price for IDXX updated to 487.62312303412807 based on Open price
+08-Apr-2021 (18:54:40.357484)---Updating target price for AWK
+08-Apr-2021 (18:54:40.357679)---Target price for AWK updated to 151.7597282229924 based on Open price
+08-Apr-2021 (18:54:40.357873)---Updating target price for HWM
+08-Apr-2021 (18:54:40.358067)---Target price for HWM updated to 30.93928183224171 based on Open price
+08-Apr-2021 (18:54:40.358259)---Updating target price for VIRT
+08-Apr-2021 (18:54:40.358454)---Target price for VIRT updated to 31.38379130085111 based on Open price
+08-Apr-2021 (18:54:40.359202)---26Candidates found,sorted by Tipranks ranks
+08-Apr-2021 (18:54:40.359415)---Evaluating MSFTfor a Buy
+08-Apr-2021 (18:54:40.359673)---The price of :252.85was not in range of :1.1211159302054807 %  Or the Rating of 10 was not good enough
+08-Apr-2021 (18:54:40.359914)---Evaluating ETSYfor a Buy
+08-Apr-2021 (18:54:40.360144)---The price of :214.5was not in range of :2.732462385013349 %  Or the Rating of 10 was not good enough
+08-Apr-2021 (18:54:40.360366)---Evaluating JDfor a Buy
+08-Apr-2021 (18:54:40.360588)---The price of :82.59was not in range of :1.924422667438243 %  Or the Rating of 10 was not good enough
+08-Apr-2021 (18:54:40.360807)---Evaluating SPGIfor a Buy
+08-Apr-2021 (18:54:40.361032)---The price of :364.74was not in range of :1.1768831865869547 %  Or the Rating of 10 was not good enough
+08-Apr-2021 (18:54:40.361253)---Evaluating SLFfor a Buy
+08-Apr-2021 (18:54:40.361474)---The price of :50.98was not in range of :0.9918140409005975 %  Or the Rating of 10 was not good enough
+08-Apr-2021 (18:54:40.361708)---Skipping ASML as it is in open positions.
+08-Apr-2021 (18:54:40.361915)---Skipping CP as it is in open positions.
+08-Apr-2021 (18:54:40.362091)---Evaluating GWWfor a Buy
+08-Apr-2021 (18:54:40.362315)---The price of :400.92was not in range of :1.1902529292911048 %  Or the Rating of 10 was not good enough
+08-Apr-2021 (18:54:40.362537)---Evaluating CCKfor a Buy
+08-Apr-2021 (18:54:40.362757)---The price of :101.01was not in range of :1.4128036368336658 %  Or the Rating of 10 was not good enough
+08-Apr-2021 (18:54:40.363030)---Evaluating NFLXfor a Buy
+08-Apr-2021 (18:54:40.363254)---The price of :549.36was not in range of :1.647127615438649 %  Or the Rating of 10 was not good enough
+08-Apr-2021 (18:54:40.363472)---Evaluating UPSfor a Buy
+08-Apr-2021 (18:54:40.363690)---The price of :172.89was not in range of :1.1861525827218986 %  Or the Rating of 10 was not good enough
+08-Apr-2021 (18:54:40.363906)---Evaluating TGTfor a Buy
+08-Apr-2021 (18:54:40.364124)---The price of :203.54was not in range of :1.0754384979455238 %  Or the Rating of 10 was not good enough
+08-Apr-2021 (18:54:40.364355)---Skipping CCI as it is in open positions.
+08-Apr-2021 (18:54:40.364528)---Evaluating Dfor a Buy
+08-Apr-2021 (18:54:40.364776)---The price of :76.55was not in range of :1.0298686255828262 %  Or the Rating of 10 was not good enough
+08-Apr-2021 (18:54:40.364997)---Evaluating IDXXfor a Buy
+08-Apr-2021 (18:54:40.365215)---The price of :497.96was not in range of :1.46440013859639 %  Or the Rating of 10 was not good enough
+08-Apr-2021 (18:54:40.365447)---Skipping AWK as it is in open positions.
+08-Apr-2021 (18:54:40.365623)---Evaluating HWMfor a Buy
+08-Apr-2021 (18:54:40.365844)---The price of :31.76was not in range of :2.152808879690982 %  Or the Rating of 10 was not good enough
+08-Apr-2021 (18:54:40.366066)---Evaluating VIRTfor a Buy
+08-Apr-2021 (18:54:40.366259)---Issued the BUY order at 31.29for 31 Stocks of VIRT
+08-Apr-2021 (18:54:40.366448)---Processing profits
+08-Apr-2021 (18:54:40.366612)---Processing CCI
+08-Apr-2021 (18:54:40.366849)---The profit for CCI is 0.6235793279731501 %
+08-Apr-2021 (18:54:40.367030)---Processing CP
+08-Apr-2021 (18:54:40.367211)---The profit for CP is -0.9902040094278983 %
+08-Apr-2021 (18:54:40.367396)---Processing SRT
+08-Apr-2021 (18:54:40.367577)---The profit for SRT is -4.768122291906597 %
+08-Apr-2021 (18:54:40.367761)---Processing ASML
+08-Apr-2021 (18:54:40.367943)---The profit for ASML is 1.3866947757853425 %
+08-Apr-2021 (18:54:40.368123)---Processing AWK
+08-Apr-2021 (18:54:40.368305)---The profit for AWK is -0.014270799822630836 %
+08-Apr-2021 (18:54:40.368544)---...............Worker finished....EST Time: 2021-04-08 11:54:40...................
+08-Apr-2021 (18:54:40.372097)---UI resumed.
+08-Apr-2021 (18:54:40.728536)---Report snapshot stored at server
+08-Apr-2021 (18:55:22.833437)---Getting server command
+08-Apr-2021 (18:55:26.989082)---processing command : run_worker
+08-Apr-2021 (18:55:26.994237)---Restarting connection to IBKR
+08-Apr-2021 (18:55:27.032776)---Waiting for connection...attempt:0
+08-Apr-2021 (18:55:28.038677)---Successfully connected to API
+08-Apr-2021 (18:55:28.039893)---Begin prepare and connect
+08-Apr-2021 (18:55:28.040812)---Requesting Daily PnL
+08-Apr-2021 (18:55:28.041772)---PnL not yet received
+08-Apr-2021 (18:55:28.042898)---Starting to track Excess liquidity
+08-Apr-2021 (18:55:51.117336)---Updating open Positions:
+08-Apr-2021 (18:55:51.625949)---Started tracking CCI position PnL
+08-Apr-2021 (18:55:51.729400)---Started tracking CCI position PnL
+08-Apr-2021 (18:55:51.830724)---Started tracking CP position PnL
+08-Apr-2021 (18:55:51.937707)---Started tracking CP position PnL
+08-Apr-2021 (18:55:52.041777)---Started tracking SRT position PnL
+08-Apr-2021 (18:55:52.145646)---Started tracking ASML position PnL
+08-Apr-2021 (18:55:52.251493)---Started tracking AWK position PnL
+08-Apr-2021 (18:55:52.351743)---Started tracking VIRT position PnL
+08-Apr-2021 (18:55:52.452880)---Started tracking VIRT position PnL
+08-Apr-2021 (18:55:52.557887)---6 open positions completely updated
+08-Apr-2021 (18:55:52.558244)---Updating all open orders
+08-Apr-2021 (18:55:53.562241)---0 open orders found 
+08-Apr-2021 (18:55:54.564133)---Starting to track SQ,MSFT,ETSY,JD,FTNT,AAPL,SPGI,BX,SLF,BAH,RCM,ASML,CP,GWW,LW,CCK,NFLX,UPS,TGT,CCI,D,WBA,IDXX,AWK,HWM,VIRT Candidates
+08-Apr-2021 (18:55:54.565463)---starting to track: 1 of 26 SQ traking with Id:203623
+08-Apr-2021 (18:55:54.566205)---starting to track: 2 of 26 MSFT traking with Id:203624
+08-Apr-2021 (18:55:54.567397)---starting to track: 3 of 26 ETSY traking with Id:203625
+08-Apr-2021 (18:55:54.567652)---starting to track: 4 of 26 JD traking with Id:203626
+08-Apr-2021 (18:55:54.570663)---starting to track: 5 of 26 FTNT traking with Id:203627
+08-Apr-2021 (18:55:54.570984)---starting to track: 6 of 26 AAPL traking with Id:203628
+08-Apr-2021 (18:55:54.571205)---starting to track: 7 of 26 SPGI traking with Id:203629
+08-Apr-2021 (18:55:54.571422)---starting to track: 8 of 26 BX traking with Id:203630
+08-Apr-2021 (18:55:54.571639)---starting to track: 9 of 26 SLF traking with Id:203631
+08-Apr-2021 (18:55:54.571863)---starting to track: 10 of 26 BAH traking with Id:203632
+08-Apr-2021 (18:55:54.572078)---starting to track: 11 of 26 RCM traking with Id:203633
+08-Apr-2021 (18:55:54.572291)---starting to track: 12 of 26 ASML traking with Id:203634
+08-Apr-2021 (18:55:54.572652)---starting to track: 13 of 26 CP traking with Id:203635
+08-Apr-2021 (18:55:54.572969)---starting to track: 14 of 26 GWW traking with Id:203636
+08-Apr-2021 (18:55:54.573213)---starting to track: 15 of 26 LW traking with Id:203637
+08-Apr-2021 (18:55:54.573436)---starting to track: 16 of 26 CCK traking with Id:203638
+08-Apr-2021 (18:55:54.573655)---starting to track: 17 of 26 NFLX traking with Id:203639
+08-Apr-2021 (18:55:54.573884)---starting to track: 18 of 26 UPS traking with Id:203640
+08-Apr-2021 (18:55:54.574102)---starting to track: 19 of 26 TGT traking with Id:203641
+08-Apr-2021 (18:55:54.574318)---starting to track: 20 of 26 CCI traking with Id:203642
+08-Apr-2021 (18:55:54.574533)---starting to track: 21 of 26 D traking with Id:203643
+08-Apr-2021 (18:55:54.574883)---starting to track: 22 of 26 WBA traking with Id:203644
+08-Apr-2021 (18:55:54.575141)---starting to track: 23 of 26 IDXX traking with Id:203645
+08-Apr-2021 (18:55:54.575385)---starting to track: 24 of 26 AWK traking with Id:203646
+08-Apr-2021 (18:55:54.575630)---starting to track: 25 of 26 HWM traking with Id:203647
+08-Apr-2021 (18:55:54.575867)---starting to track: 26 of 26 VIRT traking with Id:203648
+08-Apr-2021 (18:55:55.573637)---Waiting for last requested candidate Close price :0
+08-Apr-2021 (18:55:56.578474)---Waiting for last requested candidate Close price :1
+08-Apr-2021 (18:55:56.581493)---Yahoo data and Tipranks for SQ was added
+08-Apr-2021 (18:55:56.583378)---Yahoo data and Tipranks for MSFT was added
+08-Apr-2021 (18:55:56.584863)---Yahoo data and Tipranks for ETSY was added
+08-Apr-2021 (18:55:56.586298)---Yahoo data and Tipranks for JD was added
+08-Apr-2021 (18:55:56.587573)---Yahoo data and Tipranks for FTNT was added
+08-Apr-2021 (18:55:56.588750)---Yahoo data and Tipranks for AAPL was added
+08-Apr-2021 (18:55:56.589972)---Yahoo data and Tipranks for SPGI was added
+08-Apr-2021 (18:55:56.590963)---Yahoo data and Tipranks for BX was added
+08-Apr-2021 (18:55:56.592057)---Yahoo data and Tipranks for SLF was added
+08-Apr-2021 (18:55:56.593073)---Yahoo data and Tipranks for BAH was added
+08-Apr-2021 (18:55:56.594007)---Yahoo data and Tipranks for RCM was added
+08-Apr-2021 (18:55:56.594728)---Yahoo data and Tipranks for ASML was added
+08-Apr-2021 (18:55:56.595386)---Yahoo data and Tipranks for CP was added
+08-Apr-2021 (18:55:56.596059)---Yahoo data and Tipranks for GWW was added
+08-Apr-2021 (18:55:56.596746)---Yahoo data and Tipranks for LW was added
+08-Apr-2021 (18:55:56.597431)---Yahoo data and Tipranks for CCK was added
+08-Apr-2021 (18:55:56.598187)---Yahoo data and Tipranks for NFLX was added
+08-Apr-2021 (18:55:56.598972)---Yahoo data and Tipranks for UPS was added
+08-Apr-2021 (18:55:56.599616)---Yahoo data and Tipranks for TGT was added
+08-Apr-2021 (18:55:56.600261)---Yahoo data and Tipranks for CCI was added
+08-Apr-2021 (18:55:56.600870)---Yahoo data and Tipranks for D was added
+08-Apr-2021 (18:55:56.601437)---Yahoo data and Tipranks for WBA was added
+08-Apr-2021 (18:55:56.602421)---Yahoo data and Tipranks for IDXX was added
+08-Apr-2021 (18:55:56.603618)---Yahoo data and Tipranks for AWK was added
+08-Apr-2021 (18:55:56.604638)---Yahoo data and Tipranks for HWM was added
+08-Apr-2021 (18:55:56.605628)---Yahoo data and Tipranks for VIRT was added
+08-Apr-2021 (18:55:56.606339)---26 Candidates evaluated and started to track
+08-Apr-2021 (18:55:56.611363)---Updating target prices for Candidates
+08-Apr-2021 (18:55:56.612056)---Updating target price for SQ
+08-Apr-2021 (18:55:56.612750)---Target price for SQ updated to 242.7729420631113 based on Open price
+08-Apr-2021 (18:55:56.613389)---Updating target price for MSFT
+08-Apr-2021 (18:55:56.614054)---Target price for MSFT updated to 249.86694004437075 based on Open price
+08-Apr-2021 (18:55:56.614640)---Updating target price for ETSY
+08-Apr-2021 (18:55:56.615170)---Target price for ETSY updated to 200.361400733111 based on Open price
+08-Apr-2021 (18:55:56.615688)---Updating target price for JD
+08-Apr-2021 (18:55:56.616195)---Target price for JD updated to 81.0790797808288 based on Open price
+08-Apr-2021 (18:55:56.616693)---Updating target price for FTNT
+08-Apr-2021 (18:55:56.617203)---Target price for FTNT updated to 191.88966315255135 based on Open price
+08-Apr-2021 (18:55:56.617702)---Updating target price for AAPL
+08-Apr-2021 (18:55:56.618205)---Target price for AAPL updated to 127.22648946229245 based on Open price
+08-Apr-2021 (18:55:56.618709)---Updating target price for SPGI
+08-Apr-2021 (18:55:56.619265)---Target price for SPGI updated to 360.1114376680771 based on Open price
+08-Apr-2021 (18:55:56.619762)---Updating target price for BX
+08-Apr-2021 (18:55:56.620263)---Target price for BX updated to 74.64900683051474 based on Open price
+08-Apr-2021 (18:55:56.620756)---Updating target price for SLF
+08-Apr-2021 (18:55:56.621252)---Target price for SLF updated to 50.57338138790797 based on Open price
+08-Apr-2021 (18:55:56.621742)---Updating target price for BAH
+08-Apr-2021 (18:55:56.622253)---Target price for BAH updated to 81.60549959861747 based on Open price
+08-Apr-2021 (18:55:56.622724)---Updating target price for RCM
+08-Apr-2021 (18:55:56.623161)---Target price for RCM updated to 24.23399778941115 based on Open price
+08-Apr-2021 (18:55:56.623634)---Updating target price for ASML
+08-Apr-2021 (18:55:56.624060)---Target price for ASML updated to 628.683309440155 based on Open price
+08-Apr-2021 (18:55:56.624479)---Updating target price for CP
+08-Apr-2021 (18:55:56.624899)---Target price for CP updated to 374.0082461709251 based on Open price
+08-Apr-2021 (18:55:56.625321)---Updating target price for GWW
+08-Apr-2021 (18:55:56.625747)---Target price for GWW updated to 393.28255529083555 based on Open price
+08-Apr-2021 (18:55:56.626219)---Updating target price for LW
+08-Apr-2021 (18:55:56.626646)---Target price for LW updated to 74.60731067908493 based on Open price
+08-Apr-2021 (18:55:56.628276)---Updating target price for CCK
+08-Apr-2021 (18:55:56.628917)---Target price for CCK updated to 99.60264448570695 based on Open price
+08-Apr-2021 (18:55:56.629351)---Updating target price for NFLX
+08-Apr-2021 (18:55:56.629783)---Target price for NFLX updated to 542.6127969456251 based on Open price
+08-Apr-2021 (18:55:56.630213)---Updating target price for UPS
+08-Apr-2021 (18:55:56.630628)---Target price for UPS updated to 170.49341233377163 based on Open price
+08-Apr-2021 (18:55:56.631016)---Updating target price for TGT
+08-Apr-2021 (18:55:56.631399)---Target price for TGT updated to 202.00395458719524 based on Open price
+08-Apr-2021 (18:55:56.631817)---Updating target price for CCI
+08-Apr-2021 (18:55:56.632210)---Target price for CCI updated to 175.06430545675624 based on Open price
+08-Apr-2021 (18:55:56.632587)---Updating target price for D
+08-Apr-2021 (18:55:56.632967)---Target price for D updated to 75.84081167221588 based on Open price
+08-Apr-2021 (18:55:56.633347)---Updating target price for WBA
+08-Apr-2021 (18:55:56.633732)---Target price for WBA updated to 54.396861094719576 based on Open price
+08-Apr-2021 (18:55:56.634124)---Updating target price for IDXX
+08-Apr-2021 (18:55:56.634515)---Target price for IDXX updated to 487.62312303412807 based on Open price
+08-Apr-2021 (18:55:56.634916)---Updating target price for AWK
+08-Apr-2021 (18:55:56.635370)---Target price for AWK updated to 151.7597282229924 based on Open price
+08-Apr-2021 (18:55:56.635766)---Updating target price for HWM
+08-Apr-2021 (18:55:56.636160)---Target price for HWM updated to 30.93928183224171 based on Open price
+08-Apr-2021 (18:55:56.636557)---Updating target price for VIRT
+08-Apr-2021 (18:55:56.636999)---Target price for VIRT updated to 31.38379130085111 based on Open price
+08-Apr-2021 (18:55:56.637404)---Connected to IBKR and READY
+08-Apr-2021 (18:55:57.597987)----------Starting Worker...----EST Time: 2021-04-08 11:55:57--------------------
+08-Apr-2021 (18:55:57.600429)---Using own cash only (304.53961702346805), margin dismissed in settings
+08-Apr-2021 (18:55:57.602695)---SMA (including open positions cushion) is 304.53961702346805 it is less than 1000 - skipping buy
+08-Apr-2021 (18:55:57.604166)---Processing profits
+08-Apr-2021 (18:55:57.604887)---Processing CCI
+08-Apr-2021 (18:55:57.605725)---The profit for CCI is 0.6066763887341218 %
+08-Apr-2021 (18:55:57.606596)---Processing CP
+08-Apr-2021 (18:55:57.607422)---The profit for CP is -0.9739908935586405 %
+08-Apr-2021 (18:55:57.608090)---Processing SRT
+08-Apr-2021 (18:55:57.608872)---The profit for SRT is -4.768122291906597 %
+08-Apr-2021 (18:55:57.609781)---Processing ASML
+08-Apr-2021 (18:55:57.610515)---The profit for ASML is 1.3812534888802401 %
+08-Apr-2021 (18:55:57.611249)---Processing AWK
+08-Apr-2021 (18:55:57.611874)---The profit for AWK is -0.1758894786458001 %
+08-Apr-2021 (18:55:57.612469)---Processing VIRT
+08-Apr-2021 (18:55:57.613065)---The profit for VIRT is -0.10181860954816821 %
+08-Apr-2021 (18:55:57.618214)---...............Worker finished....EST Time: 2021-04-08 11:55:57...................
+08-Apr-2021 (18:55:58.467285)---Report snapshot stored at server
+08-Apr-2021 (18:56:22.832826)---Getting server command
+08-Apr-2021 (18:56:26.899503)---processing command : run_worker
+08-Apr-2021 (18:56:26.900381)---Restarting connection to IBKR
+08-Apr-2021 (18:56:26.936370)---Waiting for connection...attempt:0
+08-Apr-2021 (18:56:27.943716)---Successfully connected to API
+08-Apr-2021 (18:56:27.945267)---Begin prepare and connect
+08-Apr-2021 (18:56:27.946322)---Requesting Daily PnL
+08-Apr-2021 (18:56:27.946996)---PnL not yet received
+08-Apr-2021 (18:56:27.947621)---Starting to track Excess liquidity
+08-Apr-2021 (18:56:28.947905)---Updating open Positions:
+08-Apr-2021 (18:56:29.450327)---Started tracking CCI position PnL
+08-Apr-2021 (18:56:29.554571)---Started tracking CCI position PnL
+08-Apr-2021 (18:56:29.660243)---Started tracking CP position PnL
+08-Apr-2021 (18:56:29.766107)---Started tracking CP position PnL
+08-Apr-2021 (18:56:29.869651)---Started tracking SRT position PnL
+08-Apr-2021 (18:56:29.973331)---Started tracking SRT position PnL
+08-Apr-2021 (18:56:30.076445)---Started tracking ASML position PnL
+08-Apr-2021 (18:56:30.181156)---Started tracking ASML position PnL
+08-Apr-2021 (18:56:30.287344)---Started tracking AWK position PnL
+08-Apr-2021 (18:56:30.391986)---Started tracking AWK position PnL
+08-Apr-2021 (18:56:30.492784)---Started tracking VIRT position PnL
+08-Apr-2021 (18:56:30.598500)---Started tracking VIRT position PnL
+08-Apr-2021 (18:56:30.704557)---Started tracking VIRT position PnL
+08-Apr-2021 (18:56:30.809501)---6 open positions completely updated
+08-Apr-2021 (18:56:30.810293)---Updating all open orders
+08-Apr-2021 (18:56:31.817482)---0 open orders found 
+08-Apr-2021 (18:56:32.818371)---Starting to track SQ,MSFT,ETSY,JD,FTNT,AAPL,SPGI,BX,SLF,BAH,RCM,ASML,CP,GWW,LW,CCK,NFLX,UPS,TGT,CCI,D,WBA,IDXX,AWK,HWM,VIRT Candidates
+08-Apr-2021 (18:56:32.819782)---starting to track: 1 of 26 SQ traking with Id:203627
+08-Apr-2021 (18:56:32.820901)---starting to track: 2 of 26 MSFT traking with Id:203628
+08-Apr-2021 (18:56:32.821975)---starting to track: 3 of 26 ETSY traking with Id:203629
+08-Apr-2021 (18:56:32.823621)---starting to track: 4 of 26 JD traking with Id:203630
+08-Apr-2021 (18:56:32.825097)---starting to track: 5 of 26 FTNT traking with Id:203631
+08-Apr-2021 (18:56:32.826261)---starting to track: 6 of 26 AAPL traking with Id:203632
+08-Apr-2021 (18:56:32.827612)---starting to track: 7 of 26 SPGI traking with Id:203633
+08-Apr-2021 (18:56:32.829072)---starting to track: 8 of 26 BX traking with Id:203634
+08-Apr-2021 (18:56:32.830848)---starting to track: 9 of 26 SLF traking with Id:203635
+08-Apr-2021 (18:56:32.832655)---starting to track: 10 of 26 BAH traking with Id:203636
+08-Apr-2021 (18:56:32.833890)---starting to track: 11 of 26 RCM traking with Id:203637
+08-Apr-2021 (18:56:32.835034)---starting to track: 12 of 26 ASML traking with Id:203638
+08-Apr-2021 (18:56:32.836303)---starting to track: 13 of 26 CP traking with Id:203639
+08-Apr-2021 (18:56:32.837218)---starting to track: 14 of 26 GWW traking with Id:203640
+08-Apr-2021 (18:56:32.838126)---starting to track: 15 of 26 LW traking with Id:203641
+08-Apr-2021 (18:56:32.838789)---starting to track: 16 of 26 CCK traking with Id:203642
+08-Apr-2021 (18:56:32.839592)---starting to track: 17 of 26 NFLX traking with Id:203643
+08-Apr-2021 (18:56:32.840319)---starting to track: 18 of 26 UPS traking with Id:203644
+08-Apr-2021 (18:56:32.840995)---starting to track: 19 of 26 TGT traking with Id:203645
+08-Apr-2021 (18:56:32.841575)---starting to track: 20 of 26 CCI traking with Id:203646
+08-Apr-2021 (18:56:32.842148)---starting to track: 21 of 26 D traking with Id:203647
+08-Apr-2021 (18:56:32.842795)---starting to track: 22 of 26 WBA traking with Id:203648
+08-Apr-2021 (18:56:32.843440)---starting to track: 23 of 26 IDXX traking with Id:203649
+08-Apr-2021 (18:56:32.844025)---starting to track: 24 of 26 AWK traking with Id:203650
+08-Apr-2021 (18:56:32.844797)---starting to track: 25 of 26 HWM traking with Id:203651
+08-Apr-2021 (18:56:32.846163)---starting to track: 26 of 26 VIRT traking with Id:203652
+08-Apr-2021 (18:56:33.835208)---Waiting for last requested candidate Close price :0
+08-Apr-2021 (18:56:33.836708)---Yahoo data and Tipranks for SQ was added
+08-Apr-2021 (18:56:33.839698)---Yahoo data and Tipranks for MSFT was added
+08-Apr-2021 (18:56:33.840649)---Yahoo data and Tipranks for ETSY was added
+08-Apr-2021 (18:56:33.841555)---Yahoo data and Tipranks for JD was added
+08-Apr-2021 (18:56:33.842523)---Yahoo data and Tipranks for FTNT was added
+08-Apr-2021 (18:56:33.843379)---Yahoo data and Tipranks for AAPL was added
+08-Apr-2021 (18:56:33.844144)---Yahoo data and Tipranks for SPGI was added
+08-Apr-2021 (18:56:33.844780)---Yahoo data and Tipranks for BX was added
+08-Apr-2021 (18:56:33.846383)---Yahoo data and Tipranks for SLF was added
+08-Apr-2021 (18:56:33.847386)---Yahoo data and Tipranks for BAH was added
+08-Apr-2021 (18:56:33.848113)---Yahoo data and Tipranks for RCM was added
+08-Apr-2021 (18:56:33.848702)---Yahoo data and Tipranks for ASML was added
+08-Apr-2021 (18:56:33.849311)---Yahoo data and Tipranks for CP was added
+08-Apr-2021 (18:56:33.849897)---Yahoo data and Tipranks for GWW was added
+08-Apr-2021 (18:56:33.850460)---Yahoo data and Tipranks for LW was added
+08-Apr-2021 (18:56:33.851038)---Yahoo data and Tipranks for CCK was added
+08-Apr-2021 (18:56:33.851651)---Yahoo data and Tipranks for NFLX was added
+08-Apr-2021 (18:56:33.852266)---Yahoo data and Tipranks for UPS was added
+08-Apr-2021 (18:56:33.852842)---Yahoo data and Tipranks for TGT was added
+08-Apr-2021 (18:56:33.853403)---Yahoo data and Tipranks for CCI was added
+08-Apr-2021 (18:56:33.853962)---Yahoo data and Tipranks for D was added
+08-Apr-2021 (18:56:33.854529)---Yahoo data and Tipranks for WBA was added
+08-Apr-2021 (18:56:33.855365)---Yahoo data and Tipranks for IDXX was added
+08-Apr-2021 (18:56:33.856925)---Yahoo data and Tipranks for AWK was added
+08-Apr-2021 (18:56:33.858713)---Yahoo data and Tipranks for HWM was added
+08-Apr-2021 (18:56:33.860398)---Yahoo data and Tipranks for VIRT was added
+08-Apr-2021 (18:56:33.861766)---26 Candidates evaluated and started to track
+08-Apr-2021 (18:56:33.862993)---Updating target prices for Candidates
+08-Apr-2021 (18:56:33.864173)---Updating target price for SQ
+08-Apr-2021 (18:56:33.865494)---Target price for SQ updated to 242.7729420631113 based on Open price
+08-Apr-2021 (18:56:33.867010)---Updating target price for MSFT
+08-Apr-2021 (18:56:33.868369)---Target price for MSFT updated to 249.86694004437075 based on Open price
+08-Apr-2021 (18:56:33.870144)---Updating target price for ETSY
+08-Apr-2021 (18:56:33.872773)---Target price for ETSY updated to 200.361400733111 based on Open price
+08-Apr-2021 (18:56:33.876245)---Updating target price for JD
+08-Apr-2021 (18:56:33.877892)---Target price for JD updated to 81.0790797808288 based on Open price
+08-Apr-2021 (18:56:33.879271)---Updating target price for FTNT
+08-Apr-2021 (18:56:33.880677)---Target price for FTNT updated to 191.88966315255135 based on Open price
+08-Apr-2021 (18:56:33.882261)---Updating target price for AAPL
+08-Apr-2021 (18:56:33.883718)---Target price for AAPL updated to 127.22648946229245 based on Open price
+08-Apr-2021 (18:56:33.885067)---Updating target price for SPGI
+08-Apr-2021 (18:56:33.886447)---Target price for SPGI updated to 360.1114376680771 based on Open price
+08-Apr-2021 (18:56:33.887893)---Updating target price for BX
+08-Apr-2021 (18:56:33.889494)---Target price for BX updated to 74.64900683051474 based on Open price
+08-Apr-2021 (18:56:33.890989)---Updating target price for SLF
+08-Apr-2021 (18:56:33.892444)---Target price for SLF updated to 50.57338138790797 based on Open price
+08-Apr-2021 (18:56:33.894042)---Updating target price for BAH
+08-Apr-2021 (18:56:33.896224)---Target price for BAH updated to 81.60549959861747 based on Open price
+08-Apr-2021 (18:56:33.897886)---Updating target price for RCM
+08-Apr-2021 (18:56:33.900332)---Target price for RCM updated to 24.23399778941115 based on Open price
+08-Apr-2021 (18:56:33.902015)---Updating target price for ASML
+08-Apr-2021 (18:56:33.903417)---Target price for ASML updated to 628.683309440155 based on Open price
+08-Apr-2021 (18:56:33.904530)---Updating target price for CP
+08-Apr-2021 (18:56:33.905767)---Target price for CP updated to 374.0082461709251 based on Open price
+08-Apr-2021 (18:56:33.906473)---Updating target price for GWW
+08-Apr-2021 (18:56:33.907143)---Target price for GWW updated to 393.28255529083555 based on Open price
+08-Apr-2021 (18:56:33.907816)---Updating target price for LW
+08-Apr-2021 (18:56:33.908956)---Target price for LW updated to 74.60731067908493 based on Open price
+08-Apr-2021 (18:56:33.910874)---Updating target price for CCK
+08-Apr-2021 (18:56:33.912390)---Target price for CCK updated to 99.60264448570695 based on Open price
+08-Apr-2021 (18:56:33.913793)---Updating target price for NFLX
+08-Apr-2021 (18:56:33.915022)---Target price for NFLX updated to 542.6127969456251 based on Open price
+08-Apr-2021 (18:56:33.915936)---Updating target price for UPS
+08-Apr-2021 (18:56:33.916638)---Target price for UPS updated to 170.49341233377163 based on Open price
+08-Apr-2021 (18:56:33.917409)---Updating target price for TGT
+08-Apr-2021 (18:56:33.918100)---Target price for TGT updated to 202.00395458719524 based on Open price
+08-Apr-2021 (18:56:33.918757)---Updating target price for CCI
+08-Apr-2021 (18:56:33.919725)---Target price for CCI updated to 175.06430545675624 based on Open price
+08-Apr-2021 (18:56:33.920781)---Updating target price for D
+08-Apr-2021 (18:56:33.921925)---Target price for D updated to 75.84081167221588 based on Open price
+08-Apr-2021 (18:56:33.922478)---Updating target price for WBA
+08-Apr-2021 (18:56:33.922995)---Target price for WBA updated to 54.396861094719576 based on Open price
+08-Apr-2021 (18:56:33.923507)---Updating target price for IDXX
+08-Apr-2021 (18:56:33.924092)---Target price for IDXX updated to 487.62312303412807 based on Open price
+08-Apr-2021 (18:56:33.924631)---Updating target price for AWK
+08-Apr-2021 (18:56:33.925155)---Target price for AWK updated to 151.7597282229924 based on Open price
+08-Apr-2021 (18:56:33.925675)---Updating target price for HWM
+08-Apr-2021 (18:56:33.926191)---Target price for HWM updated to 30.93928183224171 based on Open price
+08-Apr-2021 (18:56:33.926702)---Updating target price for VIRT
+08-Apr-2021 (18:56:33.927752)---Target price for VIRT updated to 31.38379130085111 based on Open price
+08-Apr-2021 (18:56:33.929158)---Connected to IBKR and READY
+08-Apr-2021 (18:56:34.845160)----------Starting Worker...----EST Time: 2021-04-08 11:56:34--------------------
+08-Apr-2021 (18:56:34.847974)---Using own cash only (304.6395352363588), margin dismissed in settings
+08-Apr-2021 (18:56:34.850450)---SMA (including open positions cushion) is 304.6395352363588 it is less than 1000 - skipping buy
+08-Apr-2021 (18:56:34.852469)---Processing profits
+08-Apr-2021 (18:56:34.853701)---Processing CCI
+08-Apr-2021 (18:56:34.854826)---The profit for CCI is 0.5954103017718538 %
+08-Apr-2021 (18:56:34.856458)---Processing CP
+08-Apr-2021 (18:56:34.857948)---The profit for CP is -0.9496809781952955 %
+08-Apr-2021 (18:56:34.859363)---Processing SRT
+08-Apr-2021 (18:56:34.860868)---The profit for SRT is -4.768122291906597 %
+08-Apr-2021 (18:56:34.862056)---Processing ASML
+08-Apr-2021 (18:56:34.863069)---The profit for ASML is 1.3672778161867425 %
+08-Apr-2021 (18:56:34.864260)---Processing AWK
+08-Apr-2021 (18:56:34.865028)---The profit for AWK is -0.1758894786458001 %
+08-Apr-2021 (18:56:34.865829)---Processing VIRT
+08-Apr-2021 (18:56:34.867011)---The profit for VIRT is -0.10181860954816821 %
+08-Apr-2021 (18:56:34.868045)---...............Worker finished....EST Time: 2021-04-08 11:56:34...................
+08-Apr-2021 (18:56:35.331838)---Report snapshot stored at server
+08-Apr-2021 (18:57:22.832487)---Getting server command
+08-Apr-2021 (18:57:26.725956)---processing command : run_worker
+08-Apr-2021 (18:57:26.728523)---Restarting connection to IBKR
+08-Apr-2021 (18:57:26.789943)---Waiting for connection...attempt:0
+08-Apr-2021 (18:57:27.790432)---Successfully connected to API
+08-Apr-2021 (18:57:27.791339)---Begin prepare and connect
+08-Apr-2021 (18:57:27.791853)---Requesting Daily PnL
+08-Apr-2021 (18:57:27.792456)---PnL not yet received
+08-Apr-2021 (18:57:27.792979)---Starting to track Excess liquidity
+08-Apr-2021 (18:57:28.795210)---Updating open Positions:
+08-Apr-2021 (18:57:29.300048)---Started tracking CCI position PnL
+08-Apr-2021 (18:57:29.400375)---Started tracking CP position PnL
+08-Apr-2021 (18:57:29.502626)---Started tracking CP position PnL
+08-Apr-2021 (18:57:29.604433)---Started tracking SRT position PnL
+08-Apr-2021 (18:57:29.705573)---Started tracking ASML position PnL
+08-Apr-2021 (18:57:29.805816)---Started tracking AWK position PnL
+08-Apr-2021 (18:57:29.906894)---Started tracking AWK position PnL
+08-Apr-2021 (18:57:30.008229)---Started tracking VIRT position PnL
+08-Apr-2021 (18:57:30.110455)---Started tracking VIRT position PnL
+08-Apr-2021 (18:57:30.211986)---6 open positions completely updated
+08-Apr-2021 (18:57:30.213305)---Updating all open orders
+08-Apr-2021 (18:57:31.212484)---0 open orders found 
+08-Apr-2021 (18:57:32.215041)---Starting to track SQ,MSFT,ETSY,JD,FTNT,AAPL,SPGI,BX,SLF,BAH,RCM,ASML,CP,GWW,LW,CCK,NFLX,UPS,TGT,CCI,D,WBA,IDXX,AWK,HWM,VIRT Candidates
+08-Apr-2021 (18:57:32.217854)---starting to track: 1 of 26 SQ traking with Id:203623
+08-Apr-2021 (18:57:32.220096)---starting to track: 2 of 26 MSFT traking with Id:203624
+08-Apr-2021 (18:57:32.221992)---starting to track: 3 of 26 ETSY traking with Id:203625
+08-Apr-2021 (18:57:32.224243)---starting to track: 4 of 26 JD traking with Id:203626
+08-Apr-2021 (18:57:32.227211)---starting to track: 5 of 26 FTNT traking with Id:203627
+08-Apr-2021 (18:57:32.229338)---starting to track: 6 of 26 AAPL traking with Id:203628
+08-Apr-2021 (18:57:32.231344)---starting to track: 7 of 26 SPGI traking with Id:203629
+08-Apr-2021 (18:57:32.233720)---starting to track: 8 of 26 BX traking with Id:203630
+08-Apr-2021 (18:57:32.236054)---starting to track: 9 of 26 SLF traking with Id:203631
+08-Apr-2021 (18:57:32.238411)---starting to track: 10 of 26 BAH traking with Id:203632
+08-Apr-2021 (18:57:32.241300)---starting to track: 11 of 26 RCM traking with Id:203633
+08-Apr-2021 (18:57:32.243087)---starting to track: 12 of 26 ASML traking with Id:203634
+08-Apr-2021 (18:57:32.243792)---starting to track: 13 of 26 CP traking with Id:203635
+08-Apr-2021 (18:57:32.244726)---starting to track: 14 of 26 GWW traking with Id:203636
+08-Apr-2021 (18:57:32.245610)---starting to track: 15 of 26 LW traking with Id:203637
+08-Apr-2021 (18:57:32.246472)---starting to track: 16 of 26 CCK traking with Id:203638
+08-Apr-2021 (18:57:32.247286)---starting to track: 17 of 26 NFLX traking with Id:203639
+08-Apr-2021 (18:57:32.248063)---starting to track: 18 of 26 UPS traking with Id:203640
+08-Apr-2021 (18:57:32.248873)---starting to track: 19 of 26 TGT traking with Id:203641
+08-Apr-2021 (18:57:32.249772)---starting to track: 20 of 26 CCI traking with Id:203642
+08-Apr-2021 (18:57:32.250595)---starting to track: 21 of 26 D traking with Id:203643
+08-Apr-2021 (18:57:32.251425)---starting to track: 22 of 26 WBA traking with Id:203644
+08-Apr-2021 (18:57:32.252195)---starting to track: 23 of 26 IDXX traking with Id:203645
+08-Apr-2021 (18:57:32.252997)---starting to track: 24 of 26 AWK traking with Id:203646
+08-Apr-2021 (18:57:32.253751)---starting to track: 25 of 26 HWM traking with Id:203647
+08-Apr-2021 (18:57:32.254601)---starting to track: 26 of 26 VIRT traking with Id:203648
+08-Apr-2021 (18:57:33.245789)---Waiting for last requested candidate Close price :0
+08-Apr-2021 (18:57:33.248518)---Yahoo data and Tipranks for SQ was added
+08-Apr-2021 (18:57:33.250563)---Yahoo data and Tipranks for MSFT was added
+08-Apr-2021 (18:57:33.252675)---Yahoo data and Tipranks for ETSY was added
+08-Apr-2021 (18:57:33.254095)---Yahoo data and Tipranks for JD was added
+08-Apr-2021 (18:57:33.254777)---Yahoo data and Tipranks for FTNT was added
+08-Apr-2021 (18:57:33.255380)---Yahoo data and Tipranks for AAPL was added
+08-Apr-2021 (18:57:33.256045)---Yahoo data and Tipranks for SPGI was added
+08-Apr-2021 (18:57:33.256693)---Yahoo data and Tipranks for BX was added
+08-Apr-2021 (18:57:33.257372)---Yahoo data and Tipranks for SLF was added
+08-Apr-2021 (18:57:33.258024)---Yahoo data and Tipranks for BAH was added
+08-Apr-2021 (18:57:33.258622)---Yahoo data and Tipranks for RCM was added
+08-Apr-2021 (18:57:33.259238)---Yahoo data and Tipranks for ASML was added
+08-Apr-2021 (18:57:33.259830)---Yahoo data and Tipranks for CP was added
+08-Apr-2021 (18:57:33.260408)---Yahoo data and Tipranks for GWW was added
+08-Apr-2021 (18:57:33.261464)---Yahoo data and Tipranks for LW was added
+08-Apr-2021 (18:57:33.262712)---Yahoo data and Tipranks for CCK was added
+08-Apr-2021 (18:57:33.263950)---Yahoo data and Tipranks for NFLX was added
+08-Apr-2021 (18:57:33.265389)---Yahoo data and Tipranks for UPS was added
+08-Apr-2021 (18:57:33.266738)---Yahoo data and Tipranks for TGT was added
+08-Apr-2021 (18:57:33.268170)---Yahoo data and Tipranks for CCI was added
+08-Apr-2021 (18:57:33.269455)---Yahoo data and Tipranks for D was added
+08-Apr-2021 (18:57:33.270774)---Yahoo data and Tipranks for WBA was added
+08-Apr-2021 (18:57:33.272376)---Yahoo data and Tipranks for IDXX was added
+08-Apr-2021 (18:57:33.273890)---Yahoo data and Tipranks for AWK was added
+08-Apr-2021 (18:57:33.275207)---Yahoo data and Tipranks for HWM was added
+08-Apr-2021 (18:57:33.276520)---Yahoo data and Tipranks for VIRT was added
+08-Apr-2021 (18:57:33.278029)---26 Candidates evaluated and started to track
+08-Apr-2021 (18:57:33.279618)---Updating target prices for Candidates
+08-Apr-2021 (18:57:33.281108)---Updating target price for SQ
+08-Apr-2021 (18:57:33.282710)---Target price for SQ updated to 242.7729420631113 based on Open price
+08-Apr-2021 (18:57:33.284121)---Updating target price for MSFT
+08-Apr-2021 (18:57:33.285839)---Target price for MSFT updated to 249.86694004437075 based on Open price
+08-Apr-2021 (18:57:33.287359)---Updating target price for ETSY
+08-Apr-2021 (18:57:33.289366)---Target price for ETSY updated to 200.361400733111 based on Open price
+08-Apr-2021 (18:57:33.291230)---Updating target price for JD
+08-Apr-2021 (18:57:33.292147)---Target price for JD updated to 81.0790797808288 based on Open price
+08-Apr-2021 (18:57:33.292989)---Updating target price for FTNT
+08-Apr-2021 (18:57:33.293781)---Target price for FTNT updated to 191.88966315255135 based on Open price
+08-Apr-2021 (18:57:33.294494)---Updating target price for AAPL
+08-Apr-2021 (18:57:33.295278)---Target price for AAPL updated to 127.22648946229245 based on Open price
+08-Apr-2021 (18:57:33.295948)---Updating target price for SPGI
+08-Apr-2021 (18:57:33.296932)---Target price for SPGI updated to 360.1114376680771 based on Open price
+08-Apr-2021 (18:57:33.298316)---Updating target price for BX
+08-Apr-2021 (18:57:33.299844)---Target price for BX updated to 74.64900683051474 based on Open price
+08-Apr-2021 (18:57:33.301562)---Updating target price for SLF
+08-Apr-2021 (18:57:33.306697)---Target price for SLF updated to 50.57338138790797 based on Open price
+08-Apr-2021 (18:57:33.308435)---Updating target price for BAH
+08-Apr-2021 (18:57:33.309698)---Target price for BAH updated to 81.60549959861747 based on Open price
+08-Apr-2021 (18:57:33.310792)---Updating target price for RCM
+08-Apr-2021 (18:57:33.312374)---Target price for RCM updated to 24.23399778941115 based on Open price
+08-Apr-2021 (18:57:33.314753)---Updating target price for ASML
+08-Apr-2021 (18:57:33.316678)---Target price for ASML updated to 628.683309440155 based on Open price
+08-Apr-2021 (18:57:33.319166)---Updating target price for CP
+08-Apr-2021 (18:57:33.320568)---Target price for CP updated to 374.0082461709251 based on Open price
+08-Apr-2021 (18:57:33.321673)---Updating target price for GWW
+08-Apr-2021 (18:57:33.322746)---Target price for GWW updated to 393.28255529083555 based on Open price
+08-Apr-2021 (18:57:33.323947)---Updating target price for LW
+08-Apr-2021 (18:57:33.325047)---Target price for LW updated to 74.60731067908493 based on Open price
+08-Apr-2021 (18:57:33.325952)---Updating target price for CCK
+08-Apr-2021 (18:57:33.326805)---Target price for CCK updated to 99.60264448570695 based on Open price
+08-Apr-2021 (18:57:33.327807)---Updating target price for NFLX
+08-Apr-2021 (18:57:33.329108)---Target price for NFLX updated to 542.6127969456251 based on Open price
+08-Apr-2021 (18:57:33.330088)---Updating target price for UPS
+08-Apr-2021 (18:57:33.331116)---Target price for UPS updated to 170.49341233377163 based on Open price
+08-Apr-2021 (18:57:33.332092)---Updating target price for TGT
+08-Apr-2021 (18:57:33.333269)---Target price for TGT updated to 202.00395458719524 based on Open price
+08-Apr-2021 (18:57:33.335130)---Updating target price for CCI
+08-Apr-2021 (18:57:33.336411)---Target price for CCI updated to 175.06430545675624 based on Open price
+08-Apr-2021 (18:57:33.337796)---Updating target price for D
+08-Apr-2021 (18:57:33.338860)---Target price for D updated to 75.84081167221588 based on Open price
+08-Apr-2021 (18:57:33.339743)---Updating target price for WBA
+08-Apr-2021 (18:57:33.340730)---Target price for WBA updated to 54.396861094719576 based on Open price
+08-Apr-2021 (18:57:33.341610)---Updating target price for IDXX
+08-Apr-2021 (18:57:33.342356)---Target price for IDXX updated to 487.62312303412807 based on Open price
+08-Apr-2021 (18:57:33.343037)---Updating target price for AWK
+08-Apr-2021 (18:57:33.343706)---Target price for AWK updated to 151.7597282229924 based on Open price
+08-Apr-2021 (18:57:33.344329)---Updating target price for HWM
+08-Apr-2021 (18:57:33.344872)---Target price for HWM updated to 30.93928183224171 based on Open price
+08-Apr-2021 (18:57:33.345414)---Updating target price for VIRT
+08-Apr-2021 (18:57:33.345967)---Target price for VIRT updated to 31.38379130085111 based on Open price
+08-Apr-2021 (18:57:33.346655)---Connected to IBKR and READY
+08-Apr-2021 (18:57:34.259968)----------Starting Worker...----EST Time: 2021-04-08 11:57:34--------------------
+08-Apr-2021 (18:57:34.263149)---Using own cash only (301.57502346038837), margin dismissed in settings
+08-Apr-2021 (18:57:34.265899)---SMA (including open positions cushion) is 301.57502346038837 it is less than 1000 - skipping buy
+08-Apr-2021 (18:57:34.267621)---Processing profits
+08-Apr-2021 (18:57:34.268908)---Processing CCI
+08-Apr-2021 (18:57:34.269907)---The profit for CCI is 0.6827029542944363 %
+08-Apr-2021 (18:57:34.271129)---Processing CP
+08-Apr-2021 (18:57:34.272386)---The profit for CP is -0.9496809781952955 %
+08-Apr-2021 (18:57:34.273514)---Processing SRT
+08-Apr-2021 (18:57:34.274403)---The profit for SRT is -4.50187572544989 %
+08-Apr-2021 (18:57:34.275083)---Processing ASML
+08-Apr-2021 (18:57:34.275626)---The profit for ASML is 1.354066500727998 %
+08-Apr-2021 (18:57:34.276168)---Processing AWK
+08-Apr-2021 (18:57:34.276703)---The profit for AWK is -0.16928607115052477 %
+08-Apr-2021 (18:57:34.277217)---Processing VIRT
+08-Apr-2021 (18:57:34.277782)---The profit for VIRT is -0.11270007120340812 %
+08-Apr-2021 (18:57:34.278612)---...............Worker finished....EST Time: 2021-04-08 11:57:34...................
+08-Apr-2021 (18:57:34.714016)---Report snapshot stored at server
+08-Apr-2021 (18:58:22.830570)---Getting server command
+08-Apr-2021 (18:58:26.579917)---processing command : run_worker
+08-Apr-2021 (18:58:26.582660)---Restarting connection to IBKR
+08-Apr-2021 (18:58:26.627250)---Waiting for connection...attempt:0
+08-Apr-2021 (18:58:27.628418)---Successfully connected to API
+08-Apr-2021 (18:58:27.630254)---Begin prepare and connect
+08-Apr-2021 (18:58:27.631470)---Requesting Daily PnL
+08-Apr-2021 (18:58:27.632516)---PnL not yet received
+08-Apr-2021 (18:58:27.633805)---Starting to track Excess liquidity
+08-Apr-2021 (18:58:28.632121)---Updating open Positions:
+08-Apr-2021 (18:58:29.135992)---Started tracking CCI position PnL
+08-Apr-2021 (18:58:29.237339)---Started tracking CP position PnL
+08-Apr-2021 (18:58:29.339710)---Started tracking SRT position PnL
+08-Apr-2021 (18:58:29.440529)---Started tracking ASML position PnL
+08-Apr-2021 (18:58:29.540488)---Started tracking AWK position PnL
+08-Apr-2021 (18:58:29.642941)---Started tracking AWK position PnL
+08-Apr-2021 (18:58:29.745654)---Started tracking VIRT position PnL
+08-Apr-2021 (18:58:29.846388)---Started tracking VIRT position PnL
+08-Apr-2021 (18:58:29.948072)---6 open positions completely updated
+08-Apr-2021 (18:58:29.949789)---Updating all open orders
+08-Apr-2021 (18:58:30.952012)---0 open orders found 
+08-Apr-2021 (18:58:31.954622)---Starting to track SQ,MSFT,ETSY,JD,FTNT,AAPL,SPGI,BX,SLF,BAH,RCM,ASML,CP,GWW,LW,CCK,NFLX,UPS,TGT,CCI,D,WBA,IDXX,AWK,HWM,VIRT Candidates
+08-Apr-2021 (18:58:31.958507)---starting to track: 1 of 26 SQ traking with Id:203622
+08-Apr-2021 (18:58:31.960877)---starting to track: 2 of 26 MSFT traking with Id:203623
+08-Apr-2021 (18:58:31.963374)---starting to track: 3 of 26 ETSY traking with Id:203624
+08-Apr-2021 (18:58:31.966453)---starting to track: 4 of 26 JD traking with Id:203625
+08-Apr-2021 (18:58:31.968499)---starting to track: 5 of 26 FTNT traking with Id:203626
+08-Apr-2021 (18:58:31.970680)---starting to track: 6 of 26 AAPL traking with Id:203627
+08-Apr-2021 (18:58:31.972645)---starting to track: 7 of 26 SPGI traking with Id:203628
+08-Apr-2021 (18:58:31.974171)---starting to track: 8 of 26 BX traking with Id:203629
+08-Apr-2021 (18:58:31.975454)---starting to track: 9 of 26 SLF traking with Id:203630
+08-Apr-2021 (18:58:31.976594)---starting to track: 10 of 26 BAH traking with Id:203631
+08-Apr-2021 (18:58:31.977495)---starting to track: 11 of 26 RCM traking with Id:203632
+08-Apr-2021 (18:58:31.978757)---starting to track: 12 of 26 ASML traking with Id:203633
+08-Apr-2021 (18:58:31.979984)---starting to track: 13 of 26 CP traking with Id:203634
+08-Apr-2021 (18:58:31.980910)---starting to track: 14 of 26 GWW traking with Id:203635
+08-Apr-2021 (18:58:31.982060)---starting to track: 15 of 26 LW traking with Id:203636
+08-Apr-2021 (18:58:31.982817)---starting to track: 16 of 26 CCK traking with Id:203637
+08-Apr-2021 (18:58:31.983609)---starting to track: 17 of 26 NFLX traking with Id:203638
+08-Apr-2021 (18:58:31.984294)---starting to track: 18 of 26 UPS traking with Id:203639
+08-Apr-2021 (18:58:31.984990)---starting to track: 19 of 26 TGT traking with Id:203640
+08-Apr-2021 (18:58:31.986025)---starting to track: 20 of 26 CCI traking with Id:203641
+08-Apr-2021 (18:58:31.987174)---starting to track: 21 of 26 D traking with Id:203642
+08-Apr-2021 (18:58:31.988209)---starting to track: 22 of 26 WBA traking with Id:203643
+08-Apr-2021 (18:58:31.989362)---starting to track: 23 of 26 IDXX traking with Id:203644
+08-Apr-2021 (18:58:31.991015)---starting to track: 24 of 26 AWK traking with Id:203645
+08-Apr-2021 (18:58:31.992518)---starting to track: 25 of 26 HWM traking with Id:203646
+08-Apr-2021 (18:58:31.993704)---starting to track: 26 of 26 VIRT traking with Id:203647
+08-Apr-2021 (18:58:32.980996)---Waiting for last requested candidate Close price :0
+08-Apr-2021 (18:58:32.983944)---Yahoo data and Tipranks for SQ was added
+08-Apr-2021 (18:58:32.985332)---Yahoo data and Tipranks for MSFT was added
+08-Apr-2021 (18:58:32.986877)---Yahoo data and Tipranks for ETSY was added
+08-Apr-2021 (18:58:32.988370)---Yahoo data and Tipranks for JD was added
+08-Apr-2021 (18:58:32.989856)---Yahoo data and Tipranks for FTNT was added
+08-Apr-2021 (18:58:32.991100)---Yahoo data and Tipranks for AAPL was added
+08-Apr-2021 (18:58:32.992468)---Yahoo data and Tipranks for SPGI was added
+08-Apr-2021 (18:58:32.993457)---Yahoo data and Tipranks for BX was added
+08-Apr-2021 (18:58:32.994376)---Yahoo data and Tipranks for SLF was added
+08-Apr-2021 (18:58:32.995436)---Yahoo data and Tipranks for BAH was added
+08-Apr-2021 (18:58:32.996230)---Yahoo data and Tipranks for RCM was added
+08-Apr-2021 (18:58:32.996896)---Yahoo data and Tipranks for ASML was added
+08-Apr-2021 (18:58:32.997530)---Yahoo data and Tipranks for CP was added
+08-Apr-2021 (18:58:32.998149)---Yahoo data and Tipranks for GWW was added
+08-Apr-2021 (18:58:32.998769)---Yahoo data and Tipranks for LW was added
+08-Apr-2021 (18:58:32.999447)---Yahoo data and Tipranks for CCK was added
+08-Apr-2021 (18:58:33.000097)---Yahoo data and Tipranks for NFLX was added
+08-Apr-2021 (18:58:33.001415)---Yahoo data and Tipranks for UPS was added
+08-Apr-2021 (18:58:33.002718)---Yahoo data and Tipranks for TGT was added
+08-Apr-2021 (18:58:33.004190)---Yahoo data and Tipranks for CCI was added
+08-Apr-2021 (18:58:33.005002)---Yahoo data and Tipranks for D was added
+08-Apr-2021 (18:58:33.005655)---Yahoo data and Tipranks for WBA was added
+08-Apr-2021 (18:58:33.006179)---Yahoo data and Tipranks for IDXX was added
+08-Apr-2021 (18:58:33.006729)---Yahoo data and Tipranks for AWK was added
+08-Apr-2021 (18:58:33.007545)---Yahoo data and Tipranks for HWM was added
+08-Apr-2021 (18:58:33.008088)---Yahoo data and Tipranks for VIRT was added
+08-Apr-2021 (18:58:33.008703)---26 Candidates evaluated and started to track
+08-Apr-2021 (18:58:33.009401)---Updating target prices for Candidates
+08-Apr-2021 (18:58:33.010163)---Updating target price for SQ
+08-Apr-2021 (18:58:33.010950)---Target price for SQ updated to 242.7729420631113 based on Open price
+08-Apr-2021 (18:58:33.011651)---Updating target price for MSFT
+08-Apr-2021 (18:58:33.012342)---Target price for MSFT updated to 249.86694004437075 based on Open price
+08-Apr-2021 (18:58:33.013041)---Updating target price for ETSY
+08-Apr-2021 (18:58:33.013791)---Target price for ETSY updated to 200.361400733111 based on Open price
+08-Apr-2021 (18:58:33.014540)---Updating target price for JD
+08-Apr-2021 (18:58:33.015209)---Target price for JD updated to 81.0790797808288 based on Open price
+08-Apr-2021 (18:58:33.016032)---Updating target price for FTNT
+08-Apr-2021 (18:58:33.016745)---Target price for FTNT updated to 191.88966315255135 based on Open price
+08-Apr-2021 (18:58:33.017444)---Updating target price for AAPL
+08-Apr-2021 (18:58:33.018115)---Target price for AAPL updated to 127.22648946229245 based on Open price
+08-Apr-2021 (18:58:33.018804)---Updating target price for SPGI
+08-Apr-2021 (18:58:33.019467)---Target price for SPGI updated to 360.1114376680771 based on Open price
+08-Apr-2021 (18:58:33.020182)---Updating target price for BX
+08-Apr-2021 (18:58:33.021075)---Target price for BX updated to 74.64900683051474 based on Open price
+08-Apr-2021 (18:58:33.022033)---Updating target price for SLF
+08-Apr-2021 (18:58:33.023239)---Target price for SLF updated to 50.57338138790797 based on Open price
+08-Apr-2021 (18:58:33.024125)---Updating target price for BAH
+08-Apr-2021 (18:58:33.024970)---Target price for BAH updated to 81.60549959861747 based on Open price
+08-Apr-2021 (18:58:33.026021)---Updating target price for RCM
+08-Apr-2021 (18:58:33.027077)---Target price for RCM updated to 24.23399778941115 based on Open price
+08-Apr-2021 (18:58:33.028038)---Updating target price for ASML
+08-Apr-2021 (18:58:33.028955)---Target price for ASML updated to 628.683309440155 based on Open price
+08-Apr-2021 (18:58:33.029859)---Updating target price for CP
+08-Apr-2021 (18:58:33.030736)---Target price for CP updated to 374.0082461709251 based on Open price
+08-Apr-2021 (18:58:33.031630)---Updating target price for GWW
+08-Apr-2021 (18:58:33.032731)---Target price for GWW updated to 393.28255529083555 based on Open price
+08-Apr-2021 (18:58:33.033964)---Updating target price for LW
+08-Apr-2021 (18:58:33.035137)---Target price for LW updated to 74.60731067908493 based on Open price
+08-Apr-2021 (18:58:33.036513)---Updating target price for CCK
+08-Apr-2021 (18:58:33.037816)---Target price for CCK updated to 99.60264448570695 based on Open price
+08-Apr-2021 (18:58:33.039340)---Updating target price for NFLX
+08-Apr-2021 (18:58:33.040662)---Target price for NFLX updated to 542.6127969456251 based on Open price
+08-Apr-2021 (18:58:33.041881)---Updating target price for UPS
+08-Apr-2021 (18:58:33.043088)---Target price for UPS updated to 170.49341233377163 based on Open price
+08-Apr-2021 (18:58:33.044305)---Updating target price for TGT
+08-Apr-2021 (18:58:33.045518)---Target price for TGT updated to 202.00395458719524 based on Open price
+08-Apr-2021 (18:58:33.046846)---Updating target price for CCI
+08-Apr-2021 (18:58:33.048234)---Target price for CCI updated to 175.06430545675624 based on Open price
+08-Apr-2021 (18:58:33.049576)---Updating target price for D
+08-Apr-2021 (18:58:33.050924)---Target price for D updated to 75.84081167221588 based on Open price
+08-Apr-2021 (18:58:33.052213)---Updating target price for WBA
+08-Apr-2021 (18:58:33.053460)---Target price for WBA updated to 54.396861094719576 based on Open price
+08-Apr-2021 (18:58:33.054712)---Updating target price for IDXX
+08-Apr-2021 (18:58:33.055971)---Target price for IDXX updated to 487.62312303412807 based on Open price
+08-Apr-2021 (18:58:33.057219)---Updating target price for AWK
+08-Apr-2021 (18:58:33.058487)---Target price for AWK updated to 151.7597282229924 based on Open price
+08-Apr-2021 (18:58:33.060073)---Updating target price for HWM
+08-Apr-2021 (18:58:33.061392)---Target price for HWM updated to 30.93928183224171 based on Open price
+08-Apr-2021 (18:58:33.063017)---Updating target price for VIRT
+08-Apr-2021 (18:58:33.064511)---Target price for VIRT updated to 31.38379130085111 based on Open price
+08-Apr-2021 (18:58:33.066040)---Connected to IBKR and READY
+08-Apr-2021 (18:58:33.986777)----------Starting Worker...----EST Time: 2021-04-08 11:58:33--------------------
+08-Apr-2021 (18:58:33.988935)---Using own cash only (302.9499587631226), margin dismissed in settings
+08-Apr-2021 (18:58:33.990689)---SMA (including open positions cushion) is 302.9499587631226 it is less than 1000 - skipping buy
+08-Apr-2021 (18:58:33.992104)---Processing profits
+08-Apr-2021 (18:58:33.993156)---Processing CCI
+08-Apr-2021 (18:58:33.994128)---The profit for CCI is 0.6967647356269778 %
+08-Apr-2021 (18:58:33.994926)---Processing CP
+08-Apr-2021 (18:58:33.995679)---The profit for CP is -1.0469909399283044 %
+08-Apr-2021 (18:58:33.996458)---Processing SRT
+08-Apr-2021 (18:58:33.997354)---The profit for SRT is -4.50187572544989 %
+08-Apr-2021 (18:58:33.997995)---Processing ASML
+08-Apr-2021 (18:58:33.998811)---The profit for ASML is 1.354066500727998 %
+08-Apr-2021 (18:58:33.999417)---Processing AWK
+08-Apr-2021 (18:58:33.999978)---The profit for AWK is -0.18249375682443553 %
+08-Apr-2021 (18:58:34.000644)---Processing VIRT
+08-Apr-2021 (18:58:34.001366)---The profit for VIRT is -0.11270007120340812 %
+08-Apr-2021 (18:58:34.002128)---...............Worker finished....EST Time: 2021-04-08 11:58:33...................
+08-Apr-2021 (18:58:34.443791)---Report snapshot stored at server
+08-Apr-2021 (18:59:22.829108)---Getting server command
+08-Apr-2021 (18:59:26.842595)---processing command : run_worker
+08-Apr-2021 (18:59:26.845628)---Restarting connection to IBKR
+08-Apr-2021 (18:59:26.866738)---Waiting for connection...attempt:0
+08-Apr-2021 (18:59:27.873397)---Successfully connected to API
+08-Apr-2021 (18:59:27.874940)---Begin prepare and connect
+08-Apr-2021 (18:59:27.876090)---Requesting Daily PnL
+08-Apr-2021 (18:59:27.877211)---PnL not yet received
+08-Apr-2021 (18:59:27.883344)---Starting to track Excess liquidity
+08-Apr-2021 (18:59:28.878249)---Updating open Positions:
+08-Apr-2021 (18:59:29.381297)---Started tracking CCI position PnL
+08-Apr-2021 (18:59:29.483059)---Started tracking CP position PnL
+08-Apr-2021 (18:59:29.586315)---Started tracking SRT position PnL
+08-Apr-2021 (18:59:29.685476)---Started tracking ASML position PnL
+08-Apr-2021 (18:59:29.790513)---Started tracking AWK position PnL
+08-Apr-2021 (18:59:29.890984)---Started tracking AWK position PnL
+08-Apr-2021 (18:59:29.993081)---Started tracking VIRT position PnL
+08-Apr-2021 (18:59:30.098562)---6 open positions completely updated
+08-Apr-2021 (18:59:30.099457)---Updating all open orders
+08-Apr-2021 (18:59:31.104472)---0 open orders found 
+08-Apr-2021 (18:59:32.110157)---Starting to track SQ,MSFT,ETSY,JD,FTNT,AAPL,SPGI,BX,SLF,BAH,RCM,ASML,CP,GWW,LW,CCK,NFLX,UPS,TGT,CCI,D,WBA,IDXX,AWK,HWM,VIRT Candidates
+08-Apr-2021 (18:59:32.112146)---starting to track: 1 of 26 SQ traking with Id:203621
+08-Apr-2021 (18:59:32.113947)---starting to track: 2 of 26 MSFT traking with Id:203622
+08-Apr-2021 (18:59:32.115777)---starting to track: 3 of 26 ETSY traking with Id:203623
+08-Apr-2021 (18:59:32.117636)---starting to track: 4 of 26 JD traking with Id:203624
+08-Apr-2021 (18:59:32.119286)---starting to track: 5 of 26 FTNT traking with Id:203625
+08-Apr-2021 (18:59:32.120786)---starting to track: 6 of 26 AAPL traking with Id:203626
+08-Apr-2021 (18:59:32.129111)---starting to track: 7 of 26 SPGI traking with Id:203627
+08-Apr-2021 (18:59:32.130520)---starting to track: 8 of 26 BX traking with Id:203628
+08-Apr-2021 (18:59:32.131745)---starting to track: 9 of 26 SLF traking with Id:203629
+08-Apr-2021 (18:59:32.132801)---starting to track: 10 of 26 BAH traking with Id:203630
+08-Apr-2021 (18:59:32.133547)---starting to track: 11 of 26 RCM traking with Id:203631
+08-Apr-2021 (18:59:32.134776)---starting to track: 12 of 26 ASML traking with Id:203632
+08-Apr-2021 (18:59:32.135834)---starting to track: 13 of 26 CP traking with Id:203633
+08-Apr-2021 (18:59:32.136622)---starting to track: 14 of 26 GWW traking with Id:203634
+08-Apr-2021 (18:59:32.137423)---starting to track: 15 of 26 LW traking with Id:203635
+08-Apr-2021 (18:59:32.138153)---starting to track: 16 of 26 CCK traking with Id:203636
+08-Apr-2021 (18:59:32.138931)---starting to track: 17 of 26 NFLX traking with Id:203637
+08-Apr-2021 (18:59:32.139632)---starting to track: 18 of 26 UPS traking with Id:203638
+08-Apr-2021 (18:59:32.140321)---starting to track: 19 of 26 TGT traking with Id:203639
+08-Apr-2021 (18:59:32.141027)---starting to track: 20 of 26 CCI traking with Id:203640
+08-Apr-2021 (18:59:32.141725)---starting to track: 21 of 26 D traking with Id:203641
+08-Apr-2021 (18:59:32.142374)---starting to track: 22 of 26 WBA traking with Id:203642
+08-Apr-2021 (18:59:32.142958)---starting to track: 23 of 26 IDXX traking with Id:203643
+08-Apr-2021 (18:59:32.143550)---starting to track: 24 of 26 AWK traking with Id:203644
+08-Apr-2021 (18:59:32.144150)---starting to track: 25 of 26 HWM traking with Id:203645
+08-Apr-2021 (18:59:32.144737)---starting to track: 26 of 26 VIRT traking with Id:203646
+08-Apr-2021 (18:59:33.129806)---Waiting for last requested candidate Close price :0
+08-Apr-2021 (18:59:33.131942)---Yahoo data and Tipranks for SQ was added
+08-Apr-2021 (18:59:33.133150)---Yahoo data and Tipranks for MSFT was added
+08-Apr-2021 (18:59:33.134099)---Yahoo data and Tipranks for ETSY was added
+08-Apr-2021 (18:59:33.135139)---Yahoo data and Tipranks for JD was added
+08-Apr-2021 (18:59:33.135977)---Yahoo data and Tipranks for FTNT was added
+08-Apr-2021 (18:59:33.136579)---Yahoo data and Tipranks for AAPL was added
+08-Apr-2021 (18:59:33.137227)---Yahoo data and Tipranks for SPGI was added
+08-Apr-2021 (18:59:33.137796)---Yahoo data and Tipranks for BX was added
+08-Apr-2021 (18:59:33.138573)---Yahoo data and Tipranks for SLF was added
+08-Apr-2021 (18:59:33.139712)---Yahoo data and Tipranks for BAH was added
+08-Apr-2021 (18:59:33.140614)---Yahoo data and Tipranks for RCM was added
+08-Apr-2021 (18:59:33.141284)---Yahoo data and Tipranks for ASML was added
+08-Apr-2021 (18:59:33.142023)---Yahoo data and Tipranks for CP was added
+08-Apr-2021 (18:59:33.142622)---Yahoo data and Tipranks for GWW was added
+08-Apr-2021 (18:59:33.143242)---Yahoo data and Tipranks for LW was added
+08-Apr-2021 (18:59:33.143841)---Yahoo data and Tipranks for CCK was added
+08-Apr-2021 (18:59:33.144445)---Yahoo data and Tipranks for NFLX was added
+08-Apr-2021 (18:59:33.145059)---Yahoo data and Tipranks for UPS was added
+08-Apr-2021 (18:59:33.145620)---Yahoo data and Tipranks for TGT was added
+08-Apr-2021 (18:59:33.146164)---Yahoo data and Tipranks for CCI was added
+08-Apr-2021 (18:59:33.147062)---Yahoo data and Tipranks for D was added
+08-Apr-2021 (18:59:33.148110)---Yahoo data and Tipranks for WBA was added
+08-Apr-2021 (18:59:33.148839)---Yahoo data and Tipranks for IDXX was added
+08-Apr-2021 (18:59:33.149518)---Yahoo data and Tipranks for AWK was added
+08-Apr-2021 (18:59:33.150270)---Yahoo data and Tipranks for HWM was added
+08-Apr-2021 (18:59:33.151302)---Yahoo data and Tipranks for VIRT was added
+08-Apr-2021 (18:59:33.152001)---26 Candidates evaluated and started to track
+08-Apr-2021 (18:59:33.152437)---Updating target prices for Candidates
+08-Apr-2021 (18:59:33.152817)---Updating target price for SQ
+08-Apr-2021 (18:59:33.153242)---Target price for SQ updated to 242.7729420631113 based on Open price
+08-Apr-2021 (18:59:33.153659)---Updating target price for MSFT
+08-Apr-2021 (18:59:33.157111)---Target price for MSFT updated to 249.86694004437075 based on Open price
+08-Apr-2021 (18:59:33.157682)---Updating target price for ETSY
+08-Apr-2021 (18:59:33.158111)---Target price for ETSY updated to 200.361400733111 based on Open price
+08-Apr-2021 (18:59:33.158522)---Updating target price for JD
+08-Apr-2021 (18:59:33.158926)---Target price for JD updated to 81.0790797808288 based on Open price
+08-Apr-2021 (18:59:33.159283)---Updating target price for FTNT
+08-Apr-2021 (18:59:33.159644)---Target price for FTNT updated to 191.88966315255135 based on Open price
+08-Apr-2021 (18:59:33.159997)---Updating target price for AAPL
+08-Apr-2021 (18:59:33.160350)---Target price for AAPL updated to 127.22648946229245 based on Open price
+08-Apr-2021 (18:59:33.160709)---Updating target price for SPGI
+08-Apr-2021 (18:59:33.161064)---Target price for SPGI updated to 360.1114376680771 based on Open price
+08-Apr-2021 (18:59:33.161422)---Updating target price for BX
+08-Apr-2021 (18:59:33.161780)---Target price for BX updated to 74.64900683051474 based on Open price
+08-Apr-2021 (18:59:33.162137)---Updating target price for SLF
+08-Apr-2021 (18:59:33.162499)---Target price for SLF updated to 50.57338138790797 based on Open price
+08-Apr-2021 (18:59:33.162849)---Updating target price for BAH
+08-Apr-2021 (18:59:33.163204)---Target price for BAH updated to 81.60549959861747 based on Open price
+08-Apr-2021 (18:59:33.163565)---Updating target price for RCM
+08-Apr-2021 (18:59:33.163920)---Target price for RCM updated to 24.23399778941115 based on Open price
+08-Apr-2021 (18:59:33.164272)---Updating target price for ASML
+08-Apr-2021 (18:59:33.164627)---Target price for ASML updated to 628.683309440155 based on Open price
+08-Apr-2021 (18:59:33.164979)---Updating target price for CP
+08-Apr-2021 (18:59:33.165337)---Target price for CP updated to 374.0082461709251 based on Open price
+08-Apr-2021 (18:59:33.165687)---Updating target price for GWW
+08-Apr-2021 (18:59:33.166045)---Target price for GWW updated to 393.28255529083555 based on Open price
+08-Apr-2021 (18:59:33.166450)---Updating target price for LW
+08-Apr-2021 (18:59:33.166783)---Target price for LW updated to 74.60731067908493 based on Open price
+08-Apr-2021 (18:59:33.167096)---Updating target price for CCK
+08-Apr-2021 (18:59:33.167417)---Target price for CCK updated to 99.60264448570695 based on Open price
+08-Apr-2021 (18:59:33.167736)---Updating target price for NFLX
+08-Apr-2021 (18:59:33.168058)---Target price for NFLX updated to 542.6127969456251 based on Open price
+08-Apr-2021 (18:59:33.168378)---Updating target price for UPS
+08-Apr-2021 (18:59:33.168697)---Target price for UPS updated to 170.49341233377163 based on Open price
+08-Apr-2021 (18:59:33.169018)---Updating target price for TGT
+08-Apr-2021 (18:59:33.169337)---Target price for TGT updated to 202.00395458719524 based on Open price
+08-Apr-2021 (18:59:33.169657)---Updating target price for CCI
+08-Apr-2021 (18:59:33.170014)---Target price for CCI updated to 175.06430545675624 based on Open price
+08-Apr-2021 (18:59:33.170335)---Updating target price for D
+08-Apr-2021 (18:59:33.170652)---Target price for D updated to 75.84081167221588 based on Open price
+08-Apr-2021 (18:59:33.170975)---Updating target price for WBA
+08-Apr-2021 (18:59:33.171302)---Target price for WBA updated to 54.396861094719576 based on Open price
+08-Apr-2021 (18:59:33.171630)---Updating target price for IDXX
+08-Apr-2021 (18:59:33.171963)---Target price for IDXX updated to 487.62312303412807 based on Open price
+08-Apr-2021 (18:59:33.172289)---Updating target price for AWK
+08-Apr-2021 (18:59:33.172618)---Target price for AWK updated to 151.7597282229924 based on Open price
+08-Apr-2021 (18:59:33.172946)---Updating target price for HWM
+08-Apr-2021 (18:59:33.173271)---Target price for HWM updated to 30.93928183224171 based on Open price
+08-Apr-2021 (18:59:33.173597)---Updating target price for VIRT
+08-Apr-2021 (18:59:33.173932)---Target price for VIRT updated to 31.38379130085111 based on Open price
+08-Apr-2021 (18:59:33.174265)---Connected to IBKR and READY
+08-Apr-2021 (18:59:34.142161)----------Starting Worker...----EST Time: 2021-04-08 11:59:34--------------------
+08-Apr-2021 (18:59:34.143552)---Using own cash only (304.0449599838257), margin dismissed in settings
+08-Apr-2021 (18:59:34.144589)---SMA (including open positions cushion) is 304.0449599838257 it is less than 1000 - skipping buy
+08-Apr-2021 (18:59:34.145569)---Processing profits
+08-Apr-2021 (18:59:34.146401)---Processing CCI
+08-Apr-2021 (18:59:34.147399)---The profit for CCI is 0.6911422178405598 %
+08-Apr-2021 (18:59:34.148374)---Processing CP
+08-Apr-2021 (18:59:34.149025)---The profit for CP is -1.0957245711436856 %
+08-Apr-2021 (18:59:34.149636)---Processing SRT
+08-Apr-2021 (18:59:34.150811)---The profit for SRT is -4.50187572544989 %
+08-Apr-2021 (18:59:34.152022)---Processing ASML
+08-Apr-2021 (18:59:34.152776)---The profit for ASML is 1.3385270587529339 %
+08-Apr-2021 (18:59:34.153870)---Processing AWK
+08-Apr-2021 (18:59:34.155321)---The profit for AWK is -0.19571501211351616 %
+08-Apr-2021 (18:59:34.156177)---Processing VIRT
+08-Apr-2021 (18:59:34.156944)---The profit for VIRT is -0.16072143108603518 %
+08-Apr-2021 (18:59:34.157850)---...............Worker finished....EST Time: 2021-04-08 11:59:34...................
+08-Apr-2021 (18:59:34.591975)---Report snapshot stored at server
+08-Apr-2021 (19:00:22.830488)---Getting server command
+08-Apr-2021 (19:00:26.614388)---processing command : run_worker
+08-Apr-2021 (19:00:26.616153)---Restarting connection to IBKR
+08-Apr-2021 (19:00:26.655992)---Waiting for connection...attempt:0
+08-Apr-2021 (19:00:27.659354)---Successfully connected to API
+08-Apr-2021 (19:00:27.661381)---Begin prepare and connect
+08-Apr-2021 (19:00:27.663227)---Requesting Daily PnL
+08-Apr-2021 (19:00:27.664334)---PnL not yet received
+08-Apr-2021 (19:00:27.665465)---Starting to track Excess liquidity
+08-Apr-2021 (19:00:29.665873)---Updating open Positions:
+08-Apr-2021 (19:00:30.168655)---Started tracking CCI position PnL
+08-Apr-2021 (19:00:30.270373)---Started tracking CCI position PnL
+08-Apr-2021 (19:00:30.373859)---Started tracking CP position PnL
+08-Apr-2021 (19:00:30.478608)---Started tracking SRT position PnL
+08-Apr-2021 (19:00:30.582130)---Started tracking ASML position PnL
+08-Apr-2021 (19:00:30.686381)---Started tracking AWK position PnL
+08-Apr-2021 (19:00:30.787141)---Started tracking AWK position PnL
+08-Apr-2021 (19:00:30.893212)---Started tracking VIRT position PnL
+08-Apr-2021 (19:00:30.994144)---Started tracking VIRT position PnL
+08-Apr-2021 (19:00:31.096773)---6 open positions completely updated
+08-Apr-2021 (19:00:31.097842)---Updating all open orders
+08-Apr-2021 (19:00:32.104415)---0 open orders found 
+08-Apr-2021 (19:00:33.109298)---Starting to track SQ,MSFT,ETSY,JD,FTNT,AAPL,SPGI,BX,SLF,BAH,RCM,ASML,CP,GWW,LW,CCK,NFLX,UPS,TGT,CCI,D,WBA,IDXX,AWK,HWM,VIRT Candidates
+08-Apr-2021 (19:00:33.111310)---starting to track: 1 of 26 SQ traking with Id:203623
+08-Apr-2021 (19:00:33.113214)---starting to track: 2 of 26 MSFT traking with Id:203624
+08-Apr-2021 (19:00:33.114938)---starting to track: 3 of 26 ETSY traking with Id:203625
+08-Apr-2021 (19:00:33.123270)---starting to track: 4 of 26 JD traking with Id:203626
+08-Apr-2021 (19:00:33.124489)---starting to track: 5 of 26 FTNT traking with Id:203627
+08-Apr-2021 (19:00:33.125327)---starting to track: 6 of 26 AAPL traking with Id:203628
+08-Apr-2021 (19:00:33.126041)---starting to track: 7 of 26 SPGI traking with Id:203629
+08-Apr-2021 (19:00:33.126856)---starting to track: 8 of 26 BX traking with Id:203630
+08-Apr-2021 (19:00:33.127791)---starting to track: 9 of 26 SLF traking with Id:203631
+08-Apr-2021 (19:00:33.128677)---starting to track: 10 of 26 BAH traking with Id:203632
+08-Apr-2021 (19:00:33.129453)---starting to track: 11 of 26 RCM traking with Id:203633
+08-Apr-2021 (19:00:33.130954)---starting to track: 12 of 26 ASML traking with Id:203634
+08-Apr-2021 (19:00:33.132103)---starting to track: 13 of 26 CP traking with Id:203635
+08-Apr-2021 (19:00:33.133000)---starting to track: 14 of 26 GWW traking with Id:203636
+08-Apr-2021 (19:00:33.133805)---starting to track: 15 of 26 LW traking with Id:203637
+08-Apr-2021 (19:00:33.134430)---starting to track: 16 of 26 CCK traking with Id:203638
+08-Apr-2021 (19:00:33.135058)---starting to track: 17 of 26 NFLX traking with Id:203639
+08-Apr-2021 (19:00:33.135670)---starting to track: 18 of 26 UPS traking with Id:203640
+08-Apr-2021 (19:00:33.136271)---starting to track: 19 of 26 TGT traking with Id:203641
+08-Apr-2021 (19:00:33.136867)---starting to track: 20 of 26 CCI traking with Id:203642
+08-Apr-2021 (19:00:33.137494)---starting to track: 21 of 26 D traking with Id:203643
+08-Apr-2021 (19:00:33.138084)---starting to track: 22 of 26 WBA traking with Id:203644
+08-Apr-2021 (19:00:33.138661)---starting to track: 23 of 26 IDXX traking with Id:203645
+08-Apr-2021 (19:00:33.139222)---starting to track: 24 of 26 AWK traking with Id:203646
+08-Apr-2021 (19:00:33.139787)---starting to track: 25 of 26 HWM traking with Id:203647
+08-Apr-2021 (19:00:33.140360)---starting to track: 26 of 26 VIRT traking with Id:203648
+08-Apr-2021 (19:00:34.124442)---Waiting for last requested candidate Close price :0
+08-Apr-2021 (19:00:34.126637)---Yahoo data and Tipranks for SQ was added
+08-Apr-2021 (19:00:34.128281)---Yahoo data and Tipranks for MSFT was added
+08-Apr-2021 (19:00:34.129331)---Yahoo data and Tipranks for ETSY was added
+08-Apr-2021 (19:00:34.130273)---Yahoo data and Tipranks for JD was added
+08-Apr-2021 (19:00:34.131147)---Yahoo data and Tipranks for FTNT was added
+08-Apr-2021 (19:00:34.131825)---Yahoo data and Tipranks for AAPL was added
+08-Apr-2021 (19:00:34.132421)---Yahoo data and Tipranks for SPGI was added
+08-Apr-2021 (19:00:34.133096)---Yahoo data and Tipranks for BX was added
+08-Apr-2021 (19:00:34.134003)---Yahoo data and Tipranks for SLF was added
+08-Apr-2021 (19:00:34.134846)---Yahoo data and Tipranks for BAH was added
+08-Apr-2021 (19:00:34.135440)---Yahoo data and Tipranks for RCM was added
+08-Apr-2021 (19:00:34.136116)---Yahoo data and Tipranks for ASML was added
+08-Apr-2021 (19:00:34.136899)---Yahoo data and Tipranks for CP was added
+08-Apr-2021 (19:00:34.137564)---Yahoo data and Tipranks for GWW was added
+08-Apr-2021 (19:00:34.138166)---Yahoo data and Tipranks for LW was added
+08-Apr-2021 (19:00:34.138794)---Yahoo data and Tipranks for CCK was added
+08-Apr-2021 (19:00:34.139367)---Yahoo data and Tipranks for NFLX was added
+08-Apr-2021 (19:00:34.139903)---Yahoo data and Tipranks for UPS was added
+08-Apr-2021 (19:00:34.140425)---Yahoo data and Tipranks for TGT was added
+08-Apr-2021 (19:00:34.140959)---Yahoo data and Tipranks for CCI was added
+08-Apr-2021 (19:00:34.141569)---Yahoo data and Tipranks for D was added
+08-Apr-2021 (19:00:34.142168)---Yahoo data and Tipranks for WBA was added
+08-Apr-2021 (19:00:34.147815)---Yahoo data and Tipranks for IDXX was added
+08-Apr-2021 (19:00:34.148726)---Yahoo data and Tipranks for AWK was added
+08-Apr-2021 (19:00:34.149348)---Yahoo data and Tipranks for HWM was added
+08-Apr-2021 (19:00:34.149943)---Yahoo data and Tipranks for VIRT was added
+08-Apr-2021 (19:00:34.150473)---26 Candidates evaluated and started to track
+08-Apr-2021 (19:00:34.150935)---Updating target prices for Candidates
+08-Apr-2021 (19:00:34.151382)---Updating target price for SQ
+08-Apr-2021 (19:00:34.151885)---Target price for SQ updated to 242.7729420631113 based on Open price
+08-Apr-2021 (19:00:34.152397)---Updating target price for MSFT
+08-Apr-2021 (19:00:34.152904)---Target price for MSFT updated to 249.86694004437075 based on Open price
+08-Apr-2021 (19:00:34.153421)---Updating target price for ETSY
+08-Apr-2021 (19:00:34.153950)---Target price for ETSY updated to 200.361400733111 based on Open price
+08-Apr-2021 (19:00:34.154517)---Updating target price for JD
+08-Apr-2021 (19:00:34.155132)---Target price for JD updated to 81.0790797808288 based on Open price
+08-Apr-2021 (19:00:34.155721)---Updating target price for FTNT
+08-Apr-2021 (19:00:34.156313)---Target price for FTNT updated to 191.88966315255135 based on Open price
+08-Apr-2021 (19:00:34.156917)---Updating target price for AAPL
+08-Apr-2021 (19:00:34.157512)---Target price for AAPL updated to 127.22648946229245 based on Open price
+08-Apr-2021 (19:00:34.158106)---Updating target price for SPGI
+08-Apr-2021 (19:00:34.158624)---Target price for SPGI updated to 360.1114376680771 based on Open price
+08-Apr-2021 (19:00:34.159108)---Updating target price for BX
+08-Apr-2021 (19:00:34.159591)---Target price for BX updated to 74.64900683051474 based on Open price
+08-Apr-2021 (19:00:34.160072)---Updating target price for SLF
+08-Apr-2021 (19:00:34.160564)---Target price for SLF updated to 50.57338138790797 based on Open price
+08-Apr-2021 (19:00:34.161099)---Updating target price for BAH
+08-Apr-2021 (19:00:34.161590)---Target price for BAH updated to 81.60549959861747 based on Open price
+08-Apr-2021 (19:00:34.162081)---Updating target price for RCM
+08-Apr-2021 (19:00:34.162565)---Target price for RCM updated to 24.23399778941115 based on Open price
+08-Apr-2021 (19:00:34.163053)---Updating target price for ASML
+08-Apr-2021 (19:00:34.163550)---Target price for ASML updated to 628.683309440155 based on Open price
+08-Apr-2021 (19:00:34.164037)---Updating target price for CP
+08-Apr-2021 (19:00:34.164567)---Target price for CP updated to 374.0082461709251 based on Open price
+08-Apr-2021 (19:00:34.165089)---Updating target price for GWW
+08-Apr-2021 (19:00:34.165648)---Target price for GWW updated to 393.28255529083555 based on Open price
+08-Apr-2021 (19:00:34.166193)---Updating target price for LW
+08-Apr-2021 (19:00:34.166715)---Target price for LW updated to 74.60731067908493 based on Open price
+08-Apr-2021 (19:00:34.167224)---Updating target price for CCK
+08-Apr-2021 (19:00:34.167754)---Target price for CCK updated to 99.60264448570695 based on Open price
+08-Apr-2021 (19:00:34.168316)---Updating target price for NFLX
+08-Apr-2021 (19:00:34.168917)---Target price for NFLX updated to 542.6127969456251 based on Open price
+08-Apr-2021 (19:00:34.169472)---Updating target price for UPS
+08-Apr-2021 (19:00:34.170030)---Target price for UPS updated to 170.49341233377163 based on Open price
+08-Apr-2021 (19:00:34.170495)---Updating target price for TGT
+08-Apr-2021 (19:00:34.170936)---Target price for TGT updated to 202.00395458719524 based on Open price
+08-Apr-2021 (19:00:34.171392)---Updating target price for CCI
+08-Apr-2021 (19:00:34.171821)---Target price for CCI updated to 175.06430545675624 based on Open price
+08-Apr-2021 (19:00:34.172252)---Updating target price for D
+08-Apr-2021 (19:00:34.172690)---Target price for D updated to 75.84081167221588 based on Open price
+08-Apr-2021 (19:00:34.173166)---Updating target price for WBA
+08-Apr-2021 (19:00:34.173618)---Target price for WBA updated to 54.396861094719576 based on Open price
+08-Apr-2021 (19:00:34.174067)---Updating target price for IDXX
+08-Apr-2021 (19:00:34.174529)---Target price for IDXX updated to 487.62312303412807 based on Open price
+08-Apr-2021 (19:00:34.174985)---Updating target price for AWK
+08-Apr-2021 (19:00:34.175441)---Target price for AWK updated to 151.7597282229924 based on Open price
+08-Apr-2021 (19:00:34.175890)---Updating target price for HWM
+08-Apr-2021 (19:00:34.176333)---Target price for HWM updated to 30.93928183224171 based on Open price
+08-Apr-2021 (19:00:34.176865)---Updating target price for VIRT
+08-Apr-2021 (19:00:34.177325)---Target price for VIRT updated to 31.38379130085111 based on Open price
+08-Apr-2021 (19:00:34.177786)---Connected to IBKR and READY
+08-Apr-2021 (19:00:35.135155)----------Starting Worker...----EST Time: 2021-04-08 12:00:35--------------------
+08-Apr-2021 (19:00:35.136873)---Using own cash only (305.0600604629517), margin dismissed in settings
+08-Apr-2021 (19:00:35.137992)---SMA (including open positions cushion) is 305.0600604629517 it is less than 1000 - skipping buy
+08-Apr-2021 (19:00:35.139048)---Processing profits
+08-Apr-2021 (19:00:35.139902)---Processing CCI
+08-Apr-2021 (19:00:35.140688)---The profit for CCI is 0.7136370503038794 %
+08-Apr-2021 (19:00:35.141473)---Processing CP
+08-Apr-2021 (19:00:35.142796)---The profit for CP is -1.082179523336566 %
+08-Apr-2021 (19:00:35.144093)---Processing SRT
+08-Apr-2021 (19:00:35.145194)---The profit for SRT is -4.50187572544989 %
+08-Apr-2021 (19:00:35.146213)---Processing ASML
+08-Apr-2021 (19:00:35.147330)---The profit for ASML is 1.3501773561130792 %
+08-Apr-2021 (19:00:35.148302)---Processing AWK
+08-Apr-2021 (19:00:35.149115)---The profit for AWK is -0.3148433109195112 %
+08-Apr-2021 (19:00:35.150141)---Processing VIRT
+08-Apr-2021 (19:00:35.152161)---The profit for VIRT is -0.1927633418968752 %
+08-Apr-2021 (19:00:35.153419)---...............Worker finished....EST Time: 2021-04-08 12:00:35...................
+08-Apr-2021 (19:00:35.822585)---Report snapshot stored at server
+08-Apr-2021 (19:04:27.534416)---Connecting to server - to get settings.
+08-Apr-2021 (19:04:27.694150)---Settings received.
+08-Apr-2021 (19:04:27.700964)---Getting server command
+08-Apr-2021 (19:04:30.614397)---processing command : run_worker
+08-Apr-2021 (19:04:30.616190)---Restarting connection to IBKR
+08-Apr-2021 (19:04:30.704693)---Waiting for connection...attempt:0
+08-Apr-2021 (19:04:31.710044)---Successfully connected to API
+08-Apr-2021 (19:04:31.712305)---Begin prepare and connect
+08-Apr-2021 (19:04:31.713415)---Requesting Daily PnL
+08-Apr-2021 (19:04:31.714188)---PnL not yet received
+08-Apr-2021 (19:04:31.714935)---Starting to track Excess liquidity
+08-Apr-2021 (19:04:32.714910)---Updating open Positions:
+08-Apr-2021 (19:04:33.224358)---Started tracking CCI position PnL
+08-Apr-2021 (19:04:33.325325)---Started tracking CCI position PnL
+08-Apr-2021 (19:04:33.427060)---Started tracking CP position PnL
+08-Apr-2021 (19:04:33.527952)---Started tracking CP position PnL
+08-Apr-2021 (19:04:33.630494)---Started tracking CP position PnL
+08-Apr-2021 (19:04:33.731241)---Started tracking SRT position PnL
+08-Apr-2021 (19:04:33.836838)---Started tracking SRT position PnL
+08-Apr-2021 (19:04:33.938458)---Started tracking ASML position PnL
+08-Apr-2021 (19:04:34.039330)---Started tracking ASML position PnL
+08-Apr-2021 (19:04:34.140719)---Started tracking AWK position PnL
+08-Apr-2021 (19:04:34.243234)---Started tracking AWK position PnL
+08-Apr-2021 (19:04:34.349279)---Started tracking AWK position PnL
+08-Apr-2021 (19:04:34.454643)---Started tracking VIRT position PnL
+08-Apr-2021 (19:04:34.558789)---6 open positions completely updated
+08-Apr-2021 (19:04:34.559841)---Updating all open orders
+08-Apr-2021 (19:04:35.566292)---0 open orders found 
+08-Apr-2021 (19:04:36.569478)---Starting to track SQ,MSFT,ETSY,JD,FTNT,AAPL,SPGI,BX,SLF,BAH,RCM,ASML,CP,GWW,LW,CCK,NFLX,UPS,TGT,CCI,D,WBA,IDXX,AWK,HWM,VIRT Candidates
+08-Apr-2021 (19:04:36.570582)---starting to track: 1 of 26 SQ traking with Id:203627
+08-Apr-2021 (19:04:36.577264)---starting to track: 2 of 26 MSFT traking with Id:203628
+08-Apr-2021 (19:04:36.577911)---starting to track: 3 of 26 ETSY traking with Id:203629
+08-Apr-2021 (19:04:36.578185)---starting to track: 4 of 26 JD traking with Id:203630
+08-Apr-2021 (19:04:36.578408)---starting to track: 5 of 26 FTNT traking with Id:203631
+08-Apr-2021 (19:04:36.578622)---starting to track: 6 of 26 AAPL traking with Id:203632
+08-Apr-2021 (19:04:36.578830)---starting to track: 7 of 26 SPGI traking with Id:203633
+08-Apr-2021 (19:04:36.579055)---starting to track: 8 of 26 BX traking with Id:203634
+08-Apr-2021 (19:04:36.579279)---starting to track: 9 of 26 SLF traking with Id:203635
+08-Apr-2021 (19:04:36.579489)---starting to track: 10 of 26 BAH traking with Id:203636
+08-Apr-2021 (19:04:36.579696)---starting to track: 11 of 26 RCM traking with Id:203637
+08-Apr-2021 (19:04:36.579908)---starting to track: 12 of 26 ASML traking with Id:203638
+08-Apr-2021 (19:04:36.580107)---starting to track: 13 of 26 CP traking with Id:203639
+08-Apr-2021 (19:04:36.580304)---starting to track: 14 of 26 GWW traking with Id:203640
+08-Apr-2021 (19:04:36.580506)---starting to track: 15 of 26 LW traking with Id:203641
+08-Apr-2021 (19:04:36.580703)---starting to track: 16 of 26 CCK traking with Id:203642
+08-Apr-2021 (19:04:36.580906)---starting to track: 17 of 26 NFLX traking with Id:203643
+08-Apr-2021 (19:04:36.581110)---starting to track: 18 of 26 UPS traking with Id:203644
+08-Apr-2021 (19:04:36.581312)---starting to track: 19 of 26 TGT traking with Id:203645
+08-Apr-2021 (19:04:36.581519)---starting to track: 20 of 26 CCI traking with Id:203646
+08-Apr-2021 (19:04:36.581726)---starting to track: 21 of 26 D traking with Id:203647
+08-Apr-2021 (19:04:36.581916)---starting to track: 22 of 26 WBA traking with Id:203648
+08-Apr-2021 (19:04:36.582113)---starting to track: 23 of 26 IDXX traking with Id:203649
+08-Apr-2021 (19:04:36.582311)---starting to track: 24 of 26 AWK traking with Id:203650
+08-Apr-2021 (19:04:36.582514)---starting to track: 25 of 26 HWM traking with Id:203651
+08-Apr-2021 (19:04:36.582723)---starting to track: 26 of 26 VIRT traking with Id:203652
+08-Apr-2021 (19:04:37.582033)---Waiting for last requested candidate Close price :0
+08-Apr-2021 (19:04:38.583048)---Waiting for last requested candidate Close price :1
+08-Apr-2021 (19:04:39.589407)---Waiting for last requested candidate Close price :2
+08-Apr-2021 (19:04:40.594916)---Waiting for last requested candidate Close price :3
+08-Apr-2021 (19:04:41.601357)---Waiting for last requested candidate Close price :4
+08-Apr-2021 (19:04:42.606220)---Waiting for last requested candidate Close price :5
+08-Apr-2021 (19:04:42.608302)---Yahoo data and Tipranks for SQ was added
+08-Apr-2021 (19:04:42.609487)---Yahoo data and Tipranks for MSFT was added
+08-Apr-2021 (19:04:42.610324)---Yahoo data and Tipranks for ETSY was added
+08-Apr-2021 (19:04:42.610950)---Yahoo data and Tipranks for JD was added
+08-Apr-2021 (19:04:42.611495)---Yahoo data and Tipranks for FTNT was added
+08-Apr-2021 (19:04:42.612046)---Yahoo data and Tipranks for AAPL was added
+08-Apr-2021 (19:04:42.612703)---Yahoo data and Tipranks for SPGI was added
+08-Apr-2021 (19:04:42.613315)---Yahoo data and Tipranks for BX was added
+08-Apr-2021 (19:04:42.615604)---Yahoo data and Tipranks for SLF was added
+08-Apr-2021 (19:04:42.616529)---Yahoo data and Tipranks for BAH was added
+08-Apr-2021 (19:04:42.616976)---Yahoo data and Tipranks for RCM was added
+08-Apr-2021 (19:04:42.617394)---Yahoo data and Tipranks for ASML was added
+08-Apr-2021 (19:04:42.617795)---Yahoo data and Tipranks for CP was added
+08-Apr-2021 (19:04:42.618206)---Yahoo data and Tipranks for GWW was added
+08-Apr-2021 (19:04:42.618607)---Yahoo data and Tipranks for LW was added
+08-Apr-2021 (19:04:42.621941)---Yahoo data and Tipranks for CCK was added
+08-Apr-2021 (19:04:42.622384)---Yahoo data and Tipranks for NFLX was added
+08-Apr-2021 (19:04:42.622834)---Yahoo data and Tipranks for UPS was added
+08-Apr-2021 (19:04:42.623232)---Yahoo data and Tipranks for TGT was added
+08-Apr-2021 (19:04:42.623623)---Yahoo data and Tipranks for CCI was added
+08-Apr-2021 (19:04:42.624027)---Yahoo data and Tipranks for D was added
+08-Apr-2021 (19:04:42.624406)---Yahoo data and Tipranks for WBA was added
+08-Apr-2021 (19:04:42.624784)---Yahoo data and Tipranks for IDXX was added
+08-Apr-2021 (19:04:42.625172)---Yahoo data and Tipranks for AWK was added
+08-Apr-2021 (19:04:42.625535)---Yahoo data and Tipranks for HWM was added
+08-Apr-2021 (19:04:42.625882)---Yahoo data and Tipranks for VIRT was added
+08-Apr-2021 (19:04:42.626247)---26 Candidates evaluated and started to track
+08-Apr-2021 (19:04:42.626596)---Updating target prices for Candidates
+08-Apr-2021 (19:04:42.626950)---Updating target price for SQ
+08-Apr-2021 (19:04:42.627320)---Target price for SQ updated to 242.7729420631113 based on Open price
+08-Apr-2021 (19:04:42.627703)---Updating target price for MSFT
+08-Apr-2021 (19:04:42.628085)---Target price for MSFT updated to 249.86694004437075 based on Open price
+08-Apr-2021 (19:04:42.628459)---Updating target price for ETSY
+08-Apr-2021 (19:04:42.628823)---Target price for ETSY updated to 200.361400733111 based on Open price
+08-Apr-2021 (19:04:42.629189)---Updating target price for JD
+08-Apr-2021 (19:04:42.629594)---Target price for JD updated to 81.0790797808288 based on Open price
+08-Apr-2021 (19:04:42.629960)---Updating target price for FTNT
+08-Apr-2021 (19:04:42.630447)---Target price for FTNT updated to 191.88966315255135 based on Open price
+08-Apr-2021 (19:04:42.630823)---Updating target price for AAPL
+08-Apr-2021 (19:04:42.631198)---Target price for AAPL updated to 127.22648946229245 based on Open price
+08-Apr-2021 (19:04:42.631563)---Updating target price for SPGI
+08-Apr-2021 (19:04:42.631938)---Target price for SPGI updated to 360.1114376680771 based on Open price
+08-Apr-2021 (19:04:42.632310)---Updating target price for BX
+08-Apr-2021 (19:04:42.632684)---Target price for BX updated to 74.64900683051474 based on Open price
+08-Apr-2021 (19:04:42.633049)---Updating target price for SLF
+08-Apr-2021 (19:04:42.633474)---Target price for SLF updated to 50.57338138790797 based on Open price
+08-Apr-2021 (19:04:42.633808)---Updating target price for BAH
+08-Apr-2021 (19:04:42.634141)---Target price for BAH updated to 81.60549959861747 based on Open price
+08-Apr-2021 (19:04:42.634471)---Updating target price for RCM
+08-Apr-2021 (19:04:42.634800)---Target price for RCM updated to 24.23399778941115 based on Open price
+08-Apr-2021 (19:04:42.635137)---Updating target price for ASML
+08-Apr-2021 (19:04:42.635482)---Target price for ASML updated to 628.683309440155 based on Open price
+08-Apr-2021 (19:04:42.635819)---Updating target price for CP
+08-Apr-2021 (19:04:42.636163)---Target price for CP updated to 374.0082461709251 based on Open price
+08-Apr-2021 (19:04:42.636493)---Updating target price for GWW
+08-Apr-2021 (19:04:42.636823)---Target price for GWW updated to 393.28255529083555 based on Open price
+08-Apr-2021 (19:04:42.637172)---Updating target price for LW
+08-Apr-2021 (19:04:42.637508)---Target price for LW updated to 74.60731067908493 based on Open price
+08-Apr-2021 (19:04:42.637834)---Updating target price for CCK
+08-Apr-2021 (19:04:42.638173)---Target price for CCK updated to 99.60264448570695 based on Open price
+08-Apr-2021 (19:04:42.638511)---Updating target price for NFLX
+08-Apr-2021 (19:04:42.638848)---Target price for NFLX updated to 542.6127969456251 based on Open price
+08-Apr-2021 (19:04:42.639183)---Updating target price for UPS
+08-Apr-2021 (19:04:42.639524)---Target price for UPS updated to 170.49341233377163 based on Open price
+08-Apr-2021 (19:04:42.639858)---Updating target price for TGT
+08-Apr-2021 (19:04:42.640202)---Target price for TGT updated to 202.00395458719524 based on Open price
+08-Apr-2021 (19:04:42.640468)---Updating target price for CCI
+08-Apr-2021 (19:04:42.640743)---Target price for CCI updated to 175.06430545675624 based on Open price
+08-Apr-2021 (19:04:42.641011)---Updating target price for D
+08-Apr-2021 (19:04:42.641263)---Target price for D updated to 75.84081167221588 based on Open price
+08-Apr-2021 (19:04:42.641509)---Updating target price for WBA
+08-Apr-2021 (19:04:42.641744)---Target price for WBA updated to 54.396861094719576 based on Open price
+08-Apr-2021 (19:04:42.641989)---Updating target price for IDXX
+08-Apr-2021 (19:04:42.642229)---Target price for IDXX updated to 487.62312303412807 based on Open price
+08-Apr-2021 (19:04:42.642471)---Updating target price for AWK
+08-Apr-2021 (19:04:42.642708)---Target price for AWK updated to 151.7597282229924 based on Open price
+08-Apr-2021 (19:04:42.642943)---Updating target price for HWM
+08-Apr-2021 (19:04:42.643182)---Target price for HWM updated to 30.93928183224171 based on Open price
+08-Apr-2021 (19:04:42.643420)---Updating target price for VIRT
+08-Apr-2021 (19:04:42.643661)---Target price for VIRT updated to 31.38379130085111 based on Open price
+08-Apr-2021 (19:04:42.643903)---Connected to IBKR and READY
+08-Apr-2021 (19:04:43.625199)----------Starting Worker...----EST Time: 2021-04-08 12:04:43--------------------
+08-Apr-2021 (19:04:43.627447)---Using own cash only (298.5034773063662), margin dismissed in settings
+08-Apr-2021 (19:04:43.628434)---SMA (including open positions cushion) is 298.5034773063662 it is less than 1000 - skipping buy
+08-Apr-2021 (19:04:43.629115)---Processing profits
+08-Apr-2021 (19:04:43.629525)---Processing CCI
+08-Apr-2021 (19:04:43.630087)---The profit for CCI is 0.9012740075968617 %
+08-Apr-2021 (19:04:43.630546)---Processing CP
+08-Apr-2021 (19:04:43.631067)---The profit for CP is -1.0903028106599737 %
+08-Apr-2021 (19:04:43.632063)---Processing SRT
+08-Apr-2021 (19:04:43.632482)---The profit for SRT is -4.1050303888317305 %
+08-Apr-2021 (19:04:43.632851)---Processing ASML
+08-Apr-2021 (19:04:43.633206)---The profit for ASML is 1.3913487799312567 %
+08-Apr-2021 (19:04:43.633549)---Processing AWK
+08-Apr-2021 (19:04:43.633888)---The profit for AWK is -0.1758894786458001 %
+08-Apr-2021 (19:04:43.634214)---Processing VIRT
+08-Apr-2021 (19:04:43.634552)---The profit for VIRT is -0.03276456158606906 %
+08-Apr-2021 (19:04:43.635000)---...............Worker finished....EST Time: 2021-04-08 12:04:43...................
+08-Apr-2021 (19:04:43.642010)---UI resumed.
+08-Apr-2021 (19:04:43.793702)---Report snapshot stored at server
+08-Apr-2021 (19:05:17.439252)---Connecting to server - to get settings.
+08-Apr-2021 (19:05:17.565235)---Settings received.
+08-Apr-2021 (19:05:17.575909)---Getting server command
+08-Apr-2021 (19:05:20.756149)---processing command : run_worker
+08-Apr-2021 (19:05:20.758183)---Restarting connection to IBKR
+08-Apr-2021 (19:05:20.786621)---Waiting for connection...attempt:0
+08-Apr-2021 (19:05:21.792313)---Successfully connected to API
+08-Apr-2021 (19:05:21.793385)---Begin prepare and connect
+08-Apr-2021 (19:05:21.794067)---Requesting Daily PnL
+08-Apr-2021 (19:05:21.794546)---PnL not yet received
+08-Apr-2021 (19:05:21.795045)---Starting to track Excess liquidity
+08-Apr-2021 (19:05:22.794354)---Updating open Positions:
+08-Apr-2021 (19:05:23.299339)---Started tracking CCI position PnL
+08-Apr-2021 (19:05:23.403001)---Started tracking CP position PnL
+08-Apr-2021 (19:05:23.505214)---Started tracking CP position PnL
+08-Apr-2021 (19:05:23.610090)---Started tracking SRT position PnL
+08-Apr-2021 (19:05:23.715812)---Started tracking SRT position PnL
+08-Apr-2021 (19:05:23.821384)---Started tracking ASML position PnL
+08-Apr-2021 (19:05:23.925846)---Started tracking ASML position PnL
+08-Apr-2021 (19:05:24.027814)---Started tracking AWK position PnL
+08-Apr-2021 (19:05:24.133014)---Started tracking AWK position PnL
+08-Apr-2021 (19:05:24.238460)---Started tracking VIRT position PnL
+08-Apr-2021 (19:05:24.344015)---Started tracking VIRT position PnL
+08-Apr-2021 (19:05:24.450007)---6 open positions completely updated
+08-Apr-2021 (19:05:24.451506)---Updating all open orders
+08-Apr-2021 (19:05:25.452304)---0 open orders found 
+08-Apr-2021 (19:05:26.458717)---Starting to track SQ,MSFT,ETSY,JD,FTNT,AAPL,SPGI,BX,SLF,BAH,RCM,ASML,CP,GWW,LW,CCK,NFLX,UPS,TGT,CCI,D,WBA,IDXX,AWK,HWM,VIRT Candidates
+08-Apr-2021 (19:05:26.460857)---starting to track: 1 of 26 SQ traking with Id:203625
+08-Apr-2021 (19:05:26.462177)---starting to track: 2 of 26 MSFT traking with Id:203626
+08-Apr-2021 (19:05:26.463097)---starting to track: 3 of 26 ETSY traking with Id:203627
+08-Apr-2021 (19:05:26.468703)---starting to track: 4 of 26 JD traking with Id:203628
+08-Apr-2021 (19:05:26.469152)---starting to track: 5 of 26 FTNT traking with Id:203629
+08-Apr-2021 (19:05:26.469436)---starting to track: 6 of 26 AAPL traking with Id:203630
+08-Apr-2021 (19:05:26.469706)---starting to track: 7 of 26 SPGI traking with Id:203631
+08-Apr-2021 (19:05:26.469959)---starting to track: 8 of 26 BX traking with Id:203632
+08-Apr-2021 (19:05:26.470213)---starting to track: 9 of 26 SLF traking with Id:203633
+08-Apr-2021 (19:05:26.470456)---starting to track: 10 of 26 BAH traking with Id:203634
+08-Apr-2021 (19:05:26.470686)---starting to track: 11 of 26 RCM traking with Id:203635
+08-Apr-2021 (19:05:26.470916)---starting to track: 12 of 26 ASML traking with Id:203636
+08-Apr-2021 (19:05:26.471148)---starting to track: 13 of 26 CP traking with Id:203637
+08-Apr-2021 (19:05:26.471375)---starting to track: 14 of 26 GWW traking with Id:203638
+08-Apr-2021 (19:05:26.471603)---starting to track: 15 of 26 LW traking with Id:203639
+08-Apr-2021 (19:05:26.471829)---starting to track: 16 of 26 CCK traking with Id:203640
+08-Apr-2021 (19:05:26.472064)---starting to track: 17 of 26 NFLX traking with Id:203641
+08-Apr-2021 (19:05:26.472481)---starting to track: 18 of 26 UPS traking with Id:203642
+08-Apr-2021 (19:05:26.472777)---starting to track: 19 of 26 TGT traking with Id:203643
+08-Apr-2021 (19:05:26.473037)---starting to track: 20 of 26 CCI traking with Id:203644
+08-Apr-2021 (19:05:26.473283)---starting to track: 21 of 26 D traking with Id:203645
+08-Apr-2021 (19:05:26.473524)---starting to track: 22 of 26 WBA traking with Id:203646
+08-Apr-2021 (19:05:26.473763)---starting to track: 23 of 26 IDXX traking with Id:203647
+08-Apr-2021 (19:05:26.474006)---starting to track: 24 of 26 AWK traking with Id:203648
+08-Apr-2021 (19:05:26.474239)---starting to track: 25 of 26 HWM traking with Id:203649
+08-Apr-2021 (19:05:26.474463)---starting to track: 26 of 26 VIRT traking with Id:203650
+08-Apr-2021 (19:05:27.473806)---Waiting for last requested candidate Close price :0
+08-Apr-2021 (19:05:27.475682)---Yahoo data and Tipranks for SQ was added
+08-Apr-2021 (19:05:27.477321)---Yahoo data and Tipranks for MSFT was added
+08-Apr-2021 (19:05:27.478744)---Yahoo data and Tipranks for ETSY was added
+08-Apr-2021 (19:05:27.479693)---Yahoo data and Tipranks for JD was added
+08-Apr-2021 (19:05:27.480552)---Yahoo data and Tipranks for FTNT was added
+08-Apr-2021 (19:05:27.482360)---Yahoo data and Tipranks for AAPL was added
+08-Apr-2021 (19:05:27.483535)---Yahoo data and Tipranks for SPGI was added
+08-Apr-2021 (19:05:27.484201)---Yahoo data and Tipranks for BX was added
+08-Apr-2021 (19:05:27.484797)---Yahoo data and Tipranks for SLF was added
+08-Apr-2021 (19:05:27.485367)---Yahoo data and Tipranks for BAH was added
+08-Apr-2021 (19:05:27.485921)---Yahoo data and Tipranks for RCM was added
+08-Apr-2021 (19:05:27.490701)---Yahoo data and Tipranks for ASML was added
+08-Apr-2021 (19:05:27.491371)---Yahoo data and Tipranks for CP was added
+08-Apr-2021 (19:05:27.491831)---Yahoo data and Tipranks for GWW was added
+08-Apr-2021 (19:05:27.492282)---Yahoo data and Tipranks for LW was added
+08-Apr-2021 (19:05:27.492728)---Yahoo data and Tipranks for CCK was added
+08-Apr-2021 (19:05:27.493178)---Yahoo data and Tipranks for NFLX was added
+08-Apr-2021 (19:05:27.493625)---Yahoo data and Tipranks for UPS was added
+08-Apr-2021 (19:05:27.494066)---Yahoo data and Tipranks for TGT was added
+08-Apr-2021 (19:05:27.494510)---Yahoo data and Tipranks for CCI was added
+08-Apr-2021 (19:05:27.494945)---Yahoo data and Tipranks for D was added
+08-Apr-2021 (19:05:27.495377)---Yahoo data and Tipranks for WBA was added
+08-Apr-2021 (19:05:27.495834)---Yahoo data and Tipranks for IDXX was added
+08-Apr-2021 (19:05:27.496286)---Yahoo data and Tipranks for AWK was added
+08-Apr-2021 (19:05:27.496731)---Yahoo data and Tipranks for HWM was added
+08-Apr-2021 (19:05:27.497177)---Yahoo data and Tipranks for VIRT was added
+08-Apr-2021 (19:05:27.497648)---26 Candidates evaluated and started to track
+08-Apr-2021 (19:05:27.498098)---Updating target prices for Candidates
+08-Apr-2021 (19:05:27.498575)---Updating target price for SQ
+08-Apr-2021 (19:05:27.499083)---Target price for SQ updated to 242.7729420631113 based on Open price
+08-Apr-2021 (19:05:27.499586)---Updating target price for MSFT
+08-Apr-2021 (19:05:27.500092)---Target price for MSFT updated to 249.86694004437075 based on Open price
+08-Apr-2021 (19:05:27.500588)---Updating target price for ETSY
+08-Apr-2021 (19:05:27.501079)---Target price for ETSY updated to 200.361400733111 based on Open price
+08-Apr-2021 (19:05:27.501560)---Updating target price for JD
+08-Apr-2021 (19:05:27.502046)---Target price for JD updated to 81.0790797808288 based on Open price
+08-Apr-2021 (19:05:27.502561)---Updating target price for FTNT
+08-Apr-2021 (19:05:27.503064)---Target price for FTNT updated to 191.88966315255135 based on Open price
+08-Apr-2021 (19:05:27.503606)---Updating target price for AAPL
+08-Apr-2021 (19:05:27.504106)---Target price for AAPL updated to 127.22648946229245 based on Open price
+08-Apr-2021 (19:05:27.504592)---Updating target price for SPGI
+08-Apr-2021 (19:05:27.505037)---Target price for SPGI updated to 360.1114376680771 based on Open price
+08-Apr-2021 (19:05:27.505463)---Updating target price for BX
+08-Apr-2021 (19:05:27.505882)---Target price for BX updated to 74.64900683051474 based on Open price
+08-Apr-2021 (19:05:27.506296)---Updating target price for SLF
+08-Apr-2021 (19:05:27.506712)---Target price for SLF updated to 50.57338138790797 based on Open price
+08-Apr-2021 (19:05:27.507131)---Updating target price for BAH
+08-Apr-2021 (19:05:27.507588)---Target price for BAH updated to 81.60549959861747 based on Open price
+08-Apr-2021 (19:05:27.508009)---Updating target price for RCM
+08-Apr-2021 (19:05:27.508739)---Target price for RCM updated to 24.23399778941115 based on Open price
+08-Apr-2021 (19:05:27.509281)---Updating target price for ASML
+08-Apr-2021 (19:05:27.509804)---Target price for ASML updated to 628.683309440155 based on Open price
+08-Apr-2021 (19:05:27.510266)---Updating target price for CP
+08-Apr-2021 (19:05:27.510739)---Target price for CP updated to 374.0082461709251 based on Open price
+08-Apr-2021 (19:05:27.511179)---Updating target price for GWW
+08-Apr-2021 (19:05:27.511629)---Target price for GWW updated to 393.28255529083555 based on Open price
+08-Apr-2021 (19:05:27.512078)---Updating target price for LW
+08-Apr-2021 (19:05:27.512538)---Target price for LW updated to 74.60731067908493 based on Open price
+08-Apr-2021 (19:05:27.512994)---Updating target price for CCK
+08-Apr-2021 (19:05:27.513537)---Target price for CCK updated to 99.60264448570695 based on Open price
+08-Apr-2021 (19:05:27.515010)---Updating target price for NFLX
+08-Apr-2021 (19:05:27.516174)---Target price for NFLX updated to 542.6127969456251 based on Open price
+08-Apr-2021 (19:05:27.516898)---Updating target price for UPS
+08-Apr-2021 (19:05:27.517433)---Target price for UPS updated to 170.49341233377163 based on Open price
+08-Apr-2021 (19:05:27.517866)---Updating target price for TGT
+08-Apr-2021 (19:05:27.518296)---Target price for TGT updated to 202.00395458719524 based on Open price
+08-Apr-2021 (19:05:27.518758)---Updating target price for CCI
+08-Apr-2021 (19:05:27.519194)---Target price for CCI updated to 175.06430545675624 based on Open price
+08-Apr-2021 (19:05:27.519587)---Updating target price for D
+08-Apr-2021 (19:05:27.519980)---Target price for D updated to 75.84081167221588 based on Open price
+08-Apr-2021 (19:05:27.520383)---Updating target price for WBA
+08-Apr-2021 (19:05:27.520779)---Target price for WBA updated to 54.396861094719576 based on Open price
+08-Apr-2021 (19:05:27.521169)---Updating target price for IDXX
+08-Apr-2021 (19:05:27.521484)---Target price for IDXX updated to 487.62312303412807 based on Open price
+08-Apr-2021 (19:05:27.521794)---Updating target price for AWK
+08-Apr-2021 (19:05:27.522101)---Target price for AWK updated to 151.7597282229924 based on Open price
+08-Apr-2021 (19:05:27.522408)---Updating target price for HWM
+08-Apr-2021 (19:05:27.522714)---Target price for HWM updated to 30.93928183224171 based on Open price
+08-Apr-2021 (19:05:27.523021)---Updating target price for VIRT
+08-Apr-2021 (19:05:27.523333)---Target price for VIRT updated to 31.38379130085111 based on Open price
+08-Apr-2021 (19:05:27.523647)---Connected to IBKR and READY
+08-Apr-2021 (19:05:28.491149)----------Starting Worker...----EST Time: 2021-04-08 12:05:28--------------------
+08-Apr-2021 (19:05:28.493478)---Using own cash only (298.34498044967677), margin dismissed in settings
+08-Apr-2021 (19:05:28.494912)---SMA (including open positions cushion) is 298.34498044967677 it is less than 1000 - skipping buy
+08-Apr-2021 (19:05:28.496128)---Processing profits
+08-Apr-2021 (19:05:28.497728)---Processing CCI
+08-Apr-2021 (19:05:28.498708)---The profit for CCI is 0.8315914674048294 %
+08-Apr-2021 (19:05:28.499328)---Processing CP
+08-Apr-2021 (19:05:28.499810)---The profit for CP is -1.1417833896530316 %
+08-Apr-2021 (19:05:28.500269)---Processing SRT
+08-Apr-2021 (19:05:28.500735)---The profit for SRT is -4.1050303888317305 %
+08-Apr-2021 (19:05:28.501190)---Processing ASML
+08-Apr-2021 (19:05:28.501651)---The profit for ASML is 1.3913487799312567 %
+08-Apr-2021 (19:05:28.502114)---Processing AWK
+08-Apr-2021 (19:05:28.502593)---The profit for AWK is -0.11645992439808277 %
+08-Apr-2021 (19:05:28.503065)---Processing VIRT
+08-Apr-2021 (19:05:28.503535)---The profit for VIRT is 0.03109439428591902 %
+08-Apr-2021 (19:05:28.504174)---...............Worker finished....EST Time: 2021-04-08 12:05:28...................
+08-Apr-2021 (19:05:28.515270)---UI resumed.
+08-Apr-2021 (19:05:28.679549)---Report snapshot stored at server
+08-Apr-2021 (19:06:17.824538)---Getting server command
+08-Apr-2021 (19:06:21.874471)---processing command : run_worker
+08-Apr-2021 (19:06:21.876468)---Restarting connection to IBKR
+08-Apr-2021 (19:06:21.981173)---Waiting for connection...attempt:0
+08-Apr-2021 (19:06:22.983914)---Successfully connected to API
+08-Apr-2021 (19:06:22.985734)---Begin prepare and connect
+08-Apr-2021 (19:06:22.986537)---Requesting Daily PnL
+08-Apr-2021 (19:06:22.991473)---PnL not yet received
+08-Apr-2021 (19:06:22.992128)---Starting to track Excess liquidity
+08-Apr-2021 (19:06:23.992764)---Updating open Positions:
+08-Apr-2021 (19:06:24.497909)---Started tracking CCI position PnL
+08-Apr-2021 (19:06:24.604532)---Started tracking CP position PnL
+08-Apr-2021 (19:06:24.708260)---Started tracking SRT position PnL
+08-Apr-2021 (19:06:24.813555)---Started tracking ASML position PnL
+08-Apr-2021 (19:06:24.919187)---Started tracking AWK position PnL
+08-Apr-2021 (19:06:25.022568)---Started tracking VIRT position PnL
+08-Apr-2021 (19:06:25.124357)---Started tracking VIRT position PnL
+08-Apr-2021 (19:06:25.229006)---6 open positions completely updated
+08-Apr-2021 (19:06:25.230447)---Updating all open orders
+08-Apr-2021 (19:06:26.234552)---0 open orders found 
+08-Apr-2021 (19:06:27.239707)---Starting to track SQ,MSFT,ETSY,JD,FTNT,AAPL,SPGI,BX,SLF,BAH,RCM,ASML,CP,GWW,LW,CCK,NFLX,UPS,TGT,CCI,D,WBA,IDXX,AWK,HWM,VIRT Candidates
+08-Apr-2021 (19:06:27.241760)---starting to track: 1 of 26 SQ traking with Id:203621
+08-Apr-2021 (19:06:27.243137)---starting to track: 2 of 26 MSFT traking with Id:203622
+08-Apr-2021 (19:06:27.244899)---starting to track: 3 of 26 ETSY traking with Id:203623
+08-Apr-2021 (19:06:27.251795)---starting to track: 4 of 26 JD traking with Id:203624
+08-Apr-2021 (19:06:27.252608)---starting to track: 5 of 26 FTNT traking with Id:203625
+08-Apr-2021 (19:06:27.253272)---starting to track: 6 of 26 AAPL traking with Id:203626
+08-Apr-2021 (19:06:27.253830)---starting to track: 7 of 26 SPGI traking with Id:203627
+08-Apr-2021 (19:06:27.254331)---starting to track: 8 of 26 BX traking with Id:203628
+08-Apr-2021 (19:06:27.254867)---starting to track: 9 of 26 SLF traking with Id:203629
+08-Apr-2021 (19:06:27.255358)---starting to track: 10 of 26 BAH traking with Id:203630
+08-Apr-2021 (19:06:27.255861)---starting to track: 11 of 26 RCM traking with Id:203631
+08-Apr-2021 (19:06:27.256345)---starting to track: 12 of 26 ASML traking with Id:203632
+08-Apr-2021 (19:06:27.256831)---starting to track: 13 of 26 CP traking with Id:203633
+08-Apr-2021 (19:06:27.257312)---starting to track: 14 of 26 GWW traking with Id:203634
+08-Apr-2021 (19:06:27.257862)---starting to track: 15 of 26 LW traking with Id:203635
+08-Apr-2021 (19:06:27.258420)---starting to track: 16 of 26 CCK traking with Id:203636
+08-Apr-2021 (19:06:27.258974)---starting to track: 17 of 26 NFLX traking with Id:203637
+08-Apr-2021 (19:06:27.259460)---starting to track: 18 of 26 UPS traking with Id:203638
+08-Apr-2021 (19:06:27.259939)---starting to track: 19 of 26 TGT traking with Id:203639
+08-Apr-2021 (19:06:27.260419)---starting to track: 20 of 26 CCI traking with Id:203640
+08-Apr-2021 (19:06:27.260896)---starting to track: 21 of 26 D traking with Id:203641
+08-Apr-2021 (19:06:27.261379)---starting to track: 22 of 26 WBA traking with Id:203642
+08-Apr-2021 (19:06:27.261879)---starting to track: 23 of 26 IDXX traking with Id:203643
+08-Apr-2021 (19:06:27.262368)---starting to track: 24 of 26 AWK traking with Id:203644
+08-Apr-2021 (19:06:27.262850)---starting to track: 25 of 26 HWM traking with Id:203645
+08-Apr-2021 (19:06:27.263347)---starting to track: 26 of 26 VIRT traking with Id:203646
+08-Apr-2021 (19:06:28.255289)---Waiting for last requested candidate Close price :0
+08-Apr-2021 (19:06:28.257755)---Yahoo data and Tipranks for SQ was added
+08-Apr-2021 (19:06:28.258920)---Yahoo data and Tipranks for MSFT was added
+08-Apr-2021 (19:06:28.259859)---Yahoo data and Tipranks for ETSY was added
+08-Apr-2021 (19:06:28.260711)---Yahoo data and Tipranks for JD was added
+08-Apr-2021 (19:06:28.262137)---Yahoo data and Tipranks for FTNT was added
+08-Apr-2021 (19:06:28.263134)---Yahoo data and Tipranks for AAPL was added
+08-Apr-2021 (19:06:28.263915)---Yahoo data and Tipranks for SPGI was added
+08-Apr-2021 (19:06:28.264658)---Yahoo data and Tipranks for BX was added
+08-Apr-2021 (19:06:28.265256)---Yahoo data and Tipranks for SLF was added
+08-Apr-2021 (19:06:28.265834)---Yahoo data and Tipranks for BAH was added
+08-Apr-2021 (19:06:28.266399)---Yahoo data and Tipranks for RCM was added
+08-Apr-2021 (19:06:28.266964)---Yahoo data and Tipranks for ASML was added
+08-Apr-2021 (19:06:28.267530)---Yahoo data and Tipranks for CP was added
+08-Apr-2021 (19:06:28.268104)---Yahoo data and Tipranks for GWW was added
+08-Apr-2021 (19:06:28.268661)---Yahoo data and Tipranks for LW was added
+08-Apr-2021 (19:06:28.269217)---Yahoo data and Tipranks for CCK was added
+08-Apr-2021 (19:06:28.269789)---Yahoo data and Tipranks for NFLX was added
+08-Apr-2021 (19:06:28.270364)---Yahoo data and Tipranks for UPS was added
+08-Apr-2021 (19:06:28.270929)---Yahoo data and Tipranks for TGT was added
+08-Apr-2021 (19:06:28.271513)---Yahoo data and Tipranks for CCI was added
+08-Apr-2021 (19:06:28.272086)---Yahoo data and Tipranks for D was added
+08-Apr-2021 (19:06:28.272673)---Yahoo data and Tipranks for WBA was added
+08-Apr-2021 (19:06:28.273152)---Yahoo data and Tipranks for IDXX was added
+08-Apr-2021 (19:06:28.273628)---Yahoo data and Tipranks for AWK was added
+08-Apr-2021 (19:06:28.274108)---Yahoo data and Tipranks for HWM was added
+08-Apr-2021 (19:06:28.274582)---Yahoo data and Tipranks for VIRT was added
+08-Apr-2021 (19:06:28.275079)---26 Candidates evaluated and started to track
+08-Apr-2021 (19:06:28.275559)---Updating target prices for Candidates
+08-Apr-2021 (19:06:28.276009)---Updating target price for SQ
+08-Apr-2021 (19:06:28.276538)---Target price for SQ updated to 242.7729420631113 based on Open price
+08-Apr-2021 (19:06:28.277049)---Updating target price for MSFT
+08-Apr-2021 (19:06:28.277571)---Target price for MSFT updated to 249.86694004437075 based on Open price
+08-Apr-2021 (19:06:28.278091)---Updating target price for ETSY
+08-Apr-2021 (19:06:28.278605)---Target price for ETSY updated to 200.361400733111 based on Open price
+08-Apr-2021 (19:06:28.279124)---Updating target price for JD
+08-Apr-2021 (19:06:28.279655)---Target price for JD updated to 81.0790797808288 based on Open price
+08-Apr-2021 (19:06:28.280174)---Updating target price for FTNT
+08-Apr-2021 (19:06:28.280714)---Target price for FTNT updated to 191.88966315255135 based on Open price
+08-Apr-2021 (19:06:28.281243)---Updating target price for AAPL
+08-Apr-2021 (19:06:28.285119)---Target price for AAPL updated to 127.22648946229245 based on Open price
+08-Apr-2021 (19:06:28.285718)---Updating target price for SPGI
+08-Apr-2021 (19:06:28.286197)---Target price for SPGI updated to 360.1114376680771 based on Open price
+08-Apr-2021 (19:06:28.286643)---Updating target price for BX
+08-Apr-2021 (19:06:28.287098)---Target price for BX updated to 74.64900683051474 based on Open price
+08-Apr-2021 (19:06:28.287538)---Updating target price for SLF
+08-Apr-2021 (19:06:28.287980)---Target price for SLF updated to 50.57338138790797 based on Open price
+08-Apr-2021 (19:06:28.288419)---Updating target price for BAH
+08-Apr-2021 (19:06:28.288868)---Target price for BAH updated to 81.60549959861747 based on Open price
+08-Apr-2021 (19:06:28.289314)---Updating target price for RCM
+08-Apr-2021 (19:06:28.289753)---Target price for RCM updated to 24.23399778941115 based on Open price
+08-Apr-2021 (19:06:28.290197)---Updating target price for ASML
+08-Apr-2021 (19:06:28.290551)---Target price for ASML updated to 628.683309440155 based on Open price
+08-Apr-2021 (19:06:28.290897)---Updating target price for CP
+08-Apr-2021 (19:06:28.291243)---Target price for CP updated to 374.0082461709251 based on Open price
+08-Apr-2021 (19:06:28.291595)---Updating target price for GWW
+08-Apr-2021 (19:06:28.291951)---Target price for GWW updated to 393.28255529083555 based on Open price
+08-Apr-2021 (19:06:28.292303)---Updating target price for LW
+08-Apr-2021 (19:06:28.292650)---Target price for LW updated to 74.60731067908493 based on Open price
+08-Apr-2021 (19:06:28.292995)---Updating target price for CCK
+08-Apr-2021 (19:06:28.293356)---Target price for CCK updated to 99.60264448570695 based on Open price
+08-Apr-2021 (19:06:28.293724)---Updating target price for NFLX
+08-Apr-2021 (19:06:28.294115)---Target price for NFLX updated to 542.6127969456251 based on Open price
+08-Apr-2021 (19:06:28.294473)---Updating target price for UPS
+08-Apr-2021 (19:06:28.294783)---Target price for UPS updated to 170.49341233377163 based on Open price
+08-Apr-2021 (19:06:28.295099)---Updating target price for TGT
+08-Apr-2021 (19:06:28.295420)---Target price for TGT updated to 202.00395458719524 based on Open price
+08-Apr-2021 (19:06:28.295739)---Updating target price for CCI
+08-Apr-2021 (19:06:28.296057)---Target price for CCI updated to 175.06430545675624 based on Open price
+08-Apr-2021 (19:06:28.296364)---Updating target price for D
+08-Apr-2021 (19:06:28.296670)---Target price for D updated to 75.84081167221588 based on Open price
+08-Apr-2021 (19:06:28.296977)---Updating target price for WBA
+08-Apr-2021 (19:06:28.297288)---Target price for WBA updated to 54.396861094719576 based on Open price
+08-Apr-2021 (19:06:28.297607)---Updating target price for IDXX
+08-Apr-2021 (19:06:28.297925)---Target price for IDXX updated to 487.62312303412807 based on Open price
+08-Apr-2021 (19:06:28.298245)---Updating target price for AWK
+08-Apr-2021 (19:06:28.298593)---Target price for AWK updated to 151.7597282229924 based on Open price
+08-Apr-2021 (19:06:28.298906)---Updating target price for HWM
+08-Apr-2021 (19:06:28.299219)---Target price for HWM updated to 30.93928183224171 based on Open price
+08-Apr-2021 (19:06:28.299534)---Updating target price for VIRT
+08-Apr-2021 (19:06:28.299851)---Target price for VIRT updated to 31.38379130085111 based on Open price
+08-Apr-2021 (19:06:28.300177)---Connected to IBKR and READY
+08-Apr-2021 (19:06:29.268830)----------Starting Worker...----EST Time: 2021-04-08 12:06:29--------------------
+08-Apr-2021 (19:06:29.270786)---Using own cash only (299.7250512504579), margin dismissed in settings
+08-Apr-2021 (19:06:29.272038)---SMA (including open positions cushion) is 299.7250512504579 it is less than 1000 - skipping buy
+08-Apr-2021 (19:06:29.272711)---Processing profits
+08-Apr-2021 (19:06:29.273352)---Processing CCI
+08-Apr-2021 (19:06:29.273986)---The profit for CCI is 0.8259756461915223 %
+08-Apr-2021 (19:06:29.275273)---Processing CP
+08-Apr-2021 (19:06:29.276103)---The profit for CP is -1.2286070163905742 %
+08-Apr-2021 (19:06:29.276873)---Processing SRT
+08-Apr-2021 (19:06:29.277508)---The profit for SRT is -4.1050303888317305 %
+08-Apr-2021 (19:06:29.278016)---Processing ASML
+08-Apr-2021 (19:06:29.278517)---The profit for ASML is 1.3975565944950525 %
+08-Apr-2021 (19:06:29.278998)---Processing AWK
+08-Apr-2021 (19:06:29.279480)---The profit for AWK is -0.15607178930635277 %
+08-Apr-2021 (19:06:29.279965)---Processing VIRT
+08-Apr-2021 (19:06:29.280451)---The profit for VIRT is 0.03109439428591902 %
+08-Apr-2021 (19:06:29.281121)---...............Worker finished....EST Time: 2021-04-08 12:06:29...................
+08-Apr-2021 (19:06:29.455686)---Report snapshot stored at server
