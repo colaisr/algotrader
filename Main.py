@@ -21,10 +21,6 @@ from Logic.IBKRWorker import IBKRWorker
 # UI Imports
 from UI.MainWindow import Ui_MainWindow
 
-LOGFILE = "LOG/log.txt"
-ERRORLOG='LOG/errorLog.txt'
-
-
 def restart_tws_and_trader():
     import platform
     if platform.system()=='Windows':
@@ -158,7 +154,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.trading_session_state = "TBD"
         self.trading_time_zone = timezone('US/Eastern')
         self.setupUi(self)
-        self.setWindowTitle("Algo Traider v 4.18")
+        self.setWindowTitle("Algo Traider v 4.19")
 
         self.settings = None
         self.uiTimer = QTimer()
@@ -168,7 +164,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def showEvent(self, event):
         super().showEvent(event)
-        sys.stderr = open(ERRORLOG, 'w')
         self.update_console('Connecting to server - to get settings.')
         self.settings=TraderSettings()
         self.update_console('Settings received.')
@@ -405,17 +400,6 @@ Adds Message to console- upon event
         :param n:
         """
         self.consoleOut.append(n)
-        self.log_message(n)
-
-    def log_message(self, message):
-        """
-Adds message to the standard log
-        :param message:
-        """
-        with open(LOGFILE, "a") as f:
-            currentDt = datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
-            message = "\n" + currentDt + '---' + message
-            f.write(message)
 
     def update_live_candidates(self):
         """
