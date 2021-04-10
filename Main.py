@@ -158,7 +158,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.trading_session_state = "TBD"
         self.trading_time_zone = timezone('US/Eastern')
         self.setupUi(self)
-        self.setWindowTitle("Algo Traider v 4.17")
+        self.setWindowTitle("Algo Traider v 4.18")
 
         self.settings = None
         self.uiTimer = QTimer()
