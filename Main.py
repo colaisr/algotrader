@@ -161,6 +161,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.workerTimer = QTimer()
         self.server_timer = QTimer()
         self.stocks_data_from_server =None
+        self.started_time=datetime.now()
 
     def showEvent(self, event):
         super().showEvent(event)
@@ -296,7 +297,8 @@ Executed the Worker in separate thread
                            worker_last_execution,
                            datetime.now(self.trading_time_zone),
                            self.trading_session_state,
-                           excess_liquidity]
+                           excess_liquidity,
+                           self.started_time]
 
         worker = Worker(
             report_snapshot_to_server, self.settings, data_for_report)
