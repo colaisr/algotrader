@@ -20,7 +20,7 @@ from Logic.IBKRWorker import IBKRWorker
 # The ask price refers to the lowest price a seller will accept for a security.
 # UI Imports
 from UI.MainWindow import Ui_MainWindow
-
+#back
 def restart_tws_and_trader():
     import platform
     if platform.system()=='Windows':
