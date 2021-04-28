@@ -1,5 +1,4 @@
-#main branch CMD version
-
+#just before cancelling UI
 
 import configparser
 import json
