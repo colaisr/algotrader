@@ -1,4 +1,4 @@
-#UI version
+#cmd version
 
 import configparser
 import json
