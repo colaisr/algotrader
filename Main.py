@@ -1,4 +1,4 @@
-#main branch UI version
+#main branch CMD version
 
 
 import configparser
