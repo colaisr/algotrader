@@ -1,4 +1,4 @@
-#checking commit
+
 
 import configparser
 import json
@@ -7,8 +7,10 @@ import sys
 import traceback
 from datetime import datetime
 from sys import platform
-# checking branch
 
+
+import os
+os.environ["QT_MAC_WANTS_LAYER"] = "1"
 from PySide2 import QtGui
 from PySide2.QtCore import QRunnable, Slot, QThreadPool, Signal, QObject, QTimer, QTime
 from PySide2.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QMessageBox
