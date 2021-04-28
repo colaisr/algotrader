@@ -1,4 +1,4 @@
-#cmd version
+#started working
 
 import configparser
 import json
