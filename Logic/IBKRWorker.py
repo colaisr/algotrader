@@ -17,56 +17,56 @@ class IBKRWorker():
         self.stocks_data_from_server = []
         self.last_worker_execution_time=None
 
-    def run_full_cycle(self, status_callback, notification_callback):
+    def run_full_cycle(self):
         try:
-            connected=self.connect_to_tws(notification_callback)
+            connected=self.connect_to_tws()
             if connected:
-                self.prepare_and_track( status_callback, notification_callback)
+                self.prepare_and_track()
                 self.check_if_holiday()
-                self.process_positions_candidates( status_callback, notification_callback)
+                self.process_positions_candidates()
                 return True
             else:
-                notification_callback.emit("Could not connect to TWS ....processing skept..")
+                print("Could not connect to TWS ....processing skept..")
                 return False
         except Exception as e:
             self.app.disconnect()
             self.app.reset()
             if hasattr(e, 'message'):
-                notification_callback.emit("Error in IBKR processing : " + str(e.message))
+                print("Error in IBKR processing : " + str(e.message))
             else:
-                notification_callback.emit("Error in IBKR processing : " + str(e))
+                print("Error in IBKR processing : " + str(e))
 
 
-    def prepare_and_track(self, status_callback, notification_callback):
+    def prepare_and_track(self):
         """
 Connecting to IBKR API and initiating the connection instance
         :return:
         """
-        status_callback.emit("Connecting")
+        print("Connecting")
         try:
-            notification_callback.emit("Begin prepare and connect")
-            self.request_current_PnL(notification_callback)
-            self.start_tracking_excess_liquidity(notification_callback)
+            print("Begin prepare and connect")
+            self.request_current_PnL()
+            self.start_tracking_excess_liquidity()
             self.check_todays_executions()
-            self.update_open_positions(notification_callback)
+            self.update_open_positions()
 
             # request open orders
-            self.update_open_orders(notification_callback)
+            self.update_open_orders()
             # start tracking candidates
-            succeed=self.evaluate_and_track_candidates(notification_callback)
+            succeed=self.evaluate_and_track_candidates()
             if not succeed:
                 raise Exception('Problem retrieving market data from TWS more than 60 sec')
-            self.update_target_price_for_tracked_stocks(notification_callback)
-            notification_callback.emit("Connected to IBKR and READY")
-            status_callback.emit("Connected and ready")
+            self.update_target_price_for_tracked_stocks()
+            print("Connected to IBKR and READY")
+            print("Connected and ready")
 
         except Exception as e:
             if hasattr(e, 'message'):
-                notification_callback.emit("Error in connection and preparation : " + str(e.message))
+                print("Error in connection and preparation : " + str(e.message))
             else:
-                notification_callback.emit("Error in connection and preparation : " + str(e))
+                print("Error in connection and preparation : " + str(e))
 
-    def connect_to_tws(self, notification_callback):
+    def connect_to_tws(self):
         """
 Creates the connection - starts listner for events
         """
@@ -74,7 +74,7 @@ Creates the connection - starts listner for events
         self.app.nextorderId = None
         # while not isinstance(self.app.nextorderId, int):
         retries = 0
-        notification_callback.emit("Restarting connection to IBKR")
+        print("Restarting connection to IBKR")
         self.app.disconnect()
         self.app.reset()
         self.app.connect('127.0.0.1', int(self.settings.PORT), 123)
@@ -87,11 +87,11 @@ Creates the connection - starts listner for events
 
         while True:
             if isinstance(self.app.nextorderId, int):
-                notification_callback.emit('Successfully connected to API')
+                print('Successfully connected to API')
                 connected=True
                 break
             else:
-                notification_callback.emit('Waiting for connection...attempt:' + str(retries))
+                print('Waiting for connection...attempt:' + str(retries))
                 time.sleep(1)
                 retries = retries + 1
                 if retries > 10:
@@ -102,18 +102,18 @@ Creates the connection - starts listner for events
             self.app.reset()
         return connected
 
-    def evaluate_and_track_candidates(self, notification_callback=None):
+    def evaluate_and_track_candidates(self):
         """
 Starts tracking the Candidates and adds the statistics
         """
         time.sleep(1)
         stock_names = [o['ticker'] for o in self.stocks_data_from_server]
-        notification_callback.emit("Starting to track " + ','.join(stock_names) + " Candidates")
+        print("Starting to track " + ','.join(stock_names) + " Candidates")
         # starting querry
         trackedStockN = 1
         for s in stock_names:
             id = self.app.nextorderId
-            notification_callback.emit(
+            print(
                 "starting to track: " + str(trackedStockN) + " of " + str(
                     len(stock_names)) + " " + s +
                 " traking with Id:" +
@@ -137,7 +137,7 @@ Starts tracking the Candidates and adds the statistics
         counter = 0
         while have_empty:
             time.sleep(1)
-            notification_callback.emit("Waiting for last requested candidate Close price :" + str(counter))
+            print("Waiting for last requested candidate Close price :" + str(counter))
             closings = [str(x['Close']) for x in self.app.candidatesLive.values()]
             if '-' in closings:
                 have_empty = True
@@ -149,59 +149,59 @@ Starts tracking the Candidates and adds the statistics
 
 
 
-        self.add_market_data_to_live_candidates(notification_callback)
+        self.add_market_data_to_live_candidates()
 
-        notification_callback.emit(str(len(self.app.candidatesLive)) + " Candidates evaluated and started to track")
+        print(str(len(self.app.candidatesLive)) + " Candidates evaluated and started to track")
         return True
 
-    def process_positions(self, notification_callback=None):
+    def process_positions(self):
         """
 Processes the positions to identify Profit/Loss
         """
-        notification_callback.emit("Processing profits")
+        print("Processing profits")
 
         for s, p in self.app.openPositions.items():
             if 'Value' in p.keys():
                 if p["Value"] != 0:
-                    notification_callback.emit("Processing " + s)
+                    print("Processing " + s)
                     profit = p["UnrealizedPnL"] / p["Value"] * 100
-                    notification_callback.emit("The profit for " + s + " is " + str(profit) + " %")
+                    print("The profit for " + s + " is " + str(profit) + " %")
                     if profit > float(self.settings.PROFIT):
                         orders = self.app.openOrders
                         if s in orders:
-                            notification_callback.emit("Order for " + s + "already exist- skipping")
+                            print("Order for " + s + "already exist- skipping")
                         elif int(p["stocks"]) < 0:
-                            notification_callback.emit(
+                            print(
                                 "The " + s + " is SHORT position number of stocks is negative: " + p["stocks"])
                         else:
-                            notification_callback.emit("Profit for: " + s + " is " + str(profit) +
+                            print("Profit for: " + s + " is " + str(profit) +
                                                        "Creating a trailing Stop Order to take a Profit")
                             contract = createContract(s)
                             order = createTrailingStopOrder(p["stocks"], self.settings.TRAIL)
 
                             self.app.placeOrder(self.app.nextorderId, contract, order)
                             self.app.nextorderId = self.app.nextorderId + 1
-                            notification_callback.emit("Created a Trailing Stop order for " + s + " at level of " +
+                            print("Created a Trailing Stop order for " + s + " at level of " +
                                                        str(self.settings.TRAIL) + "%")
                     elif profit < float(self.settings.LOSS):
                         orders = self.app.openOrders
                         if s in orders:
-                            notification_callback.emit("Order for " + s + "already exist- skipping")
+                            print("Order for " + s + "already exist- skipping")
                         else:
-                            notification_callback.emit("loss for: " + s + " is " + str(profit) +
+                            print("loss for: " + s + " is " + str(profit) +
                                                        "Creating a Market Sell Order to minimize the Loss")
                             contract = createContract(s)
                             order = createMktSellOrder(p['stocks'])
                             self.app.placeOrder(self.app.nextorderId, contract, order)
                             self.app.nextorderId = self.app.nextorderId + 1
-                            notification_callback.emit("Created a Market Sell order for " + s)
+                            print("Created a Market Sell order for " + s)
 
                 else:
-                    notification_callback.emit("Position " + s + " skept its Value is 0")
+                    print("Position " + s + " skept its Value is 0")
             else:
-                notification_callback.emit("Position " + s + " skept it has no Value")
+                print("Position " + s + " skept it has no Value")
 
-    def evaluate_stock_for_buy(self, s, notification_callback=None):
+    def evaluate_stock_for_buy(self, s):
         """
 Evaluates stock for buying
         :param s:
@@ -210,7 +210,7 @@ Evaluates stock for buying
         target_price=None
         tipRank=None
         average_daily_dropP=None
-        notification_callback.emit("Evaluating " + s + "for a Buy")
+        print("Evaluating " + s + "for a Buy")
         result='evaluating'
         # finding stock in Candidates
         for c in self.app.candidatesLive.values():
@@ -222,47 +222,47 @@ Evaluates stock for buying
                 break
 
         if ask_price == -1:  # market is closed
-            notification_callback.emit('The market is closed skipping...')
+            print('The market is closed skipping...')
             result='skept'
         elif ask_price < target_price and float(tipRank) > 8:
-            self.buy_the_stock(ask_price, s, notification_callback)
+            self.buy_the_stock(ask_price, s)
             result='bought'
 
         else:
-            notification_callback.emit(
+            print(
                 "The price of :" + str(ask_price) + "was not in range of :" + str(average_daily_dropP) + " % " +
                 " Or the Rating of " + str(tipRank) + " was not good enough")
             result='skept'
 
         return result
 
-    def update_target_price_for_tracked_stocks(self, notification_callback=None):
+    def update_target_price_for_tracked_stocks(self):
         """
 Update target price for all tracked stocks
         :return:
         """
-        notification_callback.emit("Updating target prices for Candidates")
+        print("Updating target prices for Candidates")
         for c in self.app.candidatesLive.values():
-            notification_callback.emit("Updating target price for " + c["Stock"])
+            print("Updating target price for " + c["Stock"])
             close = c["Close"]
             open = c["Open"]
             average_daily_dropP = c["averagePriceDropP"]
 
             if open != '-':  # market is closed
                 c["target_price"] = open - open / 100 * average_daily_dropP
-                notification_callback.emit("Target price for " + str(c["Stock"]) + " updated to " + str(
+                print("Target price for " + str(c["Stock"]) + " updated to " + str(
                     c["target_price"]) + " based on Open price")
             elif close != '-':  # market is open
                 c["target_price"] = close - close / 100 * average_daily_dropP
-                notification_callback.emit("Target price for " + str(c["Stock"]) + " updated to " + str(
+                print("Target price for " + str(c["Stock"]) + " updated to " + str(
                     c["target_price"]) + " based on Close price")
             else:
 
                 c["target_price"] = 0
-                notification_callback.emit("Skept target price for " + str(c["Stock"]) + "Closing price missing")
+                print("Skept target price for " + str(c["Stock"]) + "Closing price missing")
                 continue
 
-    def buy_the_stock(self, price, s, notification_callback=None):
+    def buy_the_stock(self, price, s):
         """
 Creates order to buy a stock at specific price
         :param price: price to buy at limit
@@ -277,15 +277,15 @@ Creates order to buy a stock at specific price
                 self.app.placeOrder(self.app.nextorderId, contract, order)
 
                 self.app.nextorderId = self.app.nextorderId + 1
-                notification_callback.emit(
+                print(
                     "Issued the BUY order at " + str(price) + "for " + str(stocksToBuy) + " Stocks of " + s)
 
             else:
-                notification_callback.emit("The single stock is too expensive - skipping")
+                print("The single stock is too expensive - skipping")
         else:
-            notification_callback.emit("Buying is not allowed in Settings - skipping the buying order")
+            print("Buying is not allowed in Settings - skipping the buying order")
 
-    def process_candidates(self, notification_callback=None):
+    def process_candidates(self):
         """
 processes candidates for buying if enough SMA
         :return:
@@ -299,35 +299,35 @@ processes candidates for buying if enough SMA
             for k,p in self.app.openPositions.items():
                 positions_summary+=p["Value"]
             real_remaining_funds=float(self.app.netLiquidation)-float(positions_summary)
-            notification_callback.emit("Using own cash only "+"("+str(real_remaining_funds)+"), margin dismissed in settings")
+            print("Using own cash only "+"("+str(real_remaining_funds)+"), margin dismissed in settings")
 
         if real_remaining_funds < 1000:
-            notification_callback.emit("SMA (including open positions cushion) is " + str(
+            print("SMA (including open positions cushion) is " + str(
                 real_remaining_funds) + " it is less than 1000 - skipping buy")
             return
         else:
-            notification_callback.emit(
+            print(
                 "SMA (including open positions cushion) is :" + str(real_remaining_funds) + " searching candidates")
             # updating the targets if market was open in the middle
-            self.update_target_price_for_tracked_stocks(notification_callback)
+            self.update_target_price_for_tracked_stocks()
             res = sorted(self.app.candidatesLive.items(), key=lambda x: x[1]['tipranksRank'], reverse=True)
-            notification_callback.emit(str(len(res)) + "Candidates found,sorted by Tipranks ranks")
+            print(str(len(res)) + "Candidates found,sorted by Tipranks ranks")
             for i, c in res:
                 if self.app.tradesRemaining > 0 or self.app.tradesRemaining == -1:
                     if c['Stock'] in self.app.openPositions:
-                        notification_callback.emit("Skipping " + c['Stock'] + " as it is in open positions.")
+                        print("Skipping " + c['Stock'] + " as it is in open positions.")
                         continue
                     elif c['Stock'] in self.app.openOrders.keys():
-                        notification_callback.emit("Skipping " + c['Stock'] + " as it is in open orders.")
+                        print("Skipping " + c['Stock'] + " as it is in open orders.")
                         continue
                     else:
-                        result=self.evaluate_stock_for_buy(c['Stock'], notification_callback)
+                        result=self.evaluate_stock_for_buy(c['Stock'])
                         if result=='bought':
                             break                    #to avoid buying more than one in a worker run
                 else:
-                    notification_callback.emit("Skipping " + c['Stock'] + " no available trades.")
+                    print("Skipping " + c['Stock'] + " no available trades.")
 
-    def process_positions_candidates(self, status_callback, notification_callback):
+    def process_positions_candidates(self):
         """
 Process Open positions and Candidates
         """
@@ -335,40 +335,35 @@ Process Open positions and Candidates
             est = timezone('US/Eastern')
             fmt = '%Y-%m-%d %H:%M:%S'
             est_time = datetime.datetime.now(est).strftime(fmt)
-            notification_callback.emit("-------Starting Worker...----EST Time: " + est_time + "--------------------")
-
-            # collect and update- deprecated since loaded once - on connect
-            # self.update_open_orders(notification_callback)
-            # self.update_open_positions(notification_callback)
-            status_callback.emit("Processing Positions-Candidates ")
+            print("-------Starting Worker...----EST Time: " + est_time + "--------------------")
+            print("Processing Positions-Candidates ")
             if self.trading_session_state == "Open":
                 # process
-                self.process_candidates(notification_callback)
-                self.process_positions(notification_callback)
+                self.process_candidates()
+                self.process_positions()
                 self.last_worker_execution_time = datetime.datetime.now()
             else:
-                notification_callback.emit("Trading session is not Open - processing skept")
+                print("Trading session is not Open - processing skept")
 
-            notification_callback.emit(
+            print(
                 "...............Worker finished....EST Time: " + est_time + "...................")
             self.app.disconnect()
             self.app.reset()
-            status_callback.emit("Connected")
         except Exception as e:
             if hasattr(e, 'message'):
-                notification_callback.emit("Error in processing Worker : " + str(e.message))
+                print("Error in processing Worker : " + str(e.message))
             else:
-                notification_callback.emit("Error in processing Worker : " + str(e))
+                print("Error in processing Worker : " + str(e))
 
     def run_loop(self):
         self.app.run()
 
-    def update_open_positions(self, notification_callback=None):
+    def update_open_positions(self):
         """
 updating all openPositions, refreshed on each worker- to include changes from new positions after BUY
         """
         # update positions from IBKR
-        notification_callback.emit("Updating open Positions:")
+        print("Updating open Positions:")
         self.app.openPositionsLiveDataRequests = {}  # reset requests dictionary as positions could be changed...
         self.app.openPositions = {}  # reset open positions
         self.app.temp_positions = {}
@@ -386,46 +381,46 @@ updating all openPositions, refreshed on each worker- to include changes from ne
                 # self.app.openPositions[s]["tracking_id"] = id
                 self.app.openPositionsLiveDataRequests[id] = s
                 self.app.reqPnLSingle(id, self.settings.ACCOUNT, "", p["conId"])
-                notification_callback.emit("Started tracking " + s + " position PnL")
+                print("Started tracking " + s + " position PnL")
                 self.app.nextorderId += 1
                 time.sleep(0.1)
 
-        notification_callback.emit(str(len(self.app.openPositions)) + " open positions completely updated")
+        print(str(len(self.app.openPositions)) + " open positions completely updated")
 
-    def update_open_orders(self, notification_callback=None):
+    def update_open_orders(self):
         """
 Requests all open orders
         """
-        notification_callback.emit("Updating all open orders")
+        print("Updating all open orders")
         self.app.openOrders = {}
         self.app.finishedReceivingOrders = False
         self.app.reqAllOpenOrders()
         # while(self.app.finishedReceivingOrders!=True):
         time.sleep(1)
 
-        notification_callback.emit(str(len(self.app.openOrders)) + " open orders found ")
+        print(str(len(self.app.openOrders)) + " open orders found ")
 
-    def start_tracking_excess_liquidity(self, notification_callback=None):
+    def start_tracking_excess_liquidity(self):
         """
 Start tracking excess liquidity - the value is updated every 3 minutes
         """
         # todo: add safety to not buy faster than every 3 minutes
-        notification_callback.emit("Starting to track Excess liquidity")
+        print("Starting to track Excess liquidity")
         id = self.app.nextorderId
         self.app.reqAccountSummary(id, "All", "ExcessLiquidity,DayTradesRemaining,NetLiquidation,SMA")
         self.app.nextorderId += 1
 
-    def request_current_PnL(self, notification_callback=None):
+    def request_current_PnL(self):
         """
 Creating a PnL request the result will be stored in generalStarus
         """
         global id, status
         id = self.app.nextorderId
-        notification_callback.emit("Requesting Daily PnL")
+        print("Requesting Daily PnL")
         self.app.reqPnL(id, self.settings.ACCOUNT, "")
         # time.sleep(0.5)
         self.app.nextorderId = self.app.nextorderId + 1
-        notification_callback.emit(self.app.generalStatus)
+        print(self.app.generalStatus)
 
     def get_required_cushion_for_open_positions(self):
         requiredCushion = 0
@@ -471,7 +466,7 @@ Creating a PnL request the result will be stored in generalStarus
 
         self.app.nextorderId += 1
 
-    def add_market_data_to_live_candidates(self, notification_callback):
+    def add_market_data_to_live_candidates(self):
         for k, v in self.app.candidatesLive.items():
             for dt in self.stocks_data_from_server:
                 if dt['ticker'] == v['Stock']:
@@ -479,7 +474,7 @@ Creating a PnL request the result will be stored in generalStarus
                     self.app.candidatesLive[k]["averagePriceSpreadP"] = dt['yahoo_avspreadP']
                     self.app.candidatesLive[k]['tipranksRank'] = dt['tipranks']
                     self.app.candidatesLive[k]['fmp_rating'] = dt['fmp_rating']
-                    notification_callback.emit(
+                    print(
                         "Yahoo data and Tipranks for " + v['Stock'] + " was added")
                     break
 

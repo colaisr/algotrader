@@ -4,6 +4,7 @@ import configparser
 import json
 import subprocess
 import sys
+import threading
 import traceback
 from datetime import datetime
 from sys import platform
@@ -228,8 +229,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.report_to_server()
         else:
             pass
-
-
 
     def connect_to_ibkr(self):
 
@@ -501,6 +500,89 @@ def main():
     window.show()
     sys.exit(app.exec_())
 
+class Algotrader:
+    def __init__(self):
+        self.trading_session_state = "TBD"
+        self.trading_time_zone = timezone('US/Eastern')
+
+        self.settings = None
+        self.stocks_data_from_server =None
+        self.started_time=datetime.now()
+
+    def get_settings(self):
+        print('Connecting to server - to get settings.')
+        self.settings=TraderSettings()
+        print('Settings received.')
+
+    def start_processing(self):
+        self.process_worker()
+        threading.Timer(self.settings.INTERVALSERVER, self.start_processing ).start()
+
+
+    def process_worker(self):
+        print("Requesting Command from server......")
+        server_command=get_command_from_server(self.settings)
+        self.process_server_command_response(server_command)
+
+
+    def process_server_command_response(self, r):
+        response=json.loads(r)
+        self.stocks_data_from_server=response['candidates']
+        command=response['command']
+        print('Received command : '+command)
+        if command=='restart_worker':
+            print('Restart command received- doing restart for Algotrader and TWS')
+            restart_tws_and_trader()
+        else:
+            self.process_ibkr_cycle()
+
+
+    def process_ibkr_cycle(self):
+        self.ibkrworker = IBKRWorker(self.settings)
+        self.ibkrworker.stocks_data_from_server = self.stocks_data_from_server
+        self.ibkrworker.run_full_cycle()
+        print("Worker finished reporting to the server........")
+        self.report_to_server()
+
+
+    def report_to_server(self):
+        net_liquidation = self.ibkrworker.app.netLiquidation
+        if hasattr(self.ibkrworker.app, 'smaWithSafety'):
+            remaining_sma_with_safety = self.ibkrworker.app.smaWithSafety
+        else:
+            remaining_sma_with_safety = self.ibkrworker.app.sMa
+        excess_liquidity = self.ibkrworker.app.excessLiquidity
+        remaining_trades = self.ibkrworker.app.tradesRemaining
+        all_positions_value = 0
+        open_positions = self.ibkrworker.app.openPositions
+        open_orders = self.ibkrworker.app.openOrders
+        candidates_live=self.ibkrworker.app.candidatesLive
+        dailyPnl = self.ibkrworker.app.dailyPnl
+        tradinng_session_state = self.trading_session_state
+        worker_last_execution = self.ibkrworker.last_worker_execution_time
+        data_for_report = [self.settings,
+                           net_liquidation,
+                           remaining_sma_with_safety,
+                           remaining_trades,
+                           all_positions_value,
+                           open_positions,
+                           open_orders,
+                           candidates_live,
+                           dailyPnl,
+                           worker_last_execution,
+                           datetime.now(self.trading_time_zone),
+                           self.trading_session_state,
+                           excess_liquidity,
+                           self.started_time]
+        report_snapshot_to_server(self.settings, data_for_report)
+
+def cmd_main():
+    print("Welcome to Algotrader V 5.0- client application for Algotrader platform.")
+    algotrader=Algotrader()
+    algotrader.get_settings()
+    algotrader.start_processing()
+
+
 
 if __name__ == '__main__':
-    main()
+    cmd_main()

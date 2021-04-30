@@ -47,25 +47,36 @@ def get_market_data_from_server(settings, candidates):
 
 
 def get_user_settings_from_server(server,user):
-    r = requests.get(server + '/algotradersettings/retrieveusersettings',
-                     json={"user": user})
+    try:
+        r = requests.get(server + '/algotradersettings/retrieveusersettings',
+                         json={"user": user})
+        status_code = r.status_code
+        if status_code == 200:
+            t = r.text
+            temp = json.loads(t)
+            settings_dictionary = json.loads(temp)
 
-    status_code = r.status_code
-    if status_code == 200:
-        t = r.text
-        temp = json.loads(t)
-        settings_dictionary = json.loads(temp)
-
-        return settings_dictionary
+            return settings_dictionary
+    except Exception as e:
+        if hasattr(e, 'message'):
+            print("Error in getting Settings: " + str(e.message))
+        else:
+            print("Error in getting Settings: " + str(e))
 
 
 def get_command_from_server(*args, **kwargs):
-    seting=args[0]
-    r = requests.post(seting.SERVERURL + '/connections/getcommand',
-                      json={"user": seting.SERVERUSER})
-    status_code = r.status_code
-    if status_code == 200:
-        return r.text
+    try:
+        seting=args[0]
+        r = requests.post(seting.SERVERURL + '/connections/getcommand',
+                          json={"user": seting.SERVERUSER})
+        status_code = r.status_code
+        if status_code == 200:
+            return r.text
+    except Exception as e:
+        if hasattr(e, 'message'):
+            print("Error in getting server Command: " + str(e.message))
+        else:
+            print("Error in getting server Command: " + str(e))
 
 
 def report_snapshot_to_server(*args, **kwargs):
