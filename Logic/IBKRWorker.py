@@ -76,7 +76,7 @@ Creates the connection - starts listner for events
         retries = 0
         print("Restarting connection to IBKR")
         self.app.disconnect()
-        self.app.reset()
+        #self.app.reset()
         self.app.connect('127.0.0.1', int(self.settings.PORT), 123)
 
         # Start the socket in a thread
@@ -348,7 +348,7 @@ Process Open positions and Candidates
             print(
                 "...............Worker finished....EST Time: " + est_time + "...................")
             self.app.disconnect()
-            self.app.reset()
+            #self.app.reset()
         except Exception as e:
             if hasattr(e, 'message'):
                 print("Error in processing Worker : " + str(e.message))
