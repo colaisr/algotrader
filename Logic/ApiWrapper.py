@@ -59,6 +59,9 @@ class IBapi(EWrapper, EClient):
             self.openPositions[s]["RealizedPnL"] = realizedPnL
             self.openPositions[s]["Value"] = value
             self.openPositions[s]["LastUpdate"] = datetime.datetime.now()
+            # print('pnl single updated for '+str(reqId))
+            # print('pnl single cancelled for ' + str(reqId))    #debug only
+            self.cancelPnLSingle(reqId)
         else:
             self.cancelPnLSingle(reqId);  # cancel subscription after getting
         self.have_empty_values_in_positions = False
