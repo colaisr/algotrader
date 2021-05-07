@@ -21,8 +21,8 @@ class IBKRWorker():
         try:
             connected=self.connect_to_tws()
             if connected:
-                self.prepare_and_track()
                 self.check_if_holiday()
+                self.prepare_and_track()
                 self.process_positions_candidates()
                 return True
             else:
@@ -35,7 +35,6 @@ class IBKRWorker():
                 print("Error in IBKR processing : " + str(e.message))
             else:
                 print("Error in IBKR processing : " + str(e))
-
 
     def prepare_and_track(self):
         """
@@ -106,11 +105,14 @@ Creates the connection - starts listner for events
         """
 Starts tracking the Candidates and adds the statistics
         """
-        time.sleep(1)
+        time.sleep(1) # clearing messages
         stock_names = [o['ticker'] for o in self.stocks_data_from_server]
         print("Starting to track " + ','.join(stock_names) + " Candidates")
+
+        # stock_names=stock_names[0:90]   #trimming 90 queries to track less than 100
         # starting querry
         trackedStockN = 1
+        message_number=0
         for s in stock_names:
             id = self.app.nextorderId
             print(
@@ -132,6 +134,11 @@ Starts tracking the Candidates and adds the statistics
             self.app.reqMktData(id, c, '', False, False, [])
             self.app.nextorderId += 1
             trackedStockN += 1
+            message_number+=1
+            if message_number % 10==0:
+                time.sleep(1)
+                print("Waiting to clear messages buffer")
+
 
         have_empty = True
         counter = 0
@@ -493,6 +500,7 @@ Creating a PnL request the result will be stored in generalStarus
             self.trading_session_state = "After Market"
         else:
             self.trading_session_state = "Closed"
+        self.app.trading_session_state = self.trading_session_state
 
     def check_todays_executions(self):
         self.app.executions_received=False

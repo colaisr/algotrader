@@ -117,6 +117,13 @@ class IBapi(EWrapper, EClient):
             self.candidatesLive[reqId]["Bid"] = price
         elif tickType == 2:
             self.candidatesLive[reqId]["Ask"] = price
+            if(self.candidatesLive[reqId]["Bid"]!='-' and self.candidatesLive[reqId]["Close"]!='-'):
+                if self.trading_session_state=='Open':
+                    if self.candidatesLive[reqId]["Open"] != '-':
+                        self.cancelMktData(reqId)
+                else:
+                    self.cancelMktData(reqId)
+                print("Got data, stopped tracking request "+str(reqId))
         elif tickType == 4:
             #last price ignored - have no value
             return
