@@ -109,7 +109,7 @@ Starts tracking the Candidates and adds the statistics
         stock_names = [o['ticker'] for o in self.stocks_data_from_server]
         print("Starting to track " + ','.join(stock_names) + " Candidates")
 
-        # stock_names=stock_names[0:90]   #trimming 90 queries to track less than 100
+        stock_names=stock_names[0:80]   #trimming 90 queries to track less than 100
         # starting querry
         trackedStockN = 1
         message_number=0
