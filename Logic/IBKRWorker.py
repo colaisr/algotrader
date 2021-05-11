@@ -135,7 +135,7 @@ Starts tracking the Candidates and adds the statistics
             self.app.nextorderId += 1
             trackedStockN += 1
             message_number+=1
-            if message_number % 10==0:
+            if message_number % 6==0:
                 time.sleep(1)
                 print("Waiting to clear messages buffer")
 
