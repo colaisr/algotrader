@@ -107,13 +107,18 @@ Starts tracking the Candidates and adds the statistics
         """
         time.sleep(1) # clearing messages
         stock_names = [o['ticker'] for o in self.stocks_data_from_server]
-        print("Starting to track " + ','.join(stock_names) + " Candidates")
+        print("Requesting data for " +str(len(stock_names)) + " Candidates")
 
-        stock_names=stock_names[0:80]   #trimming 90 queries to track less than 100
+        # stock_names=stock_names[0:80]   #trimming 90 queries to track less than 100
+        self.app.CandidatesLiveDataRequests = {}  # reset candidates requests dictionary
+
         # starting querry
         trackedStockN = 1
         message_number=0
         for s in stock_names:
+            if len(self.app.CandidatesLiveDataRequests)>90:
+                time.sleep(0.5)
+                print("Requested more than 90 candidates - waiting to be cleared...")
             id = self.app.nextorderId
             print(
                 "starting to track: " + str(trackedStockN) + " of " + str(
@@ -121,35 +126,36 @@ Starts tracking the Candidates and adds the statistics
                 " traking with Id:" +
                 str(id))
             c = createContract(s)
+            self.app.CandidatesLiveDataRequests[id]='requested'
             self.app.candidatesLive[id] = {"Stock": s,
-                                           "Close": "-",
-                                           "Open": "-",
-                                           "Bid": "-",
-                                           "Ask": "-",
-                                           "averagePriceDropP": "-",
-                                           "averagePriceSpreadP": "-",
-                                           "tipranksRank": "-",
-                                           "LastUpdate": "-"}
+                                           "Close": 0,
+                                           "Open": 0,
+                                           "Bid": 0,
+                                           "Ask": 0,
+                                           "averagePriceDropP": 0,
+                                           "averagePriceSpreadP": 0,
+                                           "tipranksRank": 0,
+                                           "LastUpdate": 0}
             self.app.reqMarketDataType(1)
             self.app.reqMktData(id, c, '', False, False, [])
             self.app.nextorderId += 1
             trackedStockN += 1
             message_number+=1
             if message_number % 10==0:
-                time.sleep(2)
+                time.sleep(1)
                 print("Waiting to clear messages buffer")
 
 
         have_empty = True
         counter = 0
-        while have_empty:
+        while len(self.app.CandidatesLiveDataRequests):
             time.sleep(1)
-            print("Waiting for last requested candidate Close price :" + str(counter))
-            closings = [str(x['Close']) for x in self.app.candidatesLive.values()]
-            if '-' in closings:
-                have_empty = True
-            else:
-                have_empty = False
+            print("Waiting for last requested candidate data (Closed or Open - depending on session state ) :" + str(counter))
+            # closings = [str(x['Close']) for x in self.app.candidatesLive.values()]
+            # if '-' in closings:
+            #     have_empty = True
+            # else:
+            #     have_empty = False
             counter += 1
             if counter>60:
                 return False
@@ -255,11 +261,11 @@ Update target price for all tracked stocks
             open = c["Open"]
             average_daily_dropP = c["averagePriceDropP"]
 
-            if open != '-':  # market is closed
+            if open != 0:  # market is open
                 c["target_price"] = open - open / 100 * average_daily_dropP
                 print("Target price for " + str(c["Stock"]) + " updated to " + str(
                     c["target_price"]) + " based on Open price")
-            elif close != '-':  # market is open
+            elif close != 0:  # market is closed - figured from day before
                 c["target_price"] = close - close / 100 * average_daily_dropP
                 print("Target price for " + str(c["Stock"]) + " updated to " + str(
                     c["target_price"]) + " based on Close price")
@@ -402,8 +408,9 @@ Requests all open orders
         self.app.openOrders = {}
         self.app.finishedReceivingOrders = False
         self.app.reqAllOpenOrders()
-        # while(self.app.finishedReceivingOrders!=True):
-        time.sleep(1)
+        while(self.app.finishedReceivingOrders!=True):
+            print('Waiting to receive all open orders....')
+            time.sleep(1)
 
         print(str(len(self.app.openOrders)) + " open orders found ")
 
