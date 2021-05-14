@@ -377,21 +377,21 @@ updating all openPositions, refreshed on each worker- to include changes from ne
 
         self.app.finishedPostitionsGeneral = False  # flag to ensure all positions received
         self.app.reqPositions()  # requesting open positions
-        time.sleep(0.5)
+        time.sleep(0.1)
         counter = 0
         while (self.app.finishedPostitionsGeneral != True):
             time.sleep(1)
             counter += 1
         for s, p in self.app.temp_positions.items():  # start tracking one by one
-            while s not in self.app.openPositions.keys():
-                id = self.app.nextorderId
-                # self.app.openPositions[s]["tracking_id"] = id
-                self.app.openPositionsLiveDataRequests[id] = s
-                self.app.reqPnLSingle(id, self.settings.ACCOUNT, "", p["conId"])
-                print("Started tracking " + s + " position PnL")
-                self.app.nextorderId += 1
-                time.sleep(0.1)
+            id = self.app.nextorderId
+            self.app.openPositionsLiveDataRequests[id] = s
+            self.app.reqPnLSingle(id, self.settings.ACCOUNT, "", p["conId"])
+            print("Requested details for " + s + " position PnL with reqest : "+str(id))
+            self.app.nextorderId += 1
 
+        while (len(self.app.openPositionsLiveDataRequests) != 0):
+            time.sleep(1)
+            print('Waiting to get all open positions....')
         print(str(len(self.app.openPositions)) + " open positions completely updated")
 
     def update_open_orders(self):
