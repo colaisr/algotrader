@@ -57,6 +57,9 @@ class TraderSettings():
         retrieved = get_user_settings_from_server(self.FILESERVERURL, self.FILESERVERUSER)
 
         self.read_config(retrieved)
+        if self.AUTORESTART:
+            self.set_autorestart_task()
+
 
     def read_config(self, retrieved):
         self.PORT = retrieved['connection_port']
@@ -73,6 +76,27 @@ class TraderSettings():
         self.SERVERUSER = self.FILESERVERUSER
         self.INTERVALSERVER = retrieved['server_report_interval_sec']
         self.ALLOWBUY = retrieved['algo_allow_buy']
+        self.AUTORESTART = retrieved['station_autorestart']
+
+    def set_autorestart_task(self):
+        print("Autorestart setting applied- validating OS Setting")
+        import platform
+        if platform.system() == 'Windows':
+            print("Windows OS detected... setting a task...")
+            # import sys
+            # print("argv was", sys.argv)
+            # print("sys.executable was", sys.executable)
+            # print("restart now")
+            #
+            # import os
+            # subprocess.call('restartTws.bat')
+            # os.execv(sys.executable, ['python'] + sys.argv)
+        elif platform.system() == 'Linux':
+            print("Linux is not yet implemented")
+            pass
+        elif platform.system() == 'Darwin':
+            print("MacOS is not yet implemented")
+            pass
 
 
 class Algotrader:
