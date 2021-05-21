@@ -3,7 +3,7 @@
 import configparser
 import json
 import subprocess
-import sys
+import sys,ctypes
 import threading
 import traceback
 from datetime import datetime
@@ -23,6 +23,12 @@ from Logic.IBKRWorker import IBKRWorker
 # UI Imports
 from UI.MainWindow import Ui_MainWindow
 
+def is_admin():
+    try:
+        return ctypes.windll.shell32.IsUserAnAdmin()
+    except:
+        return False
+
 def restart_tws_and_trader():
     import platform
     if platform.system()=='Windows':
@@ -33,7 +39,7 @@ def restart_tws_and_trader():
         print("restart now")
 
         import os
-        subprocess.call('Scripts\\restartTws.bat')
+        subprocess.call('Scripts\\win_restartTws.bat')
         os.execv(sys.executable, ['python'] + sys.argv)
     elif platform.system()=='Linux':
         print("Linux OS detected -not implemented")
@@ -84,13 +90,19 @@ class TraderSettings():
         import platform
         if platform.system() == 'Windows':
             print("Windows OS detected... setting a task...")
+            if is_admin():
+                subprocess.call('Scripts\\win_set_autorestart.bat')
+            else:
+                # Re-run the program with admin rights
+                ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
+            print("Autorestart tasks added- can be turned off on the portal now....")
             # import sys
             # print("argv was", sys.argv)
             # print("sys.executable was", sys.executable)
             # print("restart now")
             #
             # import os
-            # subprocess.call('restartTws.bat')
+            # subprocess.call('win_restartTws.bat')
             # os.execv(sys.executable, ['python'] + sys.argv)
         elif platform.system() == 'Linux':
             print("Linux is not yet implemented")
