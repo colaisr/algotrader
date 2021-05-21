@@ -27,6 +27,7 @@ def restart_tws_and_trader():
     import platform
     if platform.system()=='Windows':
         import sys
+        print("Windows OS detected -restarting")
         print("argv was", sys.argv)
         print("sys.executable was", sys.executable)
         print("restart now")
@@ -35,10 +36,10 @@ def restart_tws_and_trader():
         subprocess.call('restartTws.bat')
         os.execv(sys.executable, ['python'] + sys.argv)
     elif platform.system()=='Linux':
-        #not implemented
+        print("Linux OS detected -not implemented")
         pass
     elif platform.system()=='Darwin':
-        #not implemented
+        print("Mac OS detected -not implemented")
         pass
 
 
