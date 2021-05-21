@@ -33,7 +33,7 @@ def restart_tws_and_trader():
         print("restart now")
 
         import os
-        subprocess.call('restartTws.bat')
+        subprocess.call('Scripts\\restartTws.bat')
         os.execv(sys.executable, ['python'] + sys.argv)
     elif platform.system()=='Linux':
         print("Linux OS detected -not implemented")
