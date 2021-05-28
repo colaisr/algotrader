@@ -66,6 +66,8 @@ class TraderSettings():
         self.read_config(retrieved)
         if self.AUTORESTART:
             self.set_autorestart_task()
+        else:
+            self.remove_autorestart_task()
 
 
     def read_config(self, retrieved):
@@ -90,27 +92,29 @@ class TraderSettings():
         import platform
         if platform.system() == 'Windows':
             print("Windows OS detected... setting a task...")
-            if is_admin():
-                subprocess.call('Scripts\\win_set_autorestart.bat')
-            else:
-                # Re-run the program with admin rights
-                ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
-            print("Autorestart tasks added- can be turned off on the portal now....")
-            # import sys
-            # print("argv was", sys.argv)
-            # print("sys.executable was", sys.executable)
-            # print("restart now")
-            #
-            # import os
-            # subprocess.call('win_restartTws.bat')
-            # os.execv(sys.executable, ['python'] + sys.argv)
+            import os
+            subprocess.call('Scripts\\win_set_autorestart.bat')
+            print("Autorestart task setted")
         elif platform.system() == 'Linux':
             print("Linux is not yet implemented")
             pass
         elif platform.system() == 'Darwin':
             print("MacOS is not yet implemented")
             pass
-
+    def remove_autorestart_task(self):
+        print("Autorestart setting disabled- validating OS Setting")
+        import platform
+        if platform.system() == 'Windows':
+            print("Windows OS detected... removing a task...")
+            import os
+            subprocess.call('Scripts\\win_remove_autorestart.bat')
+            print("Autorestart task removed")
+        elif platform.system() == 'Linux':
+            print("Linux is not yet implemented")
+            pass
+        elif platform.system() == 'Darwin':
+            print("MacOS is not yet implemented")
+            pass
 
 class Algotrader:
     def __init__(self):
