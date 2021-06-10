@@ -1,4 +1,3 @@
-PySide2~=5.15.1
 ibapi~=9.76.1
 pytz~=2020.4
 setuptools~=50.3.2

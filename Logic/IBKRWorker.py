@@ -148,18 +148,18 @@ Starts tracking the Candidates and adds the statistics
 
         have_empty = True
         counter = 0
-        while len(self.app.CandidatesLiveDataRequests):
-            time.sleep(1)
-            print("Waiting for last requested candidate data (Closed or Open - depending on session state ) :" + str(counter))
-            # closings = [str(x['Close']) for x in self.app.candidatesLive.values()]
-            # if '-' in closings:
-            #     have_empty = True
-            # else:
-            #     have_empty = False
-            counter += 1
-            if counter>60:
-                return False
-
+        # while len(self.app.CandidatesLiveDataRequests):
+        #     time.sleep(1)
+        #     print("Waiting for last requested candidate data (Closed or Open - depending on session state ) :" + str(counter))
+        #     # closings = [str(x['Close']) for x in self.app.candidatesLive.values()]
+        #     # if '-' in closings:
+        #     #     have_empty = True
+        #     # else:
+        #     #     have_empty = False
+        #     counter += 1
+        #     if counter>60:
+        #         return False
+        m=2
 
 
         self.add_market_data_to_live_candidates()
