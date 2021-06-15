@@ -59,6 +59,18 @@ Connecting to IBKR API and initiating the connection instance
             print("Connected to IBKR and READY")
             print("Connected and ready")
 
+
+            requiredCushionForOpenPositions = self.get_required_cushion_for_open_positions()
+            remainingFunds = float(self.app.sMa)
+            self.real_remaining_funds = remainingFunds - requiredCushionForOpenPositions
+            self.app.smaWithSafety = self.real_remaining_funds
+            if self.settings.USEMARGIN == False:  # if margin not allowed use net liquidation as maximum
+                positions_summary = 0
+                for k, p in self.app.openPositions.items():
+                    positions_summary += p["Value"]
+                self.real_remaining_funds = float(self.app.netLiquidation) - float(positions_summary)
+                print("Using own cash only " + "(" + str(self.real_remaining_funds) + "), margin dismissed in settings")
+
         except Exception as e:
             if hasattr(e, 'message'):
                 print("Error in connection and preparation : " + str(e.message))
@@ -303,24 +315,15 @@ Creates order to buy a stock at specific price
 processes candidates for buying if enough SMA
         :return:
         """
-        requiredCushionForOpenPositions = self.get_required_cushion_for_open_positions()
-        remainingFunds = float(self.app.sMa)
-        real_remaining_funds = remainingFunds - requiredCushionForOpenPositions
-        self.app.smaWithSafety = real_remaining_funds
-        if self.settings.USEMARGIN==False:     #if margin not allowed use net liquidation as maximum
-            positions_summary=0
-            for k,p in self.app.openPositions.items():
-                positions_summary+=p["Value"]
-            real_remaining_funds=float(self.app.netLiquidation)-float(positions_summary)
-            print("Using own cash only "+"("+str(real_remaining_funds)+"), margin dismissed in settings")
 
-        if real_remaining_funds < 1000:
+
+        if self.real_remaining_funds < 1000:
             print("SMA (including open positions cushion) is " + str(
-                real_remaining_funds) + " it is less than 1000 - skipping buy")
+                self.real_remaining_funds) + " it is less than 1000 - skipping buy")
             return
         else:
             print(
-                "SMA (including open positions cushion) is :" + str(real_remaining_funds) + " searching candidates")
+                "SMA (including open positions cushion) is :" + str(self.real_remaining_funds) + " searching candidates")
             # updating the targets if market was open in the middle
             self.update_target_price_for_tracked_stocks()
             res = sorted(self.app.candidatesLive.items(), key=lambda x: x[1]['tipranksRank'], reverse=True)
