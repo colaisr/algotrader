@@ -1,3 +1,3 @@
 #!/bin/bash
-#crontab -e
+crontab -e
 @reboot  ~/Downloads/algotrader-station/algotrader/linux_start_all.sh
