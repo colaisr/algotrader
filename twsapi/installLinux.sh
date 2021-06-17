@@ -9,6 +9,9 @@ echo "Installig Required packages"
 pip3 install -r requirements.txt
 echo "Installing Xdotools for TWS login"
 sudo apt-get install xdotool
+echo "Doing executable file..."
+cd ..
+chmod u+x linux_start_all.sh
 echo "Installing TWS if it is in Downloads-----"
 cd ~/Downloads
 chmod u+x tws-latest-linux-x64.sh
