@@ -21,7 +21,7 @@ from Logic.IBKRWorker import IBKRWorker
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
 # UI Imports
-from UI.MainWindow import Ui_MainWindow
+#from UI.MainWindow import Ui_MainWindow
 
 def is_admin():
     try:
