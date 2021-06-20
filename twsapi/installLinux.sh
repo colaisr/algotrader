@@ -7,8 +7,11 @@ echo "Installing IBKR API--------------"
 python3 setup.py install
 echo "Installig Required packages"
 pip3 install -r requirements.txt
-echo "Installing Xdotools for TWS login"
-sudo apt-get install xdotool
+echo "Installing PyAutoGuy for TWS login"
+python3 -m pip install pyautogui
+sudo apt-get install scrot
+sudo apt-get install python3-tk
+sudo apt-get install python3-dev
 echo "Doing executable file..."
 cd ..
 chmod u+x linux_start_all.sh

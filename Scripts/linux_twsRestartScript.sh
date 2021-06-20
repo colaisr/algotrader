@@ -2,12 +2,7 @@
 echo "Restarting TWS"
 /root/Jts/tws start&
 echo "TWS started"
-sleep 10
+sleep 60
 echo "finished waiting"
-xdotool type colak1982
-sleep 2
-xdotool key Tab
-sleep 2
-xdotool type klk5489103
-xdotool key Return
+python3 tws_cred_login.py
 echo "Finished login to TWS"
