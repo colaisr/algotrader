@@ -64,10 +64,10 @@ class TraderSettings():
         retrieved = get_user_settings_from_server(self.FILESERVERURL, self.FILESERVERUSER)
 
         self.read_config(retrieved)
-        if self.AUTORESTART:
-            self.set_autorestart_task()
-        else:
-            self.remove_autorestart_task()
+        # if self.AUTORESTART:
+        #     self.set_autorestart_task()
+        # else:
+        #     self.remove_autorestart_task()
 
 
     def read_config(self, retrieved):

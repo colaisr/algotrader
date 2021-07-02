@@ -4,5 +4,5 @@ echo "Restarting TWS"
 echo "TWS started"
 sleep 60
 echo "finished waiting"
-python3 tws_cred_login.py
+python3 Scripts/tws_cred_login.py
 echo "Finished login to TWS"
