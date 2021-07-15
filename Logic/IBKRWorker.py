@@ -36,6 +36,39 @@ class IBKRWorker():
             else:
                 print("Error in IBKR processing : " + str(e))
 
+    def close_all_positions_cycle(self):
+        try:
+            connected=self.connect_to_tws()
+            if connected:
+                print("Preparing to close all open positions")
+                self.check_if_holiday()
+                self.update_open_positions()
+                for s, p in self.app.openPositions.items():
+                    if 'Value' in p.keys():
+                        if p["Value"] != 0:
+                            print("Closing " + s)
+                            contract = createContract(s)
+                            order = createMktSellOrder(p['stocks'])
+                            self.app.placeOrder(self.app.nextorderId, contract, order)
+                            self.app.nextorderId = self.app.nextorderId + 1
+                            print("Created a Market Sell order for " + s)
+
+                        else:
+                            print("Position " + s + " skept its Value is 0")
+                    else:
+                        print("Position " + s + " skept it has no Value")
+                return True
+            else:
+                print("Could not connect to TWS ....processing skept..")
+                return False
+        except Exception as e:
+            self.app.disconnect()
+            self.app.reset()
+            if hasattr(e, 'message'):
+                print("Error in closing all positions : " + str(e.message))
+            else:
+                print("Error in closing all positions : " + str(e))
+
     def prepare_and_track(self):
         """
 Connecting to IBKR API and initiating the connection instance

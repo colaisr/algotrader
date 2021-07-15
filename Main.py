@@ -149,9 +149,17 @@ class Algotrader:
         if command=='restart_worker':
             print('Restart command received- doing restart for Algotrader and TWS')
             restart_tws_and_trader()
+        elif command=='close_all_positions':
+            print("Closing all open positions")
+            self.process_close_all_cycle()
+            self.get_settings()  #to refresh a settings and cancell a BUY
         else:
             self.process_ibkr_cycle()
 
+    def process_close_all_cycle(self):
+        self.ibkrworker = IBKRWorker(self.settings)
+        self.ibkrworker.close_all_positions_cycle()
+        print("Worker finished reporting to the server........")
 
     def process_ibkr_cycle(self):
         self.ibkrworker = IBKRWorker(self.settings)
@@ -194,7 +202,7 @@ class Algotrader:
 
 
 def cmd_main():
-    print("Welcome to Algotrader V 5.0- client application for Algotrader platform.")
+    print("Welcome to Algotrader V 6.0- client application for Algotrader platform.")
     algotrader=Algotrader()
     algotrader.get_settings()
     algotrader.start_processing()
