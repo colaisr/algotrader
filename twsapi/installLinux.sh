@@ -4,7 +4,7 @@ sudo apt install python3-pip
 echo "Installing Setuptools---------"
 pip3 install setuptools
 echo "Installing IBKR API--------------"
-python3 setup.py install
+sudo python3 setup.py install
 echo "Installig Required packages"
 pip3 install -r requirements.txt
 echo "Installing PyAutoGuy for TWS login"
