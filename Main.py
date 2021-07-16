@@ -137,6 +137,7 @@ class Algotrader:
 
     def process_worker(self):
         print("Requesting Command from server......")
+        self.get_settings() #to keep them updated
         server_command=get_command_from_server(self.settings)
         self.process_server_command_response(server_command)
 
