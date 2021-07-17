@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1282, 772)
+        MainWindow.resize(1440, 762)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setMinimumSize(QSize(600, 400))
@@ -28,11 +28,9 @@ class Ui_MainWindow(object):
         self.splitter.setOrientation(Qt.Vertical)
         self.layoutWidget = QWidget(self.splitter)
         self.layoutWidget.setObjectName(u"layoutWidget")
-        self.verticalLayout_4 = QVBoxLayout(self.layoutWidget)
-        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
-        self.general = QHBoxLayout()
+        self.general = QHBoxLayout(self.layoutWidget)
         self.general.setObjectName(u"general")
+        self.general.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_7 = QVBoxLayout()
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.horizontalLayout = QHBoxLayout()
@@ -98,12 +96,6 @@ class Ui_MainWindow(object):
 
         self.general.addLayout(self.verticalLayout_10)
 
-        self.btnSettings = QPushButton(self.layoutWidget)
-        self.btnSettings.setObjectName(u"btnSettings")
-        self.btnSettings.setEnabled(False)
-
-        self.general.addWidget(self.btnSettings)
-
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.general.addItem(self.horizontalSpacer_2)
@@ -158,12 +150,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3 = QVBoxLayout()
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.chbxProcess = QCheckBox(self.layoutWidget)
-        self.chbxProcess.setObjectName(u"chbxProcess")
-        self.chbxProcess.setEnabled(False)
-
-        self.verticalLayout_3.addWidget(self.chbxProcess)
-
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.label_3 = QLabel(self.layoutWidget)
@@ -182,42 +168,38 @@ class Ui_MainWindow(object):
 
         self.general.addLayout(self.verticalLayout_3)
 
-
-        self.verticalLayout_4.addLayout(self.general)
-
-        self.Positions = QVBoxLayout()
+        self.splitter.addWidget(self.layoutWidget)
+        self.layoutWidget2_2 = QWidget(self.splitter)
+        self.layoutWidget2_2.setObjectName(u"layoutWidget2_2")
+        self.Positions = QVBoxLayout(self.layoutWidget2_2)
         self.Positions.setObjectName(u"Positions")
-        self.lblPositions = QLabel(self.layoutWidget)
+        self.Positions.setContentsMargins(0, 0, 0, 0)
+        self.lblPositions = QLabel(self.layoutWidget2_2)
         self.lblPositions.setObjectName(u"lblPositions")
 
         self.Positions.addWidget(self.lblPositions)
 
-        self.hl = QHBoxLayout()
-        self.hl.setObjectName(u"hl")
-        self.scrollArea = QScrollArea(self.layoutWidget)
-        self.scrollArea.setObjectName(u"scrollArea")
-        self.scrollArea.setWidgetResizable(True)
-        self.scrollAreaWidgetContents = QWidget()
-        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1250, 72))
-        self.gridLayout_2 = QGridLayout(self.scrollAreaWidgetContents)
-        self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.gp = QGridLayout()
-        self.gp.setObjectName(u"gp")
+        self.tPositions = QTableWidget(self.layoutWidget2_2)
+        if (self.tPositions.columnCount() < 6):
+            self.tPositions.setColumnCount(6)
+        __qtablewidgetitem = QTableWidgetItem()
+        self.tPositions.setHorizontalHeaderItem(0, __qtablewidgetitem)
+        __qtablewidgetitem1 = QTableWidgetItem()
+        self.tPositions.setHorizontalHeaderItem(1, __qtablewidgetitem1)
+        __qtablewidgetitem2 = QTableWidgetItem()
+        self.tPositions.setHorizontalHeaderItem(2, __qtablewidgetitem2)
+        __qtablewidgetitem3 = QTableWidgetItem()
+        self.tPositions.setHorizontalHeaderItem(3, __qtablewidgetitem3)
+        __qtablewidgetitem4 = QTableWidgetItem()
+        self.tPositions.setHorizontalHeaderItem(4, __qtablewidgetitem4)
+        __qtablewidgetitem5 = QTableWidgetItem()
+        self.tPositions.setHorizontalHeaderItem(5, __qtablewidgetitem5)
+        self.tPositions.setObjectName(u"tPositions")
+        self.tPositions.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
 
-        self.gridLayout_2.addLayout(self.gp, 0, 0, 1, 1)
+        self.Positions.addWidget(self.tPositions)
 
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-
-        self.hl.addWidget(self.scrollArea)
-
-
-        self.Positions.addLayout(self.hl)
-
-
-        self.verticalLayout_4.addLayout(self.Positions)
-
-        self.splitter.addWidget(self.layoutWidget)
+        self.splitter.addWidget(self.layoutWidget2_2)
         self.layoutWidget2 = QWidget(self.splitter)
         self.layoutWidget2.setObjectName(u"layoutWidget2")
         self.candidates = QVBoxLayout(self.layoutWidget2)
@@ -229,26 +211,28 @@ class Ui_MainWindow(object):
         self.candidates.addWidget(self.lblCandidates)
 
         self.tCandidates = QTableWidget(self.layoutWidget2)
-        if (self.tCandidates.columnCount() < 9):
-            self.tCandidates.setColumnCount(9)
-        __qtablewidgetitem = QTableWidgetItem()
-        self.tCandidates.setHorizontalHeaderItem(0, __qtablewidgetitem)
-        __qtablewidgetitem1 = QTableWidgetItem()
-        self.tCandidates.setHorizontalHeaderItem(1, __qtablewidgetitem1)
-        __qtablewidgetitem2 = QTableWidgetItem()
-        self.tCandidates.setHorizontalHeaderItem(2, __qtablewidgetitem2)
-        __qtablewidgetitem3 = QTableWidgetItem()
-        self.tCandidates.setHorizontalHeaderItem(3, __qtablewidgetitem3)
-        __qtablewidgetitem4 = QTableWidgetItem()
-        self.tCandidates.setHorizontalHeaderItem(4, __qtablewidgetitem4)
-        __qtablewidgetitem5 = QTableWidgetItem()
-        self.tCandidates.setHorizontalHeaderItem(5, __qtablewidgetitem5)
+        if (self.tCandidates.columnCount() < 10):
+            self.tCandidates.setColumnCount(10)
         __qtablewidgetitem6 = QTableWidgetItem()
-        self.tCandidates.setHorizontalHeaderItem(6, __qtablewidgetitem6)
+        self.tCandidates.setHorizontalHeaderItem(0, __qtablewidgetitem6)
         __qtablewidgetitem7 = QTableWidgetItem()
-        self.tCandidates.setHorizontalHeaderItem(7, __qtablewidgetitem7)
+        self.tCandidates.setHorizontalHeaderItem(1, __qtablewidgetitem7)
         __qtablewidgetitem8 = QTableWidgetItem()
-        self.tCandidates.setHorizontalHeaderItem(8, __qtablewidgetitem8)
+        self.tCandidates.setHorizontalHeaderItem(2, __qtablewidgetitem8)
+        __qtablewidgetitem9 = QTableWidgetItem()
+        self.tCandidates.setHorizontalHeaderItem(3, __qtablewidgetitem9)
+        __qtablewidgetitem10 = QTableWidgetItem()
+        self.tCandidates.setHorizontalHeaderItem(4, __qtablewidgetitem10)
+        __qtablewidgetitem11 = QTableWidgetItem()
+        self.tCandidates.setHorizontalHeaderItem(5, __qtablewidgetitem11)
+        __qtablewidgetitem12 = QTableWidgetItem()
+        self.tCandidates.setHorizontalHeaderItem(6, __qtablewidgetitem12)
+        __qtablewidgetitem13 = QTableWidgetItem()
+        self.tCandidates.setHorizontalHeaderItem(7, __qtablewidgetitem13)
+        __qtablewidgetitem14 = QTableWidgetItem()
+        self.tCandidates.setHorizontalHeaderItem(8, __qtablewidgetitem14)
+        __qtablewidgetitem15 = QTableWidgetItem()
+        self.tCandidates.setHorizontalHeaderItem(9, __qtablewidgetitem15)
         self.tCandidates.setObjectName(u"tCandidates")
         self.tCandidates.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
 
@@ -268,12 +252,12 @@ class Ui_MainWindow(object):
         self.tOrders = QTableWidget(self.layoutWidget3)
         if (self.tOrders.columnCount() < 3):
             self.tOrders.setColumnCount(3)
-        __qtablewidgetitem9 = QTableWidgetItem()
-        self.tOrders.setHorizontalHeaderItem(0, __qtablewidgetitem9)
-        __qtablewidgetitem10 = QTableWidgetItem()
-        self.tOrders.setHorizontalHeaderItem(1, __qtablewidgetitem10)
-        __qtablewidgetitem11 = QTableWidgetItem()
-        self.tOrders.setHorizontalHeaderItem(2, __qtablewidgetitem11)
+        __qtablewidgetitem16 = QTableWidgetItem()
+        self.tOrders.setHorizontalHeaderItem(0, __qtablewidgetitem16)
+        __qtablewidgetitem17 = QTableWidgetItem()
+        self.tOrders.setHorizontalHeaderItem(1, __qtablewidgetitem17)
+        __qtablewidgetitem18 = QTableWidgetItem()
+        self.tOrders.setHorizontalHeaderItem(2, __qtablewidgetitem18)
         self.tOrders.setObjectName(u"tOrders")
 
         self.Orders.addWidget(self.tOrders)
@@ -322,7 +306,6 @@ class Ui_MainWindow(object):
         self.lSma.setText(QCoreApplication.translate("MainWindow", u"000000", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"All Positions", None))
         self.lPositionsTotalValue.setText(QCoreApplication.translate("MainWindow", u"000000", None))
-        self.btnSettings.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"EST time :", None))
 #if QT_CONFIG(tooltip)
         self.label_5.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Available hours: 04:00-20:00 EST</p><p>Actual trade:      09:30-16:00 EST</p></body></html>", None))
@@ -330,36 +313,49 @@ class Ui_MainWindow(object):
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"US Market:", None))
         self.lblTime.setText(QCoreApplication.translate("MainWindow", u"tbd", None))
         self.lblMarket.setText(QCoreApplication.translate("MainWindow", u"tbd", None))
-        self.chbxProcess.setText(QCoreApplication.translate("MainWindow", u"Process Positions and Candidates", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Trades available: ", None))
         self.lblAvailTrades.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.lblPositions.setText(QCoreApplication.translate("MainWindow", u"Positions", None))
+        self.lblPositions.setText(QCoreApplication.translate("MainWindow", u"Candidates", None))
+        ___qtablewidgetitem = self.tPositions.horizontalHeaderItem(0)
+        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Ticker", None));
+        ___qtablewidgetitem1 = self.tPositions.horizontalHeaderItem(1)
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Daily PnL", None));
+        ___qtablewidgetitem2 = self.tPositions.horizontalHeaderItem(2)
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Total", None));
+        ___qtablewidgetitem3 = self.tPositions.horizontalHeaderItem(3)
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Value", None));
+        ___qtablewidgetitem4 = self.tPositions.horizontalHeaderItem(4)
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Stocks", None));
+        ___qtablewidgetitem5 = self.tPositions.horizontalHeaderItem(5)
+        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Updated", None));
         self.lblCandidates.setText(QCoreApplication.translate("MainWindow", u"Candidates", None))
-        ___qtablewidgetitem = self.tCandidates.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Stock", None));
-        ___qtablewidgetitem1 = self.tCandidates.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Open", None));
-        ___qtablewidgetitem2 = self.tCandidates.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Close", None));
-        ___qtablewidgetitem3 = self.tCandidates.horizontalHeaderItem(3)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Bid", None));
-        ___qtablewidgetitem4 = self.tCandidates.horizontalHeaderItem(4)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Ask", None));
-        ___qtablewidgetitem5 = self.tCandidates.horizontalHeaderItem(5)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Target price", None));
-        ___qtablewidgetitem6 = self.tCandidates.horizontalHeaderItem(6)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Average drop", None));
-        ___qtablewidgetitem7 = self.tCandidates.horizontalHeaderItem(7)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"Rank", None));
-        ___qtablewidgetitem8 = self.tCandidates.horizontalHeaderItem(8)
-        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"Last Update", None));
+        ___qtablewidgetitem6 = self.tCandidates.horizontalHeaderItem(0)
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Stock", None));
+        ___qtablewidgetitem7 = self.tCandidates.horizontalHeaderItem(1)
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"Open", None));
+        ___qtablewidgetitem8 = self.tCandidates.horizontalHeaderItem(2)
+        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"Close", None));
+        ___qtablewidgetitem9 = self.tCandidates.horizontalHeaderItem(3)
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"Bid", None));
+        ___qtablewidgetitem10 = self.tCandidates.horizontalHeaderItem(4)
+        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"Ask", None));
+        ___qtablewidgetitem11 = self.tCandidates.horizontalHeaderItem(5)
+        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"Target price", None));
+        ___qtablewidgetitem12 = self.tCandidates.horizontalHeaderItem(6)
+        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Average drop", None));
+        ___qtablewidgetitem13 = self.tCandidates.horizontalHeaderItem(7)
+        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Rank", None));
+        ___qtablewidgetitem14 = self.tCandidates.horizontalHeaderItem(8)
+        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"FMP Rating", None));
+        ___qtablewidgetitem15 = self.tCandidates.horizontalHeaderItem(9)
+        ___qtablewidgetitem15.setText(QCoreApplication.translate("MainWindow", u"Last Update", None));
         self.lblOrders.setText(QCoreApplication.translate("MainWindow", u"Orders", None))
-        ___qtablewidgetitem9 = self.tOrders.horizontalHeaderItem(0)
-        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"Stock", None));
-        ___qtablewidgetitem10 = self.tOrders.horizontalHeaderItem(1)
-        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"Action", None));
-        ___qtablewidgetitem11 = self.tOrders.horizontalHeaderItem(2)
-        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"Type", None));
+        ___qtablewidgetitem16 = self.tOrders.horizontalHeaderItem(0)
+        ___qtablewidgetitem16.setText(QCoreApplication.translate("MainWindow", u"Stock", None));
+        ___qtablewidgetitem17 = self.tOrders.horizontalHeaderItem(1)
+        ___qtablewidgetitem17.setText(QCoreApplication.translate("MainWindow", u"Action", None));
+        ___qtablewidgetitem18 = self.tOrders.horizontalHeaderItem(2)
+        ___qtablewidgetitem18.setText(QCoreApplication.translate("MainWindow", u"Type", None));
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Console", None))
     # retranslateUi
 

@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'pos.ui'
 ##
-## Created by: Qt User Interface Compiler version 5.15.1
+## Created by: Qt User Interface Compiler version 5.15.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -17,7 +17,7 @@ class Ui_position_canvas(object):
     def setupUi(self, position_canvas):
         if not position_canvas.objectName():
             position_canvas.setObjectName(u"position_canvas")
-        position_canvas.resize(388, 179)
+        position_canvas.resize(388, 185)
         position_canvas.setStyleSheet(u"")
         self.gridLayout = QGridLayout(position_canvas)
         self.gridLayout.setObjectName(u"gridLayout")
@@ -92,6 +92,10 @@ class Ui_position_canvas(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_5)
+
 
         self.horizontalLayout.addLayout(self.horizontalLayout_2)
 
@@ -109,6 +113,10 @@ class Ui_position_canvas(object):
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
 
         self.horizontalLayout.addLayout(self.horizontalLayout_3)
+
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer_6)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout)

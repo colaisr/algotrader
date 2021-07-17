@@ -45,7 +45,6 @@ class Decoder(Object):
         self.wrapper = wrapper
         self.serverVersion = serverVersion
         self.discoverParams()
-        #self.printParams()
 
 
     def processTickPriceMsg(self, fields):
@@ -181,9 +180,9 @@ class Decoder(Object):
         OrderDecoder.decodeAllOrNone(self, fields)
         OrderDecoder.decodeMinQty(self, fields)
         OrderDecoder.decodeOcaType(self, fields)
-        OrderDecoder.decodeETradeOnly(self, fields)
-        OrderDecoder.decodeFirmQuoteOnly(self, fields)
-        OrderDecoder.decodeNbboPriceCap(self, fields)
+        OrderDecoder.skipETradeOnly(self, fields)
+        OrderDecoder.skipFirmQuoteOnly(self, fields)
+        OrderDecoder.skipNbboPriceCap(self, fields)
         OrderDecoder.decodeParentId(self, fields)
         OrderDecoder.decodeTriggerMethod(self, fields)
         OrderDecoder.decodeVolOrderParams(self, fields, True)
@@ -210,6 +209,8 @@ class Decoder(Object):
         OrderDecoder.decodeIsOmsContainers(self, fields)
         OrderDecoder.decodeDiscretionaryUpToLimitPrice(self, fields)
         OrderDecoder.decodeUsePriceMgmtAlgo(self, fields)
+        OrderDecoder.decodeDuration(self, fields)
+        OrderDecoder.decodePostToAts(self, fields)
 
         self.wrapper.openOrder(order.orderId, contract, order, orderState)
 
@@ -289,7 +290,7 @@ class Decoder(Object):
         if version >= 4:
             contract.underConId = decode(int, fields)
         if version >= 5:
-            contract.longName = decode(str, fields)
+            contract.longName = decode(str, fields).encode().decode('unicode-escape') if self.serverVersion >= MIN_SERVER_VER_ENCODE_MSG_ASCII7 else decode(str, fields)
             contract.contract.primaryExchange = decode(str, fields)
         if version >= 6:
             contract.contractMonth = decode(str, fields)
@@ -324,6 +325,9 @@ class Decoder(Object):
 
         if self.serverVersion >= MIN_SERVER_VER_REAL_EXPIRATION_DATE:
             contract.realExpirationDate = decode(str, fields)
+
+        if self.serverVersion >= MIN_SERVER_VER_STOCK_TYPE:
+            contract.stockType = decode(str, fields)
 
         self.wrapper.contractDetails(reqId, contract)
 
@@ -551,6 +555,8 @@ class Decoder(Object):
         self.wrapper.realtimeBar(reqId, bar.time, bar.open, bar.high, bar.low, bar.close, bar.volume, bar.wap, bar.count)
 
     def processTickOptionComputationMsg(self, fields):
+        version = self.serverVersion
+        tickAttrib = None
         optPrice = None
         pvDividend = None
         gamma = None
@@ -559,9 +565,14 @@ class Decoder(Object):
         undPrice = None
 
         next(fields)
-        version = decode(int, fields)
+        if self.serverVersion < MIN_SERVER_VER_PRICE_BASED_VOLATILITY:
+            version = decode(int, fields)
+
         reqId = decode(int, fields)
         tickTypeInt = decode(int, fields)
+
+        if self.serverVersion >= MIN_SERVER_VER_PRICE_BASED_VOLATILITY:
+            tickAttrib = decode(int, fields)
 
         impliedVol = decode(float, fields)
         delta = decode(float, fields)
@@ -598,7 +609,7 @@ class Decoder(Object):
             if undPrice == -1:             # -1 is the "not computed" indicator
                 undPrice = None
 
-        self.wrapper.tickOptionComputation(reqId, tickTypeInt, impliedVol,
+        self.wrapper.tickOptionComputation(reqId, tickTypeInt, tickAttrib, impliedVol,
             delta, optPrice, pvDividend, gamma, vega, theta, undPrice)
 
 
@@ -1177,6 +1188,13 @@ class Decoder(Object):
         next(fields)
 
         self.wrapper.completedOrdersEnd()
+        
+    def processReplaceFAEndMsg(self, fields):
+        next(fields)
+        reqId = decode(int, fields)
+        text = decode(str, fields)
+
+        self.wrapper.replaceFAEnd(reqId, text)
 
     ######################################################################
 
@@ -1242,7 +1260,7 @@ class Decoder(Object):
             if pname != "self":
                 logger.debug("field %s ", fields[fieldIdx])
                 try:
-                    arg = fields[fieldIdx].decode('UTF-8')
+                    arg = fields[fieldIdx].decode('unicode-escape' if self.serverVersion >= MIN_SERVER_VER_ENCODE_MSG_ASCII7 else 'UTF-8')
                 except UnicodeDecodeError:
                     arg = fields[fieldIdx].decode('latin-1')
                 logger.debug("arg %s type %s", arg, param.annotation)
@@ -1362,7 +1380,8 @@ class Decoder(Object):
         IN.TICK_BY_TICK: HandleInfo(proc=processTickByTickMsg),
         IN.ORDER_BOUND: HandleInfo(proc=processOrderBoundMsg),
         IN.COMPLETED_ORDER: HandleInfo(proc=processCompletedOrderMsg),
-        IN.COMPLETED_ORDERS_END: HandleInfo(proc=processCompletedOrdersEndMsg)
+        IN.COMPLETED_ORDERS_END: HandleInfo(proc=processCompletedOrdersEndMsg),
+        IN.REPLACE_FA_END: HandleInfo(proc=processReplaceFAEndMsg)
 }
 
 

@@ -58,11 +58,11 @@ class Order(Object):
         self.goodTillDate        = ""   # Format: 20060505 08:00:00 {time zone}
         self.rule80A             = ""   # Individual = 'I', Agency = 'A', AgentOtherMember = 'W', IndividualPTIA = 'J', AgencyPTIA = 'U', AgentOtherMemberPTIA = 'M', IndividualPT = 'K', AgencyPT = 'Y', AgentOtherMemberPT = 'N'
         self.allOrNone      = False
-        self.minQty         = UNSET_INTEGER  #type: int
-        self.percentOffset  = UNSET_DOUBLE  # type: float; REL orders only
+        self.minQty         = UNSET_INTEGER  # type: int
+        self.percentOffset  = UNSET_DOUBLE  # type: float  # REL orders only
         self.overridePercentageConstraints = False
         self.trailStopPrice = UNSET_DOUBLE  # type: float
-        self.trailingPercent = UNSET_DOUBLE # type: float; TRAILLIMIT orders only
+        self.trailingPercent = UNSET_DOUBLE # type: float  # TRAILLIMIT orders only
 
         # financial advisors only
         self.faGroup              = ""
@@ -72,20 +72,17 @@ class Order(Object):
 
         # institutional (ie non-cleared) only
         self.designatedLocation = "" #used only when shortSaleSlot=2
-        self.openClose     = "O"    # O=Open, C=Close
+        self.openClose     = ""     # O=Open, C=Close
         self.origin        = CUSTOMER  # 0=Customer, 1=Firm
-        self.shortSaleSlot = 0    # type: int; 1 if you hold the shares, 2 if they will be delivered from elsewhere.  Only for Action=SSHORT
+        self.shortSaleSlot = 0         # type: int  # 1 if you hold the shares, 2 if they will be delivered from elsewhere.  Only for Action=SSHORT
         self.exemptCode    = -1
 
         # SMART routing only
         self.discretionaryAmt = 0
-        self.eTradeOnly       = True
-        self.firmQuoteOnly    = True
-        self.nbboPriceCap     = UNSET_DOUBLE  # type: float
         self.optOutSmartRouting = False
 
         # BOX exchange orders only
-        self.auctionStrategy = AUCTION_UNSET # type: int; AUCTION_MATCH, AUCTION_IMPROVEMENT, AUCTION_TRANSPARENT
+        self.auctionStrategy = AUCTION_UNSET # type: int  # AUCTION_MATCH, AUCTION_IMPROVEMENT, AUCTION_TRANSPARENT
         self.startingPrice   = UNSET_DOUBLE   # type: float
         self.stockRefPrice   = UNSET_DOUBLE   # type: float
         self.delta           = UNSET_DOUBLE   # type: float
@@ -99,7 +96,7 @@ class Order(Object):
 
         # VOLATILITY ORDERS ONLY
         self.volatility            = UNSET_DOUBLE  # type: float
-        self.volatilityType        = UNSET_INTEGER  # type: int   # 1=daily, 2=annual
+        self.volatilityType        = UNSET_INTEGER  # type: int  # 1=daily, 2=annual
         self.deltaNeutralOrderType = ""
         self.deltaNeutralAuxPrice  = UNSET_DOUBLE  # type: float
         self.deltaNeutralConId     = 0
@@ -111,11 +108,11 @@ class Order(Object):
         self.deltaNeutralShortSaleSlot = 0
         self.deltaNeutralDesignatedLocation = ""
         self.continuousUpdate      = False
-        self.referencePriceType    = UNSET_INTEGER  # type: int; 1=Average, 2 = BidOrAsk
+        self.referencePriceType    = UNSET_INTEGER  # type: int  # 1=Average, 2 = BidOrAsk
 
         # COMBO ORDERS ONLY
-        self.basisPoints     = UNSET_DOUBLE  # type: float; EFP orders only
-        self.basisPointsType = UNSET_INTEGER  # type: int;  EFP orders only
+        self.basisPoints     = UNSET_DOUBLE  # type: float  # EFP orders only
+        self.basisPointsType = UNSET_INTEGER  # type: int  # EFP orders only
 
         # SCALE ORDERS ONLY
         self.scaleInitLevelSize  = UNSET_INTEGER  # type: int
@@ -210,6 +207,8 @@ class Order(Object):
         self.parentPermId = 0
 
         self.usePriceMgmtAlgo = None
+        self.duration = UNSET_INTEGER
+        self.postToAts = UNSET_INTEGER
 
     def __str__(self):
         s = "%s,%d,%s:" % (self.orderId, self.clientId, self.permId)

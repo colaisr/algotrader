@@ -46,6 +46,7 @@ class Ui_setWin(object):
 
         self.lstCandidates = QListWidget(setWin)
         self.lstCandidates.setObjectName(u"lstCandidates")
+        self.lstCandidates.setEnabled(False)
         self.lstCandidates.setSelectionMode(QAbstractItemView.SingleSelection)
 
         self.verticalLayout_3.addWidget(self.lstCandidates)
@@ -55,6 +56,7 @@ class Ui_setWin(object):
         self.splitter.setOrientation(Qt.Horizontal)
         self.btnAddC = QPushButton(self.splitter)
         self.btnAddC.setObjectName(u"btnAddC")
+        self.btnAddC.setEnabled(False)
         self.splitter.addWidget(self.btnAddC)
         self.btnRemoveC = QPushButton(self.splitter)
         self.btnRemoveC.setObjectName(u"btnRemoveC")
@@ -68,6 +70,7 @@ class Ui_setWin(object):
         self.splitter_2.setOrientation(Qt.Horizontal)
         self.btnGet = QPushButton(self.splitter_2)
         self.btnGet.setObjectName(u"btnGet")
+        self.btnGet.setEnabled(False)
         self.splitter_2.addWidget(self.btnGet)
         self.btnClear = QPushButton(self.splitter_2)
         self.btnClear.setObjectName(u"btnClear")
@@ -114,6 +117,7 @@ class Ui_setWin(object):
 
         self.txtAccount = QLineEdit(setWin)
         self.txtAccount.setObjectName(u"txtAccount")
+        self.txtAccount.setEnabled(False)
 
         self.horizontalLayout_3.addWidget(self.txtAccount)
 
@@ -133,6 +137,7 @@ class Ui_setWin(object):
 
         self.txtPort = QLineEdit(setWin)
         self.txtPort.setObjectName(u"txtPort")
+        self.txtPort.setEnabled(False)
 
         self.horizontalLayout_2.addWidget(self.txtPort)
 
@@ -152,6 +157,7 @@ class Ui_setWin(object):
 
         self.spIntervalUi = QSpinBox(setWin)
         self.spIntervalUi.setObjectName(u"spIntervalUi")
+        self.spIntervalUi.setEnabled(False)
         self.spIntervalUi.setMinimum(1)
         self.spIntervalUi.setMaximum(99999)
 
@@ -173,6 +179,7 @@ class Ui_setWin(object):
 
         self.spIntervalWorker = QSpinBox(setWin)
         self.spIntervalWorker.setObjectName(u"spIntervalWorker")
+        self.spIntervalWorker.setEnabled(False)
         self.spIntervalWorker.setMinimum(30)
         self.spIntervalWorker.setMaximum(99999)
 
@@ -208,6 +215,7 @@ class Ui_setWin(object):
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
         self.tmTechFrom = QTimeEdit(setWin)
         self.tmTechFrom.setObjectName(u"tmTechFrom")
+        self.tmTechFrom.setEnabled(False)
 
         self.horizontalLayout_11.addWidget(self.tmTechFrom)
 
@@ -226,6 +234,7 @@ class Ui_setWin(object):
 
         self.tmTechTo = QTimeEdit(setWin)
         self.tmTechTo.setObjectName(u"tmTechTo")
+        self.tmTechTo.setEnabled(False)
 
         self.horizontalLayout_11.addWidget(self.tmTechTo)
 
@@ -237,11 +246,13 @@ class Ui_setWin(object):
 
         self.chbxUiDebug = QCheckBox(setWin)
         self.chbxUiDebug.setObjectName(u"chbxUiDebug")
+        self.chbxUiDebug.setEnabled(False)
 
         self.station.addWidget(self.chbxUiDebug)
 
         self.chbxAutostart = QCheckBox(setWin)
         self.chbxAutostart.setObjectName(u"chbxAutostart")
+        self.chbxAutostart.setEnabled(False)
 
         self.station.addWidget(self.chbxAutostart)
 
@@ -285,6 +296,7 @@ class Ui_setWin(object):
 
         self.spProfit = QSpinBox(setWin)
         self.spProfit.setObjectName(u"spProfit")
+        self.spProfit.setEnabled(False)
 
         self.horizontalLayout_8.addWidget(self.spProfit)
 
@@ -304,6 +316,7 @@ class Ui_setWin(object):
 
         self.spTrail = QSpinBox(setWin)
         self.spTrail.setObjectName(u"spTrail")
+        self.spTrail.setEnabled(False)
 
         self.horizontalLayout_7.addWidget(self.spTrail)
 
@@ -323,6 +336,7 @@ class Ui_setWin(object):
 
         self.spLoss = QSpinBox(setWin)
         self.spLoss.setObjectName(u"spLoss")
+        self.spLoss.setEnabled(False)
         self.spLoss.setMinimum(-99)
         self.spLoss.setMaximum(0)
 
@@ -344,6 +358,7 @@ class Ui_setWin(object):
 
         self.spBulck = QSpinBox(setWin)
         self.spBulck.setObjectName(u"spBulck")
+        self.spBulck.setEnabled(False)
         self.spBulck.setMinimum(1)
         self.spBulck.setMaximum(10000)
 
@@ -372,6 +387,7 @@ class Ui_setWin(object):
 
         self.chbxUseServer = QCheckBox(setWin)
         self.chbxUseServer.setObjectName(u"chbxUseServer")
+        self.chbxUseServer.setEnabled(False)
 
         self.verticalLayout_2.addWidget(self.chbxUseServer)
 
@@ -388,6 +404,7 @@ class Ui_setWin(object):
 
         self.txtServerUrl = QLineEdit(setWin)
         self.txtServerUrl.setObjectName(u"txtServerUrl")
+        self.txtServerUrl.setEnabled(False)
 
         self.horizontalLayout_15.addWidget(self.txtServerUrl)
 
@@ -406,6 +423,7 @@ class Ui_setWin(object):
 
         self.buttonBox = QDialogButtonBox(setWin)
         self.buttonBox.setObjectName(u"buttonBox")
+        self.buttonBox.setEnabled(False)
         self.buttonBox.setOrientation(Qt.Horizontal)
         self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
 

@@ -59,6 +59,9 @@
          </item>
          <item>
           <widget class="QListWidget" name="lstCandidates">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="selectionMode">
             <enum>QAbstractItemView::SingleSelection</enum>
            </property>
@@ -70,6 +73,9 @@
             <enum>Qt::Horizontal</enum>
            </property>
            <widget class="QPushButton" name="btnAddC">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Add</string>
             </property>
@@ -90,6 +96,9 @@
             <enum>Qt::Horizontal</enum>
            </property>
            <widget class="QPushButton" name="btnGet">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Download</string>
             </property>
@@ -170,7 +179,11 @@
               </spacer>
              </item>
              <item>
-              <widget class="QLineEdit" name="txtAccount"/>
+              <widget class="QLineEdit" name="txtAccount">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -197,7 +210,11 @@
               </spacer>
              </item>
              <item>
-              <widget class="QLineEdit" name="txtPort"/>
+              <widget class="QLineEdit" name="txtPort">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -225,6 +242,9 @@
              </item>
              <item>
               <widget class="QSpinBox" name="spIntervalUi">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="minimum">
                 <number>1</number>
                </property>
@@ -259,6 +279,9 @@
              </item>
              <item>
               <widget class="QSpinBox" name="spIntervalWorker">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="minimum">
                 <number>30</number>
                </property>
@@ -313,7 +336,11 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_11">
              <item>
-              <widget class="QTimeEdit" name="tmTechFrom"/>
+              <widget class="QTimeEdit" name="tmTechFrom">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+              </widget>
              </item>
              <item>
               <spacer name="horizontalSpacer_14">
@@ -349,7 +376,11 @@
               </spacer>
              </item>
              <item>
-              <widget class="QTimeEdit" name="tmTechTo"/>
+              <widget class="QTimeEdit" name="tmTechTo">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -357,6 +388,9 @@
          </item>
          <item>
           <widget class="QCheckBox" name="chbxUiDebug">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="toolTip">
             <string>UI only no any data loaded for Development</string>
            </property>
@@ -367,6 +401,9 @@
          </item>
          <item>
           <widget class="QCheckBox" name="chbxAutostart">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="toolTip">
             <string>Automatically start positions processing when all data loaded</string>
            </property>
@@ -452,7 +489,11 @@
             </spacer>
            </item>
            <item>
-            <widget class="QSpinBox" name="spProfit"/>
+            <widget class="QSpinBox" name="spProfit">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
@@ -479,7 +520,11 @@
             </spacer>
            </item>
            <item>
-            <widget class="QSpinBox" name="spTrail"/>
+            <widget class="QSpinBox" name="spTrail">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
@@ -507,6 +552,9 @@
            </item>
            <item>
             <widget class="QSpinBox" name="spLoss">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="minimum">
               <number>-99</number>
              </property>
@@ -541,6 +589,9 @@
            </item>
            <item>
             <widget class="QSpinBox" name="spBulck">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="minimum">
               <number>1</number>
              </property>
@@ -590,6 +641,9 @@
          </item>
          <item>
           <widget class="QCheckBox" name="chbxUseServer">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>use Algotrader server</string>
            </property>
@@ -618,7 +672,11 @@
             </spacer>
            </item>
            <item>
-            <widget class="QLineEdit" name="txtServerUrl"/>
+            <widget class="QLineEdit" name="txtServerUrl">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
@@ -641,6 +699,9 @@
      </item>
      <item>
       <widget class="QDialogButtonBox" name="buttonBox">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
