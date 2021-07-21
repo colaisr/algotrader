@@ -127,7 +127,14 @@ class Algotrader:
 
     def get_settings(self):
         print('Connecting to server - to get settings.')
-        self.settings=TraderSettings()
+        self.settings=None
+        try:
+            self.settings=TraderSettings()
+        except Exception as e:
+            if hasattr(e, 'message'):
+                print("Error in getting Settings: " + str(e.message))
+            else:
+                print("Error in getting Settings: " + str(e))
         print('Settings received.')
 
     def start_processing(self):
@@ -138,8 +145,9 @@ class Algotrader:
     def process_worker(self):
         print("Requesting Command from server......")
         self.get_settings() #to keep them updated
-        server_command=get_command_from_server(self.settings)
-        self.process_server_command_response(server_command)
+        if self.settings is not None:
+            server_command=get_command_from_server(self.settings)
+            self.process_server_command_response(server_command)
 
 
     def process_server_command_response(self, r):

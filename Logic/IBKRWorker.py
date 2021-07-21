@@ -183,16 +183,22 @@ Starts tracking the Candidates and adds the statistics
                                            "LastUpdate": 0}
             self.app.reqMarketDataType(1)
             self.app.reqMktData(id, c, '', False, False, [])
+            while len(self.app.CandidatesLiveDataRequests)>50:
+                print('---------more than 50 waiting last req'+str(self.app.nextorderId))
+                time.sleep(1)
             self.app.nextorderId += 1
             trackedStockN += 1
             message_number+=1
-            if message_number % 10==0:
-                time.sleep(1)
-                print("Waiting to clear messages buffer")
+            # if message_number % 10==0:
+            #     time.sleep(1)
+            #     print("Waiting to clear messages buffer")
 
-
+        while len(self.app.CandidatesLiveDataRequests)>0:
+            print("waiting for the last candidate data....")
+            time.sleep(1)
         have_empty = True
         counter = 0
+
         # while len(self.app.CandidatesLiveDataRequests):
         #     time.sleep(1)
         #     print("Waiting for last requested candidate data (Closed or Open - depending on session state ) :" + str(counter))
