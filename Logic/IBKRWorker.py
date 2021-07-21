@@ -355,7 +355,7 @@ processes candidates for buying if enough SMA
         """
 
 
-        if self.real_remaining_funds < 1000:
+        if self.real_remaining_funds < self.settings.BULCKAMOUNT:
             print("SMA (including open positions cushion) is " + str(
                 self.real_remaining_funds) + " it is less than 1000 - skipping buy")
             return
@@ -364,7 +364,7 @@ processes candidates for buying if enough SMA
                 "SMA (including open positions cushion) is :" + str(self.real_remaining_funds) + " searching candidates")
             # updating the targets if market was open in the middle
             self.update_target_price_for_tracked_stocks()
-            res = sorted(self.app.candidatesLive.items(), key=lambda x: x[1]['yahoo_rank'], reverse=False)
+            res = sorted(sorted(self.app.candidatesLive.items(), key=lambda x: x[1]['yahoo_rank'], reverse=False), key=lambda x: x[1]['tipranksRank'], reverse=True)
             print(str(len(res)) + "Candidates found,sorted by Yahoo ranks")
             for i, c in res:
                 if self.app.tradesRemaining > 0 or self.app.tradesRemaining == -1:
