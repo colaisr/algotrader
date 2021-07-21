@@ -180,11 +180,12 @@ Starts tracking the Candidates and adds the statistics
                                            "averagePriceDropP": 0,
                                            "averagePriceSpreadP": 0,
                                            "tipranksRank": 0,
+                                           "yahoo_rank":6,
                                            "LastUpdate": 0}
             self.app.reqMarketDataType(1)
             self.app.reqMktData(id, c, '', False, False, [])
-            while len(self.app.CandidatesLiveDataRequests)>50:
-                print('---------more than 50 waiting last req'+str(self.app.nextorderId))
+            while len(self.app.CandidatesLiveDataRequests)>40:
+                print('---------more than 40 Candidates quied waiting to clean.... last req'+str(self.app.nextorderId))
                 time.sleep(1)
             self.app.nextorderId += 1
             trackedStockN += 1
@@ -281,21 +282,19 @@ Evaluates stock for buying
             if c["Stock"] == s:
                 ask_price = c["Ask"]
                 average_daily_dropP = c["averagePriceDropP"]
-                tipRank = c["tipranksRank"]
                 target_price = c["target_price"]
                 break
 
         if ask_price == -1:  # market is closed
             print('The market is closed skipping...')
             result='skept'
-        elif ask_price < target_price and float(tipRank) > 8:
+        elif ask_price < target_price:
             self.buy_the_stock(ask_price, s)
             result='bought'
 
         else:
             print(
-                "The price of :" + str(ask_price) + "was not in range of :" + str(average_daily_dropP) + " % " +
-                " Or the Rating of " + str(tipRank) + " was not good enough")
+                "The price of :" + str(ask_price) + "was not in range of :" + str(average_daily_dropP) + " % " )
             result='skept'
 
         return result
@@ -529,6 +528,7 @@ Creating a PnL request the result will be stored in generalStarus
                     self.app.candidatesLive[k]["averagePriceDropP"] = dt['yahoo_avdropP']
                     self.app.candidatesLive[k]["averagePriceSpreadP"] = dt['yahoo_avspreadP']
                     self.app.candidatesLive[k]['tipranksRank'] = dt['tipranks']
+                    self.app.candidatesLive[k]['yahoo_rank'] = dt['yahoo_rank']
                     self.app.candidatesLive[k]['fmp_rating'] = dt['fmp_rating']
                     print(
                         "Yahoo data and Tipranks for " + v['Stock'] + " was added")
