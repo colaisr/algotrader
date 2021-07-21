@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Restarting TWS"
-/root/Jts/tws start&
+/home/su/Jts/tws start&
 echo "TWS started"
 sleep 60
 echo "finished waiting"
