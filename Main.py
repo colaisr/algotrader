@@ -86,6 +86,8 @@ class TraderSettings():
         self.INTERVALSERVER = retrieved['server_report_interval_sec']
         self.ALLOWBUY = retrieved['algo_allow_buy']
         self.AUTORESTART = retrieved['station_autorestart']
+        self.APPLYMAXHOLD=retrieved['algo_apply_max_hold']
+        self.MAXHOLDDAYS=retrieved['algo_max_hold_days']
 
     def set_autorestart_task(self):
         print("Autorestart setting applied- validating OS Setting")
@@ -123,6 +125,7 @@ class Algotrader:
 
         self.settings = None
         self.stocks_data_from_server =None
+        self.positions_open_on_server = None
         self.started_time=datetime.now()
 
     def get_settings(self):
@@ -153,6 +156,7 @@ class Algotrader:
     def process_server_command_response(self, r):
         response=json.loads(r)
         self.stocks_data_from_server=response['candidates']
+        self.positions_open_on_server=response['open_positions']
         command=response['command']
         print('Received command : '+command)
         if command=='restart_worker':
@@ -173,6 +177,7 @@ class Algotrader:
     def process_ibkr_cycle(self):
         self.ibkrworker = IBKRWorker(self.settings)
         self.ibkrworker.stocks_data_from_server = self.stocks_data_from_server
+        self.ibkrworker.positions_open_on_server = self.positions_open_on_server
         self.ibkrworker.run_full_cycle()
         print("Worker finished reporting to the server........")
         self.report_to_server()

@@ -15,6 +15,7 @@ class IBKRWorker():
         self.settings = settings
         self.app.setting = self.settings
         self.stocks_data_from_server = []
+        self.positions_open_on_server=[]
         self.last_worker_execution_time=None
 
     def run_full_cycle(self):
@@ -260,7 +261,20 @@ Processes the positions to identify Profit/Loss
                             self.app.placeOrder(self.app.nextorderId, contract, order)
                             self.app.nextorderId = self.app.nextorderId + 1
                             print("Created a Market Sell order for " + s)
-
+                    elif profit >2 and bool(self.settings.APPLYMAXHOLD) :
+                        positions_dict = {}
+                        for po in self.positions_open_on_server:
+                            positions_dict[po['ticker']] = datetime.datetime.fromisoformat(po['opened'])
+                        opened=positions_dict[s]
+                        delta = (datetime.datetime.now() - opened).days
+                        if delta>int(self.settings.MAXHOLDDAYS):
+                            print(s + " is held for " + str(delta) +
+                                                       " days. Creating a Market Sell Order to utilize the funds")
+                            contract = createContract(s)
+                            order = createMktSellOrder(p['stocks'])
+                            self.app.placeOrder(self.app.nextorderId, contract, order)
+                            self.app.nextorderId = self.app.nextorderId + 1
+                            print("Created a Market Sell order for " + s)
                 else:
                     print("Position " + s + " skept its Value is 0")
             else:
