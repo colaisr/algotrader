@@ -544,8 +544,10 @@ Creating a PnL request the result will be stored in generalStarus
                     self.app.candidatesLive[k]['tipranksRank'] = dt['tipranks']
                     self.app.candidatesLive[k]['yahoo_rank'] = dt['yahoo_rank']
                     self.app.candidatesLive[k]['fmp_rating'] = dt['fmp_rating']
+                    self.app.candidatesLive[k]['under_priced_pnt'] = dt['under_priced_pnt']
+                    self.app.candidatesLive[k]['twelve_month_momentum'] = dt['twelve_month_momentum']
                     print(
-                        "Yahoo data and Tipranks for " + v['Stock'] + " was added")
+                        "Ticker Data from server for " + v['Stock'] + " was added")
                     break
 
     def check_session_state(self):
