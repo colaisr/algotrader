@@ -378,7 +378,9 @@ processes candidates for buying if enough SMA
                 "SMA (including open positions cushion) is :" + str(self.real_remaining_funds) + " searching candidates")
             # updating the targets if market was open in the middle
             self.update_target_price_for_tracked_stocks()
-            res = sorted(sorted(self.app.candidatesLive.items(), key=lambda x: x[1]['yahoo_rank'], reverse=False), key=lambda x: x[1]['tipranksRank'], reverse=True)
+            res=self.app.candidatesLive.items()
+            # res=sort_by_parameter_desc(self.app.candidatesLive.items(),'twelve_month_momentum')
+            # res = sorted(sorted(sorted(sorted(self.app.candidatesLive.items(), key=lambda x: x[1]['twelve_month_momentum'], reverse=False), key=lambda x: x[1]['under_priced_pnt'], reverse=False), key=lambda x: x[1]['yahoo_rank'], reverse=False), key=lambda x: x[1]['tipranksRank'], reverse=True)
             print(str(len(res)) + "Candidates found,sorted by Yahoo ranks")
             for i, c in res:
                 if self.app.tradesRemaining > 0 or self.app.tradesRemaining == -1:
@@ -583,3 +585,7 @@ def time_in_range(start, end, x):
         return start <= x <= end
     else:
         return start <= x or x <= end
+
+
+def sort_by_parameter_desc(object,property):
+    return sorted(object, key=lambda x: x[1][property], reverse=False)
