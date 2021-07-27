@@ -116,6 +116,7 @@ def report_snapshot_to_server(*args, **kwargs):
     market_state = arguments[11]
     excess_liqudity = arguments[12]
     started_time=arguments[13].isoformat()
+    api_connected=arguments[14]
     r = requests.post(arguments[0].SERVERURL + '/connections/postreport',
                       json={"user": arguments[0].SERVERUSER,
                             "net_liquidation": net_liquidation,
@@ -131,7 +132,8 @@ def report_snapshot_to_server(*args, **kwargs):
                             "market_time": market_time.isoformat(),
                             "market_state": market_state,
                             "excess_liquidity":excess_liqudity,
-                            "started_time":started_time})
+                            "started_time":started_time,
+                            "api_connected":api_connected})
     status_code = r.status_code
     if status_code == 200:
         return r.text

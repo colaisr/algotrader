@@ -17,6 +17,7 @@ class IBKRWorker():
         self.stocks_data_from_server = []
         self.positions_open_on_server=[]
         self.last_worker_execution_time=None
+        self.api_connected=False
 
     def run_full_cycle(self):
         try:
@@ -218,6 +219,7 @@ Starts tracking the Candidates and adds the statistics
         self.add_market_data_to_live_candidates()
 
         print(str(len(self.app.candidatesLive)) + " Candidates evaluated and started to track")
+        self.api_connected=True
         return True
 
     def process_positions(self):
