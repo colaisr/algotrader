@@ -270,13 +270,17 @@ Processes the positions to identify Profit/Loss
                         opened=positions_dict[s]
                         delta = (datetime.datetime.now() - opened).days
                         if delta>int(self.settings.MAXHOLDDAYS):
-                            print(s + " is held for " + str(delta) +
-                                                       " days. Creating a Market Sell Order to utilize the funds")
-                            contract = createContract(s)
-                            order = createMktSellOrder(p['stocks'])
-                            self.app.placeOrder(self.app.nextorderId, contract, order)
-                            self.app.nextorderId = self.app.nextorderId + 1
-                            print("Created a Market Sell order for " + s)
+                            orders = self.app.openOrders
+                            if s in orders:
+                                print("Order for " + s + "already exist- skipping")
+                            else:
+                                print(s + " is held for " + str(delta) +
+                                                           " days. Creating a Market Sell Order to utilize the funds")
+                                contract = createContract(s)
+                                order = createMktSellOrder(p['stocks'])
+                                self.app.placeOrder(self.app.nextorderId, contract, order)
+                                self.app.nextorderId = self.app.nextorderId + 1
+                                print("Created a Market Sell order for " + s)
                 else:
                     print("Position " + s + " skept its Value is 0")
             else:
