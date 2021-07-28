@@ -42,12 +42,15 @@ def restart_tws_and_trader():
         subprocess.call('Scripts\\win_restartTws.bat')
         os.execv(sys.executable, ['python'] + sys.argv)
     elif platform.system()=='Linux':
-        print("Linux OS detected -not implemented")
-        pass
+        print("Linux OS detected -restarting")
+        import sys
+        import os
+        os.execl(sys.executable, sys.executable, *sys.argv)
     elif platform.system()=='Darwin':
-        print("Mac OS detected -not implemented")
-        pass
-
+        print("Mac OS detected -restarting")
+        import sys
+        import os
+        os.execl(sys.executable, sys.executable, *sys.argv)
 
 class SettingsCandidate:
     def __init__(self):
