@@ -202,7 +202,7 @@ Starts tracking the Candidates and adds the statistics
             #     print("Waiting to clear messages buffer")
         counter=0
         while len(self.app.CandidatesLiveDataRequests)>0:
-            print("waiting for the last candidate data...."+str(c))
+            print("waiting for the last candidate data...."+str(counter))
             counter=counter+1
             time.sleep(1)
             if counter>60:
