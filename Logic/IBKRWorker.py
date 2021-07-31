@@ -31,6 +31,7 @@ class IBKRWorker():
                 return True
             else:
                 print("Could not connect to TWS ....processing skept..")
+                return True
 
         except Exception as e:
             self.app.disconnect()
