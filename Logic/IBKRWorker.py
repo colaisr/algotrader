@@ -545,6 +545,7 @@ Creating a PnL request the result will be stored in generalStarus
         today_string = session_info_to_parse.split(";")[0]
         if 'CLOSED' in today_string:
             self.trading_session_holiday = True
+            self.app.trading_session_state = "Closed"
         else:
             self.trading_session_holiday = False
             self.check_session_state()
