@@ -24,7 +24,9 @@ class IBKRWorker():
             connected=self.connect_to_tws()
             if connected:
                 self.check_if_holiday()
-                self.prepare_and_track()
+                successfull_preparation=self.prepare_and_track()
+                if not successfull_preparation:
+                    return False
                 self.process_positions_candidates()
                 return True
             else:
@@ -89,7 +91,8 @@ Connecting to IBKR API and initiating the connection instance
             # start tracking candidates
             succeed=self.evaluate_and_track_candidates()
             if not succeed:
-                raise Exception('Problem retrieving market data from TWS more than 60 sec')
+                print('Problem retrieving market data from TWS more than 60 sec')
+                return False
             self.update_target_price_for_tracked_stocks()
             print("Connected to IBKR and READY")
             print("Connected and ready")
@@ -105,6 +108,7 @@ Connecting to IBKR API and initiating the connection instance
                     positions_summary += p["Value"]
                 self.real_remaining_funds = float(self.app.netLiquidation) - float(positions_summary)
                 print("Using own cash only " + "(" + str(self.real_remaining_funds) + "), margin dismissed in settings")
+            return True
 
         except Exception as e:
             if hasattr(e, 'message'):
@@ -195,12 +199,15 @@ Starts tracking the Candidates and adds the statistics
             # if message_number % 10==0:
             #     time.sleep(1)
             #     print("Waiting to clear messages buffer")
-
+        counter=0
         while len(self.app.CandidatesLiveDataRequests)>0:
-            print("waiting for the last candidate data....")
+            print("waiting for the last candidate data...."+str(c))
+            counter=counter+1
             time.sleep(1)
+            if counter>60:
+                return False
         have_empty = True
-        counter = 0
+
 
         # while len(self.app.CandidatesLiveDataRequests):
         #     time.sleep(1)

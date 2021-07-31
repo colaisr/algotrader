@@ -181,7 +181,9 @@ class Algotrader:
         self.ibkrworker = IBKRWorker(self.settings)
         self.ibkrworker.stocks_data_from_server = self.stocks_data_from_server
         self.ibkrworker.positions_open_on_server = self.positions_open_on_server
-        self.ibkrworker.run_full_cycle()
+        successfull_cycle=self.ibkrworker.run_full_cycle()
+        if not successfull_cycle:
+            restart_tws_and_trader()
         print("Worker finished reporting to the server........")
         self.report_to_server()
 
