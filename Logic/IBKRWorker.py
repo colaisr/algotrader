@@ -144,7 +144,7 @@ Creates the connection - starts listner for events
                 print('Waiting for connection...attempt:' + str(retries))
                 time.sleep(1)
                 retries = retries + 1
-                if retries > 10:
+                if retries > 60:
                     connected = False
                     break
         if not connected:
