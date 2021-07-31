@@ -31,7 +31,7 @@ class IBKRWorker():
                 return True
             else:
                 print("Could not connect to TWS ....processing skept..")
-                return False
+
         except Exception as e:
             self.app.disconnect()
             self.app.reset()
@@ -144,7 +144,7 @@ Creates the connection - starts listner for events
                 print('Waiting for connection...attempt:' + str(retries))
                 time.sleep(1)
                 retries = retries + 1
-                if retries > 60:
+                if retries > 10:
                     connected = False
                     break
         if not connected:
