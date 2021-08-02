@@ -188,6 +188,7 @@ Starts tracking the Candidates and adds the statistics
                                            "averagePriceSpreadP": 0,
                                            "tipranksRank": 0,
                                            "yahoo_rank":6,
+                                           "stock_invest_rank":0,
                                            "LastUpdate": 0}
             self.app.reqMarketDataType(1)
             self.app.reqMktData(id, c, '', False, False, [])
@@ -560,6 +561,7 @@ Creating a PnL request the result will be stored in generalStarus
                     self.app.candidatesLive[k]["averagePriceSpreadP"] = dt['yahoo_avspreadP']
                     self.app.candidatesLive[k]['tipranksRank'] = dt['tipranks']
                     self.app.candidatesLive[k]['yahoo_rank'] = dt['yahoo_rank']
+                    self.app.candidatesLive[k]['stock_invest_rank'] = dt['stock_invest_rank']
                     self.app.candidatesLive[k]['fmp_rating'] = dt['fmp_rating']
                     self.app.candidatesLive[k]['under_priced_pnt'] = dt['under_priced_pnt']
                     self.app.candidatesLive[k]['twelve_month_momentum'] = dt['twelve_month_momentum']

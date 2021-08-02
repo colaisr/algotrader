@@ -222,7 +222,7 @@ class Algotrader:
 
 
 def cmd_main():
-    print("Welcome to Algotrader V 6.1- client application for Algotrader platform.")
+    print("Welcome to Algotrader V 6.2- client application for Algotrader platform.")
     algotrader=Algotrader()
     algotrader.get_settings()
     algotrader.start_processing()
