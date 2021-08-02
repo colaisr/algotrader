@@ -81,9 +81,6 @@ class IBapi(EWrapper, EClient):
         self.openOrders[contract.symbol] = {"Action": order.action,
                                             "Type": order.orderType,
                                             "adjustedStopPrice": order.trailStopPrice,
-                                            "adjustedStopLimitPrice": order.adjustedStopLimitPrice,
-                                            "adjustedTrailingAmount": order.adjustedTrailingAmount,
-                                            "percentOffset": order.percentOffset,
                                             "OrderId":orderId}
 
     def openOrderEnd(self):
