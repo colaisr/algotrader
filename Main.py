@@ -12,6 +12,7 @@ from sys import platform
 
 import os
 
+import setproctitle
 from pytz import timezone
 
 from AlgotraderServerConnection import report_snapshot_to_server, \
@@ -222,6 +223,7 @@ class Algotrader:
 
 
 def cmd_main():
+    setproctitle.setproctitle('algotrader')
     print("Welcome to Algotrader V 6.2- client application for Algotrader platform.")
     algotrader=Algotrader()
     algotrader.get_settings()
