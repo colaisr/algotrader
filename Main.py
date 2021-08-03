@@ -224,7 +224,7 @@ class Algotrader:
 
 def cmd_main():
 
-    setproctitle.setproctitle('algotrader')
+    setproctitle.setproctitle('traderproc')
 
     print("Welcome to Algotrader V 6.2- client application for Algotrader platform.")
     algotrader=Algotrader()
