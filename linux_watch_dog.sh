@@ -4,8 +4,8 @@
 
 export DISPLAY=:0 #needed if you are running a simple gui app.
 
-process=algotrader
-makerun="/usr/bin/program"
+process=traderproc
+makerun="/home/su/Downloads/algotrader-station/algotrader/linux_start_all.sh"
 
 if ps ax | grep -v grep | grep $process > /dev/null
 then
