@@ -35,7 +35,7 @@ class IBapi(EWrapper, EClient):
 
     def error(self, reqId: TickerId, errorCode: int, errorString: str):
         super().error(reqId, errorCode, errorString)
-        if errorCode==2104 or errorCode==2106 or errorCode==2158:
+        if errorCode==2104 or errorCode==2106 or errorCode==2158 or errorCode==502:
             pass
         else:   #requested market data is not subscribed or other problem
 
