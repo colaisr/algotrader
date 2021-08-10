@@ -1,6 +1,6 @@
 import datetime
-from AlgotraderServerConnection import report_market_action
-from ibapi.common import MarketDataTypeEnum, HistogramDataList, BarData
+from AlgotraderServerConnection import report_market_action, report_market_data_error
+from ibapi.common import MarketDataTypeEnum, HistogramDataList, BarData, TickerId
 from twsapi.ibapi.contract import Contract, ContractDetails
 from twsapi.ibapi.order import Order
 from twsapi.ibapi.client import EClient
@@ -31,6 +31,24 @@ class IBapi(EWrapper, EClient):
         self.trading_session=''
         self.trading_hours_received=False
         self.executions_received=False
+        self.market_data_error=False
+
+    def error(self, reqId: TickerId, errorCode: int, errorString: str):
+        super().error(reqId, errorCode, errorString)
+        if errorCode==2104 or errorCode==2106 or errorCode==2158:
+            pass
+        else:   #requested market data is not subscribed or other problem
+
+            if reqId in self.CandidatesLiveDataRequests.keys():
+                self.cancelMktData(reqId)
+                del self.CandidatesLiveDataRequests[reqId]
+            if reqId in self.candidatesLive.keys():
+                del self.candidatesLive[reqId]
+            self.market_data_error=True
+
+
+
+
 
 
     def nextValidId(self, orderId: int):
@@ -109,25 +127,30 @@ class IBapi(EWrapper, EClient):
             if(self.candidatesLive[reqId]["Ask"]!=0 and self.candidatesLive[reqId]["Close"]!=0):
                 if self.trading_session_state=='Open':
                     if self.candidatesLive[reqId]["Open"] != 0:
-                        self.cancelMktData(reqId)
-                        self.CandidatesLiveDataRequests.pop(reqId, None)
-                        print("Got data, stopped tracking request " + str(reqId))
+                        if reqId in self.CandidatesLiveDataRequests.keys():
+                            self.cancelMktData(reqId)
+                            del self.CandidatesLiveDataRequests[reqId]
+
+                            print("Got data, stopped tracking request " + str(reqId))
                 else:
-                    self.cancelMktData(reqId)
-                    self.CandidatesLiveDataRequests.pop(reqId, None)
-                    print("Got data, stopped tracking request "+str(reqId))
+                    if reqId in self.CandidatesLiveDataRequests.keys():
+                        self.cancelMktData(reqId)
+                        del self.CandidatesLiveDataRequests[reqId]
+                        print("Got data, stopped tracking request "+str(reqId))
         elif tickType == 2:
             self.candidatesLive[reqId]["Ask"] = price
             if(self.candidatesLive[reqId]["Bid"]!=0 and self.candidatesLive[reqId]["Close"]!=0):
                 if self.trading_session_state=='Open':
                     if self.candidatesLive[reqId]["Open"] != 0:
-                        self.cancelMktData(reqId)
-                        self.CandidatesLiveDataRequests.pop(reqId, None)
-                        print("Got data, stopped tracking request " + str(reqId))
+                        if reqId in self.CandidatesLiveDataRequests.keys():
+                            self.cancelMktData(reqId)
+                            del self.CandidatesLiveDataRequests[reqId]
+                            print("Got data, stopped tracking request " + str(reqId))
                 else:
-                    self.cancelMktData(reqId)
-                    self.CandidatesLiveDataRequests.pop(reqId, None)
-                    print("Got data, stopped tracking request "+str(reqId))
+                    if reqId in self.CandidatesLiveDataRequests.keys():
+                        self.cancelMktData(reqId)
+                        del self.CandidatesLiveDataRequests[reqId]
+                        print("Got data, stopped tracking request "+str(reqId))
         elif tickType == 4:
             #last price ignored - have no value
             return
@@ -136,12 +159,14 @@ class IBapi(EWrapper, EClient):
             if(self.candidatesLive[reqId]["Bid"]!=0 and self.candidatesLive[reqId]["Ask"]!=0):
                 if self.trading_session_state=='Open':
                     if self.candidatesLive[reqId]["Open"] != 0:
-                        self.cancelMktData(reqId)
-                        self.CandidatesLiveDataRequests.pop(reqId, None)
-                        print("Got data, stopped tracking request " + str(reqId))
+                        if reqId in self.CandidatesLiveDataRequests.keys():
+                            self.cancelMktData(reqId)
+                            del self.CandidatesLiveDataRequests[reqId]
+                            print("Got data, stopped tracking request " + str(reqId))
                 else:
-                    self.cancelMktData(reqId)
-                    self.CandidatesLiveDataRequests.pop(reqId, None)
+                    if reqId in self.CandidatesLiveDataRequests.keys():
+                        self.cancelMktData(reqId)
+                        del self.CandidatesLiveDataRequests[reqId]
                     print("Got data, stopped tracking request "+str(reqId))
         elif tickType == 6:
             return
@@ -152,8 +177,9 @@ class IBapi(EWrapper, EClient):
         elif tickType == 14:
             self.candidatesLive[reqId]["Open"] = price
             if(self.candidatesLive[reqId]["Bid"]!=0 and self.candidatesLive[reqId]["Ask"]!=0 and self.candidatesLive[reqId]["Close"]!=0):
-                self.cancelMktData(reqId)
-                self.CandidatesLiveDataRequests.pop(reqId, None)
+                if reqId in self.CandidatesLiveDataRequests.keys():
+                    self.cancelMktData(reqId)
+                    del self.CandidatesLiveDataRequests[reqId]
                 print("Got data, stopped tracking request " + str(reqId))
         else:
             print("unrecognized tick:", tickType)

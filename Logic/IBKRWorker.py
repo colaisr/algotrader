@@ -2,6 +2,7 @@ import time
 import threading
 import datetime
 
+from AlgotraderServerConnection import report_market_data_error
 from Logic.ApiWrapper import IBapi, createContract, createTrailingStopOrder, create_limit_buy_order, createMktSellOrder
 from pytz import timezone
 
@@ -92,8 +93,13 @@ Connecting to IBKR API and initiating the connection instance
             # start tracking candidates
             succeed=self.evaluate_and_track_candidates()
             if not succeed:
-                print('Problem retrieving market data from TWS more than 60 sec')
-                return False
+                    print('Problem retrieving market data from TWS more than 60 sec')
+                    return False
+            if self.app.market_data_error:
+
+                print('Market Data is invalid - check the subscription')
+                #report_market_data_error(self.settings)
+                return True
             self.update_target_price_for_tracked_stocks()
             print("Connected to IBKR and READY")
             print("Connected and ready")
@@ -167,6 +173,7 @@ Starts tracking the Candidates and adds the statistics
         # starting querry
         trackedStockN = 1
         message_number=0
+        self.app.market_data_error=False
         for s in stock_names:
             if len(self.app.CandidatesLiveDataRequests)>90:
                 time.sleep(0.5)
@@ -424,7 +431,8 @@ Process Open positions and Candidates
             print("Processing Positions-Candidates ")
             if self.trading_session_state == "Open":
                 # process
-                self.process_candidates()
+                if len(self.app.candidatesLive.items())>0:
+                    self.process_candidates()
                 self.process_positions()
                 self.last_worker_execution_time = datetime.datetime.now()
             else:

@@ -205,6 +205,7 @@ class Algotrader:
         tradinng_session_state = self.trading_session_state
         worker_last_execution = self.ibkrworker.last_worker_execution_time
         api_connected=self.ibkrworker.api_connected
+        market_data_error = self.ibkrworker.app.market_data_error
         data_for_report = [self.settings,
                            net_liquidation,
                            remaining_sma_with_safety,
@@ -218,7 +219,7 @@ class Algotrader:
                            datetime.now(self.trading_time_zone),
                            self.trading_session_state,
                            excess_liquidity,
-                           self.started_time,api_connected]
+                           self.started_time,api_connected,market_data_error]
         report_snapshot_to_server(self.settings, data_for_report)
 
 
