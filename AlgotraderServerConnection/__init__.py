@@ -27,6 +27,7 @@ def report_market_action(settings, symbol, shares, price, side, time):
     else:
         print("Execution transmit failed")
 
+
 def report_market_data_error(settings):
     time_to_report = datetime.now().isoformat()
     r = requests.post(settings.SERVERURL + '/connections/postmarketdataerror',
@@ -37,6 +38,7 @@ def report_market_data_error(settings):
         print("Market Data Error Reported")
     else:
         print("Market Data Error Report failed")
+
 
 def get_market_data_from_server(settings, candidates):
     c = json.dumps(candidates)
@@ -88,25 +90,6 @@ def get_command_from_server(*args, **kwargs):
         else:
             print("Error in getting server Command: " + str(e))
 
-# def get_positions_from_server(*args, **kwargs):
-#     try:
-#         seting=args[0]
-#         r = requests.post(seting.SERVERURL + '/connections/getopenpositions',
-#                           json={"user": seting.SERVERUSER})
-#         status_code = r.status_code
-#         if status_code == 200:
-#             response = json.loads(r.text)
-#             pos=response['open_positions']
-#             positions_dict={}
-#             for p in pos:
-#                 positions_dict[p['ticker']]=datetime.fromisoformat(p['opened'])
-#             return positions_dict
-#     except Exception as e:
-#         if hasattr(e, 'message'):
-#             print("Error in getting positions from server: " + str(e.message))
-#         else:
-#             print("Error in getting positions from server: " + str(e))
-
 
 def report_snapshot_to_server(*args, **kwargs):
     report_time = datetime.now().isoformat()
@@ -151,17 +134,6 @@ def report_snapshot_to_server(*args, **kwargs):
         return r.text
     return "bad response from server"
 
-
-
-# def report_market_data_to_server(settings, candid_data):
-#     d = json.dumps(candid_data, default=lambda o: '<not serializable>')
-#     r = requests.post(settings.SERVERURL + '/marketdata/updatemarketdata',
-#                       json={"user": settings.SERVERUSER,
-#                             "tickers": json.dumps(candid_data, default=json_serial)})
-#
-#     status_code = r.status_code
-#     if status_code == 200:
-#         return r.text
 
 def get_user_candidates_from_server(url,user):
 

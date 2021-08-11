@@ -46,11 +46,6 @@ class IBapi(EWrapper, EClient):
                 del self.candidatesLive[reqId]
             self.market_data_error=True
 
-
-
-
-
-
     def nextValidId(self, orderId: int):
         super().nextValidId(orderId)
         self.nextorderId = orderId
