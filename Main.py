@@ -89,6 +89,7 @@ class TraderSettings():
         self.SERVERUSER = self.FILESERVERUSER
         self.INTERVALSERVER = retrieved['server_report_interval_sec']
         self.ALLOWBUY = retrieved['algo_allow_buy']
+        self.ALLOWSELL = retrieved['algo_allow_sell']
         self.AUTORESTART = retrieved['station_autorestart']
         self.APPLYMAXHOLD=retrieved['algo_apply_max_hold']
         self.MAXHOLDDAYS=retrieved['algo_max_hold_days']
@@ -227,7 +228,7 @@ def cmd_main():
 
     setproctitle.setproctitle('traderproc')
 
-    print("Welcome to Algotrader V 6.3- client application for Algotrader platform.")
+    print("Welcome to Algotrader V 6.4- client application for Algotrader platform.")
     algotrader=Algotrader()
     algotrader.get_settings()
     algotrader.start_processing()
