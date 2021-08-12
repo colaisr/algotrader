@@ -1,28 +1,16 @@
-
-
 import configparser
 import json
 import subprocess
-import sys,ctypes
+import ctypes
 import threading
-import traceback
 from datetime import datetime
-from sys import platform
-
-
-import os
-
 import setproctitle
 from pytz import timezone
-
-from AlgotraderServerConnection import report_snapshot_to_server, \
-    get_user_settings_from_server, get_user_candidates_from_server, \
-    get_market_data_from_server, get_command_from_server
+from AlgotraderServerConnection import report_snapshot_to_server, get_user_settings_from_server, get_command_from_server
 from Logic.IBKRWorker import IBKRWorker
+
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
-# UI Imports
-#from UI.MainWindow import Ui_MainWindow
 
 def is_admin():
     try:

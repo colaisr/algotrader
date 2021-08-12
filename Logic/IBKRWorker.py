@@ -2,7 +2,6 @@ import time
 import threading
 import datetime
 
-from AlgotraderServerConnection import report_market_data_error
 from Logic.ApiWrapper import IBapi, createContract, createTrailingStopOrder, create_limit_buy_order, createMktSellOrder
 from pytz import timezone
 
