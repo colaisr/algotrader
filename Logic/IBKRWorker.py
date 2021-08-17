@@ -435,7 +435,8 @@ Process Open positions and Candidates
             est = timezone('US/Eastern')
             fmt = '%Y-%m-%d %H:%M:%S'
             est_time = datetime.datetime.now(est).strftime(fmt)
-            print("-------Starting Worker...----EST Time: " + est_time + "--------------------")
+            local_time=datetime.datetime.now().strftime(fmt)
+            print("----Starting Worker...----EST Time: " + est_time + "----Local Time: "+local_time+"----------")
             print("Processing Positions-Candidates ")
             if self.trading_session_state == "Open":
                 # process
@@ -447,7 +448,7 @@ Process Open positions and Candidates
                 print("Trading session is not Open - processing skept")
 
             print(
-                "...............Worker finished....EST Time: " + est_time + "...................")
+                "...............Worker finished....EST Time: " + est_time + "....Local Time: "+local_time+"........")
             self.app.disconnect()
             #self.app.reset()
         except Exception as e:
