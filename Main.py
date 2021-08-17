@@ -33,7 +33,7 @@ def restart_tws_and_trader():
     elif platform.system()=='Linux':
         print("Linux OS detected -restarting")
         import subprocess
-        subprocess.call(['sh','./linux_start_all.sh'])
+        subprocess.call(['sh','./linux_restart_all.sh'])
 
     elif platform.system()=='Darwin':
         print("Mac OS detected -restarting")
