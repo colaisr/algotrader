@@ -32,7 +32,7 @@ class IBKRWorker():
                     self.process_positions_candidates()
                     return True
                 else:
-                    print("Could not connect to TWS ....retrying")
+                    print("Could not connect to TWS ....retrying after 60 sec")
                     counter=counter+1
                     time.sleep(60)
 
