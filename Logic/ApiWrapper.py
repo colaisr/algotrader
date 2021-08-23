@@ -37,7 +37,7 @@ class IBapi(EWrapper, EClient):
         super().error(reqId, errorCode, errorString)
         if errorCode==2104 or errorCode==2106 or errorCode==2158 or errorCode==502:
             pass
-        elif errorCode==2101:
+        elif errorCode==2101 or errorCode==2110:
             print("connection with a station was lost- restarting")
             import subprocess
             subprocess.call(['sh', './linux_restart_all.sh'])
