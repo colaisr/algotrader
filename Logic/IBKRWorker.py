@@ -34,6 +34,8 @@ class IBKRWorker():
                 else:
                     print("Could not connect to TWS ....retrying")
                     counter=counter+1
+                    time.sleep(60)
+
             # after 5 times unsuccessfull- station will be restarted
             print("Could not connect to TWS more than 5 times- restarting")
             import subprocess
