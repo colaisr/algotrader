@@ -48,6 +48,7 @@ class IBapi(EWrapper, EClient):
                     del self.CandidatesLiveDataRequests[reqId]
                 if reqId in self.candidatesLive.keys():
                     del self.candidatesLive[reqId]
+                print("ERROR in DATA: "+str(errorCode))
                 self.market_data_error=True
             else:
                 print("connection with a station was lost- restarting")
