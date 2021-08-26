@@ -35,7 +35,8 @@ class IBapi(EWrapper, EClient):
 
     def error(self, reqId: TickerId, errorCode: int, errorString: str):
         super().error(reqId, errorCode, errorString)
-        if errorCode==2104 or errorCode==2106 or errorCode==2158 or errorCode==502 or errorCode==2108:
+        if errorCode==2104 or errorCode==2106 or errorCode==2158 or errorCode==502 or errorCode==2108 or errorCode==100:
+            #see if code 100 affecting something
             pass
         elif errorCode==2101 or errorCode==2110:
             print("connection with a station was lost- restarting")
