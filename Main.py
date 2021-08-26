@@ -216,7 +216,7 @@ def cmd_main():
 
     setproctitle.setproctitle('traderproc')
 
-    print("Welcome to Algotrader V 6.4- client application for Algotrader platform.")
+    print("Welcome to Algotrader V 6.5- client application for Algotrader platform.")
     algotrader=Algotrader()
     algotrader.get_settings()
     algotrader.start_processing()
