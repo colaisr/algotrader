@@ -21,25 +21,17 @@ class IBKRWorker():
 
     def run_full_cycle(self): #add counter 5 times - restart
         try:
-            counter=0
-            while counter<5:
-                connected=self.connect_to_tws()
-                if connected:
-                    self.check_if_holiday()
-                    successfull_preparation=self.prepare_and_track()
-                    if not successfull_preparation:
-                        return False
-                    self.process_positions_candidates()
-                    return True
-                else:
-                    print("Could not connect to TWS ....retrying after 60 sec")
-                    counter=counter+1
-                    time.sleep(60)
-
-            # after 5 times unsuccessfull- station will be restarted
-            print("Could not connect to TWS more than 5 times- restarting")
-            import subprocess
-            subprocess.call(['sh', './linux_restart_all.sh'])
+            connected=self.connect_to_tws()
+            if connected:
+                self.check_if_holiday()
+                successfull_preparation=self.prepare_and_track()
+                if not successfull_preparation:
+                    return False
+                self.process_positions_candidates()
+                return True
+            else:
+                print("Could not connect to TWS ....processing skept..")
+                return True
 
         except Exception as e:
             self.app.disconnect()
