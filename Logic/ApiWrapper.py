@@ -42,13 +42,17 @@ class IBapi(EWrapper, EClient):
             import subprocess
             subprocess.call(['sh', './linux_restart_all.sh'])
         else:   #requested market data is not subscribed or other problem
-
-            if reqId in self.CandidatesLiveDataRequests.keys():
-                self.cancelMktData(reqId)
-                del self.CandidatesLiveDataRequests[reqId]
-            if reqId in self.candidatesLive.keys():
-                del self.candidatesLive[reqId]
-            self.market_data_error=True
+            if self.CandidatesLiveDataRequests is not None:
+                if reqId in self.CandidatesLiveDataRequests.keys():
+                    self.cancelMktData(reqId)
+                    del self.CandidatesLiveDataRequests[reqId]
+                if reqId in self.candidatesLive.keys():
+                    del self.candidatesLive[reqId]
+                self.market_data_error=True
+            else:
+                print("connection with a station was lost- restarting")
+                import subprocess
+                subprocess.call(['sh', './linux_restart_all.sh'])
 
     def nextValidId(self, orderId: int):
         super().nextValidId(orderId)
