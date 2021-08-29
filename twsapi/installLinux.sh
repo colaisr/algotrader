@@ -12,9 +12,10 @@ python3 -m pip install pyautogui
 sudo apt-get install scrot
 sudo apt-get install python3-tk
 sudo apt-get install python3-dev
-echo "Doing executable file..."
+echo "Doing executable files..."
 cd ..
 chmod u+x linux_start_all.sh
+chmod u+x linux_watch_dog.sh
 echo "Installing TWS if it is in Downloads-----"
 cd ~/Downloads
 chmod u+x tws-latest-linux-x64.sh

@@ -1,27 +1,16 @@
-
-
 import configparser
 import json
 import subprocess
-import sys,ctypes
+import ctypes
 import threading
-import traceback
 from datetime import datetime
-from sys import platform
-
-
-import os
-
+import setproctitle
 from pytz import timezone
-
-from AlgotraderServerConnection import report_snapshot_to_server, \
-    get_user_settings_from_server, get_user_candidates_from_server, \
-    get_market_data_from_server, get_command_from_server
+from AlgotraderServerConnection import report_snapshot_to_server, get_user_settings_from_server, get_command_from_server
 from Logic.IBKRWorker import IBKRWorker
+
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
-# UI Imports
-#from UI.MainWindow import Ui_MainWindow
 
 def is_admin():
     try:
@@ -37,17 +26,20 @@ def restart_tws_and_trader():
         print("argv was", sys.argv)
         print("sys.executable was", sys.executable)
         print("restart now")
-
+        import subprocess
         import os
         subprocess.call('Scripts\\win_restartTws.bat')
         os.execv(sys.executable, ['python'] + sys.argv)
     elif platform.system()=='Linux':
-        print("Linux OS detected -not implemented")
-        pass
-    elif platform.system()=='Darwin':
-        print("Mac OS detected -not implemented")
-        pass
+        print("Linux OS detected -restarting")
+        import subprocess
+        subprocess.call(['sh','./linux_restart_all.sh'])
 
+    elif platform.system()=='Darwin':
+        print("Mac OS detected -restarting")
+        import sys
+        import os
+        os.execl(sys.executable, sys.executable, *sys.argv)
 
 class SettingsCandidate:
     def __init__(self):
@@ -85,7 +77,10 @@ class TraderSettings():
         self.SERVERUSER = self.FILESERVERUSER
         self.INTERVALSERVER = retrieved['server_report_interval_sec']
         self.ALLOWBUY = retrieved['algo_allow_buy']
+        self.ALLOWSELL = retrieved['algo_allow_sell']
         self.AUTORESTART = retrieved['station_autorestart']
+        self.APPLYMAXHOLD=retrieved['algo_apply_max_hold']
+        self.MAXHOLDDAYS=retrieved['algo_max_hold_days']
 
     def set_autorestart_task(self):
         print("Autorestart setting applied- validating OS Setting")
@@ -123,11 +118,19 @@ class Algotrader:
 
         self.settings = None
         self.stocks_data_from_server =None
+        self.positions_open_on_server = None
         self.started_time=datetime.now()
 
     def get_settings(self):
         print('Connecting to server - to get settings.')
-        self.settings=TraderSettings()
+        self.settings=None
+        try:
+            self.settings=TraderSettings()
+        except Exception as e:
+            if hasattr(e, 'message'):
+                print("Error in getting Settings: " + str(e.message))
+            else:
+                print("Error in getting Settings: " + str(e))
         print('Settings received.')
 
     def start_processing(self):
@@ -138,13 +141,15 @@ class Algotrader:
     def process_worker(self):
         print("Requesting Command from server......")
         self.get_settings() #to keep them updated
-        server_command=get_command_from_server(self.settings)
-        self.process_server_command_response(server_command)
+        if self.settings is not None:
+            server_command=get_command_from_server(self.settings)
+            self.process_server_command_response(server_command)
 
 
     def process_server_command_response(self, r):
         response=json.loads(r)
         self.stocks_data_from_server=response['candidates']
+        self.positions_open_on_server=response['open_positions']
         command=response['command']
         print('Received command : '+command)
         if command=='restart_worker':
@@ -165,7 +170,10 @@ class Algotrader:
     def process_ibkr_cycle(self):
         self.ibkrworker = IBKRWorker(self.settings)
         self.ibkrworker.stocks_data_from_server = self.stocks_data_from_server
-        self.ibkrworker.run_full_cycle()
+        self.ibkrworker.positions_open_on_server = self.positions_open_on_server
+        successfull_cycle=self.ibkrworker.run_full_cycle()
+        if not successfull_cycle:
+            restart_tws_and_trader()
         print("Worker finished reporting to the server........")
         self.report_to_server()
 
@@ -185,6 +193,8 @@ class Algotrader:
         dailyPnl = self.ibkrworker.app.dailyPnl
         tradinng_session_state = self.trading_session_state
         worker_last_execution = self.ibkrworker.last_worker_execution_time
+        api_connected=self.ibkrworker.api_connected
+        market_data_error = self.ibkrworker.app.market_data_error
         data_for_report = [self.settings,
                            net_liquidation,
                            remaining_sma_with_safety,
@@ -198,12 +208,15 @@ class Algotrader:
                            datetime.now(self.trading_time_zone),
                            self.trading_session_state,
                            excess_liquidity,
-                           self.started_time]
+                           self.started_time,api_connected,market_data_error]
         report_snapshot_to_server(self.settings, data_for_report)
 
 
 def cmd_main():
-    print("Welcome to Algotrader V 6.0- client application for Algotrader platform.")
+
+    setproctitle.setproctitle('traderproc')
+
+    print("Welcome to Algotrader V 6.5- client application for Algotrader platform.")
     algotrader=Algotrader()
     algotrader.get_settings()
     algotrader.start_processing()

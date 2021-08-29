@@ -28,6 +28,18 @@ def report_market_action(settings, symbol, shares, price, side, time):
         print("Execution transmit failed")
 
 
+def report_market_data_error(settings):
+    time_to_report = datetime.now().isoformat()
+    r = requests.post(settings.SERVERURL + '/connections/postmarketdataerror',
+                      json={"user": settings.SERVERUSER,
+                            "market_data_error_time": json.dumps(time_to_report, default=json_serial)})
+    status_code = r.status_code
+    if status_code == 200:
+        print("Market Data Error Reported")
+    else:
+        print("Market Data Error Report failed")
+
+
 def get_market_data_from_server(settings, candidates):
     c = json.dumps(candidates)
     r = requests.get(settings.SERVERURL + '/marketdata/retrievemarketdata',
@@ -97,6 +109,8 @@ def report_snapshot_to_server(*args, **kwargs):
     market_state = arguments[11]
     excess_liqudity = arguments[12]
     started_time=arguments[13].isoformat()
+    api_connected=arguments[14]
+    market_data_error=arguments[15]
     r = requests.post(arguments[0].SERVERURL + '/connections/postreport',
                       json={"user": arguments[0].SERVERUSER,
                             "net_liquidation": net_liquidation,
@@ -112,23 +126,14 @@ def report_snapshot_to_server(*args, **kwargs):
                             "market_time": market_time.isoformat(),
                             "market_state": market_state,
                             "excess_liquidity":excess_liqudity,
-                            "started_time":started_time})
+                            "started_time":started_time,
+                            "api_connected":api_connected,
+                            "market_data_error":market_data_error})
     status_code = r.status_code
     if status_code == 200:
         return r.text
     return "bad response from server"
 
-
-
-# def report_market_data_to_server(settings, candid_data):
-#     d = json.dumps(candid_data, default=lambda o: '<not serializable>')
-#     r = requests.post(settings.SERVERURL + '/marketdata/updatemarketdata',
-#                       json={"user": settings.SERVERUSER,
-#                             "tickers": json.dumps(candid_data, default=json_serial)})
-#
-#     status_code = r.status_code
-#     if status_code == 200:
-#         return r.text
 
 def get_user_candidates_from_server(url,user):
 

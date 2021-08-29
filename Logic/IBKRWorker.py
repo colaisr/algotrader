@@ -15,19 +15,24 @@ class IBKRWorker():
         self.settings = settings
         self.app.setting = self.settings
         self.stocks_data_from_server = []
+        self.positions_open_on_server=[]
         self.last_worker_execution_time=None
+        self.api_connected=False
 
-    def run_full_cycle(self):
+    def run_full_cycle(self): #add counter 5 times - restart
         try:
             connected=self.connect_to_tws()
             if connected:
                 self.check_if_holiday()
-                self.prepare_and_track()
+                successfull_preparation=self.prepare_and_track()
+                if not successfull_preparation:
+                    return False
                 self.process_positions_candidates()
                 return True
             else:
                 print("Could not connect to TWS ....processing skept..")
-                return False
+                return True
+
         except Exception as e:
             self.app.disconnect()
             self.app.reset()
@@ -87,7 +92,13 @@ Connecting to IBKR API and initiating the connection instance
             # start tracking candidates
             succeed=self.evaluate_and_track_candidates()
             if not succeed:
-                raise Exception('Problem retrieving market data from TWS more than 60 sec')
+                    print('Problem retrieving market data from TWS more than 60 sec')
+                    return False
+            if self.app.market_data_error:
+
+                print('Market Data is invalid - check the subscription')
+                #report_market_data_error(self.settings)
+                return True
             self.update_target_price_for_tracked_stocks()
             print("Connected to IBKR and READY")
             print("Connected and ready")
@@ -103,6 +114,7 @@ Connecting to IBKR API and initiating the connection instance
                     positions_summary += p["Value"]
                 self.real_remaining_funds = float(self.app.netLiquidation) - float(positions_summary)
                 print("Using own cash only " + "(" + str(self.real_remaining_funds) + "), margin dismissed in settings")
+            return True
 
         except Exception as e:
             if hasattr(e, 'message'):
@@ -160,6 +172,7 @@ Starts tracking the Candidates and adds the statistics
         # starting querry
         trackedStockN = 1
         message_number=0
+        self.app.market_data_error=False
         for s in stock_names:
             if len(self.app.CandidatesLiveDataRequests)>90:
                 time.sleep(0.5)
@@ -180,19 +193,30 @@ Starts tracking the Candidates and adds the statistics
                                            "averagePriceDropP": 0,
                                            "averagePriceSpreadP": 0,
                                            "tipranksRank": 0,
+                                           "yahoo_rank":6,
+                                           "stock_invest_rank":0,
                                            "LastUpdate": 0}
             self.app.reqMarketDataType(1)
             self.app.reqMktData(id, c, '', False, False, [])
+            while len(self.app.CandidatesLiveDataRequests)>40:
+                print('---------more than 40 Candidates quied waiting to clean.... last req'+str(self.app.nextorderId))
+                time.sleep(1)
             self.app.nextorderId += 1
             trackedStockN += 1
             message_number+=1
-            if message_number % 10==0:
-                time.sleep(1)
-                print("Waiting to clear messages buffer")
-
-
+            # if message_number % 10==0:
+            #     time.sleep(1)
+            #     print("Waiting to clear messages buffer")
+        counter=0
+        while len(self.app.CandidatesLiveDataRequests)>0:
+            print("waiting for the last candidate data...."+str(counter))
+            counter=counter+1
+            time.sleep(1)
+            if counter>60:
+                return False
         have_empty = True
-        counter = 0
+
+
         # while len(self.app.CandidatesLiveDataRequests):
         #     time.sleep(1)
         #     print("Waiting for last requested candidate data (Closed or Open - depending on session state ) :" + str(counter))
@@ -210,6 +234,7 @@ Starts tracking the Candidates and adds the statistics
         self.add_market_data_to_live_candidates()
 
         print(str(len(self.app.candidatesLive)) + " Candidates evaluated and started to track")
+        self.api_connected=True
         return True
 
     def process_positions(self):
@@ -234,13 +259,16 @@ Processes the positions to identify Profit/Loss
                         else:
                             print("Profit for: " + s + " is " + str(profit) +
                                                        "Creating a trailing Stop Order to take a Profit")
-                            contract = createContract(s)
-                            order = createTrailingStopOrder(p["stocks"], self.settings.TRAIL)
+                            if self.settings.ALLOWSELL:
+                                contract = createContract(s)
+                                order = createTrailingStopOrder(p["stocks"], self.settings.TRAIL)
 
-                            self.app.placeOrder(self.app.nextorderId, contract, order)
-                            self.app.nextorderId = self.app.nextorderId + 1
-                            print("Created a Trailing Stop order for " + s + " at level of " +
-                                                       str(self.settings.TRAIL) + "%")
+                                self.app.placeOrder(self.app.nextorderId, contract, order)
+                                self.app.nextorderId = self.app.nextorderId + 1
+                                print("Created a Trailing Stop order for " + s + " at level of " +
+                                                        str(self.settings.TRAIL) + "%")
+                            else:
+                                print("Selling disabled in settings - skipping")
                     elif profit < float(self.settings.LOSS):
                         orders = self.app.openOrders
                         if s in orders:
@@ -248,12 +276,35 @@ Processes the positions to identify Profit/Loss
                         else:
                             print("loss for: " + s + " is " + str(profit) +
                                                        "Creating a Market Sell Order to minimize the Loss")
-                            contract = createContract(s)
-                            order = createMktSellOrder(p['stocks'])
-                            self.app.placeOrder(self.app.nextorderId, contract, order)
-                            self.app.nextorderId = self.app.nextorderId + 1
-                            print("Created a Market Sell order for " + s)
-
+                            if self.settings.ALLOWSELL:
+                                contract = createContract(s)
+                                order = createMktSellOrder(p['stocks'])
+                                self.app.placeOrder(self.app.nextorderId, contract, order)
+                                self.app.nextorderId = self.app.nextorderId + 1
+                                print("Created a Market Sell order for " + s)
+                            else:
+                                print("Selling disabled in settings - skipping")
+                    elif profit >2 and bool(self.settings.APPLYMAXHOLD) :
+                        positions_dict = {}
+                        for po in self.positions_open_on_server:
+                            positions_dict[po['ticker']] = datetime.datetime.fromisoformat(po['opened'])
+                        opened=positions_dict[s]
+                        delta = (datetime.datetime.now() - opened).days
+                        if delta>int(self.settings.MAXHOLDDAYS):
+                            orders = self.app.openOrders
+                            if s in orders:
+                                print("Order for " + s + "already exist- skipping")
+                            else:
+                                print(s + " is held for " + str(delta) +
+                                                           " days. Creating a Market Sell Order to utilize the funds")
+                                if self.settings.ALLOWSELL:
+                                    contract = createContract(s)
+                                    order = createMktSellOrder(p['stocks'])
+                                    self.app.placeOrder(self.app.nextorderId, contract, order)
+                                    self.app.nextorderId = self.app.nextorderId + 1
+                                    print("Created a Market Sell order for " + s)
+                                else:
+                                    print("Selling disabled in settings - skipping")
                 else:
                     print("Position " + s + " skept its Value is 0")
             else:
@@ -275,21 +326,19 @@ Evaluates stock for buying
             if c["Stock"] == s:
                 ask_price = c["Ask"]
                 average_daily_dropP = c["averagePriceDropP"]
-                tipRank = c["tipranksRank"]
                 target_price = c["target_price"]
                 break
 
         if ask_price == -1:  # market is closed
             print('The market is closed skipping...')
             result='skept'
-        elif ask_price < target_price and float(tipRank) > 8:
+        elif ask_price < target_price:
             self.buy_the_stock(ask_price, s)
             result='bought'
 
         else:
             print(
-                "The price of :" + str(ask_price) + "was not in range of :" + str(average_daily_dropP) + " % " +
-                " Or the Rating of " + str(tipRank) + " was not good enough")
+                "The price of :" + str(ask_price) + "was not in range of :" + str(average_daily_dropP) + " % " )
             result='skept'
 
         return result
@@ -350,7 +399,7 @@ processes candidates for buying if enough SMA
         """
 
 
-        if self.real_remaining_funds < 1000:
+        if self.real_remaining_funds < self.settings.BULCKAMOUNT:
             print("SMA (including open positions cushion) is " + str(
                 self.real_remaining_funds) + " it is less than 1000 - skipping buy")
             return
@@ -359,8 +408,10 @@ processes candidates for buying if enough SMA
                 "SMA (including open positions cushion) is :" + str(self.real_remaining_funds) + " searching candidates")
             # updating the targets if market was open in the middle
             self.update_target_price_for_tracked_stocks()
-            res = sorted(self.app.candidatesLive.items(), key=lambda x: x[1]['tipranksRank'], reverse=True)
-            print(str(len(res)) + "Candidates found,sorted by Tipranks ranks")
+            res=self.app.candidatesLive.items()
+            # res=sort_by_parameter_desc(self.app.candidatesLive.items(),'twelve_month_momentum')
+            # res = sorted(sorted(sorted(sorted(self.app.candidatesLive.items(), key=lambda x: x[1]['twelve_month_momentum'], reverse=False), key=lambda x: x[1]['under_priced_pnt'], reverse=False), key=lambda x: x[1]['yahoo_rank'], reverse=False), key=lambda x: x[1]['tipranksRank'], reverse=True)
+            print(str(len(res)) + "Candidates found,sorted by Yahoo ranks")
             for i, c in res:
                 if self.app.tradesRemaining > 0 or self.app.tradesRemaining == -1:
                     if c['Stock'] in self.app.openPositions:
@@ -384,18 +435,20 @@ Process Open positions and Candidates
             est = timezone('US/Eastern')
             fmt = '%Y-%m-%d %H:%M:%S'
             est_time = datetime.datetime.now(est).strftime(fmt)
-            print("-------Starting Worker...----EST Time: " + est_time + "--------------------")
+            local_time=datetime.datetime.now().strftime(fmt)
+            print("----Starting Worker...----EST Time: " + est_time + "----Local Time: "+local_time+"----------")
             print("Processing Positions-Candidates ")
             if self.trading_session_state == "Open":
                 # process
-                self.process_candidates()
+                if len(self.app.candidatesLive.items())>0:
+                    self.process_candidates()
                 self.process_positions()
                 self.last_worker_execution_time = datetime.datetime.now()
             else:
                 print("Trading session is not Open - processing skept")
 
             print(
-                "...............Worker finished....EST Time: " + est_time + "...................")
+                "...............Worker finished....EST Time: " + est_time + "....Local Time: "+local_time+"........")
             self.app.disconnect()
             #self.app.reset()
         except Exception as e:
@@ -477,7 +530,7 @@ Creating a PnL request the result will be stored in generalStarus
         existing_positions = self.app.openPositions
         for k, v in existing_positions.items():
             value = v['Value']
-            if value != 0:
+            if v['stocks'] != 0:
                 profit = v['UnrealizedPnL']
                 clearvalue = value - profit
                 canLose = abs(int(self.settings.LOSS))
@@ -510,6 +563,7 @@ Creating a PnL request the result will be stored in generalStarus
         today_string = session_info_to_parse.split(";")[0]
         if 'CLOSED' in today_string:
             self.trading_session_holiday = True
+            self.app.trading_session_state = "Closed"
         else:
             self.trading_session_holiday = False
             self.check_session_state()
@@ -523,9 +577,13 @@ Creating a PnL request the result will be stored in generalStarus
                     self.app.candidatesLive[k]["averagePriceDropP"] = dt['yahoo_avdropP']
                     self.app.candidatesLive[k]["averagePriceSpreadP"] = dt['yahoo_avspreadP']
                     self.app.candidatesLive[k]['tipranksRank'] = dt['tipranks']
+                    self.app.candidatesLive[k]['yahoo_rank'] = dt['yahoo_rank']
+                    self.app.candidatesLive[k]['stock_invest_rank'] = dt['stock_invest_rank']
                     self.app.candidatesLive[k]['fmp_rating'] = dt['fmp_rating']
+                    self.app.candidatesLive[k]['under_priced_pnt'] = dt['under_priced_pnt']
+                    self.app.candidatesLive[k]['twelve_month_momentum'] = dt['twelve_month_momentum']
                     print(
-                        "Yahoo data and Tipranks for " + v['Stock'] + " was added")
+                        "Ticker Data from server for " + v['Stock'] + " was added")
                     break
 
     def check_session_state(self):
@@ -561,3 +619,7 @@ def time_in_range(start, end, x):
         return start <= x <= end
     else:
         return start <= x or x <= end
+
+
+def sort_by_parameter_desc(object,property):
+    return sorted(object, key=lambda x: x[1][property], reverse=False)
