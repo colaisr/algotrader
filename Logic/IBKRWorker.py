@@ -484,9 +484,9 @@ updating all openPositions, refreshed on each worker- to include changes from ne
             print("Requested details for " + s + " position PnL with reqest : "+str(id))
             self.app.nextorderId += 1
 
-        while (len(self.app.openPositionsLiveDataRequests) != 0):
-            time.sleep(1)
-            print('Waiting to get all open positions....')
+            while (len(self.app.openPositionsLiveDataRequests) != 0):
+                time.sleep(0.1)
+                print('Waiting to get data for position request :'+str(self.app.nextorderId-1))
         print(str(len(self.app.openPositions)) + " open positions completely updated")
 
     def update_open_orders(self):
