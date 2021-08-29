@@ -198,8 +198,8 @@ Starts tracking the Candidates and adds the statistics
                                            "LastUpdate": 0}
             self.app.reqMarketDataType(1)
             self.app.reqMktData(id, c, '', False, False, [])
-            while len(self.app.CandidatesLiveDataRequests)>40:
-                print('---------more than 40 Candidates quied waiting to clean.... last req'+str(self.app.nextorderId))
+            while len(self.app.CandidatesLiveDataRequests)>20:
+                print('---------more than 20 Candidates quied waiting to clean.... last req'+str(self.app.nextorderId))
                 time.sleep(1)
             self.app.nextorderId += 1
             trackedStockN += 1
