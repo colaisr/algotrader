@@ -35,7 +35,7 @@ class IBapi(EWrapper, EClient):
 
     def error(self, reqId: TickerId, errorCode: int, errorString: str):
         #super().error(reqId, errorCode, errorString)
-        if errorCode==2104 or errorCode==2106 or errorCode==2158 or errorCode==2108:
+        if errorCode==2104 or errorCode==2106 or errorCode==2158 or errorCode==2108 or errorCode==2119:
             #ok messages
             pass
         elif errorCode==502:
