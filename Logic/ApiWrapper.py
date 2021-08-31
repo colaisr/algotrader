@@ -40,7 +40,7 @@ class IBapi(EWrapper, EClient):
             pass
         elif errorCode==502:
             pass
-        elif errorCode==2101 or errorCode==2110:   # another connection created restartto work on disconnect
+        elif errorCode==2101 or errorCode==2110 or errorCode==1100:   # another connection created restartto work on disconnect
             print("connection with a station was lost- restarting")
             import subprocess
             subprocess.call(['sh', './linux_restart_all.sh'])
