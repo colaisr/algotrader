@@ -206,12 +206,11 @@ class Algotrader:
                            dailyPnl,
                            worker_last_execution,
                            datetime.now(self.trading_time_zone),
-                           self.trading_session_state,
+                           tradinng_session_state,
                            excess_liquidity,
                            self.started_time,
                            api_connected,
-                           market_data_error,
-                           tradinng_session_state]
+                           market_data_error]
         report_snapshot_to_server(self.settings, data_for_report)
 
 

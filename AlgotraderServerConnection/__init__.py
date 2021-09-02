@@ -129,8 +129,7 @@ def report_snapshot_to_server(*args, **kwargs):
                             "excess_liquidity":excess_liqudity,
                             "started_time":started_time,
                             "api_connected":api_connected,
-                            "market_data_error":market_data_error,
-                            "trading_session_state":trading_session_state})
+                            "market_data_error":market_data_error})
     status_code = r.status_code
     if status_code == 200:
         return r.text
