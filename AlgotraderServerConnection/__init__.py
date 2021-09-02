@@ -111,7 +111,6 @@ def report_snapshot_to_server(*args, **kwargs):
     started_time=arguments[13].isoformat()
     api_connected=arguments[14]
     market_data_error=arguments[15]
-    trading_session_state=arguments[16]
     r = requests.post(arguments[0].SERVERURL + '/connections/postreport',
                       json={"user": arguments[0].SERVERUSER,
                             "net_liquidation": net_liquidation,
