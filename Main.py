@@ -191,7 +191,7 @@ class Algotrader:
         open_orders = self.ibkrworker.app.openOrders
         candidates_live=self.ibkrworker.app.candidatesLive
         dailyPnl = self.ibkrworker.app.dailyPnl
-        tradinng_session_state = self.trading_session_state
+        tradinng_session_state = self.ibkrworker.trading_session_state
         worker_last_execution = self.ibkrworker.last_worker_execution_time
         api_connected=self.ibkrworker.api_connected
         market_data_error = self.ibkrworker.app.market_data_error
@@ -208,7 +208,10 @@ class Algotrader:
                            datetime.now(self.trading_time_zone),
                            self.trading_session_state,
                            excess_liquidity,
-                           self.started_time,api_connected,market_data_error]
+                           self.started_time,
+                           api_connected,
+                           market_data_error,
+                           tradinng_session_state]
         report_snapshot_to_server(self.settings, data_for_report)
 
 
