@@ -1,3 +1,4 @@
+client_version=6.6
 import configparser
 import json
 import subprocess
@@ -210,7 +211,8 @@ class Algotrader:
                            excess_liquidity,
                            self.started_time,
                            api_connected,
-                           market_data_error]
+                           market_data_error,
+                           client_version]
         report_snapshot_to_server(self.settings, data_for_report)
 
 
@@ -218,7 +220,7 @@ def cmd_main():
 
     setproctitle.setproctitle('traderproc')
 
-    print("Welcome to Algotrader V 6.5- client application for Algotrader platform.")
+    print("Welcome to Algotrader V "+str(client_version)+"- client application for Algotrader platform.")
     algotrader=Algotrader()
     algotrader.get_settings()
     algotrader.start_processing()
