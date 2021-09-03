@@ -3,7 +3,7 @@ echo "Closing TWS if open"
 killall java
 sleep 1
 echo "Restarting TWS"
-/home/su/Jts/tws start&
+/home/su/Jts/ibgateway/981/ibgateway start&
 echo "TWS started"
 sleep 10
 echo "finished waiting"
