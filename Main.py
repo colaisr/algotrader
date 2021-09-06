@@ -1,3 +1,4 @@
+client_version=6.6
 import configparser
 import json
 import subprocess
@@ -191,7 +192,7 @@ class Algotrader:
         open_orders = self.ibkrworker.app.openOrders
         candidates_live=self.ibkrworker.app.candidatesLive
         dailyPnl = self.ibkrworker.app.dailyPnl
-        tradinng_session_state = self.trading_session_state
+        tradinng_session_state = self.ibkrworker.trading_session_state
         worker_last_execution = self.ibkrworker.last_worker_execution_time
         api_connected=self.ibkrworker.api_connected
         market_data_error = self.ibkrworker.app.market_data_error
@@ -206,9 +207,12 @@ class Algotrader:
                            dailyPnl,
                            worker_last_execution,
                            datetime.now(self.trading_time_zone),
-                           self.trading_session_state,
+                           tradinng_session_state,
                            excess_liquidity,
-                           self.started_time,api_connected,market_data_error]
+                           self.started_time,
+                           api_connected,
+                           market_data_error,
+                           client_version]
         report_snapshot_to_server(self.settings, data_for_report)
 
 
@@ -216,7 +220,7 @@ def cmd_main():
 
     setproctitle.setproctitle('traderproc')
 
-    print("Welcome to Algotrader V 6.5- client application for Algotrader platform.")
+    print("Welcome to Algotrader V "+str(client_version)+"- client application for Algotrader platform.")
     algotrader=Algotrader()
     algotrader.get_settings()
     algotrader.start_processing()

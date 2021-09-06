@@ -198,8 +198,8 @@ Starts tracking the Candidates and adds the statistics
                                            "LastUpdate": 0}
             self.app.reqMarketDataType(1)
             self.app.reqMktData(id, c, '', False, False, [])
-            while len(self.app.CandidatesLiveDataRequests)>40:
-                print('---------more than 40 Candidates quied waiting to clean.... last req'+str(self.app.nextorderId))
+            while len(self.app.CandidatesLiveDataRequests)>20:
+                print('---------more than 20 Candidates quied waiting to clean.... last req'+str(self.app.nextorderId))
                 time.sleep(1)
             self.app.nextorderId += 1
             trackedStockN += 1
@@ -484,9 +484,9 @@ updating all openPositions, refreshed on each worker- to include changes from ne
             print("Requested details for " + s + " position PnL with reqest : "+str(id))
             self.app.nextorderId += 1
 
-        while (len(self.app.openPositionsLiveDataRequests) != 0):
-            time.sleep(1)
-            print('Waiting to get all open positions....')
+            while (len(self.app.openPositionsLiveDataRequests) != 0):
+                time.sleep(0.1)
+                print('Waiting to get data for position request :'+str(self.app.nextorderId-1))
         print(str(len(self.app.openPositions)) + " open positions completely updated")
 
     def update_open_orders(self):
@@ -582,6 +582,7 @@ Creating a PnL request the result will be stored in generalStarus
                     self.app.candidatesLive[k]['fmp_rating'] = dt['fmp_rating']
                     self.app.candidatesLive[k]['under_priced_pnt'] = dt['under_priced_pnt']
                     self.app.candidatesLive[k]['twelve_month_momentum'] = dt['twelve_month_momentum']
+                    self.app.candidatesLive[k]['beta'] = dt['beta']
                     print(
                         "Ticker Data from server for " + v['Stock'] + " was added")
                     break

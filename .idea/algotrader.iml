@@ -7,7 +7,7 @@
       <excludeFolder url="file://$MODULE_DIR$/twsapi/dist" />
       <excludeFolder url="file://$MODULE_DIR$/twsapi/ibapi.egg-info" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.9 (algotrader)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.8" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PackageRequirementsSettings">

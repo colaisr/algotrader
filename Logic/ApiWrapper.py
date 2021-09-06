@@ -34,15 +34,18 @@ class IBapi(EWrapper, EClient):
         self.market_data_error=False
 
     def error(self, reqId: TickerId, errorCode: int, errorString: str):
-        super().error(reqId, errorCode, errorString)
-        if errorCode==2104 or errorCode==2106 or errorCode==2158 or errorCode==502 or errorCode==2108 or errorCode==100:
-            #see if code 100 affecting something
+        #super().error(reqId, errorCode, errorString)
+        if errorCode==2104 or errorCode==2106 or errorCode==2158 or errorCode==2108 or errorCode==2119:
+            #ok messages
             pass
-        elif errorCode==2101 or errorCode==2110:
+        elif errorCode==502:
+            pass
+        elif errorCode==2101 or errorCode==2110 or errorCode==1100:   # another connection created restartto work on disconnect
             print("connection with a station was lost- restarting")
             import subprocess
             subprocess.call(['sh', './linux_restart_all.sh'])
         else:   #requested market data is not subscribed or other problem
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!need to be handled- error code :"+str(errorCode)+"   "+errorString)
             try:
                 if self.CandidatesLiveDataRequests is not None:
                     if reqId in self.CandidatesLiveDataRequests.keys():
