@@ -1,4 +1,4 @@
-client_version=6.7
+client_version=6.8
 import configparser
 import json
 import subprocess

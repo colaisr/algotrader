@@ -583,9 +583,11 @@ Creating a PnL request the result will be stored in generalStarus
                     self.app.candidatesLive[k]['under_priced_pnt'] = dt['under_priced_pnt']
                     self.app.candidatesLive[k]['twelve_month_momentum'] = dt['twelve_month_momentum']
                     self.app.candidatesLive[k]['beta'] = dt['beta']
+                    self.app.candidatesLive[k]['max_intraday_drop_percent'] = dt['max_intraday_drop_percent']
                     print(
                         "Ticker Data from server for " + v['Stock'] + " was added")
                     break
+
 
     def check_session_state(self):
         tz = timezone('US/Eastern')
