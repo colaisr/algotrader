@@ -1,4 +1,6 @@
 import datetime
+import time
+
 from AlgotraderServerConnection import report_market_action, report_market_data_error
 from ibapi.common import MarketDataTypeEnum, HistogramDataList, BarData, TickerId
 from twsapi.ibapi.contract import Contract, ContractDetails
@@ -42,6 +44,7 @@ class IBapi(EWrapper, EClient):
             pass
         elif errorCode==2101 or errorCode==2110 or errorCode==1100:   # another connection created restartto work on disconnect
             print("connection with a station was lost- restarting")
+            time.sleep(90)
             import subprocess
             subprocess.call(['sh', './linux_restart_all.sh'])
         else:   #requested market data is not subscribed or other problem
