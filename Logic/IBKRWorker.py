@@ -198,7 +198,7 @@ Starts tracking the Candidates and adds the statistics
                                            "LastUpdate": 0}
             self.app.reqMarketDataType(1)
             self.app.reqMktData(id, c, '', False, False, [])
-            while len(self.app.CandidatesLiveDataRequests)>20:
+            while len(self.app.CandidatesLiveDataRequests)>15:
                 print('---------more than 20 Candidates quied waiting to clean.... last req'+str(self.app.nextorderId))
                 time.sleep(1)
             self.app.nextorderId += 1
@@ -210,6 +210,7 @@ Starts tracking the Candidates and adds the statistics
         counter=0
         while len(self.app.CandidatesLiveDataRequests)>0:
             print("waiting for the last candidate data...."+str(counter))
+            print('missing:'+str(next(iter(self.app.CandidatesLiveDataRequests))))
             counter=counter+1
             time.sleep(1)
             if counter>120:
