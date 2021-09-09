@@ -212,7 +212,7 @@ Starts tracking the Candidates and adds the statistics
             print("waiting for the last candidate data...."+str(counter))
             counter=counter+1
             time.sleep(1)
-            if counter>60:
+            if counter>120:
                 return False
         have_empty = True
 
