@@ -241,8 +241,8 @@ class Algotrader:
 
     def start_tws(self,settings):
         tws_running=checkIfProcessRunning('JavaApplicationStub')
-        user=os.getlogin()
-        if user != 'colakamornik':
+        user=os.environ
+        if 'colakamornik' not in user:
             cmd=settings.TWSSTARTCOMMAND
             os.system(cmd)
             while not checkIfProcessRunning('JavaApplicationStub'):
