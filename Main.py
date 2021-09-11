@@ -250,7 +250,7 @@ class Algotrader:
                 print('Waiting for login Screen')
                 time.sleep(1)
             print("TWS process found waiting a bit to load")
-            time.sleep(5) #let login screen to be loaded
+            time.sleep(20) #let login screen to be loaded
             login_tws_user(settings)
 
 
