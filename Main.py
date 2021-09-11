@@ -30,7 +30,7 @@ def checkIfProcessRunning(processName):
             if processName.lower() in proc.name().lower():
                 return True
         except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
-            pass
+            print('exc')
     return False;
 
 def is_admin():
