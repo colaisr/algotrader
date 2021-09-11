@@ -1,3 +1,8 @@
+import os
+import time
+
+from Scripts.tws_cred_login import login_tws_user
+
 client_version=6.9
 import configparser
 import json
@@ -9,9 +14,24 @@ import setproctitle
 from pytz import timezone
 from AlgotraderServerConnection import report_snapshot_to_server, get_user_settings_from_server, get_command_from_server
 from Logic.IBKRWorker import IBKRWorker
+import psutil
 
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
+
+def checkIfProcessRunning(processName):
+    '''
+    Check if there is any running process that contains the given name processName.
+    '''
+    #Iterate over the all the running process
+    for proc in psutil.process_iter(['pid', 'name','username']):
+        try:
+            # Check if process name contains the given name string.
+            if processName.lower() in proc.name().lower():
+                return True
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            pass
+    return False;
 
 def is_admin():
     try:
@@ -54,6 +74,7 @@ class TraderSettings():
         self.config.read('config.ini')
         self.FILESERVERURL = self.config['Server']['serverurl']
         self.FILESERVERUSER = self.config['Server']['serveruser']
+        self.TWSSTARTCOMMAND = self.config['Server']['tws_installation_pathl']
         retrieved = get_user_settings_from_server(self.FILESERVERURL, self.FILESERVERUSER)
 
         self.read_config(retrieved)
@@ -82,6 +103,9 @@ class TraderSettings():
         self.AUTORESTART = retrieved['station_autorestart']
         self.APPLYMAXHOLD=retrieved['algo_apply_max_hold']
         self.MAXHOLDDAYS=retrieved['algo_max_hold_days']
+        self.TWSUSER = retrieved['connection_tws_user']
+        self.TWSPASS = retrieved['connection_tws_pass']
+
 
     def set_autorestart_task(self):
         print("Autorestart setting applied- validating OS Setting")
@@ -215,6 +239,19 @@ class Algotrader:
                            client_version]
         report_snapshot_to_server(self.settings, data_for_report)
 
+    def start_tws(self,settings):
+        tws_running=checkIfProcessRunning('JavaApplicationStub')
+        user=os.getlogin()
+        if user != 'colakamornik':
+            cmd=settings.TWSSTARTCOMMAND
+            os.system(cmd)
+            while not checkIfProcessRunning('JavaApplicationStub'):
+                print('Waiting for login Screen')
+                time.sleep(1)
+            time.sleep(5) #let login screen to be loaded
+            login_tws_user(settings)
+
+
 
 def cmd_main():
 
@@ -223,6 +260,7 @@ def cmd_main():
     print("Welcome to Algotrader V "+str(client_version)+"- client application for Algotrader platform.")
     algotrader=Algotrader()
     algotrader.get_settings()
+    algotrader.start_tws(algotrader.settings)
     algotrader.start_processing()
 
 
