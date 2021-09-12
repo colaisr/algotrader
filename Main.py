@@ -54,13 +54,14 @@ def restart_tws_and_trader():
     elif platform.system()=='Linux':
         print("Linux OS detected -restarting")
         import subprocess
-        subprocess.call(['sh','./linux_restart_all.sh'])
+        subprocess.call(['sh','reboot'])
 
     elif platform.system()=='Darwin':
         print("Mac OS detected -restarting")
         import sys
         import os
         os.execl(sys.executable, sys.executable, *sys.argv)
+
 
 class SettingsCandidate:
     def __init__(self):
@@ -82,7 +83,6 @@ class TraderSettings():
         #     self.set_autorestart_task()
         # else:
         #     self.remove_autorestart_task()
-
 
     def read_config(self, retrieved):
         self.PORT = retrieved['connection_port']
@@ -107,20 +107,6 @@ class TraderSettings():
         self.TWSPASS = retrieved['connection_tws_pass']
 
 
-    def set_autorestart_task(self):
-        print("Autorestart setting applied- validating OS Setting")
-        import platform
-        if platform.system() == 'Windows':
-            print("Windows OS detected... setting a task...")
-            import os
-            subprocess.call('Scripts\\win_set_autorestart.bat')
-            print("Autorestart task setted")
-        elif platform.system() == 'Linux':
-            print("Linux is not yet implemented")
-            pass
-        elif platform.system() == 'Darwin':
-            print("MacOS is not yet implemented")
-            pass
     def remove_autorestart_task(self):
         print("Autorestart setting disabled- validating OS Setting")
         import platform
@@ -135,6 +121,7 @@ class TraderSettings():
         elif platform.system() == 'Darwin':
             print("MacOS is not yet implemented")
             pass
+
 
 class Algotrader:
     def __init__(self):
