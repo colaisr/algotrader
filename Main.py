@@ -3,7 +3,7 @@ import time
 
 from Scripts.tws_cred_login import login_tws_user
 
-client_version=6.9
+client_version=7.0
 import configparser
 import json
 import subprocess
@@ -33,11 +33,6 @@ def checkIfProcessRunning(processName):
             print('exc')
     return False;
 
-def is_admin():
-    try:
-        return ctypes.windll.shell32.IsUserAnAdmin()
-    except:
-        return False
 
 def restart_tws_and_trader():
     import platform
@@ -150,14 +145,12 @@ class Algotrader:
         self.process_worker()
         threading.Timer(self.settings.INTERVALSERVER, self.start_processing ).start()
 
-
     def process_worker(self):
         print("Requesting Command from server......")
         self.get_settings() #to keep them updated
         if self.settings is not None:
             server_command=get_command_from_server(self.settings)
             self.process_server_command_response(server_command)
-
 
     def process_server_command_response(self, r):
         response=json.loads(r)
@@ -189,7 +182,6 @@ class Algotrader:
             restart_tws_and_trader()
         print("Worker finished reporting to the server........")
         self.report_to_server()
-
 
     def report_to_server(self):
         net_liquidation = self.ibkrworker.app.netLiquidation
@@ -240,7 +232,6 @@ class Algotrader:
             print("TWS process found waiting a bit to load")
             time.sleep(20) #let login screen to be loaded
             login_tws_user(settings)
-
 
 
 def cmd_main():
