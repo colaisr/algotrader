@@ -221,7 +221,7 @@ class Algotrader:
 
     def start_tws(self,settings):
         tws_running=checkIfProcessRunning('JavaApplicationStub')
-        user=os.environ
+        user=str(os.environ._data)
         if 'colakamornik' not in user:
             print('Starting TWS configured in INI file')
             cmd=settings.TWSSTARTCOMMAND

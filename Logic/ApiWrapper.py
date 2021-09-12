@@ -43,10 +43,11 @@ class IBapi(EWrapper, EClient):
         elif errorCode==502:
             pass
         elif errorCode==2101 or errorCode==2110 or errorCode==1100:   # another connection created restartto work on disconnect
-            print("connection with a station was lost- restarting")
+            print("connection with a station was lost- restarting after 90 seconds")
             time.sleep(90)
-            import subprocess
-            subprocess.call(['sh', './linux_restart_all.sh'])
+            cmd = 'reboot &'
+            import os
+            os.system(cmd)
         else:   #requested market data is not subscribed or other problem
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!need to be handled- error code :"+str(errorCode)+"   "+errorString)
             try:
