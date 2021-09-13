@@ -198,7 +198,7 @@ Starts tracking the Candidates and adds the statistics
                                            "LastUpdate": 0}
             self.app.reqMarketDataType(1)
             self.app.reqMktData(id, c, '', False, False, [])
-            while len(self.app.CandidatesLiveDataRequests)>20:
+            while len(self.app.CandidatesLiveDataRequests)>15:
                 print('---------more than 20 Candidates quied waiting to clean.... last req'+str(self.app.nextorderId))
                 time.sleep(1)
             self.app.nextorderId += 1
@@ -210,9 +210,10 @@ Starts tracking the Candidates and adds the statistics
         counter=0
         while len(self.app.CandidatesLiveDataRequests)>0:
             print("waiting for the last candidate data...."+str(counter))
+            print('missing:'+str(next(iter(self.app.CandidatesLiveDataRequests))))
             counter=counter+1
             time.sleep(1)
-            if counter>60:
+            if counter>120:
                 return False
         have_empty = True
 
@@ -583,9 +584,11 @@ Creating a PnL request the result will be stored in generalStarus
                     self.app.candidatesLive[k]['under_priced_pnt'] = dt['under_priced_pnt']
                     self.app.candidatesLive[k]['twelve_month_momentum'] = dt['twelve_month_momentum']
                     self.app.candidatesLive[k]['beta'] = dt['beta']
+                    self.app.candidatesLive[k]['max_intraday_drop_percent'] = dt['max_intraday_drop_percent']
                     print(
                         "Ticker Data from server for " + v['Stock'] + " was added")
                     break
+
 
     def check_session_state(self):
         tz = timezone('US/Eastern')

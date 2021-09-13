@@ -1,4 +1,9 @@
-client_version=6.6
+import os
+import time
+
+from Scripts.tws_cred_login import login_tws_user
+
+client_version=7.0
 import configparser
 import json
 import subprocess
@@ -9,15 +14,25 @@ import setproctitle
 from pytz import timezone
 from AlgotraderServerConnection import report_snapshot_to_server, get_user_settings_from_server, get_command_from_server
 from Logic.IBKRWorker import IBKRWorker
+import psutil
 
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
 
-def is_admin():
-    try:
-        return ctypes.windll.shell32.IsUserAnAdmin()
-    except:
-        return False
+def checkIfProcessRunning(processName):
+    '''
+    Check if there is any running process that contains the given name processName.
+    '''
+    #Iterate over the all the running process
+    for proc in psutil.process_iter(['pid', 'name','username']):
+        try:
+            # Check if process name contains the given name string.
+            if processName.lower() in proc.name().lower():
+                return True
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            print('exc')
+    return False;
+
 
 def restart_tws_and_trader():
     import platform
@@ -33,14 +48,16 @@ def restart_tws_and_trader():
         os.execv(sys.executable, ['python'] + sys.argv)
     elif platform.system()=='Linux':
         print("Linux OS detected -restarting")
-        import subprocess
-        subprocess.call(['sh','./linux_restart_all.sh'])
+        cmd = 'reboot &'
+        import os
+        os.system(cmd)
 
     elif platform.system()=='Darwin':
         print("Mac OS detected -restarting")
         import sys
         import os
         os.execl(sys.executable, sys.executable, *sys.argv)
+
 
 class SettingsCandidate:
     def __init__(self):
@@ -54,6 +71,7 @@ class TraderSettings():
         self.config.read('config.ini')
         self.FILESERVERURL = self.config['Server']['serverurl']
         self.FILESERVERUSER = self.config['Server']['serveruser']
+        self.TWSSTARTCOMMAND = self.config['Server']['tws_installation_pathl']
         retrieved = get_user_settings_from_server(self.FILESERVERURL, self.FILESERVERUSER)
 
         self.read_config(retrieved)
@@ -61,7 +79,6 @@ class TraderSettings():
         #     self.set_autorestart_task()
         # else:
         #     self.remove_autorestart_task()
-
 
     def read_config(self, retrieved):
         self.PORT = retrieved['connection_port']
@@ -82,21 +99,10 @@ class TraderSettings():
         self.AUTORESTART = retrieved['station_autorestart']
         self.APPLYMAXHOLD=retrieved['algo_apply_max_hold']
         self.MAXHOLDDAYS=retrieved['algo_max_hold_days']
+        self.TWSUSER = retrieved['connection_tws_user']
+        self.TWSPASS = retrieved['connection_tws_pass']
 
-    def set_autorestart_task(self):
-        print("Autorestart setting applied- validating OS Setting")
-        import platform
-        if platform.system() == 'Windows':
-            print("Windows OS detected... setting a task...")
-            import os
-            subprocess.call('Scripts\\win_set_autorestart.bat')
-            print("Autorestart task setted")
-        elif platform.system() == 'Linux':
-            print("Linux is not yet implemented")
-            pass
-        elif platform.system() == 'Darwin':
-            print("MacOS is not yet implemented")
-            pass
+
     def remove_autorestart_task(self):
         print("Autorestart setting disabled- validating OS Setting")
         import platform
@@ -111,6 +117,7 @@ class TraderSettings():
         elif platform.system() == 'Darwin':
             print("MacOS is not yet implemented")
             pass
+
 
 class Algotrader:
     def __init__(self):
@@ -138,14 +145,12 @@ class Algotrader:
         self.process_worker()
         threading.Timer(self.settings.INTERVALSERVER, self.start_processing ).start()
 
-
     def process_worker(self):
         print("Requesting Command from server......")
         self.get_settings() #to keep them updated
         if self.settings is not None:
             server_command=get_command_from_server(self.settings)
             self.process_server_command_response(server_command)
-
 
     def process_server_command_response(self, r):
         response=json.loads(r)
@@ -177,7 +182,6 @@ class Algotrader:
             restart_tws_and_trader()
         print("Worker finished reporting to the server........")
         self.report_to_server()
-
 
     def report_to_server(self):
         net_liquidation = self.ibkrworker.app.netLiquidation
@@ -215,6 +219,20 @@ class Algotrader:
                            client_version]
         report_snapshot_to_server(self.settings, data_for_report)
 
+    def start_tws(self,settings):
+        tws_running=checkIfProcessRunning('JavaApplicationStub')
+        user=str(os.environ._data)
+        if 'colakamornik' not in user:
+            print('Starting TWS configured in INI file')
+            cmd=settings.TWSSTARTCOMMAND
+            os.system(cmd)
+            while not checkIfProcessRunning('pxgsettings'):
+                print('Waiting for login Screen')
+                time.sleep(1)
+            print("TWS process found waiting a bit to load")
+            time.sleep(20) #let login screen to be loaded
+            login_tws_user(settings)
+
 
 def cmd_main():
 
@@ -223,6 +241,7 @@ def cmd_main():
     print("Welcome to Algotrader V "+str(client_version)+"- client application for Algotrader platform.")
     algotrader=Algotrader()
     algotrader.get_settings()
+    algotrader.start_tws(algotrader.settings)
     algotrader.start_processing()
 
 
