@@ -11,7 +11,7 @@ from twsapi.ibapi.wrapper import EWrapper
 
 class IBapi(EWrapper, EClient):
 
-    def __init__(self):
+    def __init__(self,logger):
         EClient.__init__(self, self)
         self.openPositions = {}
         self.openPositionsLiveDataRequests = {}
@@ -34,6 +34,7 @@ class IBapi(EWrapper, EClient):
         self.trading_hours_received=False
         self.executions_received=False
         self.market_data_error=False
+        self.logger=logger
 
     def error(self, reqId: TickerId, errorCode: int, errorString: str):
         #super().error(reqId, errorCode, errorString)
@@ -43,13 +44,13 @@ class IBapi(EWrapper, EClient):
         elif errorCode==502:
             pass
         elif errorCode==2101 or errorCode==2110 or errorCode==1100:   # another connection created restartto work on disconnect
-            print("connection with a station was lost- restarting after 90 seconds")
+            self.logger.log("connection with a station was lost- restarting after 90 seconds")
             time.sleep(90)
             cmd = 'reboot &'
             import os
             os.system(cmd)
         else:   #requested market data is not subscribed or other problem
-            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!need to be handled- error code :"+str(errorCode)+"   "+errorString)
+            self.logger.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!need to be handled- error code :"+str(errorCode)+"   "+errorString)
             try:
                 if self.CandidatesLiveDataRequests is not None:
                     if reqId in self.CandidatesLiveDataRequests.keys():
@@ -57,9 +58,9 @@ class IBapi(EWrapper, EClient):
                         del self.CandidatesLiveDataRequests[reqId]
                     if reqId in self.candidatesLive.keys():
                         del self.candidatesLive[reqId]
-                    print("ERROR in DATA: "+str(errorCode))
+                    self.logger.log("ERROR in DATA: "+str(errorCode))
                 else:
-                    print("connection with a station was lost- restarting")
+                    self.logger.log("connection with a station was lost- restarting")
                     import subprocess
                     subprocess.call(['sh', './linux_restart_all.sh'])
             except AttributeError:
@@ -93,7 +94,7 @@ class IBapi(EWrapper, EClient):
             self.openPositions[s]["RealizedPnL"] = realizedPnL
             self.openPositions[s]["Value"] = value
             self.openPositions[s]["LastUpdate"] = datetime.datetime.now()
-            print('pnl details received for request:' + str(reqId))    #debug only
+            self.logger.log('pnl details received for request:' + str(reqId))    #debug only
             self.cancelPnLSingle(reqId)
             self.openPositionsLiveDataRequests.pop(reqId, None)
 
@@ -137,7 +138,6 @@ class IBapi(EWrapper, EClient):
 
     def tickPrice(self, reqId, tickType, price, attrib):
         super().tickPrice(reqId, tickType, price, attrib)
-        # print("Tick received")
         if tickType == 1:
             self.candidatesLive[reqId]["Bid"] = price
             if(self.candidatesLive[reqId]["Ask"]!=0 and self.candidatesLive[reqId]["Close"]!=0):
@@ -147,12 +147,12 @@ class IBapi(EWrapper, EClient):
                             self.cancelMktData(reqId)
                             del self.CandidatesLiveDataRequests[reqId]
 
-                            print("Got data, stopped tracking request " + str(reqId))
+                            self.logger.log("Got data, stopped tracking request " + str(reqId))
                 else:
                     if reqId in self.CandidatesLiveDataRequests.keys():
                         self.cancelMktData(reqId)
                         del self.CandidatesLiveDataRequests[reqId]
-                        print("Got data, stopped tracking request "+str(reqId))
+                        self.logger.log("Got data, stopped tracking request "+str(reqId))
         elif tickType == 2:
             self.candidatesLive[reqId]["Ask"] = price
             if(self.candidatesLive[reqId]["Bid"]!=0 and self.candidatesLive[reqId]["Close"]!=0):
@@ -161,12 +161,12 @@ class IBapi(EWrapper, EClient):
                         if reqId in self.CandidatesLiveDataRequests.keys():
                             self.cancelMktData(reqId)
                             del self.CandidatesLiveDataRequests[reqId]
-                            print("Got data, stopped tracking request " + str(reqId))
+                            self.logger.log("Got data, stopped tracking request " + str(reqId))
                 else:
                     if reqId in self.CandidatesLiveDataRequests.keys():
                         self.cancelMktData(reqId)
                         del self.CandidatesLiveDataRequests[reqId]
-                        print("Got data, stopped tracking request "+str(reqId))
+                        self.logger.log("Got data, stopped tracking request "+str(reqId))
         elif tickType == 4:
             #last price ignored - have no value
             return
@@ -178,12 +178,12 @@ class IBapi(EWrapper, EClient):
                         if reqId in self.CandidatesLiveDataRequests.keys():
                             self.cancelMktData(reqId)
                             del self.CandidatesLiveDataRequests[reqId]
-                            print("Got data, stopped tracking request " + str(reqId))
+                            self.logger.log("Got data, stopped tracking request " + str(reqId))
                 else:
                     if reqId in self.CandidatesLiveDataRequests.keys():
                         self.cancelMktData(reqId)
                         del self.CandidatesLiveDataRequests[reqId]
-                    print("Got data, stopped tracking request "+str(reqId))
+                    self.logger.log("Got data, stopped tracking request "+str(reqId))
         elif tickType == 6:
             return
             # self.candidatesLive[reqId]["High"] = price
@@ -196,9 +196,9 @@ class IBapi(EWrapper, EClient):
                 if reqId in self.CandidatesLiveDataRequests.keys():
                     self.cancelMktData(reqId)
                     del self.CandidatesLiveDataRequests[reqId]
-                print("Got data, stopped tracking request " + str(reqId))
+                self.logger.log("Got data, stopped tracking request " + str(reqId))
         else:
-            print("unrecognized tick:", tickType)
+            self.logger.log("unrecognized tick:", tickType)
 
         self.candidatesLive[reqId]["LastUpdate"] = datetime.datetime.now()
 
