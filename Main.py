@@ -264,9 +264,7 @@ class Algotrader:
             while not checkIfProcessRunning('pxgsettings'):
                 al.log('Waiting for login Screen')
                 time.sleep(1)
-            al.log("TWS process found waiting a bit to load")
-
-            time.sleep(20) #let login screen to be loaded
+            al.log("TWS process found starting login")
             login_tws_user(settings)
 
 
