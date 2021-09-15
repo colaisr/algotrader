@@ -6,7 +6,7 @@ def login_tws_user(settings):
 
     # Searches for the image
     while image == None:
-        image = pyautogui.locateOnScreen("login.png")
+        image = pyautogui.locateOnScreen("login.png", confidence=0.7)
         print("still haven't found the image")
     print("Logging in with users credentials from Server")
     pyautogui.write(settings.TWSUSER)
