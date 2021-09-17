@@ -2,16 +2,14 @@ import os
 import sys
 import time
 
-import logtail
-from logtail import LogtailHandler
+import logging
+import logging.config
 
 from Scripts.tws_cred_login import login_tws_user
 
-client_version=7.0
+client_version=7.1
 import configparser
 import json
-import subprocess
-import ctypes
 import threading
 from datetime import datetime
 import setproctitle
@@ -21,19 +19,44 @@ from Logic.IBKRWorker import IBKRWorker
 import psutil
 
 class LoggerWriter:
-    def __init__(self):
-        handler = LogtailHandler(source_token="hitqNRu1j9jfrquZR6CjUg72")
-        import logging
+    def __init__(self,settings):
+        LOGGING = {
+            'version': 1,
+            'disable_existing_loggers': False,
+            'formatters': {
+                'logzioFormat': {
+                    'format': '{"additional_field": "value"}',
+                    'validate': False
+                }
+            },
+            'handlers': {
+                'logzio': {
+                    'class': 'logzio.handler.LogzioHandler',
+                    'level': 'INFO',
+                    'formatter': 'logzioFormat',
+                    'token': 'LqXYrBEPOxfEBTGumvPhxXljqvNDadbf',
+                    'logzio_type': '<<LOG-TYPE>>',
+                    'logs_drain_timeout': 5,
+                    'url': 'https://listener-eu.logz.io:8071'
+                }
+            },
+            'loggers': {
+                '': {
+                    'level': 'DEBUG',
+                    'handlers': ['logzio'],
+                    'propagate': True
+                }
+            }
+        }
+        logging.config.dictConfig(LOGGING)
         self.logger = logging.getLogger(__name__)
-        self.logger.handlers = []
-        self.logger.addHandler(handler)
-        self.logger.setLevel(logging.DEBUG)
+        self.user=settings.FILESERVERUSER
 
 
     def write(self, message):
-        import logging
         if message != '\n':
-            self.logger.log(logging.ERROR,message)
+            print(message)
+            self.logger.info(message, extra={'user':self.user})
     def flush(self):
         pass
 
@@ -45,17 +68,41 @@ class Algotrader_logger:
         self.set_remote_logger()
 
     def set_remote_logger(self):
-        handler = LogtailHandler(source_token="hitqNRu1j9jfrquZR6CjUg72")
-        import logging
+
+        LOGGING = {
+            'version': 1,
+            'disable_existing_loggers': False,
+            'formatters': {
+                'logzioFormat': {
+                    'format': '{"additional_field": "value"}',
+                    'validate': False
+                }
+            },
+            'handlers': {
+                'logzio': {
+                    'class': 'logzio.handler.LogzioHandler',
+                    'level': 'INFO',
+                    'formatter': 'logzioFormat',
+                    'token': 'LqXYrBEPOxfEBTGumvPhxXljqvNDadbf',
+                    'logzio_type': '<<LOG-TYPE>>',
+                    'logs_drain_timeout': 5,
+                    'url': 'https://listener-eu.logz.io:8071'
+                }
+            },
+            'loggers': {
+                '': {
+                    'level': 'DEBUG',
+                    'handlers': ['logzio'],
+                    'propagate': True
+                }
+            }
+        }
+        logging.config.dictConfig(LOGGING)
         self.logger = logging.getLogger(__name__)
-        self.logger.handlers = []
-        self.logger.addHandler(handler)
-        self.logger.setLevel(logging.DEBUG)
 
     def log(self,message):
         print(message)
-        with logtail.context(user={ 'user': self.user }):
-            self.logger.info(message)
+        self.logger.info(message, extra={'user':self.user})
 
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
@@ -270,10 +317,11 @@ class Algotrader:
 
 def cmd_main():
 
-    # sys.stdout = LoggerWriter()     this is redirecting output to remote directly
+
     setproctitle.setproctitle('traderproc')
     algotrader=Algotrader()
     algotrader.get_settings()
+    sys.stderr = LoggerWriter(algotrader.settings)  # this is redirecting output to remote directly
     al.log('Client started V:'+str(client_version))
     algotrader.start_tws(algotrader.settings)
     algotrader.start_processing()
