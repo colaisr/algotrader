@@ -71,7 +71,7 @@ class Algotrader_logger:
 
         LOGGING = {
             'version': 1,
-            'disable_existing_loggers': False,
+            'disable_existing_loggers': True,
             'formatters': {
                 'logzioFormat': {
                     'format': '{"additional_field": "value"}',
@@ -91,7 +91,7 @@ class Algotrader_logger:
             },
             'loggers': {
                 '': {
-                    'level': 'DEBUG',
+                    'level': 'INFO',
                     'handlers': ['logzio'],
                     'propagate': True
                 }
