@@ -43,6 +43,8 @@ class IBapi(EWrapper, EClient):
             pass
         elif errorCode==502:
             pass
+        elif errorCode==0:   #approaching 50 messages code - wait 1 sec to clean
+            time.sleep(90)
         elif errorCode==2101 or errorCode==2110 or errorCode==1100:   # another connection created restartto work on disconnect
             self.logger.log("connection with a station was lost- restarting after 90 seconds")
             time.sleep(90)
