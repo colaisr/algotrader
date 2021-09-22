@@ -7,7 +7,7 @@ import logging.config
 
 from Scripts.tws_cred_login import login_tws_user
 
-client_version=7.1
+client_version=7.2
 import configparser
 import json
 import threading
@@ -321,7 +321,7 @@ def cmd_main():
     setproctitle.setproctitle('traderproc')
     algotrader=Algotrader()
     algotrader.get_settings()
-    sys.stderr = LoggerWriter(algotrader.settings)  # this is redirecting output to remote directly
+    # sys.stderr = LoggerWriter(algotrader.settings)  # this is redirecting output to remote directly
     al.log('Client started V:'+str(client_version))
     algotrader.start_tws(algotrader.settings)
     algotrader.start_processing()
