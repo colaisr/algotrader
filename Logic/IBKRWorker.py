@@ -49,21 +49,24 @@ class IBKRWorker():
                 self.logger.log("Preparing to close all open positions")
                 self.check_if_holiday()
                 self.update_open_positions()
-                for s, p in self.app.openPositions.items():
-                    if 'Value' in p.keys():
-                        if p["Value"] != 0:
-                            self.logger.log("Closing " + s)
-                            contract = createContract(s)
-                            order = createMktSellOrder(p['stocks'])
-                            self.app.placeOrder(self.app.nextorderId, contract, order)
-                            self.app.nextorderId = self.app.nextorderId + 1
-                            self.logger.log("Created a Market Sell order for " + s)
+                if self.trading_session_state == "Open":
+                    for s, p in self.app.openPositions.items():
+                        if 'Value' in p.keys():
+                            if p["Value"] != 0:
+                                self.logger.log("Closing " + s)
+                                contract = createContract(s)
+                                order = createMktSellOrder(p['stocks'])
+                                self.app.placeOrder(self.app.nextorderId, contract, order)
+                                self.app.nextorderId = self.app.nextorderId + 1
+                                self.logger.log("Created a Market Sell order for " + s)
 
+                            else:
+                                self.logger.log("Position " + s + " skept its Value is 0")
                         else:
-                            self.logger.log("Position " + s + " skept its Value is 0")
-                    else:
-                        self.logger.log("Position " + s + " skept it has no Value")
-                return True
+                            self.logger.log("Position " + s + " skept it has no Value")
+                    return True
+                else:
+                    print('All positions closed was not done - session is Closed')
             else:
                 self.logger.log("Could not connect to TWS ....processing skept..")
                 return False

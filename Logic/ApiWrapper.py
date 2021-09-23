@@ -1,7 +1,7 @@
 import datetime
 import time
 
-from AlgotraderServerConnection import report_market_action, report_market_data_error
+from AlgotraderServerConnection import report_market_action
 from ibapi.common import MarketDataTypeEnum, HistogramDataList, BarData, TickerId
 from twsapi.ibapi.contract import Contract, ContractDetails
 from twsapi.ibapi.order import Order

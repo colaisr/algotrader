@@ -28,18 +28,6 @@ def report_market_action(settings, symbol, shares, price, side, time):
         print("Execution transmit failed")
 
 
-def report_market_data_error(settings):
-    time_to_report = datetime.now().isoformat()
-    r = requests.post(settings.SERVERURL + '/connections/postmarketdataerror',
-                      json={"user": settings.SERVERUSER,
-                            "market_data_error_time": json.dumps(time_to_report, default=json_serial)})
-    status_code = r.status_code
-    if status_code == 200:
-        print("Market Data Error Reported")
-    else:
-        print("Market Data Error Report failed")
-
-
 def get_market_data_from_server(settings, candidates):
     c = json.dumps(candidates)
     r = requests.get(settings.SERVERURL + '/marketdata/retrievemarketdata',
