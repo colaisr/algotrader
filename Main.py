@@ -7,7 +7,7 @@ import logging.config
 
 from Scripts.tws_cred_login import login_tws_user
 
-client_version=7.4
+client_version=7.5
 import configparser
 import json
 import threading
@@ -299,6 +299,7 @@ class Algotrader:
                            market_data_error,
                            client_version]
         report_snapshot_to_server(self.settings, data_for_report)
+        self.ibkrworker.app.disconnect()
 
     def start_tws(self,settings):
         tws_running=checkIfProcessRunning('JavaApplicationStub')

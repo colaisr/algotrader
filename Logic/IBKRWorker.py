@@ -134,7 +134,7 @@ Creates the connection - starts listner for events
         # while not isinstance(self.app.nextorderId, int):
         retries = 0
         self.logger.log("Restarting connection to IBKR")
-        self.app.disconnect()
+        # self.app.disconnect()
         #self.app.reset()
         self.app.connect('127.0.0.1', int(self.settings.PORT), 123)
 
@@ -201,9 +201,9 @@ Starts tracking the Candidates and adds the statistics
                                            "LastUpdate": 0}
             self.app.reqMarketDataType(1)
             self.app.reqMktData(id, c, '', False, False, [])
-            while len(self.app.CandidatesLiveDataRequests)>15:
-                self.logger.log('---------more than 20 Candidates quied waiting to clean.... last req'+str(self.app.nextorderId))
-                time.sleep(1)
+            while len(self.app.CandidatesLiveDataRequests)>5:
+                self.logger.log('Waiting to get last 5 candidates requests, the last to get is : '+str(self.app.nextorderId))
+                time.sleep(0.1)
             self.app.nextorderId += 1
             trackedStockN += 1
             message_number+=1
