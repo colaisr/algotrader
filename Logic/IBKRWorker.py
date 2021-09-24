@@ -567,6 +567,7 @@ Creating a PnL request the result will be stored in generalStarus
                     self.app.candidatesLive[k]['tipranksRank'] = dt['tipranks']
                     self.app.candidatesLive[k]['yahoo_rank'] = dt['yahoo_rank']
                     self.app.candidatesLive[k]['stock_invest_rank'] = dt['stock_invest_rank']
+                    self.app.candidatesLive[k]['algotrader_rank'] = dt['algotrader_rank']
                     self.app.candidatesLive[k]['fmp_rating'] = dt['fmp_rating']
                     self.app.candidatesLive[k]['under_priced_pnt'] = dt['under_priced_pnt']
                     self.app.candidatesLive[k]['twelve_month_momentum'] = dt['twelve_month_momentum']
