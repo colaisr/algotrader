@@ -7,7 +7,7 @@ import logging.config
 
 from Scripts.tws_cred_login import login_tws_user
 
-client_version=7.5
+client_version=7.6
 import configparser
 import json
 import threading
@@ -215,6 +215,10 @@ class Algotrader:
             else:
                 al.log("Error in getting Settings: " + str(e))
         al.log('Settings received.')
+        if self.settings is not None:
+            return True
+        else:
+            return False
 
     def start_processing(self):
         self.process_worker()
@@ -223,7 +227,10 @@ class Algotrader:
     def process_worker(self):
         al.log("Requesting Command from server......")
 
-        self.get_settings() #to keep them updated
+        result = self.get_settings()   #to not fall on server restarts
+        while result == False:
+            time.sleep(10)
+            result = self.get_settings()
         if self.settings is not None:
             server_command=get_command_from_server(self.settings)
             self.process_server_command_response(server_command)
@@ -321,7 +328,10 @@ def cmd_main():
 
     setproctitle.setproctitle('traderproc')
     algotrader=Algotrader()
-    algotrader.get_settings()
+    result=algotrader.get_settings()
+    while result==False:
+        time.sleep(10)
+        result = algotrader.get_settings()
     # sys.stderr = LoggerWriter(algotrader.settings)  # this is redirecting output to remote directly
     al.log('Client started V:'+str(client_version))
     algotrader.start_tws(algotrader.settings)
