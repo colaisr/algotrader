@@ -205,8 +205,8 @@ Starts tracking the Candidates and adds the statistics
             while len(self.app.CandidatesLiveDataRequests)>5:
                 attempt = attempt + 1
                 self.logger.log('Waiting to get last 5 candidates requests, the last to get is : '+str(self.app.nextorderId)+ "Attempt: "+str(attempt))
-                time.sleep(0.1)
-                if attempt>30:
+                time.sleep(1)
+                if attempt>3:
                     break
 
             self.app.nextorderId += 1
