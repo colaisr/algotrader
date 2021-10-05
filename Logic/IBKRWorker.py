@@ -201,13 +201,14 @@ Starts tracking the Candidates and adds the statistics
                                            "LastUpdate": 0}
             self.app.reqMarketDataType(1)
             self.app.reqMktData(id, c, '', False, False, [])
+            attempt = 0
             while len(self.app.CandidatesLiveDataRequests)>5:
-                attempt=0
-                self.logger.log('Waiting to get last 5 candidates requests, the last to get is : '+str(self.app.nextorderId))
-                self.logger.log(str(attempt))
+                attempt = attempt + 1
+                self.logger.log('Waiting to get last 5 candidates requests, the last to get is : '+str(self.app.nextorderId)+ "Attempt: "+str(attempt))
                 time.sleep(0.1)
                 if attempt>30:
                     break
+
             self.app.nextorderId += 1
             trackedStockN += 1
             message_number+=1
