@@ -132,6 +132,9 @@ class IBapi(EWrapper, EClient):
         price=execution.price
         time=execution.time
         side=execution.side       #sell SLD   buy BOT
+        order_id=execution.orderId
+        execution_id=execution.execId
+        d=2
         self.report_execution_to_Server(symbol,shares,price,side,time)
 
     def execDetailsEnd(self, reqId: int):

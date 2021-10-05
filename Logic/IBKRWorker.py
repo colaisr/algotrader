@@ -400,20 +400,39 @@ processes candidates for buying if enough SMA
             # res=sort_by_parameter_desc(self.app.candidatesLive.items(),'twelve_month_momentum')
             # res = sorted(sorted(sorted(sorted(self.app.candidatesLive.items(), key=lambda x: x[1]['twelve_month_momentum'], reverse=False), key=lambda x: x[1]['under_priced_pnt'], reverse=False), key=lambda x: x[1]['yahoo_rank'], reverse=False), key=lambda x: x[1]['tipranksRank'], reverse=True)
             self.logger.log(str(len(res)) + "Candidates found,sorted by Yahoo ranks")
-            for i, c in res:
-                if self.app.tradesRemaining > 0 or self.app.tradesRemaining == -1:
-                    if c['Stock'] in self.app.openPositions:
-                        self.logger.log("Skipping " + c['Stock'] + " as it is in open positions.")
-                        continue
-                    elif c['Stock'] in self.app.openOrders.keys():
-                        self.logger.log("Skipping " + c['Stock'] + " as it is in open orders.")
-                        continue
-                    else:
-                        result=self.evaluate_stock_for_buy(c['Stock'])
-                        if result=='bought':
-                            break                    #to avoid buying more than one in a worker run
+            if self.settings.APPLYMINEMOTION==True:
+                if self.settings.MINEMOTION<self.settings.MARKETEMOTION:
+                    for i, c in res:
+                        if self.app.tradesRemaining > 0 or self.app.tradesRemaining == -1:
+                            if c['Stock'] in self.app.openPositions:
+                                self.logger.log("Skipping " + c['Stock'] + " as it is in open positions.")
+                                continue
+                            elif c['Stock'] in self.app.openOrders.keys():
+                                self.logger.log("Skipping " + c['Stock'] + " as it is in open orders.")
+                                continue
+                            else:
+                                result=self.evaluate_stock_for_buy(c['Stock'])
+                                if result=='bought':
+                                    break                    #to avoid buying more than one in a worker run
+                        else:
+                            self.logger.log("Skipping " + c['Stock'] + " no available trades.")
                 else:
-                    self.logger.log("Skipping " + c['Stock'] + " no available trades.")
+                    self.logger.log("Processing skept - Market emotion is not good enough")
+            else:
+                for i, c in res:
+                    if self.app.tradesRemaining > 0 or self.app.tradesRemaining == -1:
+                        if c['Stock'] in self.app.openPositions:
+                            self.logger.log("Skipping " + c['Stock'] + " as it is in open positions.")
+                            continue
+                        elif c['Stock'] in self.app.openOrders.keys():
+                            self.logger.log("Skipping " + c['Stock'] + " as it is in open orders.")
+                            continue
+                        else:
+                            result = self.evaluate_stock_for_buy(c['Stock'])
+                            if result == 'bought':
+                                break  # to avoid buying more than one in a worker run
+                    else:
+                        self.logger.log("Skipping " + c['Stock'] + " no available trades.")
 
     def process_positions_candidates(self):
         """

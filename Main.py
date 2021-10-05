@@ -7,7 +7,7 @@ import logging.config
 
 from Scripts.tws_cred_login import login_tws_user
 
-client_version=7.6
+client_version=7.7
 import configparser
 import json
 import threading
@@ -191,6 +191,8 @@ class TraderSettings():
         self.MAXHOLDDAYS=retrieved['algo_max_hold_days']
         self.TWSUSER = retrieved['connection_tws_user']
         self.TWSPASS = retrieved['connection_tws_pass']
+        self.APPLYMINEMOTION = retrieved['algo_apply_min_emotion']
+        self.MINEMOTION = retrieved['algo_min_emotion']
 
 
 class Algotrader:
@@ -239,6 +241,7 @@ class Algotrader:
         response=json.loads(r)
         self.stocks_data_from_server=response['candidates']
         self.positions_open_on_server=response['open_positions']
+        self.settings.MARKETEMOTION=int(response['market_emotion'])
         command=response['command']
         al.log('Received command : '+command)
 
