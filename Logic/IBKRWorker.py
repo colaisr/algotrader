@@ -276,23 +276,26 @@ Processes the positions to identify Profit/Loss
                         positions_dict = {}
                         for po in self.positions_open_on_server:
                             positions_dict[po['ticker']] = datetime.datetime.fromisoformat(po['opened'])
-                        opened=positions_dict[s]
-                        delta = (datetime.datetime.now() - opened).days
-                        if delta>int(self.settings.MAXHOLDDAYS):
-                            orders = self.app.openOrders
-                            if s in orders:
-                                self.logger.log("Order for " + s + "already exist- skipping")
-                            else:
-                                self.logger.log(s + " is held for " + str(delta) +
-                                                           " days. Creating a Market Sell Order to utilize the funds")
-                                if self.settings.ALLOWSELL:
-                                    contract = createContract(s)
-                                    order = createMktSellOrder(p['stocks'])
-                                    self.app.placeOrder(self.app.nextorderId, contract, order)
-                                    self.app.nextorderId = self.app.nextorderId + 1
-                                    self.logger.log("Created a Market Sell order for " + s)
+                        if s in positions_dict.keys():
+                            opened=positions_dict[s]
+                            delta = (datetime.datetime.now() - opened).days
+                            if delta>int(self.settings.MAXHOLDDAYS):
+                                orders = self.app.openOrders
+                                if s in orders:
+                                    self.logger.log("Order for " + s + "already exist- skipping")
                                 else:
-                                    self.logger.log("Selling disabled in settings - skipping")
+                                    self.logger.log(s + " is held for " + str(delta) +
+                                                               " days. Creating a Market Sell Order to utilize the funds")
+                                    if self.settings.ALLOWSELL:
+                                        contract = createContract(s)
+                                        order = createMktSellOrder(p['stocks'])
+                                        self.app.placeOrder(self.app.nextorderId, contract, order)
+                                        self.app.nextorderId = self.app.nextorderId + 1
+                                        self.logger.log("Created a Market Sell order for " + s)
+                                    else:
+                                        self.logger.log("Selling disabled in settings - skipping")
+                        else:
+                            self.logger.log("!!!!!!!!!Position " + s + " not Logged !!!!!")
                 else:
                     self.logger.log("Position " + s + " skept its Value is 0")
             else:
@@ -443,7 +446,6 @@ Process Open positions and Candidates
             fmt = '%Y-%m-%d %H:%M:%S'
             est_time = datetime.datetime.now(est).strftime(fmt)
             local_time=datetime.datetime.now().strftime(fmt)
-            self.logger.log("----Starting Worker...----EST Time: " + est_time + "----Local Time: "+local_time+"----------")
             self.logger.log("Processing Positions-Candidates ")
             if self.trading_session_state == "Open":
                 # process
