@@ -135,7 +135,7 @@ class IBapi(EWrapper, EClient):
         order_id=execution.orderId
         execution_id=execution.execId
         d=2
-        self.report_execution_to_Server(symbol,shares,price,side,time)
+        self.report_execution_to_Server(symbol,shares,price,side,time,execution_id)
 
     def execDetailsEnd(self, reqId: int):
         super().execDetailsEnd(reqId)
@@ -241,8 +241,8 @@ class IBapi(EWrapper, EClient):
     def contractDetailsEnd(self, reqId: int):
         super().contractDetailsEnd(reqId)
 
-    def report_execution_to_Server(self, symbol, shares, price, side, time):
-        report_market_action(self.setting,symbol, shares, price, side, time)
+    def report_execution_to_Server(self, symbol, shares, price, side, time,exec_id):
+        report_market_action(self.setting,symbol, shares, price, side, time,exec_id)
 
 
 def createContract(symbol: str):

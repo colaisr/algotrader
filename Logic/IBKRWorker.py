@@ -280,7 +280,8 @@ Processes the positions to identify Profit/Loss
                     elif profit >2 and bool(self.settings.APPLYMAXHOLD) :
                         positions_dict = {}
                         for po in self.positions_open_on_server:
-                            positions_dict[po['ticker']] = datetime.datetime.fromisoformat(po['opened'])
+                            opened=datetime.datetime.fromisoformat(po['opened'])
+                            positions_dict[po['ticker']] = opened
                         if s in positions_dict.keys():
                             opened=positions_dict[s]
                             delta = (datetime.datetime.now() - opened).days
@@ -397,7 +398,7 @@ processes candidates for buying if enough SMA
 
         if self.real_remaining_funds < self.settings.BULCKAMOUNT:
             self.logger.log("SMA (including open positions cushion) is " + str(
-                self.real_remaining_funds) + " it is less than 1000 - skipping buy")
+                self.real_remaining_funds) + " it is less than "+str(self.settings.BULCKAMOUNT)+" - skipping buy")
             return
         else:
             self.logger.log(

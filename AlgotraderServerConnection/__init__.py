@@ -12,7 +12,7 @@ def json_serial(obj):
     raise TypeError("Type %s not serializable" % type(obj))
 
 
-def report_market_action(settings, symbol, shares, price, side, time):
+def report_market_action(settings, symbol, shares, price, side, time,exec_id):
     time_to_report = datetime.strptime(time, '%Y%m%d %H:%M:%S')
     r = requests.post(settings.SERVERURL + '/connections/postexecution',
                       json={"user": settings.SERVERUSER,
@@ -20,7 +20,8 @@ def report_market_action(settings, symbol, shares, price, side, time):
                             "shares": shares,
                             "price": price,
                             "side": side,
-                            "time": json.dumps(time_to_report, default=json_serial)})
+                            "time": json.dumps(time_to_report, default=json_serial),
+                            "exec_id":exec_id})
     status_code = r.status_code
     if status_code == 200:
         print("Successfully reported execution to server")
