@@ -21,7 +21,7 @@ def report_market_action(settings, symbol, shares, price, side, time,exec_id):
                             "price": price,
                             "side": side,
                             "time": json.dumps(time_to_report, default=json_serial),
-                            "exec_id":exec_id})
+                            "exec_id":str(exec_id)})
     status_code = r.status_code
     if status_code == 200:
         print("Successfully reported execution to server")
