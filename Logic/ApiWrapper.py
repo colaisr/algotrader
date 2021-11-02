@@ -11,48 +11,50 @@ from twsapi.ibapi.wrapper import EWrapper
 
 class IBapi(EWrapper, EClient):
 
-    def __init__(self,logger):
+    def __init__(self, logger):
         EClient.__init__(self, self)
         self.openPositions = {}
         self.openPositionsLiveDataRequests = {}
-        self.temp_positions={}
+        self.temp_positions = {}
         self.openOrders = {}
         self.candidatesLive = {}
-        self.openPositionsHistolicalData={}
+        self.openPositionsHistolicalData = {}
         self.generalStatus = "PnL not yet received"
-        self.dailyPnl =0
-        self.finishedPostitionsGeneral=False
-        self.finishedReceivingOrders=False
-        self.openPositionsLiveHistoryRequests={}
+        self.dailyPnl = 0
+        self.finishedPostitionsGeneral = False
+        self.finishedReceivingOrders = False
+        self.openPositionsLiveHistoryRequests = {}
         self.excessLiquidity = 0
-        self.sMa=0
-        self.tradesRemaining=0
-        self.netLiquidation=0
-        self.contract_processing=False
-        self.setting=None
-        self.trading_session=''
-        self.trading_hours_received=False
-        self.executions_received=False
-        self.market_data_error=False
-        self.logger=logger
+        self.sMa = 0
+        self.tradesRemaining = 0
+        self.netLiquidation = 0
+        self.contract_processing = False
+        self.setting = None
+        self.trading_session = ''
+        self.trading_hours_received = False
+        self.executions_received = False
+        self.market_data_error = False
+        self.logger = logger
+        self.reports_lst = {};
 
     def error(self, reqId: TickerId, errorCode: int, errorString: str):
-        #super().error(reqId, errorCode, errorString)
-        if errorCode==2104 or errorCode==2106 or errorCode==2158 or errorCode==2108 or errorCode==2119 or errorCode==2157:
-            #ok messages
+        # super().error(reqId, errorCode, errorString)
+        if errorCode == 2104 or errorCode == 2106 or errorCode == 2158 or errorCode == 2108 or errorCode == 2119 or errorCode == 2157:
+            # ok messages
             pass
-        elif errorCode==502:
+        elif errorCode == 502:
             pass
-        elif errorCode==0:   #approaching 50 messages code - wait 1 sec to clean
+        elif errorCode == 0:  # approaching 50 messages code - wait 1 sec to clean
             time.sleep(90)
-        elif errorCode==2101 or errorCode==2110 or errorCode==1100:   # another connection created restartto work on disconnect
+        elif errorCode == 2101 or errorCode == 2110 or errorCode == 1100:  # another connection created restartto work on disconnect
             self.logger.log("connection with a station was lost- restarting after 90 seconds")
             time.sleep(90)
             cmd = 'reboot &'
             import os
             os.system(cmd)
-        else:   #requested market data is not subscribed or other problem
-            self.logger.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!need to be handled- error code :"+str(errorCode)+"   "+errorString)
+        else:  # requested market data is not subscribed or other problem
+            self.logger.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!need to be handled- error code :" + str(
+                errorCode) + "   " + errorString)
             try:
                 if self.CandidatesLiveDataRequests is not None:
                     if reqId in self.CandidatesLiveDataRequests.keys():
@@ -60,15 +62,14 @@ class IBapi(EWrapper, EClient):
                         del self.CandidatesLiveDataRequests[reqId]
                     if reqId in self.candidatesLive.keys():
                         del self.candidatesLive[reqId]
-                    self.logger.log("ERROR in DATA: "+str(errorCode))
+                    self.logger.log("ERROR in DATA: " + str(errorCode))
                 else:
                     self.logger.log("connection with a station was lost- restarting")
                     import subprocess
                     subprocess.call(['sh', './linux_restart_all.sh'])
             except AttributeError:
                 pass
-                self.market_data_error=True
-
+                self.market_data_error = True
 
     def nextValidId(self, orderId: int):
         super().nextValidId(orderId)
@@ -79,14 +80,14 @@ class IBapi(EWrapper, EClient):
 
         self.generalStatus = "DailyPnL: " + str(dailyPnL) + " UnrealizedPnL: " + str(
             unrealizedPnL) + " RealizedPnL: " + str(realizedPnL)
-        self.dailyPnl=dailyPnL
+        self.dailyPnl = dailyPnL
 
     def pnlSingle(self, reqId: int, pos: int, dailyPnL: float, unrealizedPnL: float, realizedPnL: float, value: float):
         super().pnlSingle(reqId, pos, dailyPnL, unrealizedPnL, realizedPnL, value)
         if reqId in self.openPositionsLiveDataRequests.keys():
             s = self.openPositionsLiveDataRequests[reqId]
-            t=self.temp_positions[s]
-            self.openPositions[s]={}
+            t = self.temp_positions[s]
+            self.openPositions[s] = {}
             self.openPositions[s]["stocks"] = pos
             self.openPositions[s]["cost"] = t['cost']
             self.openPositions[s]["conId"] = t['conId']
@@ -96,17 +97,18 @@ class IBapi(EWrapper, EClient):
             self.openPositions[s]["RealizedPnL"] = realizedPnL
             self.openPositions[s]["Value"] = value
             self.openPositions[s]["LastUpdate"] = datetime.datetime.now()
-            self.logger.log('pnl details received for request:' + str(reqId))    #debug only
+            self.logger.log('pnl details received for request:' + str(reqId))  # debug only
             self.cancelPnLSingle(reqId)
             self.openPositionsLiveDataRequests.pop(reqId, None)
 
     def position(self, account: str, contract: Contract, position: float, avgCost: float):
         super().position(account, contract, position, avgCost)
-        self.temp_positions[contract.symbol] = {"stocks": position, "cost": avgCost, "conId": contract.conId,"HistoricalData":[]}
+        self.temp_positions[contract.symbol] = {"stocks": position, "cost": avgCost, "conId": contract.conId,
+                                                "HistoricalData": []}
 
     def positionEnd(self):
         super().positionEnd()
-        self.finishedPostitionsGeneral=True
+        self.finishedPostitionsGeneral = True
 
     def orderStatus(self, orderId, status, filled, remaining, avgFullPrice, permId, parentId, lastFillPrice, clientId,
                     whyHeld, mktCapPrice):
@@ -118,36 +120,43 @@ class IBapi(EWrapper, EClient):
         self.openOrders[contract.symbol] = {"Action": order.action,
                                             "Type": order.orderType,
                                             "adjustedStopPrice": order.trailStopPrice,
-                                            "OrderId":orderId}
+                                            "OrderId": orderId}
 
     def openOrderEnd(self):
         super().openOrderEnd()
-        self.finishedReceivingOrders=True
+        self.finishedReceivingOrders = True
 
     def execDetails(self, reqId, contract, execution):
         super().execDetails(reqId, contract, execution)
-        #important
-        symbol=contract.symbol
-        shares=execution.shares
-        price=execution.price
-        time=execution.time
-        side=execution.side       #sell SLD   buy BOT
-        order_id=execution.orderId
-        execution_id=execution.execId
-        print("Execution reported for "+symbol+" Stocks:"+str(shares)+" at "+str(time)+" side "+side+ " order: "+str(order_id)+"exec_id: "+str(execution_id))
+        # important
+        symbol = contract.symbol
+        shares = execution.shares
+        price = execution.price
+        time = execution.time
+        side = execution.side  # sell SLD   buy BOT
+        order_id = execution.orderId
+        execution_id = execution.execId
+        print("Execution reported for " + symbol + " Stocks:" + str(shares) + " at " + str(
+            time) + " side " + side + " order: " + str(order_id) + "exec_id: " + str(execution_id))
 
-        self.report_execution_to_Server(symbol,shares,price,side,time,execution_id)
+        if symbol in self.reports_lst:
+            self.reports_lst[symbol]['shares'] += shares
+        else:
+            self.reports_lst[symbol] = {'shares': shares, 'price': price, 'side': side, 'time': time, 'id': execution_id}
+        # self.report_execution_to_Server(symbol, shares, price, side, time, execution_id)
 
     def execDetailsEnd(self, reqId: int):
+        for key, value in self.reports_lst.items():
+            self.report_execution_to_Server(key, value['shares'], value['price'], value['side'], value['time'], value['id'])
         super().execDetailsEnd(reqId)
-        self.executions_received=True
+        self.executions_received = True
 
     def tickPrice(self, reqId, tickType, price, attrib):
         super().tickPrice(reqId, tickType, price, attrib)
         if tickType == 1:
             self.candidatesLive[reqId]["Bid"] = price
-            if(self.candidatesLive[reqId]["Ask"]!=0 and self.candidatesLive[reqId]["Close"]!=0):
-                if self.trading_session_state=='Open':
+            if (self.candidatesLive[reqId]["Ask"] != 0 and self.candidatesLive[reqId]["Close"] != 0):
+                if self.trading_session_state == 'Open':
                     if self.candidatesLive[reqId]["Open"] != 0:
                         if reqId in self.CandidatesLiveDataRequests.keys():
                             self.cancelMktData(reqId)
@@ -158,11 +167,11 @@ class IBapi(EWrapper, EClient):
                     if reqId in self.CandidatesLiveDataRequests.keys():
                         self.cancelMktData(reqId)
                         del self.CandidatesLiveDataRequests[reqId]
-                        self.logger.log("Got data, stopped tracking request "+str(reqId))
+                        self.logger.log("Got data, stopped tracking request " + str(reqId))
         elif tickType == 2:
             self.candidatesLive[reqId]["Ask"] = price
-            if(self.candidatesLive[reqId]["Bid"]!=0 and self.candidatesLive[reqId]["Close"]!=0):
-                if self.trading_session_state=='Open':
+            if (self.candidatesLive[reqId]["Bid"] != 0 and self.candidatesLive[reqId]["Close"] != 0):
+                if self.trading_session_state == 'Open':
                     if self.candidatesLive[reqId]["Open"] != 0:
                         if reqId in self.CandidatesLiveDataRequests.keys():
                             self.cancelMktData(reqId)
@@ -172,14 +181,14 @@ class IBapi(EWrapper, EClient):
                     if reqId in self.CandidatesLiveDataRequests.keys():
                         self.cancelMktData(reqId)
                         del self.CandidatesLiveDataRequests[reqId]
-                        self.logger.log("Got data, stopped tracking request "+str(reqId))
+                        self.logger.log("Got data, stopped tracking request " + str(reqId))
         elif tickType == 4:
-            #last price ignored - have no value
+            # last price ignored - have no value
             return
         elif tickType == 9:
             self.candidatesLive[reqId]["Close"] = price
-            if(self.candidatesLive[reqId]["Bid"]!=0 and self.candidatesLive[reqId]["Ask"]!=0):
-                if self.trading_session_state=='Open':
+            if (self.candidatesLive[reqId]["Bid"] != 0 and self.candidatesLive[reqId]["Ask"] != 0):
+                if self.trading_session_state == 'Open':
                     if self.candidatesLive[reqId]["Open"] != 0:
                         if reqId in self.CandidatesLiveDataRequests.keys():
                             self.cancelMktData(reqId)
@@ -189,7 +198,7 @@ class IBapi(EWrapper, EClient):
                     if reqId in self.CandidatesLiveDataRequests.keys():
                         self.cancelMktData(reqId)
                         del self.CandidatesLiveDataRequests[reqId]
-                    self.logger.log("Got data, stopped tracking request "+str(reqId))
+                    self.logger.log("Got data, stopped tracking request " + str(reqId))
         elif tickType == 6:
             return
             # self.candidatesLive[reqId]["High"] = price
@@ -198,7 +207,8 @@ class IBapi(EWrapper, EClient):
             return
         elif tickType == 14:
             self.candidatesLive[reqId]["Open"] = price
-            if(self.candidatesLive[reqId]["Bid"]!=0 and self.candidatesLive[reqId]["Ask"]!=0 and self.candidatesLive[reqId]["Close"]!=0):
+            if (self.candidatesLive[reqId]["Bid"] != 0 and self.candidatesLive[reqId]["Ask"] != 0 and
+                    self.candidatesLive[reqId]["Close"] != 0):
                 if reqId in self.CandidatesLiveDataRequests.keys():
                     self.cancelMktData(reqId)
                     del self.CandidatesLiveDataRequests[reqId]
@@ -211,14 +221,14 @@ class IBapi(EWrapper, EClient):
     def accountSummary(self, reqId: int, account: str, tag: str, value: str,
                        currency: str):
         super().accountSummary(reqId, account, tag, value, currency)
-        if tag=='DayTradesRemaining':
-            self.tradesRemaining=int(value)
-        elif tag=='ExcessLiquidity':
-            self.excessLiquidity=float(value)
-        elif tag=='SMA':
-            self.sMa=float(value)
-        elif tag=="NetLiquidation":
-            self.netLiquidation=float(value)
+        if tag == 'DayTradesRemaining':
+            self.tradesRemaining = int(value)
+        elif tag == 'ExcessLiquidity':
+            self.excessLiquidity = float(value)
+        elif tag == 'SMA':
+            self.sMa = float(value)
+        elif tag == "NetLiquidation":
+            self.netLiquidation = float(value)
 
     def historicalData(self, reqId: int, bar: BarData):
         if reqId in self.openPositionsLiveHistoryRequests.keys():
@@ -229,21 +239,20 @@ class IBapi(EWrapper, EClient):
         super().historicalDataEnd(reqId, start, end)
         del self.openPositionsLiveHistoryRequests[reqId]
 
-
     def historicalDataUpdate(self, reqId: int, bar: BarData):
         s = self.openPositionsLiveHistoryRequests[reqId]
-        self.openPositions[s]["HistoricalData"][-1]=bar
+        self.openPositions[s]["HistoricalData"][-1] = bar
 
     def contractDetails(self, reqId: int, contractDetails: ContractDetails):
         super().contractDetails(reqId, contractDetails)
-        self.trading_session=contractDetails.tradingHours
-        self.trading_hours_received=True
+        self.trading_session = contractDetails.tradingHours
+        self.trading_hours_received = True
 
     def contractDetailsEnd(self, reqId: int):
         super().contractDetailsEnd(reqId)
 
-    def report_execution_to_Server(self, symbol, shares, price, side, time,exec_id):
-        report_market_action(self.setting,symbol, shares, price, side, time,exec_id)
+    def report_execution_to_Server(self, symbol, shares, price, side, time, exec_id):
+        report_market_action(self.setting, symbol, shares, price, side, time, exec_id)
 
 
 def createContract(symbol: str):

@@ -7,7 +7,7 @@ import logging.config
 
 from Scripts.tws_cred_login import login_tws_user
 
-client_version=7.9
+client_version = 8.0
 import configparser
 import json
 import threading
@@ -18,8 +18,9 @@ from AlgotraderServerConnection import report_snapshot_to_server, get_user_setti
 from Logic.IBKRWorker import IBKRWorker
 import psutil
 
+
 class LoggerWriter:
-    def __init__(self,settings):
+    def __init__(self, settings):
         LOGGING = {
             'version': 1,
             'disable_existing_loggers': False,
@@ -50,25 +51,24 @@ class LoggerWriter:
         }
         logging.config.dictConfig(LOGGING)
         self.logger = logging.getLogger(__name__)
-        self.user=settings.FILESERVERUSER
-
+        self.user = settings.FILESERVERUSER
 
     def write(self, message):
         if message != '\n':
             print(message)
-            self.logger.info(message, extra={'user':self.user})
+            self.logger.info(message, extra={'user': self.user})
+
     def flush(self):
         pass
 
 
 class Algotrader_logger:
-    def __init__(self,settings):
-        self.user=settings.SERVERUSER
-        self.logger=''
+    def __init__(self, settings):
+        self.user = settings.SERVERUSER
+        self.logger = ''
         self.set_remote_logger()
 
     def set_remote_logger(self):
-
         LOGGING = {
             'version': 1,
             'disable_existing_loggers': True,
@@ -100,9 +100,10 @@ class Algotrader_logger:
         logging.config.dictConfig(LOGGING)
         self.logger = logging.getLogger(__name__)
 
-    def log(self,message):
+    def log(self, message):
         print(message)
-        self.logger.info(message, extra={'user':self.user})
+        self.logger.info(message, extra={'user': self.user})
+
 
 # The bid price refers to the highest price a buyer will pay for a security.
 # The ask price refers to the lowest price a seller will accept for a security.
@@ -111,8 +112,8 @@ def checkIfProcessRunning(processName):
     '''
     Check if there is any running process that contains the given name processName.
     '''
-    #Iterate over the all the running process
-    for proc in psutil.process_iter(['pid', 'name','username']):
+    # Iterate over the all the running process
+    for proc in psutil.process_iter(['pid', 'name', 'username']):
         try:
             # Check if process name contains the given name string.
             if processName.lower() in proc.name().lower():
@@ -124,7 +125,7 @@ def checkIfProcessRunning(processName):
 
 def restart_tws_and_trader():
     import platform
-    if platform.system()=='Windows':
+    if platform.system() == 'Windows':
         import sys
         print("Windows OS detected -restarting")
         print("argv was", sys.argv)
@@ -134,14 +135,14 @@ def restart_tws_and_trader():
         import os
         subprocess.call('Scripts\\win_restartTws.bat')
         os.execv(sys.executable, ['python'] + sys.argv)
-    elif platform.system()=='Linux':
+    elif platform.system() == 'Linux':
         al.log("Linux OS detected -restarting")
 
         cmd = 'reboot &'
         import os
         os.system(cmd)
 
-    elif platform.system()=='Darwin':
+    elif platform.system() == 'Darwin':
         al.log("Mac OS detected -restarting")
 
         import sys
@@ -163,12 +164,10 @@ class TraderSettings():
         self.FILESERVERUSER = self.config['Server']['serveruser']
         self.TWSSTARTCOMMAND = self.config['Server']['tws_installation_pathl']
 
-
         retrieved = get_user_settings_from_server(self.FILESERVERURL, self.FILESERVERUSER)
         self.read_config(retrieved)
         global al
         al = Algotrader_logger(self)
-
 
     def read_config(self, retrieved):
         self.PORT = retrieved['connection_port']
@@ -187,8 +186,8 @@ class TraderSettings():
         self.ALLOWBUY = retrieved['algo_allow_buy']
         self.ALLOWSELL = retrieved['algo_allow_sell']
         self.AUTORESTART = retrieved['station_autorestart']
-        self.APPLYMAXHOLD=retrieved['algo_apply_max_hold']
-        self.MAXHOLDDAYS=retrieved['algo_max_hold_days']
+        self.APPLYMAXHOLD = retrieved['algo_apply_max_hold']
+        self.MAXHOLDDAYS = retrieved['algo_max_hold_days']
         self.TWSUSER = retrieved['connection_tws_user']
         self.TWSPASS = retrieved['connection_tws_pass']
         self.APPLYMINEMOTION = retrieved['algo_apply_min_emotion']
@@ -201,15 +200,15 @@ class Algotrader:
         self.trading_time_zone = timezone('US/Eastern')
 
         self.settings = None
-        self.stocks_data_from_server =None
+        self.stocks_data_from_server = None
         self.positions_open_on_server = None
-        self.started_time=datetime.now()
+        self.started_time = datetime.now()
 
     def get_settings(self):
         print('Connecting to server - to get settings.')
-        self.settings=None
+        self.settings = None
         try:
-            self.settings=TraderSettings()
+            self.settings = TraderSettings()
         except Exception as e:
             if hasattr(e, 'message'):
                 al.log("Error in getting Settings: " + str(e.message))
@@ -224,50 +223,49 @@ class Algotrader:
 
     def start_processing(self):
         self.process_worker()
-        threading.Timer(self.settings.INTERVALSERVER, self.start_processing ).start()
+        threading.Timer(self.settings.INTERVALSERVER, self.start_processing).start()
 
     def process_worker(self):
         al.log("Requesting Command from server......")
 
-        result = self.get_settings()   #to not fall on server restarts
+        result = self.get_settings()  # to not fall on server restarts
         while result == False:
             time.sleep(10)
             result = self.get_settings()
         if self.settings is not None:
-            server_command=get_command_from_server(self.settings)
+            server_command = get_command_from_server(self.settings)
             self.process_server_command_response(server_command)
 
     def process_server_command_response(self, r):
-        response=json.loads(r)
-        self.stocks_data_from_server=response['candidates']
-        self.positions_open_on_server=response['open_positions']
-        self.settings.MARKETEMOTION=int(response['market_emotion'])
-        command=response['command']
-        al.log('Received command : '+command)
+        response = json.loads(r)
+        self.stocks_data_from_server = response['candidates']
+        self.positions_open_on_server = response['open_positions']
+        self.settings.MARKETEMOTION = int(response['market_emotion'])
+        command = response['command']
+        al.log('Received command : ' + command)
 
-        if command=='restart_worker':
+        if command == 'restart_worker':
             al.log('Restart command received- doing restart for Algotrader and TWS')
 
             restart_tws_and_trader()
-        elif command=='close_all_positions':
+        elif command == 'close_all_positions':
             al.log("Closing all open positions")
 
             self.process_close_all_cycle()
-            self.get_settings()  #to refresh a settings and cancell a BUY
+            self.get_settings()  # to refresh a settings and cancell a BUY
         else:
             self.process_ibkr_cycle()
 
     def process_close_all_cycle(self):
-        self.ibkrworker = IBKRWorker(self.settings,logger=al)
+        self.ibkrworker = IBKRWorker(self.settings, logger=al)
         self.ibkrworker.close_all_positions_cycle()
         al.log("Worker finished reporting to the server........")
 
-
     def process_ibkr_cycle(self):
-        self.ibkrworker = IBKRWorker(self.settings,logger=al)
+        self.ibkrworker = IBKRWorker(self.settings, logger=al)
         self.ibkrworker.stocks_data_from_server = self.stocks_data_from_server
         self.ibkrworker.positions_open_on_server = self.positions_open_on_server
-        successfull_cycle=self.ibkrworker.run_full_cycle()
+        successfull_cycle = self.ibkrworker.run_full_cycle()
         if not successfull_cycle:
             restart_tws_and_trader()
         al.log("Worker finished reporting to the server........")
@@ -285,11 +283,11 @@ class Algotrader:
         all_positions_value = 0
         open_positions = self.ibkrworker.app.openPositions
         open_orders = self.ibkrworker.app.openOrders
-        candidates_live=self.ibkrworker.app.candidatesLive
+        candidates_live = self.ibkrworker.app.candidatesLive
         dailyPnl = self.ibkrworker.app.dailyPnl
         tradinng_session_state = self.ibkrworker.trading_session_state
         worker_last_execution = self.ibkrworker.last_worker_execution_time
-        api_connected=self.ibkrworker.api_connected
+        api_connected = self.ibkrworker.api_connected
         market_data_error = self.ibkrworker.app.market_data_error
         data_for_report = [self.settings,
                            net_liquidation,
@@ -311,13 +309,12 @@ class Algotrader:
         report_snapshot_to_server(self.settings, data_for_report)
         self.ibkrworker.app.disconnect()
 
-    def start_tws(self,settings):
-        tws_running=checkIfProcessRunning('JavaApplicationStub')
-        user=str(os.environ._data)
-        if 'colakamornik' not in user:
+    def start_tws(self, settings):
+        tws_running = checkIfProcessRunning('JavaApplicationStub')
+        user = str(os.environ._data)
+        if 'colakamornik' not in user and 'lilia' not in user:
             al.log('Starting TWS configured in INI file')
-
-            cmd=settings.TWSSTARTCOMMAND
+            cmd = settings.TWSSTARTCOMMAND
             os.system(cmd)
             while not checkIfProcessRunning('pxgsettings'):
                 al.log('Waiting for login Screen')
@@ -327,16 +324,14 @@ class Algotrader:
 
 
 def cmd_main():
-
-
     setproctitle.setproctitle('traderproc')
-    algotrader=Algotrader()
-    result=algotrader.get_settings()
-    while result==False:
+    algotrader = Algotrader()
+    result = algotrader.get_settings()
+    while result == False:
         time.sleep(10)
         result = algotrader.get_settings()
     # sys.stderr = LoggerWriter(algotrader.settings)  # this is redirecting output to remote directly
-    al.log('Client started V:'+str(client_version))
+    al.log('Client started V:' + str(client_version))
     algotrader.start_tws(algotrader.settings)
     algotrader.start_processing()
 
