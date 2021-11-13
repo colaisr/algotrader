@@ -591,6 +591,7 @@ Creating a PnL request the result will be stored in generalStarus
                 if dt['ticker'] == v['Stock']:
                     self.app.candidatesLive[k]["averagePriceDropP"] = dt['yahoo_avdropP']
                     self.app.candidatesLive[k]["averagePriceSpreadP"] = dt['yahoo_avspreadP']
+                    self.app.candidatesLive[k]["buying_target_price_fmp"] = dt['buying_target_price_fmp']
                     self.app.candidatesLive[k]['tipranksRank'] = dt['tipranks']
                     self.app.candidatesLive[k]['yahoo_rank'] = dt['yahoo_rank']
                     self.app.candidatesLive[k]['stock_invest_rank'] = dt['stock_invest_rank']
