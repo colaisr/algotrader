@@ -49,6 +49,7 @@ class IBKRWorker():
                 self.logger.log("Preparing to close all open positions")
                 self.check_if_holiday()
                 self.update_open_positions()
+                self.app.reqGlobalCancel();
                 if self.trading_session_state == "Open":
                     for s, p in self.app.openPositions.items():
                         if 'Value' in p.keys():
@@ -323,7 +324,7 @@ Evaluates stock for buying
             if c["Stock"] == s:
                 ask_price = c["Ask"]
                 average_daily_dropP = c["averagePriceDropP"]
-                target_price = c["target_price"]
+                target_price = c["buying_target_price_fmp"]
                 break
 
         if ask_price == -1:  # market is closed

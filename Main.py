@@ -7,7 +7,7 @@ import logging.config
 
 from Scripts.tws_cred_login import login_tws_user
 
-client_version = 8.1
+client_version = 8.2
 import configparser
 import json
 import threading
