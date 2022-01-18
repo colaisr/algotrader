@@ -136,18 +136,17 @@ def restart_tws_and_trader():
         subprocess.call('Scripts\\win_restartTws.bat')
         os.execv(sys.executable, ['python'] + sys.argv)
     elif platform.system() == 'Linux':
-        al.log("Linux OS detected -restarting")
+        print("Linux OS detected -restarting")
 
         cmd = 'reboot &'
         import os
         os.system(cmd)
 
     elif platform.system() == 'Darwin':
-        al.log("Mac OS detected -restarting")
-
-        import sys
-        import os
-        os.execl(sys.executable, sys.executable, *sys.argv)
+       print("Mac OS detected -restarting")
+       import sys
+       import os
+       os.execl(sys.executable, sys.executable, *sys.argv)
 
 
 class SettingsCandidate:
@@ -166,8 +165,6 @@ class TraderSettings():
 
         retrieved = get_user_settings_from_server(self.FILESERVERURL, self.FILESERVERUSER)
         self.read_config(retrieved)
-        global al
-        al = Algotrader_logger(self)
 
     def read_config(self, retrieved):
         self.PORT = retrieved['connection_port']
@@ -211,11 +208,11 @@ class Algotrader:
             self.settings = TraderSettings()
         except Exception as e:
             if hasattr(e, 'message'):
-                al.log("Error in getting Settings: " + str(e.message))
+                print("Error in getting Settings: " + str(e.message))
 
             else:
-                al.log("Error in getting Settings: " + str(e))
-        al.log('Settings received.')
+                print("Error in getting Settings: " + str(e))
+        print('Settings received.')
         if self.settings is not None:
             return True
         else:
@@ -226,7 +223,7 @@ class Algotrader:
         threading.Timer(self.settings.INTERVALSERVER, self.start_processing).start()
 
     def process_worker(self):
-        al.log("Requesting Command from server......")
+        print("Requesting Command from server......")
 
         result = self.get_settings()  # to not fall on server restarts
         while result == False:
@@ -242,14 +239,14 @@ class Algotrader:
         self.positions_open_on_server = response['open_positions']
         self.settings.MARKETEMOTION = int(response['market_emotion'])
         command = response['command']
-        al.log('Received command : ' + command)
+        print('Received command : ' + command)
 
         if command == 'restart_worker':
-            al.log('Restart command received- doing restart for Algotrader and TWS')
+            print('Restart command received- doing restart for Algotrader and TWS')
 
             restart_tws_and_trader()
         elif command == 'close_all_positions':
-            al.log("Closing all open positions")
+            print("Closing all open positions")
 
             self.process_close_all_cycle()
             self.get_settings()  # to refresh a settings and cancell a BUY
@@ -257,18 +254,18 @@ class Algotrader:
             self.process_ibkr_cycle()
 
     def process_close_all_cycle(self):
-        self.ibkrworker = IBKRWorker(self.settings, logger=al)
+        self.ibkrworker = IBKRWorker(self.settings)
         self.ibkrworker.close_all_positions_cycle()
-        al.log("Worker finished reporting to the server........")
+        print("Worker finished reporting to the server........")
 
     def process_ibkr_cycle(self):
-        self.ibkrworker = IBKRWorker(self.settings, logger=al)
+        self.ibkrworker = IBKRWorker(self.settings)
         self.ibkrworker.stocks_data_from_server = self.stocks_data_from_server
         self.ibkrworker.positions_open_on_server = self.positions_open_on_server
         successfull_cycle = self.ibkrworker.run_full_cycle()
         if not successfull_cycle:
             restart_tws_and_trader()
-        al.log("Worker finished reporting to the server........")
+        print("Worker finished reporting to the server........")
 
         self.report_to_server()
 
@@ -313,13 +310,13 @@ class Algotrader:
         tws_running = checkIfProcessRunning('JavaApplicationStub')
         user = str(os.environ._data)
         if 'colakamornik' not in user and 'lilia' not in user:
-            al.log('Starting TWS configured in INI file')
+            print('Starting TWS configured in INI file')
             cmd = settings.TWSSTARTCOMMAND
             os.system(cmd)
             while not checkIfProcessRunning('pxgsettings'):
-                al.log('Waiting for login Screen')
+                print('Waiting for login Screen')
                 time.sleep(1)
-            al.log("TWS process found starting login")
+            print("TWS process found starting login")
             login_tws_user(settings)
 
 
@@ -331,7 +328,7 @@ def cmd_main():
         time.sleep(10)
         result = algotrader.get_settings()
     # sys.stderr = LoggerWriter(algotrader.settings)  # this is redirecting output to remote directly
-    al.log('Client started V:' + str(client_version))
+    print('Client started V:' + str(client_version))
     algotrader.start_tws(algotrader.settings)
     algotrader.start_processing()
 
